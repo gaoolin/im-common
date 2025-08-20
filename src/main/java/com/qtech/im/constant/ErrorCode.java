@@ -43,6 +43,14 @@ public interface ErrorCode {
     String EXT_SERVICE_TIMEOUT = "EXT_0002";
     String EXT_SERVICE_ERROR = "EXT_0003";
 
+    // 网络错误码 (NET_xxx)
+    String NET_CONNECTION_FAILED = "NET_0001";
+    String NET_REQUEST_TIMEOUT = "NET_0002";
+    String NET_REQUEST_ERROR = "NET_0003";
+    String NET_RESPONSE_ERROR = "NET_0004";
+    String NET_REQUEST_NOT_FOUND = "NET_0005";
+    String NET_REQUEST_METHOD_NOT_ALLOWED = "NET_0006";
+
     // 丘钛设备点检错误码（针对丘钛MES）
     int QT_CHECK_OK = 200;
     int QT_CHECK_NG = 302;

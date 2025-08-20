@@ -38,6 +38,14 @@ public interface ErrorMessage {
     String DB_DELETE_ERROR = "数据库删除异常";
     String DB_INSERT_ERROR = "数据库插入异常";
 
+    // 网络错误消息
+    String NET_CONNECTION_FAILED = "网络连接失败";
+    String NET_REQUEST_TIMEOUT = "网络请求超时";
+    String NET_REQUEST_ERROR = "网络请求异常";
+    String NET_RESPONSE_ERROR = "网络响应异常";
+    String NET_REQUEST_NOT_FOUND = "网络请求未找到";
+    String NET_REQUEST_METHOD_NOT_ALLOWED = "网络请求方法不允许";
+
     // 第三方服务错误消息
     String EXT_SERVICE_UNAVAILABLE = "第三方服务不可用";
     String EXT_SERVICE_TIMEOUT = "第三方服务调用超时";
