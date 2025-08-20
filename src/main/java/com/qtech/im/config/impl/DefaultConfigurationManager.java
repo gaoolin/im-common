@@ -27,8 +27,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * - 支持多种配置源（properties、yaml、环境变量等）
  * - 配置变更监听机制
  * - 配置项缓存优化
+ * <p>
  *
  * @author gaozhilin
+ * @version 1.0
  * @email gaoolin@gmail.com
  * @date 2025/08/19
  */
@@ -371,7 +373,7 @@ public class DefaultConfigurationManager implements ConfigurationManager {
 
         // 按优先级顺序加载所有配置源（优先级高的后加载，可以覆盖优先级低的配置）
         List<ConfigSource> sortedSources = new ArrayList<>(configSources);
-        Collections.sort(sortedSources, (s1, s2) -> Integer.compare(s2.getPriority(), s1.getPriority()));
+        sortedSources.sort((s1, s2) -> Integer.compare(s2.getPriority(), s1.getPriority()));
 
         for (ConfigSource source : sortedSources) {
             if (source.isAvailable()) {

@@ -35,6 +35,8 @@ public interface ErrorMessage {
     String DB_CONNECTION_FAILED = "数据库连接失败";
     String DB_QUERY_ERROR = "数据库查询异常";
     String DB_UPDATE_ERROR = "数据库更新异常";
+    String DB_DELETE_ERROR = "数据库删除异常";
+    String DB_INSERT_ERROR = "数据库插入异常";
 
     // 第三方服务错误消息
     String EXT_SERVICE_UNAVAILABLE = "第三方服务不可用";
@@ -42,5 +44,6 @@ public interface ErrorMessage {
     String EXT_SERVICE_ERROR = "第三方服务调用异常";
 
     // 丘钛设备点检错误消息
+    String QT_CHECK_OK = "OK";
     String QT_CHECK_NG = "NG";
 }

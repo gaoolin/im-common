@@ -1,4 +1,4 @@
-package com.qtech.im
+package com.qtech.im;
 
 /**
  * author :  gaozhilin

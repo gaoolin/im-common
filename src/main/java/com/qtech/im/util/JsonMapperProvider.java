@@ -1,12 +1,15 @@
-package com.qtech.im.util
+package com.qtech.im.util;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +17,6 @@ import org.slf4j.LoggerFactory;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * JSON 映射器工厂类
@@ -31,9 +32,6 @@ import java.util.concurrent.locks.ReentrantLock;
  * - 配置了常用的序列化/反序列化特性
  * - 集成 Java 8 时间处理模块
  * - 具备容错和日志记录能力
- *
- * @author gaozhilin
- * @version 1.0
  * <p>
  * // 1. 获取共享实例
  * ObjectMapper mapper = JsonMapperProvider.getSharedInstance();
@@ -50,12 +48,16 @@ import java.util.concurrent.locks.ReentrantLock;
  * ObjectMapper customNewMapper = JsonMapperProvider.createCustomizedNewInstance(m -> {
  * m.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
  * });
+ * <p>
+ *
+ * @author gaozhilin
+ * @version 1.0
+ * @email gaoolin@gmail.com
+ * @date 2025/08/19
  */
 public class JsonMapperProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(JsonMapperProvider.class);
-    // 用于双重检查锁定的锁
-    private static final Lock lock = new ReentrantLock();
     // 默认日期格式
     private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
     // 默认时区
@@ -79,9 +81,7 @@ public class JsonMapperProvider {
     public static ObjectMapper getSharedInstance() {
         // 第一次检查（无锁）
         if (sharedInstance == null) {
-            // 加锁
-            lock.lock();
-            try {
+            synchronized (JsonMapperProvider.class) {
                 // 第二次检查（有锁）
                 if (sharedInstance == null) {
                     sharedInstance = createDefaultObjectMapper();
@@ -89,11 +89,48 @@ public class JsonMapperProvider {
                         logger.info(">>>>> Shared ObjectMapper instance created successfully");
                     }
                 }
-            } finally {
-                lock.unlock();
             }
         }
         return sharedInstance;
+    }
+
+    /**
+     * 创建支持类型信息序列化和反序列化的 ObjectMapper 实例
+     * 用于需要保留/恢复 Java 类型信息的场景（例如从 Redis、消息队列中读取 JSON 并还原原始类型）
+     *
+     * @return 配置了类型信息处理的 ObjectMapper 实例
+     */
+    public static ObjectMapper createTypedObjectMapper() {
+        try {
+            ObjectMapper mapper = getSharedInstance().copy();
+            mapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
+            return mapper;
+        } catch (RuntimeException e) {
+            if (logger.isErrorEnabled()) {
+                logger.error(">>>>> Failed to create typed ObjectMapper instance", e);
+            }
+            throw new RuntimeException(">>>>> Failed to create typed ObjectMapper instance", e);
+        }
+    }
+
+    /**
+     * 创建支持多态类型序列化和反序列化的 ObjectMapper 实例
+     * 适用于需要支持 @class 等类型信息的场景
+     *
+     * @return 配置了多态类型处理的 ObjectMapper 实例
+     */
+    public static ObjectMapper createPolymorphicObjectMapper() {
+        try {
+            ObjectMapper mapper = getSharedInstance().copy();
+            mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+            mapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
+            return mapper;
+        } catch (RuntimeException e) {
+            if (logger.isErrorEnabled()) {
+                logger.error(">>>>> Failed to create polymorphic ObjectMapper instance", e);
+            }
+            throw new RuntimeException(">>>>> Failed to create polymorphic ObjectMapper instance", e);
+        }
     }
 
     /**
@@ -107,7 +144,7 @@ public class JsonMapperProvider {
         if (configCallback != null) {
             try {
                 configCallback.accept(mapper);
-            } catch (Exception e) {
+            } catch (RuntimeException e) {
                 if (logger.isWarnEnabled()) {
                     logger.warn(">>>>> Failed to apply custom configuration to ObjectMapper", e);
                 }
@@ -136,7 +173,7 @@ public class JsonMapperProvider {
         if (configCallback != null) {
             try {
                 configCallback.accept(mapper);
-            } catch (Exception e) {
+            } catch (RuntimeException e) {
                 if (logger.isWarnEnabled()) {
                     logger.warn(">>>>> Failed to apply custom configuration to new ObjectMapper", e);
                 }
@@ -178,7 +215,7 @@ public class JsonMapperProvider {
             configureJsonGeneratorFeatures(mapper);
 
             return mapper;
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             if (logger.isErrorEnabled()) {
                 logger.error(">>>>> Failed to create ObjectMapper instance", e);
             }
@@ -200,7 +237,7 @@ public class JsonMapperProvider {
         try {
             DateFormat dateFormat = new SimpleDateFormat(pattern);
             mapper.setDateFormat(dateFormat);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             if (logger.isWarnEnabled()) {
                 logger.warn(">>>>> Failed to configure date format: {}", pattern, e);
             }
@@ -301,11 +338,8 @@ public class JsonMapperProvider {
             logger.debug(">>>>> Resetting shared ObjectMapper instance");
         }
 
-        lock.lock();
-        try {
+        synchronized (JsonMapperProvider.class) {
             sharedInstance = null;
-        } finally {
-            lock.unlock();
         }
     }
 }

@@ -35,6 +35,8 @@ public interface ErrorCode {
     String DB_CONNECTION_FAILED = "DB_0001";
     String DB_QUERY_ERROR = "DB_0002";
     String DB_UPDATE_ERROR = "DB_0003";
+    String DB_DELETE_ERROR = "DB_0004";
+    String DB_INSERT_ERROR = "DB_0005";
 
     // 第三方服务错误码 (EXT_xxx)
     String EXT_SERVICE_UNAVAILABLE = "EXT_0001";

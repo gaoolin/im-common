@@ -14,7 +14,7 @@ import java.util.function.Function;
  * date   :  2025/08/19 13:40:05
  * desc   :
  * 异常处理工具类
- <p>
+ * <p>
  * 提供统一的异常处理方法和转换功能
  */
 public class ExceptionUtils {
