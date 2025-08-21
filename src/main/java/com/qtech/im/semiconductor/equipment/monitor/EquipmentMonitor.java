@@ -133,13 +133,8 @@ public class EquipmentMonitor {
             // 获取设备当前状态
             EquipmentStatus status = doGetCurrentStatus(equipmentId);
 
-            if (status != null) {
-                logger.debug("Retrieved current status for equipment {}: {}", equipmentId, status.getState());
-                return status;
-            } else {
-                logger.warn("Failed to retrieve current status for equipment: {}", equipmentId);
-                return new EquipmentStatus(equipmentId, EquipmentState.UNKNOWN, System.currentTimeMillis());
-            }
+            logger.debug("Retrieved current status for equipment {}: {}", equipmentId, status.getState());
+            return status;
         } catch (Exception e) {
             logger.error("Exception occurred while getting current status for equipment: {}", equipmentId, e);
             return new EquipmentStatus(equipmentId, EquipmentState.ERROR, System.currentTimeMillis());
@@ -174,7 +169,7 @@ public class EquipmentMonitor {
             // 获取设备历史数据
             List<EquipmentStatus> history = getEquipmentHistory(equipmentId, 3600000); // 1小时
 
-            if (history == null || history.isEmpty()) {
+            if (history.isEmpty()) {
                 logger.warn("No history data available for equipment: {}", equipmentId);
                 return new HealthScore(equipmentId, 0.5, "No history data");
             }

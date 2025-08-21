@@ -6,7 +6,7 @@
 
     <groupId>com.qtech</groupId>
     <artifactId>im-common</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <packaging>jar</packaging>
     <name>QTech Common Utilities</name>
     <description>QTech 公司通用工具模块（轻量级，无 Spring 依赖，支持多 Java 版本）</description>
@@ -60,6 +60,12 @@
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
             <version>2.9.3</version> <!-- 这是最后一个支持 Java 8 的版本 -->
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.0.1-jre</version> <!-- 推荐使用最新稳定版本 -->
         </dependency>
 
         <!-- 日志依赖 -->
