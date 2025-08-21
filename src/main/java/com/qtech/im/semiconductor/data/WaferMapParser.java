@@ -24,13 +24,11 @@ import java.util.*;
  */
 public class WaferMapParser {
 
-    private static final Logger logger = LoggerFactory.getLogger(WaferMapParser.class);
-
     // 默认Wafer尺寸
     public static final int DEFAULT_WAFER_SIZE = 300; // mm
-
     // 默认Die尺寸
     public static final double DEFAULT_DIE_SIZE = 5.0; // mm
+    private static final Logger logger = LoggerFactory.getLogger(WaferMapParser.class);
 
     /**
      * 解析Wafer Map文件
@@ -173,12 +171,29 @@ public class WaferMapParser {
         }
 
         // Getters and Setters
-        public int getX() { return x; }
-        public int getY() { return y; }
-        public DieStatus getStatus() { return status; }
-        public Map<String, Object> getAttributes() { return new HashMap<>(attributes); }
-        public void setAttribute(String key, Object value) { attributes.put(key, value); }
-        public Object getAttribute(String key) { return attributes.get(key); }
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        public DieStatus getStatus() {
+            return status;
+        }
+
+        public Map<String, Object> getAttributes() {
+            return new HashMap<>(attributes);
+        }
+
+        public void setAttribute(String key, Object value) {
+            attributes.put(key, value);
+        }
+
+        public Object getAttribute(String key) {
+            return attributes.get(key);
+        }
     }
 
     /**
@@ -198,16 +213,45 @@ public class WaferMapParser {
         }
 
         // Getters and Setters
-        public List<Die> getDies() { return new ArrayList<>(dies); }
-        public void addDie(Die die) { dies.add(die); }
-        public int getWaferSize() { return waferSize; }
-        public void setWaferSize(int waferSize) { this.waferSize = waferSize; }
-        public double getDieSize() { return dieSize; }
-        public void setDieSize(double dieSize) { this.dieSize = dieSize; }
-        public String getLotId() { return lotId; }
-        public void setLotId(String lotId) { this.lotId = lotId; }
-        public String getWaferId() { return waferId; }
-        public void setWaferId(String waferId) { this.waferId = waferId; }
+        public List<Die> getDies() {
+            return new ArrayList<>(dies);
+        }
+
+        public void addDie(Die die) {
+            dies.add(die);
+        }
+
+        public int getWaferSize() {
+            return waferSize;
+        }
+
+        public void setWaferSize(int waferSize) {
+            this.waferSize = waferSize;
+        }
+
+        public double getDieSize() {
+            return dieSize;
+        }
+
+        public void setDieSize(double dieSize) {
+            this.dieSize = dieSize;
+        }
+
+        public String getLotId() {
+            return lotId;
+        }
+
+        public void setLotId(String lotId) {
+            this.lotId = lotId;
+        }
+
+        public String getWaferId() {
+            return waferId;
+        }
+
+        public void setWaferId(String waferId) {
+            this.waferId = waferId;
+        }
     }
 
     /**
@@ -229,21 +273,35 @@ public class WaferMapParser {
         }
 
         // Getters
-        public int getTotalDies() { return totalDies; }
-        public int getGoodDies() { return goodDies; }
-        public int getBadDies() { return badDies; }
-        public double getYield() { return yield; }
-        public Map<DieStatus, Integer> getStatusCounts() { return new EnumMap<>(statusCounts); }
+        public int getTotalDies() {
+            return totalDies;
+        }
+
+        public int getGoodDies() {
+            return goodDies;
+        }
+
+        public int getBadDies() {
+            return badDies;
+        }
+
+        public double getYield() {
+            return yield;
+        }
+
+        public Map<DieStatus, Integer> getStatusCounts() {
+            return new EnumMap<>(statusCounts);
+        }
 
         @Override
         public String toString() {
             return "WaferMapReport{" +
-                   "totalDies=" + totalDies +
-                   ", goodDies=" + goodDies +
-                   ", badDies=" + badDies +
-                   ", yield=" + String.format("%.2f", yield * 100) + "%" +
-                   ", statusCounts=" + statusCounts +
-                   '}';
+                    "totalDies=" + totalDies +
+                    ", goodDies=" + goodDies +
+                    ", badDies=" + badDies +
+                    ", yield=" + String.format("%.2f", yield * 100) + "%" +
+                    ", statusCounts=" + statusCounts +
+                    '}';
         }
     }
 }
