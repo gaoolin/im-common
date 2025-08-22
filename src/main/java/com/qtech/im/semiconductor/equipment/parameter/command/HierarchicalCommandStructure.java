@@ -1,4 +1,4 @@
-package com.qtech.im.semiconductor.equipment.qtech;
+package com.qtech.im.semiconductor.equipment.parameter.command;
 
 /**
  * author :  gaozhilin

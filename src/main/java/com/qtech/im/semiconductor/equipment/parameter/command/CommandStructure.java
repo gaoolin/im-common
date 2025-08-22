@@ -1,4 +1,4 @@
-package com.qtech.im.semiconductor.equipment.qtech;
+package com.qtech.im.semiconductor.equipment.parameter.command;
 
 import org.apache.commons.lang3.StringUtils;
 
