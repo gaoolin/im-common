@@ -1,4 +1,4 @@
-package com.qtech.im.common;
+package com.qtech.im.common.batch;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

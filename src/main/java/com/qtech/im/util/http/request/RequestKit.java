@@ -1,7 +1,8 @@
-package com.qtech.im.util;
+package com.qtech.im.util.http.request;
 
 import com.qtech.im.constant.ErrorCode;
 import com.qtech.im.exception.HttpException;
+import com.qtech.im.util.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,24 +36,16 @@ import java.util.zip.GZIPInputStream;
  * @email gaoolin@gmail.com
  * @date 2025/08/20
  */
-public class HttpKit {
+public class RequestKit {
+    private static final Logger logger = LoggerFactory.getLogger(RequestKit.class);
 
-    // 默认配置
-    public static final int DEFAULT_CONNECT_TIMEOUT = 5000; // 5秒
-    public static final int DEFAULT_READ_TIMEOUT = 10000;   // 10秒
-    public static final int DEFAULT_MAX_RETRIES = 3;        // 默认重试次数
-    public static final long DEFAULT_RETRY_INTERVAL = 1000; // 重试间隔1秒
-    public static final String DEFAULT_USER_AGENT = "HttpKit/1.0";
-    public static final String DEFAULT_CONTENT_TYPE = "application/json; charset=UTF-8";
-    private static final Logger logger = LoggerFactory.getLogger(HttpKit.class);
-    // 响应状态码范围
-    private static final int HTTP_SUCCESS_START = 200;
-    private static final int HTTP_SUCCESS_END = 299;
     // 连接池配置
     private static final int MAX_CONNECTIONS = 100;
     private static final int KEEP_ALIVE_TIME = 300; // 5分钟
+
     // 全局共享的HTTP客户端实例
-    private static final HttpKit SHARED_INSTANCE = new HttpKit();
+    private static final RequestKit SHARED_INSTANCE = new RequestKit();
+
     // HTTPS信任管理器（用于跳过证书验证，生产环境应谨慎使用）
     private static final TrustManager[] TRUST_ALL_CERTS = new TrustManager[]{
             new X509TrustManager() {
@@ -67,17 +60,34 @@ public class HttpKit {
                 }
             }
     };
+
     // 主机名验证器（用于跳过主机名验证）
     private static final HostnameVerifier TRUST_ALL_HOSTNAME = (hostname, session) -> true;
+
     // 线程池用于异步请求
     private final ExecutorService executorService;
-    // Cookie管理器
+
+    // 每个实例独立的Cookie管理器，避免线程安全问题
     private final CookieManager cookieManager;
+
+    // 默认配置
+    private final RequestConfig defaultConfig;
 
     /**
      * 私有构造函数，创建全局单例
      */
-    private HttpKit() {
+    private RequestKit() {
+        this(RequestConfig.defaultConfig());
+    }
+
+    /**
+     * 带配置的构造函数
+     *
+     * @param config HTTP配置
+     */
+    private RequestKit(RequestConfig config) {
+        this.defaultConfig = config != null ? config : RequestConfig.defaultConfig();
+
         // 初始化线程池
         this.executorService = new ThreadPoolExecutor(
                 10, // 核心线程数
@@ -90,7 +100,7 @@ public class HttpKit {
 
                     @Override
                     public Thread newThread(Runnable r) {
-                        Thread t = new Thread(r, "HttpKit-" + threadNumber.getAndIncrement());
+                        Thread t = new Thread(r, "RequestKit-" + threadNumber.getAndIncrement());
                         t.setDaemon(false);
                         return t;
                     }
@@ -101,7 +111,7 @@ public class HttpKit {
         // 初始化Cookie管理器
         this.cookieManager = new CookieManager();
         this.cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
-        CookieHandler.setDefault(this.cookieManager);
+        // 不设置全局默认CookieHandler，避免线程安全问题
 
         // 设置默认的SSL上下文（生产环境应使用标准证书验证）
         setupSSLContext();
@@ -112,8 +122,18 @@ public class HttpKit {
      *
      * @return HttpClient实例
      */
-    public static HttpKit getInstance() {
+    public static RequestKit getInstance() {
         return SHARED_INSTANCE;
+    }
+
+    /**
+     * 获取带指定配置的HTTP客户端实例
+     *
+     * @param config HTTP配置
+     * @return HttpClient实例
+     */
+    public static RequestKit getInstance(RequestConfig config) {
+        return new RequestKit(config);
     }
 
     /**
@@ -138,7 +158,7 @@ public class HttpKit {
      * @throws HttpException HTTP异常
      */
     public HttpResponse execute(HttpRequest request) throws HttpException {
-        return execute(request, DEFAULT_MAX_RETRIES);
+        return execute(request, defaultConfig.getMaxRetries());
     }
 
     /**
@@ -156,11 +176,16 @@ public class HttpKit {
             try {
                 HttpResponse response = doExecute(request);
 
-                // 检查是否需要重试（5xx服务器错误）
-                if (i < maxRetries && response.getStatusCode() >= 500) {
-                    logger.warn("Server error ({}), retrying... ({}/{})",
+                // 检查是否需要重试
+                if (i < maxRetries && shouldRetry(response, request)) {
+                    logger.warn("Request needs retry ({}), retrying... ({}/{})",
                             response.getStatusCode(), i + 1, maxRetries);
-                    Thread.sleep(DEFAULT_RETRY_INTERVAL * (i + 1)); // 指数退避
+                    try {
+                        Thread.sleep(calculateRetryDelay(i)); // 指数退避
+                    } catch (InterruptedException ie) {
+                        Thread.currentThread().interrupt();
+                        throw new HttpException(ErrorCode.NET_REQUEST_ERROR, "Request interrupted", ie);
+                    }
                     continue;
                 }
 
@@ -170,7 +195,7 @@ public class HttpKit {
                 if (i < maxRetries) {
                     logger.warn("Request failed, retrying... ({}/{})", i + 1, maxRetries, e);
                     try {
-                        Thread.sleep(DEFAULT_RETRY_INTERVAL * (i + 1)); // 指数退避
+                        Thread.sleep(calculateRetryDelay(i)); // 指数退避
                     } catch (InterruptedException ie) {
                         Thread.currentThread().interrupt();
                         throw new HttpException(ErrorCode.NET_REQUEST_ERROR, "Request interrupted", ie);
@@ -180,6 +205,58 @@ public class HttpKit {
         }
 
         throw new HttpException(ErrorCode.NET_REQUEST_ERROR, "Request failed after " + maxRetries + " retries", lastException);
+    }
+
+    /**
+     * 判断是否需要重试
+     *
+     * @param response HTTP响应
+     * @param request  HTTP请求
+     * @return true表示需要重试
+     */
+    private boolean shouldRetry(HttpResponse response, HttpRequest request) {
+        int statusCode = response.getStatusCode();
+        HttpStatus status = HttpStatus.valueOf(statusCode);
+
+        // 根据配置决定是否立即失败
+        if (defaultConfig.isFailOnServerError() && status.isServerError()) {
+            return false; // 配置为立即失败，不重试
+        }
+
+        if (defaultConfig.isFailOnClientError() && status.isClientError()) {
+            return false; // 配置为立即失败，不重试
+        }
+
+        // 服务器错误通常需要重试
+        if (status.isServerError()) {
+            return true;
+        }
+
+        // 特定客户端错误可能需要重试
+        switch (statusCode) {
+            case 408: // Request Timeout
+            case 429: // Too Many Requests
+            case 502: // Bad Gateway
+            case 503: // Service Unavailable
+            case 504: // Gateway Timeout
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    /**
+     * 计算重试延迟时间
+     *
+     * @param retryCount 重试次数
+     * @return 延迟时间（毫秒）
+     */
+    private long calculateRetryDelay(int retryCount) {
+        long baseDelay = defaultConfig.getRetryInterval();
+        if (defaultConfig.isExponentialBackoff()) {
+            return baseDelay * (1L << retryCount); // 指数退避
+        }
+        return baseDelay;
     }
 
     /**
@@ -213,7 +290,11 @@ public class HttpKit {
             throw new HttpException(ErrorCode.NET_REQUEST_ERROR, "Failed to execute HTTP request", e);
         } finally {
             if (connection != null) {
-                connection.disconnect();
+                try {
+                    connection.disconnect();
+                } catch (Exception e) {
+                    logger.debug("Error disconnecting connection", e);
+                }
             }
         }
     }
@@ -253,23 +334,39 @@ public class HttpKit {
     private void configureConnection(HttpURLConnection connection, HttpRequest request) {
         // 设置请求方法
         try {
-            connection.setRequestMethod(request.getMethod().name());
+            connection.setRequestMethod(request.getMethod().getName());
         } catch (ProtocolException e) {
             logger.warn("Invalid HTTP method: {}", request.getMethod());
         }
 
         // 设置超时
         connection.setConnectTimeout(request.getConnectTimeout() > 0 ?
-                request.getConnectTimeout() : DEFAULT_CONNECT_TIMEOUT);
+                request.getConnectTimeout() : defaultConfig.getConnectTimeout());
         connection.setReadTimeout(request.getReadTimeout() > 0 ?
-                request.getReadTimeout() : DEFAULT_READ_TIMEOUT);
+                request.getReadTimeout() : defaultConfig.getReadTimeout());
 
         // 设置其他连接属性
         connection.setDoInput(true);
-        connection.setDoOutput(request.getMethod() != HttpMethod.GET &&
-                request.getMethod() != HttpMethod.HEAD);
-        connection.setUseCaches(false);
-        connection.setInstanceFollowRedirects(true);
+        connection.setDoOutput(request.getMethod().supportsRequestBody());
+        connection.setUseCaches(defaultConfig.isUseCaches());
+        connection.setInstanceFollowRedirects(defaultConfig.isFollowRedirects());
+    }
+
+    /**
+     * 设置默认请求头
+     *
+     * @param connection HTTP连接对象
+     */
+    private void setDefaultRequestHeaders(HttpURLConnection connection) {
+        connection.setRequestProperty("User-Agent", defaultConfig.getUserAgent());
+        connection.setRequestProperty("Accept-Charset", "UTF-8");
+        connection.setRequestProperty("Accept", "*/*");
+        connection.setRequestProperty("Connection", "keep-alive");
+
+        // 启用GZIP压缩
+        if (defaultConfig.isEnableGzip()) {
+            connection.setRequestProperty("Accept-Encoding", "gzip");
+        }
     }
 
     /**
@@ -280,19 +377,13 @@ public class HttpKit {
      */
     private void setRequestHeaders(HttpURLConnection connection, HttpRequest request) {
         // 设置默认请求头
-        connection.setRequestProperty("User-Agent", DEFAULT_USER_AGENT);
-        connection.setRequestProperty("Accept-Charset", "UTF-8");
-        connection.setRequestProperty("Accept", "*/*");
-        connection.setRequestProperty("Connection", "keep-alive");
-
-        // 启用GZIP压缩
-        connection.setRequestProperty("Accept-Encoding", "gzip");
+        setDefaultRequestHeaders(connection);
 
         // 设置内容类型（对于有请求体的方法）
-        if (request.getMethod() != HttpMethod.GET && request.getMethod() != HttpMethod.HEAD) {
+        if (request.getMethod().supportsRequestBody()) {
             connection.setRequestProperty("Content-Type",
                     request.getContentType() != null ?
-                            request.getContentType() : DEFAULT_CONTENT_TYPE);
+                            request.getContentType() : defaultConfig.getDefaultContentType());
         }
 
         // 设置自定义请求头
@@ -313,9 +404,7 @@ public class HttpKit {
      */
     private void sendRequestBody(HttpURLConnection connection, HttpRequest request) throws IOException {
         String requestBody = request.getBody();
-        if (requestBody != null && !requestBody.isEmpty() &&
-                request.getMethod() != HttpMethod.GET && request.getMethod() != HttpMethod.HEAD) {
-
+        if (requestBody != null && !requestBody.isEmpty() && request.getMethod().supportsRequestBody()) {
             connection.setDoOutput(true);
             try (OutputStream os = connection.getOutputStream()) {
                 byte[] input = requestBody.getBytes(StandardCharsets.UTF_8);
@@ -340,9 +429,25 @@ public class HttpKit {
 
         // 读取响应体
         String responseBody = null;
-        try (InputStream is = getResponseStream(connection)) {
+        InputStream is = null;
+        try {
+            is = getResponseStream(connection);
             if (is != null) {
                 responseBody = readInputStream(is);
+
+                // 检查响应大小
+                if (responseBody != null && responseBody.length() > defaultConfig.getMaxResponseSize()) {
+                    logger.warn("Response body size {} exceeds max allowed size {}",
+                            responseBody.length(), defaultConfig.getMaxResponseSize());
+                }
+            }
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    logger.debug("Error closing input stream", e);
+                }
             }
         }
 
@@ -360,7 +465,7 @@ public class HttpKit {
         InputStream inputStream;
 
         // 检查是否是错误响应
-        if (connection.getResponseCode() >= HTTP_SUCCESS_START) {
+        if (connection.getResponseCode() < 400) {
             inputStream = connection.getInputStream();
         } else {
             inputStream = connection.getErrorStream();
@@ -371,9 +476,11 @@ public class HttpKit {
         }
 
         // 检查是否是GZIP压缩
-        String contentEncoding = connection.getHeaderField("Content-Encoding");
-        if ("gzip".equalsIgnoreCase(contentEncoding)) {
-            return new GZIPInputStream(inputStream);
+        if (defaultConfig.isEnableGzip()) {
+            String contentEncoding = connection.getHeaderField("Content-Encoding");
+            if ("gzip".equalsIgnoreCase(contentEncoding)) {
+                return new GZIPInputStream(inputStream);
+            }
         }
 
         return inputStream;
@@ -421,7 +528,7 @@ public class HttpKit {
      * @throws HttpException HTTP异常
      */
     public HttpResponse get(String url) throws HttpException {
-        return execute(new HttpRequest(HttpMethod.GET, url));
+        return execute(new HttpRequest(RequestMethod.GET, url));
     }
 
     /**
@@ -433,7 +540,7 @@ public class HttpKit {
      * @throws HttpException HTTP异常
      */
     public HttpResponse get(String url, Map<String, String> queryParams) throws HttpException {
-        HttpRequest request = new HttpRequest(HttpMethod.GET, url);
+        HttpRequest request = new HttpRequest(RequestMethod.GET, url);
         request.setQueryParams(queryParams);
         return execute(request);
     }
@@ -447,7 +554,7 @@ public class HttpKit {
      * @throws HttpException HTTP异常
      */
     public HttpResponse post(String url, String body) throws HttpException {
-        HttpRequest request = new HttpRequest(HttpMethod.POST, url);
+        HttpRequest request = new HttpRequest(RequestMethod.POST, url);
         request.setBody(body);
         return execute(request);
     }
@@ -461,18 +568,20 @@ public class HttpKit {
      * @throws HttpException HTTP异常
      */
     public HttpResponse postForm(String url, Map<String, String> formData) throws HttpException, UnsupportedEncodingException {
-        HttpRequest request = new HttpRequest(HttpMethod.POST, url);
+        HttpRequest request = new HttpRequest(RequestMethod.POST, url);
         request.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
 
         if (formData != null && !formData.isEmpty()) {
             StringBuilder formBody = new StringBuilder();
+            boolean first = true;
             for (Map.Entry<String, String> entry : formData.entrySet()) {
-                if (formBody.length() > 0) {
+                if (!first) {
                     formBody.append("&");
                 }
                 formBody.append(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8.name()))
                         .append("=")
                         .append(URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8.name()));
+                first = false;
             }
             request.setBody(formBody.toString());
         }
@@ -489,7 +598,7 @@ public class HttpKit {
      * @throws HttpException HTTP异常
      */
     public HttpResponse put(String url, String body) throws HttpException {
-        HttpRequest request = new HttpRequest(HttpMethod.PUT, url);
+        HttpRequest request = new HttpRequest(RequestMethod.PUT, url);
         request.setBody(body);
         return execute(request);
     }
@@ -502,7 +611,7 @@ public class HttpKit {
      * @throws HttpException HTTP异常
      */
     public HttpResponse delete(String url) throws HttpException {
-        return execute(new HttpRequest(HttpMethod.DELETE, url));
+        return execute(new HttpRequest(RequestMethod.DELETE, url));
     }
 
     /**
@@ -520,11 +629,6 @@ public class HttpKit {
         }
     }
 
-    // HTTP方法枚举
-    public enum HttpMethod {
-        GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH
-    }
-
     /**
      * HTTP回调接口
      */
@@ -538,7 +642,7 @@ public class HttpKit {
      * HTTP请求类
      */
     public static class HttpRequest {
-        private HttpMethod method;
+        private RequestMethod method;
         private String url;
         private Map<String, String> headers;
         private Map<String, String> queryParams;
@@ -547,17 +651,17 @@ public class HttpKit {
         private int connectTimeout = -1;
         private int readTimeout = -1;
 
-        public HttpRequest(HttpMethod method, String url) {
+        public HttpRequest(RequestMethod method, String url) {
             this.method = method;
             this.url = url;
         }
 
         // Getters and Setters
-        public HttpMethod getMethod() {
+        public RequestMethod getMethod() {
             return method;
         }
 
-        public void setMethod(HttpMethod method) {
+        public void setMethod(RequestMethod method) {
             this.method = method;
         }
 
@@ -640,6 +744,7 @@ public class HttpKit {
         private final String statusMessage;
         private final Map<String, List<String>> headers;
         private final String body;
+        private final HttpStatus status;
 
         public HttpResponse(int statusCode, String statusMessage,
                             Map<String, List<String>> headers, String body) {
@@ -647,10 +752,11 @@ public class HttpKit {
             this.statusMessage = statusMessage;
             this.headers = headers != null ? new HashMap<>(headers) : new HashMap<>();
             this.body = body;
+            this.status = HttpStatus.valueOf(statusCode);
         }
 
         public boolean isSuccess() {
-            return statusCode >= HTTP_SUCCESS_START && statusCode <= HTTP_SUCCESS_END;
+            return status.isSuccess();
         }
 
         public int getStatusCode() {
@@ -678,9 +784,13 @@ public class HttpKit {
             return body;
         }
 
+        public HttpStatus getStatus() {
+            return status;
+        }
+
         @Override
         public String toString() {
-            return "HttpResponse{" +
+            return "ResponseKit{" +
                     "statusCode=" + statusCode +
                     ", statusMessage='" + statusMessage + '\'' +
                     ", headers=" + headers +

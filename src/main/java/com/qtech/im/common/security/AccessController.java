@@ -1,4 +1,4 @@
-package com.qtech.im.semiconductor.security;
+package com.qtech.im.common.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
