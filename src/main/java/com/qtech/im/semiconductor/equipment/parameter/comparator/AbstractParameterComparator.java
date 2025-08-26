@@ -1,7 +1,7 @@
 package com.qtech.im.semiconductor.equipment.parameter.comparator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qtech.im.util.JsonMapperProvider;
+import com.qtech.im.util.json.JsonMapperProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +15,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/21 14:14:42
- * desc   :
  */
 
 /**

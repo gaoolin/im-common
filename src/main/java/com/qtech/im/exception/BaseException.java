@@ -4,7 +4,6 @@ package com.qtech.im.exception;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/19 13:36:15
- * desc   :
  * 应用程序基础异常类
  <similar>
  * 所有自定义异常的基类，提供统一的异常处理框架

@@ -65,18 +65,18 @@ mvn clean install org.apache.maven.plugins:maven-deploy-plugin:2.8:deploy -Dskip
 使用 `JsonMapperProvider` 进行 JSON 序列化和反序列化：
 
 ```java
-import com.qtech.im.util.JsonMapperProvider;
+
 
 // 获取共享实例
-ObjectMapper mapper = JsonMapperProvider.getSharedInstance();
+ObjectMapper mapper=JsonMapperProvider.getSharedInstance();
 
 // JSON 转 Java 对象
-String json = "{\"name\":\"张三\",\"age\":25}";
-MyObject obj = mapper.readValue(json, MyObject.class);
+        String json="{\"name\":\"张三\",\"age\":25}";
+        MyObject obj=mapper.readValue(json,MyObject.class);
 
 // Java 对象转 JSON
-MyObject obj = new MyObject("李四", 30);
-String json = mapper.writeValueAsString(obj);
+        MyObject obj=new MyObject("李四",30);
+        String json=mapper.writeValueAsString(obj);
 ```
 
 

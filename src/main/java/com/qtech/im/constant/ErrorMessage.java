@@ -4,7 +4,6 @@ package com.qtech.im.constant;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/19 13:42:40
- * desc   :
  * 错误消息常量类
  * <p>
  * 定义系统中所有错误码对应的默认消息

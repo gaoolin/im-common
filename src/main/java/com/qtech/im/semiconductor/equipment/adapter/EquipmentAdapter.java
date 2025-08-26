@@ -109,7 +109,7 @@ public class EquipmentAdapter {
         }
 
         processorRegistry.put(name, processor);
-        logger.debug("Registered command processor: {}", name);
+        logger.debug("Registered entity processor: {}", name);
     }
 
     /**
@@ -198,13 +198,13 @@ public class EquipmentAdapter {
      */
     public static EquipmentResponse sendStandardCommand(String equipmentId, StandardCommand command, CommandConfig config) {
         if (equipmentId == null || equipmentId.isEmpty()) {
-            logger.error("Invalid equipment ID for command sending");
+            logger.error("Invalid equipment ID for entity sending");
             return new EquipmentResponse(ResponseStatus.FAILURE, "Invalid equipment ID", null);
         }
 
         if (command == null) {
-            logger.error("Invalid command for equipment: {}", equipmentId);
-            return new EquipmentResponse(ResponseStatus.FAILURE, "Invalid command", null);
+            logger.error("Invalid entity for equipment: {}", equipmentId);
+            return new EquipmentResponse(ResponseStatus.FAILURE, "Invalid entity", null);
         }
 
         if (config == null) {
@@ -221,7 +221,7 @@ public class EquipmentAdapter {
             if (config.isEnableCache()) {
                 EquipmentResponse cachedResponse = responseCache.get(cacheKey);
                 if (cachedResponse != null && !isCacheExpired(cachedResponse)) {
-                    logger.debug("Returning cached response for command: {} on equipment: {}", command.getCommandType(), equipmentId);
+                    logger.debug("Returning cached response for entity: {} on equipment: {}", command.getCommandType(), equipmentId);
                     successfulCommands.incrementAndGet();
                     return cachedResponse;
                 }
@@ -242,9 +242,9 @@ public class EquipmentAdapter {
             }
 
             if (processor == null) {
-                logger.error("No command processor available for equipment: {}", equipmentId);
+                logger.error("No entity processor available for equipment: {}", equipmentId);
                 failedCommands.incrementAndGet();
-                return new EquipmentResponse(ResponseStatus.FAILURE, "No command processor available", null);
+                return new EquipmentResponse(ResponseStatus.FAILURE, "No entity processor available", null);
             }
 
             // 发送命令
@@ -298,7 +298,7 @@ public class EquipmentAdapter {
             return response != null ? response : new EquipmentResponse(ResponseStatus.FAILURE, "Command execution failed", null);
         } catch (Exception e) {
             failedCommands.incrementAndGet();
-            logger.error("Exception occurred while sending command to equipment: {}", equipmentId, e);
+            logger.error("Exception occurred while sending entity to equipment: {}", equipmentId, e);
             return new EquipmentResponse(ResponseStatus.FAILURE, "Exception: " + e.getMessage(), null);
         }
     }
@@ -599,7 +599,7 @@ public class EquipmentAdapter {
      */
     public static boolean controlEquipment(String equipmentId, ControlCommand command) {
         if (equipmentId == null || equipmentId.isEmpty() || command == null) {
-            logger.error("Invalid equipment ID or command for equipment control");
+            logger.error("Invalid equipment ID or entity for equipment control");
             return false;
         }
 

@@ -1,10 +1,9 @@
-package com.qtech.im.semiconductor.equipment.parameter.command;
+package com.qtech.im.common.security;
 
 /**
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/22 11:27:47
- * desc   :
  */
 
 /**

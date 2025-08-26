@@ -5,7 +5,6 @@ import java.io.Serializable;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/19 15:49:28
- * desc   :  im-common-IntelliJ IDEA
  */
 
 /**

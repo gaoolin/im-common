@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/19 15:48:23
- * desc   :  im-common-IntelliJ IDEA
  */
 
 /**

@@ -4,7 +4,6 @@ package com.qtech.im.cache;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/19 15:50:08
- * desc   :
  */
 
 /**

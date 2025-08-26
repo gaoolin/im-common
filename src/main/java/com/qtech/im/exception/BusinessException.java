@@ -4,7 +4,6 @@ package com.qtech.im.exception;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/19 13:37:20
- * desc   :
  * 业务异常类
  * <p>
  * 用于表示业务逻辑层面的异常情况

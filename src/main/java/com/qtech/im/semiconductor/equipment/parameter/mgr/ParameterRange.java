@@ -1,4 +1,4 @@
-package com.qtech.im.semiconductor.equipment.parameter.command;
+package com.qtech.im.semiconductor.equipment.parameter.mgr;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,7 +7,6 @@ import java.util.Objects;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/22 11:26:30
- * desc   :
  */
 
 /**

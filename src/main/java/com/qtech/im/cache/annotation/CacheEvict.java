@@ -5,7 +5,6 @@ import java.lang.annotation.*;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/19 15:57:06
- * desc   :  im-common-IntelliJ IDEA
  */
 
 /**

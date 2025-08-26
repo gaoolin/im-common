@@ -4,7 +4,6 @@ package com.qtech.im.cache.annotation;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/19 16:02:29
- * desc   :
  */
 
 import java.lang.reflect.Method;

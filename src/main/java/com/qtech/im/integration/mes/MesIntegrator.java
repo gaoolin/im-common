@@ -775,7 +775,7 @@ public class MesIntegrator {
         for (CommandType type : CommandType.values()) {
             if (processor.supportsCommandType(type)) {
                 processorRegistry.put(type, processor);
-                logger.debug("Registered processor {} for command type {}", processor.getProcessorName(), type);
+                logger.debug("Registered processor {} for entity type {}", processor.getProcessorName(), type);
             }
         }
     }
@@ -865,10 +865,10 @@ public class MesIntegrator {
         CommandProcessor processor = processorRegistry.get(commandType);
         if (processor != null) {
             currentProcessor = processor;
-            logger.info("Current command processor set to: {} for command type {}",
+            logger.info("Current entity processor set to: {} for entity type {}",
                        processor.getProcessorName(), commandType);
         } else {
-            logger.warn("No processor found for command type: {}", commandType);
+            logger.warn("No processor found for entity type: {}", commandType);
         }
     }
 
@@ -1110,7 +1110,7 @@ public class MesIntegrator {
      */
     public static CommandResponse processMesCommand(MesCommand command) {
         if (command == null) {
-            logger.warn("Invalid MES command for processing");
+            logger.warn("Invalid MES entity for processing");
             return new CommandResponse(null, ResponseStatus.FAILURE, "无效的MES指令");
         }
 
@@ -1119,7 +1119,7 @@ public class MesIntegrator {
         try {
             // 验证连接
             if (!ensureConnection()) {
-                logger.warn("Failed to establish connection for command processing");
+                logger.warn("Failed to establish connection for entity processing");
                 return new CommandResponse(command.getCommandId(), ResponseStatus.FAILURE, "连接MES系统失败");
             }
 
@@ -1156,7 +1156,7 @@ public class MesIntegrator {
             return response;
         } catch (Exception e) {
             long processingTime = System.currentTimeMillis() - startTime;
-            logger.error("Failed to process MES command: " + command.getCommandId(), e);
+            logger.error("Failed to process MES entity: " + command.getCommandId(), e);
 
             // 记录异常数据
             ExceptionData exceptionData = new ExceptionData(
@@ -1200,11 +1200,11 @@ public class MesIntegrator {
                 response.setErrorMessage("模拟处理失败");
             }
 
-            logger.debug("Default command processing performed for: {} - {}", command.getCommandId(), message);
+            logger.debug("Default entity processing performed for: {} - {}", command.getCommandId(), message);
 
             return response;
         } catch (Exception e) {
-            logger.warn("Failed to perform default command processing", e);
+            logger.warn("Failed to perform default entity processing", e);
             return null;
         }
     }

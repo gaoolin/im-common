@@ -1,4 +1,4 @@
-package com.qtech.im.util;
+package com.qtech.im.util.json;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;

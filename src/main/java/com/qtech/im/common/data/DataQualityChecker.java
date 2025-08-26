@@ -111,7 +111,7 @@ public class DataQualityChecker {
         }
 
         if (dataLists.size() < 2) {
-            return new ConsistencyResult(1, 1, 1.0, true, "Only one data list provided");
+            return new ConsistencyResult(1, 1, 1.0, true, "Only one data entity provided");
         }
 
         if (comparator == null) {

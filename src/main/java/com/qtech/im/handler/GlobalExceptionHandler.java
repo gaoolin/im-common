@@ -11,7 +11,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/19 13:44:25
- * desc   :
  * 全局异常处理器
  * <p>
  * 统一处理系统中抛出的异常，提供灵活的异常处理机制

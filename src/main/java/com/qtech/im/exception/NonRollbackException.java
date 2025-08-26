@@ -4,7 +4,6 @@ package com.qtech.im.exception;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/20 13:31:59
- * desc   :
  */
 
 

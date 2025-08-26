@@ -648,7 +648,7 @@ public class ErpConnector {
      */
     public static List<SyncResult> reportBatchCostData(List<CostData> costDataList) {
         if (costDataList == null || costDataList.isEmpty()) {
-            logger.warn("Invalid cost data list for batch reporting");
+            logger.warn("Invalid cost data entity for batch reporting");
             return new ArrayList<>();
         }
 
@@ -780,7 +780,7 @@ public class ErpConnector {
      */
     public static List<SyncResult> syncBatchInventoryData(List<InventoryData> inventoryDataList) {
         if (inventoryDataList == null || inventoryDataList.isEmpty()) {
-            logger.warn("Invalid inventory data list for batch synchronization");
+            logger.warn("Invalid inventory data entity for batch synchronization");
             return new ArrayList<>();
         }
 

@@ -7,7 +7,6 @@ import java.util.Set;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/19 14:19:56
- * desc   :
  * 配置源接口
  * <p>
  * 定义配置源的基本操作

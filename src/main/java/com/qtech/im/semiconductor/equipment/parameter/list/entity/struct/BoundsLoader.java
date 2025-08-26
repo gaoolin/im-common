@@ -1,7 +1,6 @@
-package com.qtech.im.semiconductor.equipment.qtech;
+package com.qtech.im.semiconductor.equipment.parameter.list.entity.struct;
 
-
-import com.qtech.im.semiconductor.equipment.parameter.command.ParameterRange;
+import com.qtech.im.semiconductor.equipment.parameter.mgr.ParameterRange;
 
 import static com.qtech.im.common.math.MathEvaluator.isNumeric;
 
@@ -30,7 +29,7 @@ import static com.qtech.im.common.math.MathEvaluator.isNumeric;
  * @version 1.0
  * @since 2025/08/22
  */
-public class BoundsLoader extends ParameterRange {
+public final class BoundsLoader extends ParameterRange {
     private static final long serialVersionUID = 1L;
 
     private final String minStr;

@@ -1,4 +1,4 @@
-package com.qtech.im.util;
+package com.qtech.im.util.dt;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

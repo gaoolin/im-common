@@ -385,9 +385,9 @@ HierarchicalCommandStructure cmd=new HierarchicalCommandStructure();
         .addLevel("LEVEL3","第三层");
 
 // 避免的做法：逐个添加（会触发多次路径重建）
-// cmd.addLevel("LEVEL1", "第一层");
-// cmd.addLevel("LEVEL2", "第二层");
-// cmd.addLevel("LEVEL3", "第三层");
+// entity.addLevel("LEVEL1", "第一层");
+// entity.addLevel("LEVEL2", "第二层");
+// entity.addLevel("LEVEL3", "第三层");
 ```
 
 ### 4.3 错误处理

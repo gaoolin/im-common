@@ -1,12 +1,6 @@
-package com.qtech.im.semiconductor.equipment.parameter.command;
+package com.qtech.im.semiconductor.equipment.parameter.list.structure.Hierarchical;
 
-/**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/22 15:19:51
- * desc   :
- */
-
+import com.qtech.im.semiconductor.equipment.parameter.list.structure.AbstractCommandStructure;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -32,27 +26,24 @@ import java.util.Objects;
  * @version 1.0
  * @since 2025/08/22
  */
-public class HierarchicalCommandStructure implements Serializable {
+public class HierarchicalCommandStructure extends AbstractCommandStructure implements Serializable {
     private static final long serialVersionUID = 1L;
 
     // 命令层级列表 - 支持任意层级
     private final List<CommandLevel> commandLevels;
-    // 配置
-    private final CommandConfig config;
-    // 命令路径缓存
-    private String commandPath;
-    private String normalizedPath;
 
     /**
      * 默认构造函数
      */
     public HierarchicalCommandStructure() {
+        super();
         this.commandLevels = new ArrayList<>();
-        this.config = new CommandConfig();
     }
 
     /**
      * 从命令路径构造
+     *
+     * @param commandPath 命令路径字符串
      */
     public HierarchicalCommandStructure(String commandPath) {
         this();
@@ -61,15 +52,21 @@ public class HierarchicalCommandStructure implements Serializable {
 
     /**
      * 从命令层级列表构造
+     *
+     * @param commandLevels 命令层级列表
      */
     public HierarchicalCommandStructure(List<CommandLevel> commandLevels) {
+        super();
         this.commandLevels = new ArrayList<>(commandLevels);
-        this.config = new CommandConfig();
         buildCommandPath();
     }
 
     /**
      * 添加命令层级
+     *
+     * @param name  层级名称
+     * @param value 层级值
+     * @return 当前命令结构对象，支持链式调用
      */
     public HierarchicalCommandStructure addLevel(String name, Object value) {
         this.commandLevels.add(new CommandLevel(name, value, this.commandLevels.size()));
@@ -79,6 +76,11 @@ public class HierarchicalCommandStructure implements Serializable {
 
     /**
      * 添加命令层级（带描述）
+     *
+     * @param name        层级名称
+     * @param value       层级值
+     * @param description 层级描述
+     * @return 当前命令结构对象，支持链式调用
      */
     public HierarchicalCommandStructure addLevel(String name, Object value, String description) {
         this.commandLevels.add(new CommandLevel(name, value, description, this.commandLevels.size()));
@@ -88,6 +90,11 @@ public class HierarchicalCommandStructure implements Serializable {
 
     /**
      * 在指定位置插入命令层级
+     *
+     * @param index 插入位置索引
+     * @param name  层级名称
+     * @param value 层级值
+     * @return 当前命令结构对象，支持链式调用
      */
     public HierarchicalCommandStructure insertLevel(int index, String name, Object value) {
         if (index < 0 || index > this.commandLevels.size()) {
@@ -104,6 +111,9 @@ public class HierarchicalCommandStructure implements Serializable {
 
     /**
      * 移除指定层级
+     *
+     * @param index 移除位置索引
+     * @return 当前命令结构对象，支持链式调用
      */
     public HierarchicalCommandStructure removeLevel(int index) {
         if (index < 0 || index >= this.commandLevels.size()) {
@@ -120,6 +130,9 @@ public class HierarchicalCommandStructure implements Serializable {
 
     /**
      * 获取指定层级
+     *
+     * @param index 层级索引
+     * @return 命令层级对象，如果索引无效则返回null
      */
     public CommandLevel getLevel(int index) {
         if (index < 0 || index >= this.commandLevels.size()) {
@@ -130,6 +143,8 @@ public class HierarchicalCommandStructure implements Serializable {
 
     /**
      * 获取根层级命令
+     *
+     * @return 根层级命令对象，如果列表为空则返回null
      */
     public CommandLevel getRootLevel() {
         return this.commandLevels.isEmpty() ? null : this.commandLevels.get(0);
@@ -137,6 +152,8 @@ public class HierarchicalCommandStructure implements Serializable {
 
     /**
      * 获取叶层级命令
+     *
+     * @return 叶层级命令对象，如果列表为空则返回null
      */
     public CommandLevel getLeafLevel() {
         return this.commandLevels.isEmpty() ? null : this.commandLevels.get(this.commandLevels.size() - 1);
@@ -144,6 +161,8 @@ public class HierarchicalCommandStructure implements Serializable {
 
     /**
      * 获取命令层级数量
+     *
+     * @return 命令层级数量
      */
     public int getLevelCount() {
         return this.commandLevels.size();
@@ -151,6 +170,8 @@ public class HierarchicalCommandStructure implements Serializable {
 
     /**
      * 获取所有命令层级
+     *
+     * @return 命令层级列表的副本
      */
     public List<CommandLevel> getCommandLevels() {
         return new ArrayList<>(this.commandLevels);
@@ -158,7 +179,11 @@ public class HierarchicalCommandStructure implements Serializable {
 
     /**
      * 从命令路径解析
+     *
+     * @param commandPath 命令路径字符串
+     * @return 当前命令结构对象，支持链式调用
      */
+    @Override
     public HierarchicalCommandStructure parse(String commandPath) {
         if (StringUtils.isBlank(commandPath)) {
             throw new IllegalArgumentException("Command path cannot be null or empty");
@@ -185,6 +210,7 @@ public class HierarchicalCommandStructure implements Serializable {
     /**
      * 构建命令路径
      */
+    @Override
     protected void buildCommandPath() {
         if (this.commandLevels.isEmpty()) {
             this.commandPath = "";
@@ -205,48 +231,9 @@ public class HierarchicalCommandStructure implements Serializable {
     }
 
     /**
-     * 获取命令路径
-     */
-    public String getCommandPath() {
-        if (this.commandPath == null) {
-            buildCommandPath();
-        }
-        return this.commandPath;
-    }
-
-    /**
-     * 获取规范化路径
-     */
-    public String getNormalizedPath() {
-        if (this.normalizedPath == null) {
-            this.normalizedPath = normalizePath(getCommandPath());
-        }
-        return this.normalizedPath;
-    }
-
-    /**
-     * 规范化路径
-     */
-    protected String normalizePath(String path) {
-        if (path == null || path.isEmpty()) return path;
-
-        String processed = path.replaceAll("\\s+", "");
-        if (!config.isCaseSensitive()) {
-            processed = processed.toUpperCase();
-        }
-        return processed;
-    }
-
-    /**
-     * 清除路径缓存
-     */
-    private void invalidatePathCache() {
-        this.commandPath = null;
-        this.normalizedPath = null;
-    }
-
-    /**
      * 获取父路径（去掉最后一个层级）
+     *
+     * @return 父路径字符串
      */
     public String getParentPath() {
         if (this.commandLevels.size() <= 1) {
@@ -265,6 +252,9 @@ public class HierarchicalCommandStructure implements Serializable {
 
     /**
      * 获取子路径（从指定层级开始）
+     *
+     * @param startIndex 起始层级索引
+     * @return 子路径字符串
      */
     public String getSubPath(int startIndex) {
         if (startIndex < 0 || startIndex >= this.commandLevels.size()) {
@@ -283,6 +273,10 @@ public class HierarchicalCommandStructure implements Serializable {
 
     /**
      * 查找匹配的命令结构
+     *
+     * @param commandList 命令结构列表
+     * @param strategy    匹配策略
+     * @return 匹配的命令结构列表
      */
     public List<HierarchicalCommandStructure> findMatchingCommands(
             List<HierarchicalCommandStructure> commandList, MatchStrategy strategy) {
@@ -328,7 +322,10 @@ public class HierarchicalCommandStructure implements Serializable {
 
     /**
      * 验证命令结构
+     *
+     * @return 验证结果对象
      */
+    @Override
     public ValidationResult validate() {
         ValidationResult result = new ValidationResult();
 
@@ -356,33 +353,25 @@ public class HierarchicalCommandStructure implements Serializable {
     }
 
     /**
-     * 检查命令格式是否有效
+     * 执行命令路由
      */
-    protected boolean isValidCommandFormat(String command) {
-        if (command == null || command.isEmpty()) return false;
-        // 基本格式检查：只允许字母、数字、下划线和连字符
-        return command.matches("^[a-zA-Z0-9_-]+$");
-    }
-
-    /**
-     * 获取配置
-     */
-    public CommandConfig getConfig() {
-        return config;
+    @Override
+    public RoutingResult route() {
+        return null;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         HierarchicalCommandStructure that = (HierarchicalCommandStructure) o;
-        return Objects.equals(commandLevels, that.commandLevels) &&
-                Objects.equals(config, that.config);
+        return Objects.equals(commandLevels, that.commandLevels);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(commandLevels, config);
+        return Objects.hash(super.hashCode(), commandLevels);
     }
 
     @Override
@@ -404,7 +393,7 @@ public class HierarchicalCommandStructure implements Serializable {
     }
 
     /**
-     * 命令层级类
+     * 命令层级类 - 表示命令结构中的一个层级
      */
     public static class CommandLevel implements Serializable {
         private static final long serialVersionUID = 1L;
@@ -414,12 +403,27 @@ public class HierarchicalCommandStructure implements Serializable {
         private String description;    // 层级描述
         private int levelIndex;        // 层级索引
 
+        /**
+         * 构造函数
+         *
+         * @param name       层级名称
+         * @param value      层级值
+         * @param levelIndex 层级索引
+         */
         public CommandLevel(String name, Object value, int levelIndex) {
             this.name = name;
             this.value = value;
             this.levelIndex = levelIndex;
         }
 
+        /**
+         * 构造函数（带描述）
+         *
+         * @param name        层级名称
+         * @param value       层级值
+         * @param description 层级描述
+         * @param levelIndex  层级索引
+         */
         public CommandLevel(String name, Object value, String description, int levelIndex) {
             this.name = name;
             this.value = value;
@@ -483,127 +487,6 @@ public class HierarchicalCommandStructure implements Serializable {
                     ", value=" + value +
                     ", description='" + description + '\'' +
                     ", levelIndex=" + levelIndex +
-                    '}';
-        }
-    }
-
-    /**
-     * 命令配置类
-     */
-    public static class CommandConfig implements Serializable {
-        private static final long serialVersionUID = 1L;
-
-        private String separator = ".";                    // 分隔符
-        private int maxCommandLength = 50;                 // 最大命令长度
-        private int maxPathLength = 500;                   // 最大路径长度
-        private boolean caseSensitive = false;             // 是否区分大小写
-        private List<String> reservedCommands = new ArrayList<>(); // 保留命令
-
-        public CommandConfig() {
-            // 添加常见保留命令
-            reservedCommands.add("SET");
-            reservedCommands.add("GET");
-            reservedCommands.add("DEL");
-            reservedCommands.add("EXEC");
-            reservedCommands.add("QUERY");
-            reservedCommands.add("STATUS");
-        }
-
-        public String getSeparator() {
-            return separator;
-        }
-
-        public void setSeparator(String separator) {
-            this.separator = separator != null && !separator.isEmpty() ? separator : ".";
-        }
-
-        public int getMaxCommandLength() {
-            return maxCommandLength;
-        }
-
-        public void setMaxCommandLength(int maxCommandLength) {
-            this.maxCommandLength = maxCommandLength > 0 ? maxCommandLength : 50;
-        }
-
-        public int getMaxPathLength() {
-            return maxPathLength;
-        }
-
-        public void setMaxPathLength(int maxPathLength) {
-            this.maxPathLength = maxPathLength > 0 ? maxPathLength : 500;
-        }
-
-        public boolean isCaseSensitive() {
-            return caseSensitive;
-        }
-
-        public void setCaseSensitive(boolean caseSensitive) {
-            this.caseSensitive = caseSensitive;
-        }
-
-        public List<String> getReservedCommands() {
-            return new ArrayList<>(reservedCommands);
-        }
-
-        public void addReservedCommand(String command) {
-            if (command != null && !command.isEmpty()) {
-                reservedCommands.add(command.toUpperCase());
-            }
-        }
-
-        public boolean isReservedCommand(String command) {
-            if (command == null) return false;
-            String upperCommand = command.toUpperCase();
-            return reservedCommands.contains(upperCommand);
-        }
-    }
-
-    /**
-     * 验证结果类
-     */
-    public static class ValidationResult {
-        private final List<String> successes = new ArrayList<>();
-        private final List<String> warnings = new ArrayList<>();
-        private final List<String> errors = new ArrayList<>();
-
-        public void addSuccess(String message) {
-            successes.add(message);
-        }
-
-        public void addWarning(String message) {
-            warnings.add(message);
-        }
-
-        public void addError(String message) {
-            errors.add(message);
-        }
-
-        public boolean isValid() {
-            return errors.isEmpty();
-        }
-
-        public boolean hasWarnings() {
-            return !warnings.isEmpty();
-        }
-
-        public List<String> getSuccesses() {
-            return new ArrayList<>(successes);
-        }
-
-        public List<String> getWarnings() {
-            return new ArrayList<>(warnings);
-        }
-
-        public List<String> getErrors() {
-            return new ArrayList<>(errors);
-        }
-
-        @Override
-        public String toString() {
-            return "ValidationResult{" +
-                    "successes=" + successes.size() +
-                    ", warnings=" + warnings.size() +
-                    ", errors=" + errors.size() +
                     '}';
         }
     }

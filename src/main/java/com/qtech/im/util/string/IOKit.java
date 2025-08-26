@@ -1,4 +1,4 @@
-package com.qtech.im.util;
+package com.qtech.im.util.string;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -635,7 +635,7 @@ public class IOKit {
 
             return result;
         } catch (Exception e) {
-            logger.warn("Failed to list files in directory: {}", path, e);
+            logger.warn("Failed to entity files in directory: {}", path, e);
             return new ArrayList<>();
         }
     }

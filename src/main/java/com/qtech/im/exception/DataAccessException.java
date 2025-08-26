@@ -4,7 +4,6 @@ package com.qtech.im.exception;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2024/11/19 08:51:04
- * desc   :
  * 数据访问异常类
  * <p>
  * 用于封装数据访问异常

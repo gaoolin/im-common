@@ -15,7 +15,6 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/19 15:54:15
- * desc   :  im-common-IntelliJ IDEA
  */
 
 /**

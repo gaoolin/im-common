@@ -8,7 +8,6 @@ import java.util.Map;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/19 13:45:39
- * desc   :
  * 异常处理器接口
  * <p>
  *

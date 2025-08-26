@@ -1,4 +1,9 @@
-package com.qtech.im.semiconductor.equipment.parameter.command;
+package com.qtech.im.semiconductor.equipment.parameter;
+
+import com.qtech.im.common.security.AccessLevel;
+import com.qtech.im.semiconductor.equipment.parameter.mgr.ParameterRange;
+import com.qtech.im.semiconductor.equipment.parameter.mgr.ParameterStatus;
+import com.qtech.im.semiconductor.equipment.parameter.mgr.ParameterType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,13 +14,12 @@ import java.util.Map;
  * author :  gaozhilin
  * email  :  gaoolin@gmail.com
  * date   :  2025/08/22 11:28:11
- * desc   :
  */
 
 /**
  * 设备参数抽象基类
  */
-public abstract class AbstractDeviceParameter implements DeviceParameterInterface {
+public abstract class AbstractParameter implements ParameterInterface {
     private String deviceId;
     private String parameterName;
     private Object parameterValue;
@@ -33,10 +37,10 @@ public abstract class AbstractDeviceParameter implements DeviceParameterInterfac
     private AccessLevel accessLevel;
     private List<String> tags;
     private Map<String, Object> metadata;
-    private DeviceParameterInterface parentParameter;
-    private List<DeviceParameterInterface> childParameters;
+    private ParameterInterface parentParameter;
+    private List<ParameterInterface> childParameters;
 
-    public AbstractDeviceParameter() {
+    public AbstractParameter() {
         this.parameterConfig = new HashMap<>();
         this.tags = new ArrayList<>();
         this.metadata = new HashMap<>();
@@ -233,22 +237,22 @@ public abstract class AbstractDeviceParameter implements DeviceParameterInterfac
     }
 
     @Override
-    public DeviceParameterInterface getParentParameter() {
+    public ParameterInterface getParentParameter() {
         return parentParameter;
     }
 
     @Override
-    public void setParentParameter(DeviceParameterInterface parentParameter) {
+    public void setParentParameter(ParameterInterface parentParameter) {
         this.parentParameter = parentParameter;
     }
 
     @Override
-    public List<DeviceParameterInterface> getChildParameters() {
+    public List<ParameterInterface> getChildParameters() {
         return childParameters;
     }
 
     @Override
-    public void addChildParameter(DeviceParameterInterface childParameter) {
+    public void addChildParameter(ParameterInterface childParameter) {
         if (!childParameters.contains(childParameter)) {
             childParameters.add(childParameter);
             childParameter.setParentParameter(this);
@@ -256,7 +260,7 @@ public abstract class AbstractDeviceParameter implements DeviceParameterInterfac
     }
 
     @Override
-    public void removeChildParameter(DeviceParameterInterface childParameter) {
+    public void removeChildParameter(ParameterInterface childParameter) {
         childParameters.remove(childParameter);
         if (childParameter.getParentParameter() == this) {
             childParameter.setParentParameter(null);
@@ -264,7 +268,7 @@ public abstract class AbstractDeviceParameter implements DeviceParameterInterfac
     }
 
     @Override
-    public boolean hasChildParameter(DeviceParameterInterface childParameter) {
+    public boolean hasChildParameter(ParameterInterface childParameter) {
         return childParameters.contains(childParameter);
     }
 
@@ -315,14 +319,14 @@ public abstract class AbstractDeviceParameter implements DeviceParameterInterfac
     }
 
     @Override
-    public DeviceParameterInterface clone() {
+    public ParameterInterface clone() {
         try {
-            AbstractDeviceParameter cloned = (AbstractDeviceParameter) super.clone();
+            AbstractParameter cloned = (AbstractParameter) super.clone();
             cloned.parameterConfig = new HashMap<>(parameterConfig);
             cloned.tags = new ArrayList<>(tags);
             cloned.metadata = new HashMap<>(metadata);
             cloned.childParameters = new ArrayList<>();
-            for (DeviceParameterInterface child : childParameters) {
+            for (ParameterInterface child : childParameters) {
                 cloned.addChildParameter(child.clone());
             }
             return cloned;
@@ -349,7 +353,7 @@ public abstract class AbstractDeviceParameter implements DeviceParameterInterfac
 
     @Override
     public String toString() {
-        return "AbstractDeviceParameter{" +
+        return "AbstractParameter{" +
                 "deviceId='" + deviceId + '\'' +
                 ", parameterName='" + parameterName + '\'' +
                 ", parameterValue=" + parameterValue +
