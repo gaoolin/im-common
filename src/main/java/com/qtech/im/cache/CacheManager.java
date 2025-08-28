@@ -6,6 +6,8 @@ package com.qtech.im.cache;
  * date   :  2025/08/19 15:50:08
  */
 
+import java.util.Collection;
+
 /**
  * 缓存管理器接口
  * <p>
@@ -58,7 +60,7 @@ public interface CacheManager {
      *
      * @return 缓存名称数组
      */
-    String[] getCacheNames();
+    Collection<String> getCacheNames();
 
     /**
      * 获取缓存管理器统计信息

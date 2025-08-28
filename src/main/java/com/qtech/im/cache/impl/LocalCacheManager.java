@@ -7,20 +7,25 @@ import com.qtech.im.cache.CacheManagerStats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 15:54:15
- */
-
-/**
  * 本地缓存管理器实现
  * <p>
  * 负责管理本地缓存实例的创建、获取和销毁
+ * </p>
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19 15:54:15
+ */
+
+/**
+
  */
 public class LocalCacheManager implements CacheManager {
     private static final Logger logger = LoggerFactory.getLogger(LocalCacheManager.class);
@@ -94,8 +99,8 @@ public class LocalCacheManager implements CacheManager {
     }
 
     @Override
-    public String[] getCacheNames() {
-        return cacheNames.toArray(new String[0]);
+    public Collection<String> getCacheNames() {
+        return Arrays.asList(cacheNames.toArray(new String[0]));
     }
 
     @Override

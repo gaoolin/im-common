@@ -9,6 +9,7 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -579,5 +580,53 @@ public class Chronos {
         }
 
         return start1.isBefore(end2) && start2.isBefore(end1);
+    }
+
+    /**
+     * 将 LocalDateTime 转换为 Date
+     *
+     * @param localDateTime 待转换的 LocalDateTime
+     * @return 转换后的 Date 对象
+     */
+    public static Date toDate(LocalDateTime localDateTime) {
+        return toDate(localDateTime, ZoneId.systemDefault());
+    }
+
+    /**
+     * 将 LocalDateTime 转换为 Date（指定时区）
+     *
+     * @param localDateTime 待转换的 LocalDateTime
+     * @param zoneId        时区
+     * @return 转换后的 Date 对象
+     */
+    public static Date toDate(LocalDateTime localDateTime, ZoneId zoneId) {
+        if (localDateTime == null) {
+            return null;
+        }
+        return Date.from(localDateTime.atZone(zoneId).toInstant());
+    }
+
+    /**
+     * 将 Date 转换为 LocalDateTime
+     *
+     * @param date 待转换的 Date
+     * @return 转换后的 LocalDateTime 对象
+     */
+    public static LocalDateTime toLocalDateTime(Date date) {
+        return toLocalDateTime(date, ZoneId.systemDefault());
+    }
+
+    /**
+     * 将 Date 转换为 LocalDateTime（指定时区）
+     *
+     * @param date   待转换的 Date
+     * @param zoneId 时区
+     * @return 转换后的 LocalDateTime 对象
+     */
+    public static LocalDateTime toLocalDateTime(Date date, ZoneId zoneId) {
+        if (date == null) {
+            return null;
+        }
+        return date.toInstant().atZone(zoneId).toLocalDateTime();
     }
 }

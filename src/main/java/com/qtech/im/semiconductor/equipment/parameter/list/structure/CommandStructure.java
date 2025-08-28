@@ -74,7 +74,7 @@ public interface CommandStructure extends Serializable {
         private String separator = "_";                    // 分隔符
         private int maxCommandLength = 50;                 // 最大命令长度
         private int maxPathLength = 200;                   // 最大路径长度
-        private boolean caseSensitive = false;             // 是否区分大小写
+        private boolean caseSensitive = true;             // 是否区分大小写
         private List<String> reservedCommands = new ArrayList<>(); // 保留命令
 
         public CommandConfig() {

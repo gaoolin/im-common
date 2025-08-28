@@ -55,11 +55,26 @@ public class CacheConfig implements Serializable {
     // 缓存实现类
     private String cacheImplementation;
 
+    // 定期清理间隔（毫秒），默认5分钟
+    private long cleanupInterval = TimeUnit.MINUTES.toMillis(5);
+    // Redis相关配置
+    private String redisUri = "redis://localhost:6379";
+    private int redisConnectionTimeout = 2000; // 连接超时时间(毫秒)
+    private int redisSoTimeout = 2000; // Socket超时时间(毫秒)
+
     public CacheConfig() {
     }
 
     public CacheConfig(String name) {
         this.name = name;
+    }
+
+    public long getCleanupInterval() {
+        return cleanupInterval;
+    }
+
+    public void setCleanupInterval(long cleanupInterval) {
+        this.cleanupInterval = cleanupInterval;
     }
 
     // Getters and Setters
@@ -165,6 +180,68 @@ public class CacheConfig implements Serializable {
 
     public void setCacheImplementation(String cacheImplementation) {
         this.cacheImplementation = cacheImplementation;
+    }
+
+    /**
+     * 获取Redis连接URI
+     *
+     * @return Redis连接URI
+     */
+    public String getRedisUri() {
+        return redisUri;
+    }
+
+    // ... 现有代码 ...
+
+    /**
+     * 设置Redis连接URI
+     *
+     * @param redisUri Redis连接URI
+     * @return CacheConfig实例
+     */
+    public CacheConfig setRedisUri(String redisUri) {
+        this.redisUri = redisUri;
+        return this;
+    }
+
+    /**
+     * 获取Redis连接超时时间
+     *
+     * @return 连接超时时间(毫秒)
+     */
+    public int getRedisConnectionTimeout() {
+        return redisConnectionTimeout;
+    }
+
+    /**
+     * 设置Redis连接超时时间
+     *
+     * @param redisConnectionTimeout 连接超时时间(毫秒)
+     * @return CacheConfig实例
+     */
+    public CacheConfig setRedisConnectionTimeout(int redisConnectionTimeout) {
+        this.redisConnectionTimeout = redisConnectionTimeout;
+        return this;
+    }
+
+    /**
+     * 获取Redis Socket超时时间
+     *
+     * @return Socket超时时间(毫秒)
+     */
+    public int getRedisSoTimeout() {
+        return redisSoTimeout;
+    }
+
+    /**
+     * 设置Redis Socket超时时间
+     *
+     * @param redisSoTimeout Socket超时时间(毫秒)
+     * @return CacheConfig实例
+     */
+    public CacheConfig setRedisSoTimeout(int redisSoTimeout) {
+        this.redisSoTimeout = redisSoTimeout;
+        return this;
     }
 
     /**
