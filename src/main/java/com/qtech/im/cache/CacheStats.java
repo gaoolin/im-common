@@ -1,180 +1,214 @@
 package com.qtech.im.cache;
 
 import java.io.Serializable;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 15:49:28
- */
-
-/**
- * 缓存统计信息
+ * Cache statistics
  * <p>
- * 记录缓存的命中率、请求数等统计信息
+ * Records cache hit rate, request count, and other statistics
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19
  */
 public class CacheStats implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    // 请求总数
-    private long requestCount = 0;
-
-    // 命中次数
-    private long hitCount = 0;
-
-    // 未命中次数
-    private long missCount = 0;
-
-    // 加载成功次数
-    private long loadSuccessCount = 0;
-
-    // 加载失败次数
-    private long loadExceptionCount = 0;
-
-    // 总加载时间（纳秒）
-    private long totalLoadTime = 0;
-
-    // 删除次数
-    private long evictionCount = 0;
+    // Request count
+    private final AtomicLong requestCount = new AtomicLong();
+    // Hit count
+    private final AtomicLong hitCount = new AtomicLong();
+    // Miss count
+    private final AtomicLong missCount = new AtomicLong();
+    // Load success count
+    private final AtomicLong loadSuccessCount = new AtomicLong();
+    // Load failure count
+    private final AtomicLong loadExceptionCount = new AtomicLong();
+    // Total load time (nanoseconds)
+    private final AtomicLong totalLoadTime = new AtomicLong();
+    // Eviction count
+    private final AtomicLong evictionCount = new AtomicLong();
+    // Put count
+    private final AtomicLong putCount = new AtomicLong();
 
     public CacheStats() {
     }
 
-    // 新增：从Caffeine统计信息创建CacheStats的构造函数
+    // Constructor for Caffeine stats
     public CacheStats(com.github.benmanes.caffeine.cache.stats.CacheStats caffeineStats) {
-        this.requestCount = caffeineStats.requestCount();
-        this.hitCount = caffeineStats.hitCount();
-        this.missCount = caffeineStats.missCount();
-        this.loadSuccessCount = caffeineStats.loadSuccessCount();
-        this.loadExceptionCount = caffeineStats.loadFailureCount();
-        this.totalLoadTime = caffeineStats.totalLoadTime();
-        this.evictionCount = caffeineStats.evictionCount();
+        this.requestCount.set(caffeineStats.requestCount());
+        this.hitCount.set(caffeineStats.hitCount());
+        this.missCount.set(caffeineStats.missCount());
+        this.loadSuccessCount.set(caffeineStats.loadSuccessCount());
+        this.loadExceptionCount.set(caffeineStats.loadFailureCount());
+        this.totalLoadTime.set(caffeineStats.totalLoadTime());
+        this.evictionCount.set(caffeineStats.evictionCount());
+        this.putCount.set(0); // Caffeine stats don’t track puts explicitly
     }
 
     /**
-     * 记录缓存命中
+     * Records a cache hit
      */
     public void recordHit() {
-        requestCount++;
-        hitCount++;
+        requestCount.incrementAndGet();
+        hitCount.incrementAndGet();
     }
 
     /**
-     * 记录缓存未命中
+     * Records a cache miss
      */
     public void recordMiss() {
-        requestCount++;
-        missCount++;
+        requestCount.incrementAndGet();
+        missCount.incrementAndGet();
     }
 
     /**
-     * 记录加载成功
+     * Records a successful load
      *
-     * @param loadTime 加载时间（纳秒）
+     * @param loadTime Load time (nanoseconds)
      */
     public void recordLoadSuccess(long loadTime) {
-        loadSuccessCount++;
-        totalLoadTime += loadTime;
+        loadSuccessCount.incrementAndGet();
+        totalLoadTime.addAndGet(loadTime);
     }
 
     /**
-     * 记录加载失败
+     * Records a failed load
      *
-     * @param loadTime 加载时间（纳秒）
+     * @param loadTime Load time (nanoseconds)
      */
     public void recordLoadException(long loadTime) {
-        loadExceptionCount++;
-        totalLoadTime += loadTime;
+        loadExceptionCount.incrementAndGet();
+        totalLoadTime.addAndGet(loadTime);
     }
 
     /**
-     * 记录缓存项被驱逐
+     * Records a cache eviction
      */
     public void recordEviction() {
-        evictionCount++;
+        evictionCount.incrementAndGet();
+    }
+
+    /**
+     * Records a cache put operation
+     */
+    public void recordPut() {
+        putCount.incrementAndGet();
+    }
+
+    /**
+     * Resets all statistics counters to zero
+     */
+    public void reset() {
+        requestCount.set(0);
+        hitCount.set(0);
+        missCount.set(0);
+        loadSuccessCount.set(0);
+        loadExceptionCount.set(0);
+        totalLoadTime.set(0);
+        evictionCount.set(0);
+        putCount.set(0);
     }
 
     // Getters
     public long getRequestCount() {
-        return requestCount;
+        return requestCount.get();
     }
 
     public long getHitCount() {
-        return hitCount;
+        return hitCount.get();
     }
 
     public long getMissCount() {
-        return missCount;
+        return missCount.get();
     }
 
     public long getLoadSuccessCount() {
-        return loadSuccessCount;
+        return loadSuccessCount.get();
     }
 
     public long getLoadExceptionCount() {
-        return loadExceptionCount;
+        return loadExceptionCount.get();
     }
 
     public long getTotalLoadTime() {
-        return totalLoadTime;
+        return totalLoadTime.get();
     }
 
     public long getEvictionCount() {
-        return evictionCount;
+        return evictionCount.get();
+    }
+
+    public long getPutCount() {
+        return putCount.get();
     }
 
     /**
-     * 获取命中率
+     * Gets the hit rate
      *
-     * @return 命中率（0-1之间）
+     * @return Hit rate (0-1)
      */
     public double getHitRate() {
-        return requestCount == 0 ? 0.0 : (double) hitCount / requestCount;
+        long total = requestCount.get();
+        return total == 0 ? 0.0 : (double) hitCount.get() / total;
     }
 
     /**
-     * 获取平均加载时间（毫秒）
+     * Gets the average load time (milliseconds)
      *
-     * @return 平均加载时间
+     * @return Average load time
      */
     public double getAverageLoadTime() {
-        long totalLoadCount = loadSuccessCount + loadExceptionCount;
-        return totalLoadCount == 0 ? 0.0 : (double) totalLoadTime / totalLoadCount / 1000000.0;
+        long totalLoadCount = loadSuccessCount.get() + loadExceptionCount.get();
+        return totalLoadCount == 0 ? 0.0 : (double) totalLoadTime.get() / totalLoadCount / 1_000_000.0;
     }
 
     /**
-     * 合并两个CacheStats对象
+     * Merges another CacheStats object
      *
-     * @param other 其他CacheStats对象
-     * @return 合并后的CacheStats对象
+     * @param other Other CacheStats object
+     * @return Merged CacheStats object
      */
     public CacheStats merge(CacheStats other) {
         CacheStats merged = new CacheStats();
-        merged.requestCount = this.requestCount + other.requestCount;
-        merged.hitCount = this.hitCount + other.hitCount;
-        merged.missCount = this.missCount + other.missCount;
-        merged.loadSuccessCount = this.loadSuccessCount + other.loadSuccessCount;
-        merged.loadExceptionCount = this.loadExceptionCount + other.loadExceptionCount;
-        merged.totalLoadTime = this.totalLoadTime + other.totalLoadTime;
-        merged.evictionCount = this.evictionCount + other.evictionCount;
+        merged.requestCount.set(this.requestCount.get() + other.requestCount.get());
+        merged.hitCount.set(this.hitCount.get() + other.hitCount.get());
+        merged.missCount.set(this.missCount.get() + other.missCount.get());
+        merged.loadSuccessCount.set(this.loadSuccessCount.get() + other.loadSuccessCount.get());
+        merged.loadExceptionCount.set(this.loadExceptionCount.get() + other.loadExceptionCount.get());
+        merged.totalLoadTime.set(this.totalLoadTime.get() + other.totalLoadTime.get());
+        merged.evictionCount.set(this.evictionCount.get() + other.evictionCount.get());
+        merged.putCount.set(this.putCount.get() + other.putCount.get());
         return merged;
     }
 
     /**
-     * 添加Caffeine的CacheStats对象
+     * Adds Caffeine CacheStats
      */
     public void add(com.github.benmanes.caffeine.cache.stats.CacheStats caffeineStats) {
-        this.requestCount += caffeineStats.requestCount();
-        this.hitCount += caffeineStats.hitCount();
-        this.missCount += caffeineStats.missCount();
-        this.loadSuccessCount += caffeineStats.loadSuccessCount();
-        this.loadExceptionCount += caffeineStats.loadFailureCount();
-        this.totalLoadTime += caffeineStats.totalLoadTime();
-        this.evictionCount += caffeineStats.evictionCount();
+        this.requestCount.addAndGet(caffeineStats.requestCount());
+        this.hitCount.addAndGet(caffeineStats.hitCount());
+        this.missCount.addAndGet(caffeineStats.missCount());
+        this.loadSuccessCount.addAndGet(caffeineStats.loadSuccessCount());
+        this.loadExceptionCount.addAndGet(caffeineStats.loadFailureCount());
+        this.totalLoadTime.addAndGet(caffeineStats.totalLoadTime());
+        this.evictionCount.addAndGet(caffeineStats.evictionCount());
+        // putCount not updated from Caffeine stats
     }
 
     @Override
     public String toString() {
-        return "CacheStats{" + "requestCount=" + requestCount + ", hitCount=" + hitCount + ", missCount=" + missCount + ", hitRate=" + String.format("%.2f", getHitRate() * 100) + "%" + ", loadSuccessCount=" + loadSuccessCount + ", loadExceptionCount=" + loadExceptionCount + ", averageLoadTime=" + String.format("%.2f", getAverageLoadTime()) + "ms" + ", evictionCount=" + evictionCount + '}';
+        return "CacheStats{" +
+                "requestCount=" + requestCount.get() +
+                ", hitCount=" + hitCount.get() +
+                ", missCount=" + missCount.get() +
+                ", hitRate=" + String.format("%.2f", getHitRate() * 100) + "%" +
+                ", loadSuccessCount=" + loadSuccessCount.get() +
+                ", loadExceptionCount=" + loadExceptionCount.get() +
+                ", averageLoadTime=" + String.format("%.2f", getAverageLoadTime()) + "ms" +
+                ", evictionCount=" + evictionCount.get() +
+                ", putCount=" + putCount.get() +
+                '}';
     }
 }

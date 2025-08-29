@@ -8,13 +8,13 @@ import com.qtech.im.cache.CacheConfig;
  * since  :  2025/08/27
  */
 public class CacheConfigBuilder {
-    private CacheConfig config;
+    private final CacheConfig config;
 
     private CacheConfigBuilder() {
         this.config = new CacheConfig();
     }
 
-    public static CacheConfigBuilder newBuilder() {
+    public static CacheConfigBuilder create() {
         return new CacheConfigBuilder();
     }
 

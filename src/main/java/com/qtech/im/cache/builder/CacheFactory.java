@@ -3,10 +3,7 @@ package com.qtech.im.cache.builder;
 import com.qtech.im.cache.Cache;
 import com.qtech.im.cache.CacheConfig;
 import com.qtech.im.cache.CacheManager;
-import com.qtech.im.cache.impl.CaffeineCache;
-import com.qtech.im.cache.impl.ProtectedCache;
-import com.qtech.im.cache.impl.RedisCache;
-import com.qtech.im.cache.impl.SimpleCacheManager;
+import com.qtech.im.cache.impl.*;
 
 /**
  * author :  gaozhilin
@@ -18,11 +15,13 @@ public class CacheFactory {
 
     public static <K, V> Cache<K, V> createCache(CacheConfig config) {
         Cache<K, V> cache;
-        switch (config.getCacheType()) {
-            case LOCAL:
+        switch (config.getBackendType()) {
+            case MEMORY:
+                cache = new SimpleMemoryCache<>(config);
+            case CAFFEINE:
                 cache = new CaffeineCache<>(config);
                 break;
-            case DISTRIBUTED:
+            case REDIS:
                 // 使用Redis实现分布式缓存
                 cache = new RedisCache<>(config);
                 break;

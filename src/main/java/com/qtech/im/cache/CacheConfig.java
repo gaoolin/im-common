@@ -50,7 +50,7 @@ public class CacheConfig implements Serializable {
     private long avalancheProtectionRange = TimeUnit.MINUTES.toMillis(5);
 
     // 缓存类型（本地、分布式等）
-    private CacheType cacheType = CacheType.LOCAL;
+    private BackendType backendType = BackendType.MEMORY;
 
     // 缓存实现类
     private String cacheImplementation;
@@ -166,12 +166,12 @@ public class CacheConfig implements Serializable {
         this.avalancheProtectionRange = avalancheProtectionRange;
     }
 
-    public CacheType getCacheType() {
-        return cacheType;
+    public BackendType getBackendType() {
+        return backendType;
     }
 
-    public void setCacheType(CacheType cacheType) {
-        this.cacheType = cacheType;
+    public void setBackendType(BackendType backendType) {
+        this.backendType = backendType;
     }
 
     public String getCacheImplementation() {
@@ -245,19 +245,23 @@ public class CacheConfig implements Serializable {
     }
 
     /**
-     * 缓存类型枚举
+     * 缓存后端类型枚举
      */
-    public enum CacheType {
+    public enum BackendType {
         /**
-         * 本地缓存
+         * 简单内存缓存，基于 ConcurrentHashMap，无外部依赖
          */
-        LOCAL,
+        MEMORY,
         /**
-         * 分布式缓存
+         * 高性能内存缓存，基于 Caffeine
          */
-        DISTRIBUTED,
+        CAFFEINE,
         /**
-         * 混合缓存
+         * 分布式缓存，基于 Redis
+         */
+        REDIS,
+        /**
+         * 混合缓存，结合本地内存和 Redis
          */
         HYBRID
     }

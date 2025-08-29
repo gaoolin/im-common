@@ -3,6 +3,7 @@ package com.qtech.im.cache.builder;
 import com.qtech.im.cache.Cache;
 import com.qtech.im.cache.CacheConfig;
 import com.qtech.im.cache.impl.CaffeineCache;
+import com.qtech.im.cache.impl.SimpleMemoryCache;
 
 import java.util.concurrent.TimeUnit;
 
@@ -51,16 +52,18 @@ public class CacheBuilder {
         return this;
     }
 
-    public CacheBuilder cacheType(CacheConfig.CacheType type) {
-        config.setCacheType(type);
+    public CacheBuilder cacheType(CacheConfig.BackendType type) {
+        config.setBackendType(type);
         return this;
     }
 
     public <K, V> Cache<K, V> build() {
-        switch (config.getCacheType()) {
-            case LOCAL:
+        switch (config.getBackendType()) {
+            case MEMORY:
+                return new SimpleMemoryCache<>(config);
+            case CAFFEINE:
                 return new CaffeineCache<>(config);
-            case DISTRIBUTED:
+            case REDIS:
                 // 可以返回默认的分布式实现或抛出异常提示用户自定义实现
                 throw new UnsupportedOperationException("Distributed cache not implemented");
             case HYBRID:
