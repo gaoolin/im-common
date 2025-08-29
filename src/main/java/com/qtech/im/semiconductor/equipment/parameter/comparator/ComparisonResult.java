@@ -1,7 +1,6 @@
 package com.qtech.im.semiconductor.equipment.parameter.comparator;
 
-import com.google.common.collect.Maps;
-
+import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
 /**
@@ -25,7 +24,7 @@ public class ComparisonResult {
         } else if (actualVal == null) {
             emptyInActual.put(property, null);
         } else {
-            differences.put(property, Maps.immutableEntry(modelVal, actualVal));
+            differences.put(property, new AbstractMap.SimpleImmutableEntry<>(modelVal, actualVal));
         }
     }
 

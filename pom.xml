@@ -15,8 +15,9 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jackson.version>2.17.3</jackson.version>
+        <jackson.version>2.14.3</jackson.version>  <!--降级到 Spring Boot 2 兼容的版本-->
         <slf4j.version>1.7.36</slf4j.version>
+        <caffeine.version>2.9.3</caffeine.version>  <!-- 这是最后一个支持 Java 8 的版本 -->
     </properties>
 
     <dependencies>
@@ -55,24 +56,19 @@
             <version>1.13.1</version>
         </dependency>
 
-        <!-- Caffeine缓存库 -->
-        <dependency>
-            <groupId>com.github.ben-manes.caffeine</groupId>
-            <artifactId>caffeine</artifactId>
-            <version>2.9.3</version> <!-- 这是最后一个支持 Java 8 的版本 -->
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>31.0.1-jre</version> <!-- 推荐使用最新稳定版本 -->
-        </dependency>
-
         <!-- 日志依赖 -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+
+        <!-- lombok 确认 Lombok 是否用于生产代码。若仅用于测试，改为 <scope>test</scope>。 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.36</version>
+            <scope>provided</scope>  <!--防止，可能被打包到最终 JAR 中，导致不必要的依赖传递。-->
         </dependency>
 
         <!-- 测试依赖 -->
@@ -83,11 +79,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.36</version>
-        </dependency>
-        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>4.6.1</version>
@@ -96,14 +87,23 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.32</version>
+            <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
+
         <!-- Lettuce Redis客户端 -->
         <dependency>
             <groupId>io.lettuce</groupId>
             <artifactId>lettuce-core</artifactId>
             <version>6.2.4.RELEASE</version>
+            <optional>true</optional> <!--避免强制依赖，适合用户选择缓存后端-->
+        </dependency>
+        <!-- Caffeine缓存库 -->
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>${caffeine.version}</version>
+            <optional>true</optional>
         </dependency>
 
         <!-- Apache Commons Pool2 -->
@@ -124,6 +124,7 @@
             <properties>
                 <maven.compiler.source>8</maven.compiler.source>
                 <maven.compiler.target>8</maven.compiler.target>
+                <caffeine.version>2.9.3</caffeine.version>
             </properties>
             <build>
                 <plugins>
@@ -140,6 +141,17 @@
             </build>
         </profile>
         <!-- Java 17 版本 -->
+        <profile>
+            <id>im-jdk-17</id>
+            <activation>
+                <jdk>17</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.source>17</maven.compiler.source>
+                <maven.compiler.target>17</maven.compiler.target>
+                <caffeine.version>3.1.8</caffeine.version>
+            </properties>
+        </profile>
     </profiles>
 
     <build>
@@ -158,15 +170,19 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
+
+    <scm>
+        <connection>scm:git:https://github.com/gaoolin/im-common.git</connection>
+        <developerConnection>scm:git:https://github.com/gaoolin/im-common.git</developerConnection>
+        <url>https://github.com/gaoolin/im-common</url>
+    </scm>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/gaoolin/im-common</url>
+        </repository>
+    </distributionManagement>
 </project>
