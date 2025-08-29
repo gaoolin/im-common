@@ -1,4 +1,6 @@
-package com.qtech.im.cache.annotation;
+package com.qtech.im.cache.impl;
+
+import com.qtech.im.cache.CacheKeyGenerator;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;

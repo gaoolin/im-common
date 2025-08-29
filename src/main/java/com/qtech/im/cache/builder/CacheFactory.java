@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
  * <p>
  * Use instance methods to create caches with a specific CacheManager. For default MEMORY cache,
  * call {@code createDefault()}. For custom configurations, call {@code create(CacheConfig)}.
+ * Cache registration is handled by the CacheManager.
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
@@ -29,7 +30,7 @@ public class CacheFactory {
     /**
      * Constructor with injectable CacheManager
      *
-     * @param cacheManager The cache manager to register created caches
+     * @param cacheManager The cache manager to manage created caches
      * @throws IllegalArgumentException if cacheManager is null
      */
     public CacheFactory(CacheManager cacheManager) {
@@ -47,7 +48,7 @@ public class CacheFactory {
      * @param <K>    Key type
      * @param <V>    Value type
      * @return Configured cache instance
-     * @throws IllegalArgumentException if config is null or invalid
+     * @throws IllegalArgumentException if config is invalid
      * @throws RuntimeException         if cache creation fails
      */
     public <K, V> Cache<K, V> create(CacheConfig config) {
@@ -82,26 +83,14 @@ public class CacheFactory {
         }
 
         // Apply protection mechanisms
-        if (config.isEnableNullValueProtection() || config.isEnableBreakdownProtection() || config.isEnableAvalancheProtection()) {
+        if (config.isEnableNullValueProtection() ||
+                config.isEnableBreakdownProtection() ||
+                config.isEnableAvalancheProtection()) {
             cache = new ProtectedCache<>(cache, config);
             logger.debug("Applied ProtectedCache wrapper to cache: {}", config.getName());
         }
 
-        // Register with CacheManager if name is provided
-        String cacheName = config.getName();
-        if (cacheName != null && !cacheName.trim().isEmpty()) {
-            try {
-                cacheManager.registerCache(cacheName, cache);
-                logger.debug("Registered cache '{}' with CacheManager", cacheName);
-            } catch (IllegalArgumentException | IllegalStateException e) {
-                logger.warn("Failed to register cache '{}': {}", cacheName, e.getMessage());
-                // Continue, as registration failure shouldn't prevent cache usage
-            }
-        } else {
-            logger.debug("Cache not registered with CacheManager (null or empty name)");
-        }
-
-        return cache;
+        return cache; // 不负责注册，交给 CacheManager
     }
 
     /**

@@ -1,6 +1,6 @@
 package com.qtech.im.cache;
 
-import com.qtech.im.cache.annotation.SimpleKeyGenerator;
+import com.qtech.im.cache.impl.SimpleKeyGenerator;
 import org.junit.Test;
 
 import java.lang.reflect.Method;

@@ -1,5 +1,8 @@
 package com.qtech.im.cache.annotation;
 
+import com.qtech.im.cache.CacheKeyGenerator;
+import com.qtech.im.cache.impl.SimpleKeyGenerator;
+
 import java.lang.annotation.*;
 
 /**

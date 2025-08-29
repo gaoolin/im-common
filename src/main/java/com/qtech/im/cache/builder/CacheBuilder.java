@@ -3,6 +3,7 @@ package com.qtech.im.cache.builder;
 import com.qtech.im.cache.Cache;
 import com.qtech.im.cache.CacheConfig;
 import com.qtech.im.cache.impl.cache.CaffeineCache;
+import com.qtech.im.cache.impl.cache.RedisCache;
 import com.qtech.im.cache.impl.cache.SimpleMemoryCache;
 import com.qtech.im.cache.support.BackendType;
 
@@ -67,7 +68,7 @@ public class CacheBuilder {
                 return new CaffeineCache<>(config);
             case REDIS:
                 // 可以返回默认的分布式实现或抛出异常提示用户自定义实现
-                throw new UnsupportedOperationException("Distributed cache not implemented");
+                return new RedisCache<>(config);
             case HYBRID:
                 throw new UnsupportedOperationException("Hybrid cache not implemented");
             default:

@@ -1,4 +1,4 @@
-package com.qtech.im.cache.annotation;
+package com.qtech.im.cache;
 
 import java.lang.reflect.Method;
 
