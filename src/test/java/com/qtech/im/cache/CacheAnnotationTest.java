@@ -1,6 +1,5 @@
 package com.qtech.im.cache;
 
-
 import com.qtech.im.cache.annotation.CacheEvict;
 import com.qtech.im.cache.annotation.CachePut;
 import com.qtech.im.cache.annotation.Cacheable;
@@ -49,7 +48,7 @@ public class CacheAnnotationTest {
         Cacheable cacheable = method.getAnnotation(Cacheable.class);
 
         assertNotNull("@Cacheable注解应该存在", cacheable);
-        assertEquals("缓存名称应该匹配", "testCache", cacheable.cacheName());
+        assertEquals("缓存名称应该匹配", "testCache", cacheable.cacheNames());
         assertEquals("键生成器应该匹配", SimpleKeyGenerator.class, cacheable.keyGenerator());
         assertEquals("TTL应该为默认值0", 0, cacheable.ttl());
         assertEquals("TTL单位应该为毫秒", TimeUnit.MILLISECONDS, cacheable.ttlUnit());
@@ -62,7 +61,7 @@ public class CacheAnnotationTest {
         CachePut cachePut = method.getAnnotation(CachePut.class);
 
         assertNotNull("@CachePut注解应该存在", cachePut);
-        assertEquals("缓存名称应该匹配", "testCache", cachePut.cacheName());
+        assertEquals("缓存名称应该匹配", "testCache", cachePut.cacheNames());
         assertEquals("键生成器应该匹配", SimpleKeyGenerator.class, cachePut.keyGenerator());
         assertEquals("TTL应该为默认值0", 0, cachePut.ttl());
         assertEquals("TTL单位应该为毫秒", TimeUnit.MILLISECONDS, cachePut.ttlUnit());
@@ -75,7 +74,7 @@ public class CacheAnnotationTest {
         CacheEvict cacheEvict = method.getAnnotation(CacheEvict.class);
 
         assertNotNull("@CacheEvict注解应该存在", cacheEvict);
-        assertEquals("缓存名称应该匹配", "testCache", cacheEvict.cacheName());
+        assertEquals("缓存名称应该匹配", "testCache", cacheEvict.cacheNames());
         assertEquals("键生成器应该匹配", SimpleKeyGenerator.class, cacheEvict.keyGenerator());
         assertFalse("allEntries应该为false", cacheEvict.allEntries());
         assertFalse("beforeInvocation应该为false", cacheEvict.beforeInvocation());
@@ -91,7 +90,7 @@ public class CacheAnnotationTest {
 
         Object key = generator.generate(target, method, params);
         assertNotNull("生成的键不应该为null", key);
-        assertTrue("生成的键应该是SimpleKey类型", key instanceof SimpleKeyGenerator.SimpleKey);
+        assertTrue("生成的键应该是SimpleKey类型", key instanceof SimpleKeyGenerator);
 
         // 测试键的equals和hashCode
         Object key2 = generator.generate(target, method, params);
@@ -142,22 +141,22 @@ public class CacheAnnotationTest {
     // 测试服务类
     static class TestService {
 
-        @Cacheable(cacheName = "testCache", key = "#id")
+        @Cacheable(cacheNames = "testCache", key = "#id")
         public String getCachedData(String id) {
             return "data:" + id;
         }
 
-        @CachePut(cacheName = "testCache", key = "#id")
+        @CachePut(cacheNames = "testCache", key = "#id")
         public String updateCachedData(String id, String data) {
             return data;
         }
 
-        @CacheEvict(cacheName = "testCache", key = "#id")
+        @CacheEvict(cacheNames = "testCache", key = "#id")
         public void deleteCachedData(String id) {
             // 删除操作
         }
 
-        @CacheEvict(cacheName = "testCache", allEntries = true)
+        @CacheEvict(cacheNames = "testCache", allEntries = true)
         public void clearAllCache() {
             // 清除所有缓存
         }

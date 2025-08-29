@@ -27,7 +27,7 @@ public @interface Cacheable {
      *
      * @return 缓存名称
      */
-    String cacheName();
+    String[] cacheNames() default {};
 
     /**
      * 缓存键表达式（支持SpEL表达式）

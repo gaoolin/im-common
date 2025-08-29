@@ -23,7 +23,7 @@ public class KeyGeneratorTest {
 
         Object key = generator.generate(target, method, params);
         assertNotNull(key);
-        assertTrue(key instanceof SimpleKeyGenerator.SimpleKey);
+        assertTrue(key instanceof SimpleKeyGenerator);
 
         // 测试键的equals和hashCode
         Object key2 = generator.generate(target, method, params);

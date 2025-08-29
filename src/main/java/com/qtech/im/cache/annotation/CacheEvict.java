@@ -26,7 +26,7 @@ public @interface CacheEvict {
      *
      * @return 缓存名称
      */
-    String cacheName();
+    String[] cacheNames() default {};
 
     /**
      * 缓存键表达式（支持SpEL表达式）
@@ -55,4 +55,18 @@ public @interface CacheEvict {
      * @return 是否在方法执行前清除
      */
     boolean beforeInvocation() default false;
+
+    /**
+     * 清除缓存条件表达式（支持SpEL表达式）
+     *
+     * @return 清除缓存条件表达式
+     */
+    String condition() default "";
+
+    /**
+     * 清除缓存 unless 表达式（支持SpEL表达式）
+     *
+     * @return 清除缓存 unless 表达式
+     */
+    String unless() default "";
 }
