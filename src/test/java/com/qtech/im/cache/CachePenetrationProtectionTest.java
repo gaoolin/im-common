@@ -1,6 +1,6 @@
 package com.qtech.im.cache;
 
-import com.qtech.im.cache.impl.CaffeineCache;
+import com.qtech.im.cache.impl.cache.CaffeineCache;
 import org.junit.Test;
 
 import static org.junit.Assert.assertNull;

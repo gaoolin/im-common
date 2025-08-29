@@ -2,8 +2,9 @@ package com.qtech.im.cache.builder;
 
 import com.qtech.im.cache.Cache;
 import com.qtech.im.cache.CacheConfig;
-import com.qtech.im.cache.impl.CaffeineCache;
-import com.qtech.im.cache.impl.SimpleMemoryCache;
+import com.qtech.im.cache.impl.cache.CaffeineCache;
+import com.qtech.im.cache.impl.cache.SimpleMemoryCache;
+import com.qtech.im.cache.support.BackendType;
 
 import java.util.concurrent.TimeUnit;
 
@@ -11,9 +12,10 @@ import java.util.concurrent.TimeUnit;
  * 缓存构建器
  * <p>
  * 提供链式调用方式创建缓存实例
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * since  :  2025/08/27
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/27
  */
 
 public class CacheBuilder {
@@ -52,7 +54,7 @@ public class CacheBuilder {
         return this;
     }
 
-    public CacheBuilder cacheType(CacheConfig.BackendType type) {
+    public CacheBuilder cacheType(BackendType type) {
         config.setBackendType(type);
         return this;
     }

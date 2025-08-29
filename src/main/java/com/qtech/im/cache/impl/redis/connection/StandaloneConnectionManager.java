@@ -14,9 +14,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * since  :  2025/08/28
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/28
  */
 public class StandaloneConnectionManager<K, V> implements RedisConnectionManager<K, V> {
     private static final Logger logger = LoggerFactory.getLogger(StandaloneConnectionManager.class);

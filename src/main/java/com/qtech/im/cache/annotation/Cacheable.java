@@ -2,27 +2,17 @@ package com.qtech.im.cache.annotation;
 
 import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;
-/**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 15:55:22
- * <p>
- * 缓存注解
- * <p>
- * 用于标记方法的返回值需要被缓存
- */
 
 /**
  * 缓存注解
  * <p>
  * 用于标记方法的返回值需要被缓存
- */
-
-/**
- * 缓存注解
  *
- * 用于标记方法的返回值需要被缓存
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19
  */
+
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited

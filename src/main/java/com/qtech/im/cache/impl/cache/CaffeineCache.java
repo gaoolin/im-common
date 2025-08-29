@@ -1,4 +1,4 @@
-package com.qtech.im.cache.impl;
+package com.qtech.im.cache.impl.cache;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.qtech.im.cache.Cache;

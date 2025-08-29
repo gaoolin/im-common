@@ -1,18 +1,17 @@
 package com.qtech.im.cache.annotation;
 
-/**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 16:02:29
- */
-
 import java.lang.reflect.Method;
 
 /**
  * 缓存键生成器接口
  * <p>
  * 用于生成缓存键
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19
  */
+
 public interface CacheKeyGenerator {
 
     /**

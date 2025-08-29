@@ -1,18 +1,20 @@
 package com.qtech.im.cache;
 
+import com.qtech.im.cache.support.BackendType;
+
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
-/**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 15:48:23
- */
 
 /**
  * 缓存配置类
  * <p>
  * 定义缓存的各种配置参数
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19
  */
+
 public class CacheConfig implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -191,8 +193,6 @@ public class CacheConfig implements Serializable {
         return redisUri;
     }
 
-    // ... 现有代码 ...
-
     /**
      * 设置Redis连接URI
      *
@@ -242,27 +242,5 @@ public class CacheConfig implements Serializable {
     public CacheConfig setRedisSoTimeout(int redisSoTimeout) {
         this.redisSoTimeout = redisSoTimeout;
         return this;
-    }
-
-    /**
-     * 缓存后端类型枚举
-     */
-    public enum BackendType {
-        /**
-         * 简单内存缓存，基于 ConcurrentHashMap，无外部依赖
-         */
-        MEMORY,
-        /**
-         * 高性能内存缓存，基于 Caffeine
-         */
-        CAFFEINE,
-        /**
-         * 分布式缓存，基于 Redis
-         */
-        REDIS,
-        /**
-         * 混合缓存，结合本地内存和 Redis
-         */
-        HYBRID
     }
 }

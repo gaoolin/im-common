@@ -450,7 +450,7 @@ package com.yourcompany.yourproject.config;
 
 import com.qtech.im.cache.Cache;
 import com.qtech.im.cache.CacheConfig;
-import com.qtech.im.cache.impl.RedisCache;
+import com.qtech.im.cache.impl.cache.RedisCache;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -1995,7 +1995,7 @@ package com.yourcompany.yourproject.test.config;
 
 import com.qtech.im.cache.Cache;
 import com.qtech.im.cache.CacheConfig;
-import com.qtech.im.cache.impl.RedisCache;
+import com.qtech.im.cache.impl.cache.RedisCache;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;

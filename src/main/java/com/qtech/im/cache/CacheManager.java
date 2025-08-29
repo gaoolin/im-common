@@ -1,76 +1,81 @@
 package com.qtech.im.cache;
 
-/**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 15:50:08
- */
-
 import java.util.Collection;
 
 /**
- * 缓存管理器接口
- * <p>
- * 负责缓存实例的创建、管理和销毁
+ * Cache manager interface for managing cache instances
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19
  */
 public interface CacheManager {
-
     /**
-     * 创建缓存实例
+     * Create a cache with the specified name and configuration
      *
-     * @param name   缓存名称
-     * @param config 缓存配置
-     * @param <K>    键类型
-     * @param <V>    值类型
-     * @return 缓存实例
+     * @param name   Cache name
+     * @param config Cache configuration
+     * @param <K>    Key type
+     * @param <V>    Value type
+     * @return Created cache instance
      */
     <K, V> Cache<K, V> createCache(String name, CacheConfig config);
 
     /**
-     * 获取缓存实例
+     * Get a cache by name
      *
-     * @param name 缓存名称
-     * @param <K>  键类型
-     * @param <V>  值类型
-     * @return 缓存实例，不存在返回null
+     * @param name Cache name
+     * @param <K>  Key type
+     * @param <V>  Value type
+     * @return Cache instance, or null if not found
      */
     <K, V> Cache<K, V> getCache(String name);
 
     /**
-     * 获取或创建缓存实例
+     * Get or create a cache with the specified name and configuration
      *
-     * @param name   缓存名称
-     * @param config 缓存配置
-     * @param <K>    键类型
-     * @param <V>    值类型
-     * @return 缓存实例
+     * @param name   Cache name
+     * @param config Cache configuration
+     * @param <K>    Key type
+     * @param <V>    Value type
+     * @return Cache instance
      */
     <K, V> Cache<K, V> getOrCreateCache(String name, CacheConfig config);
 
     /**
-     * 删除缓存实例
+     * Remove a cache by name
      *
-     * @param name 缓存名称
-     * @return 删除成功返回true，否则返回false
+     * @param name Cache name
+     * @return true if removed, false otherwise
      */
     boolean removeCache(String name);
 
     /**
-     * 获取所有缓存名称
+     * Get all cache names
      *
-     * @return 缓存名称数组
+     * @return Collection of cache names
      */
     Collection<String> getCacheNames();
 
     /**
-     * 获取缓存管理器统计信息
+     * Get cache manager statistics
      *
-     * @return 统计信息
+     * @return Cache manager statistics
      */
     CacheManagerStats getStats();
 
     /**
-     * 关闭缓存管理器
+     * Close the cache manager and all managed caches
      */
     void close();
+
+    /**
+     * Register an existing cache with the manager
+     *
+     * @param name  Cache name
+     * @param cache Cache instance
+     * @throws IllegalArgumentException if name or cache is null/empty
+     * @throws IllegalStateException    if cache with name already exists
+     */
+    void registerCache(String name, Cache<?, ?> cache);
 }

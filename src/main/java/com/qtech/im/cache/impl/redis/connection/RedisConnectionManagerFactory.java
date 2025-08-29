@@ -4,9 +4,9 @@ import com.qtech.im.cache.impl.redis.RedisConnectionManager;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * since  :  2025/08/28
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/28
  */
 public class RedisConnectionManagerFactory {
 

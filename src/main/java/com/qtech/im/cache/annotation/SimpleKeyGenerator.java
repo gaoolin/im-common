@@ -1,11 +1,5 @@
 package com.qtech.im.cache.annotation;
 
-/**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 15:58:56
- */
-
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
@@ -13,7 +7,12 @@ import java.util.Arrays;
  * 简单键生成器实现
  * <p>
  * 基于类名、方法名和参数生成缓存键
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19
  */
+
 public class SimpleKeyGenerator implements CacheKeyGenerator {
 
     @Override

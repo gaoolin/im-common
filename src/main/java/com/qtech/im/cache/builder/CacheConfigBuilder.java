@@ -1,11 +1,12 @@
 package com.qtech.im.cache.builder;
 
 import com.qtech.im.cache.CacheConfig;
+import com.qtech.im.cache.support.BackendType;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * since  :  2025/08/27
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/27
  */
 public class CacheConfigBuilder {
     private final CacheConfig config;
@@ -55,6 +56,11 @@ public class CacheConfigBuilder {
 
     public CacheConfigBuilder withAvalancheProtection(boolean enable) {
         config.setEnableAvalancheProtection(enable);
+        return this;
+    }
+
+    public CacheConfigBuilder withBackendType(BackendType backendType) {
+        config.setBackendType(backendType);
         return this;
     }
 

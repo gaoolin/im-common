@@ -2,17 +2,17 @@ package com.qtech.im.cache.annotation;
 
 import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;
-/**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 15:57:49
- */
 
 /**
  * 缓存更新注解
  * <p>
  * 用于标记方法执行后需要更新缓存
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19
  */
+
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited

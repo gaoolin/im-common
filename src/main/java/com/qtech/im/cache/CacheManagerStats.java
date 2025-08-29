@@ -1,11 +1,5 @@
 package com.qtech.im.cache;
 
-/**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 15:50:29
- */
-
 import java.io.Serializable;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,8 +8,13 @@ import java.util.concurrent.ConcurrentHashMap;
  * 缓存管理器统计信息
  * <p>
  * 记录所有缓存实例的统计信息
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/29
  */
-public class CacheManagerStats implements Serializable {
+
+public abstract class CacheManagerStats implements Serializable {
     private static final long serialVersionUID = 1L;
 
     // 各缓存实例的统计信息
@@ -181,4 +180,6 @@ public class CacheManagerStats implements Serializable {
 
                 '}';
     }
+
+    public abstract CacheStats getAggregatedStats();
 }

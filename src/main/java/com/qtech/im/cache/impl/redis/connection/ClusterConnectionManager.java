@@ -19,9 +19,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * since  :  2025/08/28
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/28
  */
 
 public class ClusterConnectionManager<K, V> implements RedisConnectionManager<K, V> {

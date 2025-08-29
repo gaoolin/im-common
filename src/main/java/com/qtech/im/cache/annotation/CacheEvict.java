@@ -1,17 +1,17 @@
 package com.qtech.im.cache.annotation;
 
 import java.lang.annotation.*;
-/**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 15:57:06
- */
 
 /**
  * 缓存清除注解
  * <p>
  * 用于标记方法执行后需要清除缓存
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19
  */
+
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited

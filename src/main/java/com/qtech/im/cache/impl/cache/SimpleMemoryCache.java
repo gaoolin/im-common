@@ -1,4 +1,4 @@
-package com.qtech.im.cache.impl;
+package com.qtech.im.cache.impl.cache;
 
 import com.qtech.im.cache.Cache;
 import com.qtech.im.cache.CacheConfig;

@@ -1,19 +1,17 @@
 package com.qtech.im.cache.impl.redis;
 
-
 import io.lettuce.core.api.StatefulRedisConnection;
 import org.apache.commons.pool2.impl.GenericObjectPool;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * since  :  2025/08/28
- */
-
-/**
  * Redis连接管理器接口
  * 支持不同Redis部署模式的统一连接管理
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/28
  */
+
 public interface RedisConnectionManager<K, V> {
 
     /**
