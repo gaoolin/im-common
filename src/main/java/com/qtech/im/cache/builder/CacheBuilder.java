@@ -1,11 +1,11 @@
 package com.qtech.im.cache.builder;
 
 import com.qtech.im.cache.Cache;
-import com.qtech.im.cache.CacheConfig;
 import com.qtech.im.cache.impl.cache.CaffeineCache;
 import com.qtech.im.cache.impl.cache.RedisCache;
 import com.qtech.im.cache.impl.cache.SimpleMemoryCache;
 import com.qtech.im.cache.support.BackendType;
+import com.qtech.im.cache.support.CacheConfig;
 
 import java.util.concurrent.TimeUnit;
 

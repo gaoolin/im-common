@@ -449,7 +449,7 @@ RedisCache 为 QTech IM 缓存管理组件提供了强大的分布式缓存能�
 package com.yourcompany.yourproject.config;
 
 import com.qtech.im.cache.Cache;
-import com.qtech.im.cache.CacheConfig;
+import com.qtech.im.cache.support.CacheConfig;
 import com.qtech.im.cache.impl.cache.RedisCache;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -572,7 +572,7 @@ cache:
 package com.yourcompany.yourproject.service;
 
 import com.qtech.im.cache.Cache;
-import com.qtech.im.cache.CacheStats;
+import com.qtech.im.cache.support.CacheStats;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -1187,7 +1187,7 @@ public class ProductService {
 ```java
 package com.yourcompany.yourproject.controller;
 
-import com.qtech.im.cache.CacheStats;
+import com.qtech.im.cache.support.CacheStats;
 import com.yourcompany.yourproject.service.ImCommonCacheService;
 import com.yourcompany.yourproject.service.ProductService;
 import com.yourcompany.yourproject.service.UserService;
@@ -1994,7 +1994,7 @@ public class ImCommonCacheAspect {
 package com.yourcompany.yourproject.test.config;
 
 import com.qtech.im.cache.Cache;
-import com.qtech.im.cache.CacheConfig;
+import com.qtech.im.cache.support.CacheConfig;
 import com.qtech.im.cache.impl.cache.RedisCache;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -2119,7 +2119,7 @@ public class Product implements Serializable {
 package com.yourcompany.yourproject.test.service;
 
 import com.qtech.im.cache.Cache;
-import com.qtech.im.cache.CacheStats;
+import com.qtech.im.cache.support.CacheStats;
 import com.yourcompany.yourproject.test.model.Product;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -2533,7 +2533,7 @@ class CacheAnnotationServiceTest {
 package com.yourcompany.yourproject.test.controller;
 
 import com.qtech.im.cache.Cache;
-import com.qtech.im.cache.CacheStats;
+import com.qtech.im.cache.support.CacheStats;
 import com.yourcompany.yourproject.test.model.Product;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -2717,7 +2717,7 @@ class CacheControllerTest {
 package com.yourcompany.yourproject.test.integration;
 
 import com.qtech.im.cache.Cache;
-import com.qtech.im.cache.CacheStats;
+import com.qtech.im.cache.support.CacheStats;
 import com.yourcompany.yourproject.test.model.Product;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;

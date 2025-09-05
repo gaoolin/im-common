@@ -2,8 +2,8 @@ package com.qtech.im.cache.impl.cache;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.qtech.im.cache.Cache;
-import com.qtech.im.cache.CacheConfig;
-import com.qtech.im.cache.CacheStats;
+import com.qtech.im.cache.support.CacheConfig;
+import com.qtech.im.cache.support.CacheStats;
 import com.qtech.im.cache.support.ExpiringValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

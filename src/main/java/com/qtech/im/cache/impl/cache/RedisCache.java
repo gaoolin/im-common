@@ -1,11 +1,14 @@
 package com.qtech.im.cache.impl.cache;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qtech.im.cache.Cache;
-import com.qtech.im.cache.CacheConfig;
-import com.qtech.im.cache.CacheStats;
 import com.qtech.im.cache.impl.redis.RedisConnectionManager;
 import com.qtech.im.cache.impl.redis.RedisMode;
 import com.qtech.im.cache.impl.redis.connection.RedisConnectionManagerFactory;
+import com.qtech.im.cache.support.CacheConfig;
+import com.qtech.im.cache.support.CacheStats;
+import com.qtech.im.util.json.JsonMapperProvider;
 import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisCommands;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
@@ -22,6 +25,7 @@ import java.util.function.Function;
  * <p>
  * 基于Lettuce客户端实现的分布式缓存，具有高可用、高性能、线程安全等特性
  * 支持多种Redis部署模式：单节点、主从、哨兵、集群
+ * 支持Hash操作以适配特定场景
  * </p>
  *
  * @param <K> 键类型
@@ -32,28 +36,21 @@ import java.util.function.Function;
  */
 public class RedisCache<K, V> implements Cache<K, V> {
     private static final Logger logger = LoggerFactory.getLogger(RedisCache.class);
+    private static final ObjectMapper objectMapper = JsonMapperProvider.getSharedInstance();
 
     private final RedisConnectionManager<K, V> connectionManager;
     private final CacheConfig config;
     private final CacheStats stats = new CacheStats();
-    private final String prefix; // 键前缀，用于区分不同缓存实例
+    private final String prefix;
 
-    /**
-     * 构造函数
-     *
-     * @param config 缓存配置
-     */
     public RedisCache(CacheConfig config) {
         this.config = config;
         this.prefix = config.getName() != null ? config.getName() + ":" : "";
-
-        // 创建Redis客户端
-        String redisUri = config.getRedisUri(); // 从配置中获取Redis连接URI
+        String redisUri = config.getRedisUri();
         if (redisUri == null || redisUri.isEmpty()) {
-            redisUri = "redis://localhost:6379"; // 默认连接
+            redisUri = "redis://localhost:6379";
         }
 
-        // 配置连接池
         GenericObjectPoolConfig<StatefulRedisConnection<K, V>> poolConfig = new GenericObjectPoolConfig<>();
         poolConfig.setMaxTotal(config.getMaximumSize() > 0 ? config.getMaximumSize() : 100);
         poolConfig.setMaxIdle(50);
@@ -66,22 +63,18 @@ public class RedisCache<K, V> implements Cache<K, V> {
         poolConfig.setNumTestsPerEvictionRun(3);
         poolConfig.setBlockWhenExhausted(true);
 
-        // 创建连接管理器
         this.connectionManager = RedisConnectionManagerFactory.createConnectionManager(redisUri, poolConfig);
-
         logger.info("RedisCache initialized with config: {} and mode: {}", config, connectionManager.getMode());
     }
 
     @Override
     public V get(K key) {
         long startTime = System.nanoTime();
-        try {
-            try (StatefulRedisConnection<K, V> connection = connectionManager.getConnectionPool().borrowObject()) {
-                RedisCommands<K, V> commands = connection.sync();
-                V value = commands.get(wrapKey(key));
-                stats.recordHit();
-                return value;
-            }
+        try (StatefulRedisConnection<K, V> connection = connectionManager.getConnectionPool().borrowObject()) {
+            RedisCommands<K, V> commands = connection.sync();
+            V value = commands.get(wrapKey(key));
+            stats.recordHit();
+            return value;
         } catch (Exception e) {
             stats.recordMiss();
             stats.recordLoadException(System.nanoTime() - startTime);
@@ -94,10 +87,11 @@ public class RedisCache<K, V> implements Cache<K, V> {
     public void put(K key, V value) {
         try (StatefulRedisConnection<K, V> connection = connectionManager.getConnectionPool().borrowObject()) {
             RedisCommands<K, V> commands = connection.sync();
+            String serializedValue = serialize(value);
             if (config.getExpireAfterWrite() > 0) {
-                commands.setex(wrapKey(key), config.getExpireAfterWrite() / 1000, value);
+                commands.setex(wrapKey(key), config.getExpireAfterWrite() / 1000, (V) serializedValue);
             } else {
-                commands.set(wrapKey(key), value);
+                commands.set(wrapKey(key), (V) serializedValue);
             }
         } catch (Exception e) {
             logger.error("Failed to put value to Redis for key: {}", key, e);
@@ -108,11 +102,12 @@ public class RedisCache<K, V> implements Cache<K, V> {
     public void put(K key, V value, long ttl, TimeUnit unit) {
         try (StatefulRedisConnection<K, V> connection = connectionManager.getConnectionPool().borrowObject()) {
             RedisCommands<K, V> commands = connection.sync();
+            String serializedValue = serialize(value);
             long ttlSeconds = unit.toSeconds(ttl);
             if (ttlSeconds > 0) {
-                commands.setex(wrapKey(key), ttlSeconds, value);
+                commands.setex(wrapKey(key), ttlSeconds, (V) serializedValue);
             } else {
-                commands.set(wrapKey(key), value);
+                commands.set(wrapKey(key), (V) serializedValue);
             }
         } catch (Exception e) {
             logger.error("Failed to put value to Redis for key: {}", key, e);
@@ -123,11 +118,12 @@ public class RedisCache<K, V> implements Cache<K, V> {
     public void putAtFixedTime(K key, V value, long expireTimestamp) {
         try (StatefulRedisConnection<K, V> connection = connectionManager.getConnectionPool().borrowObject()) {
             RedisCommands<K, V> commands = connection.sync();
+            String serializedValue = serialize(value);
             long ttlSeconds = (expireTimestamp - System.currentTimeMillis()) / 1000;
             if (ttlSeconds > 0) {
-                commands.setex(wrapKey(key), ttlSeconds, value);
+                commands.setex(wrapKey(key), ttlSeconds, (V) serializedValue);
             } else {
-                commands.set(wrapKey(key), value);
+                commands.set(wrapKey(key), (V) serializedValue);
             }
         } catch (Exception e) {
             logger.error("Failed to put value to Redis for key: {}", key, e);
@@ -139,10 +135,8 @@ public class RedisCache<K, V> implements Cache<K, V> {
         Map<K, V> result = new HashMap<>();
         try (StatefulRedisConnection<K, V> connection = connectionManager.getConnectionPool().borrowObject()) {
             RedisCommands<K, V> commands = connection.sync();
-
-            // 构建包装后的键数组
             K[] wrappedKeys = (K[]) new Object[keys.size()];
-            Map<K, K> keyMapping = new HashMap<>(); // 包装键 -> 原始键映射
+            Map<K, K> keyMapping = new HashMap<>();
             int index = 0;
             for (K key : keys) {
                 K wrappedKey = wrapKey(key);
@@ -151,17 +145,11 @@ public class RedisCache<K, V> implements Cache<K, V> {
                 index++;
             }
 
-            // 执行批量获取
-            Object[] values = commands.mget(wrappedKeys).toArray();
-
-            // 构建结果映射
-            for (int i = 0; i < wrappedKeys.length; i++) {
-                K wrappedKey = wrappedKeys[i];
-                Object value = values[i];
-                if (value != null) {
-                    K originalKey = keyMapping.get(wrappedKey);
-                    // 由于Lettuce的KeyValue类型问题，我们直接处理Object类型
-                    result.put(originalKey, (V) value);
+            List<io.lettuce.core.KeyValue<K, V>> values = commands.mget(wrappedKeys);
+            for (io.lettuce.core.KeyValue<K, V> kv : values) {
+                if (kv.hasValue()) {
+                    K originalKey = keyMapping.get(kv.getKey());
+                    result.put(originalKey, kv.getValue());
                 }
             }
         } catch (Exception e) {
@@ -176,11 +164,10 @@ public class RedisCache<K, V> implements Cache<K, V> {
             RedisCommands<K, V> commands = connection.sync();
             Map<K, V> wrappedMap = new HashMap<>();
             for (Map.Entry<? extends K, ? extends V> entry : map.entrySet()) {
-                wrappedMap.put(wrapKey(entry.getKey()), entry.getValue());
+                wrappedMap.put(wrapKey(entry.getKey()), (V) serialize(entry.getValue()));
             }
             commands.mset(wrappedMap);
 
-            // 设置过期时间
             if (config.getExpireAfterWrite() > 0) {
                 for (K key : map.keySet()) {
                     commands.expire(wrapKey(key), config.getExpireAfterWrite() / 1000);
@@ -188,6 +175,51 @@ public class RedisCache<K, V> implements Cache<K, V> {
             }
         } catch (Exception e) {
             logger.error("Failed to put all values to Redis", e);
+        }
+    }
+
+    // 新增：Hash 操作 - putAll
+    public void putAll(String hashKey, Map<String, String> values) {
+        try (StatefulRedisConnection<K, V> connection = connectionManager.getConnectionPool().borrowObject()) {
+            RedisCommands<K, V> commands = connection.sync();
+            commands.hmset((K) wrapKey((K) hashKey), (Map<K, V>) (Map<?, ?>) values);
+            if (config.getExpireAfterWrite() > 0) {
+                commands.expire((K) wrapKey((K) hashKey), config.getExpireAfterWrite() / 1000);
+            }
+        } catch (Exception e) {
+            logger.error("Failed to put all values to Redis hash '{}'", hashKey, e);
+        }
+    }
+
+    // 新增：Hash 操作 - get from hash
+    public String getFromHash(String hashKey, String field) {
+        long startTime = System.nanoTime();
+        try (StatefulRedisConnection<K, V> connection = connectionManager.getConnectionPool().borrowObject()) {
+            RedisCommands<K, V> commands = connection.sync();
+            V value = commands.hget((K) wrapKey((K) hashKey), (K) (Object) field);
+            stats.recordHit();
+            return value != null ? (String) value : null;
+        } catch (Exception e) {
+            stats.recordMiss();
+            stats.recordLoadException(System.nanoTime() - startTime);
+            logger.warn("Failed to get field '{}' from Redis hash '{}'", field, hashKey, e);
+            return null;
+        }
+    }
+
+    // 新增：Hash 操作 - get all from hash
+    public Map<String, String> getAllFromHash(String hashKey) {
+        try (StatefulRedisConnection<K, V> connection = connectionManager.getConnectionPool().borrowObject()) {
+            RedisCommands<K, V> commands = connection.sync();
+            Map<K, V> result = commands.hgetall((K) wrapKey((K) hashKey));
+            Map<String, String> stringResult = new HashMap<>();
+            for (Map.Entry<K, V> entry : result.entrySet()) {
+                stringResult.put((String) entry.getKey(), (String) entry.getValue());
+            }
+            return stringResult;
+        } catch (Exception e) {
+            logger.error("Failed to get all fields from Redis hash '{}'", hashKey, e);
+            return new HashMap<>();
         }
     }
 
@@ -235,7 +267,6 @@ public class RedisCache<K, V> implements Cache<K, V> {
     public long size() {
         try (StatefulRedisConnection<K, V> connection = connectionManager.getConnectionPool().borrowObject()) {
             RedisCommands<K, V> commands = connection.sync();
-            // 注意：这个操作在Redis中可能比较耗时，生产环境中应谨慎使用
             return commands.dbsize();
         } catch (Exception e) {
             logger.error("Failed to get Redis database size", e);
@@ -255,7 +286,6 @@ public class RedisCache<K, V> implements Cache<K, V> {
 
     @Override
     public CacheStats getStats() {
-        // Redis本身有丰富的统计信息，这里返回我们自己的统计信息
         return stats;
     }
 
@@ -270,14 +300,11 @@ public class RedisCache<K, V> implements Cache<K, V> {
         if (value != null) {
             return value;
         }
-
-        // 双重检查锁定模式，防止多个线程同时加载
         synchronized (this) {
             value = get(key);
             if (value != null) {
                 return value;
             }
-
             long startTime = System.nanoTime();
             try {
                 value = loader.apply(key);
@@ -294,29 +321,17 @@ public class RedisCache<K, V> implements Cache<K, V> {
         }
     }
 
-    /**
-     * 获取或加载缓存值（带自动加载机制和过期时间）
-     *
-     * @param key    缓存键
-     * @param loader 加载函数
-     * @param ttl    过期时间
-     * @param unit   时间单位
-     * @return 缓存值
-     */
     @Override
     public V getOrLoad(K key, Function<K, V> loader, long ttl, TimeUnit unit) {
         V value = get(key);
         if (value != null) {
             return value;
         }
-
-        // 双重检查锁定模式，防止多个线程同时加载
         synchronized (this) {
             value = get(key);
             if (value != null) {
                 return value;
             }
-
             long startTime = System.nanoTime();
             try {
                 value = loader.apply(key);
@@ -333,28 +348,17 @@ public class RedisCache<K, V> implements Cache<K, V> {
         }
     }
 
-    /**
-     * 获取或加载缓存值（带自动加载机制和绝对过期时间）
-     *
-     * @param key             缓存键
-     * @param loader          加载函数
-     * @param expireTimestamp 绝对过期时间戳（毫秒）
-     * @return 缓存值
-     */
     @Override
     public V getOrLoadAtFixedTime(K key, Function<K, V> loader, long expireTimestamp) {
         V value = get(key);
         if (value != null) {
             return value;
         }
-
-        // 双重检查锁定模式，防止多个线程同时加载
         synchronized (this) {
             value = get(key);
             if (value != null) {
                 return value;
             }
-
             long startTime = System.nanoTime();
             try {
                 value = loader.apply(key);
@@ -371,12 +375,8 @@ public class RedisCache<K, V> implements Cache<K, V> {
         }
     }
 
-    /**
-     * 刷新缓存（重新加载所有缓存项）
-     */
     @Override
     public void refresh() {
-        // Redis缓存不支持整体刷新
         logger.debug("Redis cache does not support refresh operation");
     }
 
@@ -391,21 +391,11 @@ public class RedisCache<K, V> implements Cache<K, V> {
         }
     }
 
-    /**
-     * 手动触发缓存清理
-     */
     @Override
     public void cleanUp() {
-        // Redis会自动处理过期键，这里不需要特殊处理
         logger.debug("Redis cache cleanup triggered");
     }
 
-    /**
-     * 包装键，添加前缀
-     *
-     * @param key 原始键
-     * @return 包装后的键
-     */
     private K wrapKey(K key) {
         if (key instanceof String) {
             return (K) (prefix + key);
@@ -413,12 +403,6 @@ public class RedisCache<K, V> implements Cache<K, V> {
         return key;
     }
 
-    /**
-     * 解包键，移除前缀
-     *
-     * @param key 包装后的键
-     * @return 原始键
-     */
     private K unwrapKey(K key) {
         if (key instanceof String && prefix != null && !prefix.isEmpty()) {
             String keyStr = (String) key;
@@ -429,12 +413,19 @@ public class RedisCache<K, V> implements Cache<K, V> {
         return key;
     }
 
-    /**
-     * 获取连接模式
-     *
-     * @return Redis部署模式
-     */
     public RedisMode getMode() {
         return connectionManager != null ? connectionManager.getMode() : null;
+    }
+
+    private String serialize(V value) {
+        if (value instanceof String) {
+            return (String) value;
+        }
+        try {
+            return objectMapper.writeValueAsString(value);
+        } catch (JsonProcessingException e) {
+            logger.error("Failed to serialize value: {}", value, e);
+            throw new RuntimeException("Serialization failed", e);
+        }
     }
 }

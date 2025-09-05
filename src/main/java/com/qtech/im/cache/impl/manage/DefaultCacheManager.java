@@ -1,7 +1,11 @@
 package com.qtech.im.cache.impl.manage;
 
-import com.qtech.im.cache.*;
+import com.qtech.im.cache.Cache;
+import com.qtech.im.cache.CacheManager;
+import com.qtech.im.cache.CacheManagerStats;
 import com.qtech.im.cache.builder.CacheFactory;
+import com.qtech.im.cache.support.CacheConfig;
+import com.qtech.im.cache.support.CacheStats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

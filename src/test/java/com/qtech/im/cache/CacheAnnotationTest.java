@@ -5,6 +5,7 @@ import com.qtech.im.cache.annotation.CachePut;
 import com.qtech.im.cache.annotation.Cacheable;
 import com.qtech.im.cache.impl.SimpleKeyGenerator;
 import com.qtech.im.cache.impl.cache.CaffeineCache;
+import com.qtech.im.cache.support.CacheConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

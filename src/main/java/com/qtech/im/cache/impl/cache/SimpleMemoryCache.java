@@ -1,9 +1,9 @@
 package com.qtech.im.cache.impl.cache;
 
 import com.qtech.im.cache.Cache;
-import com.qtech.im.cache.CacheConfig;
-import com.qtech.im.cache.CacheStats;
 import com.qtech.im.cache.builder.CacheConfigBuilder;
+import com.qtech.im.cache.support.CacheConfig;
+import com.qtech.im.cache.support.CacheStats;
 import com.qtech.im.cache.support.ExpiringValue;
 import com.qtech.im.cache.support.NullValueMarker;
 

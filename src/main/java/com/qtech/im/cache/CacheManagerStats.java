@@ -1,5 +1,7 @@
 package com.qtech.im.cache;
 
+import com.qtech.im.cache.support.CacheStats;
+
 import java.io.Serializable;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

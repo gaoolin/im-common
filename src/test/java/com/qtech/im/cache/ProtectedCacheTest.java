@@ -1,6 +1,7 @@
 package com.qtech.im.cache;
 
 import com.qtech.im.cache.impl.cache.ProtectedCache;
+import com.qtech.im.cache.support.CacheConfig;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

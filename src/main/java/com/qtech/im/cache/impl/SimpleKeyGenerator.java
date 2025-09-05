@@ -1,6 +1,6 @@
 package com.qtech.im.cache.impl;
 
-import com.qtech.im.cache.CacheKeyGenerator;
+import com.qtech.im.cache.support.CacheKeyGenerator;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;

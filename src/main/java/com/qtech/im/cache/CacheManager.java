@@ -1,5 +1,7 @@
 package com.qtech.im.cache;
 
+import com.qtech.im.cache.support.CacheConfig;
+
 import java.util.Collection;
 
 /**

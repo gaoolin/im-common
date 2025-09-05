@@ -1,7 +1,7 @@
 package com.qtech.im.cache.builder;
 
-import com.qtech.im.cache.CacheConfig;
 import com.qtech.im.cache.support.BackendType;
+import com.qtech.im.cache.support.CacheConfig;
 
 /**
  * @author gaozhilin

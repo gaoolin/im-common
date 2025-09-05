@@ -1,6 +1,4 @@
-package com.qtech.im.cache;
-
-import com.qtech.im.cache.support.BackendType;
+package com.qtech.im.cache.support;
 
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
@@ -9,6 +7,14 @@ import java.util.concurrent.TimeUnit;
  * 缓存配置类
  * <p>
  * 定义缓存的各种配置参数
+ * 1. 缓存名称
+ * 2. 最大缓存大小，默认1000
+ * 3. 缓存过期时间，默认30分钟
+ * 4. 缓存统计，默认开启
+ * 5. 缓存穿透保护，默认开启
+ * 6. 缓存击穿保护，默认开启
+ * 7. 缓存雪崩保护，默认开启
+ * 8. 缓存类型，默认内存
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com

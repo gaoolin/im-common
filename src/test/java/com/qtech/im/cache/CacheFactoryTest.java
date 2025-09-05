@@ -5,6 +5,7 @@ import com.qtech.im.cache.builder.CacheFactory;
 import com.qtech.im.cache.impl.cache.SimpleMemoryCache;
 import com.qtech.im.cache.impl.manage.DefaultCacheManager;
 import com.qtech.im.cache.support.BackendType;
+import com.qtech.im.cache.support.CacheConfig;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

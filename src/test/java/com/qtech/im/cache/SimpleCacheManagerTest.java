@@ -1,6 +1,7 @@
 package com.qtech.im.cache;
 
 import com.qtech.im.cache.impl.manage.DefaultCacheManager;
+import com.qtech.im.cache.support.CacheConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

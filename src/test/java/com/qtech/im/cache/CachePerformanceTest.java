@@ -1,6 +1,8 @@
 package com.qtech.im.cache;
 
 import com.qtech.im.cache.impl.cache.CaffeineCache;
+import com.qtech.im.cache.support.CacheConfig;
+import com.qtech.im.cache.support.CacheStats;
 import org.junit.Test;
 
 import java.util.concurrent.CountDownLatch;
@@ -136,7 +138,7 @@ public class CachePerformanceTest {
             }
 
             // 检查统计信息
-            com.qtech.im.cache.CacheStats stats = cache.getStats();
+            CacheStats stats = cache.getStats();
             assertNotNull(stats);
 
             System.out.println("缓存统计信息:");

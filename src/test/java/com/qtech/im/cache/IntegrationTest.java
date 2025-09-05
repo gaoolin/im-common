@@ -1,6 +1,8 @@
 package com.qtech.im.cache;
 
 import com.qtech.im.cache.impl.cache.CaffeineCache;
+import com.qtech.im.cache.support.CacheConfig;
+import com.qtech.im.cache.support.CacheStats;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -66,7 +68,7 @@ public class IntegrationTest {
         assertEquals(loadedData, cachedLoadedData);
 
         // 6. 检查统计信息
-        com.qtech.im.cache.CacheStats stats = cache.getStats();
+        CacheStats stats = cache.getStats();
         assertTrue(stats.getRequestCount() > 0);
         assertTrue(stats.getHitCount() > 0);
         assertTrue(stats.getLoadSuccessCount() > 0);
