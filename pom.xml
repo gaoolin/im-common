@@ -95,7 +95,7 @@
         <dependency>
             <groupId>io.lettuce</groupId>
             <artifactId>lettuce-core</artifactId>
-            <version>6.2.4.RELEASE</version>
+            <version>6.1.10.RELEASE</version>
             <optional>true</optional> <!--避免强制依赖，适合用户选择缓存后端-->
         </dependency>
         <!-- Caffeine缓存库 -->

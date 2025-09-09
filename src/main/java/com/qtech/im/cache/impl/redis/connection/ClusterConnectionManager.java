@@ -28,9 +28,10 @@ public class ClusterConnectionManager<K, V> implements RedisConnectionManager<K,
     private static final Logger logger = LoggerFactory.getLogger(ClusterConnectionManager.class);
 
     private final RedisClusterClient clusterClient;
-    private final GenericObjectPool<StatefulRedisClusterConnection<K, V>> connectionPool;
+    private final GenericObjectPool<StatefulRedisConnection<K, V>> connectionPool;
 
-    public ClusterConnectionManager(String redisUris, GenericObjectPoolConfig<StatefulRedisClusterConnection<K, V>> poolConfig) {
+    @SuppressWarnings("unchecked")
+    public ClusterConnectionManager(String redisUris, GenericObjectPoolConfig<StatefulRedisConnection<K, V>> poolConfig) {
         // 解析多个URI
         List<String> uriList = Arrays.asList(redisUris.split(","));
 
@@ -41,8 +42,12 @@ public class ClusterConnectionManager<K, V> implements RedisConnectionManager<K,
 
         this.clusterClient = RedisClusterClient.create(redisURIs);
 
+        // 在创建连接池时就进行类型转换，避免后续问题
         this.connectionPool = ConnectionPoolSupport.createGenericObjectPool(
-                () -> clusterClient.connect((RedisCodec<K, V>) StringCodec.UTF8),
+                () -> {
+                    StatefulRedisClusterConnection<K, V> clusterConnection = clusterClient.connect((RedisCodec<K, V>) StringCodec.UTF8);
+                    return (StatefulRedisConnection<K, V>) clusterConnection;
+                },
                 poolConfig
         );
 
@@ -51,12 +56,11 @@ public class ClusterConnectionManager<K, V> implements RedisConnectionManager<K,
 
     @Override
     public GenericObjectPool<StatefulRedisConnection<K, V>> getConnectionPool() {
-        // 类型转换，实际使用时需要处理
-        return (GenericObjectPool<StatefulRedisConnection<K, V>>) (Object) connectionPool;
+        return connectionPool;
     }
 
     @Override
-    public void close() {
+    public void close() throws Exception {
         try {
             if (connectionPool != null) {
                 connectionPool.close();

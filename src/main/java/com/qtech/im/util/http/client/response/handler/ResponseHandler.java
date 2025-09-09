@@ -1,8 +1,8 @@
 // http/response/ResponseHandler.java
-package com.qtech.im.util.http.response.handler;
+package com.qtech.im.util.http.client.response.handler;
 
-import com.qtech.im.util.http.response.ResponseHandlingException;
-import com.qtech.im.util.http.response.ResponseKit;
+import com.qtech.im.util.http.client.response.ResponseHandlingException;
+import com.qtech.im.util.http.client.response.ResponseKit;
 
 /**
  * 响应处理器接口

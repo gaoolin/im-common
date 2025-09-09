@@ -1,10 +1,10 @@
-package com.qtech.im.util.http.response.handler;
+package com.qtech.im.util.http.client.response.handler;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.NullNode;
-import com.qtech.im.util.http.response.ResponseHandlingException;
-import com.qtech.im.util.http.response.ResponseKit;
+import com.qtech.im.util.http.client.response.ResponseHandlingException;
+import com.qtech.im.util.http.client.response.ResponseKit;
 
 /**
  * JSON响应处理器

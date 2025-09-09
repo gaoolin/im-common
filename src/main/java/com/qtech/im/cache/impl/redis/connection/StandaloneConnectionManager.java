@@ -34,7 +34,7 @@ public class StandaloneConnectionManager<K, V> implements RedisConnectionManager
     }
 
     @Override
-    public GenericObjectPool<StatefulRedisConnection<K, V>> getConnectionPool() {
+    public GenericObjectPool<? extends StatefulRedisConnection<K, V>> getConnectionPool() {
         return connectionPool;
     }
 

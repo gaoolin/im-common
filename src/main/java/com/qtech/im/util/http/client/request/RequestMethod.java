@@ -1,4 +1,4 @@
-package com.qtech.im.util.http.request;
+package com.qtech.im.util.http.client.request;
 
 import java.util.Objects;
 

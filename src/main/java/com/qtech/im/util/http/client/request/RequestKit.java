@@ -1,4 +1,4 @@
-package com.qtech.im.util.http.request;
+package com.qtech.im.util.http.client.request;
 
 import com.qtech.im.constant.ErrorCode;
 import com.qtech.im.exception.HttpException;

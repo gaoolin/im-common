@@ -1,7 +1,7 @@
-package com.qtech.im.util.http.response.interceptor;
+package com.qtech.im.util.http.client.response.interceptor;
 
-import com.qtech.im.util.http.response.ResponseHandlingException;
-import com.qtech.im.util.http.response.ResponseKit;
+import com.qtech.im.util.http.client.response.ResponseHandlingException;
+import com.qtech.im.util.http.client.response.ResponseKit;
 
 /**
  * 响应拦截器接口

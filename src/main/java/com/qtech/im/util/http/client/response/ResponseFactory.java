@@ -1,4 +1,4 @@
-package com.qtech.im.util.http.response;
+package com.qtech.im.util.http.client.response;
 
 import java.time.LocalDateTime;
 import java.util.List;

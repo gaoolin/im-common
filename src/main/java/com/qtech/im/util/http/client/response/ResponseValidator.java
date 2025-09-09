@@ -1,6 +1,6 @@
-package com.qtech.im.util.http.response;
+package com.qtech.im.util.http.client.response;
 
-import com.qtech.im.util.http.request.RequestConfig;
+import com.qtech.im.util.http.client.request.RequestConfig;
 
 import java.util.List;
 
