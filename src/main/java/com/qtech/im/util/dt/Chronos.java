@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * </p>
  *
  * @author gaozhilin
- * @version 1.0
+ * @version 1.1
  * @email gaoolin@gmail.com
  * @date 2025/08/20
  */
@@ -628,5 +628,198 @@ public class Chronos {
             return null;
         }
         return date.toInstant().atZone(zoneId).toLocalDateTime();
+    }
+
+    // ==================== 时间比较相关方法 ====================
+
+    /**
+     * 比较两个日期时间的先后
+     *
+     * @param first  第一个日期时间
+     * @param second 第二个日期时间
+     * @return 如果第一个时间早于第二个时间返回负数，相等返回0，晚于返回正数
+     */
+    public static int compare(LocalDateTime first, LocalDateTime second) {
+        if (first == null && second == null) {
+            return 0;
+        }
+        if (first == null) {
+            return -1;
+        }
+        if (second == null) {
+            return 1;
+        }
+        return first.compareTo(second);
+    }
+
+    /**
+     * 判断第一个日期时间是否早于第二个日期时间
+     *
+     * @param first  第一个日期时间
+     * @param second 第二个日期时间
+     * @return 如果第一个时间早于第二个时间返回true，否则返回false
+     */
+    public static boolean isBefore(LocalDateTime first, LocalDateTime second) {
+        if (first == null || second == null) {
+            return false;
+        }
+        return first.isBefore(second);
+    }
+
+    /**
+     * 判断第一个日期时间是否晚于第二个日期时间
+     *
+     * @param first  第一个日期时间
+     * @param second 第二个日期时间
+     * @return 如果第一个时间晚于第二个时间返回true，否则返回false
+     */
+    public static boolean isAfter(LocalDateTime first, LocalDateTime second) {
+        if (first == null || second == null) {
+            return false;
+        }
+        return first.isAfter(second);
+    }
+
+    /**
+     * 判断两个日期时间是否相等
+     *
+     * @param first  第一个日期时间
+     * @param second 第二个日期时间
+     * @return 如果两个时间相等返回true，否则返回false
+     */
+    public static boolean isEqual(LocalDateTime first, LocalDateTime second) {
+        if (first == null && second == null) {
+            return true;
+        }
+        if (first == null || second == null) {
+            return false;
+        }
+        return first.isEqual(second);
+    }
+
+    /**
+     * 比较两个日期的先后
+     *
+     * @param first  第一个日期
+     * @param second 第二个日期
+     * @return 如果第一个日期早于第二个日期返回负数，相等返回0，晚于返回正数
+     */
+    public static int compare(LocalDate first, LocalDate second) {
+        if (first == null && second == null) {
+            return 0;
+        }
+        if (first == null) {
+            return -1;
+        }
+        if (second == null) {
+            return 1;
+        }
+        return first.compareTo(second);
+    }
+
+    /**
+     * 判断第一个日期是否早于第二个日期
+     *
+     * @param first  第一个日期
+     * @param second 第二个日期
+     * @return 如果第一个日期早于第二个日期返回true，否则返回false
+     */
+    public static boolean isBefore(LocalDate first, LocalDate second) {
+        if (first == null || second == null) {
+            return false;
+        }
+        return first.isBefore(second);
+    }
+
+    /**
+     * 判断第一个日期是否晚于第二个日期
+     *
+     * @param first  第一个日期
+     * @param second 第二个日期
+     * @return 如果第一个日期晚于第二个日期返回true，否则返回false
+     */
+    public static boolean isAfter(LocalDate first, LocalDate second) {
+        if (first == null || second == null) {
+            return false;
+        }
+        return first.isAfter(second);
+    }
+
+    /**
+     * 比较两个带时区的时间的先后
+     *
+     * @param first  第一个带时区的时间
+     * @param second 第二个带时区的时间
+     * @return 如果第一个时间早于第二个时间返回负数，相等返回0，晚于返回正数
+     */
+    public static int compare(ZonedDateTime first, ZonedDateTime second) {
+        if (first == null && second == null) {
+            return 0;
+        }
+        if (first == null) {
+            return -1;
+        }
+        if (second == null) {
+            return 1;
+        }
+        return first.compareTo(second);
+    }
+
+    /**
+     * 判断第一个带时区的时间是否早于第二个带时区的时间
+     *
+     * @param first  第一个带时区的时间
+     * @param second 第二个带时区的时间
+     * @return 如果第一个时间早于第二个时间返回true，否则返回false
+     */
+    public static boolean isBefore(ZonedDateTime first, ZonedDateTime second) {
+        if (first == null || second == null) {
+            return false;
+        }
+        return first.isBefore(second);
+    }
+
+    /**
+     * 判断第一个带时区的时间是否晚于第二个带时区的时间
+     *
+     * @param first  第一个带时区的时间
+     * @param second 第二个带时区的时间
+     * @return 如果第一个时间晚于第二个时间返回true，否则返回false
+     */
+    public static boolean isAfter(ZonedDateTime first, ZonedDateTime second) {
+        if (first == null || second == null) {
+            return false;
+        }
+        return first.isAfter(second);
+    }
+
+    /**
+     * 判断指定时间是否在两个时间之间（包含边界）
+     *
+     * @param time  待检查的时间
+     * @param start 开始时间
+     * @param end   结束时间
+     * @return 如果在范围内返回true，否则返回false
+     */
+    public static boolean isBetween(LocalDateTime time, LocalDateTime start, LocalDateTime end) {
+        if (time == null || start == null || end == null) {
+            return false;
+        }
+        return !time.isBefore(start) && !time.isAfter(end);
+    }
+
+    /**
+     * 判断指定日期是否在两个日期之间（包含边界）
+     *
+     * @param date  待检查的日期
+     * @param start 开始日期
+     * @param end   结束日期
+     * @return 如果在范围内返回true，否则返回false
+     */
+    public static boolean isBetween(LocalDate date, LocalDate start, LocalDate end) {
+        if (date == null || start == null || end == null) {
+            return false;
+        }
+        return !date.isBefore(start) && !date.isAfter(end);
     }
 }
