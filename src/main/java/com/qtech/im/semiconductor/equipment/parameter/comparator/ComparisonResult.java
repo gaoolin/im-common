@@ -3,15 +3,14 @@ package com.qtech.im.semiconductor.equipment.parameter.comparator;
 import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
-/**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/21 14:10:20
- */
 
 /**
  * 比较结果类
  * 统一的比较结果数据结构
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/21 14:10:20
  */
 public class ComparisonResult {
     private final Map<String, Map.Entry<Object, Object>> differences = new HashMap<>();

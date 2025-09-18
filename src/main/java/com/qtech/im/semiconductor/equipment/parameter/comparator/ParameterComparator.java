@@ -1,15 +1,14 @@
 package com.qtech.im.semiconductor.equipment.parameter.comparator;
 
 import java.util.List;
-/**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/21 14:09:35
- */
 
 /**
  * 参数比较器接口
  * 定义了参数比较的基本契约
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/21 14:09:35
  */
 public interface ParameterComparator<T> {
 

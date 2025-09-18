@@ -15,12 +15,11 @@ import java.util.*;
  * @email gaoolin@gmail.com
  * @since : 2024/05/15
  */
-
 public class CommandHandlerMapper {
 
     /**
      * 需要解析的List要不断地加入其中
-     * 需要调整 AaListParamsChk 类 CONTROL_LIST_SET
+     * 需要调整 EqLstChk 类 CONTROL_LIST_SET
      */
     public static final Map<String, Set<String>> KEY_MAP;
     // 单例实例
@@ -207,9 +206,6 @@ public class CommandHandlerMapper {
 
     @Override
     public String toString() {
-        return "CommandHandlerMapper{" +
-                "valueMap=" + valueMap +
-                ", size=" + valueMap.size() +
-                '}';
+        return "CommandHandlerMapper{" + "valueMap=" + valueMap + ", size=" + valueMap.size() + '}';
     }
 }

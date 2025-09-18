@@ -34,7 +34,7 @@ import java.util.zip.GZIPInputStream;
  * @author gaozhilin
  * @version 1.0
  * @email gaoolin@gmail.com
- * @date 2025/08/20
+ * @since 2025/08/20
  */
 public class RequestKit {
     private static final Logger logger = LoggerFactory.getLogger(RequestKit.class);

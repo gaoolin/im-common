@@ -1,12 +1,13 @@
 package com.qtech.im.constant;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 13:42:03
  * 错误码接口
  * <p>
  * 定义系统中所有可能的错误码
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19 13:42:03
  */
 public interface ErrorCode {
 

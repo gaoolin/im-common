@@ -249,4 +249,27 @@ public class CacheConfig implements Serializable {
         this.redisSoTimeout = redisSoTimeout;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "CacheConfig{" +
+                "name='" + name + '\'' +
+                ", maximumSize=" + maximumSize +
+                ", expireAfterWrite=" + expireAfterWrite +
+                ", expireAfterAccess=" + expireAfterAccess +
+                ", recordStats=" + recordStats +
+                ", enableNullValueProtection=" + enableNullValueProtection +
+                ", nullValueExpireTime=" + nullValueExpireTime +
+                ", enableBreakdownProtection=" + enableBreakdownProtection +
+                ", breakdownLockTimeout=" + breakdownLockTimeout +
+                ", enableAvalancheProtection=" + enableAvalancheProtection +
+                ", avalancheProtectionRange=" + avalancheProtectionRange +
+                ", backendType=" + backendType +
+                ", cacheImplementation='" + cacheImplementation + '\'' +
+                ", cleanupInterval=" + cleanupInterval +
+                ", redisUri='" + redisUri + '\'' +
+                ", redisConnectionTimeout=" + redisConnectionTimeout +
+                ", redisSoTimeout=" + redisSoTimeout +
+                '}';
+    }
 }

@@ -1,12 +1,13 @@
 package com.qtech.im.exception;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2024/11/19 08:51:04
  * 数据访问异常类
  * <p>
  * 用于封装数据访问异常
+ *
+ * @author :  gaozhilin
+ * @email :  gaoolin@gmail.com
+ * @since :  2024/11/19 08:51:04
  */
 
 public class DataAccessException extends BaseException {

@@ -11,13 +11,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/22 11:28:11
- */
-
-/**
  * 设备参数抽象基类
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/22 11:28:11
  */
 public abstract class AbstractParameter implements ParameterInterface {
     private String deviceId;

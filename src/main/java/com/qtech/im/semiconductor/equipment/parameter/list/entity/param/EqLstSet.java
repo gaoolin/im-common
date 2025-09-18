@@ -2,8 +2,8 @@ package com.qtech.im.semiconductor.equipment.parameter.list.entity.param;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.qtech.im.semiconductor.equipment.parameter.list.entity.struct.AaListCommand;
 import com.qtech.im.semiconductor.equipment.parameter.list.entity.struct.BoundsLoader;
+import com.qtech.im.semiconductor.equipment.parameter.list.entity.struct.EqLstCommand;
 import com.qtech.im.util.string.ToCamelCaseConverter;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,9 +34,9 @@ import java.util.stream.Collectors;
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AaListParamSet implements Serializable, Cloneable {
+public class EqLstSet implements Serializable, Cloneable {
     private static final long serialVersionUID = 529L;
-    private static final Logger logger = LoggerFactory.getLogger(AaListParamSet.class);
+    private static final Logger logger = LoggerFactory.getLogger(EqLstSet.class);
 
     // 基础设备参数
     private String prodType;
@@ -288,15 +288,15 @@ public class AaListParamSet implements Serializable, Cloneable {
     /**
      * 从命令列表填充参数数据
      *
-     * @param aaListCommands 命令列表
+     * @param eqLstCommands 命令列表
      */
-    public void fillWithData(List<AaListCommand> aaListCommands) {
-        if (aaListCommands == null || aaListCommands.isEmpty()) {
+    public void fillWithData(List<EqLstCommand> eqLstCommands) {
+        if (eqLstCommands == null || eqLstCommands.isEmpty()) {
             logger.warn("AA entity commands is empty, no data to fill");
             return;
         }
 
-        List<Map<String, String>> camelCaseData = aaListCommands.stream()
+        List<Map<String, String>> camelCaseData = eqLstCommands.stream()
                 .filter(Objects::nonNull)
                 .map(this::convertCommandToMap)
                 .filter(map -> !map.isEmpty())
@@ -315,7 +315,7 @@ public class AaListParamSet implements Serializable, Cloneable {
      * @param cmd 命令对象
      * @return 转换后的Map
      */
-    private Map<String, String> convertCommandToMap(AaListCommand cmd) {
+    private Map<String, String> convertCommandToMap(EqLstCommand cmd) {
         Map<String, String> map = new HashMap<>();
 
         // 获取命令路径作为集成键
@@ -404,9 +404,9 @@ public class AaListParamSet implements Serializable, Cloneable {
      * @return 克隆的对象
      */
     @Override
-    public AaListParamSet clone() {
+    public EqLstSet clone() {
         try {
-            return (AaListParamSet) super.clone();
+            return (EqLstSet) super.clone();
         } catch (CloneNotSupportedException e) {
             // 使用序列化方式进行深拷贝
             try {
@@ -416,9 +416,9 @@ public class AaListParamSet implements Serializable, Cloneable {
 
                 ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
                 ObjectInputStream ois = new ObjectInputStream(bis);
-                return (AaListParamSet) ois.readObject();
+                return (EqLstSet) ois.readObject();
             } catch (Exception ex) {
-                throw new RuntimeException("Failed to clone AaListParamSet", ex);
+                throw new RuntimeException("Failed to clone EqLstSet", ex);
             }
         }
     }

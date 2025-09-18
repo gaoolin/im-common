@@ -6,13 +6,13 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * since  :  2025/08/25
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/25
  */
 
 @Data
-public class AaListTplInfo implements Serializable {
+public class EqLstTplInfo implements Serializable {
     private static final long serialVersionUID = 529L;
 
     private String prodType;
@@ -25,7 +25,7 @@ public class AaListTplInfo implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AaListTplInfo that = (AaListTplInfo) o;
+        EqLstTplInfo that = (EqLstTplInfo) o;
         return Objects.equals(prodType, that.prodType) &&
                 Objects.equals(listParams, that.listParams) &&
                 Objects.equals(itemParams, that.itemParams) &&

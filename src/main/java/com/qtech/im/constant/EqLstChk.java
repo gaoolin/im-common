@@ -3,13 +3,12 @@ package com.qtech.im.constant;
 import java.util.*;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2024/05/20 10:19:44
- * desc   :
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2024/05/20 10:19:44
  */
 
-public class AaListParamsChk {
+public class EqLstChk {
     /*
      * 需要点检是否开启的属性名称
      * 即所有的List项

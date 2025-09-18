@@ -1,13 +1,11 @@
 package com.qtech.im.semiconductor.equipment.parameter.mgr;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/22 11:25:54
- */
-
-/**
  * 参数类型枚举
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/22 11:25:54
  */
 public enum ParameterType {
     /**

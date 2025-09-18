@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.qtech.im.constant.CommandHandlerMapper;
 import com.qtech.im.semiconductor.equipment.parameter.list.dispatcher.CommandHandlerDispatcher;
-import com.qtech.im.semiconductor.equipment.parameter.list.entity.param.AaListParamParsed;
-import com.qtech.im.semiconductor.equipment.parameter.list.entity.struct.AaListCommand;
+import com.qtech.im.semiconductor.equipment.parameter.list.entity.param.EqLstParsed;
+import com.qtech.im.semiconductor.equipment.parameter.list.entity.struct.EqLstCommand;
 import com.qtech.im.semiconductor.equipment.parameter.list.handler.cmd.CommandHandler;
 import com.qtech.im.semiconductor.equipment.parameter.list.handler.msg.MessageHandler;
 import com.qtech.im.util.json.JsonMapperProvider;
@@ -19,7 +19,8 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.qtech.im.constant.AaListParamsChk.CONTROL_LIST_SET;
+import static com.qtech.im.constant.EqLstChk.CONTROL_LIST_SET;
+import static com.qtech.im.constant.QtechImBizConstant.*;
 import static com.qtech.im.semiconductor.equipment.parameter.list.util.ConvertMtfChkCmdItems.convert;
 
 /**
@@ -35,20 +36,20 @@ import static com.qtech.im.semiconductor.equipment.parameter.list.util.ConvertMt
  * @email gaoolin@gmail.com
  * @since 2024/05/27
  */
-public class AaListParamParsedHandler extends MessageHandler<AaListParamParsed> {
-    private static final Logger logger = LoggerFactory.getLogger(AaListParamParsedHandler.class);
+public class EqLstParsedHandler extends MessageHandler<EqLstParsed> {
+    private static final Logger logger = LoggerFactory.getLogger(EqLstParsedHandler.class);
 
     // 使用ThreadLocal确保每个线程有独立的HashMap实例
     private static final ThreadLocal<HashMap<Integer, String>> listItemMapper = ThreadLocal.withInitial(HashMap::new);
 
-    // 使用ThreadLocal确保每个线程有独立的AaListParamParsed实例
-    private static final ThreadLocal<AaListParamParsed> threadLocalAaListParamsMessage = ThreadLocal.withInitial(AaListParamParsed::new);
+    // 使用ThreadLocal确保每个线程有独立的EqLstParsed实例
+    private static final ThreadLocal<EqLstParsed> threadLocalEqLstMessage = ThreadLocal.withInitial(EqLstParsed::new);
 
     private static final ObjectMapper objectMapper = JsonMapperProvider.getSharedInstance();
     /**
      * 饿汉式单例实例
      */
-    private static final AaListParamParsedHandler INSTANCE = new AaListParamParsedHandler();
+    private static final EqLstParsedHandler INSTANCE = new EqLstParsedHandler();
     // 使用单例模式获取HandlerDispatcher（线程安全）
     private final CommandHandlerDispatcher commandHandlerDispatcher = CommandHandlerDispatcher.getInstance();
     // 使用单例模式获取CommandHandlerMapper（线程安全）
@@ -57,8 +58,8 @@ public class AaListParamParsedHandler extends MessageHandler<AaListParamParsed> 
     /**
      * 私有构造函数，防止外部直接实例化
      */
-    private AaListParamParsedHandler() {
-        super(AaListParamParsed.class);
+    private EqLstParsedHandler() {
+        super(EqLstParsed.class);
     }
 
     /**
@@ -66,7 +67,7 @@ public class AaListParamParsedHandler extends MessageHandler<AaListParamParsed> 
      *
      * @return ListIntegrator单例实例
      */
-    public static AaListParamParsedHandler getInstance() {
+    public static EqLstParsedHandler getInstance() {
         return INSTANCE;
     }
 
@@ -82,14 +83,14 @@ public class AaListParamParsedHandler extends MessageHandler<AaListParamParsed> 
     }
 
     /**
-     * 获取当前线程的AaListParamParsed并重置
+     * 获取当前线程的EqLstParsed并重置
      *
      * @return 重置后的AaListParamParsed实例
      */
-    private AaListParamParsed getAaListParamParsed() {
-        AaListParamParsed aaListParamsParsed = threadLocalAaListParamsMessage.get();
-        aaListParamsParsed.reset();
-        return aaListParamsParsed;
+    private EqLstParsed getEqLstParsed() {
+        EqLstParsed eqLstParsed = threadLocalEqLstMessage.get();
+        eqLstParsed.reset();
+        return eqLstParsed;
     }
 
     /**
@@ -101,13 +102,13 @@ public class AaListParamParsedHandler extends MessageHandler<AaListParamParsed> 
             mapper.clear();
         }
         listItemMapper.remove();
-        threadLocalAaListParamsMessage.remove();
+        threadLocalEqLstMessage.remove();
     }
 
-    public AaListCommand parseRowStartWithList(String[] parts) {
+    public EqLstCommand parseRowStartWithList(String[] parts) {
         try {
             // 获取处理器
-            CommandHandler<AaListCommand> handler = commandHandlerDispatcher.getCommandHandler("List");
+            CommandHandler<EqLstCommand> handler = commandHandlerDispatcher.getCommandHandler("List");
             // 使用处理器处理命令
             return handler != null ? handler.handle(parts) : null;
         } catch (RuntimeException e) {
@@ -117,11 +118,11 @@ public class AaListParamParsedHandler extends MessageHandler<AaListParamParsed> 
         return null;
     }
 
-    public AaListCommand parseRowStartWithItem(String[] parts, String handlerName, String command) {
+    public EqLstCommand parseRowStartWithItem(String[] parts, String handlerName, String command) {
         if (handlerName != null) {
             try {
                 // 获取处理器
-                CommandHandler<AaListCommand> handler = commandHandlerDispatcher.getCommandHandler(handlerName);
+                CommandHandler<EqLstCommand> handler = commandHandlerDispatcher.getCommandHandler(handlerName);
                 // 使用处理器处理命令
                 return handler != null ? handler.handle(parts, command) : null;
             } catch (RuntimeException e) {
@@ -135,13 +136,13 @@ public class AaListParamParsedHandler extends MessageHandler<AaListParamParsed> 
         }
     }
 
-    public AaListParamParsed doFullParse(String msg) {
+    public EqLstParsed doFullParse(String msg) {
         try {
-            AaListParamParsed aaListParamsParsed = getAaListParamParsed();
+            EqLstParsed aaListParamsParsed = getEqLstParsed();
             HashMap<Integer, String> mapper = getListItemMapper();
 
-            // 将每一行数据拆分并转换为 AaListCommand 对象
-            List<AaListCommand> aaListCommandList = Arrays.stream(msg.split("\n"))
+            // 将每一行数据拆分并转换为 EqLstCommand 对象
+            List<EqLstCommand> eqLst = Arrays.stream(msg.split("\n"))
                     .map(String::trim)  // 去除每行的空白字符
                     .filter(line -> !line.isEmpty())  // 跳过空行
                     .filter(line -> StringUtils.startsWith(line, "LIST") || StringUtils.startsWith(line, "ITEM"))
@@ -178,8 +179,8 @@ public class AaListParamParsedHandler extends MessageHandler<AaListParamParsed> 
                     .filter(Objects::nonNull)  // 过滤掉 null 的结果
                     .collect(Collectors.toList());  // 收集到列表中
 
-            // 聚合 AaListCommand，并返回聚合后的列表， 聚合 MTF_CHECK 命令的解析结果
-            List<AaListCommand> aggregatedCommands = convert(aaListCommandList);
+            // 聚合 EqLstCommand，并返回聚合后的列表， 聚合 MTF_CHECK 命令的解析结果
+            List<EqLstCommand> aggregatedCommands = convert(eqLst);
             // 将命令列表填充到 aaListParamsParsed 中
             aaListParamsParsed.fillWithData(aggregatedCommands);
             return aaListParamsParsed;
@@ -191,11 +192,11 @@ public class AaListParamParsedHandler extends MessageHandler<AaListParamParsed> 
 
     @Override
     public <R> R handleByType(Class<R> clazz, String msg) throws DecoderException {
-        if (clazz == AaListParamParsed.class) {
+        if (clazz == EqLstParsed.class) {
             try {
                 Map<String, Object> jsonObject = objectMapper.readValue(msg, TypeFactory.defaultInstance().constructMapType(Map.class, String.class, Object.class));
 
-                String aaListParamHexStr = (String) jsonObject.get("FactoryName");
+                String aaListParamHexStr = (String) jsonObject.get(AA_LIST_PARAM_RAW_DATA_HEX_FILED);
                 String aaListParamStr;
                 try {
                     aaListParamStr = new String(Hex.decodeHex(aaListParamHexStr));
@@ -203,10 +204,10 @@ public class AaListParamParsedHandler extends MessageHandler<AaListParamParsed> 
                     logger.error(">>>>> Hex解码异常，机型: {}", jsonObject.get("WoCode"));
                     throw e; // 抛出异常以便上层处理
                 }
-                AaListParamParsed aaListParamsParsedObj = doFullParse(aaListParamStr);
-                String simId = jsonObject.get("OpCode").toString();
+                EqLstParsed aaListParamsParsedObj = doFullParse(aaListParamStr);
+                String simId = jsonObject.get(AA_LIST_PARAM_RAW_DATA_SIMID_FILED).toString();
                 aaListParamsParsedObj.setSimId(simId);
-                String prodType = StringUtils.trim(jsonObject.get("WoCode").toString().split("#")[0]);
+                String prodType = StringUtils.trim(jsonObject.get(AA_LIST_PARAM_RAW_DATA_PROD_TYPE_FILED).toString().split("#")[0]);
                 aaListParamsParsedObj.setProdType(prodType);
                 return clazz.cast(aaListParamsParsedObj);
             } catch (JsonProcessingException e) {
@@ -219,7 +220,7 @@ public class AaListParamParsedHandler extends MessageHandler<AaListParamParsed> 
 
     @Override
     public <U> boolean supportsType(Class<U> clazz) {
-        return clazz.equals(AaListParamParsed.class);
+        return clazz.equals(EqLstParsed.class);
     }
 
     /**
@@ -230,7 +231,7 @@ public class AaListParamParsedHandler extends MessageHandler<AaListParamParsed> 
      * @throws DecoderException 解码异常
      */
     @Override
-    public AaListParamParsed handle(String msg) throws DecoderException {
+    public EqLstParsed handle(String msg) throws DecoderException {
         return null;
     }
 }

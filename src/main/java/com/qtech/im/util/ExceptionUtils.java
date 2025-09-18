@@ -9,12 +9,13 @@ import org.slf4j.LoggerFactory;
 import java.util.function.Function;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 13:40:05
  * 异常处理工具类
  * <p>
  * 提供统一的异常处理方法和转换功能
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19 13:40:05
  */
 public class ExceptionUtils {
     private static final Logger logger = LoggerFactory.getLogger(ExceptionUtils.class);

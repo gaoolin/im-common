@@ -51,7 +51,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
     @SuppressWarnings("unchecked")
     public RedisCache(CacheConfig config) {
         this.config = config;
-        this.prefix = config.getName() != null ? config.getName() + ":" : "";
+        this.prefix = config.getName() != null ? config.getName() : "";
         String redisUri = config.getRedisUri();
         if (redisUri == null || redisUri.isEmpty()) {
             redisUri = "redis://localhost:6379";
@@ -93,6 +93,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
                 StatefulRedisClusterConnection<K, V> clusterConnection = (StatefulRedisClusterConnection<K, V>) connection;
                 RedisClusterCommands<K, V> commands = clusterConnection.sync();
                 V value = commands.get(wrapKey(key));
+                logger.debug("RedisCache get value: {} for key: {}", value, wrapKey(key));
 
                 if (value != null) {
                     stats.recordHit();
@@ -106,6 +107,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
                 StatefulRedisConnection<K, V> standaloneConnection = (StatefulRedisConnection<K, V>) connection;
                 RedisCommands<K, V> commands = standaloneConnection.sync();
                 V value = commands.get(wrapKey(key));
+                logger.debug("RedisCache get value: {} for key: {}", value, wrapKey(key));
 
                 if (value != null) {
                     stats.recordHit();

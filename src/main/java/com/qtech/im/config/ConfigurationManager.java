@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 14:20:48
  * 配置管理器接口
  * <p>
  * 负责管理配置源、配置属性和配置更新
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19 14:20:48
  */
 public interface ConfigurationManager {
     /**

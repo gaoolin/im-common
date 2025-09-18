@@ -1,9 +1,9 @@
 package com.qtech.im.exception;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/20 14:39:59
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/20 14:39:59
  */
 public class HttpException extends BaseException {
     private static final long serialVersionUID = 1L;

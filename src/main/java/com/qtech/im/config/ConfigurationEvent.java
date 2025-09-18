@@ -1,10 +1,11 @@
 package com.qtech.im.config;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 14:22:32
- * desc   :  配置变更事件
+ * 配置变更事件
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19 14:22:32
  */
 public class ConfigurationEvent {
 

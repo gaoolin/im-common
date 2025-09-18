@@ -11,15 +11,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
-/**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/21 14:14:42
- */
 
 /**
  * 参数比较器抽象基类
  * 提供通用的比较逻辑和工具方法
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/21 14:14:42
  */
 public abstract class AbstractParameterComparator<T> implements ParameterComparator<T> {
 

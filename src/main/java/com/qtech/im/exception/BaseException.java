@@ -1,26 +1,35 @@
 package com.qtech.im.exception;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 13:36:15
  * 应用程序基础异常类
- <similar>
+ * <similar>
  * 所有自定义异常的基类，提供统一的异常处理框架
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19 13:36:15
  */
 public class BaseException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
-    /** 错误码 */
+    /**
+     * 错误码
+     */
     private final String errorCode;
 
-    /** 错误信息 */
+    /**
+     * 错误信息
+     */
     private final String errorMessage;
 
-    /** 错误详情 */
+    /**
+     * 错误详情
+     */
     private final Object errorDetails;
 
-    /** 异常发生时间 */
+    /**
+     * 异常发生时间
+     */
     private final long timestamp;
 
     public BaseException(String errorCode, String errorMessage) {

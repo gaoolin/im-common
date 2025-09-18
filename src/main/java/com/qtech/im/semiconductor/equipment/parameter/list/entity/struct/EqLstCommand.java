@@ -9,21 +9,21 @@ import com.qtech.im.semiconductor.equipment.parameter.list.structure.Hierarchica
  * @email gaoolin@gmail.com
  * @since 2025/08/22
  */
-public class AaListCommand extends HierarchicalCommandStructure {
+public class EqLstCommand extends HierarchicalCommandStructure {
     private BoundsLoader boundsLoader;
 
-    public AaListCommand() {
+    public EqLstCommand() {
         super();
         // 明确初始化为 null，避免歧义
         this.boundsLoader = null;
     }
 
-    public AaListCommand(BoundsLoader boundsLoader) {
+    public EqLstCommand(BoundsLoader boundsLoader) {
         this.boundsLoader = boundsLoader;
     }
 
-    public static AaListCommand of(BoundsLoader boundsLoader) {
-        return new AaListCommand(boundsLoader);
+    public static EqLstCommand of(BoundsLoader boundsLoader) {
+        return new EqLstCommand(boundsLoader);
     }
 
     public BoundsLoader getBoundsLoader() {

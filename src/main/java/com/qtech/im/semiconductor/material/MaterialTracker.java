@@ -25,11 +25,9 @@ import java.util.stream.Collectors;
  * @author gaozhilin
  * @version 1.0
  * @email gaoolin@gmail.com
- * @date 2025/08/21
+ * @since 2025/08/21
  */
 public class MaterialTracker {
-
-    private static final Logger logger = LoggerFactory.getLogger(MaterialTracker.class);
 
     // 默认配置
     public static final long DEFAULT_CACHE_TIMEOUT = 30 * 60 * 1000; // 30分钟
@@ -38,996 +36,7 @@ public class MaterialTracker {
     public static final int DEFAULT_TRACE_BUFFER_SIZE = 1000;
     public static final int DEFAULT_INVENTORY_THRESHOLD_PERCENTAGE = 20; // 库存预警阈值20%
     public static final long DEFAULT_EXPIRATION_WARNING_DAYS = 7; // 过期预警提前7天
-
-    // 物料类型枚举
-    public enum MaterialType {
-        SILICON_WAFER("硅晶圆", "Silicon Wafer"),
-        GOLD_WIRE("金丝", "Gold Wire"),
-        PLASTIC_PACKAGE("塑封料", "Plastic Package"),
-        METAL_LEAD_FRAME("金属引脚框架", "Metal Lead Frame"),
-        CERAMIC_SUBSTRATE("陶瓷基板", "Ceramic Substrate"),
-        SOLDER_PASTE("焊膏", "Solder Paste"),
-        CLEANING_CHEMICAL("清洗化学品", "Cleaning Chemical"),
-        ADHESIVE("胶水", "Adhesive"),
-        ENCAPSULANT("封装材料", "Encapsulant"),
-        CUSTOM("自定义物料", "Custom Material");
-
-        private final String chineseName;
-        private final String englishName;
-
-        MaterialType(String chineseName, String englishName) {
-            this.chineseName = chineseName;
-            this.englishName = englishName;
-        }
-
-        public String getChineseName() { return chineseName; }
-        public String getEnglishName() { return englishName; }
-    }
-
-    // 物料状态枚举
-    public enum MaterialStatus {
-        AVAILABLE("可用", 1),
-        IN_USE("使用中", 2),
-        RESERVED("已预留", 3),
-        EXPIRED("已过期", 4),
-        QUARANTINED("已隔离", 5),
-        DISPOSED("已处置", 6),
-        DEPLETED("已耗尽", 7);
-
-        private final String description;
-        private final int sequence;
-
-        MaterialStatus(String description, int sequence) {
-            this.description = description;
-            this.sequence = sequence;
-        }
-
-        public String getDescription() { return description; }
-        public int getSequence() { return sequence; }
-
-        public boolean isAvailable() {
-            return this == AVAILABLE || this == IN_USE || this == RESERVED;
-        }
-    }
-
-    // 质量状态枚举
-    public enum QualityStatus {
-        PASS("合格", 1),
-        FAIL("不合格", 2),
-        PENDING("待检", 3),
-        UNDER_REVIEW("评审中", 4),
-        CONDITIONAL_RELEASE("有条件放行", 5);
-
-        private final String description;
-        private final int priority;
-
-        QualityStatus(String description, int priority) {
-            this.description = description;
-            this.priority = priority;
-        }
-
-        public String getDescription() { return description; }
-        public int getPriority() { return priority; }
-
-        public boolean isQualified() {
-            return this == PASS || this == CONDITIONAL_RELEASE;
-        }
-    }
-
-    // 库存类型枚举
-    public enum InventoryType {
-        RAW_MATERIAL("原材料", "Raw Material"),
-        WORK_IN_PROGRESS("在制品", "Work In Progress"),
-        FINISHED_GOOD("成品", "Finished Good"),
-        CONSUMABLE("耗材", "Consumable");
-
-        private final String chineseName;
-        private final String englishName;
-
-        InventoryType(String chineseName, String englishName) {
-            this.chineseName = chineseName;
-            this.englishName = englishName;
-        }
-
-        public String getChineseName() { return chineseName; }
-        public String getEnglishName() { return englishName; }
-    }
-
-    // 追踪事件类型枚举
-    public enum TraceEventType {
-        RECEIPT("收货", "Receipt"),
-        ISSUE("发料", "Issue"),
-        TRANSFER("转移", "Transfer"),
-        RETURN("退料", "Return"),
-        CONSUMPTION("消耗", "Consumption"),
-        INSPECTION("检验", "Inspection"),
-        DISPOSAL("处置", "Disposal"),
-        ADJUSTMENT("调整", "Adjustment");
-
-        private final String chineseName;
-        private final String englishName;
-
-        TraceEventType(String chineseName, String englishName) {
-            this.chineseName = chineseName;
-            this.englishName = englishName;
-        }
-
-        public String getChineseName() { return chineseName; }
-        public String getEnglishName() { return englishName; }
-    }
-
-    // 预警类型枚举
-    public enum AlertType {
-        EXPIRATION_WARNING("过期预警", "Expiration Warning"),
-        INVENTORY_LOW("库存不足", "Low Inventory"),
-        QUALITY_ISSUE("质量问题", "Quality Issue"),
-        SUPPLIER_PROBLEM("供应商问题", "Supplier Problem");
-
-        private final String chineseName;
-        private final String englishName;
-
-        AlertType(String chineseName, String englishName) {
-            this.chineseName = chineseName;
-            this.englishName = englishName;
-        }
-
-        public String getChineseName() { return chineseName; }
-        public String getEnglishName() { return englishName; }
-    }
-
-    // 物料类
-    public static class Material {
-        private final String materialId;
-        private final String materialName;
-        private final MaterialType materialType;
-        private final String specification;
-        private final String supplier;
-        private final LocalDateTime receiptDate;
-        private final LocalDateTime manufactureDate;
-        private final LocalDateTime expirationDate;
-        private final String lotNumber;
-        private final String batchNumber;
-        private final double quantity;
-        private final String unit;
-        private final MaterialStatus status;
-        private final QualityStatus qualityStatus;
-        private final Map<String, Object> attributes;
-        private final List<StorageLocation> storageLocations;
-        private final LocalDateTime lastUpdate;
-        private final String updatedBy;
-
-        public Material(String materialId, String materialName, MaterialType materialType) {
-            this.materialId = materialId != null ? materialId : UUID.randomUUID().toString();
-            this.materialName = materialName != null ? materialName : "";
-            this.materialType = materialType != null ? materialType : MaterialType.CUSTOM;
-            this.specification = "";
-            this.supplier = "";
-            this.receiptDate = LocalDateTime.now();
-            this.manufactureDate = LocalDateTime.now();
-            this.expirationDate = LocalDateTime.now().plusYears(1);
-            this.lotNumber = "";
-            this.batchNumber = "";
-            this.quantity = 0.0;
-            this.unit = "pcs";
-            this.status = MaterialStatus.AVAILABLE;
-            this.qualityStatus = QualityStatus.PENDING;
-            this.attributes = new ConcurrentHashMap<>();
-            this.storageLocations = new ArrayList<>();
-            this.lastUpdate = LocalDateTime.now();
-            this.updatedBy = "System";
-        }
-
-        // Getters and Setters
-        public String getMaterialId() { return materialId; }
-        public String getMaterialName() { return materialName; }
-        public Material setMaterialName(String materialName) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public MaterialType getMaterialType() { return materialType; }
-        public String getSpecification() { return specification; }
-        public Material setSpecification(String specification) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public String getSupplier() { return supplier; }
-        public Material setSupplier(String supplier) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public LocalDateTime getReceiptDate() { return receiptDate; }
-        public LocalDateTime getManufactureDate() { return manufactureDate; }
-        public Material setManufactureDate(LocalDateTime manufactureDate) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public LocalDateTime getExpirationDate() { return expirationDate; }
-        public Material setExpirationDate(LocalDateTime expirationDate) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public String getLotNumber() { return lotNumber; }
-        public Material setLotNumber(String lotNumber) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public String getBatchNumber() { return batchNumber; }
-        public Material setBatchNumber(String batchNumber) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public double getQuantity() { return quantity; }
-        public String getUnit() { return unit; }
-        public Material setUnit(String unit) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public MaterialStatus getStatus() { return status; }
-        public Material setStatus(MaterialStatus status) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public QualityStatus getQualityStatus() { return qualityStatus; }
-        public Material setQualityStatus(QualityStatus qualityStatus) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public Map<String, Object> getAttributes() { return new HashMap<>(attributes); }
-        public Material setAttribute(String key, Object value) {
-            this.attributes.put(key, value);
-            return this;
-        }
-        public Object getAttribute(String key) { return this.attributes.get(key); }
-        public List<StorageLocation> getStorageLocations() { return new ArrayList<>(storageLocations); }
-        public Material addStorageLocation(StorageLocation location) {
-            this.storageLocations.add(location);
-            return this;
-        }
-        public LocalDateTime getLastUpdate() { return lastUpdate; }
-        public String getUpdatedBy() { return updatedBy; }
-        public Material setUpdatedBy(String updatedBy) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-
-        @Override
-        public String toString() {
-            return "Material{" +
-                   "materialId='" + materialId + '\'' +
-                   ", materialName='" + materialName + '\'' +
-                   ", materialType=" + materialType +
-                   ", quantity=" + quantity +
-                   ", unit='" + unit + '\'' +
-                   ", status=" + status +
-                   ", qualityStatus=" + qualityStatus +
-                   '}';
-        }
-    }
-
-    // 存储位置类
-    public static class StorageLocation {
-        private final String locationId;
-        private final String locationName;
-        private final String warehouse;
-        private final String area;
-        private final String rack;
-        private final String shelf;
-        private final double quantity;
-        private final String unit;
-        private final Map<String, Object> attributes;
-
-        public StorageLocation(String locationId, String locationName) {
-            this.locationId = locationId != null ? locationId : UUID.randomUUID().toString();
-            this.locationName = locationName != null ? locationName : "";
-            this.warehouse = "";
-            this.area = "";
-            this.rack = "";
-            this.shelf = "";
-            this.quantity = 0.0;
-            this.unit = "pcs";
-            this.attributes = new ConcurrentHashMap<>();
-        }
-
-        // Getters and Setters
-        public String getLocationId() { return locationId; }
-        public String getLocationName() { return locationName; }
-        public StorageLocation setLocationName(String locationName) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public String getWarehouse() { return warehouse; }
-        public StorageLocation setWarehouse(String warehouse) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public String getArea() { return area; }
-        public StorageLocation setArea(String area) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public String getRack() { return rack; }
-        public StorageLocation setRack(String rack) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public String getShelf() { return shelf; }
-        public StorageLocation setShelf(String shelf) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public double getQuantity() { return quantity; }
-        public String getUnit() { return unit; }
-        public StorageLocation setUnit(String unit) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public Map<String, Object> getAttributes() { return new HashMap<>(attributes); }
-        public StorageLocation setAttribute(String key, Object value) {
-            this.attributes.put(key, value);
-            return this;
-        }
-        public Object getAttribute(String key) { return this.attributes.get(key); }
-
-        @Override
-        public String toString() {
-            return "StorageLocation{" +
-                   "locationId='" + locationId + '\'' +
-                   ", locationName='" + locationName + '\'' +
-                   ", warehouse='" + warehouse + '\'' +
-                   ", area='" + area + '\'' +
-                   ", rack='" + rack + '\'' +
-                   ", shelf='" + shelf + '\'' +
-                   ", quantity=" + quantity +
-                   ", unit='" + unit + '\'' +
-                   '}';
-        }
-    }
-
-    // 物料批次类
-    public static class MaterialBatch {
-        private final String batchId;
-        private final String materialId;
-        private final String batchNumber;
-        private final LocalDateTime creationDate;
-        private final LocalDateTime expirationDate;
-        private final double initialQuantity;
-        private final double currentQuantity;
-        private final String unit;
-        private final MaterialStatus status;
-        private final QualityStatus qualityStatus;
-        private final String productionOrder;
-        private final List<BatchTrace> traceRecords;
-        private final Map<String, Object> attributes;
-        private final LocalDateTime lastUpdate;
-
-        public MaterialBatch(String batchId, String materialId, String batchNumber) {
-            this.batchId = batchId != null ? batchId : UUID.randomUUID().toString();
-            this.materialId = materialId != null ? materialId : "";
-            this.batchNumber = batchNumber != null ? batchNumber : "";
-            this.creationDate = LocalDateTime.now();
-            this.expirationDate = LocalDateTime.now().plusYears(1);
-            this.initialQuantity = 0.0;
-            this.currentQuantity = 0.0;
-            this.unit = "pcs";
-            this.status = MaterialStatus.AVAILABLE;
-            this.qualityStatus = QualityStatus.PENDING;
-            this.productionOrder = "";
-            this.traceRecords = new CopyOnWriteArrayList<>();
-            this.attributes = new ConcurrentHashMap<>();
-            this.lastUpdate = LocalDateTime.now();
-        }
-
-        // Getters and Setters
-        public String getBatchId() { return batchId; }
-        public String getMaterialId() { return materialId; }
-        public String getBatchNumber() { return batchNumber; }
-        public LocalDateTime getCreationDate() { return creationDate; }
-        public LocalDateTime getExpirationDate() { return expirationDate; }
-        public double getInitialQuantity() { return initialQuantity; }
-        public double getCurrentQuantity() { return currentQuantity; }
-        public String getUnit() { return unit; }
-        public MaterialStatus getStatus() { return status; }
-        public QualityStatus getQualityStatus() { return qualityStatus; }
-        public String getProductionOrder() { return productionOrder; }
-        public List<BatchTrace> getTraceRecords() { return new ArrayList<>(traceRecords); }
-        public void addTraceRecord(BatchTrace traceRecord) { this.traceRecords.add(traceRecord); }
-        public Map<String, Object> getAttributes() { return new HashMap<>(attributes); }
-        public void setAttribute(String key, Object value) { this.attributes.put(key, value); }
-        public Object getAttribute(String key) { return this.attributes.get(key); }
-        public LocalDateTime getLastUpdate() { return lastUpdate; }
-
-        @Override
-        public String toString() {
-            return "MaterialBatch{" +
-                   "batchId='" + batchId + '\'' +
-                   ", materialId='" + materialId + '\'' +
-                   ", batchNumber='" + batchNumber + '\'' +
-                   ", currentQuantity=" + currentQuantity +
-                   ", unit='" + unit + '\'' +
-                   ", status=" + status +
-                   ", qualityStatus=" + qualityStatus +
-                   ", traceRecordCount=" + traceRecords.size() +
-                   '}';
-        }
-    }
-
-    // 批次追踪记录类
-    public static class BatchTrace {
-        private final String traceId;
-        private final String batchId;
-        private final TraceEventType eventType;
-        private final double quantity;
-        private final String unit;
-        private final String fromLocation;
-        private final String toLocation;
-        private final String operator;
-        private final LocalDateTime eventTime;
-        private final String referenceNumber;
-        private final Map<String, Object> attributes;
-
-        public BatchTrace(String batchId, TraceEventType eventType, double quantity) {
-            this.traceId = UUID.randomUUID().toString();
-            this.batchId = batchId != null ? batchId : "";
-            this.eventType = eventType != null ? eventType : TraceEventType.RECEIPT;
-            this.quantity = quantity;
-            this.unit = "pcs";
-            this.fromLocation = "";
-            this.toLocation = "";
-            this.operator = "System";
-            this.eventTime = LocalDateTime.now();
-            this.referenceNumber = "";
-            this.attributes = new ConcurrentHashMap<>();
-        }
-
-        // Getters and Setters
-        public String getTraceId() { return traceId; }
-        public String getBatchId() { return batchId; }
-        public TraceEventType getEventType() { return eventType; }
-        public double getQuantity() { return quantity; }
-        public String getUnit() { return unit; }
-        public BatchTrace setUnit(String unit) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public String getFromLocation() { return fromLocation; }
-        public BatchTrace setFromLocation(String fromLocation) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public String getToLocation() { return toLocation; }
-        public BatchTrace setToLocation(String toLocation) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public String getOperator() { return operator; }
-        public BatchTrace setOperator(String operator) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public LocalDateTime getEventTime() { return eventTime; }
-        public String getReferenceNumber() { return referenceNumber; }
-        public BatchTrace setReferenceNumber(String referenceNumber) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public Map<String, Object> getAttributes() { return new HashMap<>(attributes); }
-        public BatchTrace setAttribute(String key, Object value) {
-            this.attributes.put(key, value);
-            return this;
-        }
-        public Object getAttribute(String key) { return this.attributes.get(key); }
-
-        @Override
-        public String toString() {
-            return "BatchTrace{" +
-                   "traceId='" + traceId + '\'' +
-                   ", batchId='" + batchId + '\'' +
-                   ", eventType=" + eventType +
-                   ", quantity=" + quantity +
-                   ", unit='" + unit + '\'' +
-                   ", operator='" + operator + '\'' +
-                   ", eventTime=" + eventTime +
-                   '}';
-        }
-    }
-
-    // 物料追踪类
-    public static class MaterialTrace {
-        private final String traceId;
-        private final String materialId;
-        private final List<MaterialMovement> movements;
-        private final LocalDateTime startTime;
-        private final LocalDateTime endTime;
-        private final Map<String, Object> summary;
-        private final boolean isComplete;
-        private final Map<String, Object> metadata;
-
-        public MaterialTrace(String materialId) {
-            this.traceId = UUID.randomUUID().toString();
-            this.materialId = materialId != null ? materialId : "";
-            this.movements = new CopyOnWriteArrayList<>();
-            this.startTime = LocalDateTime.now();
-            this.endTime = null;
-            this.summary = new ConcurrentHashMap<>();
-            this.isComplete = false;
-            this.metadata = new ConcurrentHashMap<>();
-        }
-
-        // 完整构造函数
-        public MaterialTrace(String materialId, List<MaterialMovement> movements,
-                            LocalDateTime startTime, LocalDateTime endTime) {
-            this.traceId = UUID.randomUUID().toString();
-            this.materialId = materialId != null ? materialId : "";
-            this.movements = movements != null ? new ArrayList<>(movements) : new ArrayList<>();
-            this.startTime = startTime;
-            this.endTime = endTime;
-            this.summary = new ConcurrentHashMap<>();
-            this.isComplete = true;
-            this.metadata = new ConcurrentHashMap<>();
-
-            // 生成摘要
-            generateSummary();
-        }
-
-        // 生成摘要
-        private void generateSummary() {
-            summary.put("movementCount", movements.size());
-            summary.put("duration", java.time.Duration.between(startTime, endTime).toDays() + "天");
-
-            if (!movements.isEmpty()) {
-                // 统计各事件类型数量
-                Map<String, Long> eventTypeCount = movements.stream()
-                    .collect(Collectors.groupingBy(
-                        movement -> movement.getEventType().name(),
-                        Collectors.counting()
-                    ));
-                summary.put("eventTypeDistribution", eventTypeCount);
-
-                // 统计总数量变化
-                double totalQuantity = movements.stream()
-                    .mapToDouble(MaterialMovement::getQuantity)
-                    .sum();
-                summary.put("totalQuantity", totalQuantity);
-            }
-        }
-
-        // 添加物料移动记录
-        public void addMovement(MaterialMovement movement) {
-            if (movements.size() < DEFAULT_TRACE_BUFFER_SIZE) {
-                this.movements.add(movement);
-            } else {
-                logger.warn("Trace buffer full, dropping movement: {}", movement.getEventType());
-            }
-        }
-
-        // Getters
-        public String getTraceId() { return traceId; }
-        public String getMaterialId() { return materialId; }
-        public List<MaterialMovement> getMovements() { return new ArrayList<>(movements); }
-        public LocalDateTime getStartTime() { return startTime; }
-        public LocalDateTime getEndTime() { return endTime; }
-        public Map<String, Object> getSummary() { return new HashMap<>(summary); }
-        public boolean isComplete() { return isComplete; }
-        public Map<String, Object> getMetadata() { return new HashMap<>(metadata); }
-        public void setMetadata(String key, Object value) { this.metadata.put(key, value); }
-        public Object getMetadata(String key) { return this.metadata.get(key); }
-
-        @Override
-        public String toString() {
-            return "MaterialTrace{" +
-                   "traceId='" + traceId + '\'' +
-                   ", materialId='" + materialId + '\'' +
-                   ", movementCount=" + movements.size() +
-                   ", startTime=" + startTime +
-                   ", isComplete=" + isComplete +
-                   '}';
-        }
-    }
-
-    // 物料移动类
-    public static class MaterialMovement {
-        private final String movementId;
-        private final String materialId;
-        private final TraceEventType eventType;
-        private final double quantity;
-        private final String unit;
-        private final String fromLocation;
-        private final String toLocation;
-        private final String referenceNumber;
-        private final LocalDateTime movementTime;
-        private final String operator;
-        private final Map<String, Object> attributes;
-
-        public MaterialMovement(String materialId, TraceEventType eventType, double quantity) {
-            this.movementId = UUID.randomUUID().toString();
-            this.materialId = materialId != null ? materialId : "";
-            this.eventType = eventType != null ? eventType : TraceEventType.RECEIPT;
-            this.quantity = quantity;
-            this.unit = "pcs";
-            this.fromLocation = "";
-            this.toLocation = "";
-            this.referenceNumber = "";
-            this.movementTime = LocalDateTime.now();
-            this.operator = "System";
-            this.attributes = new ConcurrentHashMap<>();
-        }
-
-        // Getters and Setters
-        public String getMovementId() { return movementId; }
-        public String getMaterialId() { return materialId; }
-        public TraceEventType getEventType() { return eventType; }
-        public double getQuantity() { return quantity; }
-        public String getUnit() { return unit; }
-        public MaterialMovement setUnit(String unit) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public String getFromLocation() { return fromLocation; }
-        public MaterialMovement setFromLocation(String fromLocation) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public String getToLocation() { return toLocation; }
-        public MaterialMovement setToLocation(String toLocation) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public String getReferenceNumber() { return referenceNumber; }
-        public MaterialMovement setReferenceNumber(String referenceNumber) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public LocalDateTime getMovementTime() { return movementTime; }
-        public String getOperator() { return operator; }
-        public MaterialMovement setOperator(String operator) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public Map<String, Object> getAttributes() { return new HashMap<>(attributes); }
-        public MaterialMovement setAttribute(String key, Object value) {
-            this.attributes.put(key, value);
-            return this;
-        }
-        public Object getAttribute(String key) { return this.attributes.get(key); }
-
-        @Override
-        public String toString() {
-            return "MaterialMovement{" +
-                   "movementId='" + movementId + '\'' +
-                   ", materialId='" + materialId + '\'' +
-                   ", eventType=" + eventType +
-                   ", quantity=" + quantity +
-                   ", unit='" + unit + '\'' +
-                   ", movementTime=" + movementTime +
-                   '}';
-        }
-    }
-
-    // 过期预警类
-    public static class ExpirationAlert {
-        private final String alertId;
-        private final String materialId;
-        private final AlertType alertType;
-        private final LocalDateTime expirationDate;
-        private final long daysUntilExpiration;
-        private final String message;
-        private final LocalDateTime alertTime;
-        private final String recipient;
-        private final boolean acknowledged;
-        private final Map<String, Object> metadata;
-
-        public ExpirationAlert(String materialId, LocalDateTime expirationDate, long daysUntilExpiration) {
-            this.alertId = UUID.randomUUID().toString();
-            this.materialId = materialId != null ? materialId : "";
-            this.alertType = AlertType.EXPIRATION_WARNING;
-            this.expirationDate = expirationDate;
-            this.daysUntilExpiration = daysUntilExpiration;
-            this.message = "物料将在" + daysUntilExpiration + "天后过期";
-            this.alertTime = LocalDateTime.now();
-            this.recipient = "";
-            this.acknowledged = false;
-            this.metadata = new ConcurrentHashMap<>();
-        }
-
-        // Getters and Setters
-        public String getAlertId() { return alertId; }
-        public String getMaterialId() { return materialId; }
-        public AlertType getAlertType() { return alertType; }
-        public LocalDateTime getExpirationDate() { return expirationDate; }
-        public long getDaysUntilExpiration() { return daysUntilExpiration; }
-        public String getMessage() { return message; }
-        public LocalDateTime getAlertTime() { return alertTime; }
-        public String getRecipient() { return recipient; }
-        public ExpirationAlert setRecipient(String recipient) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public boolean isAcknowledged() { return acknowledged; }
-        public ExpirationAlert setAcknowledged(boolean acknowledged) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public Map<String, Object> getMetadata() { return new HashMap<>(metadata); }
-        public ExpirationAlert setMetadata(String key, Object value) {
-            this.metadata.put(key, value);
-            return this;
-        }
-        public Object getMetadata(String key) { return this.metadata.get(key); }
-
-        @Override
-        public String toString() {
-            return "ExpirationAlert{" +
-                   "alertId='" + alertId + '\'' +
-                   ", materialId='" + materialId + '\'' +
-                   ", alertType=" + alertType +
-                   ", daysUntilExpiration=" + daysUntilExpiration +
-                   ", message='" + message + '\'' +
-                   ", alertTime=" + alertTime +
-                   ", acknowledged=" + acknowledged +
-                   '}';
-        }
-    }
-
-    // 库存预警类
-    public static class InventoryAlert {
-        private final String alertId;
-        private final String materialId;
-        private final AlertType alertType;
-        private final double currentQuantity;
-        private final double minimumQuantity;
-        private final double thresholdPercentage;
-        private final String unit;
-        private final String message;
-        private final LocalDateTime alertTime;
-        private final String recipient;
-        private final boolean acknowledged;
-        private final Map<String, Object> metadata;
-
-        public InventoryAlert(String materialId, double currentQuantity, double minimumQuantity,
-                             double thresholdPercentage, String unit) {
-            this.alertId = UUID.randomUUID().toString();
-            this.materialId = materialId != null ? materialId : "";
-            this.alertType = AlertType.INVENTORY_LOW;
-            this.currentQuantity = currentQuantity;
-            this.minimumQuantity = minimumQuantity;
-            this.thresholdPercentage = thresholdPercentage;
-            this.unit = unit != null ? unit : "pcs";
-            this.message = "库存不足，当前库存: " + currentQuantity + unit +
-                          "，最低库存: " + minimumQuantity + unit;
-            this.alertTime = LocalDateTime.now();
-            this.recipient = "";
-            this.acknowledged = false;
-            this.metadata = new ConcurrentHashMap<>();
-        }
-
-        // Getters and Setters
-        public String getAlertId() { return alertId; }
-        public String getMaterialId() { return materialId; }
-        public AlertType getAlertType() { return alertType; }
-        public double getCurrentQuantity() { return currentQuantity; }
-        public double getMinimumQuantity() { return minimumQuantity; }
-        public double getThresholdPercentage() { return thresholdPercentage; }
-        public String getUnit() { return unit; }
-        public String getMessage() { return message; }
-        public LocalDateTime getAlertTime() { return alertTime; }
-        public String getRecipient() { return recipient; }
-        public InventoryAlert setRecipient(String recipient) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public boolean isAcknowledged() { return acknowledged; }
-        public InventoryAlert setAcknowledged(boolean acknowledged) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public Map<String, Object> getMetadata() { return new HashMap<>(metadata); }
-        public InventoryAlert setMetadata(String key, Object value) {
-            this.metadata.put(key, value);
-            return this;
-        }
-        public Object getMetadata(String key) { return this.metadata.get(key); }
-
-        @Override
-        public String toString() {
-            return "InventoryAlert{" +
-                   "alertId='" + alertId + '\'' +
-                   ", materialId='" + materialId + '\'' +
-                   ", alertType=" + alertType +
-                   ", currentQuantity=" + currentQuantity +
-                   ", minimumQuantity=" + minimumQuantity +
-                   ", unit='" + unit + '\'' +
-                   ", message='" + message + '\'' +
-                   ", alertTime=" + alertTime +
-                   ", acknowledged=" + acknowledged +
-                   '}';
-        }
-    }
-
-    // 质量状态历史类
-    public static class QualityStatusHistory {
-        private final String historyId;
-        private final String materialId;
-        private final List<QualityRecord> records;
-        private final LocalDateTime lastUpdate;
-
-        public QualityStatusHistory(String materialId) {
-            this.historyId = UUID.randomUUID().toString();
-            this.materialId = materialId != null ? materialId : "";
-            this.records = new CopyOnWriteArrayList<>();
-            this.lastUpdate = LocalDateTime.now();
-        }
-
-        // Getters
-        public String getHistoryId() { return historyId; }
-        public String getMaterialId() { return materialId; }
-        public List<QualityRecord> getRecords() { return new ArrayList<>(records); }
-        public void addRecord(QualityRecord record) {
-            this.records.add(record);
-            // 更新最后更新时间
-            try {
-                // 使用反射更新lastUpdate字段（仅在示例中）
-                java.lang.reflect.Field field = this.getClass().getDeclaredField("lastUpdate");
-                field.setAccessible(true);
-                field.set(this, LocalDateTime.now());
-            } catch (Exception e) {
-                // 忽略异常
-            }
-        }
-        public LocalDateTime getLastUpdate() { return lastUpdate; }
-
-        @Override
-        public String toString() {
-            return "QualityStatusHistory{" +
-                   "historyId='" + historyId + '\'' +
-                   ", materialId='" + materialId + '\'' +
-                   ", recordCount=" + records.size() +
-                   ", lastUpdate=" + lastUpdate +
-                   '}';
-        }
-    }
-
-    // 质量记录类
-    public static class QualityRecord {
-        private final String recordId;
-        private final String materialId;
-        private final QualityStatus status;
-        private final String inspector;
-        private final LocalDateTime inspectionTime;
-        private final String inspectionReport;
-        private final Map<String, Object> testResults;
-        private final String remarks;
-
-        public QualityRecord(String materialId, QualityStatus status) {
-            this.recordId = UUID.randomUUID().toString();
-            this.materialId = materialId != null ? materialId : "";
-            this.status = status != null ? status : QualityStatus.PENDING;
-            this.inspector = "";
-            this.inspectionTime = LocalDateTime.now();
-            this.inspectionReport = "";
-            this.testResults = new ConcurrentHashMap<>();
-            this.remarks = "";
-        }
-
-        // Getters and Setters
-        public String getRecordId() { return recordId; }
-        public String getMaterialId() { return materialId; }
-        public QualityStatus getStatus() { return status; }
-        public String getInspector() { return inspector; }
-        public QualityRecord setInspector(String inspector) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public LocalDateTime getInspectionTime() { return inspectionTime; }
-        public String getInspectionReport() { return inspectionReport; }
-        public QualityRecord setInspectionReport(String inspectionReport) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-        public Map<String, Object> getTestResults() { return new HashMap<>(testResults); }
-        public QualityRecord setTestResult(String key, Object value) {
-            this.testResults.put(key, value);
-            return this;
-        }
-        public Object getTestResult(String key) { return this.testResults.get(key); }
-        public String getRemarks() { return remarks; }
-        public QualityRecord setRemarks(String remarks) {
-            // This would need a builder pattern or new instance in real implementation
-            return this;
-        }
-
-        @Override
-        public String toString() {
-            return "QualityRecord{" +
-                   "recordId='" + recordId + '\'' +
-                   ", materialId='" + materialId + '\'' +
-                   ", status=" + status +
-                   ", inspector='" + inspector + '\'' +
-                   ", inspectionTime=" + inspectionTime +
-                   '}';
-        }
-    }
-
-    // 物料追踪器接口
-    public interface MaterialTrackerEngine {
-        MaterialTrace traceMaterial(String materialId) throws Exception;
-        boolean supportsMaterialType(MaterialType materialType);
-        String getTrackerName();
-    }
-
-    // 质量状态查询器接口
-    public interface QualityStatusQuerier {
-        QualityStatus getMaterialQualityStatus(String materialId) throws Exception;
-        QualityStatusHistory getQualityHistory(String materialId) throws Exception;
-        boolean supportsQualityQuery(MaterialType materialType);
-        String getQuerierName();
-    }
-
-    // 过期检查器接口
-    public interface ExpirationChecker {
-        ExpirationAlert checkMaterialExpiration(String materialId) throws Exception;
-        List<ExpirationAlert> checkBatchExpirations(String batchId) throws Exception;
-        boolean supportsExpirationCheck(MaterialType materialType);
-        String getCheckerName();
-    }
-
-    // 库存检查器接口
-    public interface InventoryChecker {
-        InventoryAlert checkInventoryLevel(String materialId) throws Exception;
-        Map<String, InventoryAlert> checkMultipleInventories(List<String> materialIds) throws Exception;
-        boolean supportsInventoryCheck(InventoryType inventoryType);
-        String getCheckerName();
-    }
-
-    // 追踪存储接口
-    public interface TraceStorage {
-        boolean saveMaterialTrace(MaterialTrace trace) throws Exception;
-        MaterialTrace loadMaterialTrace(String materialId) throws Exception;
-        boolean addTraceMovement(String materialId, MaterialMovement movement) throws Exception;
-        List<MaterialMovement> queryTraceMovements(String materialId, TraceQuery query) throws Exception;
-        boolean supportsTraceType(String traceType);
-        String getTraceStorageName();
-    }
-
-    // 追踪查询类
-    public static class TraceQuery {
-        private LocalDateTime startDate;
-        private LocalDateTime endDate;
-        private TraceEventType eventType;
-        private String operator;
-        private int limit = 100;
-
-        // Getters and Setters
-        public LocalDateTime getStartDate() { return startDate; }
-        public TraceQuery setStartDate(LocalDateTime startDate) {
-            this.startDate = startDate;
-            return this;
-        }
-
-        public LocalDateTime getEndDate() { return endDate; }
-        public TraceQuery setEndDate(LocalDateTime endDate) {
-            this.endDate = endDate;
-            return this;
-        }
-
-        public TraceEventType getEventType() { return eventType; }
-        public TraceQuery setEventType(TraceEventType eventType) {
-            this.eventType = eventType;
-            return this;
-        }
-
-        public String getOperator() { return operator; }
-        public TraceQuery setOperator(String operator) {
-            this.operator = operator;
-            return this;
-        }
-
-        public int getLimit() { return limit; }
-        public TraceQuery setLimit(int limit) {
-            this.limit = limit;
-            return this;
-        }
-    }
-
+    private static final Logger logger = LoggerFactory.getLogger(MaterialTracker.class);
     // 内部存储和管理
     private static final Map<MaterialType, MaterialTrackerEngine> trackerRegistry = new ConcurrentHashMap<>();
     private static final Map<MaterialType, QualityStatusQuerier> querierRegistry = new ConcurrentHashMap<>();
@@ -1038,7 +47,6 @@ public class MaterialTracker {
     private static final Map<String, MaterialBatch> batchCache = new ConcurrentHashMap<>();
     private static final Map<String, MaterialTrace> materialTraceCache = new ConcurrentHashMap<>();
     private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
-
     // 当前使用的组件
     private static volatile MaterialTrackerEngine currentTracker;
     private static volatile QualityStatusQuerier currentQuerier;
@@ -1098,15 +106,15 @@ public class MaterialTracker {
     private static void startMaintenanceTasks() {
         // 启动缓存清理任务
         scheduler.scheduleAtFixedRate(MaterialTracker::cleanupCache,
-                                    30, 30, TimeUnit.MINUTES);
+                30, 30, TimeUnit.MINUTES);
 
         // 启动过期检查任务
         scheduler.scheduleAtFixedRate(MaterialTracker::checkExpirations,
-                                    1, 1, TimeUnit.HOURS);
+                1, 1, TimeUnit.HOURS);
 
         // 启动库存检查任务
         scheduler.scheduleAtFixedRate(MaterialTracker::checkInventories,
-                                    6, 6, TimeUnit.HOURS);
+                6, 6, TimeUnit.HOURS);
 
         logger.debug("Material tracker maintenance tasks started");
     }
@@ -1201,7 +209,7 @@ public class MaterialTracker {
         if (tracker != null) {
             currentTracker = tracker;
             logger.info("Current material tracker set to: {} for material type {}",
-                       tracker.getTrackerName(), materialType);
+                    tracker.getTrackerName(), materialType);
         } else {
             logger.warn("No tracker found for material type: {}", materialType);
         }
@@ -1215,7 +223,7 @@ public class MaterialTracker {
         if (querier != null) {
             currentQuerier = querier;
             logger.info("Current quality querier set to: {} for material type {}",
-                       querier.getQuerierName(), materialType);
+                    querier.getQuerierName(), materialType);
         } else {
             logger.warn("No querier found for material type: {}", materialType);
         }
@@ -1229,7 +237,7 @@ public class MaterialTracker {
         if (checker != null) {
             currentChecker = checker;
             logger.info("Current expiration checker set to: {} for material type {}",
-                       checker.getCheckerName(), materialType);
+                    checker.getCheckerName(), materialType);
         } else {
             logger.warn("No checker found for material type: {}", materialType);
         }
@@ -1243,7 +251,7 @@ public class MaterialTracker {
         if (checker != null) {
             currentInventoryChecker = checker;
             logger.info("Current inventory checker set to: {} for inventory type {}",
-                       checker.getCheckerName(), inventoryType);
+                    checker.getCheckerName(), inventoryType);
         } else {
             logger.warn("No inventory checker found for type: {}", inventoryType);
         }
@@ -1351,7 +359,7 @@ public class MaterialTracker {
      */
     private static boolean isTraceCacheExpired(MaterialTrace trace) {
         return System.currentTimeMillis() - trace.getStartTime().toInstant(java.time.ZoneOffset.UTC).toEpochMilli()
-               > DEFAULT_CACHE_TIMEOUT;
+                > DEFAULT_CACHE_TIMEOUT;
     }
 
     /**
@@ -1366,32 +374,32 @@ public class MaterialTracker {
             if (material != null) {
                 // 添加收货记录
                 MaterialMovement receiptMovement = new MaterialMovement(
-                    materialId, TraceEventType.RECEIPT, material.getQuantity()
+                        materialId, TraceEventType.RECEIPT, material.getQuantity()
                 )
-                .setToLocation("主仓库")
-                .setOperator("收货员")
-                .setReferenceNumber("PO-" + System.currentTimeMillis());
+                        .setToLocation("主仓库")
+                        .setOperator("收货员")
+                        .setReferenceNumber("PO-" + System.currentTimeMillis());
 
                 trace.addMovement(receiptMovement);
 
                 // 添加检验记录
                 MaterialMovement inspectionMovement = new MaterialMovement(
-                    materialId, TraceEventType.INSPECTION, material.getQuantity()
+                        materialId, TraceEventType.INSPECTION, material.getQuantity()
                 )
-                .setFromLocation("主仓库")
-                .setToLocation("质检区")
-                .setOperator("质检员");
+                        .setFromLocation("主仓库")
+                        .setToLocation("质检区")
+                        .setOperator("质检员");
 
                 trace.addMovement(inspectionMovement);
 
                 // 根据质量状态添加相应记录
                 if (material.getQualityStatus() == QualityStatus.PASS) {
                     MaterialMovement releaseMovement = new MaterialMovement(
-                        materialId, TraceEventType.ISSUE, material.getQuantity()
+                            materialId, TraceEventType.ISSUE, material.getQuantity()
                     )
-                    .setFromLocation("质检区")
-                    .setToLocation("生产线")
-                    .setOperator("仓管员");
+                            .setFromLocation("质检区")
+                            .setToLocation("生产线")
+                            .setOperator("仓管员");
 
                     trace.addMovement(releaseMovement);
                 }
@@ -1469,7 +477,7 @@ public class MaterialTracker {
             Material material = materialCache.get(materialId);
             if (material != null) {
                 logger.debug("Default quality query for material: {} - {}",
-                           materialId, material.getQualityStatus().getDescription());
+                        materialId, material.getQualityStatus().getDescription());
                 return material.getQualityStatus();
             } else {
                 logger.warn("Material not found for quality query: {}", materialId);
@@ -1520,13 +528,13 @@ public class MaterialTracker {
             Material material = materialCache.get(materialId);
             if (material != null) {
                 QualityRecord initialRecord = new QualityRecord(materialId, QualityStatus.PENDING)
-                    .setInspector("系统")
-                    .setRemarks("初始状态");
+                        .setInspector("系统")
+                        .setRemarks("初始状态");
                 history.addRecord(initialRecord);
 
                 QualityRecord currentRecord = new QualityRecord(materialId, material.getQualityStatus())
-                    .setInspector("质检员")
-                    .setRemarks("最新检验结果");
+                        .setInspector("质检员")
+                        .setRemarks("最新检验结果");
                 history.addRecord(currentRecord);
             }
 
@@ -1565,7 +573,7 @@ public class MaterialTracker {
 
             if (alert != null) {
                 logger.info("Expiration check completed for material: {} - {}",
-                           materialId, alert.getMessage());
+                        materialId, alert.getMessage());
             } else {
                 logger.debug("No expiration alert for material: {}", materialId);
             }
@@ -1598,15 +606,15 @@ public class MaterialTracker {
                 LocalDateTime expirationDate = material.getExpirationDate();
                 if (expirationDate != null) {
                     long daysUntilExpiration = java.time.Duration.between(
-                        LocalDateTime.now(), expirationDate).toDays();
+                            LocalDateTime.now(), expirationDate).toDays();
 
                     if (daysUntilExpiration <= DEFAULT_EXPIRATION_WARNING_DAYS) {
                         ExpirationAlert alert = new ExpirationAlert(
-                            materialId, expirationDate, daysUntilExpiration
+                                materialId, expirationDate, daysUntilExpiration
                         );
 
                         logger.debug("Expiration alert generated for material: {} - {} days",
-                                   materialId, daysUntilExpiration);
+                                materialId, daysUntilExpiration);
 
                         return alert;
                     }
@@ -1646,7 +654,7 @@ public class MaterialTracker {
 
             if (alert != null) {
                 logger.info("Inventory check completed for material: {} - {}",
-                           materialId, alert.getMessage());
+                        materialId, alert.getMessage());
             } else {
                 logger.debug("No inventory alert for material: {}", materialId);
             }
@@ -1686,12 +694,12 @@ public class MaterialTracker {
 
                 if (currentQuantity <= threshold) {
                     InventoryAlert alert = new InventoryAlert(
-                        materialId, currentQuantity, minimumQuantity,
-                        thresholdPercentage, material.getUnit()
+                            materialId, currentQuantity, minimumQuantity,
+                            thresholdPercentage, material.getUnit()
                     );
 
                     logger.debug("Inventory alert generated for material: {} - current: {}, minimum: {}",
-                               materialId, currentQuantity, minimumQuantity);
+                            materialId, currentQuantity, minimumQuantity);
 
                     return alert;
                 }
@@ -1783,16 +791,16 @@ public class MaterialTracker {
                 LocalDateTime expirationDate = batch.getExpirationDate();
                 if (expirationDate != null) {
                     long daysUntilExpiration = java.time.Duration.between(
-                        LocalDateTime.now(), expirationDate).toDays();
+                            LocalDateTime.now(), expirationDate).toDays();
 
                     if (daysUntilExpiration <= DEFAULT_EXPIRATION_WARNING_DAYS) {
                         ExpirationAlert alert = new ExpirationAlert(
-                            batch.getMaterialId(), expirationDate, daysUntilExpiration
+                                batch.getMaterialId(), expirationDate, daysUntilExpiration
                         );
 
                         alerts.add(alert);
                         logger.debug("Batch expiration alert generated: {} - {} days",
-                                   batchId, daysUntilExpiration);
+                                batchId, daysUntilExpiration);
                     }
                 }
             }
@@ -1819,7 +827,7 @@ public class MaterialTracker {
             materialCache.put(material.getMaterialId(), material);
 
             logger.info("Created new material: {} - {} (Type: {})",
-                       material.getMaterialId(), materialName, materialType);
+                    material.getMaterialId(), materialName, materialType);
 
             return material;
         } catch (Exception e) {
@@ -1910,7 +918,7 @@ public class MaterialTracker {
             batchCache.put(batch.getBatchId(), batch);
 
             logger.info("Created new batch: {} for material: {} (Batch Number: {})",
-                       batch.getBatchId(), materialId, batchNumber);
+                    batch.getBatchId(), materialId, batchNumber);
 
             return batch;
         } catch (Exception e) {
@@ -2059,31 +1067,31 @@ public class MaterialTracker {
         }
 
         return trace.getMovements().stream()
-            .filter(movement -> {
-                // 时间范围过滤
-                if (query.getStartDate() != null && movement.getMovementTime().isBefore(query.getStartDate())) {
-                    return false;
-                }
+                .filter(movement -> {
+                    // 时间范围过滤
+                    if (query.getStartDate() != null && movement.getMovementTime().isBefore(query.getStartDate())) {
+                        return false;
+                    }
 
-                if (query.getEndDate() != null && movement.getMovementTime().isAfter(query.getEndDate())) {
-                    return false;
-                }
+                    if (query.getEndDate() != null && movement.getMovementTime().isAfter(query.getEndDate())) {
+                        return false;
+                    }
 
-                // 事件类型过滤
-                if (query.getEventType() != null && movement.getEventType() != query.getEventType()) {
-                    return false;
-                }
+                    // 事件类型过滤
+                    if (query.getEventType() != null && movement.getEventType() != query.getEventType()) {
+                        return false;
+                    }
 
-                // 操作员过滤
-                if (query.getOperator() != null && !query.getOperator().isEmpty() &&
-                    !movement.getOperator().equals(query.getOperator())) {
-                    return false;
-                }
+                    // 操作员过滤
+                    if (query.getOperator() != null && !query.getOperator().isEmpty() &&
+                            !movement.getOperator().equals(query.getOperator())) {
+                        return false;
+                    }
 
-                return true;
-            })
-            .limit(query.getLimit())
-            .collect(Collectors.toList());
+                    return true;
+                })
+                .limit(query.getLimit())
+                .collect(Collectors.toList());
     }
 
     /**
@@ -2157,21 +1165,21 @@ public class MaterialTracker {
 
             // 清理物料缓存
             materialCache.entrySet().removeIf(entry ->
-                entry.getValue().getLastUpdate().toInstant(java.time.ZoneOffset.UTC).toEpochMilli() < cutoffTime
+                    entry.getValue().getLastUpdate().toInstant(java.time.ZoneOffset.UTC).toEpochMilli() < cutoffTime
             );
 
             // 清理批次缓存
             batchCache.entrySet().removeIf(entry ->
-                entry.getValue().getLastUpdate().toInstant(java.time.ZoneOffset.UTC).toEpochMilli() < cutoffTime
+                    entry.getValue().getLastUpdate().toInstant(java.time.ZoneOffset.UTC).toEpochMilli() < cutoffTime
             );
 
             // 清理追踪信息缓存
             materialTraceCache.entrySet().removeIf(entry ->
-                entry.getValue().getStartTime().toInstant(java.time.ZoneOffset.UTC).toEpochMilli() < cutoffTime
+                    entry.getValue().getStartTime().toInstant(java.time.ZoneOffset.UTC).toEpochMilli() < cutoffTime
             );
 
             logger.debug("Cleaned up material tracker cache, remaining entries - material: {}, batch: {}, trace: {}",
-                        materialCache.size(), batchCache.size(), materialTraceCache.size());
+                    materialCache.size(), batchCache.size(), materialTraceCache.size());
         } catch (Exception e) {
             logger.error("Failed to cleanup material tracker cache", e);
         }
@@ -2190,39 +1198,6 @@ public class MaterialTracker {
     }
 
     /**
-     * 缓存统计信息类
-     */
-    public static class CacheStatistics {
-        private int materialCacheSize;
-        private int batchCacheSize;
-        private int traceCacheSize;
-        private long cacheTimeout;
-
-        // Getters and Setters
-        public int getMaterialCacheSize() { return materialCacheSize; }
-        public void setMaterialCacheSize(int materialCacheSize) { this.materialCacheSize = materialCacheSize; }
-
-        public int getBatchCacheSize() { return batchCacheSize; }
-        public void setBatchCacheSize(int batchCacheSize) { this.batchCacheSize = batchCacheSize; }
-
-        public int getTraceCacheSize() { return traceCacheSize; }
-        public void setTraceCacheSize(int traceCacheSize) { this.traceCacheSize = traceCacheSize; }
-
-        public long getCacheTimeout() { return cacheTimeout; }
-        public void setCacheTimeout(long cacheTimeout) { this.cacheTimeout = cacheTimeout; }
-
-        @Override
-        public String toString() {
-            return "CacheStatistics{" +
-                   "materialCacheSize=" + materialCacheSize +
-                   ", batchCacheSize=" + batchCacheSize +
-                   ", traceCacheSize=" + traceCacheSize +
-                   ", cacheTimeout=" + cacheTimeout + "ms" +
-                   '}';
-        }
-    }
-
-    /**
      * 关闭物料追踪器
      */
     public static void shutdown() {
@@ -2236,6 +1211,1493 @@ public class MaterialTracker {
             scheduler.shutdownNow();
             Thread.currentThread().interrupt();
             logger.warn("MaterialTracker shutdown interrupted");
+        }
+    }
+
+    // 物料类型枚举
+    public enum MaterialType {
+        SILICON_WAFER("硅晶圆", "Silicon Wafer"),
+        GOLD_WIRE("金丝", "Gold Wire"),
+        PLASTIC_PACKAGE("塑封料", "Plastic Package"),
+        METAL_LEAD_FRAME("金属引脚框架", "Metal Lead Frame"),
+        CERAMIC_SUBSTRATE("陶瓷基板", "Ceramic Substrate"),
+        SOLDER_PASTE("焊膏", "Solder Paste"),
+        CLEANING_CHEMICAL("清洗化学品", "Cleaning Chemical"),
+        ADHESIVE("胶水", "Adhesive"),
+        ENCAPSULANT("封装材料", "Encapsulant"),
+        CUSTOM("自定义物料", "Custom Material");
+
+        private final String chineseName;
+        private final String englishName;
+
+        MaterialType(String chineseName, String englishName) {
+            this.chineseName = chineseName;
+            this.englishName = englishName;
+        }
+
+        public String getChineseName() {
+            return chineseName;
+        }
+
+        public String getEnglishName() {
+            return englishName;
+        }
+    }
+
+    // 物料状态枚举
+    public enum MaterialStatus {
+        AVAILABLE("可用", 1),
+        IN_USE("使用中", 2),
+        RESERVED("已预留", 3),
+        EXPIRED("已过期", 4),
+        QUARANTINED("已隔离", 5),
+        DISPOSED("已处置", 6),
+        DEPLETED("已耗尽", 7);
+
+        private final String description;
+        private final int sequence;
+
+        MaterialStatus(String description, int sequence) {
+            this.description = description;
+            this.sequence = sequence;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public int getSequence() {
+            return sequence;
+        }
+
+        public boolean isAvailable() {
+            return this == AVAILABLE || this == IN_USE || this == RESERVED;
+        }
+    }
+
+    // 质量状态枚举
+    public enum QualityStatus {
+        PASS("合格", 1),
+        FAIL("不合格", 2),
+        PENDING("待检", 3),
+        UNDER_REVIEW("评审中", 4),
+        CONDITIONAL_RELEASE("有条件放行", 5);
+
+        private final String description;
+        private final int priority;
+
+        QualityStatus(String description, int priority) {
+            this.description = description;
+            this.priority = priority;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public int getPriority() {
+            return priority;
+        }
+
+        public boolean isQualified() {
+            return this == PASS || this == CONDITIONAL_RELEASE;
+        }
+    }
+
+    // 库存类型枚举
+    public enum InventoryType {
+        RAW_MATERIAL("原材料", "Raw Material"),
+        WORK_IN_PROGRESS("在制品", "Work In Progress"),
+        FINISHED_GOOD("成品", "Finished Good"),
+        CONSUMABLE("耗材", "Consumable");
+
+        private final String chineseName;
+        private final String englishName;
+
+        InventoryType(String chineseName, String englishName) {
+            this.chineseName = chineseName;
+            this.englishName = englishName;
+        }
+
+        public String getChineseName() {
+            return chineseName;
+        }
+
+        public String getEnglishName() {
+            return englishName;
+        }
+    }
+
+    // 追踪事件类型枚举
+    public enum TraceEventType {
+        RECEIPT("收货", "Receipt"),
+        ISSUE("发料", "Issue"),
+        TRANSFER("转移", "Transfer"),
+        RETURN("退料", "Return"),
+        CONSUMPTION("消耗", "Consumption"),
+        INSPECTION("检验", "Inspection"),
+        DISPOSAL("处置", "Disposal"),
+        ADJUSTMENT("调整", "Adjustment");
+
+        private final String chineseName;
+        private final String englishName;
+
+        TraceEventType(String chineseName, String englishName) {
+            this.chineseName = chineseName;
+            this.englishName = englishName;
+        }
+
+        public String getChineseName() {
+            return chineseName;
+        }
+
+        public String getEnglishName() {
+            return englishName;
+        }
+    }
+
+    // 预警类型枚举
+    public enum AlertType {
+        EXPIRATION_WARNING("过期预警", "Expiration Warning"),
+        INVENTORY_LOW("库存不足", "Low Inventory"),
+        QUALITY_ISSUE("质量问题", "Quality Issue"),
+        SUPPLIER_PROBLEM("供应商问题", "Supplier Problem");
+
+        private final String chineseName;
+        private final String englishName;
+
+        AlertType(String chineseName, String englishName) {
+            this.chineseName = chineseName;
+            this.englishName = englishName;
+        }
+
+        public String getChineseName() {
+            return chineseName;
+        }
+
+        public String getEnglishName() {
+            return englishName;
+        }
+    }
+
+    // 物料追踪器接口
+    public interface MaterialTrackerEngine {
+        MaterialTrace traceMaterial(String materialId) throws Exception;
+
+        boolean supportsMaterialType(MaterialType materialType);
+
+        String getTrackerName();
+    }
+
+    // 质量状态查询器接口
+    public interface QualityStatusQuerier {
+        QualityStatus getMaterialQualityStatus(String materialId) throws Exception;
+
+        QualityStatusHistory getQualityHistory(String materialId) throws Exception;
+
+        boolean supportsQualityQuery(MaterialType materialType);
+
+        String getQuerierName();
+    }
+
+    // 过期检查器接口
+    public interface ExpirationChecker {
+        ExpirationAlert checkMaterialExpiration(String materialId) throws Exception;
+
+        List<ExpirationAlert> checkBatchExpirations(String batchId) throws Exception;
+
+        boolean supportsExpirationCheck(MaterialType materialType);
+
+        String getCheckerName();
+    }
+
+    // 库存检查器接口
+    public interface InventoryChecker {
+        InventoryAlert checkInventoryLevel(String materialId) throws Exception;
+
+        Map<String, InventoryAlert> checkMultipleInventories(List<String> materialIds) throws Exception;
+
+        boolean supportsInventoryCheck(InventoryType inventoryType);
+
+        String getCheckerName();
+    }
+
+    // 追踪存储接口
+    public interface TraceStorage {
+        boolean saveMaterialTrace(MaterialTrace trace) throws Exception;
+
+        MaterialTrace loadMaterialTrace(String materialId) throws Exception;
+
+        boolean addTraceMovement(String materialId, MaterialMovement movement) throws Exception;
+
+        List<MaterialMovement> queryTraceMovements(String materialId, TraceQuery query) throws Exception;
+
+        boolean supportsTraceType(String traceType);
+
+        String getTraceStorageName();
+    }
+
+    // 物料类
+    public static class Material {
+        private final String materialId;
+        private final String materialName;
+        private final MaterialType materialType;
+        private final String specification;
+        private final String supplier;
+        private final LocalDateTime receiptDate;
+        private final LocalDateTime manufactureDate;
+        private final LocalDateTime expirationDate;
+        private final String lotNumber;
+        private final String batchNumber;
+        private final double quantity;
+        private final String unit;
+        private final MaterialStatus status;
+        private final QualityStatus qualityStatus;
+        private final Map<String, Object> attributes;
+        private final List<StorageLocation> storageLocations;
+        private final LocalDateTime lastUpdate;
+        private final String updatedBy;
+
+        public Material(String materialId, String materialName, MaterialType materialType) {
+            this.materialId = materialId != null ? materialId : UUID.randomUUID().toString();
+            this.materialName = materialName != null ? materialName : "";
+            this.materialType = materialType != null ? materialType : MaterialType.CUSTOM;
+            this.specification = "";
+            this.supplier = "";
+            this.receiptDate = LocalDateTime.now();
+            this.manufactureDate = LocalDateTime.now();
+            this.expirationDate = LocalDateTime.now().plusYears(1);
+            this.lotNumber = "";
+            this.batchNumber = "";
+            this.quantity = 0.0;
+            this.unit = "pcs";
+            this.status = MaterialStatus.AVAILABLE;
+            this.qualityStatus = QualityStatus.PENDING;
+            this.attributes = new ConcurrentHashMap<>();
+            this.storageLocations = new ArrayList<>();
+            this.lastUpdate = LocalDateTime.now();
+            this.updatedBy = "System";
+        }
+
+        // Getters and Setters
+        public String getMaterialId() {
+            return materialId;
+        }
+
+        public String getMaterialName() {
+            return materialName;
+        }
+
+        public Material setMaterialName(String materialName) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public MaterialType getMaterialType() {
+            return materialType;
+        }
+
+        public String getSpecification() {
+            return specification;
+        }
+
+        public Material setSpecification(String specification) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public String getSupplier() {
+            return supplier;
+        }
+
+        public Material setSupplier(String supplier) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public LocalDateTime getReceiptDate() {
+            return receiptDate;
+        }
+
+        public LocalDateTime getManufactureDate() {
+            return manufactureDate;
+        }
+
+        public Material setManufactureDate(LocalDateTime manufactureDate) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public LocalDateTime getExpirationDate() {
+            return expirationDate;
+        }
+
+        public Material setExpirationDate(LocalDateTime expirationDate) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public String getLotNumber() {
+            return lotNumber;
+        }
+
+        public Material setLotNumber(String lotNumber) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public String getBatchNumber() {
+            return batchNumber;
+        }
+
+        public Material setBatchNumber(String batchNumber) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public double getQuantity() {
+            return quantity;
+        }
+
+        public String getUnit() {
+            return unit;
+        }
+
+        public Material setUnit(String unit) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public MaterialStatus getStatus() {
+            return status;
+        }
+
+        public Material setStatus(MaterialStatus status) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public QualityStatus getQualityStatus() {
+            return qualityStatus;
+        }
+
+        public Material setQualityStatus(QualityStatus qualityStatus) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public Map<String, Object> getAttributes() {
+            return new HashMap<>(attributes);
+        }
+
+        public Material setAttribute(String key, Object value) {
+            this.attributes.put(key, value);
+            return this;
+        }
+
+        public Object getAttribute(String key) {
+            return this.attributes.get(key);
+        }
+
+        public List<StorageLocation> getStorageLocations() {
+            return new ArrayList<>(storageLocations);
+        }
+
+        public Material addStorageLocation(StorageLocation location) {
+            this.storageLocations.add(location);
+            return this;
+        }
+
+        public LocalDateTime getLastUpdate() {
+            return lastUpdate;
+        }
+
+        public String getUpdatedBy() {
+            return updatedBy;
+        }
+
+        public Material setUpdatedBy(String updatedBy) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        @Override
+        public String toString() {
+            return "Material{" +
+                    "materialId='" + materialId + '\'' +
+                    ", materialName='" + materialName + '\'' +
+                    ", materialType=" + materialType +
+                    ", quantity=" + quantity +
+                    ", unit='" + unit + '\'' +
+                    ", status=" + status +
+                    ", qualityStatus=" + qualityStatus +
+                    '}';
+        }
+    }
+
+    // 存储位置类
+    public static class StorageLocation {
+        private final String locationId;
+        private final String locationName;
+        private final String warehouse;
+        private final String area;
+        private final String rack;
+        private final String shelf;
+        private final double quantity;
+        private final String unit;
+        private final Map<String, Object> attributes;
+
+        public StorageLocation(String locationId, String locationName) {
+            this.locationId = locationId != null ? locationId : UUID.randomUUID().toString();
+            this.locationName = locationName != null ? locationName : "";
+            this.warehouse = "";
+            this.area = "";
+            this.rack = "";
+            this.shelf = "";
+            this.quantity = 0.0;
+            this.unit = "pcs";
+            this.attributes = new ConcurrentHashMap<>();
+        }
+
+        // Getters and Setters
+        public String getLocationId() {
+            return locationId;
+        }
+
+        public String getLocationName() {
+            return locationName;
+        }
+
+        public StorageLocation setLocationName(String locationName) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public String getWarehouse() {
+            return warehouse;
+        }
+
+        public StorageLocation setWarehouse(String warehouse) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public String getArea() {
+            return area;
+        }
+
+        public StorageLocation setArea(String area) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public String getRack() {
+            return rack;
+        }
+
+        public StorageLocation setRack(String rack) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public String getShelf() {
+            return shelf;
+        }
+
+        public StorageLocation setShelf(String shelf) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public double getQuantity() {
+            return quantity;
+        }
+
+        public String getUnit() {
+            return unit;
+        }
+
+        public StorageLocation setUnit(String unit) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public Map<String, Object> getAttributes() {
+            return new HashMap<>(attributes);
+        }
+
+        public StorageLocation setAttribute(String key, Object value) {
+            this.attributes.put(key, value);
+            return this;
+        }
+
+        public Object getAttribute(String key) {
+            return this.attributes.get(key);
+        }
+
+        @Override
+        public String toString() {
+            return "StorageLocation{" +
+                    "locationId='" + locationId + '\'' +
+                    ", locationName='" + locationName + '\'' +
+                    ", warehouse='" + warehouse + '\'' +
+                    ", area='" + area + '\'' +
+                    ", rack='" + rack + '\'' +
+                    ", shelf='" + shelf + '\'' +
+                    ", quantity=" + quantity +
+                    ", unit='" + unit + '\'' +
+                    '}';
+        }
+    }
+
+    // 物料批次类
+    public static class MaterialBatch {
+        private final String batchId;
+        private final String materialId;
+        private final String batchNumber;
+        private final LocalDateTime creationDate;
+        private final LocalDateTime expirationDate;
+        private final double initialQuantity;
+        private final double currentQuantity;
+        private final String unit;
+        private final MaterialStatus status;
+        private final QualityStatus qualityStatus;
+        private final String productionOrder;
+        private final List<BatchTrace> traceRecords;
+        private final Map<String, Object> attributes;
+        private final LocalDateTime lastUpdate;
+
+        public MaterialBatch(String batchId, String materialId, String batchNumber) {
+            this.batchId = batchId != null ? batchId : UUID.randomUUID().toString();
+            this.materialId = materialId != null ? materialId : "";
+            this.batchNumber = batchNumber != null ? batchNumber : "";
+            this.creationDate = LocalDateTime.now();
+            this.expirationDate = LocalDateTime.now().plusYears(1);
+            this.initialQuantity = 0.0;
+            this.currentQuantity = 0.0;
+            this.unit = "pcs";
+            this.status = MaterialStatus.AVAILABLE;
+            this.qualityStatus = QualityStatus.PENDING;
+            this.productionOrder = "";
+            this.traceRecords = new CopyOnWriteArrayList<>();
+            this.attributes = new ConcurrentHashMap<>();
+            this.lastUpdate = LocalDateTime.now();
+        }
+
+        // Getters and Setters
+        public String getBatchId() {
+            return batchId;
+        }
+
+        public String getMaterialId() {
+            return materialId;
+        }
+
+        public String getBatchNumber() {
+            return batchNumber;
+        }
+
+        public LocalDateTime getCreationDate() {
+            return creationDate;
+        }
+
+        public LocalDateTime getExpirationDate() {
+            return expirationDate;
+        }
+
+        public double getInitialQuantity() {
+            return initialQuantity;
+        }
+
+        public double getCurrentQuantity() {
+            return currentQuantity;
+        }
+
+        public String getUnit() {
+            return unit;
+        }
+
+        public MaterialStatus getStatus() {
+            return status;
+        }
+
+        public QualityStatus getQualityStatus() {
+            return qualityStatus;
+        }
+
+        public String getProductionOrder() {
+            return productionOrder;
+        }
+
+        public List<BatchTrace> getTraceRecords() {
+            return new ArrayList<>(traceRecords);
+        }
+
+        public void addTraceRecord(BatchTrace traceRecord) {
+            this.traceRecords.add(traceRecord);
+        }
+
+        public Map<String, Object> getAttributes() {
+            return new HashMap<>(attributes);
+        }
+
+        public void setAttribute(String key, Object value) {
+            this.attributes.put(key, value);
+        }
+
+        public Object getAttribute(String key) {
+            return this.attributes.get(key);
+        }
+
+        public LocalDateTime getLastUpdate() {
+            return lastUpdate;
+        }
+
+        @Override
+        public String toString() {
+            return "MaterialBatch{" +
+                    "batchId='" + batchId + '\'' +
+                    ", materialId='" + materialId + '\'' +
+                    ", batchNumber='" + batchNumber + '\'' +
+                    ", currentQuantity=" + currentQuantity +
+                    ", unit='" + unit + '\'' +
+                    ", status=" + status +
+                    ", qualityStatus=" + qualityStatus +
+                    ", traceRecordCount=" + traceRecords.size() +
+                    '}';
+        }
+    }
+
+    // 批次追踪记录类
+    public static class BatchTrace {
+        private final String traceId;
+        private final String batchId;
+        private final TraceEventType eventType;
+        private final double quantity;
+        private final String unit;
+        private final String fromLocation;
+        private final String toLocation;
+        private final String operator;
+        private final LocalDateTime eventTime;
+        private final String referenceNumber;
+        private final Map<String, Object> attributes;
+
+        public BatchTrace(String batchId, TraceEventType eventType, double quantity) {
+            this.traceId = UUID.randomUUID().toString();
+            this.batchId = batchId != null ? batchId : "";
+            this.eventType = eventType != null ? eventType : TraceEventType.RECEIPT;
+            this.quantity = quantity;
+            this.unit = "pcs";
+            this.fromLocation = "";
+            this.toLocation = "";
+            this.operator = "System";
+            this.eventTime = LocalDateTime.now();
+            this.referenceNumber = "";
+            this.attributes = new ConcurrentHashMap<>();
+        }
+
+        // Getters and Setters
+        public String getTraceId() {
+            return traceId;
+        }
+
+        public String getBatchId() {
+            return batchId;
+        }
+
+        public TraceEventType getEventType() {
+            return eventType;
+        }
+
+        public double getQuantity() {
+            return quantity;
+        }
+
+        public String getUnit() {
+            return unit;
+        }
+
+        public BatchTrace setUnit(String unit) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public String getFromLocation() {
+            return fromLocation;
+        }
+
+        public BatchTrace setFromLocation(String fromLocation) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public String getToLocation() {
+            return toLocation;
+        }
+
+        public BatchTrace setToLocation(String toLocation) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public String getOperator() {
+            return operator;
+        }
+
+        public BatchTrace setOperator(String operator) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public LocalDateTime getEventTime() {
+            return eventTime;
+        }
+
+        public String getReferenceNumber() {
+            return referenceNumber;
+        }
+
+        public BatchTrace setReferenceNumber(String referenceNumber) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public Map<String, Object> getAttributes() {
+            return new HashMap<>(attributes);
+        }
+
+        public BatchTrace setAttribute(String key, Object value) {
+            this.attributes.put(key, value);
+            return this;
+        }
+
+        public Object getAttribute(String key) {
+            return this.attributes.get(key);
+        }
+
+        @Override
+        public String toString() {
+            return "BatchTrace{" +
+                    "traceId='" + traceId + '\'' +
+                    ", batchId='" + batchId + '\'' +
+                    ", eventType=" + eventType +
+                    ", quantity=" + quantity +
+                    ", unit='" + unit + '\'' +
+                    ", operator='" + operator + '\'' +
+                    ", eventTime=" + eventTime +
+                    '}';
+        }
+    }
+
+    // 物料追踪类
+    public static class MaterialTrace {
+        private final String traceId;
+        private final String materialId;
+        private final List<MaterialMovement> movements;
+        private final LocalDateTime startTime;
+        private final LocalDateTime endTime;
+        private final Map<String, Object> summary;
+        private final boolean isComplete;
+        private final Map<String, Object> metadata;
+
+        public MaterialTrace(String materialId) {
+            this.traceId = UUID.randomUUID().toString();
+            this.materialId = materialId != null ? materialId : "";
+            this.movements = new CopyOnWriteArrayList<>();
+            this.startTime = LocalDateTime.now();
+            this.endTime = null;
+            this.summary = new ConcurrentHashMap<>();
+            this.isComplete = false;
+            this.metadata = new ConcurrentHashMap<>();
+        }
+
+        // 完整构造函数
+        public MaterialTrace(String materialId, List<MaterialMovement> movements,
+                             LocalDateTime startTime, LocalDateTime endTime) {
+            this.traceId = UUID.randomUUID().toString();
+            this.materialId = materialId != null ? materialId : "";
+            this.movements = movements != null ? new ArrayList<>(movements) : new ArrayList<>();
+            this.startTime = startTime;
+            this.endTime = endTime;
+            this.summary = new ConcurrentHashMap<>();
+            this.isComplete = true;
+            this.metadata = new ConcurrentHashMap<>();
+
+            // 生成摘要
+            generateSummary();
+        }
+
+        // 生成摘要
+        private void generateSummary() {
+            summary.put("movementCount", movements.size());
+            summary.put("duration", java.time.Duration.between(startTime, endTime).toDays() + "天");
+
+            if (!movements.isEmpty()) {
+                // 统计各事件类型数量
+                Map<String, Long> eventTypeCount = movements.stream()
+                        .collect(Collectors.groupingBy(
+                                movement -> movement.getEventType().name(),
+                                Collectors.counting()
+                        ));
+                summary.put("eventTypeDistribution", eventTypeCount);
+
+                // 统计总数量变化
+                double totalQuantity = movements.stream()
+                        .mapToDouble(MaterialMovement::getQuantity)
+                        .sum();
+                summary.put("totalQuantity", totalQuantity);
+            }
+        }
+
+        // 添加物料移动记录
+        public void addMovement(MaterialMovement movement) {
+            if (movements.size() < DEFAULT_TRACE_BUFFER_SIZE) {
+                this.movements.add(movement);
+            } else {
+                logger.warn("Trace buffer full, dropping movement: {}", movement.getEventType());
+            }
+        }
+
+        // Getters
+        public String getTraceId() {
+            return traceId;
+        }
+
+        public String getMaterialId() {
+            return materialId;
+        }
+
+        public List<MaterialMovement> getMovements() {
+            return new ArrayList<>(movements);
+        }
+
+        public LocalDateTime getStartTime() {
+            return startTime;
+        }
+
+        public LocalDateTime getEndTime() {
+            return endTime;
+        }
+
+        public Map<String, Object> getSummary() {
+            return new HashMap<>(summary);
+        }
+
+        public boolean isComplete() {
+            return isComplete;
+        }
+
+        public Map<String, Object> getMetadata() {
+            return new HashMap<>(metadata);
+        }
+
+        public void setMetadata(String key, Object value) {
+            this.metadata.put(key, value);
+        }
+
+        public Object getMetadata(String key) {
+            return this.metadata.get(key);
+        }
+
+        @Override
+        public String toString() {
+            return "MaterialTrace{" +
+                    "traceId='" + traceId + '\'' +
+                    ", materialId='" + materialId + '\'' +
+                    ", movementCount=" + movements.size() +
+                    ", startTime=" + startTime +
+                    ", isComplete=" + isComplete +
+                    '}';
+        }
+    }
+
+    // 物料移动类
+    public static class MaterialMovement {
+        private final String movementId;
+        private final String materialId;
+        private final TraceEventType eventType;
+        private final double quantity;
+        private final String unit;
+        private final String fromLocation;
+        private final String toLocation;
+        private final String referenceNumber;
+        private final LocalDateTime movementTime;
+        private final String operator;
+        private final Map<String, Object> attributes;
+
+        public MaterialMovement(String materialId, TraceEventType eventType, double quantity) {
+            this.movementId = UUID.randomUUID().toString();
+            this.materialId = materialId != null ? materialId : "";
+            this.eventType = eventType != null ? eventType : TraceEventType.RECEIPT;
+            this.quantity = quantity;
+            this.unit = "pcs";
+            this.fromLocation = "";
+            this.toLocation = "";
+            this.referenceNumber = "";
+            this.movementTime = LocalDateTime.now();
+            this.operator = "System";
+            this.attributes = new ConcurrentHashMap<>();
+        }
+
+        // Getters and Setters
+        public String getMovementId() {
+            return movementId;
+        }
+
+        public String getMaterialId() {
+            return materialId;
+        }
+
+        public TraceEventType getEventType() {
+            return eventType;
+        }
+
+        public double getQuantity() {
+            return quantity;
+        }
+
+        public String getUnit() {
+            return unit;
+        }
+
+        public MaterialMovement setUnit(String unit) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public String getFromLocation() {
+            return fromLocation;
+        }
+
+        public MaterialMovement setFromLocation(String fromLocation) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public String getToLocation() {
+            return toLocation;
+        }
+
+        public MaterialMovement setToLocation(String toLocation) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public String getReferenceNumber() {
+            return referenceNumber;
+        }
+
+        public MaterialMovement setReferenceNumber(String referenceNumber) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public LocalDateTime getMovementTime() {
+            return movementTime;
+        }
+
+        public String getOperator() {
+            return operator;
+        }
+
+        public MaterialMovement setOperator(String operator) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public Map<String, Object> getAttributes() {
+            return new HashMap<>(attributes);
+        }
+
+        public MaterialMovement setAttribute(String key, Object value) {
+            this.attributes.put(key, value);
+            return this;
+        }
+
+        public Object getAttribute(String key) {
+            return this.attributes.get(key);
+        }
+
+        @Override
+        public String toString() {
+            return "MaterialMovement{" +
+                    "movementId='" + movementId + '\'' +
+                    ", materialId='" + materialId + '\'' +
+                    ", eventType=" + eventType +
+                    ", quantity=" + quantity +
+                    ", unit='" + unit + '\'' +
+                    ", movementTime=" + movementTime +
+                    '}';
+        }
+    }
+
+    // 过期预警类
+    public static class ExpirationAlert {
+        private final String alertId;
+        private final String materialId;
+        private final AlertType alertType;
+        private final LocalDateTime expirationDate;
+        private final long daysUntilExpiration;
+        private final String message;
+        private final LocalDateTime alertTime;
+        private final String recipient;
+        private final boolean acknowledged;
+        private final Map<String, Object> metadata;
+
+        public ExpirationAlert(String materialId, LocalDateTime expirationDate, long daysUntilExpiration) {
+            this.alertId = UUID.randomUUID().toString();
+            this.materialId = materialId != null ? materialId : "";
+            this.alertType = AlertType.EXPIRATION_WARNING;
+            this.expirationDate = expirationDate;
+            this.daysUntilExpiration = daysUntilExpiration;
+            this.message = "物料将在" + daysUntilExpiration + "天后过期";
+            this.alertTime = LocalDateTime.now();
+            this.recipient = "";
+            this.acknowledged = false;
+            this.metadata = new ConcurrentHashMap<>();
+        }
+
+        // Getters and Setters
+        public String getAlertId() {
+            return alertId;
+        }
+
+        public String getMaterialId() {
+            return materialId;
+        }
+
+        public AlertType getAlertType() {
+            return alertType;
+        }
+
+        public LocalDateTime getExpirationDate() {
+            return expirationDate;
+        }
+
+        public long getDaysUntilExpiration() {
+            return daysUntilExpiration;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public LocalDateTime getAlertTime() {
+            return alertTime;
+        }
+
+        public String getRecipient() {
+            return recipient;
+        }
+
+        public ExpirationAlert setRecipient(String recipient) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public boolean isAcknowledged() {
+            return acknowledged;
+        }
+
+        public ExpirationAlert setAcknowledged(boolean acknowledged) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public Map<String, Object> getMetadata() {
+            return new HashMap<>(metadata);
+        }
+
+        public ExpirationAlert setMetadata(String key, Object value) {
+            this.metadata.put(key, value);
+            return this;
+        }
+
+        public Object getMetadata(String key) {
+            return this.metadata.get(key);
+        }
+
+        @Override
+        public String toString() {
+            return "ExpirationAlert{" +
+                    "alertId='" + alertId + '\'' +
+                    ", materialId='" + materialId + '\'' +
+                    ", alertType=" + alertType +
+                    ", daysUntilExpiration=" + daysUntilExpiration +
+                    ", message='" + message + '\'' +
+                    ", alertTime=" + alertTime +
+                    ", acknowledged=" + acknowledged +
+                    '}';
+        }
+    }
+
+    // 库存预警类
+    public static class InventoryAlert {
+        private final String alertId;
+        private final String materialId;
+        private final AlertType alertType;
+        private final double currentQuantity;
+        private final double minimumQuantity;
+        private final double thresholdPercentage;
+        private final String unit;
+        private final String message;
+        private final LocalDateTime alertTime;
+        private final String recipient;
+        private final boolean acknowledged;
+        private final Map<String, Object> metadata;
+
+        public InventoryAlert(String materialId, double currentQuantity, double minimumQuantity,
+                              double thresholdPercentage, String unit) {
+            this.alertId = UUID.randomUUID().toString();
+            this.materialId = materialId != null ? materialId : "";
+            this.alertType = AlertType.INVENTORY_LOW;
+            this.currentQuantity = currentQuantity;
+            this.minimumQuantity = minimumQuantity;
+            this.thresholdPercentage = thresholdPercentage;
+            this.unit = unit != null ? unit : "pcs";
+            this.message = "库存不足，当前库存: " + currentQuantity + unit +
+                    "，最低库存: " + minimumQuantity + unit;
+            this.alertTime = LocalDateTime.now();
+            this.recipient = "";
+            this.acknowledged = false;
+            this.metadata = new ConcurrentHashMap<>();
+        }
+
+        // Getters and Setters
+        public String getAlertId() {
+            return alertId;
+        }
+
+        public String getMaterialId() {
+            return materialId;
+        }
+
+        public AlertType getAlertType() {
+            return alertType;
+        }
+
+        public double getCurrentQuantity() {
+            return currentQuantity;
+        }
+
+        public double getMinimumQuantity() {
+            return minimumQuantity;
+        }
+
+        public double getThresholdPercentage() {
+            return thresholdPercentage;
+        }
+
+        public String getUnit() {
+            return unit;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public LocalDateTime getAlertTime() {
+            return alertTime;
+        }
+
+        public String getRecipient() {
+            return recipient;
+        }
+
+        public InventoryAlert setRecipient(String recipient) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public boolean isAcknowledged() {
+            return acknowledged;
+        }
+
+        public InventoryAlert setAcknowledged(boolean acknowledged) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public Map<String, Object> getMetadata() {
+            return new HashMap<>(metadata);
+        }
+
+        public InventoryAlert setMetadata(String key, Object value) {
+            this.metadata.put(key, value);
+            return this;
+        }
+
+        public Object getMetadata(String key) {
+            return this.metadata.get(key);
+        }
+
+        @Override
+        public String toString() {
+            return "InventoryAlert{" +
+                    "alertId='" + alertId + '\'' +
+                    ", materialId='" + materialId + '\'' +
+                    ", alertType=" + alertType +
+                    ", currentQuantity=" + currentQuantity +
+                    ", minimumQuantity=" + minimumQuantity +
+                    ", unit='" + unit + '\'' +
+                    ", message='" + message + '\'' +
+                    ", alertTime=" + alertTime +
+                    ", acknowledged=" + acknowledged +
+                    '}';
+        }
+    }
+
+    // 质量状态历史类
+    public static class QualityStatusHistory {
+        private final String historyId;
+        private final String materialId;
+        private final List<QualityRecord> records;
+        private final LocalDateTime lastUpdate;
+
+        public QualityStatusHistory(String materialId) {
+            this.historyId = UUID.randomUUID().toString();
+            this.materialId = materialId != null ? materialId : "";
+            this.records = new CopyOnWriteArrayList<>();
+            this.lastUpdate = LocalDateTime.now();
+        }
+
+        // Getters
+        public String getHistoryId() {
+            return historyId;
+        }
+
+        public String getMaterialId() {
+            return materialId;
+        }
+
+        public List<QualityRecord> getRecords() {
+            return new ArrayList<>(records);
+        }
+
+        public void addRecord(QualityRecord record) {
+            this.records.add(record);
+            // 更新最后更新时间
+            try {
+                // 使用反射更新lastUpdate字段（仅在示例中）
+                java.lang.reflect.Field field = this.getClass().getDeclaredField("lastUpdate");
+                field.setAccessible(true);
+                field.set(this, LocalDateTime.now());
+            } catch (Exception e) {
+                // 忽略异常
+            }
+        }
+
+        public LocalDateTime getLastUpdate() {
+            return lastUpdate;
+        }
+
+        @Override
+        public String toString() {
+            return "QualityStatusHistory{" +
+                    "historyId='" + historyId + '\'' +
+                    ", materialId='" + materialId + '\'' +
+                    ", recordCount=" + records.size() +
+                    ", lastUpdate=" + lastUpdate +
+                    '}';
+        }
+    }
+
+    // 质量记录类
+    public static class QualityRecord {
+        private final String recordId;
+        private final String materialId;
+        private final QualityStatus status;
+        private final String inspector;
+        private final LocalDateTime inspectionTime;
+        private final String inspectionReport;
+        private final Map<String, Object> testResults;
+        private final String remarks;
+
+        public QualityRecord(String materialId, QualityStatus status) {
+            this.recordId = UUID.randomUUID().toString();
+            this.materialId = materialId != null ? materialId : "";
+            this.status = status != null ? status : QualityStatus.PENDING;
+            this.inspector = "";
+            this.inspectionTime = LocalDateTime.now();
+            this.inspectionReport = "";
+            this.testResults = new ConcurrentHashMap<>();
+            this.remarks = "";
+        }
+
+        // Getters and Setters
+        public String getRecordId() {
+            return recordId;
+        }
+
+        public String getMaterialId() {
+            return materialId;
+        }
+
+        public QualityStatus getStatus() {
+            return status;
+        }
+
+        public String getInspector() {
+            return inspector;
+        }
+
+        public QualityRecord setInspector(String inspector) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public LocalDateTime getInspectionTime() {
+            return inspectionTime;
+        }
+
+        public String getInspectionReport() {
+            return inspectionReport;
+        }
+
+        public QualityRecord setInspectionReport(String inspectionReport) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        public Map<String, Object> getTestResults() {
+            return new HashMap<>(testResults);
+        }
+
+        public QualityRecord setTestResult(String key, Object value) {
+            this.testResults.put(key, value);
+            return this;
+        }
+
+        public Object getTestResult(String key) {
+            return this.testResults.get(key);
+        }
+
+        public String getRemarks() {
+            return remarks;
+        }
+
+        public QualityRecord setRemarks(String remarks) {
+            // This would need a builder pattern or new instance in real implementation
+            return this;
+        }
+
+        @Override
+        public String toString() {
+            return "QualityRecord{" +
+                    "recordId='" + recordId + '\'' +
+                    ", materialId='" + materialId + '\'' +
+                    ", status=" + status +
+                    ", inspector='" + inspector + '\'' +
+                    ", inspectionTime=" + inspectionTime +
+                    '}';
+        }
+    }
+
+    // 追踪查询类
+    public static class TraceQuery {
+        private LocalDateTime startDate;
+        private LocalDateTime endDate;
+        private TraceEventType eventType;
+        private String operator;
+        private int limit = 100;
+
+        // Getters and Setters
+        public LocalDateTime getStartDate() {
+            return startDate;
+        }
+
+        public TraceQuery setStartDate(LocalDateTime startDate) {
+            this.startDate = startDate;
+            return this;
+        }
+
+        public LocalDateTime getEndDate() {
+            return endDate;
+        }
+
+        public TraceQuery setEndDate(LocalDateTime endDate) {
+            this.endDate = endDate;
+            return this;
+        }
+
+        public TraceEventType getEventType() {
+            return eventType;
+        }
+
+        public TraceQuery setEventType(TraceEventType eventType) {
+            this.eventType = eventType;
+            return this;
+        }
+
+        public String getOperator() {
+            return operator;
+        }
+
+        public TraceQuery setOperator(String operator) {
+            this.operator = operator;
+            return this;
+        }
+
+        public int getLimit() {
+            return limit;
+        }
+
+        public TraceQuery setLimit(int limit) {
+            this.limit = limit;
+            return this;
+        }
+    }
+
+    /**
+     * 缓存统计信息类
+     */
+    public static class CacheStatistics {
+        private int materialCacheSize;
+        private int batchCacheSize;
+        private int traceCacheSize;
+        private long cacheTimeout;
+
+        // Getters and Setters
+        public int getMaterialCacheSize() {
+            return materialCacheSize;
+        }
+
+        public void setMaterialCacheSize(int materialCacheSize) {
+            this.materialCacheSize = materialCacheSize;
+        }
+
+        public int getBatchCacheSize() {
+            return batchCacheSize;
+        }
+
+        public void setBatchCacheSize(int batchCacheSize) {
+            this.batchCacheSize = batchCacheSize;
+        }
+
+        public int getTraceCacheSize() {
+            return traceCacheSize;
+        }
+
+        public void setTraceCacheSize(int traceCacheSize) {
+            this.traceCacheSize = traceCacheSize;
+        }
+
+        public long getCacheTimeout() {
+            return cacheTimeout;
+        }
+
+        public void setCacheTimeout(long cacheTimeout) {
+            this.cacheTimeout = cacheTimeout;
+        }
+
+        @Override
+        public String toString() {
+            return "CacheStatistics{" +
+                    "materialCacheSize=" + materialCacheSize +
+                    ", batchCacheSize=" + batchCacheSize +
+                    ", traceCacheSize=" + traceCacheSize +
+                    ", cacheTimeout=" + cacheTimeout + "ms" +
+                    '}';
         }
     }
 }

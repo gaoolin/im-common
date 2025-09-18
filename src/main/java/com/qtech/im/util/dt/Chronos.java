@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author gaozhilin
  * @version 1.1
  * @email gaoolin@gmail.com
- * @date 2025/08/20
+ * @since 2025/08/20
  */
 public class Chronos {
 

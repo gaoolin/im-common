@@ -1,12 +1,13 @@
 package com.qtech.im.config;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 14:19:02
  * 配置属性接口
  * <p>
  * 定义配置属性的基本操作
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19 14:19:02
  */
 public interface ConfigProperty<T> {
 

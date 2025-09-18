@@ -1,12 +1,13 @@
 package com.qtech.im.exception;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 13:38:18
  * 系统异常类
  * <p>
  * 用于表示系统级别或技术层面的异常情况
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19 13:38:18
  */
 public class SystemException extends BaseException {
     private static final long serialVersionUID = 1L;

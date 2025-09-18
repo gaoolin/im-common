@@ -19,7 +19,7 @@ import com.qtech.im.semiconductor.equipment.parameter.list.registry.AbstractRegi
  * @author gaozhilin
  * @version 1.0
  * @email gaoolin@gmail.com
- * @date 2025/08/25
+ * @since 2025/08/25
  */
 public class CommandHandlerRegistry extends AbstractRegistry<String, CommandHandler<?>> {
     // 饿汉式单例实例

@@ -4,12 +4,13 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 14:19:56
  * 配置源接口
  * <p>
  * 定义配置源的基本操作
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19 14:19:56
  */
 public interface ConfigSource {
 

@@ -5,9 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/22 09:39:59
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/22 09:39:59
  */
 
 public class QtechImBizConstant {
@@ -27,9 +27,9 @@ public class QtechImBizConstant {
     public static final String REDIS_OLP_CHECK_DUPLICATION_KEY_PREFIX = "entity:im:olp_chk:";
     public static final String REDIS_OLP_RAW_DUPLICATION_KEY_PREFIX = "entity:im:olp_raw:";
     public static final String EQ_REVERSE_CTRL_INFO_REDIS_KEY_PREFIX = "entity:im:chk:reverse:";
-    public static final String REDIS_COMPARISON_MODEL_KEY_PREFIX = "entity:im:aa:entity:model:";
-    public static final String REDIS_COMPARISON_MODEL_INFO_KEY_SUFFIX = "entity:im:aa:entity:model:info:";
-    public static final String EQ_REVERSE_IGNORE_SIM_PREFIX = "entity:im:chk:ignored:";
+    public static final String REDIS_COMPARISON_MODEL_KEY_PREFIX = "qtech:im:aa:list:model";
+    public static final String REDIS_COMPARISON_MODEL_INFO_KEY_SUFFIX = "qtech:im:aa:list:model:info";
+    public static final String EQ_REVERSE_IGNORE_SIM_PREFIX = "qtech:im:chk:ignored:";
     public static final String REDIS_JOB_RUN_DT_KEY_PREFIX = "entity:datadev:job:run:dt:";
     public static final String REDIS_JOB_RUN_STAT_KEY_PREFIX = "entity:datadev:job:run:stat:";
     public static final String WB_OLP_CHECK_REDIS_KEY_PREFIX = "entity:chk:olp:check:";
@@ -45,6 +45,9 @@ public class QtechImBizConstant {
     public static final String AGG_MTF_CHECK_ITEMS_RESULT_SUFFIX = "F";
     public static final String EPOXY_INSPECTION_AUTO_INTERVAL_MIN = "5";
     public static final String EPOXY_INSPECTION_AUTO_INTERVAL_MAX = "30";
+    public static final String AA_LIST_PARAM_RAW_DATA_SIMID_FILED = "OpCode";
+    public static final String AA_LIST_PARAM_RAW_DATA_PROD_TYPE_FILED = "WoCode";
+    public static final String AA_LIST_PARAM_RAW_DATA_HEX_FILED = "FactoryName";
 
     // SERVICE_API 常量
     // REVERSE_CONSTANT

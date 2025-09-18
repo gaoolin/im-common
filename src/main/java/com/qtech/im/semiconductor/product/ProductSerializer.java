@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  * @author gaozhilin
  * @version 1.0
  * @email gaoolin@gmail.com
- * @date 2025/08/21
+ * @since 2025/08/21
  */
 public class ProductSerializer {
 

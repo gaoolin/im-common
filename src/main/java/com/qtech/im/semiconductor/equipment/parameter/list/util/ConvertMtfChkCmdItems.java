@@ -2,8 +2,8 @@ package com.qtech.im.semiconductor.equipment.parameter.list.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qtech.im.semiconductor.equipment.parameter.list.entity.struct.AaListCommand;
 import com.qtech.im.semiconductor.equipment.parameter.list.entity.struct.BoundsLoader;
+import com.qtech.im.semiconductor.equipment.parameter.list.entity.struct.EqLstCommand;
 import com.qtech.im.util.json.JsonMapperProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -16,20 +16,21 @@ import static com.qtech.im.constant.QtechImBizConstant.AGG_MTF_CHECK_ITEMS_FILTE
 import static com.qtech.im.constant.QtechImBizConstant.AGG_MTF_CHECK_ITEMS_RESULT_SUFFIX;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2024/12/18 09:00:38
- * desc   :  用于将 MTF_CHECK 命令的 ITEMS 转换为 Json格式字符串
+ * 用于将 MTF_CHECK 命令的 ITEMS 转换为 Json格式字符串
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2024/12/18 09:00:38
  */
 public class ConvertMtfChkCmdItems {
     private static final Logger logger = LoggerFactory.getLogger(ConvertMtfChkCmdItems.class);
     private static final ObjectMapper objectMapper = JsonMapperProvider.getSharedInstance();
 
-    public static List<AaListCommand> convert(List<AaListCommand> commands) {
+    public static List<EqLstCommand> convert(List<EqLstCommand> commands) {
         // 一次遍历生成 filteredCommands 和 remainingCommands
-        List<AaListCommand> filteredCommands = new ArrayList<>();
-        List<AaListCommand> remainingCommands = new ArrayList<>();
-        for (AaListCommand command : commands) {
+        List<EqLstCommand> filteredCommands = new ArrayList<>();
+        List<EqLstCommand> remainingCommands = new ArrayList<>();
+        for (EqLstCommand command : commands) {
             if (isValidCommand(command)) {
                 filteredCommands.add(command);
             } else {
@@ -40,15 +41,15 @@ public class ConvertMtfChkCmdItems {
         if (filteredCommands.isEmpty()) return remainingCommands;
 
         // 按前缀分组并过滤无效命令
-        Map<String, List<AaListCommand>> groupedCommands = filteredCommands.stream()
+        Map<String, List<EqLstCommand>> groupedCommands = filteredCommands.stream()
                 .filter(cmd -> cmd.getBoundsLoader() != null &&
                         cmd.getBoundsLoader().hasSingleValue() &&
                         cmd.getSubCommand() != null)
-                .collect(Collectors.groupingBy(AaListCommand::getParentCommand));
+                .collect(Collectors.groupingBy(EqLstCommand::getParentCommand));
 
-        List<AaListCommand> resultCommands = new ArrayList<>();
-        for (Map.Entry<String, List<AaListCommand>> entry : groupedCommands.entrySet()) {
-            List<AaListCommand> sameGroupNotNull = entry.getValue();
+        List<EqLstCommand> resultCommands = new ArrayList<>();
+        for (Map.Entry<String, List<EqLstCommand>> entry : groupedCommands.entrySet()) {
+            List<EqLstCommand> sameGroupNotNull = entry.getValue();
 
             // 根据subSystem进行排序
             sameGroupNotNull.sort(Comparator.comparingInt(cmd -> {
@@ -62,7 +63,7 @@ public class ConvertMtfChkCmdItems {
             // 构建 Map，subSystem 作为键，value 作为值
             Map<String, String> subSystemValueMap = sameGroupNotNull.stream()
                     .collect(Collectors.toMap(
-                            AaListCommand::getSubCommand,
+                            EqLstCommand::getSubCommand,
                             imAaListCommand -> {
                                 BoundsLoader boundsLoader = imAaListCommand.getBoundsLoader();
                                 return boundsLoader.getSingleValue();
@@ -86,7 +87,7 @@ public class ConvertMtfChkCmdItems {
 
             // 使用新的ImAaListCommand构建方式
             BoundsLoader boundsLoader = BoundsLoader.single(sameGroupJsonStr);
-            AaListCommand temp = new AaListCommand(boundsLoader);
+            EqLstCommand temp = new EqLstCommand(boundsLoader);
 
             // 利用AbstractCommandStructure的属性存储命令信息
             temp.setParentCommand(null);     // 父命令存储前缀命令
@@ -101,7 +102,7 @@ public class ConvertMtfChkCmdItems {
         return resultCommands;
     }
 
-    private static boolean isValidCommand(AaListCommand command) {
+    private static boolean isValidCommand(EqLstCommand command) {
         if (command == null || command.getParentCommand() == null) {
             return false;
         }

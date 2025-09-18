@@ -3,13 +3,13 @@ package com.qtech.im.exception;
 import java.util.List;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 13:38:57
- * desc   :
  * 参数校验异常类
  * <p>
  * 用于表示参数校验失败的情况
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @date 2025/08/19 13:38:57
  */
 public class ValidationException extends BusinessException {
     private static final long serialVersionUID = 1L;

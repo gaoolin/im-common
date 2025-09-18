@@ -1,12 +1,13 @@
 package com.qtech.im.config;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 14:21:54
  * 配置监听器接口
- <p>
+ * <p>
  * 监听配置变化事件
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19 14:21:54
  */
 public interface ConfigurationListener {
 

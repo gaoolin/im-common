@@ -2,7 +2,7 @@ package com.qtech.im.semiconductor.equipment.parameter.list.entity.param;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.qtech.im.semiconductor.equipment.parameter.list.entity.struct.AaListCommand;
+import com.qtech.im.semiconductor.equipment.parameter.list.entity.struct.EqLstCommand;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -15,9 +15,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * since  :  2024/05/14
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2024/05/14
  */
 
 @Data
@@ -25,8 +25,8 @@ import java.util.Map;
 @ToString(callSuper = true)
 @Accessors(chain = true)  // 注解用于启用链式调用风格，这意味着在调用 setter 方法时，可以返回当前对象，从而使得多个 setter 方法可以链式调用。
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AaListParamParsed extends AaListParamSet {
-    private static final Logger logger = LoggerFactory.getLogger(AaListParamParsed.class);
+public class EqLstParsed extends EqLstSet {
+    private static final Logger logger = LoggerFactory.getLogger(EqLstParsed.class);
 
     private String simId;
 
@@ -41,8 +41,8 @@ public class AaListParamParsed extends AaListParamSet {
     }
 
     @Override
-    public void fillWithData(List<AaListCommand> aaListCommands) {
-        super.fillWithData(aaListCommands);
+    public void fillWithData(List<EqLstCommand> eqLstCommands) {
+        super.fillWithData(eqLstCommands);
     }
 
     /**

@@ -5,13 +5,13 @@ import com.qtech.im.exception.BaseException;
 import java.util.Map;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 13:45:39
  * 异常处理器接口
  * <p>
  *
  * @param <T> 异常类型
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19 13:45:39
  */
 @FunctionalInterface
 public interface ExceptionHandler<T extends Throwable> {

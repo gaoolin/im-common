@@ -1,13 +1,13 @@
 package com.qtech.im.util.string;
 
-import static com.qtech.im.constant.AaListCamelCaseConverter.*;
+import static com.qtech.im.constant.EqLstCamelCaseConverter.*;
 
 /**
  * 将AA List中的参数名称字符串转换为驼峰式命名
  *
- * @author :  gaozhilin
- * @email :  gaoolin@gmail.com
- * @since :  2024/05/15 09:43:23
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2024/05/15 09:43:23
  */
 
 public class ToCamelCaseConverter {

@@ -21,17 +21,15 @@ import java.util.Arrays;
  * @author gaozhilin
  * @version 1.0
  * @email gaoolin@gmail.com
- * @date 2025/08/20
+ * @since 2025/08/20
  */
 public class SecsGemKit {
 
-    private static final Logger logger = LoggerFactory.getLogger(SecsGemKit.class);
-
     // 默认设备ID
     public static final int DEFAULT_DEVICE_ID = 0;
-
     // 默认超时时间（毫秒）
     public static final int DEFAULT_TIMEOUT = 5000;
+    private static final Logger logger = LoggerFactory.getLogger(SecsGemKit.class);
 
     /**
      * 解析SECS消息
@@ -66,10 +64,10 @@ public class SecsGemKit {
     /**
      * 构建SECS消息
      *
-     * @param stream    Stream号
-     * @param function  Function号
-     * @param deviceId  设备ID
-     * @param data      消息数据
+     * @param stream   Stream号
+     * @param function Function号
+     * @param deviceId 设备ID
+     * @param data     消息数据
      * @return SECS消息对象
      */
     public static SecsMessage buildSecsMessage(int stream, int function, int deviceId, byte[] data) {
@@ -124,6 +122,17 @@ public class SecsGemKit {
     }
 
     /**
+     * SECS连接接口
+     */
+    public interface SecsConnection {
+        byte[] send(byte[] message, int timeout) throws Exception;
+
+        void close();
+
+        boolean isConnected();
+    }
+
+    /**
      * SECS消息类
      */
     public static class SecsMessage {
@@ -136,8 +145,13 @@ public class SecsGemKit {
         }
 
         // Getters
-        public byte[] getHeader() { return Arrays.copyOf(header, header.length); }
-        public byte[] getBody() { return Arrays.copyOf(body, body.length); }
+        public byte[] getHeader() {
+            return Arrays.copyOf(header, header.length);
+        }
+
+        public byte[] getBody() {
+            return Arrays.copyOf(body, body.length);
+        }
 
         public byte[] toByteArray() {
             byte[] result = new byte[header.length + body.length];
@@ -149,18 +163,9 @@ public class SecsGemKit {
         @Override
         public String toString() {
             return "SecsMessage{" +
-                   "header=" + Arrays.toString(header) +
-                   ", bodyLength=" + body.length +
-                   '}';
+                    "header=" + Arrays.toString(header) +
+                    ", bodyLength=" + body.length +
+                    '}';
         }
-    }
-
-    /**
-     * SECS连接接口
-     */
-    public interface SecsConnection {
-        byte[] send(byte[] message, int timeout) throws Exception;
-        void close();
-        boolean isConnected();
     }
 }

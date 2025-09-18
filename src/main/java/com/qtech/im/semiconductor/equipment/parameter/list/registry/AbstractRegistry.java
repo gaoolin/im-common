@@ -26,7 +26,7 @@ import java.util.function.Function;
  * @author gaozhilin
  * @version 1.0
  * @email gaoolin@gmail.com
- * @date 2025/08/25
+ * @since 2025/08/25
  */
 public abstract class AbstractRegistry<K, V> implements Registry<K, V> {
 
