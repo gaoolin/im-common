@@ -7,7 +7,6 @@
         <version>1.0.2</version>
     </parent>
 
-    <groupId>com.im</groupId>
     <artifactId>exception</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
@@ -17,14 +16,40 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <!--<java.version>17</java.version>-->
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- 使用settings.xml中定义的仓库配置 -->
+    <distributionManagement>
+        <repository>
+            <id>rdc-releases</id>
+            <url>https://packages.aliyun.com/maven/repository/2291757-release-IXikA3/</url>
+        </repository>
+        <snapshotRepository>
+            <id>rdc-snapshots</id>
+            <url>https://packages.aliyun.com/maven/repository/2291757-snapshot-d3GqL2/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

@@ -22,6 +22,7 @@
         <module>utils</module>
         <module>server</module>
         <module>qtech</module>
+        <module>common</module>
     </modules>
 
     <properties>
