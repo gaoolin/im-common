@@ -1,4 +1,4 @@
-package com.qtech.im.constant;
+package com.im.constants;
 
 import java.util.Arrays;
 import java.util.HashSet;
