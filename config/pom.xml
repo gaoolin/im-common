@@ -7,6 +7,7 @@
         <version>1.0.2</version>
     </parent>
 
+    <groupId>org.im.config</groupId>
     <artifactId>config</artifactId>
     <packaging>jar</packaging>
 

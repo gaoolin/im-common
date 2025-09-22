@@ -7,7 +7,7 @@
         <version>1.0.2</version>
     </parent>
 
-    <groupId>com.im</groupId>
+    <groupId>org.im.integration</groupId>
     <artifactId>integration</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>

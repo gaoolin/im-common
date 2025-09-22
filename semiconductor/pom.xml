@@ -7,6 +7,7 @@
         <version>1.0.2</version>
     </parent>
 
+    <groupId>org.im.semiconductor</groupId>
     <artifactId>semiconductor</artifactId>
     <version>1.0.1</version>
     <packaging>jar</packaging>
@@ -22,18 +23,18 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.im</groupId>
+            <groupId>org.im.common</groupId>
             <artifactId>common</artifactId>
             <version>1.0.0</version>
         </dependency>
 
         <dependency>
-            <groupId>org.im</groupId>
+            <groupId>org.im.util</groupId>
             <artifactId>utils</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>org.im</groupId>
+            <groupId>com.im.qtech</groupId>
             <artifactId>qtech</artifactId>
             <version>1.0.0</version>
         </dependency>

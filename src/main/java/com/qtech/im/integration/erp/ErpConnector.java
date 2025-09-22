@@ -1084,7 +1084,7 @@ public class ErpConnector {
      */
     public static boolean reportExceptionData(ExceptionData data) {
         if (data == null) {
-            logger.warn("Invalid exception data for reporting");
+            logger.warn("Invalid type data for reporting");
             return false;
         }
 
@@ -1096,7 +1096,7 @@ public class ErpConnector {
 
             return true;
         } catch (Exception e) {
-            logger.error("Failed to report exception data: " + data.getExceptionId(), e);
+            logger.error("Failed to report type data: " + data.getExceptionId(), e);
             return false;
         }
     }

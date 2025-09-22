@@ -7,7 +7,7 @@
         <version>1.0.2</version>
     </parent>
 
-    <groupId>com.im</groupId>
+    <groupId>org.im.orm</groupId>
     <artifactId>orm</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
@@ -23,10 +23,41 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.im</groupId>
+            <artifactId>exception</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!-- HikariCP高性能连接池 -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>4.0.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.6.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.im.exception</groupId>
+            <artifactId>exception</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

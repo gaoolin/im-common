@@ -1,0 +1,319 @@
+package org.im.orm;
+
+import com.zaxxer.hikari.HikariConfig;
+import org.im.orm.core.MultiDataSourceSession;
+import org.im.orm.core.SessionFactory;
+import org.im.orm.datasource.DataSourceManager;
+import org.im.orm.datasource.HikariConnectionProvider;
+import org.im.orm.example.Department;
+import org.im.orm.example.User;
+import org.im.orm.util.Constants;
+
+import java.sql.Connection;
+import java.sql.Statement;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/09/22
+ */
+
+public class QueryBuilderTest {
+
+    public static void main(String[] args) {
+        try {
+            // 初始化数据源
+            initializeDataSources();
+
+            // 创建表结构
+            createTableStructure();
+
+            // 初始化测试数据
+            initializeTestData();
+
+            // 测试查询构建器功能
+            testQueryBuilder();
+
+            // 清理资源
+            cleanup();
+
+            System.out.println("查询构建器功能测试完成");
+        } catch (Exception e) {
+            System.err.println("查询构建器功能测试失败: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 初始化数据源
+     */
+    private static void initializeDataSources() {
+        System.out.println("初始化数据源...");
+
+        // 配置PostgreSQL数据源
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(Constants.POSTGRES_URL);
+        config.setUsername(Constants.POSTGRES_USER);
+        config.setPassword(Constants.POSTGRES_PASSWORD);
+        config.setDriverClassName(Constants.POSTGRES_DRIVER_CLASS);
+        config.setMaximumPoolSize(5);
+
+        HikariConnectionProvider provider = new HikariConnectionProvider(config);
+        DataSourceManager.registerDataSource("postgresql", provider);
+
+        System.out.println("PostgreSQL数据源初始化完成");
+    }
+
+    /**
+     * 创建表结构
+     */
+    private static void createTableStructure() {
+        System.out.println("创建表结构...");
+
+        try {
+            HikariConnectionProvider provider = (HikariConnectionProvider) DataSourceManager.getDataSource("postgresql");
+            try (Connection connection = provider.getConnection();
+                 Statement statement = connection.createStatement()) {
+
+                // 删除已存在的表（如果存在）
+                statement.execute("DROP TABLE IF EXISTS users");
+                statement.execute("DROP TABLE IF EXISTS departments");
+
+                // 创建departments表
+                String createDepartmentsTableSQL = "CREATE TABLE departments (" +
+                        "id BIGSERIAL PRIMARY KEY, " +
+                        "name VARCHAR(100) NOT NULL, " +
+                        "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+                        ")";
+                statement.execute(createDepartmentsTableSQL);
+
+                // 创建users表，包含外键关联departments表
+                String createUsersTableSQL = "CREATE TABLE users (" +
+                        "id BIGSERIAL PRIMARY KEY, " +
+                        "username VARCHAR(50) NOT NULL, " +
+                        "email VARCHAR(100) NOT NULL, " +
+                        "department_id BIGINT, " +
+                        "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
+                        "FOREIGN KEY (department_id) REFERENCES departments(id)" +
+                        ")";
+                statement.execute(createUsersTableSQL);
+
+                System.out.println("表结构创建完成");
+            }
+        } catch (Exception e) {
+            System.err.println("创建表结构失败: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 初始化测试数据
+     */
+    private static void initializeTestData() {
+        System.out.println("初始化测试数据...");
+
+        // 创建会话
+        MultiDataSourceSession session = SessionFactory.createSession("postgresql");
+
+        try {
+            // 创建部门
+            Department department1 = new Department("研发部");
+            session.save(department1);
+
+            Department department2 = new Department("市场部");
+            session.save(department2);
+
+            Department department3 = new Department("人事部");
+            session.save(department3);
+
+            // 创建用户
+            User user1 = new User("张三", "zhangsan@example.com");
+            user1.setDepartment(department1);
+            session.save(user1);
+
+            User user2 = new User("李四", "lisi@example.com");
+            user2.setDepartment(department1);
+            session.save(user2);
+
+            User user3 = new User("王五", "wangwu@example.com");
+            user3.setDepartment(department2);
+            session.save(user3);
+
+            User user4 = new User("赵六", "zhaoliu@example.com");
+            user4.setDepartment(department3);
+            session.save(user4);
+
+            System.out.println("测试数据初始化完成");
+        } finally {
+            session.close();
+        }
+    }
+
+    /**
+     * 测试查询构建器功能
+     */
+    private static void testQueryBuilder() {
+        System.out.println("开始测试查询构建器功能...");
+
+        // 创建会话
+        MultiDataSourceSession session = SessionFactory.createSession("postgresql");
+
+        try {
+            // 测试基本查询
+            testBasicQuery(session);
+
+            // 测试条件查询
+            testConditionalQuery(session);
+
+            // 测试排序查询
+            testOrderByQuery(session);
+
+            // 测试分页查询
+            testPaginationQuery(session);
+
+            // 测试COUNT查询
+            testCountQuery(session);
+
+        } finally {
+            // 关闭会话
+            session.close();
+        }
+
+        System.out.println("查询构建器功能测试完成");
+    }
+
+    /**
+     * 测试基本查询
+     *
+     * @param session 会话
+     */
+    private static void testBasicQuery(MultiDataSourceSession session) {
+        System.out.println("测试基本查询...");
+
+        // 查询所有用户
+        List<User> users = session.createQuery(User.class).getResultList();
+        System.out.println("查询到 " + users.size() + " 个用户");
+
+        // 查询单个用户
+        User user = session.createQuery(User.class).eq("username", "张三").getSingleResult();
+        System.out.println("查询到用户: " + user);
+    }
+
+    /**
+     * 测试条件查询
+     *
+     * @param session 会话
+     */
+    private static void testConditionalQuery(MultiDataSourceSession session) {
+        System.out.println("测试条件查询...");
+
+        // 测试等于条件
+        List<User> users1 = session.createQuery(User.class)
+                .eq("username", "张三")
+                .getResultList();
+        System.out.println("用户名等于'张三'的用户数: " + users1.size());
+
+        // 测试不等于条件
+        List<User> users2 = session.createQuery(User.class)
+                .ne("username", "张三")
+                .getResultList();
+        System.out.println("用户名不等于'张三'的用户数: " + users2.size());
+
+        // 测试LIKE条件
+        List<User> users3 = session.createQuery(User.class)
+                .like("username", "%三")
+                .getResultList();
+        System.out.println("用户名LIKE'%三'的用户数: " + users3.size());
+
+        // 测试IN条件
+        List<User> users4 = session.createQuery(User.class)
+                .in("username", Arrays.asList("张三", "李四", "王五"))
+                .getResultList();
+        System.out.println("用户名IN('张三', '李四', '王五')的用户数: " + users4.size());
+    }
+
+    /**
+     * 测试排序查询
+     *
+     * @param session 会话
+     */
+    private static void testOrderByQuery(MultiDataSourceSession session) {
+        System.out.println("测试排序查询...");
+
+        // 按用户名升序排列
+        List<User> users1 = session.createQuery(User.class)
+                .orderBy("username", true)
+                .getResultList();
+        System.out.println("按用户名升序排列的用户:");
+        for (User user : users1) {
+            System.out.println("  " + user.getUsername());
+        }
+
+        // 按用户名降序排列
+        List<User> users2 = session.createQuery(User.class)
+                .orderBy("username", false)
+                .getResultList();
+        System.out.println("按用户名降序排列的用户:");
+        for (User user : users2) {
+            System.out.println("  " + user.getUsername());
+        }
+    }
+
+    /**
+     * 测试分页查询
+     *
+     * @param session 会话
+     */
+    private static void testPaginationQuery(MultiDataSourceSession session) {
+        System.out.println("测试分页查询...");
+
+        // 查询前2个用户
+        List<User> users1 = session.createQuery(User.class)
+                .limit(2)
+                .getResultList();
+        System.out.println("前2个用户:");
+        for (User user : users1) {
+            System.out.println("  " + user.getUsername());
+        }
+
+        // 查询跳过前2个后的2个用户
+        List<User> users2 = session.createQuery(User.class)
+                .offset(2)
+                .limit(2)
+                .getResultList();
+        System.out.println("跳过前2个后的2个用户:");
+        for (User user : users2) {
+            System.out.println("  " + user.getUsername());
+        }
+    }
+
+    /**
+     * 测试COUNT查询
+     *
+     * @param session 会话
+     */
+    private static void testCountQuery(MultiDataSourceSession session) {
+        System.out.println("测试COUNT查询...");
+
+        // 统计所有用户数
+        long count1 = session.createQuery(User.class).count();
+        System.out.println("所有用户数: " + count1);
+
+        // 统计用户名包含"三"的用户数
+        long count2 = session.createQuery(User.class)
+                .like("username", "%三")
+                .count();
+        System.out.println("用户名包含'三'的用户数: " + count2);
+    }
+
+    /**
+     * 清理资源
+     */
+    private static void cleanup() {
+        System.out.println("清理资源...");
+        DataSourceManager.closeAll();
+        System.out.println("资源清理完成");
+    }
+}

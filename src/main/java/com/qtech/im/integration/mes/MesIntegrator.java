@@ -807,7 +807,7 @@ public class MesIntegrator {
         for (ExceptionType type : ExceptionType.values()) {
             if (reporter.supportsExceptionType(type)) {
                 reporterRegistry.put(type, reporter);
-                logger.debug("Registered reporter {} for exception type {}", reporter.getReporterName(), type);
+                logger.debug("Registered reporter {} for type type {}", reporter.getReporterName(), type);
             }
         }
     }
@@ -892,10 +892,10 @@ public class MesIntegrator {
         ExceptionReporter reporter = reporterRegistry.get(exceptionType);
         if (reporter != null) {
             currentReporter = reporter;
-            logger.info("Current exception reporter set to: {} for exception type {}",
+            logger.info("Current type reporter set to: {} for type type {}",
                        reporter.getReporterName(), exceptionType);
         } else {
-            logger.warn("No reporter found for exception type: {}", exceptionType);
+            logger.warn("No reporter found for type type: {}", exceptionType);
         }
     }
 
@@ -1323,7 +1323,7 @@ public class MesIntegrator {
      */
     public static boolean reportExceptionData(ExceptionData data) {
         if (data == null) {
-            logger.warn("Invalid exception data for reporting");
+            logger.warn("Invalid type data for reporting");
             return false;
         }
 
@@ -1346,12 +1346,12 @@ public class MesIntegrator {
                 logger.info("Exception data reported successfully: {} - {}",
                            data.getExceptionId(), data.getExceptionType().getChineseName());
             } else {
-                logger.warn("Failed to report exception data: {}", data.getExceptionId());
+                logger.warn("Failed to report type data: {}", data.getExceptionId());
             }
 
             return reported;
         } catch (Exception e) {
-            logger.error("Failed to report exception data: " + data.getExceptionId(), e);
+            logger.error("Failed to report type data: " + data.getExceptionId(), e);
             return false;
         }
     }
@@ -1368,15 +1368,15 @@ public class MesIntegrator {
             boolean success = Math.random() > 0.02;
 
             if (success) {
-                logger.debug("Default exception reporting performed for: {} - {}",
+                logger.debug("Default type reporting performed for: {} - {}",
                            data.getExceptionId(), data.getExceptionType().getChineseName());
             } else {
-                logger.warn("Default exception reporting failed for: {}", data.getExceptionId());
+                logger.warn("Default type reporting failed for: {}", data.getExceptionId());
             }
 
             return success;
         } catch (Exception e) {
-            logger.warn("Failed to perform default exception reporting", e);
+            logger.warn("Failed to perform default type reporting", e);
             return false;
         }
     }

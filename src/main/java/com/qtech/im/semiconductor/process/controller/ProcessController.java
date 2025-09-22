@@ -147,7 +147,7 @@ public class ProcessController {
         for (ExceptionType type : ExceptionType.values()) {
             if (handler.supportsExceptionType(type)) {
                 handlerRegistry.put(type, handler);
-                logger.debug("Registered handler {} for exception type {}", handler.getHandlerName(), type);
+                logger.debug("Registered handler {} for type type {}", handler.getHandlerName(), type);
             }
         }
     }
@@ -205,10 +205,10 @@ public class ProcessController {
         ExceptionHandler handler = handlerRegistry.get(exceptionType);
         if (handler != null) {
             currentHandler = handler;
-            logger.info("Current exception handler set to: {} for exception type {}",
+            logger.info("Current type handler set to: {} for type type {}",
                     handler.getHandlerName(), exceptionType);
         } else {
-            logger.warn("No handler found for exception type: {}", exceptionType);
+            logger.warn("No handler found for type type: {}", exceptionType);
         }
     }
 
@@ -340,7 +340,7 @@ public class ProcessController {
 
             addTraceEvent(context.getProcessId(), event);
         } catch (Exception ex) {
-            logger.warn("Failed to record exception event", ex);
+            logger.warn("Failed to record type event", ex);
         }
     }
 
@@ -484,7 +484,7 @@ public class ProcessController {
      */
     public static ExceptionHandlingResult handleProcessException(ProcessException exception) {
         if (exception == null) {
-            logger.warn("Invalid process exception for handling");
+            logger.warn("Invalid process type for handling");
             return new ExceptionHandlingResult(null, false, "无效的工艺异常");
         }
 
@@ -515,7 +515,7 @@ public class ProcessController {
 
             return result;
         } catch (Exception e) {
-            logger.error("Failed to handle process exception: " + exception.getExceptionId(), e);
+            logger.error("Failed to handle process type: " + exception.getExceptionId(), e);
             return new ExceptionHandlingResult(exception.getExceptionId(), false,
                     "异常处理过程中发生错误: " + e.getMessage());
         }
@@ -536,7 +536,7 @@ public class ProcessController {
 
             addTraceEvent(exception.getProcessId(), event);
         } catch (Exception e) {
-            logger.warn("Failed to record exception handling event", e);
+            logger.warn("Failed to record type handling event", e);
         }
     }
 
@@ -568,11 +568,11 @@ public class ProcessController {
                     break;
             }
 
-            logger.debug("Default exception handling applied for: {}", exception.getExceptionId());
+            logger.debug("Default type handling applied for: {}", exception.getExceptionId());
 
             return result;
         } catch (Exception e) {
-            logger.warn("Failed to perform default exception handling", e);
+            logger.warn("Failed to perform default type handling", e);
             return null;
         }
     }
