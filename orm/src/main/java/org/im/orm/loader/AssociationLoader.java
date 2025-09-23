@@ -4,6 +4,8 @@ import org.im.orm.core.Session;
 import org.im.orm.mapping.AnnotationProcessor;
 import org.im.orm.mapping.AssociationMetadata;
 import org.im.orm.mapping.EntityMetadata;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -19,6 +21,7 @@ import java.util.List;
  * @since 2025/09/22
  */
 public class AssociationLoader {
+    private static final Logger logger = LoggerFactory.getLogger(AssociationLoader.class);
 
     /**
      * 加载实体的关联字段
@@ -81,8 +84,7 @@ public class AssociationLoader {
                     break;
             }
         } catch (Exception e) {
-            // 记录日志，但不中断其他关联的加载
-            e.printStackTrace();
+            logger.error("Error loading association", e);
         }
     }
 
@@ -141,8 +143,7 @@ public class AssociationLoader {
                 }
             }
         } catch (Exception e) {
-            // 记录日志，但不中断程序执行
-            e.printStackTrace();
+            logger.error("Error loading one-to-many association", e);
         }
     }
 
@@ -180,8 +181,7 @@ public class AssociationLoader {
                 }
             }
         } catch (Exception e) {
-            // 记录日志，但不中断程序执行
-            e.printStackTrace();
+            logger.error("Error loading many-to-one association", e);
         }
     }
 

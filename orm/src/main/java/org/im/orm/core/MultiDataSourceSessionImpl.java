@@ -4,6 +4,8 @@ import org.im.exception.type.orm.ORMException;
 import org.im.orm.datasource.ConnectionProvider;
 import org.im.orm.datasource.DataSourceManager;
 import org.im.orm.query.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,6 +22,7 @@ import java.util.Map;
  * @since 2025/09/22
  */
 public class MultiDataSourceSessionImpl implements MultiDataSourceSession {
+    private static final Logger logger = LoggerFactory.getLogger(MultiDataSourceSessionImpl.class);
     private String currentDataSourceName;
     private Map<String, Session> sessions = new HashMap<>();
     private boolean closed = false;
@@ -139,8 +142,7 @@ public class MultiDataSourceSessionImpl implements MultiDataSourceSession {
             try {
                 session.close();
             } catch (Exception e) {
-                // 记录日志
-                e.printStackTrace();
+                logger.error("关闭数据源会话失败", e);
             }
         }
         sessions.clear();

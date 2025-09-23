@@ -6,6 +6,8 @@ import org.im.orm.loader.AssociationLoader;
 import org.im.orm.mapping.*;
 import org.im.orm.query.Query;
 import org.im.orm.query.QueryImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.sql.*;
@@ -24,9 +26,10 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public class SessionImpl implements Session {
-    private ConnectionProvider connectionProvider;
+    private static final Logger logger = LoggerFactory.getLogger(SessionImpl.class);
+    private final ConnectionProvider connectionProvider;
     private Connection connection;
-    private Map<Class<?>, EntityMetadata> metadataCache;
+    private final Map<Class<?>, EntityMetadata> metadataCache;
 
     /**
      * 构造函数
@@ -305,8 +308,7 @@ public class SessionImpl implements Session {
             try {
                 connection.close();
             } catch (SQLException e) {
-                // 记录日志
-                e.printStackTrace();
+                logger.warn("Error closing connection", e);
             } finally {
                 connection = null;
             }
