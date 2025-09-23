@@ -8,10 +8,16 @@ import org.im.orm.datasource.HikariConnectionProvider;
 import org.im.orm.example.Department;
 import org.im.orm.example.User;
 import org.im.orm.util.Constants;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.Statement;
 import java.util.List;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * 一对多关联加载功能测试类
@@ -21,35 +27,38 @@ import java.util.List;
  * @email gaoolin@gmail.com
  * @since 2025/09/22
  */
-public class OneToManyAssociationTestFixed {
-    public static void main(String[] args) {
-        try {
-            // 初始化数据源
-            initializeDataSources();
+public class OneToManyAssociationTest {
 
-            // 创建表结构
-            createTableStructure();
+    private MultiDataSourceSession session;
 
-            // 初始化测试数据
-            initializeTestData();
+    @Before
+    public void setUp() throws Exception {
+        // 初始化数据源
+        initializeDataSources();
 
-            // 测试一对多关联加载功能
-            testOneToManyAssociation();
+        // 创建表结构
+        createTableStructure();
 
-            // 清理资源
-            cleanup();
+        // 创建会话
+        session = SessionFactory.createSession("postgresql");
 
-            System.out.println("一对多关联加载功能测试完成");
-        } catch (Exception e) {
-            System.err.println("一对多关联加载功能测试失败: " + e.getMessage());
-            e.printStackTrace();
+        // 初始化测试数据
+        initializeTestData();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        if (session != null) {
+            session.close();
         }
+        // 清理资源
+        cleanup();
     }
 
     /**
      * 初始化数据源
      */
-    private static void initializeDataSources() {
+    private void initializeDataSources() {
         System.out.println("初始化数据源...");
 
         // 配置PostgreSQL数据源
@@ -69,53 +78,45 @@ public class OneToManyAssociationTestFixed {
     /**
      * 创建表结构
      */
-    private static void createTableStructure() {
+    private void createTableStructure() throws Exception {
         System.out.println("创建表结构...");
 
-        try {
-            HikariConnectionProvider provider = (HikariConnectionProvider) DataSourceManager.getDataSource("postgresql");
-            try (Connection connection = provider.getConnection();
-                 Statement statement = connection.createStatement()) {
+        HikariConnectionProvider provider = (HikariConnectionProvider) DataSourceManager.getDataSource("postgresql");
+        try (Connection connection = provider.getConnection();
+             Statement statement = connection.createStatement()) {
 
-                // 删除已存在的表（如果存在）
-                statement.execute("DROP TABLE IF EXISTS users");
-                statement.execute("DROP TABLE IF EXISTS departments");
+            // 删除已存在的表（如果存在）
+            statement.execute("DROP TABLE IF EXISTS users");
+            statement.execute("DROP TABLE IF EXISTS departments");
 
-                // 创建departments表
-                String createDepartmentsTableSQL = "CREATE TABLE departments (" +
-                        "id BIGSERIAL PRIMARY KEY, " +
-                        "name VARCHAR(100) NOT NULL, " +
-                        "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
-                        ")";
-                statement.execute(createDepartmentsTableSQL);
+            // 创建departments表
+            String createDepartmentsTableSQL = "CREATE TABLE departments (" +
+                    "id BIGSERIAL PRIMARY KEY, " +
+                    "name VARCHAR(100) NOT NULL, " +
+                    "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+                    ")";
+            statement.execute(createDepartmentsTableSQL);
 
-                // 创建users表，包含外键关联departments表
-                String createUsersTableSQL = "CREATE TABLE users (" +
-                        "id BIGSERIAL PRIMARY KEY, " +
-                        "username VARCHAR(50) NOT NULL, " +
-                        "email VARCHAR(100) NOT NULL, " +
-                        "department_id BIGINT, " +
-                        "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
-                        "FOREIGN KEY (department_id) REFERENCES departments(id)" +
-                        ")";
-                statement.execute(createUsersTableSQL);
+            // 创建users表，包含外键关联departments表
+            String createUsersTableSQL = "CREATE TABLE users (" +
+                    "id BIGSERIAL PRIMARY KEY, " +
+                    "username VARCHAR(50) NOT NULL, " +
+                    "email VARCHAR(100) NOT NULL, " +
+                    "department_id BIGINT, " +
+                    "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
+                    "FOREIGN KEY (department_id) REFERENCES departments(id)" +
+                    ")";
+            statement.execute(createUsersTableSQL);
 
-                System.out.println("表结构创建完成");
-            }
-        } catch (Exception e) {
-            System.err.println("创建表结构失败: " + e.getMessage());
-            throw new RuntimeException(e);
+            System.out.println("表结构创建完成");
         }
     }
 
     /**
      * 初始化测试数据
      */
-    private static void initializeTestData() {
+    private void initializeTestData() {
         System.out.println("初始化测试数据...");
-
-        // 创建会话
-        MultiDataSourceSession session = SessionFactory.createSession("postgresql");
 
         try {
             // 创建部门
@@ -146,43 +147,23 @@ public class OneToManyAssociationTestFixed {
             session.save(user4);
 
             System.out.println("测试数据初始化完成");
-        } finally {
-            session.close();
+        } catch (Exception e) {
+            System.err.println("初始化测试数据失败: " + e.getMessage());
+            throw new RuntimeException(e);
         }
-    }
-
-    /**
-     * 测试一对多关联加载功能
-     */
-    private static void testOneToManyAssociation() {
-        System.out.println("开始测试一对多关联加载功能...");
-
-        // 创建会话
-        MultiDataSourceSession session = SessionFactory.createSession("postgresql");
-
-        try {
-            // 测试查询部门及其关联的用户
-            testQueryDepartmentWithUsers(session);
-
-        } finally {
-            // 关闭会话
-            session.close();
-        }
-
-        System.out.println("一对多关联加载功能测试完成");
     }
 
     /**
      * 测试查询部门及其关联的用户
-     *
-     * @param session 会话
      */
-    private static void testQueryDepartmentWithUsers(MultiDataSourceSession session) {
+    @Test
+    public void testQueryDepartmentWithUsers() {
         System.out.println("测试查询部门及其关联的用户...");
 
         // 查询所有部门
         List<Department> departments = session.findAll(Department.class);
         System.out.println("查询到 " + departments.size() + " 个部门:");
+        assertTrue(departments.size() > 0);
 
         for (Department department : departments) {
             System.out.println("部门: " + department);
@@ -201,19 +182,21 @@ public class OneToManyAssociationTestFixed {
         // 根据ID查询单个部门
         Department department = session.findById(Department.class, 1L);
         System.out.println("根据ID查询部门: " + department);
+        assertNotNull(department);
 
         if (department != null && department.getUsers() != null) {
             System.out.println("  关联的用户数: " + department.getUsers().size());
             for (User user : department.getUsers()) {
                 System.out.println("    用户: " + user.getUsername());
             }
+            assertTrue(department.getUsers().size() > 0);
         }
     }
 
     /**
      * 清理资源
      */
-    private static void cleanup() {
+    private void cleanup() {
         System.out.println("清理资源...");
         DataSourceManager.closeAll();
         System.out.println("资源清理完成");

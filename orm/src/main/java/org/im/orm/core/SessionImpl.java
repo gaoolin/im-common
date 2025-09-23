@@ -28,8 +28,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SessionImpl implements Session {
     private static final Logger logger = LoggerFactory.getLogger(SessionImpl.class);
     private final ConnectionProvider connectionProvider;
-    private Connection connection;
     private final Map<Class<?>, EntityMetadata> metadataCache;
+    private Connection connection;
 
     /**
      * 构造函数
@@ -352,12 +352,10 @@ public class SessionImpl implements Session {
         try {
             int paramIndex = 1;
 
-            // 绑定非主键字段
+            // 创建字段列表，确保顺序与SQL中一致
+            List<Map.Entry<String, String>> fieldEntries = new ArrayList<>();
             for (Map.Entry<String, String> entry : metadata.getFieldColumnMapping().entrySet()) {
                 String fieldName = entry.getKey();
-                String columnName = entry.getValue();
-                Field field = metadata.getEntityClass().getDeclaredField(fieldName);
-                field.setAccessible(true);
 
                 // 检查是否是主键字段
                 boolean isIdField = metadata.getIdField().getName().equals(fieldName);
@@ -381,8 +379,22 @@ public class SessionImpl implements Session {
                     continue;
                 }
 
+                fieldEntries.add(entry);
+            }
+
+            // 按顺序绑定字段值
+            for (Map.Entry<String, String> entry : fieldEntries) {
+                String fieldName = entry.getKey();
+                Field field = metadata.getEntityClass().getDeclaredField(fieldName);
+                field.setAccessible(true);
+
                 Object value = field.get(entity);
-                stmt.setObject(paramIndex++, value);
+                // 修复：正确处理null值，避免PostgreSQL将null转换为0
+                if (value == null) {
+                    stmt.setNull(paramIndex++, Types.OTHER);
+                } else {
+                    stmt.setObject(paramIndex++, value);
+                }
             }
 
             // 如果是更新操作，绑定主键字段到WHERE子句
@@ -394,6 +406,24 @@ public class SessionImpl implements Session {
         } catch (IllegalAccessException | NoSuchFieldException e) {
             throw new ORMException("绑定实体到预处理语句失败: " + e.getMessage(), e);
         }
+    }
+
+    /**
+     * 判断字段是否为与关联字段对应的外键字段
+     *
+     * @param metadata  实体元数据
+     * @param fieldName 字段名
+     * @return 是否为外键字段
+     */
+    private boolean isForeignKeyField(EntityMetadata metadata, String fieldName) {
+        // 检查字段是否与某个关联字段的外键相同
+        for (AssociationMetadata assoc : metadata.getAssociations()) {
+            ManyToOne manyToOne = assoc.getField().getAnnotation(ManyToOne.class);
+            if (manyToOne != null && manyToOne.foreignKey().equals(metadata.getFieldColumnMapping().get(fieldName))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

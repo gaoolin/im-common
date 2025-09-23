@@ -43,6 +43,7 @@
         <commons-pool2.version>2.11.1</commons-pool2.version>
         <lettuce.version>6.1.10.RELEASE</lettuce.version>
         <lombok.version>1.18.36</lombok.version>
+        <logback.version>1.2.11</logback.version>
     </properties>
 
     <!-- 依赖管理，子模块按需引入 -->
@@ -88,6 +89,11 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
             </dependency>
 
             <!-- lombok -->

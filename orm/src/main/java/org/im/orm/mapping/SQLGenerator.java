@@ -22,11 +22,12 @@ public class SQLGenerator {
      */
     public static String generateInsertSQL(EntityMetadata metadata) {
         StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO ").append(metadata.getTableName());
+        sql.append("INSERT INTO ").append(metadata.getTableName()).append(" (");
 
         List<String> columnNames = new ArrayList<>();
+        List<String> fieldNames = new ArrayList<>();
 
-        // 只添加非自动生成主键的字段和非关联字段
+        // 收集非自动生成主键的字段和非关联字段
         for (Map.Entry<String, String> entry : metadata.getFieldColumnMapping().entrySet()) {
             String fieldName = entry.getKey();
             String columnName = entry.getValue();
@@ -47,22 +48,29 @@ public class SQLGenerator {
                 continue;
             }
 
+            fieldNames.add(fieldName);
             columnNames.add(columnName);
         }
 
-        StringBuilder columns = new StringBuilder();
-        StringBuilder placeholders = new StringBuilder();
-
+        // 构建字段列表
         for (int i = 0; i < columnNames.size(); i++) {
             if (i > 0) {
-                columns.append(", ");
-                placeholders.append(", ");
+                sql.append(", ");
             }
-            columns.append(columnNames.get(i));
-            placeholders.append("?");
+            sql.append(columnNames.get(i));
         }
 
-        sql.append(" (").append(columns).append(") VALUES (").append(placeholders).append(")");
+        sql.append(") VALUES (");
+
+        // 构建占位符列表
+        for (int i = 0; i < columnNames.size(); i++) {
+            if (i > 0) {
+                sql.append(", ");
+            }
+            sql.append("?");
+        }
+
+        sql.append(")");
         return sql.toString();
     }
 
@@ -130,6 +138,27 @@ public class SQLGenerator {
         sql.append(" WHERE ").append(getIdColumnName(metadata)).append(" = ?");
         return sql.toString();
     }
+
+    /**
+     * 判断字段是否为外键字段（与关联字段对应的字段）
+     *
+     * @param metadata  实体元数据
+     * @param fieldName 字段名
+     * @return 是否为外键字段
+     */
+    private static boolean isForeignKeyField(EntityMetadata metadata, String fieldName) {
+        // 检查字段是否与某个关联字段的外键相同
+        for (AssociationMetadata assoc : metadata.getAssociations()) {
+            ManyToOne manyToOne = assoc.getField().getAnnotation(ManyToOne.class);
+            if (manyToOne != null && manyToOne.foreignKey().equals(metadata.getFieldColumnMapping().get(fieldName))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+// ... existing code ...
+
 
     /**
      * 生成删除SQL语句
