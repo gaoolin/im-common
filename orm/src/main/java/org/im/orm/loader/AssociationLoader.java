@@ -1,15 +1,16 @@
 package org.im.orm.loader;
 
 import org.im.orm.core.Session;
-import org.im.orm.mapping.AnnotationProcessor;
-import org.im.orm.mapping.AssociationMetadata;
-import org.im.orm.mapping.EntityMetadata;
+import org.im.orm.mapping.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,8 +55,7 @@ public class AssociationLoader {
      * @param session        会话
      * @param entityMetadata 实体元数据
      */
-    private static void loadLazyAssociation(Object entity, AssociationMetadata association,
-                                            Session session, EntityMetadata entityMetadata) {
+    private static void loadLazyAssociation(Object entity, AssociationMetadata association, Session session, EntityMetadata entityMetadata) {
         try {
             Field field = association.getField();
             field.setAccessible(true);
@@ -84,7 +84,7 @@ public class AssociationLoader {
                     break;
             }
         } catch (Exception e) {
-            logger.error("Error loading association", e);
+            logger.error("Error loading association for field: " + (association != null && association.getField() != null ? association.getField().getName() : "unknown"), e);
         }
     }
 
@@ -97,10 +97,54 @@ public class AssociationLoader {
      * @param entityMetadata 实体元数据
      * @param field          关联字段
      */
-    private static void loadOneToOneAssociation(Object entity, AssociationMetadata association,
-                                                Session session, EntityMetadata entityMetadata, Field field) {
-        // 一对一关联的加载逻辑
-        // 这里需要根据具体的业务逻辑实现
+    private static void loadOneToOneAssociation(Object entity, AssociationMetadata association, Session session, EntityMetadata entityMetadata, Field field) {
+        try {
+            // 一对一关联的加载逻辑
+            String mappedBy = association.getMappedBy();
+            if (mappedBy != null && !mappedBy.isEmpty()) {
+                // 获取目标实体类型
+                Class<?> targetEntity = association.getTargetEntity();
+                if (targetEntity != null) {
+                    // 获取当前实体的ID值
+                    Field idField = entityMetadata.getIdField();
+                    idField.setAccessible(true);
+                    Object idValue = idField.get(entity);
+
+                    if (idValue != null) {
+                        // 构建外键列名
+                        String foreignKeyColumn = mappedBy + "_id";
+
+                        // 查询关联的实体
+                        Object associatedEntity = session.createQuery(targetEntity).eq(foreignKeyColumn, idValue).getSingleResult();
+
+                        // 设置关联字段的值
+                        if (associatedEntity != null) {
+                            field.set(entity, associatedEntity);
+                        }
+                    }
+                }
+            } else {
+                // 如果没有mappedBy属性，使用外键方式加载
+                String foreignKey = association.getForeignKey();
+                if (foreignKey != null && !foreignKey.isEmpty()) {
+                    // 从实体中获取外键值
+                    Field foreignKeyField = entityMetadata.getColumnFields().get(foreignKey);
+                    if (foreignKeyField != null) {
+                        foreignKeyField.setAccessible(true);
+                        Object foreignKeyValue = foreignKeyField.get(entity);
+
+                        // 如果外键值不为空，则加载关联实体
+                        if (foreignKeyValue != null) {
+                            Class<?> targetEntity = association.getTargetEntity();
+                            Object associatedEntity = session.findById(targetEntity, foreignKeyValue);
+                            field.set(entity, associatedEntity);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Error loading one-to-one association for field: " + field.getName(), e);
+        }
     }
 
     /**
@@ -112,8 +156,7 @@ public class AssociationLoader {
      * @param entityMetadata 实体元数据
      * @param field          关联字段
      */
-    private static void loadOneToManyAssociation(Object entity, AssociationMetadata association,
-                                                 Session session, EntityMetadata entityMetadata, Field field) {
+    private static void loadOneToManyAssociation(Object entity, AssociationMetadata association, Session session, EntityMetadata entityMetadata, Field field) {
         try {
             // 一对多关联的加载逻辑
             // 通过mappedBy字段查找关联的实体
@@ -133,8 +176,7 @@ public class AssociationLoader {
                         String foreignKeyColumn = mappedBy + "_id";
 
                         // 查询关联的实体列表
-                        List<?> associatedEntities = session.createQuery(targetEntity)
-                                .eq(foreignKeyColumn, idValue)  // 使用正确的列名
+                        List<?> associatedEntities = session.createQuery(targetEntity).eq(foreignKeyColumn, idValue)  // 使用正确的列名
                                 .getResultList();
 
                         // 设置关联字段的值
@@ -143,7 +185,7 @@ public class AssociationLoader {
                 }
             }
         } catch (Exception e) {
-            logger.error("Error loading one-to-many association", e);
+            logger.error("Error loading one-to-many association for field: " + field.getName(), e);
         }
     }
 
@@ -156,8 +198,7 @@ public class AssociationLoader {
      * @param entityMetadata 实体元数据
      * @param field          关联字段
      */
-    private static void loadManyToOneAssociation(Object entity, AssociationMetadata association,
-                                                 Session session, EntityMetadata entityMetadata, Field field) {
+    private static void loadManyToOneAssociation(Object entity, AssociationMetadata association, Session session, EntityMetadata entityMetadata, Field field) {
         try {
             // 获取外键字段名
             String foreignKey = association.getForeignKey();
@@ -181,7 +222,7 @@ public class AssociationLoader {
                 }
             }
         } catch (Exception e) {
-            logger.error("Error loading many-to-one association", e);
+            logger.error("Error loading many-to-one association for field: " + field.getName(), e);
         }
     }
 
@@ -194,10 +235,56 @@ public class AssociationLoader {
      * @param entityMetadata 实体元数据
      * @param field          关联字段
      */
-    private static void loadManyToManyAssociation(Object entity, AssociationMetadata association,
-                                                  Session session, EntityMetadata entityMetadata, Field field) {
-        // 多对多关联的加载逻辑
-        // 这里需要根据具体的业务逻辑实现
+    private static void loadManyToManyAssociation(Object entity, AssociationMetadata association, Session session, EntityMetadata entityMetadata, Field field) {
+        try {
+            // 多对多关联的加载逻辑
+            // 获取目标实体类型
+            Class<?> targetEntity = getTargetEntityClass(field);
+            if (targetEntity != null) {
+                // 获取当前实体的ID值
+                Field idField = entityMetadata.getIdField();
+                idField.setAccessible(true);
+                Object idValue = idField.get(entity);
+
+                if (idValue != null) {
+                    // 多对多关联通常需要一个中间表
+                    // 由于框架设计文档中没有明确说明多对多的实现方式，这里提供一个通用的处理方法
+                    // 假设中间表名为: entity1_entity2 (按字母顺序排列)
+                    String tableName1 = entityMetadata.getTableName();
+                    String tableName2 = AnnotationProcessor.processEntity(targetEntity).getTableName();
+
+                    // 构造中间表名（按字母顺序）
+                    String joinTableName;
+                    if (tableName1.compareTo(tableName2) < 0) {
+                        joinTableName = tableName1 + "_" + tableName2;
+                    } else {
+                        joinTableName = tableName2 + "_" + tableName1;
+                    }
+
+                    // 构造外键列名
+                    String foreignKeyColumn1 = tableName1 + "_id";
+                    String foreignKeyColumn2 = tableName2 + "_id";
+
+                    // 由于当前Query接口不支持JOIN操作，我们使用原生SQL查询来实现
+                    String sql = "SELECT t2.* FROM " + joinTableName + " t1 JOIN " + AnnotationProcessor.processEntity(targetEntity).getTableName() + " t2 ON t1." + foreignKeyColumn2 + " = t2.id WHERE t1." + foreignKeyColumn1 + " = ?";
+
+                    // 执行原生SQL查询
+                    try (PreparedStatement stmt = session.getConnection().prepareStatement(sql)) {
+                        stmt.setObject(1, idValue);
+                        try (ResultSet rs = stmt.executeQuery()) {
+                            List<Object> associatedEntities = new ArrayList<>();
+                            while (rs.next()) {
+                                Object associatedEntity = ResultSetMapper.mapResultSetToEntity(rs, AnnotationProcessor.processEntity(targetEntity));
+                                associatedEntities.add(associatedEntity);
+                            }
+                            field.set(entity, associatedEntities);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Error loading many-to-many association for field: " + field.getName(), e);
+        }
     }
 
     /**
@@ -207,6 +294,7 @@ public class AssociationLoader {
      * @return 目标实体类
      */
     private static Class<?> getTargetEntityClass(Field field) {
+        // 首先尝试从泛型参数中获取目标实体类型
         Type genericType = field.getGenericType();
         if (genericType instanceof ParameterizedType) {
             ParameterizedType parameterizedType = (ParameterizedType) genericType;
@@ -215,6 +303,13 @@ public class AssociationLoader {
                 return (Class<?>) actualTypeArguments[0];
             }
         }
+
+        // 如果无法从泛型参数获取，则尝试从注解中获取
+        ManyToOne manyToOne = field.getAnnotation(ManyToOne.class);
+        if (manyToOne != null && manyToOne.targetEntity() != void.class) {
+            return manyToOne.targetEntity();
+        }
+
         return null;
     }
 }

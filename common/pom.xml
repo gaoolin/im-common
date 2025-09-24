@@ -22,9 +22,41 @@
     </properties>
 
     <dependencies>
+        <!--
+        其他项目通常需要引入日志实现。
+        具体说明：
+            日志门面（如slf4j-api）：
+            common包提供，使用方自动继承
+            使用方无需额外引入
+            日志实现（如logback-classic、log4j）：
+            common包设为provided，使用方不可见
+            使用方需要自行引入选择的日志实现
+            如果不引入，运行时会报"no binding"警告
+        最佳实践：
+            使用方项目根据需要引入具体的日志实现
+            可以是logback、log4j、java.util.logging等任意实现
+            实现类路径中必须有且仅有一个日志实现
+            这种方式避免了依赖冲突，同时保证了日志功能正常工作。
+        -->
+
+        <!--
+        1. 作用域应设为compile（默认）
+        2. 保证所有使用该工具包的项目都能访问日志门面
+        -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <!--
+        1. 作用域应设为provided
+        2. 避免与使用方项目的日志实现冲突
+        3. 让使用方项目自行选择和配置日志实现
+        -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
