@@ -143,7 +143,7 @@ public class AssociationMappingTest {
         Department department = new Department("测试部");
         session.save(department);
 
-        User user = new User("测试用户", "test@example.com");
+        User user = new User("测试用户", "testing@example.com");
         user.setDepartment(department);
         session.save(user);
 

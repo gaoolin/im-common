@@ -34,7 +34,7 @@ public class QtechImBizConstant {
     public static final String REDIS_JOB_RUN_STAT_KEY_PREFIX = "entity:datadev:job:run:stat:";
     public static final String WB_OLP_CHECK_REDIS_KEY_PREFIX = "entity:chk:olp:check:";
     public static final String WB_COMPARISON_REDIS_JOB_STAT_KEY_PREFIX = "chk:comparison:job:";
-    public static final String DEVICE_ONLINE_STATUS_REDIS_KEY_PREFIX = "entity:im:device:online:";
+    public static final String DEVICE_ONLINE_STATUS_REDIS_KEY_PREFIX = "entity:im:eqp:online:";
     public static final int DEVICE_ONLINE_STATUS_REDIS_EXPIRE_SECONDS = 60;
     public static final Long MSG_WB_OLP_REDIS_EXPIRE_SECONDS = 900L; // 15分钟
     public static final String MSG_WB_OLP_KEY_PREFIX = "entity:im:chk:wb:olp:";

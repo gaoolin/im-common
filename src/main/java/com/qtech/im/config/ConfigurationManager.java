@@ -56,7 +56,7 @@ public interface ConfigurationManager {
     /**
      * 设置激活的配置环境
      *
-     * @param profile 环境标识（如：dev、test、prod）
+     * @param profile 环境标识（如：dev、testing、prod）
      */
     void setActiveProfile(String profile);
 

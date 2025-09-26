@@ -329,7 +329,7 @@ public abstract class AbstractParameter implements ParameterInterface {
             }
             return cloned;
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Failed to clone device parameter", e);
+            throw new RuntimeException("Failed to clone eqp parameter", e);
         }
     }
 

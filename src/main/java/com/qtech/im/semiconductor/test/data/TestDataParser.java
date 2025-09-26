@@ -128,7 +128,7 @@ public class TestDataParser {
             long endTime = System.currentTimeMillis();
             long parseTime = endTime - startTime;
 
-            logger.error("Failed to parse test data file: {}", filePath, e);
+            logger.error("Failed to parse testing data file: {}", filePath, e);
             errors.add(new ParseError(0, "Parse failed: " + e.getMessage(), null, e));
 
             return new ParseResult(false, null, errors, parseTime, 0);
@@ -221,7 +221,7 @@ public class TestDataParser {
      */
     public static StandardTestResult standardizeTestResult(RawTestResult rawResult) {
         if (rawResult == null) {
-            logger.warn("Invalid raw test result");
+            logger.warn("Invalid raw testing result");
             return null;
         }
 
@@ -253,10 +253,10 @@ public class TestDataParser {
             // 设置统计数据
             standardResult.setStatistics(calculateStatistics(standardItems));
 
-            logger.debug("Standardized test result for device: {}", rawResult.getDeviceId());
+            logger.debug("Standardized testing result for eqp: {}", rawResult.getDeviceId());
             return standardResult;
         } catch (Exception e) {
-            logger.error("Failed to standardize test result", e);
+            logger.error("Failed to standardize testing result", e);
             return null;
         }
     }
@@ -347,7 +347,7 @@ public class TestDataParser {
             logger.debug("Calculated statistics for {} records", totalRecords);
             return statistics;
         } catch (Exception e) {
-            logger.error("Failed to calculate test statistics", e);
+            logger.error("Failed to calculate testing statistics", e);
             return new TestStatistics();
         }
     }
@@ -377,7 +377,7 @@ public class TestDataParser {
                 if (deviceId != null && !seenDevices.add(deviceId)) {
                     anomalies.add(new TestAnomaly(
                             "DUPLICATE_DEVICE",
-                            "Duplicate device ID: " + deviceId,
+                            "Duplicate eqp ID: " + deviceId,
                             i,
                             record
                     ));
@@ -390,10 +390,10 @@ public class TestDataParser {
             // 检测测试结果异常
             detectResultAnomalies(records, anomalies);
 
-            logger.debug("Detected {} anomalies in test data", anomalies.size());
+            logger.debug("Detected {} anomalies in testing data", anomalies.size());
             return anomalies;
         } catch (Exception e) {
-            logger.error("Failed to detect anomalies in test data", e);
+            logger.error("Failed to detect anomalies in testing data", e);
             return anomalies;
         }
     }
@@ -455,7 +455,7 @@ public class TestDataParser {
                 if (consecutiveFails >= 5) { // 连续5个失败
                     anomalies.add(new TestAnomaly(
                             "CONSECUTIVE_FAILS",
-                            "Consecutive test failures: " + consecutiveFails,
+                            "Consecutive testing failures: " + consecutiveFails,
                             i,
                             record
                     ));

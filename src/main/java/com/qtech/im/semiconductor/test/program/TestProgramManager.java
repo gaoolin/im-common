@@ -104,11 +104,11 @@ public class TestProgramManager {
                     return null;
                 }
             } else {
-                logger.error("Failed to load test program from: {}", config.getProgramPath());
+                logger.error("Failed to load testing program from: {}", config.getProgramPath());
                 return null;
             }
         } catch (Exception e) {
-            logger.error("Exception occurred while loading test program: {}", config.getProgramPath(), e);
+            logger.error("Exception occurred while loading testing program: {}", config.getProgramPath(), e);
             return null;
         }
     }

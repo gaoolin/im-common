@@ -104,7 +104,7 @@ public class ORMFrameworkTest {
     @Test
     public void testSaveEntity() {
         System.out.println("测试保存实体...");
-        User user = new User("测试用户", "test@example.com");
+        User user = new User("测试用户", "testing@example.com");
         session.save(user);
         System.out.println("保存用户成功: " + user);
         assertNotNull(user.getId());

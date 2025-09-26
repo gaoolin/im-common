@@ -9,7 +9,7 @@
 
     <groupId>org.im.semiconductor</groupId>
     <artifactId>semiconductor</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.4</version>
     <packaging>jar</packaging>
 
     <name>semiconductor</name>
@@ -32,20 +32,14 @@
         </dependency>
 
         <dependency>
-            <groupId>org.im.common</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.im.util</groupId>
             <artifactId>utils</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.im.qtech</groupId>
-            <artifactId>qtech</artifactId>
-            <version>1.0.0</version>
+            <groupId>org.im.exception</groupId>
+            <artifactId>exception</artifactId>
+            <version>1.0.1</version>
         </dependency>
 
         <dependency>
