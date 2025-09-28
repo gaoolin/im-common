@@ -941,7 +941,7 @@ public class ProductSerializer {
         }
 
         public ProductInfo setProductName(String productName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -950,7 +950,7 @@ public class ProductSerializer {
         }
 
         public ProductInfo setProductVersion(String productVersion) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -988,7 +988,7 @@ public class ProductSerializer {
         }
 
         public ProductInfo setBatchId(String batchId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -997,7 +997,7 @@ public class ProductSerializer {
         }
 
         public ProductInfo setLotNumber(String lotNumber) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1366,7 +1366,7 @@ public class ProductSerializer {
         }
 
         public ProductionEvent setDuration(long duration) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
     }

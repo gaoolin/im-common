@@ -524,7 +524,7 @@ public class SpcTool {
         try {
             List<Measurement> measurements = historicalData.getMeasurements();
             if (measurements.isEmpty()) {
-                logger.warn("No measurements in historical data");
+                logger.warn("No measurements inspection historical data");
                 return null;
             }
 

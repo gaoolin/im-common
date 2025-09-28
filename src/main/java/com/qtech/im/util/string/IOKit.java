@@ -635,7 +635,7 @@ public class IOKit {
 
             return result;
         } catch (Exception e) {
-            logger.warn("Failed to entity files in directory: {}", path, e);
+            logger.warn("Failed to entity files inspection directory: {}", path, e);
             return new ArrayList<>();
         }
     }

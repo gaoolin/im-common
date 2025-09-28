@@ -212,11 +212,11 @@ public class ComplianceChecker {
                     resultCache.put(cacheKey, result);
                 }
 
-                logger.debug("Compliance check completed successfully for standard: {} in {}ms",
+                logger.debug("Compliance check completed successfully for standard: {} inspection {}ms",
                         standard.getStandardType(), duration);
             } else {
                 failedChecks.incrementAndGet();
-                logger.warn("Compliance check failed for standard: {} after {} attempts in {}ms",
+                logger.warn("Compliance check failed for standard: {} after {} attempts inspection {}ms",
                         standard.getStandardType(), retryCount, duration);
             }
 
@@ -345,7 +345,7 @@ public class ComplianceChecker {
                     .anyMatch(f -> f.getSeverity() == AuditFinding.Severity.CRITICAL) ?
                     AuditStatus.FAILURE : AuditStatus.COMPLETED;
 
-            String summary = String.format("Audit completed with %d findings in %dms", findings.size(), duration);
+            String summary = String.format("Audit completed with %d findings inspection %dms", findings.size(), duration);
 
             AuditReport report = new AuditReport(status, summary, findings);
             report.setMetadata("processedItems", processedItems);
@@ -354,7 +354,7 @@ public class ComplianceChecker {
                     .filter(f -> f.getSeverity() == AuditFinding.Severity.CRITICAL)
                     .count());
 
-            logger.info("Quality audit {} completed: {} findings in {}ms",
+            logger.info("Quality audit {} completed: {} findings inspection {}ms",
                     audit.getAuditId(), findings.size(), duration);
 
             return report;
@@ -465,7 +465,7 @@ public class ComplianceChecker {
             }
 
             long duration = System.currentTimeMillis() - startTime;
-            logger.debug("Compliance report generated for scope: {} in {}ms", scope, duration);
+            logger.debug("Compliance report generated for scope: {} inspection {}ms", scope, duration);
 
             return report;
         } catch (Exception e) {
@@ -582,7 +582,7 @@ public class ComplianceChecker {
                     ComplianceIssue issue = new ComplianceIssue(
                             entry.getKey(),
                             entry.getValue().intValue(),
-                            "Frequent occurrence in audits"
+                            "Frequent occurrence inspection audits"
                     );
                     issues.add(issue);
                 });
@@ -1142,7 +1142,7 @@ public class ComplianceChecker {
         }
 
         public Standard setDescription(String description) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 

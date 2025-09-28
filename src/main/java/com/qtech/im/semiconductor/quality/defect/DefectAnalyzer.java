@@ -396,7 +396,7 @@ public class DefectAnalyzer {
             }
 
             long analysisDuration = System.currentTimeMillis() - startTime;
-            logger.debug("Pattern identification completed: {} patterns found in {}ms",
+            logger.debug("Pattern identification completed: {} patterns found inspection {}ms",
                     allPatterns.size(), analysisDuration);
 
             return allPatterns;
@@ -619,7 +619,7 @@ public class DefectAnalyzer {
             }
 
             long generationDuration = System.currentTimeMillis() - startTime;
-            logger.debug("Prevention recommendations generated: {} recommendations in {}ms",
+            logger.debug("Prevention recommendations generated: {} recommendations inspection {}ms",
                     allRecommendations.size(), generationDuration);
 
             return allRecommendations;
@@ -827,7 +827,7 @@ public class DefectAnalyzer {
             List<PreventionRecommendation> recommendations = generatePreventionRecommendations(analysisResult);
             recommendations.forEach(analysisResult::addRecommendation);
 
-            logger.info("Complete defect analysis finished in {}ms with {} recommendations",
+            logger.info("Complete defect analysis finished inspection {}ms with {} recommendations",
                     analysisDuration, recommendations.size());
 
             return analysisResult;
@@ -1083,7 +1083,7 @@ public class DefectAnalyzer {
         }
 
         public DefectRecord setLocation(String location) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1114,7 +1114,7 @@ public class DefectAnalyzer {
         }
 
         public DefectRecord setReporter(String reporter) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1742,7 +1742,7 @@ public class DefectAnalyzer {
         }
 
         public PreventionRecommendation setResponsibleParty(String responsibleParty) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 

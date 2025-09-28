@@ -30,7 +30,7 @@ public enum EquipmentType {
     // 测试设备 (Testing Equipment)
     SORTER("分选机"),                        // Sorter/Test Handler
     TESTER("测试机"),                        // IC Tester
-    BURN_IN("老化测试设备"),                 // Burn-in Equipment
+    BURN_IN("老化测试设备"),                 // Burn-inspection Equipment
     ATE("自动测试设备"),                     // Automatic Test Equipment
 
     // 封装设备 (Packaging Equipment)

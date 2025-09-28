@@ -266,7 +266,7 @@ public class ProcessController {
             recordStepEndEvent(step, context, result);
 
             if (result != null) {
-                logger.info("Step execution completed: {} - {} in {}ms",
+                logger.info("Step execution completed: {} - {} inspection {}ms",
                         step.getStepId(), step.getStepName(), executionTime);
             } else {
                 logger.warn("Step execution failed: {} - {}", step.getStepId(), step.getStepName());
@@ -1074,7 +1074,7 @@ public class ProcessController {
         }
 
         public ProcessStep setStepName(String stepName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1091,7 +1091,7 @@ public class ProcessController {
         }
 
         public ProcessStep setDescription(String description) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1113,7 +1113,7 @@ public class ProcessController {
         }
 
         public ProcessStep setExpectedDuration(long expectedDuration) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1202,7 +1202,7 @@ public class ProcessController {
         }
 
         public ProcessConstraint setConstraintName(String constraintName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1211,7 +1211,7 @@ public class ProcessController {
         }
 
         public ProcessConstraint setExpression(String expression) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1220,7 +1220,7 @@ public class ProcessController {
         }
 
         public ProcessConstraint setDescription(String description) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1229,7 +1229,7 @@ public class ProcessController {
         }
 
         public ProcessConstraint setEnabled(boolean enabled) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1333,7 +1333,7 @@ public class ProcessController {
         }
 
         public ExecutionContext setOperator(String operator) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1342,7 +1342,7 @@ public class ProcessController {
         }
 
         public ExecutionContext setEquipmentId(String equipmentId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1547,7 +1547,7 @@ public class ProcessController {
         }
 
         public ParameterAdjustment setOperator(String operator) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1627,7 +1627,7 @@ public class ProcessController {
         }
 
         public ProcessException setEquipmentId(String equipmentId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1653,7 +1653,7 @@ public class ProcessController {
         }
 
         public ProcessException setSeverity(int severity) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1662,7 +1662,7 @@ public class ProcessController {
         }
 
         public ProcessException setRecoverable(boolean recoverable) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1748,7 +1748,7 @@ public class ProcessController {
         }
 
         public ExceptionHandlingResult setHandler(String handler) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1815,7 +1815,7 @@ public class ProcessController {
         }
 
         public RecoveryAction setEstimatedDuration(long estimatedDuration) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1824,7 +1824,7 @@ public class ProcessController {
         }
 
         public RecoveryAction setRequiresManualIntervention(boolean requiresManualIntervention) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2202,7 +2202,7 @@ public class ProcessController {
         }
 
         public ProcessEvent setSource(String source) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 

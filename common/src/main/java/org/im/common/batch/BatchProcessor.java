@@ -70,7 +70,7 @@ public class BatchProcessor {
                 long endTime = System.currentTimeMillis();
 
                 results.add(new BatchResult<>(i, batch.size(), true, null, endTime - startTime));
-                logger.debug("Processed batch {} with {} items in {} ms", i, batch.size(), endTime - startTime);
+                logger.debug("Processed batch {} with {} items inspection {} ms", i, batch.size(), endTime - startTime);
             } catch (Exception e) {
                 logger.error("Failed to process batch {}", i, e);
                 results.add(new BatchResult<>(i, batch.size(), false, e, 0));

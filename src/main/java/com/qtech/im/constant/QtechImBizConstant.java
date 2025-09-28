@@ -27,8 +27,8 @@ public class QtechImBizConstant {
     public static final String REDIS_OLP_CHECK_DUPLICATION_KEY_PREFIX = "entity:im:olp_chk:";
     public static final String REDIS_OLP_RAW_DUPLICATION_KEY_PREFIX = "entity:im:olp_raw:";
     public static final String EQ_REVERSE_CTRL_INFO_REDIS_KEY_PREFIX = "entity:im:chk:reverse:";
-    public static final String REDIS_COMPARISON_MODEL_KEY_PREFIX = "qtech:im:aa:list:model:";
-    public static final String REDIS_COMPARISON_MODEL_INFO_KEY_SUFFIX = "qtech:im:aa:list:model:info:";
+    public static final String REDIS_COMPARISON_MODEL_KEY_PREFIX = "qtech:im:aa:list:xxx:";
+    public static final String REDIS_COMPARISON_MODEL_INFO_KEY_SUFFIX = "qtech:im:aa:list:xxx:info:";
     public static final String EQ_REVERSE_IGNORE_SIM_PREFIX = "qtech:im:chk:ignored:";
     public static final String REDIS_JOB_RUN_DT_KEY_PREFIX = "entity:datadev:job:run:dt:";
     public static final String REDIS_JOB_RUN_STAT_KEY_PREFIX = "entity:datadev:job:run:stat:";

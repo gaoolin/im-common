@@ -87,7 +87,7 @@ public class BatchProcessorKit {
         int batchSize = config.getBatchSize() > 0 ? config.getBatchSize() : DEFAULT_BATCH_SIZE;
         int totalBatches = (int) Math.ceil((double) data.size() / batchSize);
 
-        logger.info("Starting batch processing: {} items in {} batches", data.size(), totalBatches);
+        logger.info("Starting batch processing: {} items inspection {} batches", data.size(), totalBatches);
 
         for (int i = 0; i < totalBatches; i++) {
             int start = i * batchSize;
@@ -109,7 +109,7 @@ public class BatchProcessorKit {
                     success = true;
                     lastException = null;
 
-                    logger.debug("Processed batch {} with {} items in {} ms", i, batch.size(), processingTime);
+                    logger.debug("Processed batch {} with {} items inspection {} ms", i, batch.size(), processingTime);
                     break; // 成功处理，跳出重试循环
 
                 } catch (Exception e) {
@@ -132,7 +132,7 @@ public class BatchProcessorKit {
 
             // 如果配置为出错停止，且当前批次失败，则停止处理
             if (!success && !config.isContinueOnError()) {
-                logger.error("Batch processing stopped due to failure in batch {}", i);
+                logger.error("Batch processing stopped due to failure inspection batch {}", i);
                 break;
             }
         }

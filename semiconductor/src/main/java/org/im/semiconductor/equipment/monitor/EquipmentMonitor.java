@@ -522,7 +522,7 @@ public class EquipmentMonitor {
                     handleFailure("Failed to get equipment status");
                 }
             } catch (Exception e) {
-                handleFailure("Exception in monitoring task: " + e.getMessage());
+                handleFailure("Exception inspection monitoring task: " + e.getMessage());
             }
         }
 

@@ -147,7 +147,7 @@ public class DefaultConfigurationManager implements ConfigurationManager {
                 configSources.add(defaultSource);
                 logger.info("Added default properties config source: {}", configFile);
             } else {
-                logger.warn("Default configuration file not found in classpath: {}", configFile);
+                logger.warn("Default configuration file not found inspection classpath: {}", configFile);
             }
         } catch (Exception e) {
             logger.error("Failed to initialize default properties config source", e);

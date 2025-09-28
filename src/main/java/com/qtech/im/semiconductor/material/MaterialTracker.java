@@ -847,7 +847,7 @@ public class MaterialTracker {
 
         try {
             materialCache.put(material.getMaterialId(), material);
-            logger.debug("Updated material in cache: {}", material.getMaterialId());
+            logger.debug("Updated material inspection cache: {}", material.getMaterialId());
             return true;
         } catch (Exception e) {
             logger.error("Failed to update material: " + material.getMaterialId(), e);
@@ -938,7 +938,7 @@ public class MaterialTracker {
 
         try {
             batchCache.put(batch.getBatchId(), batch);
-            logger.debug("Updated batch in cache: {}", batch.getBatchId());
+            logger.debug("Updated batch inspection cache: {}", batch.getBatchId());
             return true;
         } catch (Exception e) {
             logger.error("Failed to update batch: " + batch.getBatchId(), e);
@@ -1489,7 +1489,7 @@ public class MaterialTracker {
         }
 
         public Material setMaterialName(String materialName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1502,7 +1502,7 @@ public class MaterialTracker {
         }
 
         public Material setSpecification(String specification) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1511,7 +1511,7 @@ public class MaterialTracker {
         }
 
         public Material setSupplier(String supplier) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1524,7 +1524,7 @@ public class MaterialTracker {
         }
 
         public Material setManufactureDate(LocalDateTime manufactureDate) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1533,7 +1533,7 @@ public class MaterialTracker {
         }
 
         public Material setExpirationDate(LocalDateTime expirationDate) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1542,7 +1542,7 @@ public class MaterialTracker {
         }
 
         public Material setLotNumber(String lotNumber) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1551,7 +1551,7 @@ public class MaterialTracker {
         }
 
         public Material setBatchNumber(String batchNumber) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1564,7 +1564,7 @@ public class MaterialTracker {
         }
 
         public Material setUnit(String unit) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1573,7 +1573,7 @@ public class MaterialTracker {
         }
 
         public Material setStatus(MaterialStatus status) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1582,7 +1582,7 @@ public class MaterialTracker {
         }
 
         public Material setQualityStatus(QualityStatus qualityStatus) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1617,7 +1617,7 @@ public class MaterialTracker {
         }
 
         public Material setUpdatedBy(String updatedBy) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1669,7 +1669,7 @@ public class MaterialTracker {
         }
 
         public StorageLocation setLocationName(String locationName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1678,7 +1678,7 @@ public class MaterialTracker {
         }
 
         public StorageLocation setWarehouse(String warehouse) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1687,7 +1687,7 @@ public class MaterialTracker {
         }
 
         public StorageLocation setArea(String area) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1696,7 +1696,7 @@ public class MaterialTracker {
         }
 
         public StorageLocation setRack(String rack) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1705,7 +1705,7 @@ public class MaterialTracker {
         }
 
         public StorageLocation setShelf(String shelf) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1718,7 +1718,7 @@ public class MaterialTracker {
         }
 
         public StorageLocation setUnit(String unit) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1918,7 +1918,7 @@ public class MaterialTracker {
         }
 
         public BatchTrace setUnit(String unit) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1927,7 +1927,7 @@ public class MaterialTracker {
         }
 
         public BatchTrace setFromLocation(String fromLocation) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1936,7 +1936,7 @@ public class MaterialTracker {
         }
 
         public BatchTrace setToLocation(String toLocation) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1945,7 +1945,7 @@ public class MaterialTracker {
         }
 
         public BatchTrace setOperator(String operator) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1958,7 +1958,7 @@ public class MaterialTracker {
         }
 
         public BatchTrace setReferenceNumber(String referenceNumber) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2161,7 +2161,7 @@ public class MaterialTracker {
         }
 
         public MaterialMovement setUnit(String unit) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2170,7 +2170,7 @@ public class MaterialTracker {
         }
 
         public MaterialMovement setFromLocation(String fromLocation) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2179,7 +2179,7 @@ public class MaterialTracker {
         }
 
         public MaterialMovement setToLocation(String toLocation) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2188,7 +2188,7 @@ public class MaterialTracker {
         }
 
         public MaterialMovement setReferenceNumber(String referenceNumber) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2201,7 +2201,7 @@ public class MaterialTracker {
         }
 
         public MaterialMovement setOperator(String operator) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2291,7 +2291,7 @@ public class MaterialTracker {
         }
 
         public ExpirationAlert setRecipient(String recipient) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2300,7 +2300,7 @@ public class MaterialTracker {
         }
 
         public ExpirationAlert setAcknowledged(boolean acknowledged) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2405,7 +2405,7 @@ public class MaterialTracker {
         }
 
         public InventoryAlert setRecipient(String recipient) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2414,7 +2414,7 @@ public class MaterialTracker {
         }
 
         public InventoryAlert setAcknowledged(boolean acknowledged) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2542,7 +2542,7 @@ public class MaterialTracker {
         }
 
         public QualityRecord setInspector(String inspector) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2555,7 +2555,7 @@ public class MaterialTracker {
         }
 
         public QualityRecord setInspectionReport(String inspectionReport) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2577,7 +2577,7 @@ public class MaterialTracker {
         }
 
         public QualityRecord setRemarks(String remarks) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 

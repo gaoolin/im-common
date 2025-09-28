@@ -1011,7 +1011,7 @@ public class ProductionReporter {
             }
 
             byte[] data = generator.generateReport(report, config);
-            logger.debug("Exported report data: {} bytes in {} format", data.length, format);
+            logger.debug("Exported report data: {} bytes inspection {} format", data.length, format);
             return data;
         } catch (Exception e) {
             logger.error("Failed to export report data", e);

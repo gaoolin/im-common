@@ -461,7 +461,7 @@ public class RecipeManager {
                         .setStatistic("optimizationTime", duration)
                         .setStatistic("dataPointCount", data.getDataPoints().size());
 
-                logger.info("Parameter optimization completed in {}ms using {} for recipe: {}",
+                logger.info("Parameter optimization completed inspection {}ms using {} for recipe: {}",
                         duration, algorithm.getChineseName(), recipe.getRecipeId());
             } else {
                 logger.warn("Parameter optimization failed for recipe: {}", recipe.getRecipeId());
@@ -485,7 +485,7 @@ public class RecipeManager {
             // 获取配方参数
             Map<String, RecipeParameter> parameters = recipe.getParameters();
             if (parameters.isEmpty()) {
-                logger.warn("No parameters found in recipe for optimization");
+                logger.warn("No parameters found inspection recipe for optimization");
                 return result;
             }
 
@@ -787,7 +787,7 @@ public class RecipeManager {
 
         try {
             recipeCache.put(recipe.getRecipeId(), recipe);
-            logger.debug("Updated recipe in cache: {}", recipe.getRecipeId());
+            logger.debug("Updated recipe inspection cache: {}", recipe.getRecipeId());
             return true;
         } catch (Exception e) {
             logger.error("Failed to update recipe: " + recipe.getRecipeId(), e);
@@ -1169,7 +1169,7 @@ public class RecipeManager {
         }
 
         public ProcessRecipe setRecipeName(String recipeName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1186,7 +1186,7 @@ public class RecipeManager {
         }
 
         public ProcessRecipe setDescription(String description) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1242,7 +1242,7 @@ public class RecipeManager {
         }
 
         public ProcessRecipe setEquipmentType(String equipmentType) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1327,7 +1327,7 @@ public class RecipeManager {
         }
 
         public RecipeParameter setParameterName(String parameterName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1340,7 +1340,7 @@ public class RecipeManager {
         }
 
         public RecipeParameter setDefaultValue(Object defaultValue) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1349,7 +1349,7 @@ public class RecipeManager {
         }
 
         public RecipeParameter setMinValue(Object minValue) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1358,7 +1358,7 @@ public class RecipeManager {
         }
 
         public RecipeParameter setMaxValue(Object maxValue) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1367,7 +1367,7 @@ public class RecipeManager {
         }
 
         public RecipeParameter setUnit(String unit) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1376,7 +1376,7 @@ public class RecipeManager {
         }
 
         public RecipeParameter setRequired(boolean required) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1385,7 +1385,7 @@ public class RecipeManager {
         }
 
         public RecipeParameter setDescription(String description) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1446,7 +1446,7 @@ public class RecipeManager {
         }
 
         public RecipeStep setStepName(String stepName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1459,7 +1459,7 @@ public class RecipeManager {
         }
 
         public RecipeStep setDescription(String description) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1481,7 +1481,7 @@ public class RecipeManager {
         }
 
         public RecipeStep setDuration(long duration) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1545,7 +1545,7 @@ public class RecipeManager {
         }
 
         public RecipeConstraint setConstraintName(String constraintName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1554,7 +1554,7 @@ public class RecipeManager {
         }
 
         public RecipeConstraint setExpression(String expression) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1563,7 +1563,7 @@ public class RecipeManager {
         }
 
         public RecipeConstraint setDescription(String description) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1572,7 +1572,7 @@ public class RecipeManager {
         }
 
         public RecipeConstraint setEnabled(boolean enabled) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1613,7 +1613,7 @@ public class RecipeManager {
         }
 
         public RecipeValidationRule setRuleName(String ruleName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1622,7 +1622,7 @@ public class RecipeManager {
         }
 
         public RecipeValidationRule setExpression(String expression) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1631,7 +1631,7 @@ public class RecipeManager {
         }
 
         public RecipeValidationRule setErrorMessage(String errorMessage) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1640,7 +1640,7 @@ public class RecipeManager {
         }
 
         public RecipeValidationRule setCritical(boolean critical) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1708,7 +1708,7 @@ public class RecipeManager {
         }
 
         public OptimizedParameters setIterations(int iterations) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1734,7 +1734,7 @@ public class RecipeManager {
         }
 
         public OptimizedParameters setConverged(boolean converged) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1838,7 +1838,7 @@ public class RecipeManager {
         }
 
         public RecipeVersion setDescription(String description) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1851,7 +1851,7 @@ public class RecipeManager {
         }
 
         public RecipeVersion setChangeLog(String changeLog) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2109,7 +2109,7 @@ public class RecipeManager {
         }
 
         public ApprovalStep setComments(String comments) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2165,7 +2165,7 @@ public class RecipeManager {
         }
 
         public ValidationError setField(String field) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2174,7 +2174,7 @@ public class RecipeManager {
         }
 
         public ValidationError setValue(Object value) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 

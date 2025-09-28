@@ -234,12 +234,12 @@ public class MesIntegrator {
         public LocalDateTime getCreateTime() { return createTime; }
         public String getBatchId() { return batchId; }
         public DataPackage setBatchId(String batchId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
         public String getProductId() { return productId; }
         public DataPackage setProductId(String productId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
         public Map<String, Object> getMetadata() { return new HashMap<>(metadata); }
@@ -250,7 +250,7 @@ public class MesIntegrator {
         public Object getMetadata(String key) { return this.metadata.get(key); }
         public String getCorrelationId() { return correlationId; }
         public DataPackage setCorrelationId(String correlationId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
         public SyncStatus getStatus() { return status; }
@@ -308,7 +308,7 @@ public class MesIntegrator {
         public long getDuration() { return duration; }
         public ResponseStatus getResponseStatus() { return responseStatus; }
         public SyncResult setResponseStatus(ResponseStatus responseStatus) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
         public Map<String, Object> getDetails() { return new HashMap<>(details); }
@@ -319,12 +319,12 @@ public class MesIntegrator {
         public Object getDetail(String key) { return this.details.get(key); }
         public String getErrorMessage() { return errorMessage; }
         public SyncResult setErrorMessage(String errorMessage) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
         public int getRetryCount() { return retryCount; }
         public SyncResult setRetryCount(int retryCount) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -382,12 +382,12 @@ public class MesIntegrator {
         public Object getParameter(String key) { return this.parameters.get(key); }
         public String getWorkOrderId() { return workOrderId; }
         public MesCommand setWorkOrderId(String workOrderId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
         public String getBatchId() { return batchId; }
         public MesCommand setBatchId(String batchId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
         public Map<String, Object> getMetadata() { return new HashMap<>(metadata); }
@@ -398,7 +398,7 @@ public class MesIntegrator {
         public Object getMetadata(String key) { return this.metadata.get(key); }
         public String getPriority() { return priority; }
         public MesCommand setPriority(String priority) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -452,12 +452,12 @@ public class MesIntegrator {
         public Object getResponseData(String key) { return this.responseData.get(key); }
         public String getErrorMessage() { return errorMessage; }
         public CommandResponse setErrorMessage(String errorMessage) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
         public long getProcessingTime() { return processingTime; }
         public CommandResponse setProcessingTime(long processingTime) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -518,17 +518,17 @@ public class MesIntegrator {
         public Object getContextData(String key) { return this.contextData.get(key); }
         public String getSeverity() { return severity; }
         public ExceptionData setSeverity(String severity) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
         public boolean isAcknowledged() { return acknowledged; }
         public ExceptionData setAcknowledged(boolean acknowledged) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
         public String getAssignedTo() { return assignedTo; }
         public ExceptionData setAssignedTo(String assignedTo) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
         public Map<String, Object> getMetadata() { return new HashMap<>(metadata); }
@@ -587,7 +587,7 @@ public class MesIntegrator {
         public Object getMetadata(String key) { return this.metadata.get(key); }
         public String getPriority() { return priority; }
         public RealTimeData setPriority(String priority) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -970,7 +970,7 @@ public class MesIntegrator {
                 data.setStatus(result.isSuccess() ? SyncStatus.SUCCESS : SyncStatus.FAILED);
 
                 if (result.isSuccess()) {
-                    logger.info("Data synchronization completed successfully: {} in {}ms",
+                    logger.info("Data synchronization completed successfully: {} inspection {}ms",
                                data.getPackageId(), duration);
                 } else {
                     logger.warn("Data synchronization failed: {} - {}",
@@ -1143,7 +1143,7 @@ public class MesIntegrator {
                 response.setProcessingTime(processingTime);
 
                 if (response.getStatus() == ResponseStatus.SUCCESS) {
-                    logger.info("Command processing completed successfully: {} in {}ms",
+                    logger.info("Command processing completed successfully: {} inspection {}ms",
                                command.getCommandId(), processingTime);
                 } else {
                     logger.warn("Command processing failed: {} - {}",

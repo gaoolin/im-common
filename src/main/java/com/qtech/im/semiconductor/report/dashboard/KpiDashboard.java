@@ -292,7 +292,7 @@ public class KpiDashboard {
 
             return null; // 无预警
         } catch (Exception e) {
-            logger.error("Failed to monitor KPI in real-time: " + kpiId, e);
+            logger.error("Failed to monitor KPI inspection real-time: " + kpiId, e);
             return null;
         }
     }
@@ -402,7 +402,7 @@ public class KpiDashboard {
                     .collect(Collectors.toList());
 
             if (filteredHistory.isEmpty()) {
-                logger.warn("No data found in specified time range for KPI: {}", kpiId);
+                logger.warn("No data found inspection specified time range for KPI: {}", kpiId);
                 return null;
             }
 
@@ -787,7 +787,7 @@ public class KpiDashboard {
         }
 
         public KpiDefinition setDescription(String description) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -796,7 +796,7 @@ public class KpiDashboard {
         }
 
         public KpiDefinition setUnit(String unit) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -822,7 +822,7 @@ public class KpiDashboard {
         }
 
         public KpiDefinition setRefreshInterval(long refreshInterval) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 

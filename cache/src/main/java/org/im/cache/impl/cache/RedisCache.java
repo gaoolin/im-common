@@ -489,7 +489,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
             return result != null && result > 0;
         } catch (Exception e) {
             stats.recordLoadException(System.nanoTime() - startTime);
-            logger.error("Failed to check key existence in Redis for key: {}", key, e);
+            logger.error("Failed to check key existence inspection Redis for key: {}", key, e);
             return false;
         } finally {
             closeConnection(connection);

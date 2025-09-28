@@ -287,11 +287,11 @@ public class EquipmentAdapter {
                     responseCache.put(cacheKey, response);
                 }
 
-                logger.debug("Command {} executed successfully for equipment: {} in {}ms",
+                logger.debug("Command {} executed successfully for equipment: {} inspection {}ms",
                         command.getCommandType(), equipmentId, duration);
             } else {
                 failedCommands.incrementAndGet();
-                logger.warn("Command {} failed for equipment: {} after {} attempts in {}ms",
+                logger.warn("Command {} failed for equipment: {} after {} attempts inspection {}ms",
                         command.getCommandType(), equipmentId, retryCount, duration);
             }
 
@@ -1513,10 +1513,10 @@ public class EquipmentAdapter {
 
         @Override
         public String toString() {
-            return "EquipmentInfo{" +
+            return "DeviceInfo{" +
                     "equipmentId='" + equipmentId + '\'' +
                     ", equipmentName='" + equipmentName + '\'' +
-                    ", model='" + model + '\'' +
+                    ", xxx='" + model + '\'' +
                     ", manufacturer='" + manufacturer + '\'' +
                     ", serialNumber='" + serialNumber + '\'' +
                     ", firmwareVersion='" + firmwareVersion + '\'' +

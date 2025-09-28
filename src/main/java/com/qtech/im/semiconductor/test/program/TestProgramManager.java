@@ -194,7 +194,7 @@ public class TestProgramManager {
     public static boolean validateProgramCompatibility(String equipmentModel, String programVersion) {
         if (equipmentModel == null || equipmentModel.isEmpty() ||
             programVersion == null || programVersion.isEmpty()) {
-            logger.warn("Invalid equipment model or program version");
+            logger.warn("Invalid equipment xxx or program version");
             return false;
         }
 

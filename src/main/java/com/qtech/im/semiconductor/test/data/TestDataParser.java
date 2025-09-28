@@ -119,7 +119,7 @@ public class TestDataParser {
                 long parseTime = endTime - startTime;
                 long recordCount = resultSet != null ? resultSet.getTestRecords().size() : 0;
 
-                logger.info("Successfully parsed {} records from {} in {} ms",
+                logger.info("Successfully parsed {} records from {} inspection {} ms",
                         recordCount, filePath, parseTime);
 
                 return new ParseResult(true, resultSet, errors, parseTime, recordCount);
@@ -390,10 +390,10 @@ public class TestDataParser {
             // 检测测试结果异常
             detectResultAnomalies(records, anomalies);
 
-            logger.debug("Detected {} anomalies in testing data", anomalies.size());
+            logger.debug("Detected {} anomalies inspection testing data", anomalies.size());
             return anomalies;
         } catch (Exception e) {
-            logger.error("Failed to detect anomalies in testing data", e);
+            logger.error("Failed to detect anomalies inspection testing data", e);
             return anomalies;
         }
     }

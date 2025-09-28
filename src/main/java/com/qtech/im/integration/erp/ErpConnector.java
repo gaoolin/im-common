@@ -349,7 +349,7 @@ public class ErpConnector {
             long duration = System.currentTimeMillis() - startTime;
 
             if (synced) {
-                logger.info("Order status synchronization completed successfully: {} - {} in {}ms",
+                logger.info("Order status synchronization completed successfully: {} - {} inspection {}ms",
                         orderId, status.getDescription(), duration);
             } else {
                 logger.warn("Order status synchronization failed: {} - {}", orderId, status.getDescription());
@@ -393,7 +393,7 @@ public class ErpConnector {
                 Order order = orderCache.get(orderId);
                 if (order != null) {
                     // 在实际实现中，这里需要通过反射或构建器模式更新订单状态
-                    logger.debug("Updated order status in cache: {} - {}", orderId, status.getDescription());
+                    logger.debug("Updated order status inspection cache: {} - {}", orderId, status.getDescription());
                 }
             }
 
@@ -485,10 +485,10 @@ public class ErpConnector {
             if (productionPlan != null) {
                 planCache.put(productionPlan.getPlanId(), productionPlan);
 
-                logger.info("Production plan received successfully: {} in {}ms",
+                logger.info("Production plan received successfully: {} inspection {}ms",
                         productionPlan.getPlanId(), duration);
             } else {
-                logger.warn("Production plan receiving failed: {} in {}ms",
+                logger.warn("Production plan receiving failed: {} inspection {}ms",
                         erpPlan.getPlanId(), duration);
             }
 
@@ -593,10 +593,10 @@ public class ErpConnector {
             if (reported) {
                 costCache.put(costData.getCostId(), costData);
 
-                logger.info("Cost data reported successfully: {} - {} {} in {}ms",
+                logger.info("Cost data reported successfully: {} - {} {} inspection {}ms",
                         costData.getCostId(), costData.getAmount(), costData.getCurrency(), duration);
             } else {
-                logger.warn("Cost data reporting failed: {} in {}ms", costData.getCostId(), duration);
+                logger.warn("Cost data reporting failed: {} inspection {}ms", costData.getCostId(), duration);
             }
 
             return reported;
@@ -723,11 +723,11 @@ public class ErpConnector {
             if (synced) {
                 inventoryCache.put(inventoryData.getInventoryId(), inventoryData);
 
-                logger.info("Inventory data synchronized successfully: {} - {} {} in {}ms",
+                logger.info("Inventory data synchronized successfully: {} - {} {} inspection {}ms",
                         inventoryData.getInventoryId(), inventoryData.getQuantity(),
                         inventoryData.getUnit(), duration);
             } else {
-                logger.warn("Inventory data synchronization failed: {} in {}ms",
+                logger.warn("Inventory data synchronization failed: {} inspection {}ms",
                         inventoryData.getInventoryId(), duration);
             }
 
@@ -912,7 +912,7 @@ public class ErpConnector {
 
         try {
             orderCache.put(order.getOrderId(), order);
-            logger.debug("Updated order in cache: {}", order.getOrderId());
+            logger.debug("Updated order inspection cache: {}", order.getOrderId());
             return true;
         } catch (Exception e) {
             logger.error("Failed to update order: " + order.getOrderId(), e);
@@ -1512,7 +1512,7 @@ public class ErpConnector {
         }
 
         public Order setCustomerCode(String customerCode) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1521,7 +1521,7 @@ public class ErpConnector {
         }
 
         public Order setCustomerName(String customerName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1539,7 +1539,7 @@ public class ErpConnector {
         }
 
         public Order setOrderDate(LocalDateTime orderDate) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1548,7 +1548,7 @@ public class ErpConnector {
         }
 
         public Order setDeliveryDate(LocalDateTime deliveryDate) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1557,7 +1557,7 @@ public class ErpConnector {
         }
 
         public Order setTotalAmount(BigDecimal totalAmount) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1566,7 +1566,7 @@ public class ErpConnector {
         }
 
         public Order setCurrency(String currency) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1575,7 +1575,7 @@ public class ErpConnector {
         }
 
         public Order setStatus(OrderStatus status) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1584,7 +1584,7 @@ public class ErpConnector {
         }
 
         public Order setSalesPerson(String salesPerson) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1593,7 +1593,7 @@ public class ErpConnector {
         }
 
         public Order setPaymentTerms(String paymentTerms) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1619,7 +1619,7 @@ public class ErpConnector {
         }
 
         public Order setUpdatedBy(String updatedBy) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1671,7 +1671,7 @@ public class ErpConnector {
         }
 
         public OrderItem setProductId(String productId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1680,7 +1680,7 @@ public class ErpConnector {
         }
 
         public OrderItem setProductName(String productName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1693,7 +1693,7 @@ public class ErpConnector {
         }
 
         public OrderItem setUnitPrice(BigDecimal unitPrice) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1702,7 +1702,7 @@ public class ErpConnector {
         }
 
         public OrderItem setTotalAmount(BigDecimal totalAmount) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1711,7 +1711,7 @@ public class ErpConnector {
         }
 
         public OrderItem setUnit(String unit) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1720,7 +1720,7 @@ public class ErpConnector {
         }
 
         public OrderItem setDeliveryDate(LocalDateTime deliveryDate) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1790,7 +1790,7 @@ public class ErpConnector {
         }
 
         public ErpPlan setProductId(String productId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1799,7 +1799,7 @@ public class ErpConnector {
         }
 
         public ErpPlan setProductName(String productName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1812,7 +1812,7 @@ public class ErpConnector {
         }
 
         public ErpPlan setStartDate(LocalDateTime startDate) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1821,7 +1821,7 @@ public class ErpConnector {
         }
 
         public ErpPlan setEndDate(LocalDateTime endDate) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1830,7 +1830,7 @@ public class ErpConnector {
         }
 
         public ErpPlan setProductionLine(String productionLine) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1839,7 +1839,7 @@ public class ErpConnector {
         }
 
         public ErpPlan setStatus(PlanStatus status) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1874,7 +1874,7 @@ public class ErpConnector {
         }
 
         public ErpPlan setCreatedBy(String createdBy) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1923,7 +1923,7 @@ public class ErpConnector {
         }
 
         public PlanItem setMaterialId(String materialId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1932,7 +1932,7 @@ public class ErpConnector {
         }
 
         public PlanItem setMaterialName(String materialName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1945,7 +1945,7 @@ public class ErpConnector {
         }
 
         public PlanItem setUnit(String unit) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -1954,7 +1954,7 @@ public class ErpConnector {
         }
 
         public PlanItem setRequiredDate(LocalDateTime requiredDate) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2024,7 +2024,7 @@ public class ErpConnector {
         }
 
         public ProductionPlan setProductId(String productId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2033,7 +2033,7 @@ public class ErpConnector {
         }
 
         public ProductionPlan setProductName(String productName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2046,7 +2046,7 @@ public class ErpConnector {
         }
 
         public ProductionPlan setStartDate(LocalDateTime startDate) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2055,7 +2055,7 @@ public class ErpConnector {
         }
 
         public ProductionPlan setEndDate(LocalDateTime endDate) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2064,7 +2064,7 @@ public class ErpConnector {
         }
 
         public ProductionPlan setProductionLine(String productionLine) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2073,7 +2073,7 @@ public class ErpConnector {
         }
 
         public ProductionPlan setStatus(PlanStatus status) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2108,7 +2108,7 @@ public class ErpConnector {
         }
 
         public ProductionPlan setCreatedBy(String createdBy) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2159,7 +2159,7 @@ public class ErpConnector {
         }
 
         public ProductionTask setProcessStep(String processStep) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2172,7 +2172,7 @@ public class ErpConnector {
         }
 
         public ProductionTask setPlannedStartTime(LocalDateTime plannedStartTime) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2181,7 +2181,7 @@ public class ErpConnector {
         }
 
         public ProductionTask setPlannedEndTime(LocalDateTime plannedEndTime) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2190,7 +2190,7 @@ public class ErpConnector {
         }
 
         public ProductionTask setEquipmentId(String equipmentId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2199,7 +2199,7 @@ public class ErpConnector {
         }
 
         public ProductionTask setOperator(String operator) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2268,7 +2268,7 @@ public class ErpConnector {
         }
 
         public CostData setProductId(String productId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2285,7 +2285,7 @@ public class ErpConnector {
         }
 
         public CostData setCurrency(String currency) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2294,7 +2294,7 @@ public class ErpConnector {
         }
 
         public CostData setCostDate(LocalDateTime costDate) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2303,7 +2303,7 @@ public class ErpConnector {
         }
 
         public CostData setCostCenter(String costCenter) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2312,7 +2312,7 @@ public class ErpConnector {
         }
 
         public CostData setBatchId(String batchId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2338,7 +2338,7 @@ public class ErpConnector {
         }
 
         public CostData setCreatedBy(String createdBy) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2396,7 +2396,7 @@ public class ErpConnector {
         }
 
         public InventoryData setProductId(String productId) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2405,7 +2405,7 @@ public class ErpConnector {
         }
 
         public InventoryData setProductName(String productName) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2414,7 +2414,7 @@ public class ErpConnector {
         }
 
         public InventoryData setInventoryType(InventoryType inventoryType) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2423,7 +2423,7 @@ public class ErpConnector {
         }
 
         public InventoryData setQuantity(int quantity) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2432,7 +2432,7 @@ public class ErpConnector {
         }
 
         public InventoryData setReservedQuantity(int reservedQuantity) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2441,7 +2441,7 @@ public class ErpConnector {
         }
 
         public InventoryData setAvailableQuantity(int availableQuantity) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2450,7 +2450,7 @@ public class ErpConnector {
         }
 
         public InventoryData setUnit(String unit) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2459,7 +2459,7 @@ public class ErpConnector {
         }
 
         public InventoryData setWarehouse(String warehouse) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2468,7 +2468,7 @@ public class ErpConnector {
         }
 
         public InventoryData setLocation(String location) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2562,7 +2562,7 @@ public class ErpConnector {
         }
 
         public SyncResult setResponseStatus(ResponseStatus responseStatus) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2584,7 +2584,7 @@ public class ErpConnector {
         }
 
         public SyncResult setErrorMessage(String errorMessage) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2593,7 +2593,7 @@ public class ErpConnector {
         }
 
         public SyncResult setRetryCount(int retryCount) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2683,7 +2683,7 @@ public class ErpConnector {
         }
 
         public ExceptionData setSeverity(String severity) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2692,7 +2692,7 @@ public class ErpConnector {
         }
 
         public ExceptionData setAcknowledged(boolean acknowledged) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 
@@ -2701,7 +2701,7 @@ public class ErpConnector {
         }
 
         public ExceptionData setAssignedTo(String assignedTo) {
-            // This would need a builder pattern or new instance in real implementation
+            // This would need a builder pattern or new instance inspection real implementation
             return this;
         }
 

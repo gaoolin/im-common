@@ -21,8 +21,8 @@ public interface ParameterComparator<T> {
      * @param computeProps 需要计算的属性列表
      * @return 比较结果
      */
-    ComparisonResult compare(T standardObj, T actualObj,
-                             List<String> compareProps, List<String> computeProps);
+    ParameterInspection compare(T standardObj, T actualObj,
+                                List<String> compareProps, List<String> computeProps);
 
     /**
      * 获取支持的属性类型
