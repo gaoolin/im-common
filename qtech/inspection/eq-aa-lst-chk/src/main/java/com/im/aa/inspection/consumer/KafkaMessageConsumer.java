@@ -3,7 +3,11 @@ package com.im.aa.inspection.consumer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.im.aa.inspection.entity.param.EqLstParsed;
+import com.im.aa.inspection.entity.reverse.EqpReverseRecord;
 import com.im.aa.inspection.service.ParamCheckService;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -11,10 +15,11 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.errors.WakeupException;
+import org.im.common.dt.Chronos;
+import org.im.common.json.JsonMapperProvider;
+import org.im.common.lifecycle.Lifecycle;
 import org.im.config.ConfigurationManager;
 import org.im.semiconductor.common.dispatcher.MessageHandlerDispatcher;
-import org.im.util.dt.Chronos;
-import org.im.util.json.JsonMapperProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,13 +38,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @email gaoolin@gmail.com
  * @since 2025/09/25
  */
-public class KafkaMessageConsumer {
+public class KafkaMessageConsumer implements Lifecycle {
     private static final Logger logger = LoggerFactory.getLogger(KafkaMessageConsumer.class);
     private static final ObjectMapper objectMapper = JsonMapperProvider.getSharedInstance();
-
+    private static final MessageHandlerDispatcher messageHandlerDispatcher = MessageHandlerDispatcher.getInstance();
     private final ConfigurationManager configManager;
     private final ParamCheckService paramCheckService;
-    private final MessageHandlerDispatcher messageHandlerDispatcher;
     private final AtomicBoolean running = new AtomicBoolean(false);
     private final int threadPoolSize;
 
@@ -48,20 +52,23 @@ public class KafkaMessageConsumer {
     private ExecutorService executorService;
     private ExecutorService handlerExecutorService;
 
+    // RabbitMQ 相关组件
+    private Connection rabbitConnection;
+    private Channel rabbitChannel;
+
     public KafkaMessageConsumer(
             ConfigurationManager configManager,
-            ParamCheckService paramCheckService,
-            MessageHandlerDispatcher messageHandlerDispatcher) {
+            ParamCheckService paramCheckService) {
         this.configManager = configManager;
         this.paramCheckService = paramCheckService;
-        this.messageHandlerDispatcher = messageHandlerDispatcher;
         this.threadPoolSize = configManager.getIntProperty("im.thread.pool.size", 3);
     }
 
-    public void startConsuming() {
+    public void startConsuming() throws Exception {
         if (running.compareAndSet(false, true)) {
             try {
                 initializeKafkaComponents();
+                initializeRabbitMQComponents(); // 初始化 RabbitMQ 组件
                 executorService = Executors.newSingleThreadExecutor(r -> {
                     Thread t = new Thread(r, "EqLstConsumerThread");
                     t.setDaemon(false);
@@ -113,6 +120,27 @@ public class KafkaMessageConsumer {
         this.producer = new KafkaProducer<>(producerProps);
     }
 
+    private void initializeRabbitMQComponents() throws Exception {
+        // 初始化 RabbitMQ 连接和信道
+        ConnectionFactory factory = new ConnectionFactory();
+        String rabbitHost = configManager.getProperty("rabbitmq.host", "localhost");
+        int rabbitPort = configManager.getIntProperty("rabbitmq.port", 5672);
+        String rabbitUsername = configManager.getProperty("rabbitmq.username", "guest");
+        String rabbitPassword = configManager.getProperty("rabbitmq.password", "guest");
+        String rabbitVirtualHost = configManager.getProperty("rabbitmq.virtual-host", "/");
+
+        factory.setHost(rabbitHost);
+        factory.setPort(rabbitPort);
+        factory.setUsername(rabbitUsername);
+        factory.setPassword(rabbitPassword);
+        factory.setVirtualHost(rabbitVirtualHost);
+
+        rabbitConnection = factory.newConnection();
+        rabbitChannel = rabbitConnection.createChannel();
+
+        logger.info(">>>>> RabbitMQ connection established: {}:{}", rabbitHost, rabbitPort);
+    }
+
     public void stopConsuming() {
         if (running.compareAndSet(true, false)) {
             logger.info(">>>>> Stopping KafkaMessageConsumer");
@@ -158,8 +186,17 @@ public class KafkaMessageConsumer {
                         producer.close();
                         logger.info(">>>>> Kafka producer closed successfully");
                     }
+                    // 关闭 RabbitMQ 连接
+                    if (rabbitChannel != null && rabbitChannel.isOpen()) {
+                        rabbitChannel.close();
+                        logger.info(">>>>> RabbitMQ channel closed successfully");
+                    }
+                    if (rabbitConnection != null && rabbitConnection.isOpen()) {
+                        rabbitConnection.close();
+                        logger.info(">>>>> RabbitMQ connection closed successfully");
+                    }
                 } catch (Exception e) {
-                    logger.error(">>>>> Error closing Kafka components", e);
+                    logger.error(">>>>> Error closing components", e);
                 }
             }
             logger.info(">>>>> Stopped KafkaMessageConsumer");
@@ -232,7 +269,7 @@ public class KafkaMessageConsumer {
                             messageStr.substring(0, Math.min(messageStr.length(), 75)));
                     return;
                 }
-                eqLstParsed.setReceivedTime(Chronos.toDate(Chronos.now()));
+                eqLstParsed.setReceivedTime(Chronos.now());
 
                 // 2. 转 JSON
                 logger.debug(">>>>> Step2: Serializing message...");
@@ -240,15 +277,26 @@ public class KafkaMessageConsumer {
 
                 // 3. 发到 Kafka (转发到处理后的主题)
                 logger.debug(">>>>> Step3: Sending to Kafka...");
-                String messageKey = (eqLstParsed.getProdType() != null ? eqLstParsed.getProdType() : "unknown")
+                String messageKey = (eqLstParsed.getModule() != null ? eqLstParsed.getModule() : "unknown")
                         + "-" + (eqLstParsed.getSimId() != null ? eqLstParsed.getSimId() : "unknown");
 
-                String outputTopic = configManager.getProperty("kafka.output.topic", "aa-list-params-test-topic");
-                producer.send(new ProducerRecord<>(outputTopic, messageKey, processedMessageStr));
+                String outputTopicParsed = configManager.getProperty("kafka.output.topic.eq_lst_parsed", "qtech_im_aa_list_parsed_test_topic");
+                producer.send(new ProducerRecord<>(outputTopicParsed, messageKey, processedMessageStr));
 
                 // 4. 处理参数检查
                 logger.debug(">>>>> Step4: Performing parameter check...");
-                paramCheckService.checkEquipmentParam(eqLstParsed);
+                EqpReverseRecord eqpReverseRecord = paramCheckService.performParameterCheck(eqLstParsed);
+
+                // 5. 发送到 RabbitMQ
+                logger.debug(">>>>> Step5: Sending to RabbitMQ...");
+                sendToRabbitMQ(eqpReverseRecord);
+
+                // 6. 发送到Kafka
+                logger.debug(">>>>> Step6: Sending to Kafka...");
+                String outputTopicReverse = configManager.getProperty("kafka.output.topic.eq_lst_reverse", "qtech_im_aa_list_checked_test_topic");
+                // 修复：将 EqpReverseRecord 对象转换为 JSON 字符串
+                String resultJson = objectMapper.writeValueAsString(eqpReverseRecord);
+                producer.send(new ProducerRecord<>(outputTopicReverse, messageKey, resultJson));
 
                 logger.info(">>>>> [SUCCESS] key={} processed and dispatched", messageKey);
 
@@ -269,5 +317,65 @@ public class KafkaMessageConsumer {
             logger.error(">>>>> [ERROR] Unexpected exception while processing record, offset={}, partition={}",
                     record.offset(), record.partition(), e);
         }
+    }
+
+    /**
+     * 发送消息到 RabbitMQ
+     *
+     * @param result 检查结果
+     */
+    private void sendToRabbitMQ(EqpReverseRecord result) {
+        try {
+            if (rabbitChannel == null || !rabbitChannel.isOpen()) {
+                logger.warn(">>>>> RabbitMQ channel is not available, skipping message send");
+                return;
+            }
+
+            String exchangeName = configManager.getProperty("rabbitmq.exchange.name", "qtechImExchange");
+            String routingKey = configManager.getProperty("rabbitmq.routing.key", "eq.reverse.rabbit.topic");
+            String jsonString = objectMapper.writeValueAsString(result);
+
+            rabbitChannel.basicPublish(exchangeName, routingKey, null, jsonString.getBytes());
+            logger.debug(">>>>> Message sent to RabbitMQ: exchange={}, routingKey={}", exchangeName, routingKey);
+        } catch (Exception e) {
+            logger.error(">>>>> Failed to send message to RabbitMQ", e);
+        }
+    }
+
+    /**
+     * 启动组件
+     */
+    @Override
+    public void start() {
+        try {
+            startConsuming();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 停止组件
+     */
+    @Override
+    public void stop() {
+        stopConsuming();
+    }
+
+    /**
+     * 检查组件是否正在运行
+     */
+    @Override
+    public boolean isRunning() {
+        return running.get();
+    }
+
+    /**
+     * 重启组件
+     */
+    @Override
+    public void restart() {
+        stop();
+        start();
     }
 }

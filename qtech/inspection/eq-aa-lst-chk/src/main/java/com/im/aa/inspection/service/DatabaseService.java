@@ -1,6 +1,6 @@
 package com.im.aa.inspection.service;
 
-import com.im.aa.inspection.context.CheckResult;
+import com.im.aa.inspection.entity.reverse.EqpReverseRecord;
 import org.im.config.ConfigurationManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +35,7 @@ public class DatabaseService {
     /**
      * 保存检查结果
      */
-    public void saveCheckResult(CheckResult result) {
+    public void saveInspectionResult(EqpReverseRecord result) {
         logger.debug("保存检查结果到数据库: {}", result);
         // 实际实现应连接数据库保存结果
     }

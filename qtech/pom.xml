@@ -18,6 +18,7 @@
     <url>http://maven.apache.org</url>
     <modules>
         <module>inspection</module>
+        <module>qtech-common</module>
     </modules>
 
     <dependencyManagement></dependencyManagement>

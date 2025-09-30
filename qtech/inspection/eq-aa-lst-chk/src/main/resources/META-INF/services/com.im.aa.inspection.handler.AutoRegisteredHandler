@@ -1,0 +1,14 @@
+com.im.aa.inspection.handler.AaHandler
+com.im.aa.inspection.handler.ChartAlignmentHandler
+com.im.aa.inspection.handler.EpoxyInspectionAutoHandler
+com.im.aa.inspection.handler.ListHandler
+com.im.aa.inspection.handler.LpOcHandler
+com.im.aa.inspection.handler.MtfCheckHandler
+com.im.aa.inspection.handler.MtfOffAxisCheckHandler
+com.im.aa.inspection.handler.RecordPositionHandler
+com.im.aa.inspection.handler.SaveMtfHandler
+com.im.aa.inspection.handler.SaveOcHandler
+com.im.aa.inspection.handler.UtXyzMoveHandler
+com.im.aa.inspection.handler.VcmHallHandler
+com.im.aa.inspection.handler.VcmRunHandler
+com.im.aa.inspection.integrator.EqLstParsedHandler

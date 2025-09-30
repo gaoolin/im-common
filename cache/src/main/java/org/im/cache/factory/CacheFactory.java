@@ -78,7 +78,7 @@ public class CacheFactory {
                     cache = new SimpleMemoryCache<>(config);
                     break;
             }
-            logger.info("Created cache with backend: {} for config: {}", config.getBackendType(), config.getName());
+            logger.info("Created cache with backend: {} for config.name: {}", config.getBackendType(), config.getName());
         } catch (Exception e) {
             logger.error("Failed to create cache with backend: {}", config.getBackendType(), e);
             throw new RuntimeException("Failed to create cache for backend: " + config.getBackendType(), e);

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.im.aa.inspection.entity.struct.BoundsLoader;
 import com.im.aa.inspection.entity.struct.EqLstCommand;
-import com.im.aa.inspection.utils.ToCamelCaseConverter;
+import com.im.aa.inspection.util.ToCamelCaseConverter;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -39,7 +39,7 @@ public class EqLstSet implements Serializable, Cloneable {
     private static final Logger logger = LoggerFactory.getLogger(EqLstSet.class);
 
     // 基础设备参数
-    private String prodType;
+    private String module;
     private String aa1;
     private String aa2;
     private String aa3;

@@ -1,39 +1,6 @@
 package com.im.aa.inspection.consumer;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.im.aa.inspection.comparator.EqLstComparatorV3;
-import com.im.aa.inspection.entity.param.EqLstParsed;
-import com.im.aa.inspection.entity.reverse.EqReverseCtrlInfo;
-import com.im.aa.inspection.entity.tpl.QtechEqLstTpl;
-import com.im.aa.inspection.entity.tpl.QtechEqLstTplInfo;
-import com.im.aa.inspection.utils.CacheUtil;
-import org.apache.kafka.clients.consumer.Consumer;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.Producer;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.errors.WakeupException;
-import org.im.semiconductor.common.parameter.comparator.ParameterInspection;
-import org.im.util.dt.Chronos;
-import org.im.util.json.JsonMapperProvider;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.time.Duration;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Properties;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import static com.im.aa.inspection.constants.EqLstChk.PROPERTIES_TO_COMPARE;
-import static com.im.aa.inspection.constants.EqLstChk.PROPERTIES_TO_COMPUTE;
+/*
 
 public class EqLstChkListener {
     private static final Logger logger = LoggerFactory.getLogger(EqLstChkListener.class);
@@ -153,11 +120,11 @@ public class EqLstChkListener {
             String messageKey = record.key();
             EqLstParsed actualObj = objectMapper.readValue(record.value(), new TypeReference<EqLstParsed>() {
             });
-            EqReverseCtrlInfo checkResult = initializeCheckResult(actualObj);
+            EqpReverseRecord checkResult = initializeCheckResult(actualObj);
 
             // 获取模板信息
-            QtechEqLstTplInfo modelInfoObj = getTplInfo(actualObj.getProdType());
-            QtechEqLstTpl modelObj = getTpl(actualObj.getProdType());
+            EqLstTplInfoPO modelInfoObj = getTplInfo(actualObj.getModule());
+            EqLstTplDO modelObj = getTpl(actualObj.getModule());
 
             // 判断模板信息
             if (modelInfoObj == null) {
@@ -180,25 +147,25 @@ public class EqLstChkListener {
         }
     }
 
-    private EqReverseCtrlInfo initializeCheckResult(EqLstParsed actualObj) {
-        EqReverseCtrlInfo checkResult = new EqReverseCtrlInfo();
+    private EqpReverseRecord initializeCheckResult(EqLstParsed actualObj) {
+        EqpReverseRecord checkResult = new EqpReverseRecord();
         checkResult.setSource("aa-list");
         checkResult.setSimId(actualObj.getSimId());
-        checkResult.setProdType(actualObj.getProdType());
+        checkResult.setModule(actualObj.getModule());
         checkResult.setChkDt(Chronos.now());
         return checkResult;
     }
 
     // FIXME : 当redis没有模版信息时，更严谨的逻辑是到数据库中查询 模版信息或模版详情，并更新到Redis中
-    private QtechEqLstTplInfo getTplInfo(String prodType) {
-        return cache.getParamsTplInfo(prodType);
+    private EqLstTplInfoPO getTplInfo(String module) {
+        return cache.getParamsTplInfo(module);
     }
 
-    private QtechEqLstTpl getTpl(String prodType) {
-        return cache.getParamsTpl(prodType);
+    private EqLstTplDO getTpl(String module) {
+        return cache.getParamsTpl(module);
     }
 
-    private void compareAndProcessResults(QtechEqLstTpl modelObj, EqLstParsed actualObj, EqReverseCtrlInfo checkResult, String messageKey) throws JsonProcessingException {
+    private void compareAndProcessResults(EqLstTplDO modelObj, EqLstParsed actualObj, EqpReverseRecord checkResult, String messageKey) throws JsonProcessingException {
         ParameterInspection result = COMPARATOR.compare(modelObj, actualObj, PROPERTIES_TO_COMPARE, PROPERTIES_TO_COMPUTE);
 
         int statusCode = getStatusCode(result);
@@ -225,15 +192,16 @@ public class EqLstChkListener {
         return description.length() > 0 ? description.toString() : "Ok.";
     }
 
-    private void handleResult(EqReverseCtrlInfo checkResult, int code, String description, String messageKey) throws JsonProcessingException {
+    private void handleResult(EqpReverseRecord checkResult, int code, String description, String messageKey) throws JsonProcessingException {
         checkResult.setCode(code);
         checkResult.setDescription(description);
         sendResult(checkResult, messageKey);
     }
 
-    private void sendResult(EqReverseCtrlInfo checkResult, String messageKey) throws JsonProcessingException {
+    private void sendResult(EqpReverseRecord checkResult, String messageKey) throws JsonProcessingException {
         String jsonString = objectMapper.writeValueAsString(checkResult);
         kafkaProducer.send(new ProducerRecord<>("aa-list-params-checked-test-topic", jsonString));
         logger.info(">>>>> key: {} check message completed, result sent!", messageKey);
     }
 }
+*/

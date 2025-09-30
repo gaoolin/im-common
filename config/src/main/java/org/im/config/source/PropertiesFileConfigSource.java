@@ -12,10 +12,11 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 14:26:39
- * desc   :  Properties文件配置源
+ * Properties文件配置源
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19 14:26:39
  */
 public class PropertiesFileConfigSource implements ConfigSource {
 

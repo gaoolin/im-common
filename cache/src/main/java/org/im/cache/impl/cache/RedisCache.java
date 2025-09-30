@@ -15,7 +15,7 @@ import io.lettuce.core.codec.StringCodec;
 import org.im.cache.config.CacheConfig;
 import org.im.cache.core.Cache;
 import org.im.cache.stats.CacheStats;
-import org.im.util.json.JsonMapperProvider;
+import org.im.common.json.JsonMapperProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

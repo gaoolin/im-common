@@ -10,10 +10,11 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 14:25:11
- * desc   :  环境变量配置源
+ * 环境变量配置源
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19 14:25:11
  */
 public class EnvironmentVariableConfigSource implements ConfigSource {
 

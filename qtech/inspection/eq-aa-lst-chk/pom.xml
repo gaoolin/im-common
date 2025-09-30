@@ -65,6 +65,12 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>com.im.qtech.common</groupId>
+            <artifactId>qtech-common</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.7.7</version>
@@ -79,6 +85,12 @@
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <version>3.9.1</version>
+        </dependency>
+        <!-- RabbitMQ 客户端 -->
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>5.26.0</version>
         </dependency>
 
         <!-- commons -->

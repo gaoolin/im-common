@@ -1,7 +1,7 @@
 package org.im.semiconductor.common.parameter.comparator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.im.util.json.JsonMapperProvider;
+import org.im.common.json.JsonMapperProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

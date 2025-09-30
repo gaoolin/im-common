@@ -1,5 +1,7 @@
 package org.im.semiconductor.common.parameter.core;
 
+import org.im.common.lifecycle.Lifecycle;
+
 /**
  * 生命周期参数接口 - 提供参数的初始化和状态管理
  *
@@ -8,7 +10,7 @@ package org.im.semiconductor.common.parameter.core;
  * @since 2025/09/26
  */
 
-public interface LifecycleParameter extends Parameter {
+public interface LifecycleParameter extends Parameter, Lifecycle {
     /**
      * 检查参数是否已初始化
      */

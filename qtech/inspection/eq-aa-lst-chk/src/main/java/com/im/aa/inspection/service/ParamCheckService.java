@@ -1,21 +1,21 @@
 package com.im.aa.inspection.service;
 
 import com.im.aa.inspection.comparator.EqLstComparatorV3;
-import com.im.aa.inspection.context.CheckResult;
 import com.im.aa.inspection.entity.param.EqLstParsed;
-import com.im.aa.inspection.entity.reverse.EqReverseCtrlInfo;
-import com.im.aa.inspection.entity.tpl.QtechEqLstTpl;
-import com.im.aa.inspection.entity.tpl.QtechEqLstTplInfo;
-import com.im.aa.inspection.utils.CacheUtil;
-import org.im.semiconductor.common.parameter.comparator.ParameterInspection;
+import com.im.aa.inspection.entity.reverse.EqpReverseRecord;
+import com.im.aa.inspection.entity.standard.EqLstTplDO;
+import com.im.aa.inspection.entity.standard.EqLstTplInfoPO;
+import org.im.common.dt.Chronos;
+import org.im.semiconductor.common.parameter.core.DefaultParameterInspection;
+import org.im.semiconductor.common.parameter.core.ParameterInspection;
 import org.im.semiconductor.common.parameter.mgr.ParameterRange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-import static com.im.aa.inspection.constants.EqLstChk.PROPERTIES_TO_COMPARE;
-import static com.im.aa.inspection.constants.EqLstChk.PROPERTIES_TO_COMPUTE;
+import static com.im.aa.inspection.constant.EqLstChk.PROPERTIES_TO_COMPARE;
+import static com.im.aa.inspection.constant.EqLstChk.PROPERTIES_TO_COMPUTE;
 
 /**
  * 参数检查服务
@@ -29,12 +29,13 @@ public class ParamCheckService {
     private static final Logger logger = LoggerFactory.getLogger(ParamCheckService.class);
     // 使用专业的参数比较器
     private static final EqLstComparatorV3 COMPARATOR = EqLstComparatorV3.getInstance();
-    private final DatabaseService databaseService;
-    private final CacheUtil cacheUtil;
 
-    public ParamCheckService(DatabaseService databaseService, CacheUtil cacheUtil) {
+    private final CacheService cacheService;
+    private final DatabaseService databaseService;
+
+    public ParamCheckService(DatabaseService databaseService, CacheService cacheService) {
         this.databaseService = databaseService;
-        this.cacheUtil = cacheUtil;
+        this.cacheService = cacheService;
     }
 
     /**
@@ -62,52 +63,22 @@ public class ParamCheckService {
     /**
      * 检查设备参数
      *
-     * @param param 设备参数
+     * @param module 设备参数
      * @return 检查结果
      */
-    public CheckResult checkEquipmentParam(EqLstParsed param) {
+    public EqpReverseRecord inspectDeviceParam(String module) {
         try {
-            logger.debug("开始检查设备参数: {}", param);
-
+            logger.debug("开始检查设备参数: {}", module);
             // 1. 从Redis缓存中获取检查结果
-            CheckResult cachedResult = getCheckResultFromRedis(param);
-            if (cachedResult != null) {
-                logger.debug("从Redis缓存中获取检查结果");
-                return cachedResult;
-            }
-
             // 2. 执行参数检查
-            CheckResult result = performParameterCheck(param);
-
             // 3. 保存结果到Redis缓存
-            cacheCheckResultToRedis(result);
-
             // 4. 保存结果到数据库
-            databaseService.saveCheckResult(result);
-
-            logger.info("设备参数检查完成: {} -> {}", param.getSimId(), result.isPassed());
-            return result;
-
+            logger.info("设备参数检查完成: {} -> {}", module, module);
+            return null;
         } catch (Exception e) {
-            logger.error("检查设备参数时出错: {}", param, e);
+            logger.error("检查设备参数时出错: {}", module, e);
             throw new RuntimeException("参数检查失败", e);
         }
-    }
-
-    /**
-     * 从Redis缓存获取检查结果
-     */
-    private CheckResult getCheckResultFromRedis(EqLstParsed param) {
-        // 这里可以根据需要实现Redis缓存的检查结果获取逻辑
-        // 暂时返回null表示不使用缓存或缓存中无数据
-        return null;
-    }
-
-    /**
-     * 将检查结果保存到Redis缓存
-     */
-    private void cacheCheckResultToRedis(CheckResult result) {
-        // 这里可以根据需要实现Redis缓存的检查结果保存逻辑
     }
 
     /**
@@ -116,40 +87,55 @@ public class ParamCheckService {
      * @param actualObj 实际参数对象
      * @return 检查结果
      */
-    private CheckResult performParameterCheck(EqLstParsed actualObj) {
+    public EqpReverseRecord performParameterCheck(EqLstParsed actualObj) {
         // 初始化检查结果
-        EqReverseCtrlInfo checkResult = new EqReverseCtrlInfo();
-        checkResult.setSource("aa-list");
-        checkResult.setSimId(actualObj.getSimId());
-        checkResult.setProdType(actualObj.getProdType());
-        checkResult.setChkDt(java.time.LocalDateTime.now());
+        EqpReverseRecord eqpReverseRecord = new EqpReverseRecord();
+        eqpReverseRecord.setSource("aa-list");
+        eqpReverseRecord.setSimId(actualObj.getSimId());
+        eqpReverseRecord.setModule(actualObj.getModule());
+        eqpReverseRecord.setChkDt(Chronos.now());
 
-        // 获取模板信息（从Redis缓存）
-        QtechEqLstTplInfo modelInfoObj = cacheUtil.getParamsTplInfo(actualObj.getProdType());
-        QtechEqLstTpl modelObj = cacheUtil.getParamsTpl(actualObj.getProdType());
+        // 获取模板信息（从Redis缓存，通过CacheService）
+        EqLstTplInfoPO modelInfoObj = getTemplateInfoFromCache(actualObj.getModule());
+        EqLstTplDO modelObj = getTemplateFromCache(actualObj.getModule());
 
         // 模板信息检查
         if (modelInfoObj == null) {
-            return createCheckResult(checkResult, 1, "Missing Template Information.");
+            return createInspectionResult(eqpReverseRecord, 1, "Missing Template Information.");
         }
         if (modelInfoObj.getStatus() == 0) {
-            return createCheckResult(checkResult, 6, "Template Offline.");
+            return createInspectionResult(eqpReverseRecord, 6, "Template Offline.");
         }
         if (modelObj == null) {
-            return createCheckResult(checkResult, 7, "Missing Template Detail.");
+            return createInspectionResult(eqpReverseRecord, 7, "Missing Template Detail.");
         }
 
         // 使用专业比较器进行参数对比
-        ParameterInspection inspectionResult = COMPARATOR.compare(
-                modelObj, actualObj, PROPERTIES_TO_COMPARE, PROPERTIES_TO_COMPUTE);
+        DefaultParameterInspection inspectionResult = COMPARATOR.compare(modelObj, actualObj, PROPERTIES_TO_COMPARE, PROPERTIES_TO_COMPUTE);
 
         // 设置检查结果状态
         int statusCode = calculateStatusCode(inspectionResult);
-        checkResult.setCode(statusCode);
-        checkResult.setDescription(buildDescription(inspectionResult));
+        eqpReverseRecord.setCode(statusCode);
+        eqpReverseRecord.setDescription(buildDescription(inspectionResult));
 
         // 转换为CheckResult格式
-        return convertToCheckResult(checkResult);
+        return eqpReverseRecord;
+    }
+
+    /**
+     * 从缓存获取模板信息
+     */
+    private EqLstTplInfoPO getTemplateInfoFromCache(String module) {
+        // 这里需要根据你的CacheService实现来获取模板信息缓存
+        return cacheService.getRedisCacheConfig().getEqLstTplInfoPOCache().get(module);
+    }
+
+    /**
+     * 从缓存获取模板
+     */
+    private EqLstTplDO getTemplateFromCache(String module) {
+        // 这里需要根据你的CacheService实现来获取模板缓存
+        return cacheService.getRedisCacheConfig().getEqLstTplDOCache().get(module);
     }
 
     /**
@@ -158,11 +144,9 @@ public class ParamCheckService {
     private String buildDescription(ParameterInspection result) {
         StringBuilder description = new StringBuilder();
 
-        result.getEmptyInStandard().keySet().stream().sorted().forEach(prop ->
-                description.append(prop).append("-").append(";"));
+        result.getEmptyInStandard().keySet().stream().sorted().forEach(prop -> description.append(prop).append("-").append(";"));
 
-        result.getEmptyInActual().keySet().stream().sorted().forEach(prop ->
-                description.append(prop).append("+").append(";"));
+        result.getEmptyInActual().keySet().stream().sorted().forEach(prop -> description.append(prop).append("+").append(";"));
 
         result.getDifferences().entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(entry -> {
             String prop = entry.getKey();
@@ -176,23 +160,23 @@ public class ParamCheckService {
     /**
      * 创建检查结果
      */
-    private CheckResult createCheckResult(EqReverseCtrlInfo checkResult, int code, String description) {
-        checkResult.setCode(code);
-        checkResult.setDescription(description);
-        return convertToCheckResult(checkResult);
+    private EqpReverseRecord createInspectionResult(EqpReverseRecord eqpReverseRecord, int code, String description) {
+        eqpReverseRecord.setCode(code);
+        eqpReverseRecord.setDescription(description);
+        return convertToInspectionResult(eqpReverseRecord);
     }
 
     /**
      * 转换为CheckResult格式
      */
-    private CheckResult convertToCheckResult(EqReverseCtrlInfo eqReverseCtrlInfo) {
-        CheckResult checkResult = new CheckResult();
-        checkResult.setEquipmentId(eqReverseCtrlInfo.getSimId());
-        checkResult.setParamType(eqReverseCtrlInfo.getSource());
-        checkResult.setReason(eqReverseCtrlInfo.getDescription());
-        checkResult.setPassed(eqReverseCtrlInfo.getCode() == 0);
-        checkResult.setCheckTime(System.currentTimeMillis());
-        return checkResult;
+    private EqpReverseRecord convertToInspectionResult(EqpReverseRecord eqpReverseRecord) {
+        EqpReverseRecord inspectionResult = new EqpReverseRecord();
+        inspectionResult.setSimId(eqpReverseRecord.getSimId());
+        inspectionResult.setSource(eqpReverseRecord.getSource());
+        inspectionResult.setDescription(eqpReverseRecord.getDescription());
+        inspectionResult.setPassed(eqpReverseRecord.getCode() == 0);
+        inspectionResult.setChkDt(Chronos.now());
+        return inspectionResult;
     }
 
     /**
@@ -202,20 +186,19 @@ public class ParamCheckService {
      * @param standard 标准范围
      * @return 检查结果
      */
-    private CheckResult performCheck(EqLstParsed param, ParameterRange standard) {
-        CheckResult result = new CheckResult();
-        result.setEquipmentId(param.getSimId());
-        result.setParamType(param.getProdType());
-        result.setParamValue(param.getAa1() != null ? param.getAa2() : null);
-        result.setCheckTime(param.getReceivedTime().getTime());
+    private EqpReverseRecord performCheck(EqLstParsed param, ParameterRange standard) {
+        EqpReverseRecord eqpReverseRecord = new EqpReverseRecord();
+        eqpReverseRecord.setSimId(param.getSimId());
+        eqpReverseRecord.setModule(param.getModule());
+        eqpReverseRecord.setChkDt(param.getReceivedTime());
 
         try {
             // 获取参数值
             Object paramValue = param.getAa1();
             if (paramValue == null) {
-                result.setPassed(false);
-                result.setReason("参数值为空");
-                return result;
+                eqpReverseRecord.setPassed(false);
+                eqpReverseRecord.setDescription("参数值为空");
+                return eqpReverseRecord;
             }
 
             // 如果参数值是数字类型，则进行数值检查
@@ -226,22 +209,20 @@ public class ParamCheckService {
                 if (standard != null) {
                     // 使用ParameterRange进行检查
                     if (standard.contains(value)) {
-                        result.setPassed(true);
-                        result.setReason("参数在允许范围内");
+                        eqpReverseRecord.setPassed(true);
+                        eqpReverseRecord.setDescription("参数在允许范围内");
                     } else {
-                        result.setPassed(false);
-                        result.setReason("参数超出允许范围");
+                        eqpReverseRecord.setPassed(false);
+                        eqpReverseRecord.setDescription("参数超出允许范围");
                     }
                 } else {
                     // 简单示例检查
                     if (value >= 0 && value <= 1000) {
-                        result.setPassed(true);
-                        result.setReason("参数在允许范围内");
+                        eqpReverseRecord.setPassed(true);
+                        eqpReverseRecord.setDescription("参数在允许范围内");
                     } else {
-                        result.setPassed(false);
-                        result.setReason("参数超出允许范围");
-                        result.setStandardMin("0");
-                        result.setStandardMax("1000");
+                        eqpReverseRecord.setPassed(false);
+                        eqpReverseRecord.setDescription("参数超出允许范围");
                     }
                 }
             }
@@ -257,42 +238,42 @@ public class ParamCheckService {
                     if (standard != null) {
                         // 使用ParameterRange进行检查
                         if (standard.contains(numericValue)) {
-                            result.setPassed(true);
-                            result.setReason("参数在允许范围内");
+                            eqpReverseRecord.setPassed(true);
+                            eqpReverseRecord.setDescription("参数在允许范围内");
                         } else {
-                            result.setPassed(false);
-                            result.setReason("参数超出允许范围");
+                            eqpReverseRecord.setPassed(false);
+                            eqpReverseRecord.setDescription("参数超出允许范围");
                         }
                     } else {
                         // 简单示例检查
                         if (numericValue >= 0 && numericValue <= 1000) {
-                            result.setPassed(true);
-                            result.setReason("参数在允许范围内");
+                            eqpReverseRecord.setPassed(true);
+                            eqpReverseRecord.setDescription("参数在允许范围内");
                         } else {
-                            result.setPassed(false);
-                            result.setReason("参数超出允许范围");
-                            result.setStandardMin("0");
-                            result.setStandardMax("1000");
+                            eqpReverseRecord.setPassed(false);
+                            eqpReverseRecord.setDescription("参数超出允许范围");
+                            eqpReverseRecord.setDescription("0");
+                            eqpReverseRecord.setDescription("1000");
                         }
                     }
                 } catch (NumberFormatException e) {
                     // 非数值字符串，可以进行其他类型的检查
-                    result.setPassed(true);
-                    result.setReason("非数值参数，检查通过");
+                    eqpReverseRecord.setPassed(true);
+                    eqpReverseRecord.setDescription("非数值参数，检查通过");
                 }
             }
             // 其他类型参数
             else {
                 // 对于其他类型，可以基于业务需求进行检查
-                result.setPassed(true);
-                result.setReason("参数类型无需数值检查");
+                eqpReverseRecord.setPassed(true);
+                eqpReverseRecord.setDescription("参数类型无需数值检查");
             }
         } catch (Exception e) {
-            result.setPassed(false);
-            result.setReason("参数检查过程中发生错误: " + e.getMessage());
+            eqpReverseRecord.setPassed(false);
+            eqpReverseRecord.setDescription("参数检查过程中发生错误: " + e.getMessage());
             logger.error("参数检查过程中发生错误", e);
         }
 
-        return result;
+        return eqpReverseRecord;
     }
 }

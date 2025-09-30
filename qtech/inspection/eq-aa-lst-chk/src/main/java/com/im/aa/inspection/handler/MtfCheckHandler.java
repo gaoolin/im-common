@@ -13,11 +13,11 @@ import org.im.semiconductor.common.handler.cmd.CommandHandler;
  * @email gaoolin@gmail.com
  * @since 2024/05/28 11:18:51
  */
-public class MtfCheckHandler extends CommandHandler<EqLstCommand> {
+public class MtfCheckHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例
-    private static final MtfCheckHandler INSTANCE = new MtfCheckHandler();
+    public static final MtfCheckHandler INSTANCE = new MtfCheckHandler();
 
-    private MtfCheckHandler() {
+    public MtfCheckHandler() {
         super(EqLstCommand.class);
     }
 
@@ -40,5 +40,15 @@ public class MtfCheckHandler extends CommandHandler<EqLstCommand> {
     @Override
     public EqLstCommand handle(String[] parts, String parentCmd) {
         return ItemLensFieldOfViewTestParser.apply(parts, parentCmd);
+    }
+
+    /**
+     * 创建Handler实例
+     *
+     * @return Handler实例
+     */
+    @Override
+    public CommandHandler<EqLstCommand> createInstance() {
+        return getInstance();
     }
 }

@@ -4,12 +4,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.im.aa.inspection.entity.struct.BoundsLoader;
 import org.apache.commons.lang3.StringUtils;
 import org.im.semiconductor.common.parameter.comparator.AbstractParameterComparator;
-import org.im.semiconductor.common.parameter.comparator.ParameterInspection;
+import org.im.semiconductor.common.parameter.core.DefaultParameterInspection;
+import org.im.semiconductor.common.parameter.core.ParameterInspection;
 
 import java.util.*;
 
-import static com.im.aa.inspection.constants.QtechImBizConstant.EPOXY_INSPECTION_AUTO_INTERVAL_MAX;
-import static com.im.aa.inspection.constants.QtechImBizConstant.EPOXY_INSPECTION_AUTO_INTERVAL_MIN;
+import static com.im.qtech.common.constant.QtechImBizConstant.EQP_LST_EPOXY_INSPECTION_AUTO_MAX;
+import static com.im.qtech.common.constant.QtechImBizConstant.EQP_LST_EPOXY_INSPECTION_AUTO_MIN;
 import static org.im.common.math.MathEvaluator.isNumeric;
 
 /**
@@ -46,15 +47,13 @@ public class EqLstComparatorV3 extends AbstractParameterComparator<Object> {
 
     // 统一比较入口
     @Override
-    public ParameterInspection compare(Object standardObj, Object actualObj,
-                                       List<String> compareProps, List<String> computeProps) {
+    public DefaultParameterInspection compare(Object standardObj, Object actualObj, List<String> compareProps, List<String> computeProps) {
 
-        if ((compareProps == null || compareProps.isEmpty()) &&
-                (computeProps == null || computeProps.isEmpty())) {
-            return new ParameterInspection();
+        if ((compareProps == null || compareProps.isEmpty()) && (computeProps == null || computeProps.isEmpty())) {
+            return new DefaultParameterInspection();
         }
 
-        ParameterInspection result = new ParameterInspection();
+        DefaultParameterInspection result = new DefaultParameterInspection();
         Set<String> allProps = mergeProps(compareProps, computeProps);
 
         for (String property : allProps) {
@@ -163,11 +162,9 @@ public class EqLstComparatorV3 extends AbstractParameterComparator<Object> {
                 result.addDifference(property, modelVal, null);
                 return;
             }
-            BoundsLoader bounds = BoundsLoader.of(EPOXY_INSPECTION_AUTO_INTERVAL_MIN, EPOXY_INSPECTION_AUTO_INTERVAL_MAX);
+            BoundsLoader bounds = BoundsLoader.of(EQP_LST_EPOXY_INSPECTION_AUTO_MIN, EQP_LST_EPOXY_INSPECTION_AUTO_MAX);
             if (!bounds.contains(actualVal.toString())) {
-                result.addDifference(property,
-                        "[ " + EPOXY_INSPECTION_AUTO_INTERVAL_MIN + " <= epoxyInspectionAuto <= " + EPOXY_INSPECTION_AUTO_INTERVAL_MAX + " ]",
-                        actualVal);
+                result.addDifference(property, "[ " + EQP_LST_EPOXY_INSPECTION_AUTO_MIN + " <= epoxyInspectionAuto <= " + EQP_LST_EPOXY_INSPECTION_AUTO_MAX + " ]", actualVal);
             }
         } else {
             result.addDifference(property, null, actualVal);
@@ -191,10 +188,7 @@ public class EqLstComparatorV3 extends AbstractParameterComparator<Object> {
     }
 
     private boolean isAaItemProperty(String property) {
-        return StringUtils.startsWith(property, "aa") &&
-                !(StringUtils.endsWith(property, "Min") ||
-                        StringUtils.endsWith(property, "Max") ||
-                        StringUtils.endsWith(property, "CcToCornerLimit"));
+        return StringUtils.startsWith(property, "aa") && !(StringUtils.endsWith(property, "Min") || StringUtils.endsWith(property, "Max") || StringUtils.endsWith(property, "CcToCornerLimit"));
     }
 
     private boolean isMtfCheckProperty(String property) {

@@ -13,11 +13,11 @@ import org.im.semiconductor.common.handler.cmd.CommandHandler;
  * @email gaoolin@gmail.com
  * @since 2024/05/28 11:20:49
  */
-public final class ChartAlignmentHandler extends CommandHandler<EqLstCommand> {
+public final class ChartAlignmentHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例
-    private static final ChartAlignmentHandler INSTANCE = new ChartAlignmentHandler();
+    public static final ChartAlignmentHandler INSTANCE = new ChartAlignmentHandler();
 
-    private ChartAlignmentHandler() {
+    public ChartAlignmentHandler() {
         super(EqLstCommand.class);
     }
 
@@ -40,5 +40,15 @@ public final class ChartAlignmentHandler extends CommandHandler<EqLstCommand> {
     @Override
     public EqLstCommand handle(String[] parts, String parentCmd) {
         return ItemXyResParser.apply(parts, parentCmd);
+    }
+
+    /**
+     * 创建Handler实例
+     *
+     * @return Handler实例
+     */
+    @Override
+    public CommandHandler<EqLstCommand> createInstance() {
+        return getInstance();
     }
 }

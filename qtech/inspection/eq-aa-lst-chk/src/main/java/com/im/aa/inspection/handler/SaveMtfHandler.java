@@ -13,11 +13,11 @@ import org.im.semiconductor.common.handler.cmd.CommandHandler;
  * @email gaoolin@gmail.com
  * @since 2024/09/26 14:38:02
  */
-public final class SaveMtfHandler extends CommandHandler<EqLstCommand> {
+public final class SaveMtfHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例
-    private static final SaveMtfHandler INSTANCE = new SaveMtfHandler();
+    public static final SaveMtfHandler INSTANCE = new SaveMtfHandler();
 
-    private SaveMtfHandler() {
+    public SaveMtfHandler() {
         super(EqLstCommand.class);
     }
 
@@ -40,5 +40,15 @@ public final class SaveMtfHandler extends CommandHandler<EqLstCommand> {
     @Override
     public EqLstCommand handle(String[] parts, String parentCmd) {
         return ItemCcParser.apply(parts, parentCmd);
+    }
+
+    /**
+     * 创建Handler实例
+     *
+     * @return Handler实例
+     */
+    @Override
+    public CommandHandler<EqLstCommand> createInstance() {
+        return getInstance();
     }
 }

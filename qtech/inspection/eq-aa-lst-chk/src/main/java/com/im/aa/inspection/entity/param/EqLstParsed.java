@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +31,7 @@ public class EqLstParsed extends EqLstSet {
     private String simId;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date receivedTime;
+    private LocalDateTime receivedTime;
 
     @Override
     public void reset() {

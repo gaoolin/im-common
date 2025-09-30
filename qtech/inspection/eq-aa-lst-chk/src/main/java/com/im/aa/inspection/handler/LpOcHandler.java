@@ -13,11 +13,11 @@ import org.im.semiconductor.common.handler.cmd.CommandHandler;
  * @email gaoolin@gmail.com
  * @since 2024/09/20 11:52:53
  */
-public final class LpOcHandler extends CommandHandler<EqLstCommand> {
+public final class LpOcHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例
-    private static final LpOcHandler INSTANCE = new LpOcHandler();
+    public static final LpOcHandler INSTANCE = new LpOcHandler();
 
-    private LpOcHandler() {
+    public LpOcHandler() {
         super(EqLstCommand.class);
     }
 
@@ -40,5 +40,15 @@ public final class LpOcHandler extends CommandHandler<EqLstCommand> {
     @Override
     public EqLstCommand handle(String[] parts, String parentCmd) {
         return ItemDelayParser.apply(parts, parentCmd);
+    }
+
+    /**
+     * 创建Handler实例
+     *
+     * @return Handler实例
+     */
+    @Override
+    public CommandHandler<EqLstCommand> createInstance() {
+        return getInstance();
     }
 }

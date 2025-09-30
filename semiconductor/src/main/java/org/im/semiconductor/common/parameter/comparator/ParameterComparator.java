@@ -1,5 +1,7 @@
 package org.im.semiconductor.common.parameter.comparator;
 
+import org.im.semiconductor.common.parameter.core.ParameterInspection;
+
 import java.util.List;
 
 /**

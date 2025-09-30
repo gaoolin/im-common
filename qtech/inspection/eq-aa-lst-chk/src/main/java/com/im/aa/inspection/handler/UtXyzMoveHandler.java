@@ -13,11 +13,11 @@ import org.im.semiconductor.common.handler.cmd.CommandHandler;
  * @email gaoolin@gmail.com
  * @since 2025/01/15 15:02:52
  */
-public final class UtXyzMoveHandler extends CommandHandler<EqLstCommand> {
+public final class UtXyzMoveHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例
-    private static final UtXyzMoveHandler INSTANCE = new UtXyzMoveHandler();
+    public static final UtXyzMoveHandler INSTANCE = new UtXyzMoveHandler();
 
-    private UtXyzMoveHandler() {
+    public UtXyzMoveHandler() {
         super(EqLstCommand.class);
     }
 
@@ -40,5 +40,15 @@ public final class UtXyzMoveHandler extends CommandHandler<EqLstCommand> {
     @Override
     public EqLstCommand handle(String[] parts, String parentCmd) {
         return ItemUtXyzMoveParser.apply(parts, parentCmd);
+    }
+
+    /**
+     * 创建Handler实例
+     *
+     * @return Handler实例
+     */
+    @Override
+    public CommandHandler<EqLstCommand> createInstance() {
+        return getInstance();
     }
 }

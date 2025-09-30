@@ -79,7 +79,7 @@ public class MessageHandlerDispatcher {
         if (messageHandlerRegistry != null) {
             // 从注册表中查找处理器
             String handlerKey = clazz.getSimpleName();
-            MessageHandler<?> messageHandler = messageHandlerRegistry.getHandler(handlerKey);
+            MessageHandler<?> messageHandler = messageHandlerRegistry.getHandler(handlerKey + "Handler");
 
             if (messageHandler != null) {
                 try {

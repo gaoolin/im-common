@@ -21,11 +21,11 @@ import java.util.Arrays;
  * @email gaoolin@gmail.com
  * @since 2024/05/28 11:23:36
  */
-public final class RecordPositionHandler extends CommandHandler<EqLstCommand> {
+public final class RecordPositionHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例
-    private static final RecordPositionHandler INSTANCE = new RecordPositionHandler();
+    public static final RecordPositionHandler INSTANCE = new RecordPositionHandler();
 
-    private RecordPositionHandler() {
+    public RecordPositionHandler() {
         super(EqLstCommand.class);
     }
 
@@ -58,5 +58,15 @@ public final class RecordPositionHandler extends CommandHandler<EqLstCommand> {
                     this.getClass().getName(), Arrays.toString(parts), parentCmd, e.getMessage(), e);
         }
         return null;
+    }
+
+    /**
+     * 创建Handler实例
+     *
+     * @return Handler实例
+     */
+    @Override
+    public CommandHandler<EqLstCommand> createInstance() {
+        return getInstance();
     }
 }

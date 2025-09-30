@@ -13,11 +13,11 @@ import org.im.semiconductor.common.handler.cmd.CommandHandler;
  * @email gaoolin@gmail.com
  * @since 2024/05/28 10:57:30
  */
-public final class AaHandler extends CommandHandler<EqLstCommand> {
+public final class AaHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例
-    private static final AaHandler INSTANCE = new AaHandler();
+    public static final AaHandler INSTANCE = new AaHandler();
 
-    private AaHandler() {
+    public AaHandler() {
         super(EqLstCommand.class);
     }
 
@@ -40,5 +40,15 @@ public final class AaHandler extends CommandHandler<EqLstCommand> {
     @Override
     public EqLstCommand handle(String[] parts, String parentCmd) {
         return ItemAaParser.apply(parts, parentCmd);
+    }
+
+    /**
+     * 创建Handler实例
+     *
+     * @return Handler实例
+     */
+    @Override
+    public CommandHandler<EqLstCommand> createInstance() {
+        return getInstance();
     }
 }

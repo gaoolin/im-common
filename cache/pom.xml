@@ -32,8 +32,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.im.util</groupId>
-            <artifactId>utils</artifactId>
+            <groupId>org.im.common</groupId>
+            <artifactId>common</artifactId>
             <version>1.0.0</version>
         </dependency>
 

@@ -14,11 +14,11 @@ import org.im.semiconductor.common.handler.cmd.CommandHandler;
  * @email gaoolin@gmail.com
  * @since 2025/03/27 08:41:11
  */
-public final class VcmHallHandler extends CommandHandler<EqLstCommand> {
+public final class VcmHallHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例
-    private static final VcmHallHandler INSTANCE = new VcmHallHandler();
+    public static final VcmHallHandler INSTANCE = new VcmHallHandler();
 
-    private VcmHallHandler() {
+    public VcmHallHandler() {
         super(EqLstCommand.class);
     }
 
@@ -41,5 +41,15 @@ public final class VcmHallHandler extends CommandHandler<EqLstCommand> {
     @Override
     public EqLstCommand handle(String[] parts, String parentCmd) {
         return ItemVcmHallParser.apply(parts, parentCmd);
+    }
+
+    /**
+     * 创建Handler实例
+     *
+     * @return Handler实例
+     */
+    @Override
+    public CommandHandler<EqLstCommand> createInstance() {
+        return getInstance();
     }
 }

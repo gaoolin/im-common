@@ -7,10 +7,11 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/19 14:23:24
- * desc   :  系统属性配置源
+ * 系统属性配置源
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/08/19 14:23:24
  */
 public class SystemPropertyConfigSource implements ConfigSource {
 

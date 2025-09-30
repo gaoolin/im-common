@@ -1,16 +1,14 @@
 package com.im.aa.inspection.service;
 
-import com.im.aa.inspection.context.CheckResult;
 import com.im.aa.inspection.entity.param.EqLstParsed;
-import org.im.cache.builder.CacheConfigBuilder;
-import org.im.cache.config.CacheConfig;
+import com.im.aa.inspection.entity.standard.EqLstTplDO;
+import com.im.aa.inspection.entity.standard.EqLstTplInfoPO;
+import com.im.aa.inspection.util.EqpLstRedisCacheConfig;
 import org.im.cache.core.Cache;
-import org.im.cache.core.CacheManager;
-import org.im.cache.impl.manager.DefaultCacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.TimeUnit;
+import java.util.Objects;
 
 /**
  * 缓存服务类
@@ -23,95 +21,44 @@ import java.util.concurrent.TimeUnit;
  * @email gaoolin@gmail.com
  * @since 2025/09/25
  */
-
 public class CacheService {
     private static final Logger logger = LoggerFactory.getLogger(CacheService.class);
 
-    // 检查结果缓存名称
-    private static final String CHECK_RESULT_CACHE_NAME = "check-result-cache";
+    // Redis缓存配置
+    private final EqpLstRedisCacheConfig redisCacheConfig;
 
-    // 缓存管理器
-    private final CacheManager cacheManager;
-
-    // 检查结果缓存实例
-    private final Cache<String, CheckResult> checkResultCache;
+    private final Cache<String, EqLstTplDO> eqLstTplCache;
+    private final Cache<String, EqLstTplInfoPO> eqLstTplInfoCache;
 
     /**
      * 构造函数
-     * 初始化缓存管理器和缓存实例
+     * 初始化缓存配置和缓存实例
      *
-     * @param cacheManager 缓存管理器
+     * @param redisCacheConfig Redis缓存配置
      */
-    public CacheService(CacheManager cacheManager) {
-        // 使用传入的缓存管理器
-        this.cacheManager = cacheManager;
-
-        // 配置检查结果缓存
-        CacheConfig checkResultCacheConfig = CacheConfigBuilder.create()
-                .withName(CHECK_RESULT_CACHE_NAME)
-                .withMaximumSize(10000) // 最大缓存10000个结果
-                .withExpireAfterWrite(TimeUnit.MINUTES.toMillis(15)) // 写入后15分钟过期
-                .withStatsEnabled(true) // 启用统计
-                .withNullValueProtection(true) // 启用缓存穿透保护
-                .withBreakdownProtection(true) // 启用缓存击穿保护
-                .withAvalancheProtection(true) // 启用缓存雪崩保护
-                .build();
-
-        // 获取或创建检查结果缓存实例
-        this.checkResultCache = this.cacheManager.getOrCreateCache(
-                CHECK_RESULT_CACHE_NAME,
-                checkResultCacheConfig);
-
-        logger.info("CacheService初始化完成，检查结果缓存已创建: {}", CHECK_RESULT_CACHE_NAME);
+    public CacheService(EqpLstRedisCacheConfig redisCacheConfig) {
+        this.redisCacheConfig = Objects.requireNonNull(redisCacheConfig, "Redis缓存配置不能为空");
+        this.eqLstTplCache = this.redisCacheConfig.getEqLstTplDOCache();
+        this.eqLstTplInfoCache = this.redisCacheConfig.getEqLstTplInfoPOCache();
+        logger.info("CacheService初始化完成，使用Redis缓存配置");
     }
 
     /**
      * 无参构造函数
-     * 初始化缓存管理器和缓存实例
+     * 初始化默认的Redis缓存配置
      */
     public CacheService() {
-        // 初始化缓存管理器
-        this(new DefaultCacheManager());
-    }
-
-    /**
-     * 从缓存中获取检查结果
-     *
-     * @param param 设备参数
-     * @return 检查结果，如果缓存中不存在则返回null
-     */
-    public CheckResult getCheckResult(EqLstParsed param) {
-        String key = generateCacheKey(param);
-        CheckResult result = checkResultCache.get(key);
-
-        if (result != null) {
-            logger.debug("从缓存中获取到检查结果: key={}", key);
-        } else {
-            logger.debug("缓存中未找到检查结果: key={}", key);
-        }
-
-        return result;
-    }
-
-    /**
-     * 将检查结果缓存
-     *
-     * @param result 检查结果
-     */
-    public void cacheCheckResult(CheckResult result) {
-        String key = generateCacheKey(result);
-        checkResultCache.put(key, result);
-        logger.debug("检查结果已缓存: key={}", key);
+        this(new EqpLstRedisCacheConfig());
     }
 
     /**
      * 生成缓存键
      *
-     * @param param 设备参数
+     * @param result 设备参数
      * @return 缓存键
      */
-    private String generateCacheKey(EqLstParsed param) {
-        return param.getSimId() + ":" + param.getReceivedTime();
+    private String generateEqLstTplInfoCacheKey(EqLstTplInfoPO result) {
+        return "parsed:" + result.getModule();
     }
 
     /**
@@ -120,25 +67,8 @@ public class CacheService {
      * @param result 检查结果
      * @return 缓存键
      */
-    private String generateCacheKey(CheckResult result) {
-        return result.getEquipmentId() + ":" + result.getParamType();
-    }
-
-    /**
-     * 获取缓存统计信息
-     *
-     * @return 缓存统计信息字符串
-     */
-    public String getCacheStats() {
-        return "检查结果缓存统计: " + checkResultCache.getStats().toString();
-    }
-
-    /**
-     * 清空检查结果缓存
-     */
-    public void clearCheckResultCache() {
-        checkResultCache.clear();
-        logger.info("检查结果缓存已清空");
+    private String generateEqLstTplCacheKey(EqLstParsed result) {
+        return "inspection:" + result.getModule();
     }
 
     /**
@@ -146,10 +76,21 @@ public class CacheService {
      */
     public void close() {
         try {
-            cacheManager.close();
-            logger.info("缓存服务已关闭");
+            if (redisCacheConfig != null && redisCacheConfig.getCacheManager() != null) {
+                redisCacheConfig.getCacheManager().close();
+                logger.info("Redis缓存服务已关闭");
+            }
         } catch (Exception e) {
-            logger.error("关闭缓存服务时出错", e);
+            logger.error("关闭Redis缓存服务时出错", e);
         }
+    }
+
+    /**
+     * 获取Redis缓存配置实例
+     *
+     * @return Redis缓存配置
+     */
+    public EqpLstRedisCacheConfig getRedisCacheConfig() {
+        return redisCacheConfig;
     }
 }

@@ -13,11 +13,11 @@ import org.im.semiconductor.common.handler.cmd.CommandHandler;
  * @email gaoolin@gmail.com
  * @since 2024/05/28 11:21:44
  */
-public final class EpoxyInspectionAutoHandler extends CommandHandler<EqLstCommand> {
+public final class EpoxyInspectionAutoHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例
-    private static final EpoxyInspectionAutoHandler INSTANCE = new EpoxyInspectionAutoHandler();
+    public static final EpoxyInspectionAutoHandler INSTANCE = new EpoxyInspectionAutoHandler();
 
-    private EpoxyInspectionAutoHandler() {
+    public EpoxyInspectionAutoHandler() {
         super(EqLstCommand.class);
     }
 
@@ -40,5 +40,15 @@ public final class EpoxyInspectionAutoHandler extends CommandHandler<EqLstComman
     @Override
     public EqLstCommand handle(String[] parts, String parentCmd) {
         return ItemEpoxyInspectionParser.apply(parts, parentCmd);
+    }
+
+    /**
+     * 创建Handler实例
+     *
+     * @return Handler实例
+     */
+    @Override
+    public CommandHandler<EqLstCommand> createInstance() {
+        return getInstance();
     }
 }

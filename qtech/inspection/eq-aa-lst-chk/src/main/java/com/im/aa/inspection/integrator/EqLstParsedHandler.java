@@ -3,24 +3,26 @@ package com.im.aa.inspection.integrator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.im.aa.inspection.constants.CommandHandlerMapper;
-import com.im.aa.inspection.constants.EqLstChk;
-import com.im.aa.inspection.constants.QtechImBizConstant;
+import com.im.aa.inspection.constant.CommandHandlerMapper;
+import com.im.aa.inspection.constant.EqLstChk;
 import com.im.aa.inspection.entity.param.EqLstParsed;
 import com.im.aa.inspection.entity.struct.EqLstCommand;
-import com.im.aa.inspection.utils.ConvertMtfChkCmdItems;
+import com.im.aa.inspection.handler.AutoRegisteredHandler;
+import com.im.aa.inspection.util.ConvertMtfChkCmdItems;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.StringUtils;
+import org.im.common.json.JsonMapperProvider;
 import org.im.semiconductor.common.dispatcher.CommandHandlerDispatcher;
 import org.im.semiconductor.common.handler.cmd.CommandHandler;
 import org.im.semiconductor.common.handler.msg.MessageHandler;
-import org.im.util.json.JsonMapperProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static com.im.qtech.common.constant.QtechImBizConstant.*;
 
 /**
  * List、Item 级联解析
@@ -35,7 +37,7 @@ import java.util.stream.Collectors;
  * @email gaoolin@gmail.com
  * @since 2024/05/27
  */
-public class EqLstParsedHandler extends MessageHandler<EqLstParsed> {
+public class EqLstParsedHandler extends MessageHandler<EqLstParsed> implements AutoRegisteredHandler<EqLstParsed> {
     private static final Logger logger = LoggerFactory.getLogger(EqLstParsedHandler.class);
 
     // 使用ThreadLocal确保每个线程有独立的HashMap实例
@@ -48,7 +50,7 @@ public class EqLstParsedHandler extends MessageHandler<EqLstParsed> {
     /**
      * 饿汉式单例实例
      */
-    private static final EqLstParsedHandler INSTANCE = new EqLstParsedHandler();
+    public static final EqLstParsedHandler INSTANCE = new EqLstParsedHandler();
     // 使用单例模式获取HandlerDispatcher（线程安全）
     private final CommandHandlerDispatcher commandHandlerDispatcher = CommandHandlerDispatcher.getInstance();
     // 使用单例模式获取CommandHandlerMapper（线程安全）
@@ -57,7 +59,7 @@ public class EqLstParsedHandler extends MessageHandler<EqLstParsed> {
     /**
      * 私有构造函数，防止外部直接实例化
      */
-    private EqLstParsedHandler() {
+    public EqLstParsedHandler() {
         super(EqLstParsed.class);
     }
 
@@ -107,7 +109,7 @@ public class EqLstParsedHandler extends MessageHandler<EqLstParsed> {
     public EqLstCommand parseRowStartWithList(String[] parts) {
         try {
             // 获取处理器
-            CommandHandler<EqLstCommand> handler = commandHandlerDispatcher.getCommandHandler("List");
+            CommandHandler<EqLstCommand> handler = commandHandlerDispatcher.getCommandHandler("ListHandler");
             // 使用处理器处理命令
             return handler != null ? handler.handle(parts) : null;
         } catch (RuntimeException e) {
@@ -121,7 +123,7 @@ public class EqLstParsedHandler extends MessageHandler<EqLstParsed> {
         if (handlerName != null) {
             try {
                 // 获取处理器
-                CommandHandler<EqLstCommand> handler = commandHandlerDispatcher.getCommandHandler(handlerName);
+                CommandHandler<EqLstCommand> handler = commandHandlerDispatcher.getCommandHandler(handlerName + "Handler");
                 // 使用处理器处理命令
                 return handler != null ? handler.handle(parts, command) : null;
             } catch (RuntimeException e) {
@@ -195,7 +197,7 @@ public class EqLstParsedHandler extends MessageHandler<EqLstParsed> {
             try {
                 Map<String, Object> jsonObject = objectMapper.readValue(msg, TypeFactory.defaultInstance().constructMapType(Map.class, String.class, Object.class));
 
-                String aaListParamHexStr = (String) jsonObject.get(QtechImBizConstant.AA_LIST_PARAM_RAW_DATA_HEX_FILED);
+                String aaListParamHexStr = (String) jsonObject.get(EQP_LST_RAW_HEX_FILED);
                 String aaListParamStr;
                 try {
                     aaListParamStr = new String(Hex.decodeHex(aaListParamHexStr));
@@ -204,10 +206,10 @@ public class EqLstParsedHandler extends MessageHandler<EqLstParsed> {
                     throw e; // 抛出异常以便上层处理
                 }
                 EqLstParsed aaListParamsParsedObj = doFullParse(aaListParamStr);
-                String simId = jsonObject.get(QtechImBizConstant.AA_LIST_PARAM_RAW_DATA_SIMID_FILED).toString();
+                String simId = jsonObject.get(EQP_LST_RAW_SIMID_FILED).toString();
                 aaListParamsParsedObj.setSimId(simId);
-                String prodType = StringUtils.trim(jsonObject.get(QtechImBizConstant.AA_LIST_PARAM_RAW_DATA_PROD_TYPE_FILED).toString().split("#")[0]);
-                aaListParamsParsedObj.setProdType(prodType);
+                String module = StringUtils.trim(jsonObject.get(EQP_LST_RAW_MODULE_FILED).toString().split("#")[0]);
+                aaListParamsParsedObj.setModule(module);
                 return clazz.cast(aaListParamsParsedObj);
             } catch (JsonProcessingException e) {
                 logger.error(">>>>> JSON 解析异常", e);
@@ -232,5 +234,15 @@ public class EqLstParsedHandler extends MessageHandler<EqLstParsed> {
     @Override
     public EqLstParsed handle(String msg) throws DecoderException {
         return null;
+    }
+
+    /**
+     * 创建Handler实例
+     *
+     * @return Handler实例
+     */
+    @Override
+    public Object createInstance() {
+        return getInstance();
     }
 }

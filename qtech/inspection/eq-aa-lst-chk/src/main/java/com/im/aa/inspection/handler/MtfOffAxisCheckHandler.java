@@ -1,6 +1,7 @@
 package com.im.aa.inspection.handler;
 
 import com.im.aa.inspection.entity.struct.EqLstCommand;
+import org.im.semiconductor.common.handler.cmd.CommandHandler;
 
 /**
  * <p>
@@ -11,14 +12,21 @@ import com.im.aa.inspection.entity.struct.EqLstCommand;
  * @email gaoolin@gmail.com
  * @since 2025/03/11 10:43:08
  */
-public final class MtfOffAxisCheckHandler {
+
+/**
+ * MTF离轴检查处理器
+ */
+public final class MtfOffAxisCheckHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例
-    private static final MtfOffAxisCheckHandler INSTANCE = new MtfOffAxisCheckHandler();
+    public static final MtfOffAxisCheckHandler INSTANCE = new MtfOffAxisCheckHandler();
 
     // 组合MtfCheckHandler实例
-    private final MtfCheckHandler mtfCheckHandler;
+    public final MtfCheckHandler mtfCheckHandler;
 
-    private MtfOffAxisCheckHandler() {
+    public MtfOffAxisCheckHandler() {
+        // 显式调用父类构造函数
+        super(EqLstCommand.class);
+
         // 使用MtfCheckHandler的单例实例
         this.mtfCheckHandler = MtfCheckHandler.getInstance();
     }
@@ -32,14 +40,13 @@ public final class MtfOffAxisCheckHandler {
         return INSTANCE;
     }
 
-    /**
-     * 处理命令
-     *
-     * @param parts     命令的部分
-     * @param parentCmd 前缀命令（可选）
-     * @return 处理结果
-     */
+    @Override
     public EqLstCommand handle(String[] parts, String parentCmd) {
         return mtfCheckHandler.handle(parts, parentCmd);
+    }
+
+    @Override
+    public CommandHandler<EqLstCommand> createInstance() {
+        return getInstance();
     }
 }

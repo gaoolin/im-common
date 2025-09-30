@@ -15,7 +15,7 @@ import java.util.Objects;
 public class EqLstTplInfo implements Serializable {
     private static final long serialVersionUID = 529L;
 
-    private String prodType;
+    private String module;
     private Integer listParams;
     private Integer itemParams;
     private Integer status;
@@ -26,7 +26,7 @@ public class EqLstTplInfo implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EqLstTplInfo that = (EqLstTplInfo) o;
-        return Objects.equals(prodType, that.prodType) &&
+        return Objects.equals(module, that.module) &&
                 Objects.equals(listParams, that.listParams) &&
                 Objects.equals(itemParams, that.itemParams) &&
                 Objects.equals(status, that.status);
@@ -34,6 +34,6 @@ public class EqLstTplInfo implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(prodType, listParams, itemParams, status);
+        return Objects.hash(module, listParams, itemParams, status);
     }
 }
