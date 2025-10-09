@@ -26,6 +26,7 @@ import java.util.Map;
 @Accessors(chain = true)  // 注解用于启用链式调用风格，这意味着在调用 setter 方法时，可以返回当前对象，从而使得多个 setter 方法可以链式调用。
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EqLstParsed extends EqLstSet {
+    private static final long serialVersionUID = 1L;
     private static final Logger logger = LoggerFactory.getLogger(EqLstParsed.class);
 
     private String simId;

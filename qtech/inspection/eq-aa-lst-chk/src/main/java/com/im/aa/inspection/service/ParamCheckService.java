@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-import static com.im.aa.inspection.constant.EqLstChk.PROPERTIES_TO_COMPARE;
-import static com.im.aa.inspection.constant.EqLstChk.PROPERTIES_TO_COMPUTE;
+import static com.im.aa.inspection.constant.EqLstInspectionConstants.PROPERTIES_TO_COMPARE;
+import static com.im.aa.inspection.constant.EqLstInspectionConstants.PROPERTIES_TO_COMPUTE;
 
 /**
  * 参数检查服务
@@ -90,7 +90,7 @@ public class ParamCheckService {
     public EqpReverseRecord performParameterCheck(EqLstParsed actualObj) {
         // 初始化检查结果
         EqpReverseRecord eqpReverseRecord = new EqpReverseRecord();
-        eqpReverseRecord.setSource("aa-list");
+        eqpReverseRecord.setSource("dto-list");
         eqpReverseRecord.setSimId(actualObj.getSimId());
         eqpReverseRecord.setModule(actualObj.getModule());
         eqpReverseRecord.setChkDt(Chronos.now());

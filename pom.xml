@@ -43,6 +43,7 @@
         <lettuce.version>6.1.10.RELEASE</lettuce.version>
         <lombok.version>1.18.36</lombok.version>
         <logback.version>1.2.11</logback.version>
+        <protobuf.version>3.21.12</protobuf.version>
     </properties>
 
     <!-- 依赖管理，子模块按需引入 -->
@@ -91,6 +92,13 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-text</artifactId>
                 <version>${commons-text.version}</version>
+            </dependency>
+
+            <!-- Protobuf 依赖 -->
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf.version}</version>
             </dependency>
 
             <!-- 日志依赖 -->

@@ -1,4 +1,4 @@
-package com.im.aa.inspection.entity.param;
+package com.im.qtech.common.dto.standard;
 
 import lombok.Data;
 

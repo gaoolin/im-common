@@ -39,7 +39,7 @@
     </appender>
 
     <!-- 为 Kafka 消费者设置专门的日志配置 -->
-    <!--    <logger name="com.im.aa.inspection.consumer.KafkaMessageConsumer" level="DEBUG" additivity="false">-->
+    <!--    <logger name="com.im.dto.inspection.consumer.KafkaMessageConsumer" level="DEBUG" additivity="false">-->
     <!--        <appender-ref ref="CONSOLE"/>-->
     <!--    </logger>-->
 

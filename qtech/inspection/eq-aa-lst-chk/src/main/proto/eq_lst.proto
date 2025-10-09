@@ -1,0 +1,221 @@
+syntax = "proto3";
+
+option java_package = "com.im.aa.inspection.proto";
+option java_outer_classname = "EqLstProto";
+option java_multiple_files = false;  // 确保生成单个类文件
+
+message EqLstPOJO {
+  // 基础设备参数
+  string module = 1;
+  string aa1 = 2;
+  string aa2 = 3;
+  string aa3 = 4;
+  string backToPosition = 5;
+  string blemish = 6;
+
+  // 2025-01-15 扩展参数
+  string blemish1 = 7;
+  string blemish2 = 8;
+  string chartAlignment = 9;
+  string chartAlignment1 = 10;
+  string chartAlignment2 = 11;
+  string clampOnOff = 12;
+  string delay = 13;
+  string destroy = 14;
+  string destroyStart = 15;
+  string dispense = 16;
+
+  // 2025-01-15 扩展参数
+  string dispense1 = 17;
+  string dispense2 = 18;
+  string epoxyInspection = 19;
+  string epoxyInspectionAuto = 20;
+  string grab = 21;
+
+  // 2025-01-15 扩展参数
+  string grab1 = 22;
+  string grab2 = 23;
+
+  // 2025-03-11 扩展参数
+  string grab3 = 24;
+  string gripperOpen = 25;
+  string init = 26;
+
+  // 2025-01-15 扩展参数
+  string init1 = 27;
+  string init2 = 28;
+  string init3 = 29;
+  string lpBlemish = 30;
+  string lpOc = 31;
+  string lpOcCheck = 32;
+  string lpOn = 33;
+
+  // 2025-03-11 扩展参数
+  string lpOn1 = 34;
+  string lpOnBlemish = 35;
+  string lpOff = 36;
+
+  // 2025-03-11 扩展参数
+  string lpOff1 = 37;
+
+  // 2025-01-16 lpOff0对于mybatis驼峰转换不友好，更改以下指令
+  string lpIntensity = 38;
+  string moveToBlemishPos = 39;
+  string mtfCheck = 40;
+  string mtfCheck1 = 41;
+  string mtfCheck2 = 42;
+  string mtfCheck3 = 43;
+
+  // 2025-03-11 多焦段MTF检查
+  string mtfOffAxisCheck1 = 44;
+  string mtfOffAxisCheck2 = 45;
+  string mtfOffAxisCheck3 = 46;
+  string mtfOffAxisCheck4 = 47;
+  string openCheck = 48;
+
+  // 2025-01-15 扩展参数
+  string openCheck1 = 49;
+  string openCheck2 = 50;
+  string openCheck3 = 51;
+
+  // 2025-01-15 新增参数
+  string prToBond = 52;
+
+  // 台虹厂区的utXyzMove和recordPosition分开管控，因此新增 2025-01-15
+  string utXyzMove = 53;
+  string recordPosition = 54;
+  string reInit = 55;
+  string saveOc = 56;
+  string saveMtf = 57;
+  string sensorReset = 58;
+  string sfrCheck = 59; // 2025-04-17
+
+  string sid = 60;
+  string uvon = 61;
+  string uvoff = 62;
+
+  // vcmHall 指标 2025-03-27
+  string vcmHall = 63;
+  string vcmHall1 = 64;
+  string vcmHall2 = 65;
+
+  string yLevel = 66;
+
+  // AA Item 指标
+  string aa1RoiCc = 67;
+  string aa1RoiUl = 68;
+  string aa1RoiUr = 69;
+  string aa1RoiLl = 70;
+  string aa1RoiLr = 71;
+
+  // 新增 2024-10-28
+  string aa1Target = 72;
+  string aa1CcToCornerLimit = 73;
+  string aa1CcToCornerLimitMin = 74;
+  string aa1CornerScoreDifferenceRejectValue = 75;
+  string aa1ZRef = 76;
+  string aa1SrchStep = 77;
+  string aa1GoldenGlueThicknessMin = 78;
+  string aa1GoldenGlueThicknessMax = 79;
+
+  string aa2RoiCc = 80;
+  string aa2RoiUl = 81;
+  string aa2RoiUr = 82;
+  string aa2RoiLl = 83;
+  string aa2RoiLr = 84;
+
+  // 新增 2024-10-28
+  string aa2Target = 85;
+  string aa2CcToCornerLimit = 86;
+  string aa2CcToCornerLimitMin = 87;
+  string aa2CornerScoreDifferenceRejectValue = 88;
+  string aa2ZRef = 89;
+  string aa2SrchStep = 90;
+  string aa2GoldenGlueThicknessMin = 91;
+  string aa2GoldenGlueThicknessMax = 92;
+
+  string aa3RoiCc = 93;
+  string aa3RoiUl = 94;
+  string aa3RoiUr = 95;
+  string aa3RoiLl = 96;
+  string aa3RoiLr = 97;
+
+  // 新增 2024-10-28
+  string aa3Target = 98;
+  string aa3CcToCornerLimit = 99;
+  string aa3CcToCornerLimitMin = 100;
+  string aa3CornerScoreDifferenceRejectValue = 101;
+  string aa3ZRef = 102;
+  string aa3SrchStep = 103;
+  string aa3GoldenGlueThicknessMin = 104;
+  string aa3GoldenGlueThicknessMax = 105;
+
+  // mtfCheck Item 指标
+  string mtfCheckF = 106;
+  string mtfCheck1F = 107;
+  string mtfCheck2F = 108;
+  string mtfCheck3F = 109;
+
+  // 2025-03-11 多焦段 mtfCheck
+  string mtfOffAxisCheck1F = 110;
+  string mtfOffAxisCheck2F = 111;
+  string mtfOffAxisCheck3F = 112;
+  string mtfOffAxisCheck4F = 113;
+
+  // chartAlignment Item 指标
+  string chartAlignmentXResMin = 114;
+  string chartAlignmentXResMax = 115;
+  string chartAlignmentYResMin = 116;
+  string chartAlignmentYResMax = 117;
+
+  string chartAlignment1XResMin = 118;
+  string chartAlignment1XResMax = 119;
+  string chartAlignment1YResMin = 120;
+  string chartAlignment1YResMax = 121;
+
+  string chartAlignment2XResMin = 122;
+  string chartAlignment2XResMax = 123;
+  string chartAlignment2YResMin = 124;
+  string chartAlignment2YResMax = 125;
+
+  // EpoxyInspection Auto Item 指标
+  string epoxyInspectionInterval = 126;
+
+  // vcmHall 指标 2025-03-27
+  string vcmHallHallAfMin = 127;
+  string vcmHallHallAfMax = 128;
+  string vcmHallHallXMin = 129;
+  string vcmHallHallXMax = 130;
+  string vcmHallHallYMin = 131;
+  string vcmHallHallYMax = 132;
+
+  string vcmHall1HallAfMin = 133;
+  string vcmHall1HallAfMax = 134;
+  string vcmHall1HallXMin = 135;
+  string vcmHall1HallXMax = 136;
+  string vcmHall1HallYMin = 137;
+  string vcmHall1HallYMax = 138;
+
+  string vcmHall2HallAfMin = 139;
+  string vcmHall2HallAfMax = 140;
+  string vcmHall2HallXMin = 141;
+  string vcmHall2HallXMax = 142;
+  string vcmHall2HallYMin = 143;
+  string vcmHall2HallYMax = 144;
+
+  // RecordPosition 指标
+  // 由于新增utXyzMove List命令，因此新增utXyzMoveVal作为参数管控值 2025-01-15
+  string utXyzMoveVal = 145;
+  // 由于新增utXyzMove List命令，因此新增recordPositionName作为参数管控值，原recordPositionXyzMove 被替换掉 2025-01-15
+  string recordPositionName = 146;
+
+  // OcCheck 指标 Save Oc
+  string saveOcXOffsetMin = 147;
+  string saveOcXOffsetMax = 148;
+  string saveOcYOffsetMin = 149;
+  string saveOcYOffsetMax = 150;
+
+  // SaveMtf 指标
+  string saveMtfCcMin = 151;
+  string saveMtfCcMax = 152;
+}

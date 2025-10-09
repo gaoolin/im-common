@@ -3,12 +3,12 @@ package com.im.aa.inspection.integrator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.im.aa.inspection.comparator.MtfChkCmdItemsConverterV2;
 import com.im.aa.inspection.constant.CommandHandlerMapper;
-import com.im.aa.inspection.constant.EqLstChk;
+import com.im.aa.inspection.constant.EqLstInspectionConstants;
 import com.im.aa.inspection.entity.param.EqLstParsed;
 import com.im.aa.inspection.entity.struct.EqLstCommand;
 import com.im.aa.inspection.handler.AutoRegisteredHandler;
-import com.im.aa.inspection.util.ConvertMtfChkCmdItems;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.StringUtils;
@@ -154,7 +154,7 @@ public class EqLstParsedHandler extends MessageHandler<EqLstParsed> implements A
                             if ("LIST".equals(startWithStr)) {
                                 String listNmb = parts[1];
                                 String command = parts[2];
-                                if (EqLstChk.CONTROL_LIST_SET.contains(command)) {
+                                if (EqLstInspectionConstants.CONTROL_LIST_SET.contains(command)) {
                                     mapper.put(Integer.parseInt(listNmb), command);
                                 }
                                 return parseRowStartWithList(parts);  // 解析 LIST 行
@@ -181,7 +181,7 @@ public class EqLstParsedHandler extends MessageHandler<EqLstParsed> implements A
                     .collect(Collectors.toList());  // 收集到列表中
 
             // 聚合 EqLstCommand，并返回聚合后的列表， 聚合 MTF_CHECK 命令的解析结果
-            List<EqLstCommand> aggregatedCommands = ConvertMtfChkCmdItems.convert(eqLst);
+            List<EqLstCommand> aggregatedCommands = MtfChkCmdItemsConverterV2.convert(eqLst);
             // 将命令列表填充到 aaListParamsParsed 中
             aaListParamsParsed.fillWithData(aggregatedCommands);
             return aaListParamsParsed;

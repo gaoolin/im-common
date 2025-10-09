@@ -188,7 +188,7 @@ public class EqLstComparatorV3 extends AbstractParameterComparator<Object> {
     }
 
     private boolean isAaItemProperty(String property) {
-        return StringUtils.startsWith(property, "aa") && !(StringUtils.endsWith(property, "Min") || StringUtils.endsWith(property, "Max") || StringUtils.endsWith(property, "CcToCornerLimit"));
+        return StringUtils.startsWith(property, "dto") && !(StringUtils.endsWith(property, "Min") || StringUtils.endsWith(property, "Max") || StringUtils.endsWith(property, "CcToCornerLimit"));
     }
 
     private boolean isMtfCheckProperty(String property) {

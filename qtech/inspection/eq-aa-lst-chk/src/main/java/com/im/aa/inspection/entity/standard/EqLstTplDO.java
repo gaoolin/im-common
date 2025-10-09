@@ -1,6 +1,5 @@
 package com.im.aa.inspection.entity.standard;
 
-
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.im.aa.inspection.entity.param.EqLstSet;
@@ -15,9 +14,10 @@ import lombok.ToString;
 
 @Data
 @ToString(callSuper = true)
-@TableName("IMBIZ.IM_AA_LIST_PARAMS_STD_MODEL")
+@TableName(value = "IMBIZ.IM_AA_LIST_PARAMS_STD_MODEL")
 @JsonIgnoreProperties(ignoreUnknown = true) // 忽略未知属性
 public class EqLstTplDO extends EqLstSet {
+    private static final long serialVersionUID = 2L;
 
     private Long id;
 

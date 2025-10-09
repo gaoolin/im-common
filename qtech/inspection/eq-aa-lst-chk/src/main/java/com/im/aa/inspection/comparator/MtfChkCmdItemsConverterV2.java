@@ -1,4 +1,4 @@
-package com.im.aa.inspection.util;
+package com.im.aa.inspection.comparator;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,8 +22,8 @@ import static com.im.qtech.common.constant.QtechImBizConstant.EQP_LST_AGG_MTF_CH
  * @email gaoolin@gmail.com
  * @since 2024/12/18 09:00:38
  */
-public class ConvertMtfChkCmdItems {
-    private static final Logger logger = LoggerFactory.getLogger(ConvertMtfChkCmdItems.class);
+public class MtfChkCmdItemsConverterV2 {
+    private static final Logger logger = LoggerFactory.getLogger(MtfChkCmdItemsConverterV2.class);
     private static final ObjectMapper objectMapper = JsonMapperProvider.getSharedInstance();
 
     public static List<EqLstCommand> convert(List<EqLstCommand> commands) {

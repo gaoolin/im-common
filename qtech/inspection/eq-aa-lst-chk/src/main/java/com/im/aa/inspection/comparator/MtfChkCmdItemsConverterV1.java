@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
  * @email gaoolin@gmail.com
  * @since 2024/09/24 17:06:10
  */
-public class AggListCmd {
+public class MtfChkCmdItemsConverterV1 {
     private static final String AGG_MTF_CHECK_ITEMS_RESULT_SUFFIX = "F";
 
     public static List<EqLstCommand> aggregateMtfCheckCommands(List<EqLstCommand> commands) {
         // 过滤符合条件的命令
-        List<EqLstCommand> filteredCommands = commands.stream().filter(AggListCmd::isValidCommand).collect(Collectors.toList());
+        List<EqLstCommand> filteredCommands = commands.stream().filter(MtfChkCmdItemsConverterV1::isValidCommand).collect(Collectors.toList());
 
         // 获取剩余未通过过滤的命令
         List<EqLstCommand> remainingCommands = new ArrayList<>(commands);

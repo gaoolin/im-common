@@ -6,7 +6,7 @@ package com.im.aa.inspection.handler;
  * @since 2025/09/29
  */
 
-// 文件路径: src/main/java/com/im/aa/inspection/handler/AutoRegisteredHandler.java
+// 文件路径: src/main/java/com/im/dto/inspection/handler/AutoRegisteredHandler.java
 
 /**
  * 自动注册Handler标记接口

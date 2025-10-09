@@ -25,8 +25,8 @@ public class QtechImBizConstant {
     public static final String KAFKA_BOOTSTRAP_SERVERS = "10.170.6.24:9092,10.170.6.25:9092,10.170.6.26:9092";
 
     // REDIS_CONSTANT
-    public static final String REDIS_KEY_PREFIX_EQP_LST_TPL = "qtech:im:aa:list:model:";
-    public static final String REDIS_KEY_PREFIX_EQP_LST_TPL_INFO = "qtech:im:aa:list:model:info:";
+    public static final String REDIS_KEY_PREFIX_EQP_LST_TPL = "qtech:im:dto:list:model:";
+    public static final String REDIS_KEY_PREFIX_EQP_LST_TPL_INFO = "qtech:im:dto:list:model:info:";
     public static final String REDIS_KEY_PREFIX_EQP_REVERSE_IGNORE_SIM = "qtech:chk:ignored:";
     public static final int DEVICE_ONLINE_STATUS_REDIS_EXPIRE_SECONDS = 60;
     public static final Long MSG_WB_OLP_REDIS_EXPIRE_SECONDS = 900L; // 15分钟

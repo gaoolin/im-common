@@ -97,7 +97,7 @@ public class KafkaMessageConsumer implements Lifecycle {
         // 初始化消费者
         String bootstrapServers = configManager.getProperty("kafka.bootstrap.servers", "localhost:9092");
         String inputTopic = configManager.getProperty("kafka.input.topic", "qtech_im_aa_list_topic");
-        String groupId = configManager.getProperty("kafka.group.id", "aa-param-check-group");
+        String groupId = configManager.getProperty("kafka.group.id", "dto-param-check-group");
 
         Properties consumerProps = new Properties();
         consumerProps.put("bootstrap.servers", bootstrapServers);

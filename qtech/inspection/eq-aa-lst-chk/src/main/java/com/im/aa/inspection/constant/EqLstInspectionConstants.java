@@ -8,7 +8,7 @@ import java.util.*;
  * @since 2024/05/20 10:19:44
  */
 
-public class EqLstChk {
+public class EqLstInspectionConstants {
     /*
      * 需要点检是否开启的属性名称
      * 即所有的List项

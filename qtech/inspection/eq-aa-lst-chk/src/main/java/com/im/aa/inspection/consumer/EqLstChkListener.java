@@ -85,7 +85,7 @@ public class EqLstChkListener {
         props.put("auto.commit.interval.ms", "1000");
 
         kafkaConsumer = new org.apache.kafka.clients.consumer.KafkaConsumer<>(props);
-        kafkaConsumer.subscribe(Collections.singletonList("aa-list-params-test-topic"));
+        kafkaConsumer.subscribe(Collections.singletonList("dto-list-params-test-topic"));
     }
 
     private void consumeMessages() {
@@ -149,7 +149,7 @@ public class EqLstChkListener {
 
     private EqpReverseRecord initializeCheckResult(EqLstParsed actualObj) {
         EqpReverseRecord checkResult = new EqpReverseRecord();
-        checkResult.setSource("aa-list");
+        checkResult.setSource("dto-list");
         checkResult.setSimId(actualObj.getSimId());
         checkResult.setModule(actualObj.getModule());
         checkResult.setChkDt(Chronos.now());
@@ -200,7 +200,7 @@ public class EqLstChkListener {
 
     private void sendResult(EqpReverseRecord checkResult, String messageKey) throws JsonProcessingException {
         String jsonString = objectMapper.writeValueAsString(checkResult);
-        kafkaProducer.send(new ProducerRecord<>("aa-list-params-checked-test-topic", jsonString));
+        kafkaProducer.send(new ProducerRecord<>("dto-list-params-checked-test-topic", jsonString));
         logger.info(">>>>> key: {} check message completed, result sent!", messageKey);
     }
 }

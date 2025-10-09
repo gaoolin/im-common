@@ -19,7 +19,7 @@ public class CommandHandlerMapper {
 
     /**
      * 需要解析的List要不断地加入其中
-     * 需要调整 EqLstChk 类 CONTROL_LIST_SET
+     * 需要调整 EqLstInspectionConstants 类 CONTROL_LIST_SET
      */
     public static final Map<String, Set<String>> KEY_MAP;
     // 单例实例

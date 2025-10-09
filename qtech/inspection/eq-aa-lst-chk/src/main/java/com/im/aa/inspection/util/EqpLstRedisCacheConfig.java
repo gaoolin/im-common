@@ -25,7 +25,6 @@ import static com.im.qtech.common.constant.QtechImBizConstant.REDIS_KEY_PREFIX_E
  * @since 2025/09/30
  */
 
-
 public class EqpLstRedisCacheConfig {
     private static final Logger logger = LoggerFactory.getLogger(EqpLstRedisCacheConfig.class);
 
@@ -40,13 +39,14 @@ public class EqpLstRedisCacheConfig {
 
     // 缓存实例
     private Cache<String, Object> defaultCache;
-    private Cache<String, String> eqLstTplInfoCache;
-    private Cache<String, String> eqLstTplCache;
-    private Cache<String, EqLstTplInfoPO> eqLstTplInfoPOCache;
-    private Cache<String, EqLstTplDO> eqLstTplDOCache;
+    private volatile Cache<String, String> eqLstTplInfoCache;
+    private volatile Cache<String, String> eqLstTplCache;
+    private volatile Cache<String, EqLstTplInfoPO> eqLstTplInfoPOCache;
+    private volatile Cache<String, EqLstTplDO> eqLstTplDOCache;
+    private volatile Cache<String, byte[]> eqLstByteCache;
 
     public EqpLstRedisCacheConfig() {
-        // 使用你自研的配置模块读取application.properties中的配置
+        // 使用自研的配置模块读取application.properties中的配置
         loadConfigFromFramework();
         init();
     }
@@ -56,7 +56,7 @@ public class EqpLstRedisCacheConfig {
         ConfigurationManager configManager = new DefaultConfigurationManager();
         this.redisClusterNodes = configManager.getProperty("im.redis.cluster.nodes", "10.170.6.24:6379,10.170.6.25:6379,10.170.6.26:6379");
         this.redisPassword = configManager.getProperty("im.redis.password", "im@2024");
-        this.clientName = configManager.getProperty("im.redis.client-name", "im-aa-service");
+        this.clientName = configManager.getProperty("im.redis.client-name", "im-dto-service");
         this.defaultMaxSize = Integer.parseInt(configManager.getProperty("cache.default.max-size", "1000"));
         this.defaultExpireMs = Long.parseLong(configManager.getProperty("cache.default.expire", "1800000"));
 
@@ -244,7 +244,7 @@ public class EqpLstRedisCacheConfig {
     public Cache<String, EqLstTplInfoPO> getEqLstTplInfoPOCache() {
         if (eqLstTplInfoPOCache == null) {
             synchronized (this) {
-                if (eqLstTplInfoCache == null) {
+                if (eqLstTplInfoPOCache == null) {
                     try {
                         logger.info("Creating eqLstTplInfoPOCache");
 
@@ -313,6 +313,24 @@ public class EqpLstRedisCacheConfig {
             }
         }
         return eqLstTplDOCache;
+    }
+
+    public Cache<String, byte[]> getEqLstByteCache() {
+        if (eqLstByteCache == null) {
+            synchronized (this) {
+                if (eqLstByteCache == null) {
+                    CacheConfig config = baseConfig("eqLstByteCache", 500, TimeUnit.MINUTES.toMillis(10));
+                    try {
+                        config.setRedisUri(buildRedisUri());
+                    } catch (UnsupportedEncodingException e) {
+                        logger.error("Failed to create eqLstByteCache", e);
+                        throw new RuntimeException(e);
+                    }
+                    eqLstByteCache = cacheManager.getOrCreateCache("eqLstByteCache", config);
+                }
+            }
+        }
+        return eqLstByteCache;
     }
 
     // Getter methods for cache instances

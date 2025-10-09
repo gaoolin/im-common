@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.im.aa.inspection.entity.param.EqLstTplInfo;
+import com.im.qtech.common.dto.standard.EqLstTplInfo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -22,6 +22,7 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor // json反序列化时，需要无参构造函数实例化对象，否则会报错
 public class EqLstTplInfoPO extends EqLstTplInfo {
+    private static final long serialVersionUID = 2L;
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
     @JsonIgnore
