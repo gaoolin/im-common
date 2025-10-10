@@ -1,4 +1,4 @@
-package com.im.aa.inspection.serializer;
+package com.im.aa.inspection.serde;
 
 import com.im.aa.inspection.proto.EqLstProto;
 import org.im.common.serde.protobuf.ProtoConverter;

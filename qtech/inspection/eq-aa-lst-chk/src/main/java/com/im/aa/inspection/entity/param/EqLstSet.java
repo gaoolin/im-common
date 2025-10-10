@@ -66,7 +66,7 @@ public class EqLstSet extends EqLstPOJO implements Cloneable {
                     try {
                         field.set(this, null);
                     } catch (IllegalAccessException e) {
-                        logger.warn("Failed to reset field: {}", field.getName(), e);
+                        logger.warn(">>>>> Failed to reset field: {}", field.getName(), e);
                     }
                 });
 
@@ -80,7 +80,7 @@ public class EqLstSet extends EqLstPOJO implements Cloneable {
      */
     public void fillWithData(List<EqLstCommand> eqLstCommands) {
         if (eqLstCommands == null || eqLstCommands.isEmpty()) {
-            logger.warn("AA entity commands is empty, no data to fill");
+            logger.warn(">>>>> AA entity commands is empty, no data to fill");
             return;
         }
 
@@ -177,7 +177,7 @@ public class EqLstSet extends EqLstPOJO implements Cloneable {
                         paramMap.put(field.getName(), value);
                     }
                 } catch (IllegalAccessException e) {
-                    logger.warn("Failed to get field value: {}", field.getName(), e);
+                    logger.warn(">>>>> Failed to get field value: {}", field.getName(), e);
                 }
             }
             clazz = clazz.getSuperclass();

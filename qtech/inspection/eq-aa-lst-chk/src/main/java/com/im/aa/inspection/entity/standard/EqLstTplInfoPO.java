@@ -1,30 +1,38 @@
 package com.im.aa.inspection.entity.standard;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.im.qtech.common.dto.standard.EqLstTplInfo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+
+import javax.persistence.*;
 
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
  * @since 2024/07/22 14:20:43
  */
-
 @Data
-@ToString(callSuper = true)
-@TableName(value = "IMBIZ.IM_AA_LIST_PARAMS_STD_MODEL_INFO")
+@Entity
+@Table(name = "imbiz.eq_lst_tpl_info")
 @JsonIgnoreProperties(ignoreUnknown = true)
-@NoArgsConstructor // json反序列化时，需要无参构造函数实例化对象，否则会报错
+@NoArgsConstructor
 public class EqLstTplInfoPO extends EqLstTplInfo {
     private static final long serialVersionUID = 2L;
-    @TableId(value = "id", type = IdType.AUTO)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    // ✅ 通过 module 作为 OneToOne 外键
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "module",                // 当前表字段
+            referencedColumnName = "module" // 主表字段
+    )
+    private EqLstTplDO tplDO;
+
     @JsonIgnore
     private String provider;
     @JsonIgnore
@@ -39,14 +47,6 @@ public class EqLstTplInfoPO extends EqLstTplInfo {
     private String updateTime;
     @JsonIgnore
     private String remark;
-
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 }
+
+

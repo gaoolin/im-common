@@ -38,7 +38,7 @@ public class EqLstInspectionApp {
     private static volatile boolean running = true;
 
     public static void main(String[] args) {
-        logger.info("启动AA参数点检后台服务...");
+        logger.info(">>>>> 启动AA参数点检后台服务...");
 
         try {
             // 初始化核心组件
@@ -54,7 +54,7 @@ public class EqLstInspectionApp {
             keepRunning();
 
         } catch (Exception e) {
-            logger.error("服务启动失败", e);
+            logger.error(">>>>> 服务启动失败", e);
             System.exit(1);
         }
     }
@@ -78,12 +78,12 @@ public class EqLstInspectionApp {
             cacheService = new CacheService(); // 使用新的cacheService
 
             // 初始化服务组件
-            DatabaseService databaseService = new DatabaseService(configManager);
+            DatabaseService databaseService = new DatabaseService();
             paramCheckService = new ParamCheckService(databaseService, cacheService);
 
-            logger.info("应用组件初始化完成");
+            logger.info(">>>>> 应用组件初始化完成");
         } catch (Exception e) {
-            logger.error("组件初始化失败", e);
+            logger.error(">>>>> 组件初始化失败", e);
             throw new RuntimeException("初始化失败", e);
         }
     }
@@ -95,9 +95,9 @@ public class EqLstInspectionApp {
         try {
             kafkaConsumer = new KafkaMessageConsumer(configManager, paramCheckService);
             kafkaConsumer.startConsuming();
-            logger.info("Kafka消费者启动完成");
+            logger.info(">>>>> Kafka消费者启动完成");
         } catch (Exception e) {
-            logger.error("Kafka消费者启动失败", e);
+            logger.error(">>>>> Kafka消费者启动失败", e);
             throw new RuntimeException("Kafka消费者启动失败", e);
         }
     }
@@ -107,7 +107,7 @@ public class EqLstInspectionApp {
      */
     private static void registerShutdownHook() {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            logger.info("正在关闭服务...");
+            logger.info(">>>>> 正在关闭服务...");
             shutdown();
         }));
     }
@@ -116,7 +116,7 @@ public class EqLstInspectionApp {
      * 保持应用运行
      */
     private static void keepRunning() {
-        logger.info("服务已启动，按Ctrl+C关闭服务");
+        logger.info(">>>>> 服务已启动，按Ctrl+C关闭服务");
 
         while (running && !Thread.currentThread().isInterrupted()) {
             try {
@@ -144,9 +144,9 @@ public class EqLstInspectionApp {
                 cacheService.close();
             }
 
-            logger.info("服务已关闭");
+            logger.info(">>>>> 服务已关闭");
         } catch (Exception e) {
-            logger.error("关闭服务时出错", e);
+            logger.error(">>>>> 关闭服务时出错", e);
         }
     }
 
@@ -164,7 +164,7 @@ public class EqLstInspectionApp {
     }
 
     private static void autoRegisterHandlers() {
-        logger.info("开始自动注册处理器...");
+        logger.info(">>>>> 开始自动注册处理器...");
 
         ServiceLoader<AutoRegisteredHandler> loader = ServiceLoader.load(AutoRegisteredHandler.class);
         int registeredCount = 0;
@@ -179,13 +179,13 @@ public class EqLstInspectionApp {
                     messageHandlerRegistry.register(handler.getClass().getSimpleName(), (MessageHandler<?>) handler);
                 }
 
-                logger.info("成功注册处理器:{}", handler.getClass().getSimpleName());
+                logger.info(">>>>> 成功注册处理器:{}", handler.getClass().getSimpleName());
                 registeredCount++;
             } catch (Exception e) {
-                logger.error("注册处理器失败:{}", handlerFactory.getClass().getSimpleName(), e);
+                logger.error(">>>>> 注册处理器失败:{}", handlerFactory.getClass().getSimpleName(), e);
             }
         }
 
-        logger.info("处理器自动注册完成，共注册 {} 个处理器", registeredCount);
+        logger.info(">>>>> 处理器自动注册完成，共注册 {} 个处理器", registeredCount);
     }
 }

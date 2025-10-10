@@ -4,9 +4,8 @@
 package com.im.aa.inspection.proto;
 
 public final class EqLstProto {
-  private EqLstProto() {
-  }
-
+    private EqLstProto() {
+    }
   public static void registerAllExtensions(
           com.google.protobuf.ExtensionRegistryLite registry) {
   }
@@ -16,7 +15,6 @@ public final class EqLstProto {
     registerAllExtensions(
             (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-
   public interface EqLstPOJOOrBuilder extends
           // @@protoc_insertion_point(interface_extends:EqLstPOJO)
           com.google.protobuf.MessageOrBuilder {
@@ -27,18 +25,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string module = 1;</code>
-     *
      * @return The module.
      */
     java.lang.String getModule();
-
     /**
      * <pre>
      * 基础设备参数
      * </pre>
      *
      * <code>string module = 1;</code>
-     *
      * @return The bytes for module.
      */
     com.google.protobuf.ByteString
@@ -46,14 +41,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa1 = 2;</code>
-     *
      * @return The aa1.
      */
     java.lang.String getAa1();
-
     /**
      * <code>string aa1 = 2;</code>
-     *
      * @return The bytes for aa1.
      */
     com.google.protobuf.ByteString
@@ -61,14 +53,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa2 = 3;</code>
-     *
      * @return The aa2.
      */
     java.lang.String getAa2();
-
     /**
      * <code>string aa2 = 3;</code>
-     *
      * @return The bytes for aa2.
      */
     com.google.protobuf.ByteString
@@ -76,14 +65,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa3 = 4;</code>
-     *
      * @return The aa3.
      */
     java.lang.String getAa3();
-
     /**
      * <code>string aa3 = 4;</code>
-     *
      * @return The bytes for aa3.
      */
     com.google.protobuf.ByteString
@@ -91,14 +77,11 @@ public final class EqLstProto {
 
     /**
      * <code>string backToPosition = 5;</code>
-     *
      * @return The backToPosition.
      */
     java.lang.String getBackToPosition();
-
     /**
      * <code>string backToPosition = 5;</code>
-     *
      * @return The bytes for backToPosition.
      */
     com.google.protobuf.ByteString
@@ -106,14 +89,11 @@ public final class EqLstProto {
 
     /**
      * <code>string blemish = 6;</code>
-     *
      * @return The blemish.
      */
     java.lang.String getBlemish();
-
     /**
      * <code>string blemish = 6;</code>
-     *
      * @return The bytes for blemish.
      */
     com.google.protobuf.ByteString
@@ -125,18 +105,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string blemish1 = 7;</code>
-     *
      * @return The blemish1.
      */
     java.lang.String getBlemish1();
-
     /**
      * <pre>
      * 2025-01-15 扩展参数
      * </pre>
      *
      * <code>string blemish1 = 7;</code>
-     *
      * @return The bytes for blemish1.
      */
     com.google.protobuf.ByteString
@@ -144,14 +121,11 @@ public final class EqLstProto {
 
     /**
      * <code>string blemish2 = 8;</code>
-     *
      * @return The blemish2.
      */
     java.lang.String getBlemish2();
-
     /**
      * <code>string blemish2 = 8;</code>
-     *
      * @return The bytes for blemish2.
      */
     com.google.protobuf.ByteString
@@ -159,14 +133,11 @@ public final class EqLstProto {
 
     /**
      * <code>string chartAlignment = 9;</code>
-     *
      * @return The chartAlignment.
      */
     java.lang.String getChartAlignment();
-
     /**
      * <code>string chartAlignment = 9;</code>
-     *
      * @return The bytes for chartAlignment.
      */
     com.google.protobuf.ByteString
@@ -174,14 +145,11 @@ public final class EqLstProto {
 
     /**
      * <code>string chartAlignment1 = 10;</code>
-     *
      * @return The chartAlignment1.
      */
     java.lang.String getChartAlignment1();
-
     /**
      * <code>string chartAlignment1 = 10;</code>
-     *
      * @return The bytes for chartAlignment1.
      */
     com.google.protobuf.ByteString
@@ -189,14 +157,11 @@ public final class EqLstProto {
 
     /**
      * <code>string chartAlignment2 = 11;</code>
-     *
      * @return The chartAlignment2.
      */
     java.lang.String getChartAlignment2();
-
     /**
      * <code>string chartAlignment2 = 11;</code>
-     *
      * @return The bytes for chartAlignment2.
      */
     com.google.protobuf.ByteString
@@ -204,14 +169,11 @@ public final class EqLstProto {
 
     /**
      * <code>string clampOnOff = 12;</code>
-     *
      * @return The clampOnOff.
      */
     java.lang.String getClampOnOff();
-
     /**
      * <code>string clampOnOff = 12;</code>
-     *
      * @return The bytes for clampOnOff.
      */
     com.google.protobuf.ByteString
@@ -219,14 +181,11 @@ public final class EqLstProto {
 
     /**
      * <code>string delay = 13;</code>
-     *
      * @return The delay.
      */
     java.lang.String getDelay();
-
     /**
      * <code>string delay = 13;</code>
-     *
      * @return The bytes for delay.
      */
     com.google.protobuf.ByteString
@@ -234,14 +193,11 @@ public final class EqLstProto {
 
     /**
      * <code>string destroy = 14;</code>
-     *
      * @return The destroy.
      */
     java.lang.String getDestroy();
-
     /**
      * <code>string destroy = 14;</code>
-     *
      * @return The bytes for destroy.
      */
     com.google.protobuf.ByteString
@@ -249,14 +205,11 @@ public final class EqLstProto {
 
     /**
      * <code>string destroyStart = 15;</code>
-     *
      * @return The destroyStart.
      */
     java.lang.String getDestroyStart();
-
     /**
      * <code>string destroyStart = 15;</code>
-     *
      * @return The bytes for destroyStart.
      */
     com.google.protobuf.ByteString
@@ -264,14 +217,11 @@ public final class EqLstProto {
 
     /**
      * <code>string dispense = 16;</code>
-     *
      * @return The dispense.
      */
     java.lang.String getDispense();
-
     /**
      * <code>string dispense = 16;</code>
-     *
      * @return The bytes for dispense.
      */
     com.google.protobuf.ByteString
@@ -283,18 +233,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string dispense1 = 17;</code>
-     *
      * @return The dispense1.
      */
     java.lang.String getDispense1();
-
     /**
      * <pre>
      * 2025-01-15 扩展参数
      * </pre>
      *
      * <code>string dispense1 = 17;</code>
-     *
      * @return The bytes for dispense1.
      */
     com.google.protobuf.ByteString
@@ -302,14 +249,11 @@ public final class EqLstProto {
 
     /**
      * <code>string dispense2 = 18;</code>
-     *
      * @return The dispense2.
      */
     java.lang.String getDispense2();
-
     /**
      * <code>string dispense2 = 18;</code>
-     *
      * @return The bytes for dispense2.
      */
     com.google.protobuf.ByteString
@@ -317,14 +261,11 @@ public final class EqLstProto {
 
     /**
      * <code>string epoxyInspection = 19;</code>
-     *
      * @return The epoxyInspection.
      */
     java.lang.String getEpoxyInspection();
-
     /**
      * <code>string epoxyInspection = 19;</code>
-     *
      * @return The bytes for epoxyInspection.
      */
     com.google.protobuf.ByteString
@@ -332,14 +273,11 @@ public final class EqLstProto {
 
     /**
      * <code>string epoxyInspectionAuto = 20;</code>
-     *
      * @return The epoxyInspectionAuto.
      */
     java.lang.String getEpoxyInspectionAuto();
-
     /**
      * <code>string epoxyInspectionAuto = 20;</code>
-     *
      * @return The bytes for epoxyInspectionAuto.
      */
     com.google.protobuf.ByteString
@@ -347,14 +285,11 @@ public final class EqLstProto {
 
     /**
      * <code>string grab = 21;</code>
-     *
      * @return The grab.
      */
     java.lang.String getGrab();
-
     /**
      * <code>string grab = 21;</code>
-     *
      * @return The bytes for grab.
      */
     com.google.protobuf.ByteString
@@ -366,18 +301,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string grab1 = 22;</code>
-     *
      * @return The grab1.
      */
     java.lang.String getGrab1();
-
     /**
      * <pre>
      * 2025-01-15 扩展参数
      * </pre>
      *
      * <code>string grab1 = 22;</code>
-     *
      * @return The bytes for grab1.
      */
     com.google.protobuf.ByteString
@@ -385,14 +317,11 @@ public final class EqLstProto {
 
     /**
      * <code>string grab2 = 23;</code>
-     *
      * @return The grab2.
      */
     java.lang.String getGrab2();
-
     /**
      * <code>string grab2 = 23;</code>
-     *
      * @return The bytes for grab2.
      */
     com.google.protobuf.ByteString
@@ -404,18 +333,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string grab3 = 24;</code>
-     *
      * @return The grab3.
      */
     java.lang.String getGrab3();
-
     /**
      * <pre>
      * 2025-03-11 扩展参数
      * </pre>
      *
      * <code>string grab3 = 24;</code>
-     *
      * @return The bytes for grab3.
      */
     com.google.protobuf.ByteString
@@ -423,14 +349,11 @@ public final class EqLstProto {
 
     /**
      * <code>string gripperOpen = 25;</code>
-     *
      * @return The gripperOpen.
      */
     java.lang.String getGripperOpen();
-
     /**
      * <code>string gripperOpen = 25;</code>
-     *
      * @return The bytes for gripperOpen.
      */
     com.google.protobuf.ByteString
@@ -438,14 +361,11 @@ public final class EqLstProto {
 
     /**
      * <code>string init = 26;</code>
-     *
      * @return The init.
      */
     java.lang.String getInit();
-
     /**
      * <code>string init = 26;</code>
-     *
      * @return The bytes for init.
      */
     com.google.protobuf.ByteString
@@ -457,18 +377,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string init1 = 27;</code>
-     *
      * @return The init1.
      */
     java.lang.String getInit1();
-
     /**
      * <pre>
      * 2025-01-15 扩展参数
      * </pre>
      *
      * <code>string init1 = 27;</code>
-     *
      * @return The bytes for init1.
      */
     com.google.protobuf.ByteString
@@ -476,14 +393,11 @@ public final class EqLstProto {
 
     /**
      * <code>string init2 = 28;</code>
-     *
      * @return The init2.
      */
     java.lang.String getInit2();
-
     /**
      * <code>string init2 = 28;</code>
-     *
      * @return The bytes for init2.
      */
     com.google.protobuf.ByteString
@@ -491,14 +405,11 @@ public final class EqLstProto {
 
     /**
      * <code>string init3 = 29;</code>
-     *
      * @return The init3.
      */
     java.lang.String getInit3();
-
     /**
      * <code>string init3 = 29;</code>
-     *
      * @return The bytes for init3.
      */
     com.google.protobuf.ByteString
@@ -506,14 +417,11 @@ public final class EqLstProto {
 
     /**
      * <code>string lpBlemish = 30;</code>
-     *
      * @return The lpBlemish.
      */
     java.lang.String getLpBlemish();
-
     /**
      * <code>string lpBlemish = 30;</code>
-     *
      * @return The bytes for lpBlemish.
      */
     com.google.protobuf.ByteString
@@ -521,14 +429,11 @@ public final class EqLstProto {
 
     /**
      * <code>string lpOc = 31;</code>
-     *
      * @return The lpOc.
      */
     java.lang.String getLpOc();
-
     /**
      * <code>string lpOc = 31;</code>
-     *
      * @return The bytes for lpOc.
      */
     com.google.protobuf.ByteString
@@ -536,14 +441,11 @@ public final class EqLstProto {
 
     /**
      * <code>string lpOcCheck = 32;</code>
-     *
      * @return The lpOcCheck.
      */
     java.lang.String getLpOcCheck();
-
     /**
      * <code>string lpOcCheck = 32;</code>
-     *
      * @return The bytes for lpOcCheck.
      */
     com.google.protobuf.ByteString
@@ -551,14 +453,11 @@ public final class EqLstProto {
 
     /**
      * <code>string lpOn = 33;</code>
-     *
      * @return The lpOn.
      */
     java.lang.String getLpOn();
-
     /**
      * <code>string lpOn = 33;</code>
-     *
      * @return The bytes for lpOn.
      */
     com.google.protobuf.ByteString
@@ -570,18 +469,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string lpOn1 = 34;</code>
-     *
      * @return The lpOn1.
      */
     java.lang.String getLpOn1();
-
     /**
      * <pre>
      * 2025-03-11 扩展参数
      * </pre>
      *
      * <code>string lpOn1 = 34;</code>
-     *
      * @return The bytes for lpOn1.
      */
     com.google.protobuf.ByteString
@@ -589,14 +485,11 @@ public final class EqLstProto {
 
     /**
      * <code>string lpOnBlemish = 35;</code>
-     *
      * @return The lpOnBlemish.
      */
     java.lang.String getLpOnBlemish();
-
     /**
      * <code>string lpOnBlemish = 35;</code>
-     *
      * @return The bytes for lpOnBlemish.
      */
     com.google.protobuf.ByteString
@@ -604,14 +497,11 @@ public final class EqLstProto {
 
     /**
      * <code>string lpOff = 36;</code>
-     *
      * @return The lpOff.
      */
     java.lang.String getLpOff();
-
     /**
      * <code>string lpOff = 36;</code>
-     *
      * @return The bytes for lpOff.
      */
     com.google.protobuf.ByteString
@@ -623,18 +513,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string lpOff1 = 37;</code>
-     *
      * @return The lpOff1.
      */
     java.lang.String getLpOff1();
-
     /**
      * <pre>
      * 2025-03-11 扩展参数
      * </pre>
      *
      * <code>string lpOff1 = 37;</code>
-     *
      * @return The bytes for lpOff1.
      */
     com.google.protobuf.ByteString
@@ -646,18 +533,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string lpIntensity = 38;</code>
-     *
      * @return The lpIntensity.
      */
     java.lang.String getLpIntensity();
-
     /**
      * <pre>
      * 2025-01-16 lpOff0对于mybatis驼峰转换不友好，更改以下指令
      * </pre>
      *
      * <code>string lpIntensity = 38;</code>
-     *
      * @return The bytes for lpIntensity.
      */
     com.google.protobuf.ByteString
@@ -665,14 +549,11 @@ public final class EqLstProto {
 
     /**
      * <code>string moveToBlemishPos = 39;</code>
-     *
      * @return The moveToBlemishPos.
      */
     java.lang.String getMoveToBlemishPos();
-
     /**
      * <code>string moveToBlemishPos = 39;</code>
-     *
      * @return The bytes for moveToBlemishPos.
      */
     com.google.protobuf.ByteString
@@ -680,14 +561,11 @@ public final class EqLstProto {
 
     /**
      * <code>string mtfCheck = 40;</code>
-     *
      * @return The mtfCheck.
      */
     java.lang.String getMtfCheck();
-
     /**
      * <code>string mtfCheck = 40;</code>
-     *
      * @return The bytes for mtfCheck.
      */
     com.google.protobuf.ByteString
@@ -695,14 +573,11 @@ public final class EqLstProto {
 
     /**
      * <code>string mtfCheck1 = 41;</code>
-     *
      * @return The mtfCheck1.
      */
     java.lang.String getMtfCheck1();
-
     /**
      * <code>string mtfCheck1 = 41;</code>
-     *
      * @return The bytes for mtfCheck1.
      */
     com.google.protobuf.ByteString
@@ -710,14 +585,11 @@ public final class EqLstProto {
 
     /**
      * <code>string mtfCheck2 = 42;</code>
-     *
      * @return The mtfCheck2.
      */
     java.lang.String getMtfCheck2();
-
     /**
      * <code>string mtfCheck2 = 42;</code>
-     *
      * @return The bytes for mtfCheck2.
      */
     com.google.protobuf.ByteString
@@ -725,14 +597,11 @@ public final class EqLstProto {
 
     /**
      * <code>string mtfCheck3 = 43;</code>
-     *
      * @return The mtfCheck3.
      */
     java.lang.String getMtfCheck3();
-
     /**
      * <code>string mtfCheck3 = 43;</code>
-     *
      * @return The bytes for mtfCheck3.
      */
     com.google.protobuf.ByteString
@@ -744,18 +613,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string mtfOffAxisCheck1 = 44;</code>
-     *
      * @return The mtfOffAxisCheck1.
      */
     java.lang.String getMtfOffAxisCheck1();
-
     /**
      * <pre>
      * 2025-03-11 多焦段MTF检查
      * </pre>
      *
      * <code>string mtfOffAxisCheck1 = 44;</code>
-     *
      * @return The bytes for mtfOffAxisCheck1.
      */
     com.google.protobuf.ByteString
@@ -763,14 +629,11 @@ public final class EqLstProto {
 
     /**
      * <code>string mtfOffAxisCheck2 = 45;</code>
-     *
      * @return The mtfOffAxisCheck2.
      */
     java.lang.String getMtfOffAxisCheck2();
-
     /**
      * <code>string mtfOffAxisCheck2 = 45;</code>
-     *
      * @return The bytes for mtfOffAxisCheck2.
      */
     com.google.protobuf.ByteString
@@ -778,14 +641,11 @@ public final class EqLstProto {
 
     /**
      * <code>string mtfOffAxisCheck3 = 46;</code>
-     *
      * @return The mtfOffAxisCheck3.
      */
     java.lang.String getMtfOffAxisCheck3();
-
     /**
      * <code>string mtfOffAxisCheck3 = 46;</code>
-     *
      * @return The bytes for mtfOffAxisCheck3.
      */
     com.google.protobuf.ByteString
@@ -793,14 +653,11 @@ public final class EqLstProto {
 
     /**
      * <code>string mtfOffAxisCheck4 = 47;</code>
-     *
      * @return The mtfOffAxisCheck4.
      */
     java.lang.String getMtfOffAxisCheck4();
-
     /**
      * <code>string mtfOffAxisCheck4 = 47;</code>
-     *
      * @return The bytes for mtfOffAxisCheck4.
      */
     com.google.protobuf.ByteString
@@ -808,14 +665,11 @@ public final class EqLstProto {
 
     /**
      * <code>string openCheck = 48;</code>
-     *
      * @return The openCheck.
      */
     java.lang.String getOpenCheck();
-
     /**
      * <code>string openCheck = 48;</code>
-     *
      * @return The bytes for openCheck.
      */
     com.google.protobuf.ByteString
@@ -827,18 +681,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string openCheck1 = 49;</code>
-     *
      * @return The openCheck1.
      */
     java.lang.String getOpenCheck1();
-
     /**
      * <pre>
      * 2025-01-15 扩展参数
      * </pre>
      *
      * <code>string openCheck1 = 49;</code>
-     *
      * @return The bytes for openCheck1.
      */
     com.google.protobuf.ByteString
@@ -846,14 +697,11 @@ public final class EqLstProto {
 
     /**
      * <code>string openCheck2 = 50;</code>
-     *
      * @return The openCheck2.
      */
     java.lang.String getOpenCheck2();
-
     /**
      * <code>string openCheck2 = 50;</code>
-     *
      * @return The bytes for openCheck2.
      */
     com.google.protobuf.ByteString
@@ -861,14 +709,11 @@ public final class EqLstProto {
 
     /**
      * <code>string openCheck3 = 51;</code>
-     *
      * @return The openCheck3.
      */
     java.lang.String getOpenCheck3();
-
     /**
      * <code>string openCheck3 = 51;</code>
-     *
      * @return The bytes for openCheck3.
      */
     com.google.protobuf.ByteString
@@ -880,18 +725,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string prToBond = 52;</code>
-     *
      * @return The prToBond.
      */
     java.lang.String getPrToBond();
-
     /**
      * <pre>
      * 2025-01-15 新增参数
      * </pre>
      *
      * <code>string prToBond = 52;</code>
-     *
      * @return The bytes for prToBond.
      */
     com.google.protobuf.ByteString
@@ -903,18 +745,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string utXyzMove = 53;</code>
-     *
      * @return The utXyzMove.
      */
     java.lang.String getUtXyzMove();
-
     /**
      * <pre>
      * 台虹厂区的utXyzMove和recordPosition分开管控，因此新增 2025-01-15
      * </pre>
      *
      * <code>string utXyzMove = 53;</code>
-     *
      * @return The bytes for utXyzMove.
      */
     com.google.protobuf.ByteString
@@ -922,14 +761,11 @@ public final class EqLstProto {
 
     /**
      * <code>string recordPosition = 54;</code>
-     *
      * @return The recordPosition.
      */
     java.lang.String getRecordPosition();
-
     /**
      * <code>string recordPosition = 54;</code>
-     *
      * @return The bytes for recordPosition.
      */
     com.google.protobuf.ByteString
@@ -937,14 +773,11 @@ public final class EqLstProto {
 
     /**
      * <code>string reInit = 55;</code>
-     *
      * @return The reInit.
      */
     java.lang.String getReInit();
-
     /**
      * <code>string reInit = 55;</code>
-     *
      * @return The bytes for reInit.
      */
     com.google.protobuf.ByteString
@@ -952,14 +785,11 @@ public final class EqLstProto {
 
     /**
      * <code>string saveOc = 56;</code>
-     *
      * @return The saveOc.
      */
     java.lang.String getSaveOc();
-
     /**
      * <code>string saveOc = 56;</code>
-     *
      * @return The bytes for saveOc.
      */
     com.google.protobuf.ByteString
@@ -967,14 +797,11 @@ public final class EqLstProto {
 
     /**
      * <code>string saveMtf = 57;</code>
-     *
      * @return The saveMtf.
      */
     java.lang.String getSaveMtf();
-
     /**
      * <code>string saveMtf = 57;</code>
-     *
      * @return The bytes for saveMtf.
      */
     com.google.protobuf.ByteString
@@ -982,14 +809,11 @@ public final class EqLstProto {
 
     /**
      * <code>string sensorReset = 58;</code>
-     *
      * @return The sensorReset.
      */
     java.lang.String getSensorReset();
-
     /**
      * <code>string sensorReset = 58;</code>
-     *
      * @return The bytes for sensorReset.
      */
     com.google.protobuf.ByteString
@@ -1001,18 +825,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string sfrCheck = 59;</code>
-     *
      * @return The sfrCheck.
      */
     java.lang.String getSfrCheck();
-
     /**
      * <pre>
      * 2025-04-17
      * </pre>
      *
      * <code>string sfrCheck = 59;</code>
-     *
      * @return The bytes for sfrCheck.
      */
     com.google.protobuf.ByteString
@@ -1020,14 +841,11 @@ public final class EqLstProto {
 
     /**
      * <code>string sid = 60;</code>
-     *
      * @return The sid.
      */
     java.lang.String getSid();
-
     /**
      * <code>string sid = 60;</code>
-     *
      * @return The bytes for sid.
      */
     com.google.protobuf.ByteString
@@ -1035,14 +853,11 @@ public final class EqLstProto {
 
     /**
      * <code>string uvon = 61;</code>
-     *
      * @return The uvon.
      */
     java.lang.String getUvon();
-
     /**
      * <code>string uvon = 61;</code>
-     *
      * @return The bytes for uvon.
      */
     com.google.protobuf.ByteString
@@ -1050,14 +865,11 @@ public final class EqLstProto {
 
     /**
      * <code>string uvoff = 62;</code>
-     *
      * @return The uvoff.
      */
     java.lang.String getUvoff();
-
     /**
      * <code>string uvoff = 62;</code>
-     *
      * @return The bytes for uvoff.
      */
     com.google.protobuf.ByteString
@@ -1069,18 +881,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string vcmHall = 63;</code>
-     *
      * @return The vcmHall.
      */
     java.lang.String getVcmHall();
-
     /**
      * <pre>
      * vcmHall 指标 2025-03-27
      * </pre>
      *
      * <code>string vcmHall = 63;</code>
-     *
      * @return The bytes for vcmHall.
      */
     com.google.protobuf.ByteString
@@ -1088,14 +897,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHall1 = 64;</code>
-     *
      * @return The vcmHall1.
      */
     java.lang.String getVcmHall1();
-
     /**
      * <code>string vcmHall1 = 64;</code>
-     *
      * @return The bytes for vcmHall1.
      */
     com.google.protobuf.ByteString
@@ -1103,14 +909,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHall2 = 65;</code>
-     *
      * @return The vcmHall2.
      */
     java.lang.String getVcmHall2();
-
     /**
      * <code>string vcmHall2 = 65;</code>
-     *
      * @return The bytes for vcmHall2.
      */
     com.google.protobuf.ByteString
@@ -1118,14 +921,11 @@ public final class EqLstProto {
 
     /**
      * <code>string yLevel = 66;</code>
-     *
      * @return The yLevel.
      */
     java.lang.String getYLevel();
-
     /**
      * <code>string yLevel = 66;</code>
-     *
      * @return The bytes for yLevel.
      */
     com.google.protobuf.ByteString
@@ -1137,18 +937,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string aa1RoiCc = 67;</code>
-     *
      * @return The aa1RoiCc.
      */
     java.lang.String getAa1RoiCc();
-
     /**
      * <pre>
      * AA Item 指标
      * </pre>
      *
      * <code>string aa1RoiCc = 67;</code>
-     *
      * @return The bytes for aa1RoiCc.
      */
     com.google.protobuf.ByteString
@@ -1156,14 +953,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa1RoiUl = 68;</code>
-     *
      * @return The aa1RoiUl.
      */
     java.lang.String getAa1RoiUl();
-
     /**
      * <code>string aa1RoiUl = 68;</code>
-     *
      * @return The bytes for aa1RoiUl.
      */
     com.google.protobuf.ByteString
@@ -1171,14 +965,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa1RoiUr = 69;</code>
-     *
      * @return The aa1RoiUr.
      */
     java.lang.String getAa1RoiUr();
-
     /**
      * <code>string aa1RoiUr = 69;</code>
-     *
      * @return The bytes for aa1RoiUr.
      */
     com.google.protobuf.ByteString
@@ -1186,14 +977,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa1RoiLl = 70;</code>
-     *
      * @return The aa1RoiLl.
      */
     java.lang.String getAa1RoiLl();
-
     /**
      * <code>string aa1RoiLl = 70;</code>
-     *
      * @return The bytes for aa1RoiLl.
      */
     com.google.protobuf.ByteString
@@ -1201,14 +989,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa1RoiLr = 71;</code>
-     *
      * @return The aa1RoiLr.
      */
     java.lang.String getAa1RoiLr();
-
     /**
      * <code>string aa1RoiLr = 71;</code>
-     *
      * @return The bytes for aa1RoiLr.
      */
     com.google.protobuf.ByteString
@@ -1220,18 +1005,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string aa1Target = 72;</code>
-     *
      * @return The aa1Target.
      */
     java.lang.String getAa1Target();
-
     /**
      * <pre>
      * 新增 2024-10-28
      * </pre>
      *
      * <code>string aa1Target = 72;</code>
-     *
      * @return The bytes for aa1Target.
      */
     com.google.protobuf.ByteString
@@ -1239,14 +1021,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa1CcToCornerLimit = 73;</code>
-     *
      * @return The aa1CcToCornerLimit.
      */
     java.lang.String getAa1CcToCornerLimit();
-
     /**
      * <code>string aa1CcToCornerLimit = 73;</code>
-     *
      * @return The bytes for aa1CcToCornerLimit.
      */
     com.google.protobuf.ByteString
@@ -1254,14 +1033,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa1CcToCornerLimitMin = 74;</code>
-     *
      * @return The aa1CcToCornerLimitMin.
      */
     java.lang.String getAa1CcToCornerLimitMin();
-
     /**
      * <code>string aa1CcToCornerLimitMin = 74;</code>
-     *
      * @return The bytes for aa1CcToCornerLimitMin.
      */
     com.google.protobuf.ByteString
@@ -1269,14 +1045,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa1CornerScoreDifferenceRejectValue = 75;</code>
-     *
      * @return The aa1CornerScoreDifferenceRejectValue.
      */
     java.lang.String getAa1CornerScoreDifferenceRejectValue();
-
     /**
      * <code>string aa1CornerScoreDifferenceRejectValue = 75;</code>
-     *
      * @return The bytes for aa1CornerScoreDifferenceRejectValue.
      */
     com.google.protobuf.ByteString
@@ -1284,14 +1057,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa1ZRef = 76;</code>
-     *
      * @return The aa1ZRef.
      */
     java.lang.String getAa1ZRef();
-
     /**
      * <code>string aa1ZRef = 76;</code>
-     *
      * @return The bytes for aa1ZRef.
      */
     com.google.protobuf.ByteString
@@ -1299,14 +1069,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa1SrchStep = 77;</code>
-     *
      * @return The aa1SrchStep.
      */
     java.lang.String getAa1SrchStep();
-
     /**
      * <code>string aa1SrchStep = 77;</code>
-     *
      * @return The bytes for aa1SrchStep.
      */
     com.google.protobuf.ByteString
@@ -1314,14 +1081,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa1GoldenGlueThicknessMin = 78;</code>
-     *
      * @return The aa1GoldenGlueThicknessMin.
      */
     java.lang.String getAa1GoldenGlueThicknessMin();
-
     /**
      * <code>string aa1GoldenGlueThicknessMin = 78;</code>
-     *
      * @return The bytes for aa1GoldenGlueThicknessMin.
      */
     com.google.protobuf.ByteString
@@ -1329,14 +1093,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa1GoldenGlueThicknessMax = 79;</code>
-     *
      * @return The aa1GoldenGlueThicknessMax.
      */
     java.lang.String getAa1GoldenGlueThicknessMax();
-
     /**
      * <code>string aa1GoldenGlueThicknessMax = 79;</code>
-     *
      * @return The bytes for aa1GoldenGlueThicknessMax.
      */
     com.google.protobuf.ByteString
@@ -1344,14 +1105,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa2RoiCc = 80;</code>
-     *
      * @return The aa2RoiCc.
      */
     java.lang.String getAa2RoiCc();
-
     /**
      * <code>string aa2RoiCc = 80;</code>
-     *
      * @return The bytes for aa2RoiCc.
      */
     com.google.protobuf.ByteString
@@ -1359,14 +1117,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa2RoiUl = 81;</code>
-     *
      * @return The aa2RoiUl.
      */
     java.lang.String getAa2RoiUl();
-
     /**
      * <code>string aa2RoiUl = 81;</code>
-     *
      * @return The bytes for aa2RoiUl.
      */
     com.google.protobuf.ByteString
@@ -1374,14 +1129,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa2RoiUr = 82;</code>
-     *
      * @return The aa2RoiUr.
      */
     java.lang.String getAa2RoiUr();
-
     /**
      * <code>string aa2RoiUr = 82;</code>
-     *
      * @return The bytes for aa2RoiUr.
      */
     com.google.protobuf.ByteString
@@ -1389,14 +1141,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa2RoiLl = 83;</code>
-     *
      * @return The aa2RoiLl.
      */
     java.lang.String getAa2RoiLl();
-
     /**
      * <code>string aa2RoiLl = 83;</code>
-     *
      * @return The bytes for aa2RoiLl.
      */
     com.google.protobuf.ByteString
@@ -1404,14 +1153,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa2RoiLr = 84;</code>
-     *
      * @return The aa2RoiLr.
      */
     java.lang.String getAa2RoiLr();
-
     /**
      * <code>string aa2RoiLr = 84;</code>
-     *
      * @return The bytes for aa2RoiLr.
      */
     com.google.protobuf.ByteString
@@ -1423,18 +1169,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string aa2Target = 85;</code>
-     *
      * @return The aa2Target.
      */
     java.lang.String getAa2Target();
-
     /**
      * <pre>
      * 新增 2024-10-28
      * </pre>
      *
      * <code>string aa2Target = 85;</code>
-     *
      * @return The bytes for aa2Target.
      */
     com.google.protobuf.ByteString
@@ -1442,14 +1185,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa2CcToCornerLimit = 86;</code>
-     *
      * @return The aa2CcToCornerLimit.
      */
     java.lang.String getAa2CcToCornerLimit();
-
     /**
      * <code>string aa2CcToCornerLimit = 86;</code>
-     *
      * @return The bytes for aa2CcToCornerLimit.
      */
     com.google.protobuf.ByteString
@@ -1457,14 +1197,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa2CcToCornerLimitMin = 87;</code>
-     *
      * @return The aa2CcToCornerLimitMin.
      */
     java.lang.String getAa2CcToCornerLimitMin();
-
     /**
      * <code>string aa2CcToCornerLimitMin = 87;</code>
-     *
      * @return The bytes for aa2CcToCornerLimitMin.
      */
     com.google.protobuf.ByteString
@@ -1472,14 +1209,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa2CornerScoreDifferenceRejectValue = 88;</code>
-     *
      * @return The aa2CornerScoreDifferenceRejectValue.
      */
     java.lang.String getAa2CornerScoreDifferenceRejectValue();
-
     /**
      * <code>string aa2CornerScoreDifferenceRejectValue = 88;</code>
-     *
      * @return The bytes for aa2CornerScoreDifferenceRejectValue.
      */
     com.google.protobuf.ByteString
@@ -1487,14 +1221,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa2ZRef = 89;</code>
-     *
      * @return The aa2ZRef.
      */
     java.lang.String getAa2ZRef();
-
     /**
      * <code>string aa2ZRef = 89;</code>
-     *
      * @return The bytes for aa2ZRef.
      */
     com.google.protobuf.ByteString
@@ -1502,14 +1233,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa2SrchStep = 90;</code>
-     *
      * @return The aa2SrchStep.
      */
     java.lang.String getAa2SrchStep();
-
     /**
      * <code>string aa2SrchStep = 90;</code>
-     *
      * @return The bytes for aa2SrchStep.
      */
     com.google.protobuf.ByteString
@@ -1517,14 +1245,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa2GoldenGlueThicknessMin = 91;</code>
-     *
      * @return The aa2GoldenGlueThicknessMin.
      */
     java.lang.String getAa2GoldenGlueThicknessMin();
-
     /**
      * <code>string aa2GoldenGlueThicknessMin = 91;</code>
-     *
      * @return The bytes for aa2GoldenGlueThicknessMin.
      */
     com.google.protobuf.ByteString
@@ -1532,14 +1257,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa2GoldenGlueThicknessMax = 92;</code>
-     *
      * @return The aa2GoldenGlueThicknessMax.
      */
     java.lang.String getAa2GoldenGlueThicknessMax();
-
     /**
      * <code>string aa2GoldenGlueThicknessMax = 92;</code>
-     *
      * @return The bytes for aa2GoldenGlueThicknessMax.
      */
     com.google.protobuf.ByteString
@@ -1547,14 +1269,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa3RoiCc = 93;</code>
-     *
      * @return The aa3RoiCc.
      */
     java.lang.String getAa3RoiCc();
-
     /**
      * <code>string aa3RoiCc = 93;</code>
-     *
      * @return The bytes for aa3RoiCc.
      */
     com.google.protobuf.ByteString
@@ -1562,14 +1281,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa3RoiUl = 94;</code>
-     *
      * @return The aa3RoiUl.
      */
     java.lang.String getAa3RoiUl();
-
     /**
      * <code>string aa3RoiUl = 94;</code>
-     *
      * @return The bytes for aa3RoiUl.
      */
     com.google.protobuf.ByteString
@@ -1577,14 +1293,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa3RoiUr = 95;</code>
-     *
      * @return The aa3RoiUr.
      */
     java.lang.String getAa3RoiUr();
-
     /**
      * <code>string aa3RoiUr = 95;</code>
-     *
      * @return The bytes for aa3RoiUr.
      */
     com.google.protobuf.ByteString
@@ -1592,14 +1305,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa3RoiLl = 96;</code>
-     *
      * @return The aa3RoiLl.
      */
     java.lang.String getAa3RoiLl();
-
     /**
      * <code>string aa3RoiLl = 96;</code>
-     *
      * @return The bytes for aa3RoiLl.
      */
     com.google.protobuf.ByteString
@@ -1607,14 +1317,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa3RoiLr = 97;</code>
-     *
      * @return The aa3RoiLr.
      */
     java.lang.String getAa3RoiLr();
-
     /**
      * <code>string aa3RoiLr = 97;</code>
-     *
      * @return The bytes for aa3RoiLr.
      */
     com.google.protobuf.ByteString
@@ -1626,18 +1333,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string aa3Target = 98;</code>
-     *
      * @return The aa3Target.
      */
     java.lang.String getAa3Target();
-
     /**
      * <pre>
      * 新增 2024-10-28
      * </pre>
      *
      * <code>string aa3Target = 98;</code>
-     *
      * @return The bytes for aa3Target.
      */
     com.google.protobuf.ByteString
@@ -1645,14 +1349,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa3CcToCornerLimit = 99;</code>
-     *
      * @return The aa3CcToCornerLimit.
      */
     java.lang.String getAa3CcToCornerLimit();
-
     /**
      * <code>string aa3CcToCornerLimit = 99;</code>
-     *
      * @return The bytes for aa3CcToCornerLimit.
      */
     com.google.protobuf.ByteString
@@ -1660,14 +1361,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa3CcToCornerLimitMin = 100;</code>
-     *
      * @return The aa3CcToCornerLimitMin.
      */
     java.lang.String getAa3CcToCornerLimitMin();
-
     /**
      * <code>string aa3CcToCornerLimitMin = 100;</code>
-     *
      * @return The bytes for aa3CcToCornerLimitMin.
      */
     com.google.protobuf.ByteString
@@ -1675,14 +1373,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa3CornerScoreDifferenceRejectValue = 101;</code>
-     *
      * @return The aa3CornerScoreDifferenceRejectValue.
      */
     java.lang.String getAa3CornerScoreDifferenceRejectValue();
-
     /**
      * <code>string aa3CornerScoreDifferenceRejectValue = 101;</code>
-     *
      * @return The bytes for aa3CornerScoreDifferenceRejectValue.
      */
     com.google.protobuf.ByteString
@@ -1690,14 +1385,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa3ZRef = 102;</code>
-     *
      * @return The aa3ZRef.
      */
     java.lang.String getAa3ZRef();
-
     /**
      * <code>string aa3ZRef = 102;</code>
-     *
      * @return The bytes for aa3ZRef.
      */
     com.google.protobuf.ByteString
@@ -1705,14 +1397,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa3SrchStep = 103;</code>
-     *
      * @return The aa3SrchStep.
      */
     java.lang.String getAa3SrchStep();
-
     /**
      * <code>string aa3SrchStep = 103;</code>
-     *
      * @return The bytes for aa3SrchStep.
      */
     com.google.protobuf.ByteString
@@ -1720,14 +1409,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa3GoldenGlueThicknessMin = 104;</code>
-     *
      * @return The aa3GoldenGlueThicknessMin.
      */
     java.lang.String getAa3GoldenGlueThicknessMin();
-
     /**
      * <code>string aa3GoldenGlueThicknessMin = 104;</code>
-     *
      * @return The bytes for aa3GoldenGlueThicknessMin.
      */
     com.google.protobuf.ByteString
@@ -1735,14 +1421,11 @@ public final class EqLstProto {
 
     /**
      * <code>string aa3GoldenGlueThicknessMax = 105;</code>
-     *
      * @return The aa3GoldenGlueThicknessMax.
      */
     java.lang.String getAa3GoldenGlueThicknessMax();
-
     /**
      * <code>string aa3GoldenGlueThicknessMax = 105;</code>
-     *
      * @return The bytes for aa3GoldenGlueThicknessMax.
      */
     com.google.protobuf.ByteString
@@ -1754,18 +1437,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string mtfCheckF = 106;</code>
-     *
      * @return The mtfCheckF.
      */
     java.lang.String getMtfCheckF();
-
     /**
      * <pre>
      * mtfCheck Item 指标
      * </pre>
      *
      * <code>string mtfCheckF = 106;</code>
-     *
      * @return The bytes for mtfCheckF.
      */
     com.google.protobuf.ByteString
@@ -1773,14 +1453,11 @@ public final class EqLstProto {
 
     /**
      * <code>string mtfCheck1F = 107;</code>
-     *
      * @return The mtfCheck1F.
      */
     java.lang.String getMtfCheck1F();
-
     /**
      * <code>string mtfCheck1F = 107;</code>
-     *
      * @return The bytes for mtfCheck1F.
      */
     com.google.protobuf.ByteString
@@ -1788,14 +1465,11 @@ public final class EqLstProto {
 
     /**
      * <code>string mtfCheck2F = 108;</code>
-     *
      * @return The mtfCheck2F.
      */
     java.lang.String getMtfCheck2F();
-
     /**
      * <code>string mtfCheck2F = 108;</code>
-     *
      * @return The bytes for mtfCheck2F.
      */
     com.google.protobuf.ByteString
@@ -1803,14 +1477,11 @@ public final class EqLstProto {
 
     /**
      * <code>string mtfCheck3F = 109;</code>
-     *
      * @return The mtfCheck3F.
      */
     java.lang.String getMtfCheck3F();
-
     /**
      * <code>string mtfCheck3F = 109;</code>
-     *
      * @return The bytes for mtfCheck3F.
      */
     com.google.protobuf.ByteString
@@ -1822,18 +1493,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string mtfOffAxisCheck1F = 110;</code>
-     *
      * @return The mtfOffAxisCheck1F.
      */
     java.lang.String getMtfOffAxisCheck1F();
-
     /**
      * <pre>
      * 2025-03-11 多焦段 mtfCheck
      * </pre>
      *
      * <code>string mtfOffAxisCheck1F = 110;</code>
-     *
      * @return The bytes for mtfOffAxisCheck1F.
      */
     com.google.protobuf.ByteString
@@ -1841,14 +1509,11 @@ public final class EqLstProto {
 
     /**
      * <code>string mtfOffAxisCheck2F = 111;</code>
-     *
      * @return The mtfOffAxisCheck2F.
      */
     java.lang.String getMtfOffAxisCheck2F();
-
     /**
      * <code>string mtfOffAxisCheck2F = 111;</code>
-     *
      * @return The bytes for mtfOffAxisCheck2F.
      */
     com.google.protobuf.ByteString
@@ -1856,14 +1521,11 @@ public final class EqLstProto {
 
     /**
      * <code>string mtfOffAxisCheck3F = 112;</code>
-     *
      * @return The mtfOffAxisCheck3F.
      */
     java.lang.String getMtfOffAxisCheck3F();
-
     /**
      * <code>string mtfOffAxisCheck3F = 112;</code>
-     *
      * @return The bytes for mtfOffAxisCheck3F.
      */
     com.google.protobuf.ByteString
@@ -1871,14 +1533,11 @@ public final class EqLstProto {
 
     /**
      * <code>string mtfOffAxisCheck4F = 113;</code>
-     *
      * @return The mtfOffAxisCheck4F.
      */
     java.lang.String getMtfOffAxisCheck4F();
-
     /**
      * <code>string mtfOffAxisCheck4F = 113;</code>
-     *
      * @return The bytes for mtfOffAxisCheck4F.
      */
     com.google.protobuf.ByteString
@@ -1890,18 +1549,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string chartAlignmentXResMin = 114;</code>
-     *
      * @return The chartAlignmentXResMin.
      */
     java.lang.String getChartAlignmentXResMin();
-
     /**
      * <pre>
      * chartAlignment Item 指标
      * </pre>
      *
      * <code>string chartAlignmentXResMin = 114;</code>
-     *
      * @return The bytes for chartAlignmentXResMin.
      */
     com.google.protobuf.ByteString
@@ -1909,14 +1565,11 @@ public final class EqLstProto {
 
     /**
      * <code>string chartAlignmentXResMax = 115;</code>
-     *
      * @return The chartAlignmentXResMax.
      */
     java.lang.String getChartAlignmentXResMax();
-
     /**
      * <code>string chartAlignmentXResMax = 115;</code>
-     *
      * @return The bytes for chartAlignmentXResMax.
      */
     com.google.protobuf.ByteString
@@ -1924,14 +1577,11 @@ public final class EqLstProto {
 
     /**
      * <code>string chartAlignmentYResMin = 116;</code>
-     *
      * @return The chartAlignmentYResMin.
      */
     java.lang.String getChartAlignmentYResMin();
-
     /**
      * <code>string chartAlignmentYResMin = 116;</code>
-     *
      * @return The bytes for chartAlignmentYResMin.
      */
     com.google.protobuf.ByteString
@@ -1939,14 +1589,11 @@ public final class EqLstProto {
 
     /**
      * <code>string chartAlignmentYResMax = 117;</code>
-     *
      * @return The chartAlignmentYResMax.
      */
     java.lang.String getChartAlignmentYResMax();
-
     /**
      * <code>string chartAlignmentYResMax = 117;</code>
-     *
      * @return The bytes for chartAlignmentYResMax.
      */
     com.google.protobuf.ByteString
@@ -1954,14 +1601,11 @@ public final class EqLstProto {
 
     /**
      * <code>string chartAlignment1XResMin = 118;</code>
-     *
      * @return The chartAlignment1XResMin.
      */
     java.lang.String getChartAlignment1XResMin();
-
     /**
      * <code>string chartAlignment1XResMin = 118;</code>
-     *
      * @return The bytes for chartAlignment1XResMin.
      */
     com.google.protobuf.ByteString
@@ -1969,14 +1613,11 @@ public final class EqLstProto {
 
     /**
      * <code>string chartAlignment1XResMax = 119;</code>
-     *
      * @return The chartAlignment1XResMax.
      */
     java.lang.String getChartAlignment1XResMax();
-
     /**
      * <code>string chartAlignment1XResMax = 119;</code>
-     *
      * @return The bytes for chartAlignment1XResMax.
      */
     com.google.protobuf.ByteString
@@ -1984,14 +1625,11 @@ public final class EqLstProto {
 
     /**
      * <code>string chartAlignment1YResMin = 120;</code>
-     *
      * @return The chartAlignment1YResMin.
      */
     java.lang.String getChartAlignment1YResMin();
-
     /**
      * <code>string chartAlignment1YResMin = 120;</code>
-     *
      * @return The bytes for chartAlignment1YResMin.
      */
     com.google.protobuf.ByteString
@@ -1999,14 +1637,11 @@ public final class EqLstProto {
 
     /**
      * <code>string chartAlignment1YResMax = 121;</code>
-     *
      * @return The chartAlignment1YResMax.
      */
     java.lang.String getChartAlignment1YResMax();
-
     /**
      * <code>string chartAlignment1YResMax = 121;</code>
-     *
      * @return The bytes for chartAlignment1YResMax.
      */
     com.google.protobuf.ByteString
@@ -2014,14 +1649,11 @@ public final class EqLstProto {
 
     /**
      * <code>string chartAlignment2XResMin = 122;</code>
-     *
      * @return The chartAlignment2XResMin.
      */
     java.lang.String getChartAlignment2XResMin();
-
     /**
      * <code>string chartAlignment2XResMin = 122;</code>
-     *
      * @return The bytes for chartAlignment2XResMin.
      */
     com.google.protobuf.ByteString
@@ -2029,14 +1661,11 @@ public final class EqLstProto {
 
     /**
      * <code>string chartAlignment2XResMax = 123;</code>
-     *
      * @return The chartAlignment2XResMax.
      */
     java.lang.String getChartAlignment2XResMax();
-
     /**
      * <code>string chartAlignment2XResMax = 123;</code>
-     *
      * @return The bytes for chartAlignment2XResMax.
      */
     com.google.protobuf.ByteString
@@ -2044,14 +1673,11 @@ public final class EqLstProto {
 
     /**
      * <code>string chartAlignment2YResMin = 124;</code>
-     *
      * @return The chartAlignment2YResMin.
      */
     java.lang.String getChartAlignment2YResMin();
-
     /**
      * <code>string chartAlignment2YResMin = 124;</code>
-     *
      * @return The bytes for chartAlignment2YResMin.
      */
     com.google.protobuf.ByteString
@@ -2059,14 +1685,11 @@ public final class EqLstProto {
 
     /**
      * <code>string chartAlignment2YResMax = 125;</code>
-     *
      * @return The chartAlignment2YResMax.
      */
     java.lang.String getChartAlignment2YResMax();
-
     /**
      * <code>string chartAlignment2YResMax = 125;</code>
-     *
      * @return The bytes for chartAlignment2YResMax.
      */
     com.google.protobuf.ByteString
@@ -2078,18 +1701,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string epoxyInspectionInterval = 126;</code>
-     *
      * @return The epoxyInspectionInterval.
      */
     java.lang.String getEpoxyInspectionInterval();
-
     /**
      * <pre>
      * EpoxyInspection Auto Item 指标
      * </pre>
      *
      * <code>string epoxyInspectionInterval = 126;</code>
-     *
      * @return The bytes for epoxyInspectionInterval.
      */
     com.google.protobuf.ByteString
@@ -2101,18 +1721,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string vcmHallHallAfMin = 127;</code>
-     *
      * @return The vcmHallHallAfMin.
      */
     java.lang.String getVcmHallHallAfMin();
-
     /**
      * <pre>
      * vcmHall 指标 2025-03-27
      * </pre>
      *
      * <code>string vcmHallHallAfMin = 127;</code>
-     *
      * @return The bytes for vcmHallHallAfMin.
      */
     com.google.protobuf.ByteString
@@ -2120,14 +1737,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHallHallAfMax = 128;</code>
-     *
      * @return The vcmHallHallAfMax.
      */
     java.lang.String getVcmHallHallAfMax();
-
     /**
      * <code>string vcmHallHallAfMax = 128;</code>
-     *
      * @return The bytes for vcmHallHallAfMax.
      */
     com.google.protobuf.ByteString
@@ -2135,14 +1749,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHallHallXMin = 129;</code>
-     *
      * @return The vcmHallHallXMin.
      */
     java.lang.String getVcmHallHallXMin();
-
     /**
      * <code>string vcmHallHallXMin = 129;</code>
-     *
      * @return The bytes for vcmHallHallXMin.
      */
     com.google.protobuf.ByteString
@@ -2150,14 +1761,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHallHallXMax = 130;</code>
-     *
      * @return The vcmHallHallXMax.
      */
     java.lang.String getVcmHallHallXMax();
-
     /**
      * <code>string vcmHallHallXMax = 130;</code>
-     *
      * @return The bytes for vcmHallHallXMax.
      */
     com.google.protobuf.ByteString
@@ -2165,14 +1773,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHallHallYMin = 131;</code>
-     *
      * @return The vcmHallHallYMin.
      */
     java.lang.String getVcmHallHallYMin();
-
     /**
      * <code>string vcmHallHallYMin = 131;</code>
-     *
      * @return The bytes for vcmHallHallYMin.
      */
     com.google.protobuf.ByteString
@@ -2180,14 +1785,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHallHallYMax = 132;</code>
-     *
      * @return The vcmHallHallYMax.
      */
     java.lang.String getVcmHallHallYMax();
-
     /**
      * <code>string vcmHallHallYMax = 132;</code>
-     *
      * @return The bytes for vcmHallHallYMax.
      */
     com.google.protobuf.ByteString
@@ -2195,14 +1797,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHall1HallAfMin = 133;</code>
-     *
      * @return The vcmHall1HallAfMin.
      */
     java.lang.String getVcmHall1HallAfMin();
-
     /**
      * <code>string vcmHall1HallAfMin = 133;</code>
-     *
      * @return The bytes for vcmHall1HallAfMin.
      */
     com.google.protobuf.ByteString
@@ -2210,14 +1809,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHall1HallAfMax = 134;</code>
-     *
      * @return The vcmHall1HallAfMax.
      */
     java.lang.String getVcmHall1HallAfMax();
-
     /**
      * <code>string vcmHall1HallAfMax = 134;</code>
-     *
      * @return The bytes for vcmHall1HallAfMax.
      */
     com.google.protobuf.ByteString
@@ -2225,14 +1821,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHall1HallXMin = 135;</code>
-     *
      * @return The vcmHall1HallXMin.
      */
     java.lang.String getVcmHall1HallXMin();
-
     /**
      * <code>string vcmHall1HallXMin = 135;</code>
-     *
      * @return The bytes for vcmHall1HallXMin.
      */
     com.google.protobuf.ByteString
@@ -2240,14 +1833,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHall1HallXMax = 136;</code>
-     *
      * @return The vcmHall1HallXMax.
      */
     java.lang.String getVcmHall1HallXMax();
-
     /**
      * <code>string vcmHall1HallXMax = 136;</code>
-     *
      * @return The bytes for vcmHall1HallXMax.
      */
     com.google.protobuf.ByteString
@@ -2255,14 +1845,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHall1HallYMin = 137;</code>
-     *
      * @return The vcmHall1HallYMin.
      */
     java.lang.String getVcmHall1HallYMin();
-
     /**
      * <code>string vcmHall1HallYMin = 137;</code>
-     *
      * @return The bytes for vcmHall1HallYMin.
      */
     com.google.protobuf.ByteString
@@ -2270,14 +1857,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHall1HallYMax = 138;</code>
-     *
      * @return The vcmHall1HallYMax.
      */
     java.lang.String getVcmHall1HallYMax();
-
     /**
      * <code>string vcmHall1HallYMax = 138;</code>
-     *
      * @return The bytes for vcmHall1HallYMax.
      */
     com.google.protobuf.ByteString
@@ -2285,14 +1869,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHall2HallAfMin = 139;</code>
-     *
      * @return The vcmHall2HallAfMin.
      */
     java.lang.String getVcmHall2HallAfMin();
-
     /**
      * <code>string vcmHall2HallAfMin = 139;</code>
-     *
      * @return The bytes for vcmHall2HallAfMin.
      */
     com.google.protobuf.ByteString
@@ -2300,14 +1881,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHall2HallAfMax = 140;</code>
-     *
      * @return The vcmHall2HallAfMax.
      */
     java.lang.String getVcmHall2HallAfMax();
-
     /**
      * <code>string vcmHall2HallAfMax = 140;</code>
-     *
      * @return The bytes for vcmHall2HallAfMax.
      */
     com.google.protobuf.ByteString
@@ -2315,14 +1893,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHall2HallXMin = 141;</code>
-     *
      * @return The vcmHall2HallXMin.
      */
     java.lang.String getVcmHall2HallXMin();
-
     /**
      * <code>string vcmHall2HallXMin = 141;</code>
-     *
      * @return The bytes for vcmHall2HallXMin.
      */
     com.google.protobuf.ByteString
@@ -2330,14 +1905,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHall2HallXMax = 142;</code>
-     *
      * @return The vcmHall2HallXMax.
      */
     java.lang.String getVcmHall2HallXMax();
-
     /**
      * <code>string vcmHall2HallXMax = 142;</code>
-     *
      * @return The bytes for vcmHall2HallXMax.
      */
     com.google.protobuf.ByteString
@@ -2345,14 +1917,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHall2HallYMin = 143;</code>
-     *
      * @return The vcmHall2HallYMin.
      */
     java.lang.String getVcmHall2HallYMin();
-
     /**
      * <code>string vcmHall2HallYMin = 143;</code>
-     *
      * @return The bytes for vcmHall2HallYMin.
      */
     com.google.protobuf.ByteString
@@ -2360,14 +1929,11 @@ public final class EqLstProto {
 
     /**
      * <code>string vcmHall2HallYMax = 144;</code>
-     *
      * @return The vcmHall2HallYMax.
      */
     java.lang.String getVcmHall2HallYMax();
-
     /**
      * <code>string vcmHall2HallYMax = 144;</code>
-     *
      * @return The bytes for vcmHall2HallYMax.
      */
     com.google.protobuf.ByteString
@@ -2380,11 +1946,9 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string utXyzMoveVal = 145;</code>
-     *
      * @return The utXyzMoveVal.
      */
     java.lang.String getUtXyzMoveVal();
-
     /**
      * <pre>
      * RecordPosition 指标
@@ -2392,7 +1956,6 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string utXyzMoveVal = 145;</code>
-     *
      * @return The bytes for utXyzMoveVal.
      */
     com.google.protobuf.ByteString
@@ -2404,18 +1967,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string recordPositionName = 146;</code>
-     *
      * @return The recordPositionName.
      */
     java.lang.String getRecordPositionName();
-
     /**
      * <pre>
      * 由于新增utXyzMove List命令，因此新增recordPositionName作为参数管控值，原recordPositionXyzMove 被替换掉 2025-01-15
      * </pre>
      *
      * <code>string recordPositionName = 146;</code>
-     *
      * @return The bytes for recordPositionName.
      */
     com.google.protobuf.ByteString
@@ -2427,18 +1987,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string saveOcXOffsetMin = 147;</code>
-     *
      * @return The saveOcXOffsetMin.
      */
     java.lang.String getSaveOcXOffsetMin();
-
     /**
      * <pre>
      * OcCheck 指标 Save Oc
      * </pre>
      *
      * <code>string saveOcXOffsetMin = 147;</code>
-     *
      * @return The bytes for saveOcXOffsetMin.
      */
     com.google.protobuf.ByteString
@@ -2446,14 +2003,11 @@ public final class EqLstProto {
 
     /**
      * <code>string saveOcXOffsetMax = 148;</code>
-     *
      * @return The saveOcXOffsetMax.
      */
     java.lang.String getSaveOcXOffsetMax();
-
     /**
      * <code>string saveOcXOffsetMax = 148;</code>
-     *
      * @return The bytes for saveOcXOffsetMax.
      */
     com.google.protobuf.ByteString
@@ -2461,14 +2015,11 @@ public final class EqLstProto {
 
     /**
      * <code>string saveOcYOffsetMin = 149;</code>
-     *
      * @return The saveOcYOffsetMin.
      */
     java.lang.String getSaveOcYOffsetMin();
-
     /**
      * <code>string saveOcYOffsetMin = 149;</code>
-     *
      * @return The bytes for saveOcYOffsetMin.
      */
     com.google.protobuf.ByteString
@@ -2476,14 +2027,11 @@ public final class EqLstProto {
 
     /**
      * <code>string saveOcYOffsetMax = 150;</code>
-     *
      * @return The saveOcYOffsetMax.
      */
     java.lang.String getSaveOcYOffsetMax();
-
     /**
      * <code>string saveOcYOffsetMax = 150;</code>
-     *
      * @return The bytes for saveOcYOffsetMax.
      */
     com.google.protobuf.ByteString
@@ -2495,18 +2043,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string saveMtfCcMin = 151;</code>
-     *
      * @return The saveMtfCcMin.
      */
     java.lang.String getSaveMtfCcMin();
-
     /**
      * <pre>
      * SaveMtf 指标
      * </pre>
      *
      * <code>string saveMtfCcMin = 151;</code>
-     *
      * @return The bytes for saveMtfCcMin.
      */
     com.google.protobuf.ByteString
@@ -2514,20 +2059,16 @@ public final class EqLstProto {
 
     /**
      * <code>string saveMtfCcMax = 152;</code>
-     *
      * @return The saveMtfCcMax.
      */
     java.lang.String getSaveMtfCcMax();
-
     /**
      * <code>string saveMtfCcMax = 152;</code>
-     *
      * @return The bytes for saveMtfCcMax.
      */
     com.google.protobuf.ByteString
     getSaveMtfCcMaxBytes();
   }
-
   /**
    * Protobuf type {@code EqLstPOJO}
    */
@@ -2535,13 +2076,11 @@ public final class EqLstProto {
           com.google.protobuf.GeneratedMessageV3 implements
           // @@protoc_insertion_point(message_implements:EqLstPOJO)
           EqLstPOJOOrBuilder {
-    private static final long serialVersionUID = 0L;
-
+      private static final long serialVersionUID = 0L;
     // Use EqLstPOJO.newBuilder() to construct.
     private EqLstPOJO(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private EqLstPOJO() {
       module_ = "";
       aa1_ = "";
@@ -2709,7 +2248,6 @@ public final class EqLstProto {
     getUnknownFields() {
       return this.unknownFields;
     }
-
     private EqLstPOJO(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3659,7 +3197,6 @@ public final class EqLstProto {
         makeExtensionsImmutable();
       }
     }
-
     public static final com.google.protobuf.Descriptors.Descriptor
     getDescriptor() {
       return com.im.aa.inspection.proto.EqLstProto.internal_static_EqLstPOJO_descriptor;
@@ -3675,14 +3212,12 @@ public final class EqLstProto {
 
     public static final int MODULE_FIELD_NUMBER = 1;
     private volatile java.lang.Object module_;
-
     /**
      * <pre>
      * 基础设备参数
      * </pre>
      *
      * <code>string module = 1;</code>
-     *
      * @return The module.
      */
     public java.lang.String getModule() {
@@ -3690,30 +3225,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         module_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 基础设备参数
      * </pre>
      *
      * <code>string module = 1;</code>
-     *
      * @return The bytes for module.
      */
     public com.google.protobuf.ByteString
     getModuleBytes() {
       java.lang.Object ref = module_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         module_ = b;
         return b;
       } else {
@@ -3723,10 +3256,8 @@ public final class EqLstProto {
 
     public static final int AA1_FIELD_NUMBER = 2;
     private volatile java.lang.Object aa1_;
-
     /**
      * <code>string aa1 = 2;</code>
-     *
      * @return The aa1.
      */
     public java.lang.String getAa1() {
@@ -3734,26 +3265,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa1_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa1 = 2;</code>
-     *
      * @return The bytes for aa1.
      */
     public com.google.protobuf.ByteString
     getAa1Bytes() {
       java.lang.Object ref = aa1_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa1_ = b;
         return b;
       } else {
@@ -3763,10 +3292,8 @@ public final class EqLstProto {
 
     public static final int AA2_FIELD_NUMBER = 3;
     private volatile java.lang.Object aa2_;
-
     /**
      * <code>string aa2 = 3;</code>
-     *
      * @return The aa2.
      */
     public java.lang.String getAa2() {
@@ -3774,26 +3301,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa2_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa2 = 3;</code>
-     *
      * @return The bytes for aa2.
      */
     public com.google.protobuf.ByteString
     getAa2Bytes() {
       java.lang.Object ref = aa2_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa2_ = b;
         return b;
       } else {
@@ -3803,10 +3328,8 @@ public final class EqLstProto {
 
     public static final int AA3_FIELD_NUMBER = 4;
     private volatile java.lang.Object aa3_;
-
     /**
      * <code>string aa3 = 4;</code>
-     *
      * @return The aa3.
      */
     public java.lang.String getAa3() {
@@ -3814,26 +3337,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa3_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa3 = 4;</code>
-     *
      * @return The bytes for aa3.
      */
     public com.google.protobuf.ByteString
     getAa3Bytes() {
       java.lang.Object ref = aa3_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa3_ = b;
         return b;
       } else {
@@ -3843,10 +3364,8 @@ public final class EqLstProto {
 
     public static final int BACKTOPOSITION_FIELD_NUMBER = 5;
     private volatile java.lang.Object backToPosition_;
-
     /**
      * <code>string backToPosition = 5;</code>
-     *
      * @return The backToPosition.
      */
     public java.lang.String getBackToPosition() {
@@ -3854,26 +3373,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         backToPosition_ = s;
         return s;
       }
     }
-
     /**
      * <code>string backToPosition = 5;</code>
-     *
      * @return The bytes for backToPosition.
      */
     public com.google.protobuf.ByteString
     getBackToPositionBytes() {
       java.lang.Object ref = backToPosition_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         backToPosition_ = b;
         return b;
       } else {
@@ -3883,10 +3400,8 @@ public final class EqLstProto {
 
     public static final int BLEMISH_FIELD_NUMBER = 6;
     private volatile java.lang.Object blemish_;
-
     /**
      * <code>string blemish = 6;</code>
-     *
      * @return The blemish.
      */
     public java.lang.String getBlemish() {
@@ -3894,26 +3409,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         blemish_ = s;
         return s;
       }
     }
-
     /**
      * <code>string blemish = 6;</code>
-     *
      * @return The bytes for blemish.
      */
     public com.google.protobuf.ByteString
     getBlemishBytes() {
       java.lang.Object ref = blemish_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         blemish_ = b;
         return b;
       } else {
@@ -3923,14 +3436,12 @@ public final class EqLstProto {
 
     public static final int BLEMISH1_FIELD_NUMBER = 7;
     private volatile java.lang.Object blemish1_;
-
     /**
      * <pre>
      * 2025-01-15 扩展参数
      * </pre>
      *
      * <code>string blemish1 = 7;</code>
-     *
      * @return The blemish1.
      */
     public java.lang.String getBlemish1() {
@@ -3938,30 +3449,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         blemish1_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 2025-01-15 扩展参数
      * </pre>
      *
      * <code>string blemish1 = 7;</code>
-     *
      * @return The bytes for blemish1.
      */
     public com.google.protobuf.ByteString
     getBlemish1Bytes() {
       java.lang.Object ref = blemish1_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         blemish1_ = b;
         return b;
       } else {
@@ -3971,10 +3480,8 @@ public final class EqLstProto {
 
     public static final int BLEMISH2_FIELD_NUMBER = 8;
     private volatile java.lang.Object blemish2_;
-
     /**
      * <code>string blemish2 = 8;</code>
-     *
      * @return The blemish2.
      */
     public java.lang.String getBlemish2() {
@@ -3982,26 +3489,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         blemish2_ = s;
         return s;
       }
     }
-
     /**
      * <code>string blemish2 = 8;</code>
-     *
      * @return The bytes for blemish2.
      */
     public com.google.protobuf.ByteString
     getBlemish2Bytes() {
       java.lang.Object ref = blemish2_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         blemish2_ = b;
         return b;
       } else {
@@ -4011,10 +3516,8 @@ public final class EqLstProto {
 
     public static final int CHARTALIGNMENT_FIELD_NUMBER = 9;
     private volatile java.lang.Object chartAlignment_;
-
     /**
      * <code>string chartAlignment = 9;</code>
-     *
      * @return The chartAlignment.
      */
     public java.lang.String getChartAlignment() {
@@ -4022,26 +3525,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chartAlignment_ = s;
         return s;
       }
     }
-
     /**
      * <code>string chartAlignment = 9;</code>
-     *
      * @return The bytes for chartAlignment.
      */
     public com.google.protobuf.ByteString
     getChartAlignmentBytes() {
       java.lang.Object ref = chartAlignment_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         chartAlignment_ = b;
         return b;
       } else {
@@ -4051,10 +3552,8 @@ public final class EqLstProto {
 
     public static final int CHARTALIGNMENT1_FIELD_NUMBER = 10;
     private volatile java.lang.Object chartAlignment1_;
-
     /**
      * <code>string chartAlignment1 = 10;</code>
-     *
      * @return The chartAlignment1.
      */
     public java.lang.String getChartAlignment1() {
@@ -4062,26 +3561,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chartAlignment1_ = s;
         return s;
       }
     }
-
     /**
      * <code>string chartAlignment1 = 10;</code>
-     *
      * @return The bytes for chartAlignment1.
      */
     public com.google.protobuf.ByteString
     getChartAlignment1Bytes() {
       java.lang.Object ref = chartAlignment1_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         chartAlignment1_ = b;
         return b;
       } else {
@@ -4091,10 +3588,8 @@ public final class EqLstProto {
 
     public static final int CHARTALIGNMENT2_FIELD_NUMBER = 11;
     private volatile java.lang.Object chartAlignment2_;
-
     /**
      * <code>string chartAlignment2 = 11;</code>
-     *
      * @return The chartAlignment2.
      */
     public java.lang.String getChartAlignment2() {
@@ -4102,26 +3597,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chartAlignment2_ = s;
         return s;
       }
     }
-
     /**
      * <code>string chartAlignment2 = 11;</code>
-     *
      * @return The bytes for chartAlignment2.
      */
     public com.google.protobuf.ByteString
     getChartAlignment2Bytes() {
       java.lang.Object ref = chartAlignment2_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         chartAlignment2_ = b;
         return b;
       } else {
@@ -4131,10 +3624,8 @@ public final class EqLstProto {
 
     public static final int CLAMPONOFF_FIELD_NUMBER = 12;
     private volatile java.lang.Object clampOnOff_;
-
     /**
      * <code>string clampOnOff = 12;</code>
-     *
      * @return The clampOnOff.
      */
     public java.lang.String getClampOnOff() {
@@ -4142,26 +3633,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         clampOnOff_ = s;
         return s;
       }
     }
-
     /**
      * <code>string clampOnOff = 12;</code>
-     *
      * @return The bytes for clampOnOff.
      */
     public com.google.protobuf.ByteString
     getClampOnOffBytes() {
       java.lang.Object ref = clampOnOff_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         clampOnOff_ = b;
         return b;
       } else {
@@ -4171,10 +3660,8 @@ public final class EqLstProto {
 
     public static final int DELAY_FIELD_NUMBER = 13;
     private volatile java.lang.Object delay_;
-
     /**
      * <code>string delay = 13;</code>
-     *
      * @return The delay.
      */
     public java.lang.String getDelay() {
@@ -4182,26 +3669,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         delay_ = s;
         return s;
       }
     }
-
     /**
      * <code>string delay = 13;</code>
-     *
      * @return The bytes for delay.
      */
     public com.google.protobuf.ByteString
     getDelayBytes() {
       java.lang.Object ref = delay_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         delay_ = b;
         return b;
       } else {
@@ -4211,10 +3696,8 @@ public final class EqLstProto {
 
     public static final int DESTROY_FIELD_NUMBER = 14;
     private volatile java.lang.Object destroy_;
-
     /**
      * <code>string destroy = 14;</code>
-     *
      * @return The destroy.
      */
     public java.lang.String getDestroy() {
@@ -4222,26 +3705,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         destroy_ = s;
         return s;
       }
     }
-
     /**
      * <code>string destroy = 14;</code>
-     *
      * @return The bytes for destroy.
      */
     public com.google.protobuf.ByteString
     getDestroyBytes() {
       java.lang.Object ref = destroy_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         destroy_ = b;
         return b;
       } else {
@@ -4251,10 +3732,8 @@ public final class EqLstProto {
 
     public static final int DESTROYSTART_FIELD_NUMBER = 15;
     private volatile java.lang.Object destroyStart_;
-
     /**
      * <code>string destroyStart = 15;</code>
-     *
      * @return The destroyStart.
      */
     public java.lang.String getDestroyStart() {
@@ -4262,26 +3741,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         destroyStart_ = s;
         return s;
       }
     }
-
     /**
      * <code>string destroyStart = 15;</code>
-     *
      * @return The bytes for destroyStart.
      */
     public com.google.protobuf.ByteString
     getDestroyStartBytes() {
       java.lang.Object ref = destroyStart_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         destroyStart_ = b;
         return b;
       } else {
@@ -4291,10 +3768,8 @@ public final class EqLstProto {
 
     public static final int DISPENSE_FIELD_NUMBER = 16;
     private volatile java.lang.Object dispense_;
-
     /**
      * <code>string dispense = 16;</code>
-     *
      * @return The dispense.
      */
     public java.lang.String getDispense() {
@@ -4302,26 +3777,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         dispense_ = s;
         return s;
       }
     }
-
     /**
      * <code>string dispense = 16;</code>
-     *
      * @return The bytes for dispense.
      */
     public com.google.protobuf.ByteString
     getDispenseBytes() {
       java.lang.Object ref = dispense_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         dispense_ = b;
         return b;
       } else {
@@ -4331,14 +3804,12 @@ public final class EqLstProto {
 
     public static final int DISPENSE1_FIELD_NUMBER = 17;
     private volatile java.lang.Object dispense1_;
-
     /**
      * <pre>
      * 2025-01-15 扩展参数
      * </pre>
      *
      * <code>string dispense1 = 17;</code>
-     *
      * @return The dispense1.
      */
     public java.lang.String getDispense1() {
@@ -4346,30 +3817,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         dispense1_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 2025-01-15 扩展参数
      * </pre>
      *
      * <code>string dispense1 = 17;</code>
-     *
      * @return The bytes for dispense1.
      */
     public com.google.protobuf.ByteString
     getDispense1Bytes() {
       java.lang.Object ref = dispense1_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         dispense1_ = b;
         return b;
       } else {
@@ -4379,10 +3848,8 @@ public final class EqLstProto {
 
     public static final int DISPENSE2_FIELD_NUMBER = 18;
     private volatile java.lang.Object dispense2_;
-
     /**
      * <code>string dispense2 = 18;</code>
-     *
      * @return The dispense2.
      */
     public java.lang.String getDispense2() {
@@ -4390,26 +3857,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         dispense2_ = s;
         return s;
       }
     }
-
     /**
      * <code>string dispense2 = 18;</code>
-     *
      * @return The bytes for dispense2.
      */
     public com.google.protobuf.ByteString
     getDispense2Bytes() {
       java.lang.Object ref = dispense2_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         dispense2_ = b;
         return b;
       } else {
@@ -4419,10 +3884,8 @@ public final class EqLstProto {
 
     public static final int EPOXYINSPECTION_FIELD_NUMBER = 19;
     private volatile java.lang.Object epoxyInspection_;
-
     /**
      * <code>string epoxyInspection = 19;</code>
-     *
      * @return The epoxyInspection.
      */
     public java.lang.String getEpoxyInspection() {
@@ -4430,26 +3893,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         epoxyInspection_ = s;
         return s;
       }
     }
-
     /**
      * <code>string epoxyInspection = 19;</code>
-     *
      * @return The bytes for epoxyInspection.
      */
     public com.google.protobuf.ByteString
     getEpoxyInspectionBytes() {
       java.lang.Object ref = epoxyInspection_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         epoxyInspection_ = b;
         return b;
       } else {
@@ -4459,10 +3920,8 @@ public final class EqLstProto {
 
     public static final int EPOXYINSPECTIONAUTO_FIELD_NUMBER = 20;
     private volatile java.lang.Object epoxyInspectionAuto_;
-
     /**
      * <code>string epoxyInspectionAuto = 20;</code>
-     *
      * @return The epoxyInspectionAuto.
      */
     public java.lang.String getEpoxyInspectionAuto() {
@@ -4470,26 +3929,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         epoxyInspectionAuto_ = s;
         return s;
       }
     }
-
     /**
      * <code>string epoxyInspectionAuto = 20;</code>
-     *
      * @return The bytes for epoxyInspectionAuto.
      */
     public com.google.protobuf.ByteString
     getEpoxyInspectionAutoBytes() {
       java.lang.Object ref = epoxyInspectionAuto_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         epoxyInspectionAuto_ = b;
         return b;
       } else {
@@ -4499,10 +3956,8 @@ public final class EqLstProto {
 
     public static final int GRAB_FIELD_NUMBER = 21;
     private volatile java.lang.Object grab_;
-
     /**
      * <code>string grab = 21;</code>
-     *
      * @return The grab.
      */
     public java.lang.String getGrab() {
@@ -4510,26 +3965,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         grab_ = s;
         return s;
       }
     }
-
     /**
      * <code>string grab = 21;</code>
-     *
      * @return The bytes for grab.
      */
     public com.google.protobuf.ByteString
     getGrabBytes() {
       java.lang.Object ref = grab_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         grab_ = b;
         return b;
       } else {
@@ -4539,14 +3992,12 @@ public final class EqLstProto {
 
     public static final int GRAB1_FIELD_NUMBER = 22;
     private volatile java.lang.Object grab1_;
-
     /**
      * <pre>
      * 2025-01-15 扩展参数
      * </pre>
      *
      * <code>string grab1 = 22;</code>
-     *
      * @return The grab1.
      */
     public java.lang.String getGrab1() {
@@ -4554,30 +4005,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         grab1_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 2025-01-15 扩展参数
      * </pre>
      *
      * <code>string grab1 = 22;</code>
-     *
      * @return The bytes for grab1.
      */
     public com.google.protobuf.ByteString
     getGrab1Bytes() {
       java.lang.Object ref = grab1_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         grab1_ = b;
         return b;
       } else {
@@ -4587,10 +4036,8 @@ public final class EqLstProto {
 
     public static final int GRAB2_FIELD_NUMBER = 23;
     private volatile java.lang.Object grab2_;
-
     /**
      * <code>string grab2 = 23;</code>
-     *
      * @return The grab2.
      */
     public java.lang.String getGrab2() {
@@ -4598,26 +4045,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         grab2_ = s;
         return s;
       }
     }
-
     /**
      * <code>string grab2 = 23;</code>
-     *
      * @return The bytes for grab2.
      */
     public com.google.protobuf.ByteString
     getGrab2Bytes() {
       java.lang.Object ref = grab2_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         grab2_ = b;
         return b;
       } else {
@@ -4627,14 +4072,12 @@ public final class EqLstProto {
 
     public static final int GRAB3_FIELD_NUMBER = 24;
     private volatile java.lang.Object grab3_;
-
     /**
      * <pre>
      * 2025-03-11 扩展参数
      * </pre>
      *
      * <code>string grab3 = 24;</code>
-     *
      * @return The grab3.
      */
     public java.lang.String getGrab3() {
@@ -4642,30 +4085,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         grab3_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 2025-03-11 扩展参数
      * </pre>
      *
      * <code>string grab3 = 24;</code>
-     *
      * @return The bytes for grab3.
      */
     public com.google.protobuf.ByteString
     getGrab3Bytes() {
       java.lang.Object ref = grab3_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         grab3_ = b;
         return b;
       } else {
@@ -4675,10 +4116,8 @@ public final class EqLstProto {
 
     public static final int GRIPPEROPEN_FIELD_NUMBER = 25;
     private volatile java.lang.Object gripperOpen_;
-
     /**
      * <code>string gripperOpen = 25;</code>
-     *
      * @return The gripperOpen.
      */
     public java.lang.String getGripperOpen() {
@@ -4686,26 +4125,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         gripperOpen_ = s;
         return s;
       }
     }
-
     /**
      * <code>string gripperOpen = 25;</code>
-     *
      * @return The bytes for gripperOpen.
      */
     public com.google.protobuf.ByteString
     getGripperOpenBytes() {
       java.lang.Object ref = gripperOpen_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         gripperOpen_ = b;
         return b;
       } else {
@@ -4715,10 +4152,8 @@ public final class EqLstProto {
 
     public static final int INIT_FIELD_NUMBER = 26;
     private volatile java.lang.Object init_;
-
     /**
      * <code>string init = 26;</code>
-     *
      * @return The init.
      */
     public java.lang.String getInit() {
@@ -4726,26 +4161,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         init_ = s;
         return s;
       }
     }
-
     /**
      * <code>string init = 26;</code>
-     *
      * @return The bytes for init.
      */
     public com.google.protobuf.ByteString
     getInitBytes() {
       java.lang.Object ref = init_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         init_ = b;
         return b;
       } else {
@@ -4755,14 +4188,12 @@ public final class EqLstProto {
 
     public static final int INIT1_FIELD_NUMBER = 27;
     private volatile java.lang.Object init1_;
-
     /**
      * <pre>
      * 2025-01-15 扩展参数
      * </pre>
      *
      * <code>string init1 = 27;</code>
-     *
      * @return The init1.
      */
     public java.lang.String getInit1() {
@@ -4770,30 +4201,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         init1_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 2025-01-15 扩展参数
      * </pre>
      *
      * <code>string init1 = 27;</code>
-     *
      * @return The bytes for init1.
      */
     public com.google.protobuf.ByteString
     getInit1Bytes() {
       java.lang.Object ref = init1_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         init1_ = b;
         return b;
       } else {
@@ -4803,10 +4232,8 @@ public final class EqLstProto {
 
     public static final int INIT2_FIELD_NUMBER = 28;
     private volatile java.lang.Object init2_;
-
     /**
      * <code>string init2 = 28;</code>
-     *
      * @return The init2.
      */
     public java.lang.String getInit2() {
@@ -4814,26 +4241,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         init2_ = s;
         return s;
       }
     }
-
     /**
      * <code>string init2 = 28;</code>
-     *
      * @return The bytes for init2.
      */
     public com.google.protobuf.ByteString
     getInit2Bytes() {
       java.lang.Object ref = init2_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         init2_ = b;
         return b;
       } else {
@@ -4843,10 +4268,8 @@ public final class EqLstProto {
 
     public static final int INIT3_FIELD_NUMBER = 29;
     private volatile java.lang.Object init3_;
-
     /**
      * <code>string init3 = 29;</code>
-     *
      * @return The init3.
      */
     public java.lang.String getInit3() {
@@ -4854,26 +4277,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         init3_ = s;
         return s;
       }
     }
-
     /**
      * <code>string init3 = 29;</code>
-     *
      * @return The bytes for init3.
      */
     public com.google.protobuf.ByteString
     getInit3Bytes() {
       java.lang.Object ref = init3_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         init3_ = b;
         return b;
       } else {
@@ -4883,10 +4304,8 @@ public final class EqLstProto {
 
     public static final int LPBLEMISH_FIELD_NUMBER = 30;
     private volatile java.lang.Object lpBlemish_;
-
     /**
      * <code>string lpBlemish = 30;</code>
-     *
      * @return The lpBlemish.
      */
     public java.lang.String getLpBlemish() {
@@ -4894,26 +4313,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         lpBlemish_ = s;
         return s;
       }
     }
-
     /**
      * <code>string lpBlemish = 30;</code>
-     *
      * @return The bytes for lpBlemish.
      */
     public com.google.protobuf.ByteString
     getLpBlemishBytes() {
       java.lang.Object ref = lpBlemish_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         lpBlemish_ = b;
         return b;
       } else {
@@ -4923,10 +4340,8 @@ public final class EqLstProto {
 
     public static final int LPOC_FIELD_NUMBER = 31;
     private volatile java.lang.Object lpOc_;
-
     /**
      * <code>string lpOc = 31;</code>
-     *
      * @return The lpOc.
      */
     public java.lang.String getLpOc() {
@@ -4934,26 +4349,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         lpOc_ = s;
         return s;
       }
     }
-
     /**
      * <code>string lpOc = 31;</code>
-     *
      * @return The bytes for lpOc.
      */
     public com.google.protobuf.ByteString
     getLpOcBytes() {
       java.lang.Object ref = lpOc_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         lpOc_ = b;
         return b;
       } else {
@@ -4963,10 +4376,8 @@ public final class EqLstProto {
 
     public static final int LPOCCHECK_FIELD_NUMBER = 32;
     private volatile java.lang.Object lpOcCheck_;
-
     /**
      * <code>string lpOcCheck = 32;</code>
-     *
      * @return The lpOcCheck.
      */
     public java.lang.String getLpOcCheck() {
@@ -4974,26 +4385,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         lpOcCheck_ = s;
         return s;
       }
     }
-
     /**
      * <code>string lpOcCheck = 32;</code>
-     *
      * @return The bytes for lpOcCheck.
      */
     public com.google.protobuf.ByteString
     getLpOcCheckBytes() {
       java.lang.Object ref = lpOcCheck_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         lpOcCheck_ = b;
         return b;
       } else {
@@ -5003,10 +4412,8 @@ public final class EqLstProto {
 
     public static final int LPON_FIELD_NUMBER = 33;
     private volatile java.lang.Object lpOn_;
-
     /**
      * <code>string lpOn = 33;</code>
-     *
      * @return The lpOn.
      */
     public java.lang.String getLpOn() {
@@ -5014,26 +4421,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         lpOn_ = s;
         return s;
       }
     }
-
     /**
      * <code>string lpOn = 33;</code>
-     *
      * @return The bytes for lpOn.
      */
     public com.google.protobuf.ByteString
     getLpOnBytes() {
       java.lang.Object ref = lpOn_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         lpOn_ = b;
         return b;
       } else {
@@ -5043,14 +4448,12 @@ public final class EqLstProto {
 
     public static final int LPON1_FIELD_NUMBER = 34;
     private volatile java.lang.Object lpOn1_;
-
     /**
      * <pre>
      * 2025-03-11 扩展参数
      * </pre>
      *
      * <code>string lpOn1 = 34;</code>
-     *
      * @return The lpOn1.
      */
     public java.lang.String getLpOn1() {
@@ -5058,30 +4461,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         lpOn1_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 2025-03-11 扩展参数
      * </pre>
      *
      * <code>string lpOn1 = 34;</code>
-     *
      * @return The bytes for lpOn1.
      */
     public com.google.protobuf.ByteString
     getLpOn1Bytes() {
       java.lang.Object ref = lpOn1_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         lpOn1_ = b;
         return b;
       } else {
@@ -5091,10 +4492,8 @@ public final class EqLstProto {
 
     public static final int LPONBLEMISH_FIELD_NUMBER = 35;
     private volatile java.lang.Object lpOnBlemish_;
-
     /**
      * <code>string lpOnBlemish = 35;</code>
-     *
      * @return The lpOnBlemish.
      */
     public java.lang.String getLpOnBlemish() {
@@ -5102,26 +4501,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         lpOnBlemish_ = s;
         return s;
       }
     }
-
     /**
      * <code>string lpOnBlemish = 35;</code>
-     *
      * @return The bytes for lpOnBlemish.
      */
     public com.google.protobuf.ByteString
     getLpOnBlemishBytes() {
       java.lang.Object ref = lpOnBlemish_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         lpOnBlemish_ = b;
         return b;
       } else {
@@ -5131,10 +4528,8 @@ public final class EqLstProto {
 
     public static final int LPOFF_FIELD_NUMBER = 36;
     private volatile java.lang.Object lpOff_;
-
     /**
      * <code>string lpOff = 36;</code>
-     *
      * @return The lpOff.
      */
     public java.lang.String getLpOff() {
@@ -5142,26 +4537,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         lpOff_ = s;
         return s;
       }
     }
-
     /**
      * <code>string lpOff = 36;</code>
-     *
      * @return The bytes for lpOff.
      */
     public com.google.protobuf.ByteString
     getLpOffBytes() {
       java.lang.Object ref = lpOff_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         lpOff_ = b;
         return b;
       } else {
@@ -5171,14 +4564,12 @@ public final class EqLstProto {
 
     public static final int LPOFF1_FIELD_NUMBER = 37;
     private volatile java.lang.Object lpOff1_;
-
     /**
      * <pre>
      * 2025-03-11 扩展参数
      * </pre>
      *
      * <code>string lpOff1 = 37;</code>
-     *
      * @return The lpOff1.
      */
     public java.lang.String getLpOff1() {
@@ -5186,30 +4577,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         lpOff1_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 2025-03-11 扩展参数
      * </pre>
      *
      * <code>string lpOff1 = 37;</code>
-     *
      * @return The bytes for lpOff1.
      */
     public com.google.protobuf.ByteString
     getLpOff1Bytes() {
       java.lang.Object ref = lpOff1_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         lpOff1_ = b;
         return b;
       } else {
@@ -5219,14 +4608,12 @@ public final class EqLstProto {
 
     public static final int LPINTENSITY_FIELD_NUMBER = 38;
     private volatile java.lang.Object lpIntensity_;
-
     /**
      * <pre>
      * 2025-01-16 lpOff0对于mybatis驼峰转换不友好，更改以下指令
      * </pre>
      *
      * <code>string lpIntensity = 38;</code>
-     *
      * @return The lpIntensity.
      */
     public java.lang.String getLpIntensity() {
@@ -5234,30 +4621,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         lpIntensity_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 2025-01-16 lpOff0对于mybatis驼峰转换不友好，更改以下指令
      * </pre>
      *
      * <code>string lpIntensity = 38;</code>
-     *
      * @return The bytes for lpIntensity.
      */
     public com.google.protobuf.ByteString
     getLpIntensityBytes() {
       java.lang.Object ref = lpIntensity_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         lpIntensity_ = b;
         return b;
       } else {
@@ -5267,10 +4652,8 @@ public final class EqLstProto {
 
     public static final int MOVETOBLEMISHPOS_FIELD_NUMBER = 39;
     private volatile java.lang.Object moveToBlemishPos_;
-
     /**
      * <code>string moveToBlemishPos = 39;</code>
-     *
      * @return The moveToBlemishPos.
      */
     public java.lang.String getMoveToBlemishPos() {
@@ -5278,26 +4661,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         moveToBlemishPos_ = s;
         return s;
       }
     }
-
     /**
      * <code>string moveToBlemishPos = 39;</code>
-     *
      * @return The bytes for moveToBlemishPos.
      */
     public com.google.protobuf.ByteString
     getMoveToBlemishPosBytes() {
       java.lang.Object ref = moveToBlemishPos_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         moveToBlemishPos_ = b;
         return b;
       } else {
@@ -5307,10 +4688,8 @@ public final class EqLstProto {
 
     public static final int MTFCHECK_FIELD_NUMBER = 40;
     private volatile java.lang.Object mtfCheck_;
-
     /**
      * <code>string mtfCheck = 40;</code>
-     *
      * @return The mtfCheck.
      */
     public java.lang.String getMtfCheck() {
@@ -5318,26 +4697,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfCheck_ = s;
         return s;
       }
     }
-
     /**
      * <code>string mtfCheck = 40;</code>
-     *
      * @return The bytes for mtfCheck.
      */
     public com.google.protobuf.ByteString
     getMtfCheckBytes() {
       java.lang.Object ref = mtfCheck_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfCheck_ = b;
         return b;
       } else {
@@ -5347,10 +4724,8 @@ public final class EqLstProto {
 
     public static final int MTFCHECK1_FIELD_NUMBER = 41;
     private volatile java.lang.Object mtfCheck1_;
-
     /**
      * <code>string mtfCheck1 = 41;</code>
-     *
      * @return The mtfCheck1.
      */
     public java.lang.String getMtfCheck1() {
@@ -5358,26 +4733,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfCheck1_ = s;
         return s;
       }
     }
-
     /**
      * <code>string mtfCheck1 = 41;</code>
-     *
      * @return The bytes for mtfCheck1.
      */
     public com.google.protobuf.ByteString
     getMtfCheck1Bytes() {
       java.lang.Object ref = mtfCheck1_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfCheck1_ = b;
         return b;
       } else {
@@ -5387,10 +4760,8 @@ public final class EqLstProto {
 
     public static final int MTFCHECK2_FIELD_NUMBER = 42;
     private volatile java.lang.Object mtfCheck2_;
-
     /**
      * <code>string mtfCheck2 = 42;</code>
-     *
      * @return The mtfCheck2.
      */
     public java.lang.String getMtfCheck2() {
@@ -5398,26 +4769,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfCheck2_ = s;
         return s;
       }
     }
-
     /**
      * <code>string mtfCheck2 = 42;</code>
-     *
      * @return The bytes for mtfCheck2.
      */
     public com.google.protobuf.ByteString
     getMtfCheck2Bytes() {
       java.lang.Object ref = mtfCheck2_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfCheck2_ = b;
         return b;
       } else {
@@ -5427,10 +4796,8 @@ public final class EqLstProto {
 
     public static final int MTFCHECK3_FIELD_NUMBER = 43;
     private volatile java.lang.Object mtfCheck3_;
-
     /**
      * <code>string mtfCheck3 = 43;</code>
-     *
      * @return The mtfCheck3.
      */
     public java.lang.String getMtfCheck3() {
@@ -5438,26 +4805,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfCheck3_ = s;
         return s;
       }
     }
-
     /**
      * <code>string mtfCheck3 = 43;</code>
-     *
      * @return The bytes for mtfCheck3.
      */
     public com.google.protobuf.ByteString
     getMtfCheck3Bytes() {
       java.lang.Object ref = mtfCheck3_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfCheck3_ = b;
         return b;
       } else {
@@ -5467,14 +4832,12 @@ public final class EqLstProto {
 
     public static final int MTFOFFAXISCHECK1_FIELD_NUMBER = 44;
     private volatile java.lang.Object mtfOffAxisCheck1_;
-
     /**
      * <pre>
      * 2025-03-11 多焦段MTF检查
      * </pre>
      *
      * <code>string mtfOffAxisCheck1 = 44;</code>
-     *
      * @return The mtfOffAxisCheck1.
      */
     public java.lang.String getMtfOffAxisCheck1() {
@@ -5482,30 +4845,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfOffAxisCheck1_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 2025-03-11 多焦段MTF检查
      * </pre>
      *
      * <code>string mtfOffAxisCheck1 = 44;</code>
-     *
      * @return The bytes for mtfOffAxisCheck1.
      */
     public com.google.protobuf.ByteString
     getMtfOffAxisCheck1Bytes() {
       java.lang.Object ref = mtfOffAxisCheck1_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfOffAxisCheck1_ = b;
         return b;
       } else {
@@ -5515,10 +4876,8 @@ public final class EqLstProto {
 
     public static final int MTFOFFAXISCHECK2_FIELD_NUMBER = 45;
     private volatile java.lang.Object mtfOffAxisCheck2_;
-
     /**
      * <code>string mtfOffAxisCheck2 = 45;</code>
-     *
      * @return The mtfOffAxisCheck2.
      */
     public java.lang.String getMtfOffAxisCheck2() {
@@ -5526,26 +4885,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfOffAxisCheck2_ = s;
         return s;
       }
     }
-
     /**
      * <code>string mtfOffAxisCheck2 = 45;</code>
-     *
      * @return The bytes for mtfOffAxisCheck2.
      */
     public com.google.protobuf.ByteString
     getMtfOffAxisCheck2Bytes() {
       java.lang.Object ref = mtfOffAxisCheck2_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfOffAxisCheck2_ = b;
         return b;
       } else {
@@ -5555,10 +4912,8 @@ public final class EqLstProto {
 
     public static final int MTFOFFAXISCHECK3_FIELD_NUMBER = 46;
     private volatile java.lang.Object mtfOffAxisCheck3_;
-
     /**
      * <code>string mtfOffAxisCheck3 = 46;</code>
-     *
      * @return The mtfOffAxisCheck3.
      */
     public java.lang.String getMtfOffAxisCheck3() {
@@ -5566,26 +4921,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfOffAxisCheck3_ = s;
         return s;
       }
     }
-
     /**
      * <code>string mtfOffAxisCheck3 = 46;</code>
-     *
      * @return The bytes for mtfOffAxisCheck3.
      */
     public com.google.protobuf.ByteString
     getMtfOffAxisCheck3Bytes() {
       java.lang.Object ref = mtfOffAxisCheck3_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfOffAxisCheck3_ = b;
         return b;
       } else {
@@ -5595,10 +4948,8 @@ public final class EqLstProto {
 
     public static final int MTFOFFAXISCHECK4_FIELD_NUMBER = 47;
     private volatile java.lang.Object mtfOffAxisCheck4_;
-
     /**
      * <code>string mtfOffAxisCheck4 = 47;</code>
-     *
      * @return The mtfOffAxisCheck4.
      */
     public java.lang.String getMtfOffAxisCheck4() {
@@ -5606,26 +4957,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfOffAxisCheck4_ = s;
         return s;
       }
     }
-
     /**
      * <code>string mtfOffAxisCheck4 = 47;</code>
-     *
      * @return The bytes for mtfOffAxisCheck4.
      */
     public com.google.protobuf.ByteString
     getMtfOffAxisCheck4Bytes() {
       java.lang.Object ref = mtfOffAxisCheck4_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfOffAxisCheck4_ = b;
         return b;
       } else {
@@ -5635,10 +4984,8 @@ public final class EqLstProto {
 
     public static final int OPENCHECK_FIELD_NUMBER = 48;
     private volatile java.lang.Object openCheck_;
-
     /**
      * <code>string openCheck = 48;</code>
-     *
      * @return The openCheck.
      */
     public java.lang.String getOpenCheck() {
@@ -5646,26 +4993,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         openCheck_ = s;
         return s;
       }
     }
-
     /**
      * <code>string openCheck = 48;</code>
-     *
      * @return The bytes for openCheck.
      */
     public com.google.protobuf.ByteString
     getOpenCheckBytes() {
       java.lang.Object ref = openCheck_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         openCheck_ = b;
         return b;
       } else {
@@ -5675,14 +5020,12 @@ public final class EqLstProto {
 
     public static final int OPENCHECK1_FIELD_NUMBER = 49;
     private volatile java.lang.Object openCheck1_;
-
     /**
      * <pre>
      * 2025-01-15 扩展参数
      * </pre>
      *
      * <code>string openCheck1 = 49;</code>
-     *
      * @return The openCheck1.
      */
     public java.lang.String getOpenCheck1() {
@@ -5690,30 +5033,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         openCheck1_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 2025-01-15 扩展参数
      * </pre>
      *
      * <code>string openCheck1 = 49;</code>
-     *
      * @return The bytes for openCheck1.
      */
     public com.google.protobuf.ByteString
     getOpenCheck1Bytes() {
       java.lang.Object ref = openCheck1_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         openCheck1_ = b;
         return b;
       } else {
@@ -5723,10 +5064,8 @@ public final class EqLstProto {
 
     public static final int OPENCHECK2_FIELD_NUMBER = 50;
     private volatile java.lang.Object openCheck2_;
-
     /**
      * <code>string openCheck2 = 50;</code>
-     *
      * @return The openCheck2.
      */
     public java.lang.String getOpenCheck2() {
@@ -5734,26 +5073,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         openCheck2_ = s;
         return s;
       }
     }
-
     /**
      * <code>string openCheck2 = 50;</code>
-     *
      * @return The bytes for openCheck2.
      */
     public com.google.protobuf.ByteString
     getOpenCheck2Bytes() {
       java.lang.Object ref = openCheck2_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         openCheck2_ = b;
         return b;
       } else {
@@ -5763,10 +5100,8 @@ public final class EqLstProto {
 
     public static final int OPENCHECK3_FIELD_NUMBER = 51;
     private volatile java.lang.Object openCheck3_;
-
     /**
      * <code>string openCheck3 = 51;</code>
-     *
      * @return The openCheck3.
      */
     public java.lang.String getOpenCheck3() {
@@ -5774,26 +5109,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         openCheck3_ = s;
         return s;
       }
     }
-
     /**
      * <code>string openCheck3 = 51;</code>
-     *
      * @return The bytes for openCheck3.
      */
     public com.google.protobuf.ByteString
     getOpenCheck3Bytes() {
       java.lang.Object ref = openCheck3_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         openCheck3_ = b;
         return b;
       } else {
@@ -5803,14 +5136,12 @@ public final class EqLstProto {
 
     public static final int PRTOBOND_FIELD_NUMBER = 52;
     private volatile java.lang.Object prToBond_;
-
     /**
      * <pre>
      * 2025-01-15 新增参数
      * </pre>
      *
      * <code>string prToBond = 52;</code>
-     *
      * @return The prToBond.
      */
     public java.lang.String getPrToBond() {
@@ -5818,30 +5149,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         prToBond_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 2025-01-15 新增参数
      * </pre>
      *
      * <code>string prToBond = 52;</code>
-     *
      * @return The bytes for prToBond.
      */
     public com.google.protobuf.ByteString
     getPrToBondBytes() {
       java.lang.Object ref = prToBond_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         prToBond_ = b;
         return b;
       } else {
@@ -5851,14 +5180,12 @@ public final class EqLstProto {
 
     public static final int UTXYZMOVE_FIELD_NUMBER = 53;
     private volatile java.lang.Object utXyzMove_;
-
     /**
      * <pre>
      * 台虹厂区的utXyzMove和recordPosition分开管控，因此新增 2025-01-15
      * </pre>
      *
      * <code>string utXyzMove = 53;</code>
-     *
      * @return The utXyzMove.
      */
     public java.lang.String getUtXyzMove() {
@@ -5866,30 +5193,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         utXyzMove_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 台虹厂区的utXyzMove和recordPosition分开管控，因此新增 2025-01-15
      * </pre>
      *
      * <code>string utXyzMove = 53;</code>
-     *
      * @return The bytes for utXyzMove.
      */
     public com.google.protobuf.ByteString
     getUtXyzMoveBytes() {
       java.lang.Object ref = utXyzMove_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         utXyzMove_ = b;
         return b;
       } else {
@@ -5899,10 +5224,8 @@ public final class EqLstProto {
 
     public static final int RECORDPOSITION_FIELD_NUMBER = 54;
     private volatile java.lang.Object recordPosition_;
-
     /**
      * <code>string recordPosition = 54;</code>
-     *
      * @return The recordPosition.
      */
     public java.lang.String getRecordPosition() {
@@ -5910,26 +5233,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         recordPosition_ = s;
         return s;
       }
     }
-
     /**
      * <code>string recordPosition = 54;</code>
-     *
      * @return The bytes for recordPosition.
      */
     public com.google.protobuf.ByteString
     getRecordPositionBytes() {
       java.lang.Object ref = recordPosition_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         recordPosition_ = b;
         return b;
       } else {
@@ -5939,10 +5260,8 @@ public final class EqLstProto {
 
     public static final int REINIT_FIELD_NUMBER = 55;
     private volatile java.lang.Object reInit_;
-
     /**
      * <code>string reInit = 55;</code>
-     *
      * @return The reInit.
      */
     public java.lang.String getReInit() {
@@ -5950,26 +5269,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         reInit_ = s;
         return s;
       }
     }
-
     /**
      * <code>string reInit = 55;</code>
-     *
      * @return The bytes for reInit.
      */
     public com.google.protobuf.ByteString
     getReInitBytes() {
       java.lang.Object ref = reInit_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         reInit_ = b;
         return b;
       } else {
@@ -5979,10 +5296,8 @@ public final class EqLstProto {
 
     public static final int SAVEOC_FIELD_NUMBER = 56;
     private volatile java.lang.Object saveOc_;
-
     /**
      * <code>string saveOc = 56;</code>
-     *
      * @return The saveOc.
      */
     public java.lang.String getSaveOc() {
@@ -5990,26 +5305,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         saveOc_ = s;
         return s;
       }
     }
-
     /**
      * <code>string saveOc = 56;</code>
-     *
      * @return The bytes for saveOc.
      */
     public com.google.protobuf.ByteString
     getSaveOcBytes() {
       java.lang.Object ref = saveOc_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         saveOc_ = b;
         return b;
       } else {
@@ -6019,10 +5332,8 @@ public final class EqLstProto {
 
     public static final int SAVEMTF_FIELD_NUMBER = 57;
     private volatile java.lang.Object saveMtf_;
-
     /**
      * <code>string saveMtf = 57;</code>
-     *
      * @return The saveMtf.
      */
     public java.lang.String getSaveMtf() {
@@ -6030,26 +5341,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         saveMtf_ = s;
         return s;
       }
     }
-
     /**
      * <code>string saveMtf = 57;</code>
-     *
      * @return The bytes for saveMtf.
      */
     public com.google.protobuf.ByteString
     getSaveMtfBytes() {
       java.lang.Object ref = saveMtf_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         saveMtf_ = b;
         return b;
       } else {
@@ -6059,10 +5368,8 @@ public final class EqLstProto {
 
     public static final int SENSORRESET_FIELD_NUMBER = 58;
     private volatile java.lang.Object sensorReset_;
-
     /**
      * <code>string sensorReset = 58;</code>
-     *
      * @return The sensorReset.
      */
     public java.lang.String getSensorReset() {
@@ -6070,26 +5377,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         sensorReset_ = s;
         return s;
       }
     }
-
     /**
      * <code>string sensorReset = 58;</code>
-     *
      * @return The bytes for sensorReset.
      */
     public com.google.protobuf.ByteString
     getSensorResetBytes() {
       java.lang.Object ref = sensorReset_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         sensorReset_ = b;
         return b;
       } else {
@@ -6099,14 +5404,12 @@ public final class EqLstProto {
 
     public static final int SFRCHECK_FIELD_NUMBER = 59;
     private volatile java.lang.Object sfrCheck_;
-
     /**
      * <pre>
      * 2025-04-17
      * </pre>
      *
      * <code>string sfrCheck = 59;</code>
-     *
      * @return The sfrCheck.
      */
     public java.lang.String getSfrCheck() {
@@ -6114,30 +5417,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         sfrCheck_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 2025-04-17
      * </pre>
      *
      * <code>string sfrCheck = 59;</code>
-     *
      * @return The bytes for sfrCheck.
      */
     public com.google.protobuf.ByteString
     getSfrCheckBytes() {
       java.lang.Object ref = sfrCheck_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         sfrCheck_ = b;
         return b;
       } else {
@@ -6147,10 +5448,8 @@ public final class EqLstProto {
 
     public static final int SID_FIELD_NUMBER = 60;
     private volatile java.lang.Object sid_;
-
     /**
      * <code>string sid = 60;</code>
-     *
      * @return The sid.
      */
     public java.lang.String getSid() {
@@ -6158,26 +5457,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         sid_ = s;
         return s;
       }
     }
-
     /**
      * <code>string sid = 60;</code>
-     *
      * @return The bytes for sid.
      */
     public com.google.protobuf.ByteString
     getSidBytes() {
       java.lang.Object ref = sid_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         sid_ = b;
         return b;
       } else {
@@ -6187,10 +5484,8 @@ public final class EqLstProto {
 
     public static final int UVON_FIELD_NUMBER = 61;
     private volatile java.lang.Object uvon_;
-
     /**
      * <code>string uvon = 61;</code>
-     *
      * @return The uvon.
      */
     public java.lang.String getUvon() {
@@ -6198,26 +5493,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         uvon_ = s;
         return s;
       }
     }
-
     /**
      * <code>string uvon = 61;</code>
-     *
      * @return The bytes for uvon.
      */
     public com.google.protobuf.ByteString
     getUvonBytes() {
       java.lang.Object ref = uvon_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         uvon_ = b;
         return b;
       } else {
@@ -6227,10 +5520,8 @@ public final class EqLstProto {
 
     public static final int UVOFF_FIELD_NUMBER = 62;
     private volatile java.lang.Object uvoff_;
-
     /**
      * <code>string uvoff = 62;</code>
-     *
      * @return The uvoff.
      */
     public java.lang.String getUvoff() {
@@ -6238,26 +5529,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         uvoff_ = s;
         return s;
       }
     }
-
     /**
      * <code>string uvoff = 62;</code>
-     *
      * @return The bytes for uvoff.
      */
     public com.google.protobuf.ByteString
     getUvoffBytes() {
       java.lang.Object ref = uvoff_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         uvoff_ = b;
         return b;
       } else {
@@ -6267,14 +5556,12 @@ public final class EqLstProto {
 
     public static final int VCMHALL_FIELD_NUMBER = 63;
     private volatile java.lang.Object vcmHall_;
-
     /**
      * <pre>
      * vcmHall 指标 2025-03-27
      * </pre>
      *
      * <code>string vcmHall = 63;</code>
-     *
      * @return The vcmHall.
      */
     public java.lang.String getVcmHall() {
@@ -6282,30 +5569,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHall_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * vcmHall 指标 2025-03-27
      * </pre>
      *
      * <code>string vcmHall = 63;</code>
-     *
      * @return The bytes for vcmHall.
      */
     public com.google.protobuf.ByteString
     getVcmHallBytes() {
       java.lang.Object ref = vcmHall_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHall_ = b;
         return b;
       } else {
@@ -6315,10 +5600,8 @@ public final class EqLstProto {
 
     public static final int VCMHALL1_FIELD_NUMBER = 64;
     private volatile java.lang.Object vcmHall1_;
-
     /**
      * <code>string vcmHall1 = 64;</code>
-     *
      * @return The vcmHall1.
      */
     public java.lang.String getVcmHall1() {
@@ -6326,26 +5609,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHall1_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHall1 = 64;</code>
-     *
      * @return The bytes for vcmHall1.
      */
     public com.google.protobuf.ByteString
     getVcmHall1Bytes() {
       java.lang.Object ref = vcmHall1_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHall1_ = b;
         return b;
       } else {
@@ -6355,10 +5636,8 @@ public final class EqLstProto {
 
     public static final int VCMHALL2_FIELD_NUMBER = 65;
     private volatile java.lang.Object vcmHall2_;
-
     /**
      * <code>string vcmHall2 = 65;</code>
-     *
      * @return The vcmHall2.
      */
     public java.lang.String getVcmHall2() {
@@ -6366,26 +5645,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHall2_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHall2 = 65;</code>
-     *
      * @return The bytes for vcmHall2.
      */
     public com.google.protobuf.ByteString
     getVcmHall2Bytes() {
       java.lang.Object ref = vcmHall2_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHall2_ = b;
         return b;
       } else {
@@ -6395,10 +5672,8 @@ public final class EqLstProto {
 
     public static final int YLEVEL_FIELD_NUMBER = 66;
     private volatile java.lang.Object yLevel_;
-
     /**
      * <code>string yLevel = 66;</code>
-     *
      * @return The yLevel.
      */
     public java.lang.String getYLevel() {
@@ -6406,26 +5681,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         yLevel_ = s;
         return s;
       }
     }
-
     /**
      * <code>string yLevel = 66;</code>
-     *
      * @return The bytes for yLevel.
      */
     public com.google.protobuf.ByteString
     getYLevelBytes() {
       java.lang.Object ref = yLevel_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         yLevel_ = b;
         return b;
       } else {
@@ -6435,14 +5708,12 @@ public final class EqLstProto {
 
     public static final int AA1ROICC_FIELD_NUMBER = 67;
     private volatile java.lang.Object aa1RoiCc_;
-
     /**
      * <pre>
      * AA Item 指标
      * </pre>
      *
      * <code>string aa1RoiCc = 67;</code>
-     *
      * @return The aa1RoiCc.
      */
     public java.lang.String getAa1RoiCc() {
@@ -6450,30 +5721,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa1RoiCc_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * AA Item 指标
      * </pre>
      *
      * <code>string aa1RoiCc = 67;</code>
-     *
      * @return The bytes for aa1RoiCc.
      */
     public com.google.protobuf.ByteString
     getAa1RoiCcBytes() {
       java.lang.Object ref = aa1RoiCc_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa1RoiCc_ = b;
         return b;
       } else {
@@ -6483,10 +5752,8 @@ public final class EqLstProto {
 
     public static final int AA1ROIUL_FIELD_NUMBER = 68;
     private volatile java.lang.Object aa1RoiUl_;
-
     /**
      * <code>string aa1RoiUl = 68;</code>
-     *
      * @return The aa1RoiUl.
      */
     public java.lang.String getAa1RoiUl() {
@@ -6494,26 +5761,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa1RoiUl_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa1RoiUl = 68;</code>
-     *
      * @return The bytes for aa1RoiUl.
      */
     public com.google.protobuf.ByteString
     getAa1RoiUlBytes() {
       java.lang.Object ref = aa1RoiUl_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa1RoiUl_ = b;
         return b;
       } else {
@@ -6523,10 +5788,8 @@ public final class EqLstProto {
 
     public static final int AA1ROIUR_FIELD_NUMBER = 69;
     private volatile java.lang.Object aa1RoiUr_;
-
     /**
      * <code>string aa1RoiUr = 69;</code>
-     *
      * @return The aa1RoiUr.
      */
     public java.lang.String getAa1RoiUr() {
@@ -6534,26 +5797,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa1RoiUr_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa1RoiUr = 69;</code>
-     *
      * @return The bytes for aa1RoiUr.
      */
     public com.google.protobuf.ByteString
     getAa1RoiUrBytes() {
       java.lang.Object ref = aa1RoiUr_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa1RoiUr_ = b;
         return b;
       } else {
@@ -6563,10 +5824,8 @@ public final class EqLstProto {
 
     public static final int AA1ROILL_FIELD_NUMBER = 70;
     private volatile java.lang.Object aa1RoiLl_;
-
     /**
      * <code>string aa1RoiLl = 70;</code>
-     *
      * @return The aa1RoiLl.
      */
     public java.lang.String getAa1RoiLl() {
@@ -6574,26 +5833,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa1RoiLl_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa1RoiLl = 70;</code>
-     *
      * @return The bytes for aa1RoiLl.
      */
     public com.google.protobuf.ByteString
     getAa1RoiLlBytes() {
       java.lang.Object ref = aa1RoiLl_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa1RoiLl_ = b;
         return b;
       } else {
@@ -6603,10 +5860,8 @@ public final class EqLstProto {
 
     public static final int AA1ROILR_FIELD_NUMBER = 71;
     private volatile java.lang.Object aa1RoiLr_;
-
     /**
      * <code>string aa1RoiLr = 71;</code>
-     *
      * @return The aa1RoiLr.
      */
     public java.lang.String getAa1RoiLr() {
@@ -6614,26 +5869,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa1RoiLr_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa1RoiLr = 71;</code>
-     *
      * @return The bytes for aa1RoiLr.
      */
     public com.google.protobuf.ByteString
     getAa1RoiLrBytes() {
       java.lang.Object ref = aa1RoiLr_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa1RoiLr_ = b;
         return b;
       } else {
@@ -6643,14 +5896,12 @@ public final class EqLstProto {
 
     public static final int AA1TARGET_FIELD_NUMBER = 72;
     private volatile java.lang.Object aa1Target_;
-
     /**
      * <pre>
      * 新增 2024-10-28
      * </pre>
      *
      * <code>string aa1Target = 72;</code>
-     *
      * @return The aa1Target.
      */
     public java.lang.String getAa1Target() {
@@ -6658,30 +5909,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa1Target_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 新增 2024-10-28
      * </pre>
      *
      * <code>string aa1Target = 72;</code>
-     *
      * @return The bytes for aa1Target.
      */
     public com.google.protobuf.ByteString
     getAa1TargetBytes() {
       java.lang.Object ref = aa1Target_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa1Target_ = b;
         return b;
       } else {
@@ -6691,10 +5940,8 @@ public final class EqLstProto {
 
     public static final int AA1CCTOCORNERLIMIT_FIELD_NUMBER = 73;
     private volatile java.lang.Object aa1CcToCornerLimit_;
-
     /**
      * <code>string aa1CcToCornerLimit = 73;</code>
-     *
      * @return The aa1CcToCornerLimit.
      */
     public java.lang.String getAa1CcToCornerLimit() {
@@ -6702,26 +5949,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa1CcToCornerLimit_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa1CcToCornerLimit = 73;</code>
-     *
      * @return The bytes for aa1CcToCornerLimit.
      */
     public com.google.protobuf.ByteString
     getAa1CcToCornerLimitBytes() {
       java.lang.Object ref = aa1CcToCornerLimit_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa1CcToCornerLimit_ = b;
         return b;
       } else {
@@ -6731,10 +5976,8 @@ public final class EqLstProto {
 
     public static final int AA1CCTOCORNERLIMITMIN_FIELD_NUMBER = 74;
     private volatile java.lang.Object aa1CcToCornerLimitMin_;
-
     /**
      * <code>string aa1CcToCornerLimitMin = 74;</code>
-     *
      * @return The aa1CcToCornerLimitMin.
      */
     public java.lang.String getAa1CcToCornerLimitMin() {
@@ -6742,26 +5985,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa1CcToCornerLimitMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa1CcToCornerLimitMin = 74;</code>
-     *
      * @return The bytes for aa1CcToCornerLimitMin.
      */
     public com.google.protobuf.ByteString
     getAa1CcToCornerLimitMinBytes() {
       java.lang.Object ref = aa1CcToCornerLimitMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa1CcToCornerLimitMin_ = b;
         return b;
       } else {
@@ -6771,10 +6012,8 @@ public final class EqLstProto {
 
     public static final int AA1CORNERSCOREDIFFERENCEREJECTVALUE_FIELD_NUMBER = 75;
     private volatile java.lang.Object aa1CornerScoreDifferenceRejectValue_;
-
     /**
      * <code>string aa1CornerScoreDifferenceRejectValue = 75;</code>
-     *
      * @return The aa1CornerScoreDifferenceRejectValue.
      */
     public java.lang.String getAa1CornerScoreDifferenceRejectValue() {
@@ -6782,26 +6021,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa1CornerScoreDifferenceRejectValue_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa1CornerScoreDifferenceRejectValue = 75;</code>
-     *
      * @return The bytes for aa1CornerScoreDifferenceRejectValue.
      */
     public com.google.protobuf.ByteString
     getAa1CornerScoreDifferenceRejectValueBytes() {
       java.lang.Object ref = aa1CornerScoreDifferenceRejectValue_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa1CornerScoreDifferenceRejectValue_ = b;
         return b;
       } else {
@@ -6811,10 +6048,8 @@ public final class EqLstProto {
 
     public static final int AA1ZREF_FIELD_NUMBER = 76;
     private volatile java.lang.Object aa1ZRef_;
-
     /**
      * <code>string aa1ZRef = 76;</code>
-     *
      * @return The aa1ZRef.
      */
     public java.lang.String getAa1ZRef() {
@@ -6822,26 +6057,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa1ZRef_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa1ZRef = 76;</code>
-     *
      * @return The bytes for aa1ZRef.
      */
     public com.google.protobuf.ByteString
     getAa1ZRefBytes() {
       java.lang.Object ref = aa1ZRef_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa1ZRef_ = b;
         return b;
       } else {
@@ -6851,10 +6084,8 @@ public final class EqLstProto {
 
     public static final int AA1SRCHSTEP_FIELD_NUMBER = 77;
     private volatile java.lang.Object aa1SrchStep_;
-
     /**
      * <code>string aa1SrchStep = 77;</code>
-     *
      * @return The aa1SrchStep.
      */
     public java.lang.String getAa1SrchStep() {
@@ -6862,26 +6093,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa1SrchStep_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa1SrchStep = 77;</code>
-     *
      * @return The bytes for aa1SrchStep.
      */
     public com.google.protobuf.ByteString
     getAa1SrchStepBytes() {
       java.lang.Object ref = aa1SrchStep_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa1SrchStep_ = b;
         return b;
       } else {
@@ -6891,10 +6120,8 @@ public final class EqLstProto {
 
     public static final int AA1GOLDENGLUETHICKNESSMIN_FIELD_NUMBER = 78;
     private volatile java.lang.Object aa1GoldenGlueThicknessMin_;
-
     /**
      * <code>string aa1GoldenGlueThicknessMin = 78;</code>
-     *
      * @return The aa1GoldenGlueThicknessMin.
      */
     public java.lang.String getAa1GoldenGlueThicknessMin() {
@@ -6902,26 +6129,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa1GoldenGlueThicknessMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa1GoldenGlueThicknessMin = 78;</code>
-     *
      * @return The bytes for aa1GoldenGlueThicknessMin.
      */
     public com.google.protobuf.ByteString
     getAa1GoldenGlueThicknessMinBytes() {
       java.lang.Object ref = aa1GoldenGlueThicknessMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa1GoldenGlueThicknessMin_ = b;
         return b;
       } else {
@@ -6931,10 +6156,8 @@ public final class EqLstProto {
 
     public static final int AA1GOLDENGLUETHICKNESSMAX_FIELD_NUMBER = 79;
     private volatile java.lang.Object aa1GoldenGlueThicknessMax_;
-
     /**
      * <code>string aa1GoldenGlueThicknessMax = 79;</code>
-     *
      * @return The aa1GoldenGlueThicknessMax.
      */
     public java.lang.String getAa1GoldenGlueThicknessMax() {
@@ -6942,26 +6165,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa1GoldenGlueThicknessMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa1GoldenGlueThicknessMax = 79;</code>
-     *
      * @return The bytes for aa1GoldenGlueThicknessMax.
      */
     public com.google.protobuf.ByteString
     getAa1GoldenGlueThicknessMaxBytes() {
       java.lang.Object ref = aa1GoldenGlueThicknessMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa1GoldenGlueThicknessMax_ = b;
         return b;
       } else {
@@ -6971,10 +6192,8 @@ public final class EqLstProto {
 
     public static final int AA2ROICC_FIELD_NUMBER = 80;
     private volatile java.lang.Object aa2RoiCc_;
-
     /**
      * <code>string aa2RoiCc = 80;</code>
-     *
      * @return The aa2RoiCc.
      */
     public java.lang.String getAa2RoiCc() {
@@ -6982,26 +6201,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa2RoiCc_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa2RoiCc = 80;</code>
-     *
      * @return The bytes for aa2RoiCc.
      */
     public com.google.protobuf.ByteString
     getAa2RoiCcBytes() {
       java.lang.Object ref = aa2RoiCc_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa2RoiCc_ = b;
         return b;
       } else {
@@ -7011,10 +6228,8 @@ public final class EqLstProto {
 
     public static final int AA2ROIUL_FIELD_NUMBER = 81;
     private volatile java.lang.Object aa2RoiUl_;
-
     /**
      * <code>string aa2RoiUl = 81;</code>
-     *
      * @return The aa2RoiUl.
      */
     public java.lang.String getAa2RoiUl() {
@@ -7022,26 +6237,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa2RoiUl_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa2RoiUl = 81;</code>
-     *
      * @return The bytes for aa2RoiUl.
      */
     public com.google.protobuf.ByteString
     getAa2RoiUlBytes() {
       java.lang.Object ref = aa2RoiUl_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa2RoiUl_ = b;
         return b;
       } else {
@@ -7051,10 +6264,8 @@ public final class EqLstProto {
 
     public static final int AA2ROIUR_FIELD_NUMBER = 82;
     private volatile java.lang.Object aa2RoiUr_;
-
     /**
      * <code>string aa2RoiUr = 82;</code>
-     *
      * @return The aa2RoiUr.
      */
     public java.lang.String getAa2RoiUr() {
@@ -7062,26 +6273,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa2RoiUr_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa2RoiUr = 82;</code>
-     *
      * @return The bytes for aa2RoiUr.
      */
     public com.google.protobuf.ByteString
     getAa2RoiUrBytes() {
       java.lang.Object ref = aa2RoiUr_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa2RoiUr_ = b;
         return b;
       } else {
@@ -7091,10 +6300,8 @@ public final class EqLstProto {
 
     public static final int AA2ROILL_FIELD_NUMBER = 83;
     private volatile java.lang.Object aa2RoiLl_;
-
     /**
      * <code>string aa2RoiLl = 83;</code>
-     *
      * @return The aa2RoiLl.
      */
     public java.lang.String getAa2RoiLl() {
@@ -7102,26 +6309,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa2RoiLl_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa2RoiLl = 83;</code>
-     *
      * @return The bytes for aa2RoiLl.
      */
     public com.google.protobuf.ByteString
     getAa2RoiLlBytes() {
       java.lang.Object ref = aa2RoiLl_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa2RoiLl_ = b;
         return b;
       } else {
@@ -7131,10 +6336,8 @@ public final class EqLstProto {
 
     public static final int AA2ROILR_FIELD_NUMBER = 84;
     private volatile java.lang.Object aa2RoiLr_;
-
     /**
      * <code>string aa2RoiLr = 84;</code>
-     *
      * @return The aa2RoiLr.
      */
     public java.lang.String getAa2RoiLr() {
@@ -7142,26 +6345,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa2RoiLr_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa2RoiLr = 84;</code>
-     *
      * @return The bytes for aa2RoiLr.
      */
     public com.google.protobuf.ByteString
     getAa2RoiLrBytes() {
       java.lang.Object ref = aa2RoiLr_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa2RoiLr_ = b;
         return b;
       } else {
@@ -7171,14 +6372,12 @@ public final class EqLstProto {
 
     public static final int AA2TARGET_FIELD_NUMBER = 85;
     private volatile java.lang.Object aa2Target_;
-
     /**
      * <pre>
      * 新增 2024-10-28
      * </pre>
      *
      * <code>string aa2Target = 85;</code>
-     *
      * @return The aa2Target.
      */
     public java.lang.String getAa2Target() {
@@ -7186,30 +6385,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa2Target_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 新增 2024-10-28
      * </pre>
      *
      * <code>string aa2Target = 85;</code>
-     *
      * @return The bytes for aa2Target.
      */
     public com.google.protobuf.ByteString
     getAa2TargetBytes() {
       java.lang.Object ref = aa2Target_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa2Target_ = b;
         return b;
       } else {
@@ -7219,10 +6416,8 @@ public final class EqLstProto {
 
     public static final int AA2CCTOCORNERLIMIT_FIELD_NUMBER = 86;
     private volatile java.lang.Object aa2CcToCornerLimit_;
-
     /**
      * <code>string aa2CcToCornerLimit = 86;</code>
-     *
      * @return The aa2CcToCornerLimit.
      */
     public java.lang.String getAa2CcToCornerLimit() {
@@ -7230,26 +6425,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa2CcToCornerLimit_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa2CcToCornerLimit = 86;</code>
-     *
      * @return The bytes for aa2CcToCornerLimit.
      */
     public com.google.protobuf.ByteString
     getAa2CcToCornerLimitBytes() {
       java.lang.Object ref = aa2CcToCornerLimit_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa2CcToCornerLimit_ = b;
         return b;
       } else {
@@ -7259,10 +6452,8 @@ public final class EqLstProto {
 
     public static final int AA2CCTOCORNERLIMITMIN_FIELD_NUMBER = 87;
     private volatile java.lang.Object aa2CcToCornerLimitMin_;
-
     /**
      * <code>string aa2CcToCornerLimitMin = 87;</code>
-     *
      * @return The aa2CcToCornerLimitMin.
      */
     public java.lang.String getAa2CcToCornerLimitMin() {
@@ -7270,26 +6461,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa2CcToCornerLimitMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa2CcToCornerLimitMin = 87;</code>
-     *
      * @return The bytes for aa2CcToCornerLimitMin.
      */
     public com.google.protobuf.ByteString
     getAa2CcToCornerLimitMinBytes() {
       java.lang.Object ref = aa2CcToCornerLimitMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa2CcToCornerLimitMin_ = b;
         return b;
       } else {
@@ -7299,10 +6488,8 @@ public final class EqLstProto {
 
     public static final int AA2CORNERSCOREDIFFERENCEREJECTVALUE_FIELD_NUMBER = 88;
     private volatile java.lang.Object aa2CornerScoreDifferenceRejectValue_;
-
     /**
      * <code>string aa2CornerScoreDifferenceRejectValue = 88;</code>
-     *
      * @return The aa2CornerScoreDifferenceRejectValue.
      */
     public java.lang.String getAa2CornerScoreDifferenceRejectValue() {
@@ -7310,26 +6497,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa2CornerScoreDifferenceRejectValue_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa2CornerScoreDifferenceRejectValue = 88;</code>
-     *
      * @return The bytes for aa2CornerScoreDifferenceRejectValue.
      */
     public com.google.protobuf.ByteString
     getAa2CornerScoreDifferenceRejectValueBytes() {
       java.lang.Object ref = aa2CornerScoreDifferenceRejectValue_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa2CornerScoreDifferenceRejectValue_ = b;
         return b;
       } else {
@@ -7339,10 +6524,8 @@ public final class EqLstProto {
 
     public static final int AA2ZREF_FIELD_NUMBER = 89;
     private volatile java.lang.Object aa2ZRef_;
-
     /**
      * <code>string aa2ZRef = 89;</code>
-     *
      * @return The aa2ZRef.
      */
     public java.lang.String getAa2ZRef() {
@@ -7350,26 +6533,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa2ZRef_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa2ZRef = 89;</code>
-     *
      * @return The bytes for aa2ZRef.
      */
     public com.google.protobuf.ByteString
     getAa2ZRefBytes() {
       java.lang.Object ref = aa2ZRef_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa2ZRef_ = b;
         return b;
       } else {
@@ -7379,10 +6560,8 @@ public final class EqLstProto {
 
     public static final int AA2SRCHSTEP_FIELD_NUMBER = 90;
     private volatile java.lang.Object aa2SrchStep_;
-
     /**
      * <code>string aa2SrchStep = 90;</code>
-     *
      * @return The aa2SrchStep.
      */
     public java.lang.String getAa2SrchStep() {
@@ -7390,26 +6569,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa2SrchStep_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa2SrchStep = 90;</code>
-     *
      * @return The bytes for aa2SrchStep.
      */
     public com.google.protobuf.ByteString
     getAa2SrchStepBytes() {
       java.lang.Object ref = aa2SrchStep_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa2SrchStep_ = b;
         return b;
       } else {
@@ -7419,10 +6596,8 @@ public final class EqLstProto {
 
     public static final int AA2GOLDENGLUETHICKNESSMIN_FIELD_NUMBER = 91;
     private volatile java.lang.Object aa2GoldenGlueThicknessMin_;
-
     /**
      * <code>string aa2GoldenGlueThicknessMin = 91;</code>
-     *
      * @return The aa2GoldenGlueThicknessMin.
      */
     public java.lang.String getAa2GoldenGlueThicknessMin() {
@@ -7430,26 +6605,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa2GoldenGlueThicknessMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa2GoldenGlueThicknessMin = 91;</code>
-     *
      * @return The bytes for aa2GoldenGlueThicknessMin.
      */
     public com.google.protobuf.ByteString
     getAa2GoldenGlueThicknessMinBytes() {
       java.lang.Object ref = aa2GoldenGlueThicknessMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa2GoldenGlueThicknessMin_ = b;
         return b;
       } else {
@@ -7459,10 +6632,8 @@ public final class EqLstProto {
 
     public static final int AA2GOLDENGLUETHICKNESSMAX_FIELD_NUMBER = 92;
     private volatile java.lang.Object aa2GoldenGlueThicknessMax_;
-
     /**
      * <code>string aa2GoldenGlueThicknessMax = 92;</code>
-     *
      * @return The aa2GoldenGlueThicknessMax.
      */
     public java.lang.String getAa2GoldenGlueThicknessMax() {
@@ -7470,26 +6641,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa2GoldenGlueThicknessMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa2GoldenGlueThicknessMax = 92;</code>
-     *
      * @return The bytes for aa2GoldenGlueThicknessMax.
      */
     public com.google.protobuf.ByteString
     getAa2GoldenGlueThicknessMaxBytes() {
       java.lang.Object ref = aa2GoldenGlueThicknessMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa2GoldenGlueThicknessMax_ = b;
         return b;
       } else {
@@ -7499,10 +6668,8 @@ public final class EqLstProto {
 
     public static final int AA3ROICC_FIELD_NUMBER = 93;
     private volatile java.lang.Object aa3RoiCc_;
-
     /**
      * <code>string aa3RoiCc = 93;</code>
-     *
      * @return The aa3RoiCc.
      */
     public java.lang.String getAa3RoiCc() {
@@ -7510,26 +6677,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa3RoiCc_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa3RoiCc = 93;</code>
-     *
      * @return The bytes for aa3RoiCc.
      */
     public com.google.protobuf.ByteString
     getAa3RoiCcBytes() {
       java.lang.Object ref = aa3RoiCc_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa3RoiCc_ = b;
         return b;
       } else {
@@ -7539,10 +6704,8 @@ public final class EqLstProto {
 
     public static final int AA3ROIUL_FIELD_NUMBER = 94;
     private volatile java.lang.Object aa3RoiUl_;
-
     /**
      * <code>string aa3RoiUl = 94;</code>
-     *
      * @return The aa3RoiUl.
      */
     public java.lang.String getAa3RoiUl() {
@@ -7550,26 +6713,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa3RoiUl_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa3RoiUl = 94;</code>
-     *
      * @return The bytes for aa3RoiUl.
      */
     public com.google.protobuf.ByteString
     getAa3RoiUlBytes() {
       java.lang.Object ref = aa3RoiUl_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa3RoiUl_ = b;
         return b;
       } else {
@@ -7579,10 +6740,8 @@ public final class EqLstProto {
 
     public static final int AA3ROIUR_FIELD_NUMBER = 95;
     private volatile java.lang.Object aa3RoiUr_;
-
     /**
      * <code>string aa3RoiUr = 95;</code>
-     *
      * @return The aa3RoiUr.
      */
     public java.lang.String getAa3RoiUr() {
@@ -7590,26 +6749,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa3RoiUr_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa3RoiUr = 95;</code>
-     *
      * @return The bytes for aa3RoiUr.
      */
     public com.google.protobuf.ByteString
     getAa3RoiUrBytes() {
       java.lang.Object ref = aa3RoiUr_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa3RoiUr_ = b;
         return b;
       } else {
@@ -7619,10 +6776,8 @@ public final class EqLstProto {
 
     public static final int AA3ROILL_FIELD_NUMBER = 96;
     private volatile java.lang.Object aa3RoiLl_;
-
     /**
      * <code>string aa3RoiLl = 96;</code>
-     *
      * @return The aa3RoiLl.
      */
     public java.lang.String getAa3RoiLl() {
@@ -7630,26 +6785,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa3RoiLl_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa3RoiLl = 96;</code>
-     *
      * @return The bytes for aa3RoiLl.
      */
     public com.google.protobuf.ByteString
     getAa3RoiLlBytes() {
       java.lang.Object ref = aa3RoiLl_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa3RoiLl_ = b;
         return b;
       } else {
@@ -7659,10 +6812,8 @@ public final class EqLstProto {
 
     public static final int AA3ROILR_FIELD_NUMBER = 97;
     private volatile java.lang.Object aa3RoiLr_;
-
     /**
      * <code>string aa3RoiLr = 97;</code>
-     *
      * @return The aa3RoiLr.
      */
     public java.lang.String getAa3RoiLr() {
@@ -7670,26 +6821,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa3RoiLr_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa3RoiLr = 97;</code>
-     *
      * @return The bytes for aa3RoiLr.
      */
     public com.google.protobuf.ByteString
     getAa3RoiLrBytes() {
       java.lang.Object ref = aa3RoiLr_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa3RoiLr_ = b;
         return b;
       } else {
@@ -7699,14 +6848,12 @@ public final class EqLstProto {
 
     public static final int AA3TARGET_FIELD_NUMBER = 98;
     private volatile java.lang.Object aa3Target_;
-
     /**
      * <pre>
      * 新增 2024-10-28
      * </pre>
      *
      * <code>string aa3Target = 98;</code>
-     *
      * @return The aa3Target.
      */
     public java.lang.String getAa3Target() {
@@ -7714,30 +6861,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa3Target_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 新增 2024-10-28
      * </pre>
      *
      * <code>string aa3Target = 98;</code>
-     *
      * @return The bytes for aa3Target.
      */
     public com.google.protobuf.ByteString
     getAa3TargetBytes() {
       java.lang.Object ref = aa3Target_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa3Target_ = b;
         return b;
       } else {
@@ -7747,10 +6892,8 @@ public final class EqLstProto {
 
     public static final int AA3CCTOCORNERLIMIT_FIELD_NUMBER = 99;
     private volatile java.lang.Object aa3CcToCornerLimit_;
-
     /**
      * <code>string aa3CcToCornerLimit = 99;</code>
-     *
      * @return The aa3CcToCornerLimit.
      */
     public java.lang.String getAa3CcToCornerLimit() {
@@ -7758,26 +6901,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa3CcToCornerLimit_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa3CcToCornerLimit = 99;</code>
-     *
      * @return The bytes for aa3CcToCornerLimit.
      */
     public com.google.protobuf.ByteString
     getAa3CcToCornerLimitBytes() {
       java.lang.Object ref = aa3CcToCornerLimit_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa3CcToCornerLimit_ = b;
         return b;
       } else {
@@ -7787,10 +6928,8 @@ public final class EqLstProto {
 
     public static final int AA3CCTOCORNERLIMITMIN_FIELD_NUMBER = 100;
     private volatile java.lang.Object aa3CcToCornerLimitMin_;
-
     /**
      * <code>string aa3CcToCornerLimitMin = 100;</code>
-     *
      * @return The aa3CcToCornerLimitMin.
      */
     public java.lang.String getAa3CcToCornerLimitMin() {
@@ -7798,26 +6937,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa3CcToCornerLimitMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa3CcToCornerLimitMin = 100;</code>
-     *
      * @return The bytes for aa3CcToCornerLimitMin.
      */
     public com.google.protobuf.ByteString
     getAa3CcToCornerLimitMinBytes() {
       java.lang.Object ref = aa3CcToCornerLimitMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa3CcToCornerLimitMin_ = b;
         return b;
       } else {
@@ -7827,10 +6964,8 @@ public final class EqLstProto {
 
     public static final int AA3CORNERSCOREDIFFERENCEREJECTVALUE_FIELD_NUMBER = 101;
     private volatile java.lang.Object aa3CornerScoreDifferenceRejectValue_;
-
     /**
      * <code>string aa3CornerScoreDifferenceRejectValue = 101;</code>
-     *
      * @return The aa3CornerScoreDifferenceRejectValue.
      */
     public java.lang.String getAa3CornerScoreDifferenceRejectValue() {
@@ -7838,26 +6973,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa3CornerScoreDifferenceRejectValue_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa3CornerScoreDifferenceRejectValue = 101;</code>
-     *
      * @return The bytes for aa3CornerScoreDifferenceRejectValue.
      */
     public com.google.protobuf.ByteString
     getAa3CornerScoreDifferenceRejectValueBytes() {
       java.lang.Object ref = aa3CornerScoreDifferenceRejectValue_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa3CornerScoreDifferenceRejectValue_ = b;
         return b;
       } else {
@@ -7867,10 +7000,8 @@ public final class EqLstProto {
 
     public static final int AA3ZREF_FIELD_NUMBER = 102;
     private volatile java.lang.Object aa3ZRef_;
-
     /**
      * <code>string aa3ZRef = 102;</code>
-     *
      * @return The aa3ZRef.
      */
     public java.lang.String getAa3ZRef() {
@@ -7878,26 +7009,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa3ZRef_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa3ZRef = 102;</code>
-     *
      * @return The bytes for aa3ZRef.
      */
     public com.google.protobuf.ByteString
     getAa3ZRefBytes() {
       java.lang.Object ref = aa3ZRef_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa3ZRef_ = b;
         return b;
       } else {
@@ -7907,10 +7036,8 @@ public final class EqLstProto {
 
     public static final int AA3SRCHSTEP_FIELD_NUMBER = 103;
     private volatile java.lang.Object aa3SrchStep_;
-
     /**
      * <code>string aa3SrchStep = 103;</code>
-     *
      * @return The aa3SrchStep.
      */
     public java.lang.String getAa3SrchStep() {
@@ -7918,26 +7045,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa3SrchStep_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa3SrchStep = 103;</code>
-     *
      * @return The bytes for aa3SrchStep.
      */
     public com.google.protobuf.ByteString
     getAa3SrchStepBytes() {
       java.lang.Object ref = aa3SrchStep_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa3SrchStep_ = b;
         return b;
       } else {
@@ -7947,10 +7072,8 @@ public final class EqLstProto {
 
     public static final int AA3GOLDENGLUETHICKNESSMIN_FIELD_NUMBER = 104;
     private volatile java.lang.Object aa3GoldenGlueThicknessMin_;
-
     /**
      * <code>string aa3GoldenGlueThicknessMin = 104;</code>
-     *
      * @return The aa3GoldenGlueThicknessMin.
      */
     public java.lang.String getAa3GoldenGlueThicknessMin() {
@@ -7958,26 +7081,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa3GoldenGlueThicknessMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa3GoldenGlueThicknessMin = 104;</code>
-     *
      * @return The bytes for aa3GoldenGlueThicknessMin.
      */
     public com.google.protobuf.ByteString
     getAa3GoldenGlueThicknessMinBytes() {
       java.lang.Object ref = aa3GoldenGlueThicknessMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa3GoldenGlueThicknessMin_ = b;
         return b;
       } else {
@@ -7987,10 +7108,8 @@ public final class EqLstProto {
 
     public static final int AA3GOLDENGLUETHICKNESSMAX_FIELD_NUMBER = 105;
     private volatile java.lang.Object aa3GoldenGlueThicknessMax_;
-
     /**
      * <code>string aa3GoldenGlueThicknessMax = 105;</code>
-     *
      * @return The aa3GoldenGlueThicknessMax.
      */
     public java.lang.String getAa3GoldenGlueThicknessMax() {
@@ -7998,26 +7117,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aa3GoldenGlueThicknessMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string aa3GoldenGlueThicknessMax = 105;</code>
-     *
      * @return The bytes for aa3GoldenGlueThicknessMax.
      */
     public com.google.protobuf.ByteString
     getAa3GoldenGlueThicknessMaxBytes() {
       java.lang.Object ref = aa3GoldenGlueThicknessMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         aa3GoldenGlueThicknessMax_ = b;
         return b;
       } else {
@@ -8027,14 +7144,12 @@ public final class EqLstProto {
 
     public static final int MTFCHECKF_FIELD_NUMBER = 106;
     private volatile java.lang.Object mtfCheckF_;
-
     /**
      * <pre>
      * mtfCheck Item 指标
      * </pre>
      *
      * <code>string mtfCheckF = 106;</code>
-     *
      * @return The mtfCheckF.
      */
     public java.lang.String getMtfCheckF() {
@@ -8042,30 +7157,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfCheckF_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * mtfCheck Item 指标
      * </pre>
      *
      * <code>string mtfCheckF = 106;</code>
-     *
      * @return The bytes for mtfCheckF.
      */
     public com.google.protobuf.ByteString
     getMtfCheckFBytes() {
       java.lang.Object ref = mtfCheckF_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfCheckF_ = b;
         return b;
       } else {
@@ -8075,10 +7188,8 @@ public final class EqLstProto {
 
     public static final int MTFCHECK1F_FIELD_NUMBER = 107;
     private volatile java.lang.Object mtfCheck1F_;
-
     /**
      * <code>string mtfCheck1F = 107;</code>
-     *
      * @return The mtfCheck1F.
      */
     public java.lang.String getMtfCheck1F() {
@@ -8086,26 +7197,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfCheck1F_ = s;
         return s;
       }
     }
-
     /**
      * <code>string mtfCheck1F = 107;</code>
-     *
      * @return The bytes for mtfCheck1F.
      */
     public com.google.protobuf.ByteString
     getMtfCheck1FBytes() {
       java.lang.Object ref = mtfCheck1F_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfCheck1F_ = b;
         return b;
       } else {
@@ -8115,10 +7224,8 @@ public final class EqLstProto {
 
     public static final int MTFCHECK2F_FIELD_NUMBER = 108;
     private volatile java.lang.Object mtfCheck2F_;
-
     /**
      * <code>string mtfCheck2F = 108;</code>
-     *
      * @return The mtfCheck2F.
      */
     public java.lang.String getMtfCheck2F() {
@@ -8126,26 +7233,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfCheck2F_ = s;
         return s;
       }
     }
-
     /**
      * <code>string mtfCheck2F = 108;</code>
-     *
      * @return The bytes for mtfCheck2F.
      */
     public com.google.protobuf.ByteString
     getMtfCheck2FBytes() {
       java.lang.Object ref = mtfCheck2F_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfCheck2F_ = b;
         return b;
       } else {
@@ -8155,10 +7260,8 @@ public final class EqLstProto {
 
     public static final int MTFCHECK3F_FIELD_NUMBER = 109;
     private volatile java.lang.Object mtfCheck3F_;
-
     /**
      * <code>string mtfCheck3F = 109;</code>
-     *
      * @return The mtfCheck3F.
      */
     public java.lang.String getMtfCheck3F() {
@@ -8166,26 +7269,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfCheck3F_ = s;
         return s;
       }
     }
-
     /**
      * <code>string mtfCheck3F = 109;</code>
-     *
      * @return The bytes for mtfCheck3F.
      */
     public com.google.protobuf.ByteString
     getMtfCheck3FBytes() {
       java.lang.Object ref = mtfCheck3F_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfCheck3F_ = b;
         return b;
       } else {
@@ -8195,14 +7296,12 @@ public final class EqLstProto {
 
     public static final int MTFOFFAXISCHECK1F_FIELD_NUMBER = 110;
     private volatile java.lang.Object mtfOffAxisCheck1F_;
-
     /**
      * <pre>
      * 2025-03-11 多焦段 mtfCheck
      * </pre>
      *
      * <code>string mtfOffAxisCheck1F = 110;</code>
-     *
      * @return The mtfOffAxisCheck1F.
      */
     public java.lang.String getMtfOffAxisCheck1F() {
@@ -8210,30 +7309,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfOffAxisCheck1F_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 2025-03-11 多焦段 mtfCheck
      * </pre>
      *
      * <code>string mtfOffAxisCheck1F = 110;</code>
-     *
      * @return The bytes for mtfOffAxisCheck1F.
      */
     public com.google.protobuf.ByteString
     getMtfOffAxisCheck1FBytes() {
       java.lang.Object ref = mtfOffAxisCheck1F_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfOffAxisCheck1F_ = b;
         return b;
       } else {
@@ -8243,10 +7340,8 @@ public final class EqLstProto {
 
     public static final int MTFOFFAXISCHECK2F_FIELD_NUMBER = 111;
     private volatile java.lang.Object mtfOffAxisCheck2F_;
-
     /**
      * <code>string mtfOffAxisCheck2F = 111;</code>
-     *
      * @return The mtfOffAxisCheck2F.
      */
     public java.lang.String getMtfOffAxisCheck2F() {
@@ -8254,26 +7349,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfOffAxisCheck2F_ = s;
         return s;
       }
     }
-
     /**
      * <code>string mtfOffAxisCheck2F = 111;</code>
-     *
      * @return The bytes for mtfOffAxisCheck2F.
      */
     public com.google.protobuf.ByteString
     getMtfOffAxisCheck2FBytes() {
       java.lang.Object ref = mtfOffAxisCheck2F_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfOffAxisCheck2F_ = b;
         return b;
       } else {
@@ -8283,10 +7376,8 @@ public final class EqLstProto {
 
     public static final int MTFOFFAXISCHECK3F_FIELD_NUMBER = 112;
     private volatile java.lang.Object mtfOffAxisCheck3F_;
-
     /**
      * <code>string mtfOffAxisCheck3F = 112;</code>
-     *
      * @return The mtfOffAxisCheck3F.
      */
     public java.lang.String getMtfOffAxisCheck3F() {
@@ -8294,26 +7385,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfOffAxisCheck3F_ = s;
         return s;
       }
     }
-
     /**
      * <code>string mtfOffAxisCheck3F = 112;</code>
-     *
      * @return The bytes for mtfOffAxisCheck3F.
      */
     public com.google.protobuf.ByteString
     getMtfOffAxisCheck3FBytes() {
       java.lang.Object ref = mtfOffAxisCheck3F_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfOffAxisCheck3F_ = b;
         return b;
       } else {
@@ -8323,10 +7412,8 @@ public final class EqLstProto {
 
     public static final int MTFOFFAXISCHECK4F_FIELD_NUMBER = 113;
     private volatile java.lang.Object mtfOffAxisCheck4F_;
-
     /**
      * <code>string mtfOffAxisCheck4F = 113;</code>
-     *
      * @return The mtfOffAxisCheck4F.
      */
     public java.lang.String getMtfOffAxisCheck4F() {
@@ -8334,26 +7421,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         mtfOffAxisCheck4F_ = s;
         return s;
       }
     }
-
     /**
      * <code>string mtfOffAxisCheck4F = 113;</code>
-     *
      * @return The bytes for mtfOffAxisCheck4F.
      */
     public com.google.protobuf.ByteString
     getMtfOffAxisCheck4FBytes() {
       java.lang.Object ref = mtfOffAxisCheck4F_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         mtfOffAxisCheck4F_ = b;
         return b;
       } else {
@@ -8363,14 +7448,12 @@ public final class EqLstProto {
 
     public static final int CHARTALIGNMENTXRESMIN_FIELD_NUMBER = 114;
     private volatile java.lang.Object chartAlignmentXResMin_;
-
     /**
      * <pre>
      * chartAlignment Item 指标
      * </pre>
      *
      * <code>string chartAlignmentXResMin = 114;</code>
-     *
      * @return The chartAlignmentXResMin.
      */
     public java.lang.String getChartAlignmentXResMin() {
@@ -8378,30 +7461,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chartAlignmentXResMin_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * chartAlignment Item 指标
      * </pre>
      *
      * <code>string chartAlignmentXResMin = 114;</code>
-     *
      * @return The bytes for chartAlignmentXResMin.
      */
     public com.google.protobuf.ByteString
     getChartAlignmentXResMinBytes() {
       java.lang.Object ref = chartAlignmentXResMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         chartAlignmentXResMin_ = b;
         return b;
       } else {
@@ -8411,10 +7492,8 @@ public final class EqLstProto {
 
     public static final int CHARTALIGNMENTXRESMAX_FIELD_NUMBER = 115;
     private volatile java.lang.Object chartAlignmentXResMax_;
-
     /**
      * <code>string chartAlignmentXResMax = 115;</code>
-     *
      * @return The chartAlignmentXResMax.
      */
     public java.lang.String getChartAlignmentXResMax() {
@@ -8422,26 +7501,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chartAlignmentXResMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string chartAlignmentXResMax = 115;</code>
-     *
      * @return The bytes for chartAlignmentXResMax.
      */
     public com.google.protobuf.ByteString
     getChartAlignmentXResMaxBytes() {
       java.lang.Object ref = chartAlignmentXResMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         chartAlignmentXResMax_ = b;
         return b;
       } else {
@@ -8451,10 +7528,8 @@ public final class EqLstProto {
 
     public static final int CHARTALIGNMENTYRESMIN_FIELD_NUMBER = 116;
     private volatile java.lang.Object chartAlignmentYResMin_;
-
     /**
      * <code>string chartAlignmentYResMin = 116;</code>
-     *
      * @return The chartAlignmentYResMin.
      */
     public java.lang.String getChartAlignmentYResMin() {
@@ -8462,26 +7537,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chartAlignmentYResMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string chartAlignmentYResMin = 116;</code>
-     *
      * @return The bytes for chartAlignmentYResMin.
      */
     public com.google.protobuf.ByteString
     getChartAlignmentYResMinBytes() {
       java.lang.Object ref = chartAlignmentYResMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         chartAlignmentYResMin_ = b;
         return b;
       } else {
@@ -8491,10 +7564,8 @@ public final class EqLstProto {
 
     public static final int CHARTALIGNMENTYRESMAX_FIELD_NUMBER = 117;
     private volatile java.lang.Object chartAlignmentYResMax_;
-
     /**
      * <code>string chartAlignmentYResMax = 117;</code>
-     *
      * @return The chartAlignmentYResMax.
      */
     public java.lang.String getChartAlignmentYResMax() {
@@ -8502,26 +7573,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chartAlignmentYResMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string chartAlignmentYResMax = 117;</code>
-     *
      * @return The bytes for chartAlignmentYResMax.
      */
     public com.google.protobuf.ByteString
     getChartAlignmentYResMaxBytes() {
       java.lang.Object ref = chartAlignmentYResMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         chartAlignmentYResMax_ = b;
         return b;
       } else {
@@ -8531,10 +7600,8 @@ public final class EqLstProto {
 
     public static final int CHARTALIGNMENT1XRESMIN_FIELD_NUMBER = 118;
     private volatile java.lang.Object chartAlignment1XResMin_;
-
     /**
      * <code>string chartAlignment1XResMin = 118;</code>
-     *
      * @return The chartAlignment1XResMin.
      */
     public java.lang.String getChartAlignment1XResMin() {
@@ -8542,26 +7609,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chartAlignment1XResMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string chartAlignment1XResMin = 118;</code>
-     *
      * @return The bytes for chartAlignment1XResMin.
      */
     public com.google.protobuf.ByteString
     getChartAlignment1XResMinBytes() {
       java.lang.Object ref = chartAlignment1XResMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         chartAlignment1XResMin_ = b;
         return b;
       } else {
@@ -8571,10 +7636,8 @@ public final class EqLstProto {
 
     public static final int CHARTALIGNMENT1XRESMAX_FIELD_NUMBER = 119;
     private volatile java.lang.Object chartAlignment1XResMax_;
-
     /**
      * <code>string chartAlignment1XResMax = 119;</code>
-     *
      * @return The chartAlignment1XResMax.
      */
     public java.lang.String getChartAlignment1XResMax() {
@@ -8582,26 +7645,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chartAlignment1XResMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string chartAlignment1XResMax = 119;</code>
-     *
      * @return The bytes for chartAlignment1XResMax.
      */
     public com.google.protobuf.ByteString
     getChartAlignment1XResMaxBytes() {
       java.lang.Object ref = chartAlignment1XResMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         chartAlignment1XResMax_ = b;
         return b;
       } else {
@@ -8611,10 +7672,8 @@ public final class EqLstProto {
 
     public static final int CHARTALIGNMENT1YRESMIN_FIELD_NUMBER = 120;
     private volatile java.lang.Object chartAlignment1YResMin_;
-
     /**
      * <code>string chartAlignment1YResMin = 120;</code>
-     *
      * @return The chartAlignment1YResMin.
      */
     public java.lang.String getChartAlignment1YResMin() {
@@ -8622,26 +7681,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chartAlignment1YResMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string chartAlignment1YResMin = 120;</code>
-     *
      * @return The bytes for chartAlignment1YResMin.
      */
     public com.google.protobuf.ByteString
     getChartAlignment1YResMinBytes() {
       java.lang.Object ref = chartAlignment1YResMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         chartAlignment1YResMin_ = b;
         return b;
       } else {
@@ -8651,10 +7708,8 @@ public final class EqLstProto {
 
     public static final int CHARTALIGNMENT1YRESMAX_FIELD_NUMBER = 121;
     private volatile java.lang.Object chartAlignment1YResMax_;
-
     /**
      * <code>string chartAlignment1YResMax = 121;</code>
-     *
      * @return The chartAlignment1YResMax.
      */
     public java.lang.String getChartAlignment1YResMax() {
@@ -8662,26 +7717,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chartAlignment1YResMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string chartAlignment1YResMax = 121;</code>
-     *
      * @return The bytes for chartAlignment1YResMax.
      */
     public com.google.protobuf.ByteString
     getChartAlignment1YResMaxBytes() {
       java.lang.Object ref = chartAlignment1YResMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         chartAlignment1YResMax_ = b;
         return b;
       } else {
@@ -8691,10 +7744,8 @@ public final class EqLstProto {
 
     public static final int CHARTALIGNMENT2XRESMIN_FIELD_NUMBER = 122;
     private volatile java.lang.Object chartAlignment2XResMin_;
-
     /**
      * <code>string chartAlignment2XResMin = 122;</code>
-     *
      * @return The chartAlignment2XResMin.
      */
     public java.lang.String getChartAlignment2XResMin() {
@@ -8702,26 +7753,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chartAlignment2XResMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string chartAlignment2XResMin = 122;</code>
-     *
      * @return The bytes for chartAlignment2XResMin.
      */
     public com.google.protobuf.ByteString
     getChartAlignment2XResMinBytes() {
       java.lang.Object ref = chartAlignment2XResMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         chartAlignment2XResMin_ = b;
         return b;
       } else {
@@ -8731,10 +7780,8 @@ public final class EqLstProto {
 
     public static final int CHARTALIGNMENT2XRESMAX_FIELD_NUMBER = 123;
     private volatile java.lang.Object chartAlignment2XResMax_;
-
     /**
      * <code>string chartAlignment2XResMax = 123;</code>
-     *
      * @return The chartAlignment2XResMax.
      */
     public java.lang.String getChartAlignment2XResMax() {
@@ -8742,26 +7789,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chartAlignment2XResMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string chartAlignment2XResMax = 123;</code>
-     *
      * @return The bytes for chartAlignment2XResMax.
      */
     public com.google.protobuf.ByteString
     getChartAlignment2XResMaxBytes() {
       java.lang.Object ref = chartAlignment2XResMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         chartAlignment2XResMax_ = b;
         return b;
       } else {
@@ -8771,10 +7816,8 @@ public final class EqLstProto {
 
     public static final int CHARTALIGNMENT2YRESMIN_FIELD_NUMBER = 124;
     private volatile java.lang.Object chartAlignment2YResMin_;
-
     /**
      * <code>string chartAlignment2YResMin = 124;</code>
-     *
      * @return The chartAlignment2YResMin.
      */
     public java.lang.String getChartAlignment2YResMin() {
@@ -8782,26 +7825,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chartAlignment2YResMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string chartAlignment2YResMin = 124;</code>
-     *
      * @return The bytes for chartAlignment2YResMin.
      */
     public com.google.protobuf.ByteString
     getChartAlignment2YResMinBytes() {
       java.lang.Object ref = chartAlignment2YResMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         chartAlignment2YResMin_ = b;
         return b;
       } else {
@@ -8811,10 +7852,8 @@ public final class EqLstProto {
 
     public static final int CHARTALIGNMENT2YRESMAX_FIELD_NUMBER = 125;
     private volatile java.lang.Object chartAlignment2YResMax_;
-
     /**
      * <code>string chartAlignment2YResMax = 125;</code>
-     *
      * @return The chartAlignment2YResMax.
      */
     public java.lang.String getChartAlignment2YResMax() {
@@ -8822,26 +7861,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chartAlignment2YResMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string chartAlignment2YResMax = 125;</code>
-     *
      * @return The bytes for chartAlignment2YResMax.
      */
     public com.google.protobuf.ByteString
     getChartAlignment2YResMaxBytes() {
       java.lang.Object ref = chartAlignment2YResMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         chartAlignment2YResMax_ = b;
         return b;
       } else {
@@ -8851,14 +7888,12 @@ public final class EqLstProto {
 
     public static final int EPOXYINSPECTIONINTERVAL_FIELD_NUMBER = 126;
     private volatile java.lang.Object epoxyInspectionInterval_;
-
     /**
      * <pre>
      * EpoxyInspection Auto Item 指标
      * </pre>
      *
      * <code>string epoxyInspectionInterval = 126;</code>
-     *
      * @return The epoxyInspectionInterval.
      */
     public java.lang.String getEpoxyInspectionInterval() {
@@ -8866,30 +7901,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         epoxyInspectionInterval_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * EpoxyInspection Auto Item 指标
      * </pre>
      *
      * <code>string epoxyInspectionInterval = 126;</code>
-     *
      * @return The bytes for epoxyInspectionInterval.
      */
     public com.google.protobuf.ByteString
     getEpoxyInspectionIntervalBytes() {
       java.lang.Object ref = epoxyInspectionInterval_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         epoxyInspectionInterval_ = b;
         return b;
       } else {
@@ -8899,14 +7932,12 @@ public final class EqLstProto {
 
     public static final int VCMHALLHALLAFMIN_FIELD_NUMBER = 127;
     private volatile java.lang.Object vcmHallHallAfMin_;
-
     /**
      * <pre>
      * vcmHall 指标 2025-03-27
      * </pre>
      *
      * <code>string vcmHallHallAfMin = 127;</code>
-     *
      * @return The vcmHallHallAfMin.
      */
     public java.lang.String getVcmHallHallAfMin() {
@@ -8914,30 +7945,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHallHallAfMin_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * vcmHall 指标 2025-03-27
      * </pre>
      *
      * <code>string vcmHallHallAfMin = 127;</code>
-     *
      * @return The bytes for vcmHallHallAfMin.
      */
     public com.google.protobuf.ByteString
     getVcmHallHallAfMinBytes() {
       java.lang.Object ref = vcmHallHallAfMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHallHallAfMin_ = b;
         return b;
       } else {
@@ -8947,10 +7976,8 @@ public final class EqLstProto {
 
     public static final int VCMHALLHALLAFMAX_FIELD_NUMBER = 128;
     private volatile java.lang.Object vcmHallHallAfMax_;
-
     /**
      * <code>string vcmHallHallAfMax = 128;</code>
-     *
      * @return The vcmHallHallAfMax.
      */
     public java.lang.String getVcmHallHallAfMax() {
@@ -8958,26 +7985,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHallHallAfMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHallHallAfMax = 128;</code>
-     *
      * @return The bytes for vcmHallHallAfMax.
      */
     public com.google.protobuf.ByteString
     getVcmHallHallAfMaxBytes() {
       java.lang.Object ref = vcmHallHallAfMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHallHallAfMax_ = b;
         return b;
       } else {
@@ -8987,10 +8012,8 @@ public final class EqLstProto {
 
     public static final int VCMHALLHALLXMIN_FIELD_NUMBER = 129;
     private volatile java.lang.Object vcmHallHallXMin_;
-
     /**
      * <code>string vcmHallHallXMin = 129;</code>
-     *
      * @return The vcmHallHallXMin.
      */
     public java.lang.String getVcmHallHallXMin() {
@@ -8998,26 +8021,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHallHallXMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHallHallXMin = 129;</code>
-     *
      * @return The bytes for vcmHallHallXMin.
      */
     public com.google.protobuf.ByteString
     getVcmHallHallXMinBytes() {
       java.lang.Object ref = vcmHallHallXMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHallHallXMin_ = b;
         return b;
       } else {
@@ -9027,10 +8048,8 @@ public final class EqLstProto {
 
     public static final int VCMHALLHALLXMAX_FIELD_NUMBER = 130;
     private volatile java.lang.Object vcmHallHallXMax_;
-
     /**
      * <code>string vcmHallHallXMax = 130;</code>
-     *
      * @return The vcmHallHallXMax.
      */
     public java.lang.String getVcmHallHallXMax() {
@@ -9038,26 +8057,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHallHallXMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHallHallXMax = 130;</code>
-     *
      * @return The bytes for vcmHallHallXMax.
      */
     public com.google.protobuf.ByteString
     getVcmHallHallXMaxBytes() {
       java.lang.Object ref = vcmHallHallXMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHallHallXMax_ = b;
         return b;
       } else {
@@ -9067,10 +8084,8 @@ public final class EqLstProto {
 
     public static final int VCMHALLHALLYMIN_FIELD_NUMBER = 131;
     private volatile java.lang.Object vcmHallHallYMin_;
-
     /**
      * <code>string vcmHallHallYMin = 131;</code>
-     *
      * @return The vcmHallHallYMin.
      */
     public java.lang.String getVcmHallHallYMin() {
@@ -9078,26 +8093,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHallHallYMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHallHallYMin = 131;</code>
-     *
      * @return The bytes for vcmHallHallYMin.
      */
     public com.google.protobuf.ByteString
     getVcmHallHallYMinBytes() {
       java.lang.Object ref = vcmHallHallYMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHallHallYMin_ = b;
         return b;
       } else {
@@ -9107,10 +8120,8 @@ public final class EqLstProto {
 
     public static final int VCMHALLHALLYMAX_FIELD_NUMBER = 132;
     private volatile java.lang.Object vcmHallHallYMax_;
-
     /**
      * <code>string vcmHallHallYMax = 132;</code>
-     *
      * @return The vcmHallHallYMax.
      */
     public java.lang.String getVcmHallHallYMax() {
@@ -9118,26 +8129,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHallHallYMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHallHallYMax = 132;</code>
-     *
      * @return The bytes for vcmHallHallYMax.
      */
     public com.google.protobuf.ByteString
     getVcmHallHallYMaxBytes() {
       java.lang.Object ref = vcmHallHallYMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHallHallYMax_ = b;
         return b;
       } else {
@@ -9147,10 +8156,8 @@ public final class EqLstProto {
 
     public static final int VCMHALL1HALLAFMIN_FIELD_NUMBER = 133;
     private volatile java.lang.Object vcmHall1HallAfMin_;
-
     /**
      * <code>string vcmHall1HallAfMin = 133;</code>
-     *
      * @return The vcmHall1HallAfMin.
      */
     public java.lang.String getVcmHall1HallAfMin() {
@@ -9158,26 +8165,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHall1HallAfMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHall1HallAfMin = 133;</code>
-     *
      * @return The bytes for vcmHall1HallAfMin.
      */
     public com.google.protobuf.ByteString
     getVcmHall1HallAfMinBytes() {
       java.lang.Object ref = vcmHall1HallAfMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHall1HallAfMin_ = b;
         return b;
       } else {
@@ -9187,10 +8192,8 @@ public final class EqLstProto {
 
     public static final int VCMHALL1HALLAFMAX_FIELD_NUMBER = 134;
     private volatile java.lang.Object vcmHall1HallAfMax_;
-
     /**
      * <code>string vcmHall1HallAfMax = 134;</code>
-     *
      * @return The vcmHall1HallAfMax.
      */
     public java.lang.String getVcmHall1HallAfMax() {
@@ -9198,26 +8201,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHall1HallAfMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHall1HallAfMax = 134;</code>
-     *
      * @return The bytes for vcmHall1HallAfMax.
      */
     public com.google.protobuf.ByteString
     getVcmHall1HallAfMaxBytes() {
       java.lang.Object ref = vcmHall1HallAfMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHall1HallAfMax_ = b;
         return b;
       } else {
@@ -9227,10 +8228,8 @@ public final class EqLstProto {
 
     public static final int VCMHALL1HALLXMIN_FIELD_NUMBER = 135;
     private volatile java.lang.Object vcmHall1HallXMin_;
-
     /**
      * <code>string vcmHall1HallXMin = 135;</code>
-     *
      * @return The vcmHall1HallXMin.
      */
     public java.lang.String getVcmHall1HallXMin() {
@@ -9238,26 +8237,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHall1HallXMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHall1HallXMin = 135;</code>
-     *
      * @return The bytes for vcmHall1HallXMin.
      */
     public com.google.protobuf.ByteString
     getVcmHall1HallXMinBytes() {
       java.lang.Object ref = vcmHall1HallXMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHall1HallXMin_ = b;
         return b;
       } else {
@@ -9267,10 +8264,8 @@ public final class EqLstProto {
 
     public static final int VCMHALL1HALLXMAX_FIELD_NUMBER = 136;
     private volatile java.lang.Object vcmHall1HallXMax_;
-
     /**
      * <code>string vcmHall1HallXMax = 136;</code>
-     *
      * @return The vcmHall1HallXMax.
      */
     public java.lang.String getVcmHall1HallXMax() {
@@ -9278,26 +8273,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHall1HallXMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHall1HallXMax = 136;</code>
-     *
      * @return The bytes for vcmHall1HallXMax.
      */
     public com.google.protobuf.ByteString
     getVcmHall1HallXMaxBytes() {
       java.lang.Object ref = vcmHall1HallXMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHall1HallXMax_ = b;
         return b;
       } else {
@@ -9307,10 +8300,8 @@ public final class EqLstProto {
 
     public static final int VCMHALL1HALLYMIN_FIELD_NUMBER = 137;
     private volatile java.lang.Object vcmHall1HallYMin_;
-
     /**
      * <code>string vcmHall1HallYMin = 137;</code>
-     *
      * @return The vcmHall1HallYMin.
      */
     public java.lang.String getVcmHall1HallYMin() {
@@ -9318,26 +8309,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHall1HallYMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHall1HallYMin = 137;</code>
-     *
      * @return The bytes for vcmHall1HallYMin.
      */
     public com.google.protobuf.ByteString
     getVcmHall1HallYMinBytes() {
       java.lang.Object ref = vcmHall1HallYMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHall1HallYMin_ = b;
         return b;
       } else {
@@ -9347,10 +8336,8 @@ public final class EqLstProto {
 
     public static final int VCMHALL1HALLYMAX_FIELD_NUMBER = 138;
     private volatile java.lang.Object vcmHall1HallYMax_;
-
     /**
      * <code>string vcmHall1HallYMax = 138;</code>
-     *
      * @return The vcmHall1HallYMax.
      */
     public java.lang.String getVcmHall1HallYMax() {
@@ -9358,26 +8345,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHall1HallYMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHall1HallYMax = 138;</code>
-     *
      * @return The bytes for vcmHall1HallYMax.
      */
     public com.google.protobuf.ByteString
     getVcmHall1HallYMaxBytes() {
       java.lang.Object ref = vcmHall1HallYMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHall1HallYMax_ = b;
         return b;
       } else {
@@ -9387,10 +8372,8 @@ public final class EqLstProto {
 
     public static final int VCMHALL2HALLAFMIN_FIELD_NUMBER = 139;
     private volatile java.lang.Object vcmHall2HallAfMin_;
-
     /**
      * <code>string vcmHall2HallAfMin = 139;</code>
-     *
      * @return The vcmHall2HallAfMin.
      */
     public java.lang.String getVcmHall2HallAfMin() {
@@ -9398,26 +8381,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHall2HallAfMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHall2HallAfMin = 139;</code>
-     *
      * @return The bytes for vcmHall2HallAfMin.
      */
     public com.google.protobuf.ByteString
     getVcmHall2HallAfMinBytes() {
       java.lang.Object ref = vcmHall2HallAfMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHall2HallAfMin_ = b;
         return b;
       } else {
@@ -9427,10 +8408,8 @@ public final class EqLstProto {
 
     public static final int VCMHALL2HALLAFMAX_FIELD_NUMBER = 140;
     private volatile java.lang.Object vcmHall2HallAfMax_;
-
     /**
      * <code>string vcmHall2HallAfMax = 140;</code>
-     *
      * @return The vcmHall2HallAfMax.
      */
     public java.lang.String getVcmHall2HallAfMax() {
@@ -9438,26 +8417,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHall2HallAfMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHall2HallAfMax = 140;</code>
-     *
      * @return The bytes for vcmHall2HallAfMax.
      */
     public com.google.protobuf.ByteString
     getVcmHall2HallAfMaxBytes() {
       java.lang.Object ref = vcmHall2HallAfMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHall2HallAfMax_ = b;
         return b;
       } else {
@@ -9467,10 +8444,8 @@ public final class EqLstProto {
 
     public static final int VCMHALL2HALLXMIN_FIELD_NUMBER = 141;
     private volatile java.lang.Object vcmHall2HallXMin_;
-
     /**
      * <code>string vcmHall2HallXMin = 141;</code>
-     *
      * @return The vcmHall2HallXMin.
      */
     public java.lang.String getVcmHall2HallXMin() {
@@ -9478,26 +8453,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHall2HallXMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHall2HallXMin = 141;</code>
-     *
      * @return The bytes for vcmHall2HallXMin.
      */
     public com.google.protobuf.ByteString
     getVcmHall2HallXMinBytes() {
       java.lang.Object ref = vcmHall2HallXMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHall2HallXMin_ = b;
         return b;
       } else {
@@ -9507,10 +8480,8 @@ public final class EqLstProto {
 
     public static final int VCMHALL2HALLXMAX_FIELD_NUMBER = 142;
     private volatile java.lang.Object vcmHall2HallXMax_;
-
     /**
      * <code>string vcmHall2HallXMax = 142;</code>
-     *
      * @return The vcmHall2HallXMax.
      */
     public java.lang.String getVcmHall2HallXMax() {
@@ -9518,26 +8489,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHall2HallXMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHall2HallXMax = 142;</code>
-     *
      * @return The bytes for vcmHall2HallXMax.
      */
     public com.google.protobuf.ByteString
     getVcmHall2HallXMaxBytes() {
       java.lang.Object ref = vcmHall2HallXMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHall2HallXMax_ = b;
         return b;
       } else {
@@ -9547,10 +8516,8 @@ public final class EqLstProto {
 
     public static final int VCMHALL2HALLYMIN_FIELD_NUMBER = 143;
     private volatile java.lang.Object vcmHall2HallYMin_;
-
     /**
      * <code>string vcmHall2HallYMin = 143;</code>
-     *
      * @return The vcmHall2HallYMin.
      */
     public java.lang.String getVcmHall2HallYMin() {
@@ -9558,26 +8525,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHall2HallYMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHall2HallYMin = 143;</code>
-     *
      * @return The bytes for vcmHall2HallYMin.
      */
     public com.google.protobuf.ByteString
     getVcmHall2HallYMinBytes() {
       java.lang.Object ref = vcmHall2HallYMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHall2HallYMin_ = b;
         return b;
       } else {
@@ -9587,10 +8552,8 @@ public final class EqLstProto {
 
     public static final int VCMHALL2HALLYMAX_FIELD_NUMBER = 144;
     private volatile java.lang.Object vcmHall2HallYMax_;
-
     /**
      * <code>string vcmHall2HallYMax = 144;</code>
-     *
      * @return The vcmHall2HallYMax.
      */
     public java.lang.String getVcmHall2HallYMax() {
@@ -9598,26 +8561,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         vcmHall2HallYMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string vcmHall2HallYMax = 144;</code>
-     *
      * @return The bytes for vcmHall2HallYMax.
      */
     public com.google.protobuf.ByteString
     getVcmHall2HallYMaxBytes() {
       java.lang.Object ref = vcmHall2HallYMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         vcmHall2HallYMax_ = b;
         return b;
       } else {
@@ -9627,7 +8588,6 @@ public final class EqLstProto {
 
     public static final int UTXYZMOVEVAL_FIELD_NUMBER = 145;
     private volatile java.lang.Object utXyzMoveVal_;
-
     /**
      * <pre>
      * RecordPosition 指标
@@ -9635,7 +8595,6 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string utXyzMoveVal = 145;</code>
-     *
      * @return The utXyzMoveVal.
      */
     public java.lang.String getUtXyzMoveVal() {
@@ -9643,14 +8602,13 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         utXyzMoveVal_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * RecordPosition 指标
@@ -9658,16 +8616,15 @@ public final class EqLstProto {
      * </pre>
      *
      * <code>string utXyzMoveVal = 145;</code>
-     *
      * @return The bytes for utXyzMoveVal.
      */
     public com.google.protobuf.ByteString
     getUtXyzMoveValBytes() {
       java.lang.Object ref = utXyzMoveVal_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         utXyzMoveVal_ = b;
         return b;
       } else {
@@ -9677,14 +8634,12 @@ public final class EqLstProto {
 
     public static final int RECORDPOSITIONNAME_FIELD_NUMBER = 146;
     private volatile java.lang.Object recordPositionName_;
-
     /**
      * <pre>
      * 由于新增utXyzMove List命令，因此新增recordPositionName作为参数管控值，原recordPositionXyzMove 被替换掉 2025-01-15
      * </pre>
      *
      * <code>string recordPositionName = 146;</code>
-     *
      * @return The recordPositionName.
      */
     public java.lang.String getRecordPositionName() {
@@ -9692,30 +8647,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         recordPositionName_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * 由于新增utXyzMove List命令，因此新增recordPositionName作为参数管控值，原recordPositionXyzMove 被替换掉 2025-01-15
      * </pre>
      *
      * <code>string recordPositionName = 146;</code>
-     *
      * @return The bytes for recordPositionName.
      */
     public com.google.protobuf.ByteString
     getRecordPositionNameBytes() {
       java.lang.Object ref = recordPositionName_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         recordPositionName_ = b;
         return b;
       } else {
@@ -9725,14 +8678,12 @@ public final class EqLstProto {
 
     public static final int SAVEOCXOFFSETMIN_FIELD_NUMBER = 147;
     private volatile java.lang.Object saveOcXOffsetMin_;
-
     /**
      * <pre>
      * OcCheck 指标 Save Oc
      * </pre>
      *
      * <code>string saveOcXOffsetMin = 147;</code>
-     *
      * @return The saveOcXOffsetMin.
      */
     public java.lang.String getSaveOcXOffsetMin() {
@@ -9740,30 +8691,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         saveOcXOffsetMin_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * OcCheck 指标 Save Oc
      * </pre>
      *
      * <code>string saveOcXOffsetMin = 147;</code>
-     *
      * @return The bytes for saveOcXOffsetMin.
      */
     public com.google.protobuf.ByteString
     getSaveOcXOffsetMinBytes() {
       java.lang.Object ref = saveOcXOffsetMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         saveOcXOffsetMin_ = b;
         return b;
       } else {
@@ -9773,10 +8722,8 @@ public final class EqLstProto {
 
     public static final int SAVEOCXOFFSETMAX_FIELD_NUMBER = 148;
     private volatile java.lang.Object saveOcXOffsetMax_;
-
     /**
      * <code>string saveOcXOffsetMax = 148;</code>
-     *
      * @return The saveOcXOffsetMax.
      */
     public java.lang.String getSaveOcXOffsetMax() {
@@ -9784,26 +8731,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         saveOcXOffsetMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string saveOcXOffsetMax = 148;</code>
-     *
      * @return The bytes for saveOcXOffsetMax.
      */
     public com.google.protobuf.ByteString
     getSaveOcXOffsetMaxBytes() {
       java.lang.Object ref = saveOcXOffsetMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         saveOcXOffsetMax_ = b;
         return b;
       } else {
@@ -9813,10 +8758,8 @@ public final class EqLstProto {
 
     public static final int SAVEOCYOFFSETMIN_FIELD_NUMBER = 149;
     private volatile java.lang.Object saveOcYOffsetMin_;
-
     /**
      * <code>string saveOcYOffsetMin = 149;</code>
-     *
      * @return The saveOcYOffsetMin.
      */
     public java.lang.String getSaveOcYOffsetMin() {
@@ -9824,26 +8767,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         saveOcYOffsetMin_ = s;
         return s;
       }
     }
-
     /**
      * <code>string saveOcYOffsetMin = 149;</code>
-     *
      * @return The bytes for saveOcYOffsetMin.
      */
     public com.google.protobuf.ByteString
     getSaveOcYOffsetMinBytes() {
       java.lang.Object ref = saveOcYOffsetMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         saveOcYOffsetMin_ = b;
         return b;
       } else {
@@ -9853,10 +8794,8 @@ public final class EqLstProto {
 
     public static final int SAVEOCYOFFSETMAX_FIELD_NUMBER = 150;
     private volatile java.lang.Object saveOcYOffsetMax_;
-
     /**
      * <code>string saveOcYOffsetMax = 150;</code>
-     *
      * @return The saveOcYOffsetMax.
      */
     public java.lang.String getSaveOcYOffsetMax() {
@@ -9864,26 +8803,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         saveOcYOffsetMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string saveOcYOffsetMax = 150;</code>
-     *
      * @return The bytes for saveOcYOffsetMax.
      */
     public com.google.protobuf.ByteString
     getSaveOcYOffsetMaxBytes() {
       java.lang.Object ref = saveOcYOffsetMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         saveOcYOffsetMax_ = b;
         return b;
       } else {
@@ -9893,14 +8830,12 @@ public final class EqLstProto {
 
     public static final int SAVEMTFCCMIN_FIELD_NUMBER = 151;
     private volatile java.lang.Object saveMtfCcMin_;
-
     /**
      * <pre>
      * SaveMtf 指标
      * </pre>
      *
      * <code>string saveMtfCcMin = 151;</code>
-     *
      * @return The saveMtfCcMin.
      */
     public java.lang.String getSaveMtfCcMin() {
@@ -9908,30 +8843,28 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         saveMtfCcMin_ = s;
         return s;
       }
     }
-
     /**
      * <pre>
      * SaveMtf 指标
      * </pre>
      *
      * <code>string saveMtfCcMin = 151;</code>
-     *
      * @return The bytes for saveMtfCcMin.
      */
     public com.google.protobuf.ByteString
     getSaveMtfCcMinBytes() {
       java.lang.Object ref = saveMtfCcMin_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         saveMtfCcMin_ = b;
         return b;
       } else {
@@ -9941,10 +8874,8 @@ public final class EqLstProto {
 
     public static final int SAVEMTFCCMAX_FIELD_NUMBER = 152;
     private volatile java.lang.Object saveMtfCcMax_;
-
     /**
      * <code>string saveMtfCcMax = 152;</code>
-     *
      * @return The saveMtfCcMax.
      */
     public java.lang.String getSaveMtfCcMax() {
@@ -9952,26 +8883,24 @@ public final class EqLstProto {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         saveMtfCcMax_ = s;
         return s;
       }
     }
-
     /**
      * <code>string saveMtfCcMax = 152;</code>
-     *
      * @return The bytes for saveMtfCcMax.
      */
     public com.google.protobuf.ByteString
     getSaveMtfCcMaxBytes() {
       java.lang.Object ref = saveMtfCcMax_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
         saveMtfCcMax_ = b;
         return b;
       } else {
@@ -9980,7 +8909,6 @@ public final class EqLstProto {
     }
 
     private byte memoizedIsInitialized = -1;
-
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -10923,7 +9851,7 @@ public final class EqLstProto {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-        return true;
+          return true;
       }
       if (!(obj instanceof com.im.aa.inspection.proto.EqLstProto.EqLstPOJO)) {
         return super.equals(obj);
@@ -11559,45 +10487,38 @@ public final class EqLstProto {
             throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-
     public static com.im.aa.inspection.proto.EqLstProto.EqLstPOJO parseFrom(
             java.nio.ByteBuffer data,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-
     public static com.im.aa.inspection.proto.EqLstProto.EqLstPOJO parseFrom(
             com.google.protobuf.ByteString data)
             throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-
     public static com.im.aa.inspection.proto.EqLstProto.EqLstPOJO parseFrom(
             com.google.protobuf.ByteString data,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-
     public static com.im.aa.inspection.proto.EqLstProto.EqLstPOJO parseFrom(byte[] data)
             throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-
     public static com.im.aa.inspection.proto.EqLstProto.EqLstPOJO parseFrom(
             byte[] data,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-
     public static com.im.aa.inspection.proto.EqLstProto.EqLstPOJO parseFrom(java.io.InputStream input)
             throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
               .parseWithIOException(PARSER, input);
     }
-
     public static com.im.aa.inspection.proto.EqLstProto.EqLstPOJO parseFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -11605,13 +10526,11 @@ public final class EqLstProto {
       return com.google.protobuf.GeneratedMessageV3
               .parseWithIOException(PARSER, input, extensionRegistry);
     }
-
     public static com.im.aa.inspection.proto.EqLstProto.EqLstPOJO parseDelimitedFrom(java.io.InputStream input)
             throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
               .parseDelimitedWithIOException(PARSER, input);
     }
-
     public static com.im.aa.inspection.proto.EqLstProto.EqLstPOJO parseDelimitedFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -11619,14 +10538,12 @@ public final class EqLstProto {
       return com.google.protobuf.GeneratedMessageV3
               .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-
     public static com.im.aa.inspection.proto.EqLstProto.EqLstPOJO parseFrom(
             com.google.protobuf.CodedInputStream input)
             throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
               .parseWithIOException(PARSER, input);
     }
-
     public static com.im.aa.inspection.proto.EqLstProto.EqLstPOJO parseFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -11637,17 +10554,14 @@ public final class EqLstProto {
 
     @java.lang.Override
     public Builder newBuilderForType() {
-      return newBuilder();
+        return newBuilder();
     }
-
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-
     public static Builder newBuilder(com.im.aa.inspection.proto.EqLstProto.EqLstPOJO prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -11660,7 +10574,6 @@ public final class EqLstProto {
       Builder builder = new Builder(parent);
       return builder;
     }
-
     /**
      * Protobuf type {@code EqLstPOJO}
      */
@@ -11691,13 +10604,11 @@ public final class EqLstProto {
         super(parent);
         maybeForceBuilderInitialization();
       }
-
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
         }
       }
-
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -12191,44 +11102,38 @@ public final class EqLstProto {
       public Builder clone() {
         return super.clone();
       }
-
       @java.lang.Override
       public Builder setField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
               java.lang.Object value) {
         return super.setField(field, value);
       }
-
       @java.lang.Override
       public Builder clearField(
               com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-
       @java.lang.Override
       public Builder clearOneof(
               com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-
       @java.lang.Override
       public Builder setRepeatedField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
               int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-
       @java.lang.Override
       public Builder addRepeatedField(
               com.google.protobuf.Descriptors.FieldDescriptor field,
               java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.im.aa.inspection.proto.EqLstProto.EqLstPOJO) {
-          return mergeFrom((com.im.aa.inspection.proto.EqLstProto.EqLstPOJO) other);
+            return mergeFrom((com.im.aa.inspection.proto.EqLstProto.EqLstPOJO) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -12875,14 +11780,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object module_ = "";
-
       /**
        * <pre>
        * 基础设备参数
        * </pre>
        *
        * <code>string module = 1;</code>
-       *
        * @return The module.
        */
       public java.lang.String getModule() {
@@ -12897,83 +11800,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 基础设备参数
        * </pre>
        *
        * <code>string module = 1;</code>
-       *
        * @return The bytes for module.
        */
       public com.google.protobuf.ByteString
       getModuleBytes() {
         java.lang.Object ref = module_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           module_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 基础设备参数
        * </pre>
        *
        * <code>string module = 1;</code>
-       *
        * @param value The module to set.
        * @return This builder for chaining.
        */
       public Builder setModule(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         module_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 基础设备参数
        * </pre>
        *
        * <code>string module = 1;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearModule() {
 
-        module_ = getDefaultInstance().getModule();
+          module_ = getDefaultInstance().getModule();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 基础设备参数
        * </pre>
        *
        * <code>string module = 1;</code>
-       *
        * @param value The bytes for module to set.
        * @return This builder for chaining.
        */
       public Builder setModuleBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         module_ = value;
         onChanged();
@@ -12981,10 +11876,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa1_ = "";
-
       /**
        * <code>string aa1 = 2;</code>
-       *
        * @return The aa1.
        */
       public java.lang.String getAa1() {
@@ -12999,67 +11892,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa1 = 2;</code>
-       *
        * @return The bytes for aa1.
        */
       public com.google.protobuf.ByteString
       getAa1Bytes() {
         java.lang.Object ref = aa1_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa1_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa1 = 2;</code>
-       *
        * @param value The aa1 to set.
        * @return This builder for chaining.
        */
       public Builder setAa1(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa1_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1 = 2;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa1() {
 
-        aa1_ = getDefaultInstance().getAa1();
+          aa1_ = getDefaultInstance().getAa1();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1 = 2;</code>
-       *
        * @param value The bytes for aa1 to set.
        * @return This builder for chaining.
        */
       public Builder setAa1Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa1_ = value;
         onChanged();
@@ -13067,10 +11952,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa2_ = "";
-
       /**
        * <code>string aa2 = 3;</code>
-       *
        * @return The aa2.
        */
       public java.lang.String getAa2() {
@@ -13085,67 +11968,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa2 = 3;</code>
-       *
        * @return The bytes for aa2.
        */
       public com.google.protobuf.ByteString
       getAa2Bytes() {
         java.lang.Object ref = aa2_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa2_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa2 = 3;</code>
-       *
        * @param value The aa2 to set.
        * @return This builder for chaining.
        */
       public Builder setAa2(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa2_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2 = 3;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa2() {
 
-        aa2_ = getDefaultInstance().getAa2();
+          aa2_ = getDefaultInstance().getAa2();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2 = 3;</code>
-       *
        * @param value The bytes for aa2 to set.
        * @return This builder for chaining.
        */
       public Builder setAa2Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa2_ = value;
         onChanged();
@@ -13153,10 +12028,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa3_ = "";
-
       /**
        * <code>string aa3 = 4;</code>
-       *
        * @return The aa3.
        */
       public java.lang.String getAa3() {
@@ -13171,67 +12044,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa3 = 4;</code>
-       *
        * @return The bytes for aa3.
        */
       public com.google.protobuf.ByteString
       getAa3Bytes() {
         java.lang.Object ref = aa3_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa3_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa3 = 4;</code>
-       *
        * @param value The aa3 to set.
        * @return This builder for chaining.
        */
       public Builder setAa3(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa3_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3 = 4;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa3() {
 
-        aa3_ = getDefaultInstance().getAa3();
+          aa3_ = getDefaultInstance().getAa3();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3 = 4;</code>
-       *
        * @param value The bytes for aa3 to set.
        * @return This builder for chaining.
        */
       public Builder setAa3Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa3_ = value;
         onChanged();
@@ -13239,10 +12104,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object backToPosition_ = "";
-
       /**
        * <code>string backToPosition = 5;</code>
-       *
        * @return The backToPosition.
        */
       public java.lang.String getBackToPosition() {
@@ -13257,67 +12120,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string backToPosition = 5;</code>
-       *
        * @return The bytes for backToPosition.
        */
       public com.google.protobuf.ByteString
       getBackToPositionBytes() {
         java.lang.Object ref = backToPosition_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           backToPosition_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string backToPosition = 5;</code>
-       *
        * @param value The backToPosition to set.
        * @return This builder for chaining.
        */
       public Builder setBackToPosition(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         backToPosition_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string backToPosition = 5;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearBackToPosition() {
 
-        backToPosition_ = getDefaultInstance().getBackToPosition();
+          backToPosition_ = getDefaultInstance().getBackToPosition();
         onChanged();
         return this;
       }
-
       /**
        * <code>string backToPosition = 5;</code>
-       *
        * @param value The bytes for backToPosition to set.
        * @return This builder for chaining.
        */
       public Builder setBackToPositionBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         backToPosition_ = value;
         onChanged();
@@ -13325,10 +12180,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object blemish_ = "";
-
       /**
        * <code>string blemish = 6;</code>
-       *
        * @return The blemish.
        */
       public java.lang.String getBlemish() {
@@ -13343,67 +12196,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string blemish = 6;</code>
-       *
        * @return The bytes for blemish.
        */
       public com.google.protobuf.ByteString
       getBlemishBytes() {
         java.lang.Object ref = blemish_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           blemish_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string blemish = 6;</code>
-       *
        * @param value The blemish to set.
        * @return This builder for chaining.
        */
       public Builder setBlemish(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         blemish_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string blemish = 6;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearBlemish() {
 
-        blemish_ = getDefaultInstance().getBlemish();
+          blemish_ = getDefaultInstance().getBlemish();
         onChanged();
         return this;
       }
-
       /**
        * <code>string blemish = 6;</code>
-       *
        * @param value The bytes for blemish to set.
        * @return This builder for chaining.
        */
       public Builder setBlemishBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         blemish_ = value;
         onChanged();
@@ -13411,14 +12256,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object blemish1_ = "";
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string blemish1 = 7;</code>
-       *
        * @return The blemish1.
        */
       public java.lang.String getBlemish1() {
@@ -13433,83 +12276,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string blemish1 = 7;</code>
-       *
        * @return The bytes for blemish1.
        */
       public com.google.protobuf.ByteString
       getBlemish1Bytes() {
         java.lang.Object ref = blemish1_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           blemish1_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string blemish1 = 7;</code>
-       *
        * @param value The blemish1 to set.
        * @return This builder for chaining.
        */
       public Builder setBlemish1(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         blemish1_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string blemish1 = 7;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearBlemish1() {
 
-        blemish1_ = getDefaultInstance().getBlemish1();
+          blemish1_ = getDefaultInstance().getBlemish1();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string blemish1 = 7;</code>
-       *
        * @param value The bytes for blemish1 to set.
        * @return This builder for chaining.
        */
       public Builder setBlemish1Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         blemish1_ = value;
         onChanged();
@@ -13517,10 +12352,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object blemish2_ = "";
-
       /**
        * <code>string blemish2 = 8;</code>
-       *
        * @return The blemish2.
        */
       public java.lang.String getBlemish2() {
@@ -13535,67 +12368,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string blemish2 = 8;</code>
-       *
        * @return The bytes for blemish2.
        */
       public com.google.protobuf.ByteString
       getBlemish2Bytes() {
         java.lang.Object ref = blemish2_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           blemish2_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string blemish2 = 8;</code>
-       *
        * @param value The blemish2 to set.
        * @return This builder for chaining.
        */
       public Builder setBlemish2(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         blemish2_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string blemish2 = 8;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearBlemish2() {
 
-        blemish2_ = getDefaultInstance().getBlemish2();
+          blemish2_ = getDefaultInstance().getBlemish2();
         onChanged();
         return this;
       }
-
       /**
        * <code>string blemish2 = 8;</code>
-       *
        * @param value The bytes for blemish2 to set.
        * @return This builder for chaining.
        */
       public Builder setBlemish2Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         blemish2_ = value;
         onChanged();
@@ -13603,10 +12428,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object chartAlignment_ = "";
-
       /**
        * <code>string chartAlignment = 9;</code>
-       *
        * @return The chartAlignment.
        */
       public java.lang.String getChartAlignment() {
@@ -13621,67 +12444,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string chartAlignment = 9;</code>
-       *
        * @return The bytes for chartAlignment.
        */
       public com.google.protobuf.ByteString
       getChartAlignmentBytes() {
         java.lang.Object ref = chartAlignment_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           chartAlignment_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string chartAlignment = 9;</code>
-       *
        * @param value The chartAlignment to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         chartAlignment_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment = 9;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearChartAlignment() {
 
-        chartAlignment_ = getDefaultInstance().getChartAlignment();
+          chartAlignment_ = getDefaultInstance().getChartAlignment();
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment = 9;</code>
-       *
        * @param value The bytes for chartAlignment to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignmentBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         chartAlignment_ = value;
         onChanged();
@@ -13689,10 +12504,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object chartAlignment1_ = "";
-
       /**
        * <code>string chartAlignment1 = 10;</code>
-       *
        * @return The chartAlignment1.
        */
       public java.lang.String getChartAlignment1() {
@@ -13707,67 +12520,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string chartAlignment1 = 10;</code>
-       *
        * @return The bytes for chartAlignment1.
        */
       public com.google.protobuf.ByteString
       getChartAlignment1Bytes() {
         java.lang.Object ref = chartAlignment1_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           chartAlignment1_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string chartAlignment1 = 10;</code>
-       *
        * @param value The chartAlignment1 to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment1(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         chartAlignment1_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment1 = 10;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearChartAlignment1() {
 
-        chartAlignment1_ = getDefaultInstance().getChartAlignment1();
+          chartAlignment1_ = getDefaultInstance().getChartAlignment1();
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment1 = 10;</code>
-       *
        * @param value The bytes for chartAlignment1 to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment1Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         chartAlignment1_ = value;
         onChanged();
@@ -13775,10 +12580,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object chartAlignment2_ = "";
-
       /**
        * <code>string chartAlignment2 = 11;</code>
-       *
        * @return The chartAlignment2.
        */
       public java.lang.String getChartAlignment2() {
@@ -13793,67 +12596,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string chartAlignment2 = 11;</code>
-       *
        * @return The bytes for chartAlignment2.
        */
       public com.google.protobuf.ByteString
       getChartAlignment2Bytes() {
         java.lang.Object ref = chartAlignment2_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           chartAlignment2_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string chartAlignment2 = 11;</code>
-       *
        * @param value The chartAlignment2 to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment2(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         chartAlignment2_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment2 = 11;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearChartAlignment2() {
 
-        chartAlignment2_ = getDefaultInstance().getChartAlignment2();
+          chartAlignment2_ = getDefaultInstance().getChartAlignment2();
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment2 = 11;</code>
-       *
        * @param value The bytes for chartAlignment2 to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment2Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         chartAlignment2_ = value;
         onChanged();
@@ -13861,10 +12656,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object clampOnOff_ = "";
-
       /**
        * <code>string clampOnOff = 12;</code>
-       *
        * @return The clampOnOff.
        */
       public java.lang.String getClampOnOff() {
@@ -13879,67 +12672,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string clampOnOff = 12;</code>
-       *
        * @return The bytes for clampOnOff.
        */
       public com.google.protobuf.ByteString
       getClampOnOffBytes() {
         java.lang.Object ref = clampOnOff_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           clampOnOff_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string clampOnOff = 12;</code>
-       *
        * @param value The clampOnOff to set.
        * @return This builder for chaining.
        */
       public Builder setClampOnOff(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         clampOnOff_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string clampOnOff = 12;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearClampOnOff() {
 
-        clampOnOff_ = getDefaultInstance().getClampOnOff();
+          clampOnOff_ = getDefaultInstance().getClampOnOff();
         onChanged();
         return this;
       }
-
       /**
        * <code>string clampOnOff = 12;</code>
-       *
        * @param value The bytes for clampOnOff to set.
        * @return This builder for chaining.
        */
       public Builder setClampOnOffBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         clampOnOff_ = value;
         onChanged();
@@ -13947,10 +12732,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object delay_ = "";
-
       /**
        * <code>string delay = 13;</code>
-       *
        * @return The delay.
        */
       public java.lang.String getDelay() {
@@ -13965,67 +12748,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string delay = 13;</code>
-       *
        * @return The bytes for delay.
        */
       public com.google.protobuf.ByteString
       getDelayBytes() {
         java.lang.Object ref = delay_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           delay_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string delay = 13;</code>
-       *
        * @param value The delay to set.
        * @return This builder for chaining.
        */
       public Builder setDelay(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         delay_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string delay = 13;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearDelay() {
 
-        delay_ = getDefaultInstance().getDelay();
+          delay_ = getDefaultInstance().getDelay();
         onChanged();
         return this;
       }
-
       /**
        * <code>string delay = 13;</code>
-       *
        * @param value The bytes for delay to set.
        * @return This builder for chaining.
        */
       public Builder setDelayBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         delay_ = value;
         onChanged();
@@ -14033,10 +12808,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object destroy_ = "";
-
       /**
        * <code>string destroy = 14;</code>
-       *
        * @return The destroy.
        */
       public java.lang.String getDestroy() {
@@ -14051,67 +12824,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string destroy = 14;</code>
-       *
        * @return The bytes for destroy.
        */
       public com.google.protobuf.ByteString
       getDestroyBytes() {
         java.lang.Object ref = destroy_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           destroy_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string destroy = 14;</code>
-       *
        * @param value The destroy to set.
        * @return This builder for chaining.
        */
       public Builder setDestroy(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         destroy_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string destroy = 14;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearDestroy() {
 
-        destroy_ = getDefaultInstance().getDestroy();
+          destroy_ = getDefaultInstance().getDestroy();
         onChanged();
         return this;
       }
-
       /**
        * <code>string destroy = 14;</code>
-       *
        * @param value The bytes for destroy to set.
        * @return This builder for chaining.
        */
       public Builder setDestroyBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         destroy_ = value;
         onChanged();
@@ -14119,10 +12884,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object destroyStart_ = "";
-
       /**
        * <code>string destroyStart = 15;</code>
-       *
        * @return The destroyStart.
        */
       public java.lang.String getDestroyStart() {
@@ -14137,67 +12900,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string destroyStart = 15;</code>
-       *
        * @return The bytes for destroyStart.
        */
       public com.google.protobuf.ByteString
       getDestroyStartBytes() {
         java.lang.Object ref = destroyStart_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           destroyStart_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string destroyStart = 15;</code>
-       *
        * @param value The destroyStart to set.
        * @return This builder for chaining.
        */
       public Builder setDestroyStart(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         destroyStart_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string destroyStart = 15;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearDestroyStart() {
 
-        destroyStart_ = getDefaultInstance().getDestroyStart();
+          destroyStart_ = getDefaultInstance().getDestroyStart();
         onChanged();
         return this;
       }
-
       /**
        * <code>string destroyStart = 15;</code>
-       *
        * @param value The bytes for destroyStart to set.
        * @return This builder for chaining.
        */
       public Builder setDestroyStartBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         destroyStart_ = value;
         onChanged();
@@ -14205,10 +12960,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object dispense_ = "";
-
       /**
        * <code>string dispense = 16;</code>
-       *
        * @return The dispense.
        */
       public java.lang.String getDispense() {
@@ -14223,67 +12976,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string dispense = 16;</code>
-       *
        * @return The bytes for dispense.
        */
       public com.google.protobuf.ByteString
       getDispenseBytes() {
         java.lang.Object ref = dispense_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           dispense_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string dispense = 16;</code>
-       *
        * @param value The dispense to set.
        * @return This builder for chaining.
        */
       public Builder setDispense(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         dispense_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string dispense = 16;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearDispense() {
 
-        dispense_ = getDefaultInstance().getDispense();
+          dispense_ = getDefaultInstance().getDispense();
         onChanged();
         return this;
       }
-
       /**
        * <code>string dispense = 16;</code>
-       *
        * @param value The bytes for dispense to set.
        * @return This builder for chaining.
        */
       public Builder setDispenseBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         dispense_ = value;
         onChanged();
@@ -14291,14 +13036,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object dispense1_ = "";
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string dispense1 = 17;</code>
-       *
        * @return The dispense1.
        */
       public java.lang.String getDispense1() {
@@ -14313,83 +13056,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string dispense1 = 17;</code>
-       *
        * @return The bytes for dispense1.
        */
       public com.google.protobuf.ByteString
       getDispense1Bytes() {
         java.lang.Object ref = dispense1_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           dispense1_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string dispense1 = 17;</code>
-       *
        * @param value The dispense1 to set.
        * @return This builder for chaining.
        */
       public Builder setDispense1(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         dispense1_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string dispense1 = 17;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearDispense1() {
 
-        dispense1_ = getDefaultInstance().getDispense1();
+          dispense1_ = getDefaultInstance().getDispense1();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string dispense1 = 17;</code>
-       *
        * @param value The bytes for dispense1 to set.
        * @return This builder for chaining.
        */
       public Builder setDispense1Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         dispense1_ = value;
         onChanged();
@@ -14397,10 +13132,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object dispense2_ = "";
-
       /**
        * <code>string dispense2 = 18;</code>
-       *
        * @return The dispense2.
        */
       public java.lang.String getDispense2() {
@@ -14415,67 +13148,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string dispense2 = 18;</code>
-       *
        * @return The bytes for dispense2.
        */
       public com.google.protobuf.ByteString
       getDispense2Bytes() {
         java.lang.Object ref = dispense2_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           dispense2_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string dispense2 = 18;</code>
-       *
        * @param value The dispense2 to set.
        * @return This builder for chaining.
        */
       public Builder setDispense2(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         dispense2_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string dispense2 = 18;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearDispense2() {
 
-        dispense2_ = getDefaultInstance().getDispense2();
+          dispense2_ = getDefaultInstance().getDispense2();
         onChanged();
         return this;
       }
-
       /**
        * <code>string dispense2 = 18;</code>
-       *
        * @param value The bytes for dispense2 to set.
        * @return This builder for chaining.
        */
       public Builder setDispense2Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         dispense2_ = value;
         onChanged();
@@ -14483,10 +13208,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object epoxyInspection_ = "";
-
       /**
        * <code>string epoxyInspection = 19;</code>
-       *
        * @return The epoxyInspection.
        */
       public java.lang.String getEpoxyInspection() {
@@ -14501,67 +13224,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string epoxyInspection = 19;</code>
-       *
        * @return The bytes for epoxyInspection.
        */
       public com.google.protobuf.ByteString
       getEpoxyInspectionBytes() {
         java.lang.Object ref = epoxyInspection_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           epoxyInspection_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string epoxyInspection = 19;</code>
-       *
        * @param value The epoxyInspection to set.
        * @return This builder for chaining.
        */
       public Builder setEpoxyInspection(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         epoxyInspection_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string epoxyInspection = 19;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearEpoxyInspection() {
 
-        epoxyInspection_ = getDefaultInstance().getEpoxyInspection();
+          epoxyInspection_ = getDefaultInstance().getEpoxyInspection();
         onChanged();
         return this;
       }
-
       /**
        * <code>string epoxyInspection = 19;</code>
-       *
        * @param value The bytes for epoxyInspection to set.
        * @return This builder for chaining.
        */
       public Builder setEpoxyInspectionBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         epoxyInspection_ = value;
         onChanged();
@@ -14569,10 +13284,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object epoxyInspectionAuto_ = "";
-
       /**
        * <code>string epoxyInspectionAuto = 20;</code>
-       *
        * @return The epoxyInspectionAuto.
        */
       public java.lang.String getEpoxyInspectionAuto() {
@@ -14587,67 +13300,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string epoxyInspectionAuto = 20;</code>
-       *
        * @return The bytes for epoxyInspectionAuto.
        */
       public com.google.protobuf.ByteString
       getEpoxyInspectionAutoBytes() {
         java.lang.Object ref = epoxyInspectionAuto_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           epoxyInspectionAuto_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string epoxyInspectionAuto = 20;</code>
-       *
        * @param value The epoxyInspectionAuto to set.
        * @return This builder for chaining.
        */
       public Builder setEpoxyInspectionAuto(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         epoxyInspectionAuto_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string epoxyInspectionAuto = 20;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearEpoxyInspectionAuto() {
 
-        epoxyInspectionAuto_ = getDefaultInstance().getEpoxyInspectionAuto();
+          epoxyInspectionAuto_ = getDefaultInstance().getEpoxyInspectionAuto();
         onChanged();
         return this;
       }
-
       /**
        * <code>string epoxyInspectionAuto = 20;</code>
-       *
        * @param value The bytes for epoxyInspectionAuto to set.
        * @return This builder for chaining.
        */
       public Builder setEpoxyInspectionAutoBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         epoxyInspectionAuto_ = value;
         onChanged();
@@ -14655,10 +13360,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object grab_ = "";
-
       /**
        * <code>string grab = 21;</code>
-       *
        * @return The grab.
        */
       public java.lang.String getGrab() {
@@ -14673,67 +13376,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string grab = 21;</code>
-       *
        * @return The bytes for grab.
        */
       public com.google.protobuf.ByteString
       getGrabBytes() {
         java.lang.Object ref = grab_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           grab_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string grab = 21;</code>
-       *
        * @param value The grab to set.
        * @return This builder for chaining.
        */
       public Builder setGrab(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         grab_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string grab = 21;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearGrab() {
 
-        grab_ = getDefaultInstance().getGrab();
+          grab_ = getDefaultInstance().getGrab();
         onChanged();
         return this;
       }
-
       /**
        * <code>string grab = 21;</code>
-       *
        * @param value The bytes for grab to set.
        * @return This builder for chaining.
        */
       public Builder setGrabBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         grab_ = value;
         onChanged();
@@ -14741,14 +13436,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object grab1_ = "";
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string grab1 = 22;</code>
-       *
        * @return The grab1.
        */
       public java.lang.String getGrab1() {
@@ -14763,83 +13456,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string grab1 = 22;</code>
-       *
        * @return The bytes for grab1.
        */
       public com.google.protobuf.ByteString
       getGrab1Bytes() {
         java.lang.Object ref = grab1_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           grab1_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string grab1 = 22;</code>
-       *
        * @param value The grab1 to set.
        * @return This builder for chaining.
        */
       public Builder setGrab1(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         grab1_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string grab1 = 22;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearGrab1() {
 
-        grab1_ = getDefaultInstance().getGrab1();
+          grab1_ = getDefaultInstance().getGrab1();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string grab1 = 22;</code>
-       *
        * @param value The bytes for grab1 to set.
        * @return This builder for chaining.
        */
       public Builder setGrab1Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         grab1_ = value;
         onChanged();
@@ -14847,10 +13532,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object grab2_ = "";
-
       /**
        * <code>string grab2 = 23;</code>
-       *
        * @return The grab2.
        */
       public java.lang.String getGrab2() {
@@ -14865,67 +13548,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string grab2 = 23;</code>
-       *
        * @return The bytes for grab2.
        */
       public com.google.protobuf.ByteString
       getGrab2Bytes() {
         java.lang.Object ref = grab2_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           grab2_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string grab2 = 23;</code>
-       *
        * @param value The grab2 to set.
        * @return This builder for chaining.
        */
       public Builder setGrab2(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         grab2_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string grab2 = 23;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearGrab2() {
 
-        grab2_ = getDefaultInstance().getGrab2();
+          grab2_ = getDefaultInstance().getGrab2();
         onChanged();
         return this;
       }
-
       /**
        * <code>string grab2 = 23;</code>
-       *
        * @param value The bytes for grab2 to set.
        * @return This builder for chaining.
        */
       public Builder setGrab2Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         grab2_ = value;
         onChanged();
@@ -14933,14 +13608,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object grab3_ = "";
-
       /**
        * <pre>
        * 2025-03-11 扩展参数
        * </pre>
        *
        * <code>string grab3 = 24;</code>
-       *
        * @return The grab3.
        */
       public java.lang.String getGrab3() {
@@ -14955,83 +13628,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-03-11 扩展参数
        * </pre>
        *
        * <code>string grab3 = 24;</code>
-       *
        * @return The bytes for grab3.
        */
       public com.google.protobuf.ByteString
       getGrab3Bytes() {
         java.lang.Object ref = grab3_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           grab3_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-03-11 扩展参数
        * </pre>
        *
        * <code>string grab3 = 24;</code>
-       *
        * @param value The grab3 to set.
        * @return This builder for chaining.
        */
       public Builder setGrab3(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         grab3_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-03-11 扩展参数
        * </pre>
        *
        * <code>string grab3 = 24;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearGrab3() {
 
-        grab3_ = getDefaultInstance().getGrab3();
+          grab3_ = getDefaultInstance().getGrab3();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-03-11 扩展参数
        * </pre>
        *
        * <code>string grab3 = 24;</code>
-       *
        * @param value The bytes for grab3 to set.
        * @return This builder for chaining.
        */
       public Builder setGrab3Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         grab3_ = value;
         onChanged();
@@ -15039,10 +13704,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object gripperOpen_ = "";
-
       /**
        * <code>string gripperOpen = 25;</code>
-       *
        * @return The gripperOpen.
        */
       public java.lang.String getGripperOpen() {
@@ -15057,67 +13720,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string gripperOpen = 25;</code>
-       *
        * @return The bytes for gripperOpen.
        */
       public com.google.protobuf.ByteString
       getGripperOpenBytes() {
         java.lang.Object ref = gripperOpen_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           gripperOpen_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string gripperOpen = 25;</code>
-       *
        * @param value The gripperOpen to set.
        * @return This builder for chaining.
        */
       public Builder setGripperOpen(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         gripperOpen_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string gripperOpen = 25;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearGripperOpen() {
 
-        gripperOpen_ = getDefaultInstance().getGripperOpen();
+          gripperOpen_ = getDefaultInstance().getGripperOpen();
         onChanged();
         return this;
       }
-
       /**
        * <code>string gripperOpen = 25;</code>
-       *
        * @param value The bytes for gripperOpen to set.
        * @return This builder for chaining.
        */
       public Builder setGripperOpenBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         gripperOpen_ = value;
         onChanged();
@@ -15125,10 +13780,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object init_ = "";
-
       /**
        * <code>string init = 26;</code>
-       *
        * @return The init.
        */
       public java.lang.String getInit() {
@@ -15143,67 +13796,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string init = 26;</code>
-       *
        * @return The bytes for init.
        */
       public com.google.protobuf.ByteString
       getInitBytes() {
         java.lang.Object ref = init_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           init_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string init = 26;</code>
-       *
        * @param value The init to set.
        * @return This builder for chaining.
        */
       public Builder setInit(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         init_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string init = 26;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearInit() {
 
-        init_ = getDefaultInstance().getInit();
+          init_ = getDefaultInstance().getInit();
         onChanged();
         return this;
       }
-
       /**
        * <code>string init = 26;</code>
-       *
        * @param value The bytes for init to set.
        * @return This builder for chaining.
        */
       public Builder setInitBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         init_ = value;
         onChanged();
@@ -15211,14 +13856,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object init1_ = "";
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string init1 = 27;</code>
-       *
        * @return The init1.
        */
       public java.lang.String getInit1() {
@@ -15233,83 +13876,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string init1 = 27;</code>
-       *
        * @return The bytes for init1.
        */
       public com.google.protobuf.ByteString
       getInit1Bytes() {
         java.lang.Object ref = init1_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           init1_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string init1 = 27;</code>
-       *
        * @param value The init1 to set.
        * @return This builder for chaining.
        */
       public Builder setInit1(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         init1_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string init1 = 27;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearInit1() {
 
-        init1_ = getDefaultInstance().getInit1();
+          init1_ = getDefaultInstance().getInit1();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string init1 = 27;</code>
-       *
        * @param value The bytes for init1 to set.
        * @return This builder for chaining.
        */
       public Builder setInit1Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         init1_ = value;
         onChanged();
@@ -15317,10 +13952,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object init2_ = "";
-
       /**
        * <code>string init2 = 28;</code>
-       *
        * @return The init2.
        */
       public java.lang.String getInit2() {
@@ -15335,67 +13968,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string init2 = 28;</code>
-       *
        * @return The bytes for init2.
        */
       public com.google.protobuf.ByteString
       getInit2Bytes() {
         java.lang.Object ref = init2_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           init2_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string init2 = 28;</code>
-       *
        * @param value The init2 to set.
        * @return This builder for chaining.
        */
       public Builder setInit2(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         init2_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string init2 = 28;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearInit2() {
 
-        init2_ = getDefaultInstance().getInit2();
+          init2_ = getDefaultInstance().getInit2();
         onChanged();
         return this;
       }
-
       /**
        * <code>string init2 = 28;</code>
-       *
        * @param value The bytes for init2 to set.
        * @return This builder for chaining.
        */
       public Builder setInit2Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         init2_ = value;
         onChanged();
@@ -15403,10 +14028,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object init3_ = "";
-
       /**
        * <code>string init3 = 29;</code>
-       *
        * @return The init3.
        */
       public java.lang.String getInit3() {
@@ -15421,67 +14044,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string init3 = 29;</code>
-       *
        * @return The bytes for init3.
        */
       public com.google.protobuf.ByteString
       getInit3Bytes() {
         java.lang.Object ref = init3_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           init3_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string init3 = 29;</code>
-       *
        * @param value The init3 to set.
        * @return This builder for chaining.
        */
       public Builder setInit3(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         init3_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string init3 = 29;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearInit3() {
 
-        init3_ = getDefaultInstance().getInit3();
+          init3_ = getDefaultInstance().getInit3();
         onChanged();
         return this;
       }
-
       /**
        * <code>string init3 = 29;</code>
-       *
        * @param value The bytes for init3 to set.
        * @return This builder for chaining.
        */
       public Builder setInit3Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         init3_ = value;
         onChanged();
@@ -15489,10 +14104,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object lpBlemish_ = "";
-
       /**
        * <code>string lpBlemish = 30;</code>
-       *
        * @return The lpBlemish.
        */
       public java.lang.String getLpBlemish() {
@@ -15507,67 +14120,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string lpBlemish = 30;</code>
-       *
        * @return The bytes for lpBlemish.
        */
       public com.google.protobuf.ByteString
       getLpBlemishBytes() {
         java.lang.Object ref = lpBlemish_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           lpBlemish_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string lpBlemish = 30;</code>
-       *
        * @param value The lpBlemish to set.
        * @return This builder for chaining.
        */
       public Builder setLpBlemish(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         lpBlemish_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string lpBlemish = 30;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearLpBlemish() {
 
-        lpBlemish_ = getDefaultInstance().getLpBlemish();
+          lpBlemish_ = getDefaultInstance().getLpBlemish();
         onChanged();
         return this;
       }
-
       /**
        * <code>string lpBlemish = 30;</code>
-       *
        * @param value The bytes for lpBlemish to set.
        * @return This builder for chaining.
        */
       public Builder setLpBlemishBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         lpBlemish_ = value;
         onChanged();
@@ -15575,10 +14180,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object lpOc_ = "";
-
       /**
        * <code>string lpOc = 31;</code>
-       *
        * @return The lpOc.
        */
       public java.lang.String getLpOc() {
@@ -15593,67 +14196,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string lpOc = 31;</code>
-       *
        * @return The bytes for lpOc.
        */
       public com.google.protobuf.ByteString
       getLpOcBytes() {
         java.lang.Object ref = lpOc_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           lpOc_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string lpOc = 31;</code>
-       *
        * @param value The lpOc to set.
        * @return This builder for chaining.
        */
       public Builder setLpOc(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         lpOc_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string lpOc = 31;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearLpOc() {
 
-        lpOc_ = getDefaultInstance().getLpOc();
+          lpOc_ = getDefaultInstance().getLpOc();
         onChanged();
         return this;
       }
-
       /**
        * <code>string lpOc = 31;</code>
-       *
        * @param value The bytes for lpOc to set.
        * @return This builder for chaining.
        */
       public Builder setLpOcBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         lpOc_ = value;
         onChanged();
@@ -15661,10 +14256,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object lpOcCheck_ = "";
-
       /**
        * <code>string lpOcCheck = 32;</code>
-       *
        * @return The lpOcCheck.
        */
       public java.lang.String getLpOcCheck() {
@@ -15679,67 +14272,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string lpOcCheck = 32;</code>
-       *
        * @return The bytes for lpOcCheck.
        */
       public com.google.protobuf.ByteString
       getLpOcCheckBytes() {
         java.lang.Object ref = lpOcCheck_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           lpOcCheck_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string lpOcCheck = 32;</code>
-       *
        * @param value The lpOcCheck to set.
        * @return This builder for chaining.
        */
       public Builder setLpOcCheck(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         lpOcCheck_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string lpOcCheck = 32;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearLpOcCheck() {
 
-        lpOcCheck_ = getDefaultInstance().getLpOcCheck();
+          lpOcCheck_ = getDefaultInstance().getLpOcCheck();
         onChanged();
         return this;
       }
-
       /**
        * <code>string lpOcCheck = 32;</code>
-       *
        * @param value The bytes for lpOcCheck to set.
        * @return This builder for chaining.
        */
       public Builder setLpOcCheckBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         lpOcCheck_ = value;
         onChanged();
@@ -15747,10 +14332,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object lpOn_ = "";
-
       /**
        * <code>string lpOn = 33;</code>
-       *
        * @return The lpOn.
        */
       public java.lang.String getLpOn() {
@@ -15765,67 +14348,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string lpOn = 33;</code>
-       *
        * @return The bytes for lpOn.
        */
       public com.google.protobuf.ByteString
       getLpOnBytes() {
         java.lang.Object ref = lpOn_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           lpOn_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string lpOn = 33;</code>
-       *
        * @param value The lpOn to set.
        * @return This builder for chaining.
        */
       public Builder setLpOn(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         lpOn_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string lpOn = 33;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearLpOn() {
 
-        lpOn_ = getDefaultInstance().getLpOn();
+          lpOn_ = getDefaultInstance().getLpOn();
         onChanged();
         return this;
       }
-
       /**
        * <code>string lpOn = 33;</code>
-       *
        * @param value The bytes for lpOn to set.
        * @return This builder for chaining.
        */
       public Builder setLpOnBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         lpOn_ = value;
         onChanged();
@@ -15833,14 +14408,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object lpOn1_ = "";
-
       /**
        * <pre>
        * 2025-03-11 扩展参数
        * </pre>
        *
        * <code>string lpOn1 = 34;</code>
-       *
        * @return The lpOn1.
        */
       public java.lang.String getLpOn1() {
@@ -15855,83 +14428,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-03-11 扩展参数
        * </pre>
        *
        * <code>string lpOn1 = 34;</code>
-       *
        * @return The bytes for lpOn1.
        */
       public com.google.protobuf.ByteString
       getLpOn1Bytes() {
         java.lang.Object ref = lpOn1_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           lpOn1_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-03-11 扩展参数
        * </pre>
        *
        * <code>string lpOn1 = 34;</code>
-       *
        * @param value The lpOn1 to set.
        * @return This builder for chaining.
        */
       public Builder setLpOn1(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         lpOn1_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-03-11 扩展参数
        * </pre>
        *
        * <code>string lpOn1 = 34;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearLpOn1() {
 
-        lpOn1_ = getDefaultInstance().getLpOn1();
+          lpOn1_ = getDefaultInstance().getLpOn1();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-03-11 扩展参数
        * </pre>
        *
        * <code>string lpOn1 = 34;</code>
-       *
        * @param value The bytes for lpOn1 to set.
        * @return This builder for chaining.
        */
       public Builder setLpOn1Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         lpOn1_ = value;
         onChanged();
@@ -15939,10 +14504,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object lpOnBlemish_ = "";
-
       /**
        * <code>string lpOnBlemish = 35;</code>
-       *
        * @return The lpOnBlemish.
        */
       public java.lang.String getLpOnBlemish() {
@@ -15957,67 +14520,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string lpOnBlemish = 35;</code>
-       *
        * @return The bytes for lpOnBlemish.
        */
       public com.google.protobuf.ByteString
       getLpOnBlemishBytes() {
         java.lang.Object ref = lpOnBlemish_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           lpOnBlemish_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string lpOnBlemish = 35;</code>
-       *
        * @param value The lpOnBlemish to set.
        * @return This builder for chaining.
        */
       public Builder setLpOnBlemish(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         lpOnBlemish_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string lpOnBlemish = 35;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearLpOnBlemish() {
 
-        lpOnBlemish_ = getDefaultInstance().getLpOnBlemish();
+          lpOnBlemish_ = getDefaultInstance().getLpOnBlemish();
         onChanged();
         return this;
       }
-
       /**
        * <code>string lpOnBlemish = 35;</code>
-       *
        * @param value The bytes for lpOnBlemish to set.
        * @return This builder for chaining.
        */
       public Builder setLpOnBlemishBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         lpOnBlemish_ = value;
         onChanged();
@@ -16025,10 +14580,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object lpOff_ = "";
-
       /**
        * <code>string lpOff = 36;</code>
-       *
        * @return The lpOff.
        */
       public java.lang.String getLpOff() {
@@ -16043,67 +14596,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string lpOff = 36;</code>
-       *
        * @return The bytes for lpOff.
        */
       public com.google.protobuf.ByteString
       getLpOffBytes() {
         java.lang.Object ref = lpOff_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           lpOff_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string lpOff = 36;</code>
-       *
        * @param value The lpOff to set.
        * @return This builder for chaining.
        */
       public Builder setLpOff(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         lpOff_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string lpOff = 36;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearLpOff() {
 
-        lpOff_ = getDefaultInstance().getLpOff();
+          lpOff_ = getDefaultInstance().getLpOff();
         onChanged();
         return this;
       }
-
       /**
        * <code>string lpOff = 36;</code>
-       *
        * @param value The bytes for lpOff to set.
        * @return This builder for chaining.
        */
       public Builder setLpOffBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         lpOff_ = value;
         onChanged();
@@ -16111,14 +14656,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object lpOff1_ = "";
-
       /**
        * <pre>
        * 2025-03-11 扩展参数
        * </pre>
        *
        * <code>string lpOff1 = 37;</code>
-       *
        * @return The lpOff1.
        */
       public java.lang.String getLpOff1() {
@@ -16133,83 +14676,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-03-11 扩展参数
        * </pre>
        *
        * <code>string lpOff1 = 37;</code>
-       *
        * @return The bytes for lpOff1.
        */
       public com.google.protobuf.ByteString
       getLpOff1Bytes() {
         java.lang.Object ref = lpOff1_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           lpOff1_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-03-11 扩展参数
        * </pre>
        *
        * <code>string lpOff1 = 37;</code>
-       *
        * @param value The lpOff1 to set.
        * @return This builder for chaining.
        */
       public Builder setLpOff1(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         lpOff1_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-03-11 扩展参数
        * </pre>
        *
        * <code>string lpOff1 = 37;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearLpOff1() {
 
-        lpOff1_ = getDefaultInstance().getLpOff1();
+          lpOff1_ = getDefaultInstance().getLpOff1();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-03-11 扩展参数
        * </pre>
        *
        * <code>string lpOff1 = 37;</code>
-       *
        * @param value The bytes for lpOff1 to set.
        * @return This builder for chaining.
        */
       public Builder setLpOff1Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         lpOff1_ = value;
         onChanged();
@@ -16217,14 +14752,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object lpIntensity_ = "";
-
       /**
        * <pre>
        * 2025-01-16 lpOff0对于mybatis驼峰转换不友好，更改以下指令
        * </pre>
        *
        * <code>string lpIntensity = 38;</code>
-       *
        * @return The lpIntensity.
        */
       public java.lang.String getLpIntensity() {
@@ -16239,83 +14772,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-01-16 lpOff0对于mybatis驼峰转换不友好，更改以下指令
        * </pre>
        *
        * <code>string lpIntensity = 38;</code>
-       *
        * @return The bytes for lpIntensity.
        */
       public com.google.protobuf.ByteString
       getLpIntensityBytes() {
         java.lang.Object ref = lpIntensity_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           lpIntensity_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-01-16 lpOff0对于mybatis驼峰转换不友好，更改以下指令
        * </pre>
        *
        * <code>string lpIntensity = 38;</code>
-       *
        * @param value The lpIntensity to set.
        * @return This builder for chaining.
        */
       public Builder setLpIntensity(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         lpIntensity_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-01-16 lpOff0对于mybatis驼峰转换不友好，更改以下指令
        * </pre>
        *
        * <code>string lpIntensity = 38;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearLpIntensity() {
 
-        lpIntensity_ = getDefaultInstance().getLpIntensity();
+          lpIntensity_ = getDefaultInstance().getLpIntensity();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-01-16 lpOff0对于mybatis驼峰转换不友好，更改以下指令
        * </pre>
        *
        * <code>string lpIntensity = 38;</code>
-       *
        * @param value The bytes for lpIntensity to set.
        * @return This builder for chaining.
        */
       public Builder setLpIntensityBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         lpIntensity_ = value;
         onChanged();
@@ -16323,10 +14848,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object moveToBlemishPos_ = "";
-
       /**
        * <code>string moveToBlemishPos = 39;</code>
-       *
        * @return The moveToBlemishPos.
        */
       public java.lang.String getMoveToBlemishPos() {
@@ -16341,67 +14864,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string moveToBlemishPos = 39;</code>
-       *
        * @return The bytes for moveToBlemishPos.
        */
       public com.google.protobuf.ByteString
       getMoveToBlemishPosBytes() {
         java.lang.Object ref = moveToBlemishPos_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           moveToBlemishPos_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string moveToBlemishPos = 39;</code>
-       *
        * @param value The moveToBlemishPos to set.
        * @return This builder for chaining.
        */
       public Builder setMoveToBlemishPos(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         moveToBlemishPos_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string moveToBlemishPos = 39;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMoveToBlemishPos() {
 
-        moveToBlemishPos_ = getDefaultInstance().getMoveToBlemishPos();
+          moveToBlemishPos_ = getDefaultInstance().getMoveToBlemishPos();
         onChanged();
         return this;
       }
-
       /**
        * <code>string moveToBlemishPos = 39;</code>
-       *
        * @param value The bytes for moveToBlemishPos to set.
        * @return This builder for chaining.
        */
       public Builder setMoveToBlemishPosBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         moveToBlemishPos_ = value;
         onChanged();
@@ -16409,10 +14924,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfCheck_ = "";
-
       /**
        * <code>string mtfCheck = 40;</code>
-       *
        * @return The mtfCheck.
        */
       public java.lang.String getMtfCheck() {
@@ -16427,67 +14940,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string mtfCheck = 40;</code>
-       *
        * @return The bytes for mtfCheck.
        */
       public com.google.protobuf.ByteString
       getMtfCheckBytes() {
         java.lang.Object ref = mtfCheck_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfCheck_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string mtfCheck = 40;</code>
-       *
        * @param value The mtfCheck to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheck(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfCheck_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfCheck = 40;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfCheck() {
 
-        mtfCheck_ = getDefaultInstance().getMtfCheck();
+          mtfCheck_ = getDefaultInstance().getMtfCheck();
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfCheck = 40;</code>
-       *
        * @param value The bytes for mtfCheck to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheckBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfCheck_ = value;
         onChanged();
@@ -16495,10 +15000,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfCheck1_ = "";
-
       /**
        * <code>string mtfCheck1 = 41;</code>
-       *
        * @return The mtfCheck1.
        */
       public java.lang.String getMtfCheck1() {
@@ -16513,67 +15016,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string mtfCheck1 = 41;</code>
-       *
        * @return The bytes for mtfCheck1.
        */
       public com.google.protobuf.ByteString
       getMtfCheck1Bytes() {
         java.lang.Object ref = mtfCheck1_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfCheck1_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string mtfCheck1 = 41;</code>
-       *
        * @param value The mtfCheck1 to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheck1(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfCheck1_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfCheck1 = 41;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfCheck1() {
 
-        mtfCheck1_ = getDefaultInstance().getMtfCheck1();
+          mtfCheck1_ = getDefaultInstance().getMtfCheck1();
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfCheck1 = 41;</code>
-       *
        * @param value The bytes for mtfCheck1 to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheck1Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfCheck1_ = value;
         onChanged();
@@ -16581,10 +15076,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfCheck2_ = "";
-
       /**
        * <code>string mtfCheck2 = 42;</code>
-       *
        * @return The mtfCheck2.
        */
       public java.lang.String getMtfCheck2() {
@@ -16599,67 +15092,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string mtfCheck2 = 42;</code>
-       *
        * @return The bytes for mtfCheck2.
        */
       public com.google.protobuf.ByteString
       getMtfCheck2Bytes() {
         java.lang.Object ref = mtfCheck2_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfCheck2_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string mtfCheck2 = 42;</code>
-       *
        * @param value The mtfCheck2 to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheck2(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfCheck2_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfCheck2 = 42;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfCheck2() {
 
-        mtfCheck2_ = getDefaultInstance().getMtfCheck2();
+          mtfCheck2_ = getDefaultInstance().getMtfCheck2();
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfCheck2 = 42;</code>
-       *
        * @param value The bytes for mtfCheck2 to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheck2Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfCheck2_ = value;
         onChanged();
@@ -16667,10 +15152,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfCheck3_ = "";
-
       /**
        * <code>string mtfCheck3 = 43;</code>
-       *
        * @return The mtfCheck3.
        */
       public java.lang.String getMtfCheck3() {
@@ -16685,67 +15168,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string mtfCheck3 = 43;</code>
-       *
        * @return The bytes for mtfCheck3.
        */
       public com.google.protobuf.ByteString
       getMtfCheck3Bytes() {
         java.lang.Object ref = mtfCheck3_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfCheck3_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string mtfCheck3 = 43;</code>
-       *
        * @param value The mtfCheck3 to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheck3(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfCheck3_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfCheck3 = 43;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfCheck3() {
 
-        mtfCheck3_ = getDefaultInstance().getMtfCheck3();
+          mtfCheck3_ = getDefaultInstance().getMtfCheck3();
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfCheck3 = 43;</code>
-       *
        * @param value The bytes for mtfCheck3 to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheck3Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfCheck3_ = value;
         onChanged();
@@ -16753,14 +15228,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfOffAxisCheck1_ = "";
-
       /**
        * <pre>
        * 2025-03-11 多焦段MTF检查
        * </pre>
        *
        * <code>string mtfOffAxisCheck1 = 44;</code>
-       *
        * @return The mtfOffAxisCheck1.
        */
       public java.lang.String getMtfOffAxisCheck1() {
@@ -16775,83 +15248,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-03-11 多焦段MTF检查
        * </pre>
        *
        * <code>string mtfOffAxisCheck1 = 44;</code>
-       *
        * @return The bytes for mtfOffAxisCheck1.
        */
       public com.google.protobuf.ByteString
       getMtfOffAxisCheck1Bytes() {
         java.lang.Object ref = mtfOffAxisCheck1_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfOffAxisCheck1_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-03-11 多焦段MTF检查
        * </pre>
        *
        * <code>string mtfOffAxisCheck1 = 44;</code>
-       *
        * @param value The mtfOffAxisCheck1 to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck1(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfOffAxisCheck1_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-03-11 多焦段MTF检查
        * </pre>
        *
        * <code>string mtfOffAxisCheck1 = 44;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfOffAxisCheck1() {
 
-        mtfOffAxisCheck1_ = getDefaultInstance().getMtfOffAxisCheck1();
+          mtfOffAxisCheck1_ = getDefaultInstance().getMtfOffAxisCheck1();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-03-11 多焦段MTF检查
        * </pre>
        *
        * <code>string mtfOffAxisCheck1 = 44;</code>
-       *
        * @param value The bytes for mtfOffAxisCheck1 to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck1Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfOffAxisCheck1_ = value;
         onChanged();
@@ -16859,10 +15324,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfOffAxisCheck2_ = "";
-
       /**
        * <code>string mtfOffAxisCheck2 = 45;</code>
-       *
        * @return The mtfOffAxisCheck2.
        */
       public java.lang.String getMtfOffAxisCheck2() {
@@ -16877,67 +15340,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string mtfOffAxisCheck2 = 45;</code>
-       *
        * @return The bytes for mtfOffAxisCheck2.
        */
       public com.google.protobuf.ByteString
       getMtfOffAxisCheck2Bytes() {
         java.lang.Object ref = mtfOffAxisCheck2_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfOffAxisCheck2_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string mtfOffAxisCheck2 = 45;</code>
-       *
        * @param value The mtfOffAxisCheck2 to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck2(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfOffAxisCheck2_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfOffAxisCheck2 = 45;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfOffAxisCheck2() {
 
-        mtfOffAxisCheck2_ = getDefaultInstance().getMtfOffAxisCheck2();
+          mtfOffAxisCheck2_ = getDefaultInstance().getMtfOffAxisCheck2();
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfOffAxisCheck2 = 45;</code>
-       *
        * @param value The bytes for mtfOffAxisCheck2 to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck2Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfOffAxisCheck2_ = value;
         onChanged();
@@ -16945,10 +15400,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfOffAxisCheck3_ = "";
-
       /**
        * <code>string mtfOffAxisCheck3 = 46;</code>
-       *
        * @return The mtfOffAxisCheck3.
        */
       public java.lang.String getMtfOffAxisCheck3() {
@@ -16963,67 +15416,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string mtfOffAxisCheck3 = 46;</code>
-       *
        * @return The bytes for mtfOffAxisCheck3.
        */
       public com.google.protobuf.ByteString
       getMtfOffAxisCheck3Bytes() {
         java.lang.Object ref = mtfOffAxisCheck3_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfOffAxisCheck3_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string mtfOffAxisCheck3 = 46;</code>
-       *
        * @param value The mtfOffAxisCheck3 to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck3(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfOffAxisCheck3_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfOffAxisCheck3 = 46;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfOffAxisCheck3() {
 
-        mtfOffAxisCheck3_ = getDefaultInstance().getMtfOffAxisCheck3();
+          mtfOffAxisCheck3_ = getDefaultInstance().getMtfOffAxisCheck3();
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfOffAxisCheck3 = 46;</code>
-       *
        * @param value The bytes for mtfOffAxisCheck3 to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck3Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfOffAxisCheck3_ = value;
         onChanged();
@@ -17031,10 +15476,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfOffAxisCheck4_ = "";
-
       /**
        * <code>string mtfOffAxisCheck4 = 47;</code>
-       *
        * @return The mtfOffAxisCheck4.
        */
       public java.lang.String getMtfOffAxisCheck4() {
@@ -17049,67 +15492,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string mtfOffAxisCheck4 = 47;</code>
-       *
        * @return The bytes for mtfOffAxisCheck4.
        */
       public com.google.protobuf.ByteString
       getMtfOffAxisCheck4Bytes() {
         java.lang.Object ref = mtfOffAxisCheck4_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfOffAxisCheck4_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string mtfOffAxisCheck4 = 47;</code>
-       *
        * @param value The mtfOffAxisCheck4 to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck4(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfOffAxisCheck4_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfOffAxisCheck4 = 47;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfOffAxisCheck4() {
 
-        mtfOffAxisCheck4_ = getDefaultInstance().getMtfOffAxisCheck4();
+          mtfOffAxisCheck4_ = getDefaultInstance().getMtfOffAxisCheck4();
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfOffAxisCheck4 = 47;</code>
-       *
        * @param value The bytes for mtfOffAxisCheck4 to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck4Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfOffAxisCheck4_ = value;
         onChanged();
@@ -17117,10 +15552,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object openCheck_ = "";
-
       /**
        * <code>string openCheck = 48;</code>
-       *
        * @return The openCheck.
        */
       public java.lang.String getOpenCheck() {
@@ -17135,67 +15568,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string openCheck = 48;</code>
-       *
        * @return The bytes for openCheck.
        */
       public com.google.protobuf.ByteString
       getOpenCheckBytes() {
         java.lang.Object ref = openCheck_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           openCheck_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string openCheck = 48;</code>
-       *
        * @param value The openCheck to set.
        * @return This builder for chaining.
        */
       public Builder setOpenCheck(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         openCheck_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string openCheck = 48;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearOpenCheck() {
 
-        openCheck_ = getDefaultInstance().getOpenCheck();
+          openCheck_ = getDefaultInstance().getOpenCheck();
         onChanged();
         return this;
       }
-
       /**
        * <code>string openCheck = 48;</code>
-       *
        * @param value The bytes for openCheck to set.
        * @return This builder for chaining.
        */
       public Builder setOpenCheckBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         openCheck_ = value;
         onChanged();
@@ -17203,14 +15628,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object openCheck1_ = "";
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string openCheck1 = 49;</code>
-       *
        * @return The openCheck1.
        */
       public java.lang.String getOpenCheck1() {
@@ -17225,83 +15648,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string openCheck1 = 49;</code>
-       *
        * @return The bytes for openCheck1.
        */
       public com.google.protobuf.ByteString
       getOpenCheck1Bytes() {
         java.lang.Object ref = openCheck1_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           openCheck1_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string openCheck1 = 49;</code>
-       *
        * @param value The openCheck1 to set.
        * @return This builder for chaining.
        */
       public Builder setOpenCheck1(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         openCheck1_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string openCheck1 = 49;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearOpenCheck1() {
 
-        openCheck1_ = getDefaultInstance().getOpenCheck1();
+          openCheck1_ = getDefaultInstance().getOpenCheck1();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-01-15 扩展参数
        * </pre>
        *
        * <code>string openCheck1 = 49;</code>
-       *
        * @param value The bytes for openCheck1 to set.
        * @return This builder for chaining.
        */
       public Builder setOpenCheck1Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         openCheck1_ = value;
         onChanged();
@@ -17309,10 +15724,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object openCheck2_ = "";
-
       /**
        * <code>string openCheck2 = 50;</code>
-       *
        * @return The openCheck2.
        */
       public java.lang.String getOpenCheck2() {
@@ -17327,67 +15740,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string openCheck2 = 50;</code>
-       *
        * @return The bytes for openCheck2.
        */
       public com.google.protobuf.ByteString
       getOpenCheck2Bytes() {
         java.lang.Object ref = openCheck2_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           openCheck2_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string openCheck2 = 50;</code>
-       *
        * @param value The openCheck2 to set.
        * @return This builder for chaining.
        */
       public Builder setOpenCheck2(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         openCheck2_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string openCheck2 = 50;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearOpenCheck2() {
 
-        openCheck2_ = getDefaultInstance().getOpenCheck2();
+          openCheck2_ = getDefaultInstance().getOpenCheck2();
         onChanged();
         return this;
       }
-
       /**
        * <code>string openCheck2 = 50;</code>
-       *
        * @param value The bytes for openCheck2 to set.
        * @return This builder for chaining.
        */
       public Builder setOpenCheck2Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         openCheck2_ = value;
         onChanged();
@@ -17395,10 +15800,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object openCheck3_ = "";
-
       /**
        * <code>string openCheck3 = 51;</code>
-       *
        * @return The openCheck3.
        */
       public java.lang.String getOpenCheck3() {
@@ -17413,67 +15816,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string openCheck3 = 51;</code>
-       *
        * @return The bytes for openCheck3.
        */
       public com.google.protobuf.ByteString
       getOpenCheck3Bytes() {
         java.lang.Object ref = openCheck3_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           openCheck3_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string openCheck3 = 51;</code>
-       *
        * @param value The openCheck3 to set.
        * @return This builder for chaining.
        */
       public Builder setOpenCheck3(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         openCheck3_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string openCheck3 = 51;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearOpenCheck3() {
 
-        openCheck3_ = getDefaultInstance().getOpenCheck3();
+          openCheck3_ = getDefaultInstance().getOpenCheck3();
         onChanged();
         return this;
       }
-
       /**
        * <code>string openCheck3 = 51;</code>
-       *
        * @param value The bytes for openCheck3 to set.
        * @return This builder for chaining.
        */
       public Builder setOpenCheck3Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         openCheck3_ = value;
         onChanged();
@@ -17481,14 +15876,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object prToBond_ = "";
-
       /**
        * <pre>
        * 2025-01-15 新增参数
        * </pre>
        *
        * <code>string prToBond = 52;</code>
-       *
        * @return The prToBond.
        */
       public java.lang.String getPrToBond() {
@@ -17503,83 +15896,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-01-15 新增参数
        * </pre>
        *
        * <code>string prToBond = 52;</code>
-       *
        * @return The bytes for prToBond.
        */
       public com.google.protobuf.ByteString
       getPrToBondBytes() {
         java.lang.Object ref = prToBond_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           prToBond_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-01-15 新增参数
        * </pre>
        *
        * <code>string prToBond = 52;</code>
-       *
        * @param value The prToBond to set.
        * @return This builder for chaining.
        */
       public Builder setPrToBond(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         prToBond_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-01-15 新增参数
        * </pre>
        *
        * <code>string prToBond = 52;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearPrToBond() {
 
-        prToBond_ = getDefaultInstance().getPrToBond();
+          prToBond_ = getDefaultInstance().getPrToBond();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-01-15 新增参数
        * </pre>
        *
        * <code>string prToBond = 52;</code>
-       *
        * @param value The bytes for prToBond to set.
        * @return This builder for chaining.
        */
       public Builder setPrToBondBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         prToBond_ = value;
         onChanged();
@@ -17587,14 +15972,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object utXyzMove_ = "";
-
       /**
        * <pre>
        * 台虹厂区的utXyzMove和recordPosition分开管控，因此新增 2025-01-15
        * </pre>
        *
        * <code>string utXyzMove = 53;</code>
-       *
        * @return The utXyzMove.
        */
       public java.lang.String getUtXyzMove() {
@@ -17609,83 +15992,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 台虹厂区的utXyzMove和recordPosition分开管控，因此新增 2025-01-15
        * </pre>
        *
        * <code>string utXyzMove = 53;</code>
-       *
        * @return The bytes for utXyzMove.
        */
       public com.google.protobuf.ByteString
       getUtXyzMoveBytes() {
         java.lang.Object ref = utXyzMove_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           utXyzMove_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 台虹厂区的utXyzMove和recordPosition分开管控，因此新增 2025-01-15
        * </pre>
        *
        * <code>string utXyzMove = 53;</code>
-       *
        * @param value The utXyzMove to set.
        * @return This builder for chaining.
        */
       public Builder setUtXyzMove(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         utXyzMove_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 台虹厂区的utXyzMove和recordPosition分开管控，因此新增 2025-01-15
        * </pre>
        *
        * <code>string utXyzMove = 53;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearUtXyzMove() {
 
-        utXyzMove_ = getDefaultInstance().getUtXyzMove();
+          utXyzMove_ = getDefaultInstance().getUtXyzMove();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 台虹厂区的utXyzMove和recordPosition分开管控，因此新增 2025-01-15
        * </pre>
        *
        * <code>string utXyzMove = 53;</code>
-       *
        * @param value The bytes for utXyzMove to set.
        * @return This builder for chaining.
        */
       public Builder setUtXyzMoveBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         utXyzMove_ = value;
         onChanged();
@@ -17693,10 +16068,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object recordPosition_ = "";
-
       /**
        * <code>string recordPosition = 54;</code>
-       *
        * @return The recordPosition.
        */
       public java.lang.String getRecordPosition() {
@@ -17711,67 +16084,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string recordPosition = 54;</code>
-       *
        * @return The bytes for recordPosition.
        */
       public com.google.protobuf.ByteString
       getRecordPositionBytes() {
         java.lang.Object ref = recordPosition_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           recordPosition_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string recordPosition = 54;</code>
-       *
        * @param value The recordPosition to set.
        * @return This builder for chaining.
        */
       public Builder setRecordPosition(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         recordPosition_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string recordPosition = 54;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearRecordPosition() {
 
-        recordPosition_ = getDefaultInstance().getRecordPosition();
+          recordPosition_ = getDefaultInstance().getRecordPosition();
         onChanged();
         return this;
       }
-
       /**
        * <code>string recordPosition = 54;</code>
-       *
        * @param value The bytes for recordPosition to set.
        * @return This builder for chaining.
        */
       public Builder setRecordPositionBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         recordPosition_ = value;
         onChanged();
@@ -17779,10 +16144,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object reInit_ = "";
-
       /**
        * <code>string reInit = 55;</code>
-       *
        * @return The reInit.
        */
       public java.lang.String getReInit() {
@@ -17797,67 +16160,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string reInit = 55;</code>
-       *
        * @return The bytes for reInit.
        */
       public com.google.protobuf.ByteString
       getReInitBytes() {
         java.lang.Object ref = reInit_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           reInit_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string reInit = 55;</code>
-       *
        * @param value The reInit to set.
        * @return This builder for chaining.
        */
       public Builder setReInit(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         reInit_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string reInit = 55;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearReInit() {
 
-        reInit_ = getDefaultInstance().getReInit();
+          reInit_ = getDefaultInstance().getReInit();
         onChanged();
         return this;
       }
-
       /**
        * <code>string reInit = 55;</code>
-       *
        * @param value The bytes for reInit to set.
        * @return This builder for chaining.
        */
       public Builder setReInitBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         reInit_ = value;
         onChanged();
@@ -17865,10 +16220,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object saveOc_ = "";
-
       /**
        * <code>string saveOc = 56;</code>
-       *
        * @return The saveOc.
        */
       public java.lang.String getSaveOc() {
@@ -17883,67 +16236,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string saveOc = 56;</code>
-       *
        * @return The bytes for saveOc.
        */
       public com.google.protobuf.ByteString
       getSaveOcBytes() {
         java.lang.Object ref = saveOc_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           saveOc_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string saveOc = 56;</code>
-       *
        * @param value The saveOc to set.
        * @return This builder for chaining.
        */
       public Builder setSaveOc(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         saveOc_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string saveOc = 56;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearSaveOc() {
 
-        saveOc_ = getDefaultInstance().getSaveOc();
+          saveOc_ = getDefaultInstance().getSaveOc();
         onChanged();
         return this;
       }
-
       /**
        * <code>string saveOc = 56;</code>
-       *
        * @param value The bytes for saveOc to set.
        * @return This builder for chaining.
        */
       public Builder setSaveOcBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         saveOc_ = value;
         onChanged();
@@ -17951,10 +16296,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object saveMtf_ = "";
-
       /**
        * <code>string saveMtf = 57;</code>
-       *
        * @return The saveMtf.
        */
       public java.lang.String getSaveMtf() {
@@ -17969,67 +16312,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string saveMtf = 57;</code>
-       *
        * @return The bytes for saveMtf.
        */
       public com.google.protobuf.ByteString
       getSaveMtfBytes() {
         java.lang.Object ref = saveMtf_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           saveMtf_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string saveMtf = 57;</code>
-       *
        * @param value The saveMtf to set.
        * @return This builder for chaining.
        */
       public Builder setSaveMtf(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         saveMtf_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string saveMtf = 57;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearSaveMtf() {
 
-        saveMtf_ = getDefaultInstance().getSaveMtf();
+          saveMtf_ = getDefaultInstance().getSaveMtf();
         onChanged();
         return this;
       }
-
       /**
        * <code>string saveMtf = 57;</code>
-       *
        * @param value The bytes for saveMtf to set.
        * @return This builder for chaining.
        */
       public Builder setSaveMtfBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         saveMtf_ = value;
         onChanged();
@@ -18037,10 +16372,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object sensorReset_ = "";
-
       /**
        * <code>string sensorReset = 58;</code>
-       *
        * @return The sensorReset.
        */
       public java.lang.String getSensorReset() {
@@ -18055,67 +16388,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string sensorReset = 58;</code>
-       *
        * @return The bytes for sensorReset.
        */
       public com.google.protobuf.ByteString
       getSensorResetBytes() {
         java.lang.Object ref = sensorReset_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           sensorReset_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string sensorReset = 58;</code>
-       *
        * @param value The sensorReset to set.
        * @return This builder for chaining.
        */
       public Builder setSensorReset(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         sensorReset_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string sensorReset = 58;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearSensorReset() {
 
-        sensorReset_ = getDefaultInstance().getSensorReset();
+          sensorReset_ = getDefaultInstance().getSensorReset();
         onChanged();
         return this;
       }
-
       /**
        * <code>string sensorReset = 58;</code>
-       *
        * @param value The bytes for sensorReset to set.
        * @return This builder for chaining.
        */
       public Builder setSensorResetBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         sensorReset_ = value;
         onChanged();
@@ -18123,14 +16448,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object sfrCheck_ = "";
-
       /**
        * <pre>
        * 2025-04-17
        * </pre>
        *
        * <code>string sfrCheck = 59;</code>
-       *
        * @return The sfrCheck.
        */
       public java.lang.String getSfrCheck() {
@@ -18145,83 +16468,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-04-17
        * </pre>
        *
        * <code>string sfrCheck = 59;</code>
-       *
        * @return The bytes for sfrCheck.
        */
       public com.google.protobuf.ByteString
       getSfrCheckBytes() {
         java.lang.Object ref = sfrCheck_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           sfrCheck_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-04-17
        * </pre>
        *
        * <code>string sfrCheck = 59;</code>
-       *
        * @param value The sfrCheck to set.
        * @return This builder for chaining.
        */
       public Builder setSfrCheck(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         sfrCheck_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-04-17
        * </pre>
        *
        * <code>string sfrCheck = 59;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearSfrCheck() {
 
-        sfrCheck_ = getDefaultInstance().getSfrCheck();
+          sfrCheck_ = getDefaultInstance().getSfrCheck();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-04-17
        * </pre>
        *
        * <code>string sfrCheck = 59;</code>
-       *
        * @param value The bytes for sfrCheck to set.
        * @return This builder for chaining.
        */
       public Builder setSfrCheckBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         sfrCheck_ = value;
         onChanged();
@@ -18229,10 +16544,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object sid_ = "";
-
       /**
        * <code>string sid = 60;</code>
-       *
        * @return The sid.
        */
       public java.lang.String getSid() {
@@ -18247,67 +16560,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string sid = 60;</code>
-       *
        * @return The bytes for sid.
        */
       public com.google.protobuf.ByteString
       getSidBytes() {
         java.lang.Object ref = sid_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           sid_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string sid = 60;</code>
-       *
        * @param value The sid to set.
        * @return This builder for chaining.
        */
       public Builder setSid(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         sid_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string sid = 60;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearSid() {
 
-        sid_ = getDefaultInstance().getSid();
+          sid_ = getDefaultInstance().getSid();
         onChanged();
         return this;
       }
-
       /**
        * <code>string sid = 60;</code>
-       *
        * @param value The bytes for sid to set.
        * @return This builder for chaining.
        */
       public Builder setSidBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         sid_ = value;
         onChanged();
@@ -18315,10 +16620,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object uvon_ = "";
-
       /**
        * <code>string uvon = 61;</code>
-       *
        * @return The uvon.
        */
       public java.lang.String getUvon() {
@@ -18333,67 +16636,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string uvon = 61;</code>
-       *
        * @return The bytes for uvon.
        */
       public com.google.protobuf.ByteString
       getUvonBytes() {
         java.lang.Object ref = uvon_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           uvon_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string uvon = 61;</code>
-       *
        * @param value The uvon to set.
        * @return This builder for chaining.
        */
       public Builder setUvon(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         uvon_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string uvon = 61;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearUvon() {
 
-        uvon_ = getDefaultInstance().getUvon();
+          uvon_ = getDefaultInstance().getUvon();
         onChanged();
         return this;
       }
-
       /**
        * <code>string uvon = 61;</code>
-       *
        * @param value The bytes for uvon to set.
        * @return This builder for chaining.
        */
       public Builder setUvonBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         uvon_ = value;
         onChanged();
@@ -18401,10 +16696,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object uvoff_ = "";
-
       /**
        * <code>string uvoff = 62;</code>
-       *
        * @return The uvoff.
        */
       public java.lang.String getUvoff() {
@@ -18419,67 +16712,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string uvoff = 62;</code>
-       *
        * @return The bytes for uvoff.
        */
       public com.google.protobuf.ByteString
       getUvoffBytes() {
         java.lang.Object ref = uvoff_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           uvoff_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string uvoff = 62;</code>
-       *
        * @param value The uvoff to set.
        * @return This builder for chaining.
        */
       public Builder setUvoff(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         uvoff_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string uvoff = 62;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearUvoff() {
 
-        uvoff_ = getDefaultInstance().getUvoff();
+          uvoff_ = getDefaultInstance().getUvoff();
         onChanged();
         return this;
       }
-
       /**
        * <code>string uvoff = 62;</code>
-       *
        * @param value The bytes for uvoff to set.
        * @return This builder for chaining.
        */
       public Builder setUvoffBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         uvoff_ = value;
         onChanged();
@@ -18487,14 +16772,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHall_ = "";
-
       /**
        * <pre>
        * vcmHall 指标 2025-03-27
        * </pre>
        *
        * <code>string vcmHall = 63;</code>
-       *
        * @return The vcmHall.
        */
       public java.lang.String getVcmHall() {
@@ -18509,83 +16792,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * vcmHall 指标 2025-03-27
        * </pre>
        *
        * <code>string vcmHall = 63;</code>
-       *
        * @return The bytes for vcmHall.
        */
       public com.google.protobuf.ByteString
       getVcmHallBytes() {
         java.lang.Object ref = vcmHall_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHall_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * vcmHall 指标 2025-03-27
        * </pre>
        *
        * <code>string vcmHall = 63;</code>
-       *
        * @param value The vcmHall to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHall_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * vcmHall 指标 2025-03-27
        * </pre>
        *
        * <code>string vcmHall = 63;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHall() {
 
-        vcmHall_ = getDefaultInstance().getVcmHall();
+          vcmHall_ = getDefaultInstance().getVcmHall();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * vcmHall 指标 2025-03-27
        * </pre>
        *
        * <code>string vcmHall = 63;</code>
-       *
        * @param value The bytes for vcmHall to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHallBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHall_ = value;
         onChanged();
@@ -18593,10 +16868,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHall1_ = "";
-
       /**
        * <code>string vcmHall1 = 64;</code>
-       *
        * @return The vcmHall1.
        */
       public java.lang.String getVcmHall1() {
@@ -18611,67 +16884,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHall1 = 64;</code>
-       *
        * @return The bytes for vcmHall1.
        */
       public com.google.protobuf.ByteString
       getVcmHall1Bytes() {
         java.lang.Object ref = vcmHall1_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHall1_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHall1 = 64;</code>
-       *
        * @param value The vcmHall1 to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall1(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHall1_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall1 = 64;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHall1() {
 
-        vcmHall1_ = getDefaultInstance().getVcmHall1();
+          vcmHall1_ = getDefaultInstance().getVcmHall1();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall1 = 64;</code>
-       *
        * @param value The bytes for vcmHall1 to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall1Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHall1_ = value;
         onChanged();
@@ -18679,10 +16944,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHall2_ = "";
-
       /**
        * <code>string vcmHall2 = 65;</code>
-       *
        * @return The vcmHall2.
        */
       public java.lang.String getVcmHall2() {
@@ -18697,67 +16960,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHall2 = 65;</code>
-       *
        * @return The bytes for vcmHall2.
        */
       public com.google.protobuf.ByteString
       getVcmHall2Bytes() {
         java.lang.Object ref = vcmHall2_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHall2_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHall2 = 65;</code>
-       *
        * @param value The vcmHall2 to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall2(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHall2_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall2 = 65;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHall2() {
 
-        vcmHall2_ = getDefaultInstance().getVcmHall2();
+          vcmHall2_ = getDefaultInstance().getVcmHall2();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall2 = 65;</code>
-       *
        * @param value The bytes for vcmHall2 to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall2Bytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHall2_ = value;
         onChanged();
@@ -18765,10 +17020,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object yLevel_ = "";
-
       /**
        * <code>string yLevel = 66;</code>
-       *
        * @return The yLevel.
        */
       public java.lang.String getYLevel() {
@@ -18783,67 +17036,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string yLevel = 66;</code>
-       *
        * @return The bytes for yLevel.
        */
       public com.google.protobuf.ByteString
       getYLevelBytes() {
         java.lang.Object ref = yLevel_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           yLevel_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string yLevel = 66;</code>
-       *
        * @param value The yLevel to set.
        * @return This builder for chaining.
        */
       public Builder setYLevel(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         yLevel_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string yLevel = 66;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearYLevel() {
 
-        yLevel_ = getDefaultInstance().getYLevel();
+          yLevel_ = getDefaultInstance().getYLevel();
         onChanged();
         return this;
       }
-
       /**
        * <code>string yLevel = 66;</code>
-       *
        * @param value The bytes for yLevel to set.
        * @return This builder for chaining.
        */
       public Builder setYLevelBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         yLevel_ = value;
         onChanged();
@@ -18851,14 +17096,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa1RoiCc_ = "";
-
       /**
        * <pre>
        * AA Item 指标
        * </pre>
        *
        * <code>string aa1RoiCc = 67;</code>
-       *
        * @return The aa1RoiCc.
        */
       public java.lang.String getAa1RoiCc() {
@@ -18873,83 +17116,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * AA Item 指标
        * </pre>
        *
        * <code>string aa1RoiCc = 67;</code>
-       *
        * @return The bytes for aa1RoiCc.
        */
       public com.google.protobuf.ByteString
       getAa1RoiCcBytes() {
         java.lang.Object ref = aa1RoiCc_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa1RoiCc_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * AA Item 指标
        * </pre>
        *
        * <code>string aa1RoiCc = 67;</code>
-       *
        * @param value The aa1RoiCc to set.
        * @return This builder for chaining.
        */
       public Builder setAa1RoiCc(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa1RoiCc_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * AA Item 指标
        * </pre>
        *
        * <code>string aa1RoiCc = 67;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa1RoiCc() {
 
-        aa1RoiCc_ = getDefaultInstance().getAa1RoiCc();
+          aa1RoiCc_ = getDefaultInstance().getAa1RoiCc();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * AA Item 指标
        * </pre>
        *
        * <code>string aa1RoiCc = 67;</code>
-       *
        * @param value The bytes for aa1RoiCc to set.
        * @return This builder for chaining.
        */
       public Builder setAa1RoiCcBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa1RoiCc_ = value;
         onChanged();
@@ -18957,10 +17192,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa1RoiUl_ = "";
-
       /**
        * <code>string aa1RoiUl = 68;</code>
-       *
        * @return The aa1RoiUl.
        */
       public java.lang.String getAa1RoiUl() {
@@ -18975,67 +17208,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa1RoiUl = 68;</code>
-       *
        * @return The bytes for aa1RoiUl.
        */
       public com.google.protobuf.ByteString
       getAa1RoiUlBytes() {
         java.lang.Object ref = aa1RoiUl_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa1RoiUl_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa1RoiUl = 68;</code>
-       *
        * @param value The aa1RoiUl to set.
        * @return This builder for chaining.
        */
       public Builder setAa1RoiUl(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa1RoiUl_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1RoiUl = 68;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa1RoiUl() {
 
-        aa1RoiUl_ = getDefaultInstance().getAa1RoiUl();
+          aa1RoiUl_ = getDefaultInstance().getAa1RoiUl();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1RoiUl = 68;</code>
-       *
        * @param value The bytes for aa1RoiUl to set.
        * @return This builder for chaining.
        */
       public Builder setAa1RoiUlBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa1RoiUl_ = value;
         onChanged();
@@ -19043,10 +17268,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa1RoiUr_ = "";
-
       /**
        * <code>string aa1RoiUr = 69;</code>
-       *
        * @return The aa1RoiUr.
        */
       public java.lang.String getAa1RoiUr() {
@@ -19061,67 +17284,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa1RoiUr = 69;</code>
-       *
        * @return The bytes for aa1RoiUr.
        */
       public com.google.protobuf.ByteString
       getAa1RoiUrBytes() {
         java.lang.Object ref = aa1RoiUr_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa1RoiUr_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa1RoiUr = 69;</code>
-       *
        * @param value The aa1RoiUr to set.
        * @return This builder for chaining.
        */
       public Builder setAa1RoiUr(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa1RoiUr_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1RoiUr = 69;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa1RoiUr() {
 
-        aa1RoiUr_ = getDefaultInstance().getAa1RoiUr();
+          aa1RoiUr_ = getDefaultInstance().getAa1RoiUr();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1RoiUr = 69;</code>
-       *
        * @param value The bytes for aa1RoiUr to set.
        * @return This builder for chaining.
        */
       public Builder setAa1RoiUrBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa1RoiUr_ = value;
         onChanged();
@@ -19129,10 +17344,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa1RoiLl_ = "";
-
       /**
        * <code>string aa1RoiLl = 70;</code>
-       *
        * @return The aa1RoiLl.
        */
       public java.lang.String getAa1RoiLl() {
@@ -19147,67 +17360,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa1RoiLl = 70;</code>
-       *
        * @return The bytes for aa1RoiLl.
        */
       public com.google.protobuf.ByteString
       getAa1RoiLlBytes() {
         java.lang.Object ref = aa1RoiLl_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa1RoiLl_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa1RoiLl = 70;</code>
-       *
        * @param value The aa1RoiLl to set.
        * @return This builder for chaining.
        */
       public Builder setAa1RoiLl(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa1RoiLl_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1RoiLl = 70;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa1RoiLl() {
 
-        aa1RoiLl_ = getDefaultInstance().getAa1RoiLl();
+          aa1RoiLl_ = getDefaultInstance().getAa1RoiLl();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1RoiLl = 70;</code>
-       *
        * @param value The bytes for aa1RoiLl to set.
        * @return This builder for chaining.
        */
       public Builder setAa1RoiLlBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa1RoiLl_ = value;
         onChanged();
@@ -19215,10 +17420,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa1RoiLr_ = "";
-
       /**
        * <code>string aa1RoiLr = 71;</code>
-       *
        * @return The aa1RoiLr.
        */
       public java.lang.String getAa1RoiLr() {
@@ -19233,67 +17436,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa1RoiLr = 71;</code>
-       *
        * @return The bytes for aa1RoiLr.
        */
       public com.google.protobuf.ByteString
       getAa1RoiLrBytes() {
         java.lang.Object ref = aa1RoiLr_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa1RoiLr_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa1RoiLr = 71;</code>
-       *
        * @param value The aa1RoiLr to set.
        * @return This builder for chaining.
        */
       public Builder setAa1RoiLr(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa1RoiLr_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1RoiLr = 71;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa1RoiLr() {
 
-        aa1RoiLr_ = getDefaultInstance().getAa1RoiLr();
+          aa1RoiLr_ = getDefaultInstance().getAa1RoiLr();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1RoiLr = 71;</code>
-       *
        * @param value The bytes for aa1RoiLr to set.
        * @return This builder for chaining.
        */
       public Builder setAa1RoiLrBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa1RoiLr_ = value;
         onChanged();
@@ -19301,14 +17496,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa1Target_ = "";
-
       /**
        * <pre>
        * 新增 2024-10-28
        * </pre>
        *
        * <code>string aa1Target = 72;</code>
-       *
        * @return The aa1Target.
        */
       public java.lang.String getAa1Target() {
@@ -19323,83 +17516,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 新增 2024-10-28
        * </pre>
        *
        * <code>string aa1Target = 72;</code>
-       *
        * @return The bytes for aa1Target.
        */
       public com.google.protobuf.ByteString
       getAa1TargetBytes() {
         java.lang.Object ref = aa1Target_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa1Target_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 新增 2024-10-28
        * </pre>
        *
        * <code>string aa1Target = 72;</code>
-       *
        * @param value The aa1Target to set.
        * @return This builder for chaining.
        */
       public Builder setAa1Target(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa1Target_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 新增 2024-10-28
        * </pre>
        *
        * <code>string aa1Target = 72;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa1Target() {
 
-        aa1Target_ = getDefaultInstance().getAa1Target();
+          aa1Target_ = getDefaultInstance().getAa1Target();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 新增 2024-10-28
        * </pre>
        *
        * <code>string aa1Target = 72;</code>
-       *
        * @param value The bytes for aa1Target to set.
        * @return This builder for chaining.
        */
       public Builder setAa1TargetBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa1Target_ = value;
         onChanged();
@@ -19407,10 +17592,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa1CcToCornerLimit_ = "";
-
       /**
        * <code>string aa1CcToCornerLimit = 73;</code>
-       *
        * @return The aa1CcToCornerLimit.
        */
       public java.lang.String getAa1CcToCornerLimit() {
@@ -19425,67 +17608,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa1CcToCornerLimit = 73;</code>
-       *
        * @return The bytes for aa1CcToCornerLimit.
        */
       public com.google.protobuf.ByteString
       getAa1CcToCornerLimitBytes() {
         java.lang.Object ref = aa1CcToCornerLimit_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa1CcToCornerLimit_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa1CcToCornerLimit = 73;</code>
-       *
        * @param value The aa1CcToCornerLimit to set.
        * @return This builder for chaining.
        */
       public Builder setAa1CcToCornerLimit(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa1CcToCornerLimit_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1CcToCornerLimit = 73;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa1CcToCornerLimit() {
 
-        aa1CcToCornerLimit_ = getDefaultInstance().getAa1CcToCornerLimit();
+          aa1CcToCornerLimit_ = getDefaultInstance().getAa1CcToCornerLimit();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1CcToCornerLimit = 73;</code>
-       *
        * @param value The bytes for aa1CcToCornerLimit to set.
        * @return This builder for chaining.
        */
       public Builder setAa1CcToCornerLimitBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa1CcToCornerLimit_ = value;
         onChanged();
@@ -19493,10 +17668,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa1CcToCornerLimitMin_ = "";
-
       /**
        * <code>string aa1CcToCornerLimitMin = 74;</code>
-       *
        * @return The aa1CcToCornerLimitMin.
        */
       public java.lang.String getAa1CcToCornerLimitMin() {
@@ -19511,67 +17684,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa1CcToCornerLimitMin = 74;</code>
-       *
        * @return The bytes for aa1CcToCornerLimitMin.
        */
       public com.google.protobuf.ByteString
       getAa1CcToCornerLimitMinBytes() {
         java.lang.Object ref = aa1CcToCornerLimitMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa1CcToCornerLimitMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa1CcToCornerLimitMin = 74;</code>
-       *
        * @param value The aa1CcToCornerLimitMin to set.
        * @return This builder for chaining.
        */
       public Builder setAa1CcToCornerLimitMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa1CcToCornerLimitMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1CcToCornerLimitMin = 74;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa1CcToCornerLimitMin() {
 
-        aa1CcToCornerLimitMin_ = getDefaultInstance().getAa1CcToCornerLimitMin();
+          aa1CcToCornerLimitMin_ = getDefaultInstance().getAa1CcToCornerLimitMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1CcToCornerLimitMin = 74;</code>
-       *
        * @param value The bytes for aa1CcToCornerLimitMin to set.
        * @return This builder for chaining.
        */
       public Builder setAa1CcToCornerLimitMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa1CcToCornerLimitMin_ = value;
         onChanged();
@@ -19579,10 +17744,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa1CornerScoreDifferenceRejectValue_ = "";
-
       /**
        * <code>string aa1CornerScoreDifferenceRejectValue = 75;</code>
-       *
        * @return The aa1CornerScoreDifferenceRejectValue.
        */
       public java.lang.String getAa1CornerScoreDifferenceRejectValue() {
@@ -19597,67 +17760,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa1CornerScoreDifferenceRejectValue = 75;</code>
-       *
        * @return The bytes for aa1CornerScoreDifferenceRejectValue.
        */
       public com.google.protobuf.ByteString
       getAa1CornerScoreDifferenceRejectValueBytes() {
         java.lang.Object ref = aa1CornerScoreDifferenceRejectValue_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa1CornerScoreDifferenceRejectValue_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa1CornerScoreDifferenceRejectValue = 75;</code>
-       *
        * @param value The aa1CornerScoreDifferenceRejectValue to set.
        * @return This builder for chaining.
        */
       public Builder setAa1CornerScoreDifferenceRejectValue(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa1CornerScoreDifferenceRejectValue_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1CornerScoreDifferenceRejectValue = 75;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa1CornerScoreDifferenceRejectValue() {
 
-        aa1CornerScoreDifferenceRejectValue_ = getDefaultInstance().getAa1CornerScoreDifferenceRejectValue();
+          aa1CornerScoreDifferenceRejectValue_ = getDefaultInstance().getAa1CornerScoreDifferenceRejectValue();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1CornerScoreDifferenceRejectValue = 75;</code>
-       *
        * @param value The bytes for aa1CornerScoreDifferenceRejectValue to set.
        * @return This builder for chaining.
        */
       public Builder setAa1CornerScoreDifferenceRejectValueBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa1CornerScoreDifferenceRejectValue_ = value;
         onChanged();
@@ -19665,10 +17820,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa1ZRef_ = "";
-
       /**
        * <code>string aa1ZRef = 76;</code>
-       *
        * @return The aa1ZRef.
        */
       public java.lang.String getAa1ZRef() {
@@ -19683,67 +17836,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa1ZRef = 76;</code>
-       *
        * @return The bytes for aa1ZRef.
        */
       public com.google.protobuf.ByteString
       getAa1ZRefBytes() {
         java.lang.Object ref = aa1ZRef_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa1ZRef_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa1ZRef = 76;</code>
-       *
        * @param value The aa1ZRef to set.
        * @return This builder for chaining.
        */
       public Builder setAa1ZRef(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa1ZRef_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1ZRef = 76;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa1ZRef() {
 
-        aa1ZRef_ = getDefaultInstance().getAa1ZRef();
+          aa1ZRef_ = getDefaultInstance().getAa1ZRef();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1ZRef = 76;</code>
-       *
        * @param value The bytes for aa1ZRef to set.
        * @return This builder for chaining.
        */
       public Builder setAa1ZRefBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa1ZRef_ = value;
         onChanged();
@@ -19751,10 +17896,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa1SrchStep_ = "";
-
       /**
        * <code>string aa1SrchStep = 77;</code>
-       *
        * @return The aa1SrchStep.
        */
       public java.lang.String getAa1SrchStep() {
@@ -19769,67 +17912,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa1SrchStep = 77;</code>
-       *
        * @return The bytes for aa1SrchStep.
        */
       public com.google.protobuf.ByteString
       getAa1SrchStepBytes() {
         java.lang.Object ref = aa1SrchStep_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa1SrchStep_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa1SrchStep = 77;</code>
-       *
        * @param value The aa1SrchStep to set.
        * @return This builder for chaining.
        */
       public Builder setAa1SrchStep(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa1SrchStep_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1SrchStep = 77;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa1SrchStep() {
 
-        aa1SrchStep_ = getDefaultInstance().getAa1SrchStep();
+          aa1SrchStep_ = getDefaultInstance().getAa1SrchStep();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1SrchStep = 77;</code>
-       *
        * @param value The bytes for aa1SrchStep to set.
        * @return This builder for chaining.
        */
       public Builder setAa1SrchStepBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa1SrchStep_ = value;
         onChanged();
@@ -19837,10 +17972,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa1GoldenGlueThicknessMin_ = "";
-
       /**
        * <code>string aa1GoldenGlueThicknessMin = 78;</code>
-       *
        * @return The aa1GoldenGlueThicknessMin.
        */
       public java.lang.String getAa1GoldenGlueThicknessMin() {
@@ -19855,67 +17988,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa1GoldenGlueThicknessMin = 78;</code>
-       *
        * @return The bytes for aa1GoldenGlueThicknessMin.
        */
       public com.google.protobuf.ByteString
       getAa1GoldenGlueThicknessMinBytes() {
         java.lang.Object ref = aa1GoldenGlueThicknessMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa1GoldenGlueThicknessMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa1GoldenGlueThicknessMin = 78;</code>
-       *
        * @param value The aa1GoldenGlueThicknessMin to set.
        * @return This builder for chaining.
        */
       public Builder setAa1GoldenGlueThicknessMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa1GoldenGlueThicknessMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1GoldenGlueThicknessMin = 78;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa1GoldenGlueThicknessMin() {
 
-        aa1GoldenGlueThicknessMin_ = getDefaultInstance().getAa1GoldenGlueThicknessMin();
+          aa1GoldenGlueThicknessMin_ = getDefaultInstance().getAa1GoldenGlueThicknessMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1GoldenGlueThicknessMin = 78;</code>
-       *
        * @param value The bytes for aa1GoldenGlueThicknessMin to set.
        * @return This builder for chaining.
        */
       public Builder setAa1GoldenGlueThicknessMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa1GoldenGlueThicknessMin_ = value;
         onChanged();
@@ -19923,10 +18048,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa1GoldenGlueThicknessMax_ = "";
-
       /**
        * <code>string aa1GoldenGlueThicknessMax = 79;</code>
-       *
        * @return The aa1GoldenGlueThicknessMax.
        */
       public java.lang.String getAa1GoldenGlueThicknessMax() {
@@ -19941,67 +18064,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa1GoldenGlueThicknessMax = 79;</code>
-       *
        * @return The bytes for aa1GoldenGlueThicknessMax.
        */
       public com.google.protobuf.ByteString
       getAa1GoldenGlueThicknessMaxBytes() {
         java.lang.Object ref = aa1GoldenGlueThicknessMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa1GoldenGlueThicknessMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa1GoldenGlueThicknessMax = 79;</code>
-       *
        * @param value The aa1GoldenGlueThicknessMax to set.
        * @return This builder for chaining.
        */
       public Builder setAa1GoldenGlueThicknessMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa1GoldenGlueThicknessMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1GoldenGlueThicknessMax = 79;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa1GoldenGlueThicknessMax() {
 
-        aa1GoldenGlueThicknessMax_ = getDefaultInstance().getAa1GoldenGlueThicknessMax();
+          aa1GoldenGlueThicknessMax_ = getDefaultInstance().getAa1GoldenGlueThicknessMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa1GoldenGlueThicknessMax = 79;</code>
-       *
        * @param value The bytes for aa1GoldenGlueThicknessMax to set.
        * @return This builder for chaining.
        */
       public Builder setAa1GoldenGlueThicknessMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa1GoldenGlueThicknessMax_ = value;
         onChanged();
@@ -20009,10 +18124,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa2RoiCc_ = "";
-
       /**
        * <code>string aa2RoiCc = 80;</code>
-       *
        * @return The aa2RoiCc.
        */
       public java.lang.String getAa2RoiCc() {
@@ -20027,67 +18140,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa2RoiCc = 80;</code>
-       *
        * @return The bytes for aa2RoiCc.
        */
       public com.google.protobuf.ByteString
       getAa2RoiCcBytes() {
         java.lang.Object ref = aa2RoiCc_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa2RoiCc_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa2RoiCc = 80;</code>
-       *
        * @param value The aa2RoiCc to set.
        * @return This builder for chaining.
        */
       public Builder setAa2RoiCc(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa2RoiCc_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2RoiCc = 80;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa2RoiCc() {
 
-        aa2RoiCc_ = getDefaultInstance().getAa2RoiCc();
+          aa2RoiCc_ = getDefaultInstance().getAa2RoiCc();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2RoiCc = 80;</code>
-       *
        * @param value The bytes for aa2RoiCc to set.
        * @return This builder for chaining.
        */
       public Builder setAa2RoiCcBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa2RoiCc_ = value;
         onChanged();
@@ -20095,10 +18200,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa2RoiUl_ = "";
-
       /**
        * <code>string aa2RoiUl = 81;</code>
-       *
        * @return The aa2RoiUl.
        */
       public java.lang.String getAa2RoiUl() {
@@ -20113,67 +18216,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa2RoiUl = 81;</code>
-       *
        * @return The bytes for aa2RoiUl.
        */
       public com.google.protobuf.ByteString
       getAa2RoiUlBytes() {
         java.lang.Object ref = aa2RoiUl_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa2RoiUl_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa2RoiUl = 81;</code>
-       *
        * @param value The aa2RoiUl to set.
        * @return This builder for chaining.
        */
       public Builder setAa2RoiUl(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa2RoiUl_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2RoiUl = 81;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa2RoiUl() {
 
-        aa2RoiUl_ = getDefaultInstance().getAa2RoiUl();
+          aa2RoiUl_ = getDefaultInstance().getAa2RoiUl();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2RoiUl = 81;</code>
-       *
        * @param value The bytes for aa2RoiUl to set.
        * @return This builder for chaining.
        */
       public Builder setAa2RoiUlBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa2RoiUl_ = value;
         onChanged();
@@ -20181,10 +18276,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa2RoiUr_ = "";
-
       /**
        * <code>string aa2RoiUr = 82;</code>
-       *
        * @return The aa2RoiUr.
        */
       public java.lang.String getAa2RoiUr() {
@@ -20199,67 +18292,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa2RoiUr = 82;</code>
-       *
        * @return The bytes for aa2RoiUr.
        */
       public com.google.protobuf.ByteString
       getAa2RoiUrBytes() {
         java.lang.Object ref = aa2RoiUr_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa2RoiUr_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa2RoiUr = 82;</code>
-       *
        * @param value The aa2RoiUr to set.
        * @return This builder for chaining.
        */
       public Builder setAa2RoiUr(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa2RoiUr_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2RoiUr = 82;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa2RoiUr() {
 
-        aa2RoiUr_ = getDefaultInstance().getAa2RoiUr();
+          aa2RoiUr_ = getDefaultInstance().getAa2RoiUr();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2RoiUr = 82;</code>
-       *
        * @param value The bytes for aa2RoiUr to set.
        * @return This builder for chaining.
        */
       public Builder setAa2RoiUrBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa2RoiUr_ = value;
         onChanged();
@@ -20267,10 +18352,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa2RoiLl_ = "";
-
       /**
        * <code>string aa2RoiLl = 83;</code>
-       *
        * @return The aa2RoiLl.
        */
       public java.lang.String getAa2RoiLl() {
@@ -20285,67 +18368,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa2RoiLl = 83;</code>
-       *
        * @return The bytes for aa2RoiLl.
        */
       public com.google.protobuf.ByteString
       getAa2RoiLlBytes() {
         java.lang.Object ref = aa2RoiLl_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa2RoiLl_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa2RoiLl = 83;</code>
-       *
        * @param value The aa2RoiLl to set.
        * @return This builder for chaining.
        */
       public Builder setAa2RoiLl(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa2RoiLl_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2RoiLl = 83;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa2RoiLl() {
 
-        aa2RoiLl_ = getDefaultInstance().getAa2RoiLl();
+          aa2RoiLl_ = getDefaultInstance().getAa2RoiLl();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2RoiLl = 83;</code>
-       *
        * @param value The bytes for aa2RoiLl to set.
        * @return This builder for chaining.
        */
       public Builder setAa2RoiLlBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa2RoiLl_ = value;
         onChanged();
@@ -20353,10 +18428,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa2RoiLr_ = "";
-
       /**
        * <code>string aa2RoiLr = 84;</code>
-       *
        * @return The aa2RoiLr.
        */
       public java.lang.String getAa2RoiLr() {
@@ -20371,67 +18444,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa2RoiLr = 84;</code>
-       *
        * @return The bytes for aa2RoiLr.
        */
       public com.google.protobuf.ByteString
       getAa2RoiLrBytes() {
         java.lang.Object ref = aa2RoiLr_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa2RoiLr_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa2RoiLr = 84;</code>
-       *
        * @param value The aa2RoiLr to set.
        * @return This builder for chaining.
        */
       public Builder setAa2RoiLr(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa2RoiLr_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2RoiLr = 84;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa2RoiLr() {
 
-        aa2RoiLr_ = getDefaultInstance().getAa2RoiLr();
+          aa2RoiLr_ = getDefaultInstance().getAa2RoiLr();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2RoiLr = 84;</code>
-       *
        * @param value The bytes for aa2RoiLr to set.
        * @return This builder for chaining.
        */
       public Builder setAa2RoiLrBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa2RoiLr_ = value;
         onChanged();
@@ -20439,14 +18504,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa2Target_ = "";
-
       /**
        * <pre>
        * 新增 2024-10-28
        * </pre>
        *
        * <code>string aa2Target = 85;</code>
-       *
        * @return The aa2Target.
        */
       public java.lang.String getAa2Target() {
@@ -20461,83 +18524,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 新增 2024-10-28
        * </pre>
        *
        * <code>string aa2Target = 85;</code>
-       *
        * @return The bytes for aa2Target.
        */
       public com.google.protobuf.ByteString
       getAa2TargetBytes() {
         java.lang.Object ref = aa2Target_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa2Target_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 新增 2024-10-28
        * </pre>
        *
        * <code>string aa2Target = 85;</code>
-       *
        * @param value The aa2Target to set.
        * @return This builder for chaining.
        */
       public Builder setAa2Target(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa2Target_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 新增 2024-10-28
        * </pre>
        *
        * <code>string aa2Target = 85;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa2Target() {
 
-        aa2Target_ = getDefaultInstance().getAa2Target();
+          aa2Target_ = getDefaultInstance().getAa2Target();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 新增 2024-10-28
        * </pre>
        *
        * <code>string aa2Target = 85;</code>
-       *
        * @param value The bytes for aa2Target to set.
        * @return This builder for chaining.
        */
       public Builder setAa2TargetBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa2Target_ = value;
         onChanged();
@@ -20545,10 +18600,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa2CcToCornerLimit_ = "";
-
       /**
        * <code>string aa2CcToCornerLimit = 86;</code>
-       *
        * @return The aa2CcToCornerLimit.
        */
       public java.lang.String getAa2CcToCornerLimit() {
@@ -20563,67 +18616,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa2CcToCornerLimit = 86;</code>
-       *
        * @return The bytes for aa2CcToCornerLimit.
        */
       public com.google.protobuf.ByteString
       getAa2CcToCornerLimitBytes() {
         java.lang.Object ref = aa2CcToCornerLimit_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa2CcToCornerLimit_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa2CcToCornerLimit = 86;</code>
-       *
        * @param value The aa2CcToCornerLimit to set.
        * @return This builder for chaining.
        */
       public Builder setAa2CcToCornerLimit(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa2CcToCornerLimit_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2CcToCornerLimit = 86;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa2CcToCornerLimit() {
 
-        aa2CcToCornerLimit_ = getDefaultInstance().getAa2CcToCornerLimit();
+          aa2CcToCornerLimit_ = getDefaultInstance().getAa2CcToCornerLimit();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2CcToCornerLimit = 86;</code>
-       *
        * @param value The bytes for aa2CcToCornerLimit to set.
        * @return This builder for chaining.
        */
       public Builder setAa2CcToCornerLimitBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa2CcToCornerLimit_ = value;
         onChanged();
@@ -20631,10 +18676,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa2CcToCornerLimitMin_ = "";
-
       /**
        * <code>string aa2CcToCornerLimitMin = 87;</code>
-       *
        * @return The aa2CcToCornerLimitMin.
        */
       public java.lang.String getAa2CcToCornerLimitMin() {
@@ -20649,67 +18692,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa2CcToCornerLimitMin = 87;</code>
-       *
        * @return The bytes for aa2CcToCornerLimitMin.
        */
       public com.google.protobuf.ByteString
       getAa2CcToCornerLimitMinBytes() {
         java.lang.Object ref = aa2CcToCornerLimitMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa2CcToCornerLimitMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa2CcToCornerLimitMin = 87;</code>
-       *
        * @param value The aa2CcToCornerLimitMin to set.
        * @return This builder for chaining.
        */
       public Builder setAa2CcToCornerLimitMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa2CcToCornerLimitMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2CcToCornerLimitMin = 87;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa2CcToCornerLimitMin() {
 
-        aa2CcToCornerLimitMin_ = getDefaultInstance().getAa2CcToCornerLimitMin();
+          aa2CcToCornerLimitMin_ = getDefaultInstance().getAa2CcToCornerLimitMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2CcToCornerLimitMin = 87;</code>
-       *
        * @param value The bytes for aa2CcToCornerLimitMin to set.
        * @return This builder for chaining.
        */
       public Builder setAa2CcToCornerLimitMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa2CcToCornerLimitMin_ = value;
         onChanged();
@@ -20717,10 +18752,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa2CornerScoreDifferenceRejectValue_ = "";
-
       /**
        * <code>string aa2CornerScoreDifferenceRejectValue = 88;</code>
-       *
        * @return The aa2CornerScoreDifferenceRejectValue.
        */
       public java.lang.String getAa2CornerScoreDifferenceRejectValue() {
@@ -20735,67 +18768,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa2CornerScoreDifferenceRejectValue = 88;</code>
-       *
        * @return The bytes for aa2CornerScoreDifferenceRejectValue.
        */
       public com.google.protobuf.ByteString
       getAa2CornerScoreDifferenceRejectValueBytes() {
         java.lang.Object ref = aa2CornerScoreDifferenceRejectValue_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa2CornerScoreDifferenceRejectValue_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa2CornerScoreDifferenceRejectValue = 88;</code>
-       *
        * @param value The aa2CornerScoreDifferenceRejectValue to set.
        * @return This builder for chaining.
        */
       public Builder setAa2CornerScoreDifferenceRejectValue(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa2CornerScoreDifferenceRejectValue_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2CornerScoreDifferenceRejectValue = 88;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa2CornerScoreDifferenceRejectValue() {
 
-        aa2CornerScoreDifferenceRejectValue_ = getDefaultInstance().getAa2CornerScoreDifferenceRejectValue();
+          aa2CornerScoreDifferenceRejectValue_ = getDefaultInstance().getAa2CornerScoreDifferenceRejectValue();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2CornerScoreDifferenceRejectValue = 88;</code>
-       *
        * @param value The bytes for aa2CornerScoreDifferenceRejectValue to set.
        * @return This builder for chaining.
        */
       public Builder setAa2CornerScoreDifferenceRejectValueBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa2CornerScoreDifferenceRejectValue_ = value;
         onChanged();
@@ -20803,10 +18828,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa2ZRef_ = "";
-
       /**
        * <code>string aa2ZRef = 89;</code>
-       *
        * @return The aa2ZRef.
        */
       public java.lang.String getAa2ZRef() {
@@ -20821,67 +18844,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa2ZRef = 89;</code>
-       *
        * @return The bytes for aa2ZRef.
        */
       public com.google.protobuf.ByteString
       getAa2ZRefBytes() {
         java.lang.Object ref = aa2ZRef_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa2ZRef_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa2ZRef = 89;</code>
-       *
        * @param value The aa2ZRef to set.
        * @return This builder for chaining.
        */
       public Builder setAa2ZRef(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa2ZRef_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2ZRef = 89;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa2ZRef() {
 
-        aa2ZRef_ = getDefaultInstance().getAa2ZRef();
+          aa2ZRef_ = getDefaultInstance().getAa2ZRef();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2ZRef = 89;</code>
-       *
        * @param value The bytes for aa2ZRef to set.
        * @return This builder for chaining.
        */
       public Builder setAa2ZRefBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa2ZRef_ = value;
         onChanged();
@@ -20889,10 +18904,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa2SrchStep_ = "";
-
       /**
        * <code>string aa2SrchStep = 90;</code>
-       *
        * @return The aa2SrchStep.
        */
       public java.lang.String getAa2SrchStep() {
@@ -20907,67 +18920,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa2SrchStep = 90;</code>
-       *
        * @return The bytes for aa2SrchStep.
        */
       public com.google.protobuf.ByteString
       getAa2SrchStepBytes() {
         java.lang.Object ref = aa2SrchStep_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa2SrchStep_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa2SrchStep = 90;</code>
-       *
        * @param value The aa2SrchStep to set.
        * @return This builder for chaining.
        */
       public Builder setAa2SrchStep(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa2SrchStep_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2SrchStep = 90;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa2SrchStep() {
 
-        aa2SrchStep_ = getDefaultInstance().getAa2SrchStep();
+          aa2SrchStep_ = getDefaultInstance().getAa2SrchStep();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2SrchStep = 90;</code>
-       *
        * @param value The bytes for aa2SrchStep to set.
        * @return This builder for chaining.
        */
       public Builder setAa2SrchStepBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa2SrchStep_ = value;
         onChanged();
@@ -20975,10 +18980,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa2GoldenGlueThicknessMin_ = "";
-
       /**
        * <code>string aa2GoldenGlueThicknessMin = 91;</code>
-       *
        * @return The aa2GoldenGlueThicknessMin.
        */
       public java.lang.String getAa2GoldenGlueThicknessMin() {
@@ -20993,67 +18996,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa2GoldenGlueThicknessMin = 91;</code>
-       *
        * @return The bytes for aa2GoldenGlueThicknessMin.
        */
       public com.google.protobuf.ByteString
       getAa2GoldenGlueThicknessMinBytes() {
         java.lang.Object ref = aa2GoldenGlueThicknessMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa2GoldenGlueThicknessMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa2GoldenGlueThicknessMin = 91;</code>
-       *
        * @param value The aa2GoldenGlueThicknessMin to set.
        * @return This builder for chaining.
        */
       public Builder setAa2GoldenGlueThicknessMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa2GoldenGlueThicknessMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2GoldenGlueThicknessMin = 91;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa2GoldenGlueThicknessMin() {
 
-        aa2GoldenGlueThicknessMin_ = getDefaultInstance().getAa2GoldenGlueThicknessMin();
+          aa2GoldenGlueThicknessMin_ = getDefaultInstance().getAa2GoldenGlueThicknessMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2GoldenGlueThicknessMin = 91;</code>
-       *
        * @param value The bytes for aa2GoldenGlueThicknessMin to set.
        * @return This builder for chaining.
        */
       public Builder setAa2GoldenGlueThicknessMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa2GoldenGlueThicknessMin_ = value;
         onChanged();
@@ -21061,10 +19056,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa2GoldenGlueThicknessMax_ = "";
-
       /**
        * <code>string aa2GoldenGlueThicknessMax = 92;</code>
-       *
        * @return The aa2GoldenGlueThicknessMax.
        */
       public java.lang.String getAa2GoldenGlueThicknessMax() {
@@ -21079,67 +19072,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa2GoldenGlueThicknessMax = 92;</code>
-       *
        * @return The bytes for aa2GoldenGlueThicknessMax.
        */
       public com.google.protobuf.ByteString
       getAa2GoldenGlueThicknessMaxBytes() {
         java.lang.Object ref = aa2GoldenGlueThicknessMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa2GoldenGlueThicknessMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa2GoldenGlueThicknessMax = 92;</code>
-       *
        * @param value The aa2GoldenGlueThicknessMax to set.
        * @return This builder for chaining.
        */
       public Builder setAa2GoldenGlueThicknessMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa2GoldenGlueThicknessMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2GoldenGlueThicknessMax = 92;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa2GoldenGlueThicknessMax() {
 
-        aa2GoldenGlueThicknessMax_ = getDefaultInstance().getAa2GoldenGlueThicknessMax();
+          aa2GoldenGlueThicknessMax_ = getDefaultInstance().getAa2GoldenGlueThicknessMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa2GoldenGlueThicknessMax = 92;</code>
-       *
        * @param value The bytes for aa2GoldenGlueThicknessMax to set.
        * @return This builder for chaining.
        */
       public Builder setAa2GoldenGlueThicknessMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa2GoldenGlueThicknessMax_ = value;
         onChanged();
@@ -21147,10 +19132,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa3RoiCc_ = "";
-
       /**
        * <code>string aa3RoiCc = 93;</code>
-       *
        * @return The aa3RoiCc.
        */
       public java.lang.String getAa3RoiCc() {
@@ -21165,67 +19148,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa3RoiCc = 93;</code>
-       *
        * @return The bytes for aa3RoiCc.
        */
       public com.google.protobuf.ByteString
       getAa3RoiCcBytes() {
         java.lang.Object ref = aa3RoiCc_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa3RoiCc_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa3RoiCc = 93;</code>
-       *
        * @param value The aa3RoiCc to set.
        * @return This builder for chaining.
        */
       public Builder setAa3RoiCc(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa3RoiCc_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3RoiCc = 93;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa3RoiCc() {
 
-        aa3RoiCc_ = getDefaultInstance().getAa3RoiCc();
+          aa3RoiCc_ = getDefaultInstance().getAa3RoiCc();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3RoiCc = 93;</code>
-       *
        * @param value The bytes for aa3RoiCc to set.
        * @return This builder for chaining.
        */
       public Builder setAa3RoiCcBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa3RoiCc_ = value;
         onChanged();
@@ -21233,10 +19208,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa3RoiUl_ = "";
-
       /**
        * <code>string aa3RoiUl = 94;</code>
-       *
        * @return The aa3RoiUl.
        */
       public java.lang.String getAa3RoiUl() {
@@ -21251,67 +19224,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa3RoiUl = 94;</code>
-       *
        * @return The bytes for aa3RoiUl.
        */
       public com.google.protobuf.ByteString
       getAa3RoiUlBytes() {
         java.lang.Object ref = aa3RoiUl_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa3RoiUl_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa3RoiUl = 94;</code>
-       *
        * @param value The aa3RoiUl to set.
        * @return This builder for chaining.
        */
       public Builder setAa3RoiUl(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa3RoiUl_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3RoiUl = 94;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa3RoiUl() {
 
-        aa3RoiUl_ = getDefaultInstance().getAa3RoiUl();
+          aa3RoiUl_ = getDefaultInstance().getAa3RoiUl();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3RoiUl = 94;</code>
-       *
        * @param value The bytes for aa3RoiUl to set.
        * @return This builder for chaining.
        */
       public Builder setAa3RoiUlBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa3RoiUl_ = value;
         onChanged();
@@ -21319,10 +19284,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa3RoiUr_ = "";
-
       /**
        * <code>string aa3RoiUr = 95;</code>
-       *
        * @return The aa3RoiUr.
        */
       public java.lang.String getAa3RoiUr() {
@@ -21337,67 +19300,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa3RoiUr = 95;</code>
-       *
        * @return The bytes for aa3RoiUr.
        */
       public com.google.protobuf.ByteString
       getAa3RoiUrBytes() {
         java.lang.Object ref = aa3RoiUr_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa3RoiUr_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa3RoiUr = 95;</code>
-       *
        * @param value The aa3RoiUr to set.
        * @return This builder for chaining.
        */
       public Builder setAa3RoiUr(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa3RoiUr_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3RoiUr = 95;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa3RoiUr() {
 
-        aa3RoiUr_ = getDefaultInstance().getAa3RoiUr();
+          aa3RoiUr_ = getDefaultInstance().getAa3RoiUr();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3RoiUr = 95;</code>
-       *
        * @param value The bytes for aa3RoiUr to set.
        * @return This builder for chaining.
        */
       public Builder setAa3RoiUrBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa3RoiUr_ = value;
         onChanged();
@@ -21405,10 +19360,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa3RoiLl_ = "";
-
       /**
        * <code>string aa3RoiLl = 96;</code>
-       *
        * @return The aa3RoiLl.
        */
       public java.lang.String getAa3RoiLl() {
@@ -21423,67 +19376,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa3RoiLl = 96;</code>
-       *
        * @return The bytes for aa3RoiLl.
        */
       public com.google.protobuf.ByteString
       getAa3RoiLlBytes() {
         java.lang.Object ref = aa3RoiLl_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa3RoiLl_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa3RoiLl = 96;</code>
-       *
        * @param value The aa3RoiLl to set.
        * @return This builder for chaining.
        */
       public Builder setAa3RoiLl(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa3RoiLl_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3RoiLl = 96;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa3RoiLl() {
 
-        aa3RoiLl_ = getDefaultInstance().getAa3RoiLl();
+          aa3RoiLl_ = getDefaultInstance().getAa3RoiLl();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3RoiLl = 96;</code>
-       *
        * @param value The bytes for aa3RoiLl to set.
        * @return This builder for chaining.
        */
       public Builder setAa3RoiLlBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa3RoiLl_ = value;
         onChanged();
@@ -21491,10 +19436,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa3RoiLr_ = "";
-
       /**
        * <code>string aa3RoiLr = 97;</code>
-       *
        * @return The aa3RoiLr.
        */
       public java.lang.String getAa3RoiLr() {
@@ -21509,67 +19452,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa3RoiLr = 97;</code>
-       *
        * @return The bytes for aa3RoiLr.
        */
       public com.google.protobuf.ByteString
       getAa3RoiLrBytes() {
         java.lang.Object ref = aa3RoiLr_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa3RoiLr_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa3RoiLr = 97;</code>
-       *
        * @param value The aa3RoiLr to set.
        * @return This builder for chaining.
        */
       public Builder setAa3RoiLr(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa3RoiLr_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3RoiLr = 97;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa3RoiLr() {
 
-        aa3RoiLr_ = getDefaultInstance().getAa3RoiLr();
+          aa3RoiLr_ = getDefaultInstance().getAa3RoiLr();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3RoiLr = 97;</code>
-       *
        * @param value The bytes for aa3RoiLr to set.
        * @return This builder for chaining.
        */
       public Builder setAa3RoiLrBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa3RoiLr_ = value;
         onChanged();
@@ -21577,14 +19512,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa3Target_ = "";
-
       /**
        * <pre>
        * 新增 2024-10-28
        * </pre>
        *
        * <code>string aa3Target = 98;</code>
-       *
        * @return The aa3Target.
        */
       public java.lang.String getAa3Target() {
@@ -21599,83 +19532,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 新增 2024-10-28
        * </pre>
        *
        * <code>string aa3Target = 98;</code>
-       *
        * @return The bytes for aa3Target.
        */
       public com.google.protobuf.ByteString
       getAa3TargetBytes() {
         java.lang.Object ref = aa3Target_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa3Target_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 新增 2024-10-28
        * </pre>
        *
        * <code>string aa3Target = 98;</code>
-       *
        * @param value The aa3Target to set.
        * @return This builder for chaining.
        */
       public Builder setAa3Target(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa3Target_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 新增 2024-10-28
        * </pre>
        *
        * <code>string aa3Target = 98;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa3Target() {
 
-        aa3Target_ = getDefaultInstance().getAa3Target();
+          aa3Target_ = getDefaultInstance().getAa3Target();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 新增 2024-10-28
        * </pre>
        *
        * <code>string aa3Target = 98;</code>
-       *
        * @param value The bytes for aa3Target to set.
        * @return This builder for chaining.
        */
       public Builder setAa3TargetBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa3Target_ = value;
         onChanged();
@@ -21683,10 +19608,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa3CcToCornerLimit_ = "";
-
       /**
        * <code>string aa3CcToCornerLimit = 99;</code>
-       *
        * @return The aa3CcToCornerLimit.
        */
       public java.lang.String getAa3CcToCornerLimit() {
@@ -21701,67 +19624,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa3CcToCornerLimit = 99;</code>
-       *
        * @return The bytes for aa3CcToCornerLimit.
        */
       public com.google.protobuf.ByteString
       getAa3CcToCornerLimitBytes() {
         java.lang.Object ref = aa3CcToCornerLimit_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa3CcToCornerLimit_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa3CcToCornerLimit = 99;</code>
-       *
        * @param value The aa3CcToCornerLimit to set.
        * @return This builder for chaining.
        */
       public Builder setAa3CcToCornerLimit(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa3CcToCornerLimit_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3CcToCornerLimit = 99;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa3CcToCornerLimit() {
 
-        aa3CcToCornerLimit_ = getDefaultInstance().getAa3CcToCornerLimit();
+          aa3CcToCornerLimit_ = getDefaultInstance().getAa3CcToCornerLimit();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3CcToCornerLimit = 99;</code>
-       *
        * @param value The bytes for aa3CcToCornerLimit to set.
        * @return This builder for chaining.
        */
       public Builder setAa3CcToCornerLimitBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa3CcToCornerLimit_ = value;
         onChanged();
@@ -21769,10 +19684,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa3CcToCornerLimitMin_ = "";
-
       /**
        * <code>string aa3CcToCornerLimitMin = 100;</code>
-       *
        * @return The aa3CcToCornerLimitMin.
        */
       public java.lang.String getAa3CcToCornerLimitMin() {
@@ -21787,67 +19700,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa3CcToCornerLimitMin = 100;</code>
-       *
        * @return The bytes for aa3CcToCornerLimitMin.
        */
       public com.google.protobuf.ByteString
       getAa3CcToCornerLimitMinBytes() {
         java.lang.Object ref = aa3CcToCornerLimitMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa3CcToCornerLimitMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa3CcToCornerLimitMin = 100;</code>
-       *
        * @param value The aa3CcToCornerLimitMin to set.
        * @return This builder for chaining.
        */
       public Builder setAa3CcToCornerLimitMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa3CcToCornerLimitMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3CcToCornerLimitMin = 100;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa3CcToCornerLimitMin() {
 
-        aa3CcToCornerLimitMin_ = getDefaultInstance().getAa3CcToCornerLimitMin();
+          aa3CcToCornerLimitMin_ = getDefaultInstance().getAa3CcToCornerLimitMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3CcToCornerLimitMin = 100;</code>
-       *
        * @param value The bytes for aa3CcToCornerLimitMin to set.
        * @return This builder for chaining.
        */
       public Builder setAa3CcToCornerLimitMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa3CcToCornerLimitMin_ = value;
         onChanged();
@@ -21855,10 +19760,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa3CornerScoreDifferenceRejectValue_ = "";
-
       /**
        * <code>string aa3CornerScoreDifferenceRejectValue = 101;</code>
-       *
        * @return The aa3CornerScoreDifferenceRejectValue.
        */
       public java.lang.String getAa3CornerScoreDifferenceRejectValue() {
@@ -21873,67 +19776,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa3CornerScoreDifferenceRejectValue = 101;</code>
-       *
        * @return The bytes for aa3CornerScoreDifferenceRejectValue.
        */
       public com.google.protobuf.ByteString
       getAa3CornerScoreDifferenceRejectValueBytes() {
         java.lang.Object ref = aa3CornerScoreDifferenceRejectValue_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa3CornerScoreDifferenceRejectValue_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa3CornerScoreDifferenceRejectValue = 101;</code>
-       *
        * @param value The aa3CornerScoreDifferenceRejectValue to set.
        * @return This builder for chaining.
        */
       public Builder setAa3CornerScoreDifferenceRejectValue(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa3CornerScoreDifferenceRejectValue_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3CornerScoreDifferenceRejectValue = 101;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa3CornerScoreDifferenceRejectValue() {
 
-        aa3CornerScoreDifferenceRejectValue_ = getDefaultInstance().getAa3CornerScoreDifferenceRejectValue();
+          aa3CornerScoreDifferenceRejectValue_ = getDefaultInstance().getAa3CornerScoreDifferenceRejectValue();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3CornerScoreDifferenceRejectValue = 101;</code>
-       *
        * @param value The bytes for aa3CornerScoreDifferenceRejectValue to set.
        * @return This builder for chaining.
        */
       public Builder setAa3CornerScoreDifferenceRejectValueBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa3CornerScoreDifferenceRejectValue_ = value;
         onChanged();
@@ -21941,10 +19836,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa3ZRef_ = "";
-
       /**
        * <code>string aa3ZRef = 102;</code>
-       *
        * @return The aa3ZRef.
        */
       public java.lang.String getAa3ZRef() {
@@ -21959,67 +19852,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa3ZRef = 102;</code>
-       *
        * @return The bytes for aa3ZRef.
        */
       public com.google.protobuf.ByteString
       getAa3ZRefBytes() {
         java.lang.Object ref = aa3ZRef_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa3ZRef_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa3ZRef = 102;</code>
-       *
        * @param value The aa3ZRef to set.
        * @return This builder for chaining.
        */
       public Builder setAa3ZRef(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa3ZRef_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3ZRef = 102;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa3ZRef() {
 
-        aa3ZRef_ = getDefaultInstance().getAa3ZRef();
+          aa3ZRef_ = getDefaultInstance().getAa3ZRef();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3ZRef = 102;</code>
-       *
        * @param value The bytes for aa3ZRef to set.
        * @return This builder for chaining.
        */
       public Builder setAa3ZRefBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa3ZRef_ = value;
         onChanged();
@@ -22027,10 +19912,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa3SrchStep_ = "";
-
       /**
        * <code>string aa3SrchStep = 103;</code>
-       *
        * @return The aa3SrchStep.
        */
       public java.lang.String getAa3SrchStep() {
@@ -22045,67 +19928,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa3SrchStep = 103;</code>
-       *
        * @return The bytes for aa3SrchStep.
        */
       public com.google.protobuf.ByteString
       getAa3SrchStepBytes() {
         java.lang.Object ref = aa3SrchStep_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa3SrchStep_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa3SrchStep = 103;</code>
-       *
        * @param value The aa3SrchStep to set.
        * @return This builder for chaining.
        */
       public Builder setAa3SrchStep(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa3SrchStep_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3SrchStep = 103;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa3SrchStep() {
 
-        aa3SrchStep_ = getDefaultInstance().getAa3SrchStep();
+          aa3SrchStep_ = getDefaultInstance().getAa3SrchStep();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3SrchStep = 103;</code>
-       *
        * @param value The bytes for aa3SrchStep to set.
        * @return This builder for chaining.
        */
       public Builder setAa3SrchStepBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa3SrchStep_ = value;
         onChanged();
@@ -22113,10 +19988,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa3GoldenGlueThicknessMin_ = "";
-
       /**
        * <code>string aa3GoldenGlueThicknessMin = 104;</code>
-       *
        * @return The aa3GoldenGlueThicknessMin.
        */
       public java.lang.String getAa3GoldenGlueThicknessMin() {
@@ -22131,67 +20004,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa3GoldenGlueThicknessMin = 104;</code>
-       *
        * @return The bytes for aa3GoldenGlueThicknessMin.
        */
       public com.google.protobuf.ByteString
       getAa3GoldenGlueThicknessMinBytes() {
         java.lang.Object ref = aa3GoldenGlueThicknessMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa3GoldenGlueThicknessMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa3GoldenGlueThicknessMin = 104;</code>
-       *
        * @param value The aa3GoldenGlueThicknessMin to set.
        * @return This builder for chaining.
        */
       public Builder setAa3GoldenGlueThicknessMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa3GoldenGlueThicknessMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3GoldenGlueThicknessMin = 104;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa3GoldenGlueThicknessMin() {
 
-        aa3GoldenGlueThicknessMin_ = getDefaultInstance().getAa3GoldenGlueThicknessMin();
+          aa3GoldenGlueThicknessMin_ = getDefaultInstance().getAa3GoldenGlueThicknessMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3GoldenGlueThicknessMin = 104;</code>
-       *
        * @param value The bytes for aa3GoldenGlueThicknessMin to set.
        * @return This builder for chaining.
        */
       public Builder setAa3GoldenGlueThicknessMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa3GoldenGlueThicknessMin_ = value;
         onChanged();
@@ -22199,10 +20064,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object aa3GoldenGlueThicknessMax_ = "";
-
       /**
        * <code>string aa3GoldenGlueThicknessMax = 105;</code>
-       *
        * @return The aa3GoldenGlueThicknessMax.
        */
       public java.lang.String getAa3GoldenGlueThicknessMax() {
@@ -22217,67 +20080,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string aa3GoldenGlueThicknessMax = 105;</code>
-       *
        * @return The bytes for aa3GoldenGlueThicknessMax.
        */
       public com.google.protobuf.ByteString
       getAa3GoldenGlueThicknessMaxBytes() {
         java.lang.Object ref = aa3GoldenGlueThicknessMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           aa3GoldenGlueThicknessMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string aa3GoldenGlueThicknessMax = 105;</code>
-       *
        * @param value The aa3GoldenGlueThicknessMax to set.
        * @return This builder for chaining.
        */
       public Builder setAa3GoldenGlueThicknessMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         aa3GoldenGlueThicknessMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3GoldenGlueThicknessMax = 105;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearAa3GoldenGlueThicknessMax() {
 
-        aa3GoldenGlueThicknessMax_ = getDefaultInstance().getAa3GoldenGlueThicknessMax();
+          aa3GoldenGlueThicknessMax_ = getDefaultInstance().getAa3GoldenGlueThicknessMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string aa3GoldenGlueThicknessMax = 105;</code>
-       *
        * @param value The bytes for aa3GoldenGlueThicknessMax to set.
        * @return This builder for chaining.
        */
       public Builder setAa3GoldenGlueThicknessMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         aa3GoldenGlueThicknessMax_ = value;
         onChanged();
@@ -22285,14 +20140,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfCheckF_ = "";
-
       /**
        * <pre>
        * mtfCheck Item 指标
        * </pre>
        *
        * <code>string mtfCheckF = 106;</code>
-       *
        * @return The mtfCheckF.
        */
       public java.lang.String getMtfCheckF() {
@@ -22307,83 +20160,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * mtfCheck Item 指标
        * </pre>
        *
        * <code>string mtfCheckF = 106;</code>
-       *
        * @return The bytes for mtfCheckF.
        */
       public com.google.protobuf.ByteString
       getMtfCheckFBytes() {
         java.lang.Object ref = mtfCheckF_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfCheckF_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * mtfCheck Item 指标
        * </pre>
        *
        * <code>string mtfCheckF = 106;</code>
-       *
        * @param value The mtfCheckF to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheckF(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfCheckF_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * mtfCheck Item 指标
        * </pre>
        *
        * <code>string mtfCheckF = 106;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfCheckF() {
 
-        mtfCheckF_ = getDefaultInstance().getMtfCheckF();
+          mtfCheckF_ = getDefaultInstance().getMtfCheckF();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * mtfCheck Item 指标
        * </pre>
        *
        * <code>string mtfCheckF = 106;</code>
-       *
        * @param value The bytes for mtfCheckF to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheckFBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfCheckF_ = value;
         onChanged();
@@ -22391,10 +20236,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfCheck1F_ = "";
-
       /**
        * <code>string mtfCheck1F = 107;</code>
-       *
        * @return The mtfCheck1F.
        */
       public java.lang.String getMtfCheck1F() {
@@ -22409,67 +20252,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string mtfCheck1F = 107;</code>
-       *
        * @return The bytes for mtfCheck1F.
        */
       public com.google.protobuf.ByteString
       getMtfCheck1FBytes() {
         java.lang.Object ref = mtfCheck1F_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfCheck1F_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string mtfCheck1F = 107;</code>
-       *
        * @param value The mtfCheck1F to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheck1F(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfCheck1F_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfCheck1F = 107;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfCheck1F() {
 
-        mtfCheck1F_ = getDefaultInstance().getMtfCheck1F();
+          mtfCheck1F_ = getDefaultInstance().getMtfCheck1F();
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfCheck1F = 107;</code>
-       *
        * @param value The bytes for mtfCheck1F to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheck1FBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfCheck1F_ = value;
         onChanged();
@@ -22477,10 +20312,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfCheck2F_ = "";
-
       /**
        * <code>string mtfCheck2F = 108;</code>
-       *
        * @return The mtfCheck2F.
        */
       public java.lang.String getMtfCheck2F() {
@@ -22495,67 +20328,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string mtfCheck2F = 108;</code>
-       *
        * @return The bytes for mtfCheck2F.
        */
       public com.google.protobuf.ByteString
       getMtfCheck2FBytes() {
         java.lang.Object ref = mtfCheck2F_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfCheck2F_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string mtfCheck2F = 108;</code>
-       *
        * @param value The mtfCheck2F to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheck2F(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfCheck2F_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfCheck2F = 108;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfCheck2F() {
 
-        mtfCheck2F_ = getDefaultInstance().getMtfCheck2F();
+          mtfCheck2F_ = getDefaultInstance().getMtfCheck2F();
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfCheck2F = 108;</code>
-       *
        * @param value The bytes for mtfCheck2F to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheck2FBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfCheck2F_ = value;
         onChanged();
@@ -22563,10 +20388,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfCheck3F_ = "";
-
       /**
        * <code>string mtfCheck3F = 109;</code>
-       *
        * @return The mtfCheck3F.
        */
       public java.lang.String getMtfCheck3F() {
@@ -22581,67 +20404,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string mtfCheck3F = 109;</code>
-       *
        * @return The bytes for mtfCheck3F.
        */
       public com.google.protobuf.ByteString
       getMtfCheck3FBytes() {
         java.lang.Object ref = mtfCheck3F_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfCheck3F_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string mtfCheck3F = 109;</code>
-       *
        * @param value The mtfCheck3F to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheck3F(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfCheck3F_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfCheck3F = 109;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfCheck3F() {
 
-        mtfCheck3F_ = getDefaultInstance().getMtfCheck3F();
+          mtfCheck3F_ = getDefaultInstance().getMtfCheck3F();
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfCheck3F = 109;</code>
-       *
        * @param value The bytes for mtfCheck3F to set.
        * @return This builder for chaining.
        */
       public Builder setMtfCheck3FBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfCheck3F_ = value;
         onChanged();
@@ -22649,14 +20464,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfOffAxisCheck1F_ = "";
-
       /**
        * <pre>
        * 2025-03-11 多焦段 mtfCheck
        * </pre>
        *
        * <code>string mtfOffAxisCheck1F = 110;</code>
-       *
        * @return The mtfOffAxisCheck1F.
        */
       public java.lang.String getMtfOffAxisCheck1F() {
@@ -22671,83 +20484,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-03-11 多焦段 mtfCheck
        * </pre>
        *
        * <code>string mtfOffAxisCheck1F = 110;</code>
-       *
        * @return The bytes for mtfOffAxisCheck1F.
        */
       public com.google.protobuf.ByteString
       getMtfOffAxisCheck1FBytes() {
         java.lang.Object ref = mtfOffAxisCheck1F_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfOffAxisCheck1F_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 2025-03-11 多焦段 mtfCheck
        * </pre>
        *
        * <code>string mtfOffAxisCheck1F = 110;</code>
-       *
        * @param value The mtfOffAxisCheck1F to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck1F(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfOffAxisCheck1F_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-03-11 多焦段 mtfCheck
        * </pre>
        *
        * <code>string mtfOffAxisCheck1F = 110;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfOffAxisCheck1F() {
 
-        mtfOffAxisCheck1F_ = getDefaultInstance().getMtfOffAxisCheck1F();
+          mtfOffAxisCheck1F_ = getDefaultInstance().getMtfOffAxisCheck1F();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 2025-03-11 多焦段 mtfCheck
        * </pre>
        *
        * <code>string mtfOffAxisCheck1F = 110;</code>
-       *
        * @param value The bytes for mtfOffAxisCheck1F to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck1FBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfOffAxisCheck1F_ = value;
         onChanged();
@@ -22755,10 +20560,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfOffAxisCheck2F_ = "";
-
       /**
        * <code>string mtfOffAxisCheck2F = 111;</code>
-       *
        * @return The mtfOffAxisCheck2F.
        */
       public java.lang.String getMtfOffAxisCheck2F() {
@@ -22773,67 +20576,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string mtfOffAxisCheck2F = 111;</code>
-       *
        * @return The bytes for mtfOffAxisCheck2F.
        */
       public com.google.protobuf.ByteString
       getMtfOffAxisCheck2FBytes() {
         java.lang.Object ref = mtfOffAxisCheck2F_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfOffAxisCheck2F_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string mtfOffAxisCheck2F = 111;</code>
-       *
        * @param value The mtfOffAxisCheck2F to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck2F(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfOffAxisCheck2F_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfOffAxisCheck2F = 111;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfOffAxisCheck2F() {
 
-        mtfOffAxisCheck2F_ = getDefaultInstance().getMtfOffAxisCheck2F();
+          mtfOffAxisCheck2F_ = getDefaultInstance().getMtfOffAxisCheck2F();
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfOffAxisCheck2F = 111;</code>
-       *
        * @param value The bytes for mtfOffAxisCheck2F to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck2FBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfOffAxisCheck2F_ = value;
         onChanged();
@@ -22841,10 +20636,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfOffAxisCheck3F_ = "";
-
       /**
        * <code>string mtfOffAxisCheck3F = 112;</code>
-       *
        * @return The mtfOffAxisCheck3F.
        */
       public java.lang.String getMtfOffAxisCheck3F() {
@@ -22859,67 +20652,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string mtfOffAxisCheck3F = 112;</code>
-       *
        * @return The bytes for mtfOffAxisCheck3F.
        */
       public com.google.protobuf.ByteString
       getMtfOffAxisCheck3FBytes() {
         java.lang.Object ref = mtfOffAxisCheck3F_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfOffAxisCheck3F_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string mtfOffAxisCheck3F = 112;</code>
-       *
        * @param value The mtfOffAxisCheck3F to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck3F(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfOffAxisCheck3F_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfOffAxisCheck3F = 112;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfOffAxisCheck3F() {
 
-        mtfOffAxisCheck3F_ = getDefaultInstance().getMtfOffAxisCheck3F();
+          mtfOffAxisCheck3F_ = getDefaultInstance().getMtfOffAxisCheck3F();
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfOffAxisCheck3F = 112;</code>
-       *
        * @param value The bytes for mtfOffAxisCheck3F to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck3FBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfOffAxisCheck3F_ = value;
         onChanged();
@@ -22927,10 +20712,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object mtfOffAxisCheck4F_ = "";
-
       /**
        * <code>string mtfOffAxisCheck4F = 113;</code>
-       *
        * @return The mtfOffAxisCheck4F.
        */
       public java.lang.String getMtfOffAxisCheck4F() {
@@ -22945,67 +20728,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string mtfOffAxisCheck4F = 113;</code>
-       *
        * @return The bytes for mtfOffAxisCheck4F.
        */
       public com.google.protobuf.ByteString
       getMtfOffAxisCheck4FBytes() {
         java.lang.Object ref = mtfOffAxisCheck4F_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           mtfOffAxisCheck4F_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string mtfOffAxisCheck4F = 113;</code>
-       *
        * @param value The mtfOffAxisCheck4F to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck4F(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         mtfOffAxisCheck4F_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfOffAxisCheck4F = 113;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearMtfOffAxisCheck4F() {
 
-        mtfOffAxisCheck4F_ = getDefaultInstance().getMtfOffAxisCheck4F();
+          mtfOffAxisCheck4F_ = getDefaultInstance().getMtfOffAxisCheck4F();
         onChanged();
         return this;
       }
-
       /**
        * <code>string mtfOffAxisCheck4F = 113;</code>
-       *
        * @param value The bytes for mtfOffAxisCheck4F to set.
        * @return This builder for chaining.
        */
       public Builder setMtfOffAxisCheck4FBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         mtfOffAxisCheck4F_ = value;
         onChanged();
@@ -23013,14 +20788,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object chartAlignmentXResMin_ = "";
-
       /**
        * <pre>
        * chartAlignment Item 指标
        * </pre>
        *
        * <code>string chartAlignmentXResMin = 114;</code>
-       *
        * @return The chartAlignmentXResMin.
        */
       public java.lang.String getChartAlignmentXResMin() {
@@ -23035,83 +20808,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * chartAlignment Item 指标
        * </pre>
        *
        * <code>string chartAlignmentXResMin = 114;</code>
-       *
        * @return The bytes for chartAlignmentXResMin.
        */
       public com.google.protobuf.ByteString
       getChartAlignmentXResMinBytes() {
         java.lang.Object ref = chartAlignmentXResMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           chartAlignmentXResMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * chartAlignment Item 指标
        * </pre>
        *
        * <code>string chartAlignmentXResMin = 114;</code>
-       *
        * @param value The chartAlignmentXResMin to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignmentXResMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         chartAlignmentXResMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * chartAlignment Item 指标
        * </pre>
        *
        * <code>string chartAlignmentXResMin = 114;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearChartAlignmentXResMin() {
 
-        chartAlignmentXResMin_ = getDefaultInstance().getChartAlignmentXResMin();
+          chartAlignmentXResMin_ = getDefaultInstance().getChartAlignmentXResMin();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * chartAlignment Item 指标
        * </pre>
        *
        * <code>string chartAlignmentXResMin = 114;</code>
-       *
        * @param value The bytes for chartAlignmentXResMin to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignmentXResMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         chartAlignmentXResMin_ = value;
         onChanged();
@@ -23119,10 +20884,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object chartAlignmentXResMax_ = "";
-
       /**
        * <code>string chartAlignmentXResMax = 115;</code>
-       *
        * @return The chartAlignmentXResMax.
        */
       public java.lang.String getChartAlignmentXResMax() {
@@ -23137,67 +20900,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string chartAlignmentXResMax = 115;</code>
-       *
        * @return The bytes for chartAlignmentXResMax.
        */
       public com.google.protobuf.ByteString
       getChartAlignmentXResMaxBytes() {
         java.lang.Object ref = chartAlignmentXResMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           chartAlignmentXResMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string chartAlignmentXResMax = 115;</code>
-       *
        * @param value The chartAlignmentXResMax to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignmentXResMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         chartAlignmentXResMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignmentXResMax = 115;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearChartAlignmentXResMax() {
 
-        chartAlignmentXResMax_ = getDefaultInstance().getChartAlignmentXResMax();
+          chartAlignmentXResMax_ = getDefaultInstance().getChartAlignmentXResMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignmentXResMax = 115;</code>
-       *
        * @param value The bytes for chartAlignmentXResMax to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignmentXResMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         chartAlignmentXResMax_ = value;
         onChanged();
@@ -23205,10 +20960,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object chartAlignmentYResMin_ = "";
-
       /**
        * <code>string chartAlignmentYResMin = 116;</code>
-       *
        * @return The chartAlignmentYResMin.
        */
       public java.lang.String getChartAlignmentYResMin() {
@@ -23223,67 +20976,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string chartAlignmentYResMin = 116;</code>
-       *
        * @return The bytes for chartAlignmentYResMin.
        */
       public com.google.protobuf.ByteString
       getChartAlignmentYResMinBytes() {
         java.lang.Object ref = chartAlignmentYResMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           chartAlignmentYResMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string chartAlignmentYResMin = 116;</code>
-       *
        * @param value The chartAlignmentYResMin to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignmentYResMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         chartAlignmentYResMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignmentYResMin = 116;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearChartAlignmentYResMin() {
 
-        chartAlignmentYResMin_ = getDefaultInstance().getChartAlignmentYResMin();
+          chartAlignmentYResMin_ = getDefaultInstance().getChartAlignmentYResMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignmentYResMin = 116;</code>
-       *
        * @param value The bytes for chartAlignmentYResMin to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignmentYResMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         chartAlignmentYResMin_ = value;
         onChanged();
@@ -23291,10 +21036,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object chartAlignmentYResMax_ = "";
-
       /**
        * <code>string chartAlignmentYResMax = 117;</code>
-       *
        * @return The chartAlignmentYResMax.
        */
       public java.lang.String getChartAlignmentYResMax() {
@@ -23309,67 +21052,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string chartAlignmentYResMax = 117;</code>
-       *
        * @return The bytes for chartAlignmentYResMax.
        */
       public com.google.protobuf.ByteString
       getChartAlignmentYResMaxBytes() {
         java.lang.Object ref = chartAlignmentYResMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           chartAlignmentYResMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string chartAlignmentYResMax = 117;</code>
-       *
        * @param value The chartAlignmentYResMax to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignmentYResMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         chartAlignmentYResMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignmentYResMax = 117;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearChartAlignmentYResMax() {
 
-        chartAlignmentYResMax_ = getDefaultInstance().getChartAlignmentYResMax();
+          chartAlignmentYResMax_ = getDefaultInstance().getChartAlignmentYResMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignmentYResMax = 117;</code>
-       *
        * @param value The bytes for chartAlignmentYResMax to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignmentYResMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         chartAlignmentYResMax_ = value;
         onChanged();
@@ -23377,10 +21112,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object chartAlignment1XResMin_ = "";
-
       /**
        * <code>string chartAlignment1XResMin = 118;</code>
-       *
        * @return The chartAlignment1XResMin.
        */
       public java.lang.String getChartAlignment1XResMin() {
@@ -23395,67 +21128,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string chartAlignment1XResMin = 118;</code>
-       *
        * @return The bytes for chartAlignment1XResMin.
        */
       public com.google.protobuf.ByteString
       getChartAlignment1XResMinBytes() {
         java.lang.Object ref = chartAlignment1XResMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           chartAlignment1XResMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string chartAlignment1XResMin = 118;</code>
-       *
        * @param value The chartAlignment1XResMin to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment1XResMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         chartAlignment1XResMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment1XResMin = 118;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearChartAlignment1XResMin() {
 
-        chartAlignment1XResMin_ = getDefaultInstance().getChartAlignment1XResMin();
+          chartAlignment1XResMin_ = getDefaultInstance().getChartAlignment1XResMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment1XResMin = 118;</code>
-       *
        * @param value The bytes for chartAlignment1XResMin to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment1XResMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         chartAlignment1XResMin_ = value;
         onChanged();
@@ -23463,10 +21188,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object chartAlignment1XResMax_ = "";
-
       /**
        * <code>string chartAlignment1XResMax = 119;</code>
-       *
        * @return The chartAlignment1XResMax.
        */
       public java.lang.String getChartAlignment1XResMax() {
@@ -23481,67 +21204,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string chartAlignment1XResMax = 119;</code>
-       *
        * @return The bytes for chartAlignment1XResMax.
        */
       public com.google.protobuf.ByteString
       getChartAlignment1XResMaxBytes() {
         java.lang.Object ref = chartAlignment1XResMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           chartAlignment1XResMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string chartAlignment1XResMax = 119;</code>
-       *
        * @param value The chartAlignment1XResMax to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment1XResMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         chartAlignment1XResMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment1XResMax = 119;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearChartAlignment1XResMax() {
 
-        chartAlignment1XResMax_ = getDefaultInstance().getChartAlignment1XResMax();
+          chartAlignment1XResMax_ = getDefaultInstance().getChartAlignment1XResMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment1XResMax = 119;</code>
-       *
        * @param value The bytes for chartAlignment1XResMax to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment1XResMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         chartAlignment1XResMax_ = value;
         onChanged();
@@ -23549,10 +21264,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object chartAlignment1YResMin_ = "";
-
       /**
        * <code>string chartAlignment1YResMin = 120;</code>
-       *
        * @return The chartAlignment1YResMin.
        */
       public java.lang.String getChartAlignment1YResMin() {
@@ -23567,67 +21280,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string chartAlignment1YResMin = 120;</code>
-       *
        * @return The bytes for chartAlignment1YResMin.
        */
       public com.google.protobuf.ByteString
       getChartAlignment1YResMinBytes() {
         java.lang.Object ref = chartAlignment1YResMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           chartAlignment1YResMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string chartAlignment1YResMin = 120;</code>
-       *
        * @param value The chartAlignment1YResMin to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment1YResMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         chartAlignment1YResMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment1YResMin = 120;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearChartAlignment1YResMin() {
 
-        chartAlignment1YResMin_ = getDefaultInstance().getChartAlignment1YResMin();
+          chartAlignment1YResMin_ = getDefaultInstance().getChartAlignment1YResMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment1YResMin = 120;</code>
-       *
        * @param value The bytes for chartAlignment1YResMin to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment1YResMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         chartAlignment1YResMin_ = value;
         onChanged();
@@ -23635,10 +21340,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object chartAlignment1YResMax_ = "";
-
       /**
        * <code>string chartAlignment1YResMax = 121;</code>
-       *
        * @return The chartAlignment1YResMax.
        */
       public java.lang.String getChartAlignment1YResMax() {
@@ -23653,67 +21356,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string chartAlignment1YResMax = 121;</code>
-       *
        * @return The bytes for chartAlignment1YResMax.
        */
       public com.google.protobuf.ByteString
       getChartAlignment1YResMaxBytes() {
         java.lang.Object ref = chartAlignment1YResMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           chartAlignment1YResMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string chartAlignment1YResMax = 121;</code>
-       *
        * @param value The chartAlignment1YResMax to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment1YResMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         chartAlignment1YResMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment1YResMax = 121;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearChartAlignment1YResMax() {
 
-        chartAlignment1YResMax_ = getDefaultInstance().getChartAlignment1YResMax();
+          chartAlignment1YResMax_ = getDefaultInstance().getChartAlignment1YResMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment1YResMax = 121;</code>
-       *
        * @param value The bytes for chartAlignment1YResMax to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment1YResMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         chartAlignment1YResMax_ = value;
         onChanged();
@@ -23721,10 +21416,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object chartAlignment2XResMin_ = "";
-
       /**
        * <code>string chartAlignment2XResMin = 122;</code>
-       *
        * @return The chartAlignment2XResMin.
        */
       public java.lang.String getChartAlignment2XResMin() {
@@ -23739,67 +21432,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string chartAlignment2XResMin = 122;</code>
-       *
        * @return The bytes for chartAlignment2XResMin.
        */
       public com.google.protobuf.ByteString
       getChartAlignment2XResMinBytes() {
         java.lang.Object ref = chartAlignment2XResMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           chartAlignment2XResMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string chartAlignment2XResMin = 122;</code>
-       *
        * @param value The chartAlignment2XResMin to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment2XResMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         chartAlignment2XResMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment2XResMin = 122;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearChartAlignment2XResMin() {
 
-        chartAlignment2XResMin_ = getDefaultInstance().getChartAlignment2XResMin();
+          chartAlignment2XResMin_ = getDefaultInstance().getChartAlignment2XResMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment2XResMin = 122;</code>
-       *
        * @param value The bytes for chartAlignment2XResMin to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment2XResMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         chartAlignment2XResMin_ = value;
         onChanged();
@@ -23807,10 +21492,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object chartAlignment2XResMax_ = "";
-
       /**
        * <code>string chartAlignment2XResMax = 123;</code>
-       *
        * @return The chartAlignment2XResMax.
        */
       public java.lang.String getChartAlignment2XResMax() {
@@ -23825,67 +21508,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string chartAlignment2XResMax = 123;</code>
-       *
        * @return The bytes for chartAlignment2XResMax.
        */
       public com.google.protobuf.ByteString
       getChartAlignment2XResMaxBytes() {
         java.lang.Object ref = chartAlignment2XResMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           chartAlignment2XResMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string chartAlignment2XResMax = 123;</code>
-       *
        * @param value The chartAlignment2XResMax to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment2XResMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         chartAlignment2XResMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment2XResMax = 123;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearChartAlignment2XResMax() {
 
-        chartAlignment2XResMax_ = getDefaultInstance().getChartAlignment2XResMax();
+          chartAlignment2XResMax_ = getDefaultInstance().getChartAlignment2XResMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment2XResMax = 123;</code>
-       *
        * @param value The bytes for chartAlignment2XResMax to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment2XResMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         chartAlignment2XResMax_ = value;
         onChanged();
@@ -23893,10 +21568,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object chartAlignment2YResMin_ = "";
-
       /**
        * <code>string chartAlignment2YResMin = 124;</code>
-       *
        * @return The chartAlignment2YResMin.
        */
       public java.lang.String getChartAlignment2YResMin() {
@@ -23911,67 +21584,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string chartAlignment2YResMin = 124;</code>
-       *
        * @return The bytes for chartAlignment2YResMin.
        */
       public com.google.protobuf.ByteString
       getChartAlignment2YResMinBytes() {
         java.lang.Object ref = chartAlignment2YResMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           chartAlignment2YResMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string chartAlignment2YResMin = 124;</code>
-       *
        * @param value The chartAlignment2YResMin to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment2YResMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         chartAlignment2YResMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment2YResMin = 124;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearChartAlignment2YResMin() {
 
-        chartAlignment2YResMin_ = getDefaultInstance().getChartAlignment2YResMin();
+          chartAlignment2YResMin_ = getDefaultInstance().getChartAlignment2YResMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment2YResMin = 124;</code>
-       *
        * @param value The bytes for chartAlignment2YResMin to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment2YResMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         chartAlignment2YResMin_ = value;
         onChanged();
@@ -23979,10 +21644,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object chartAlignment2YResMax_ = "";
-
       /**
        * <code>string chartAlignment2YResMax = 125;</code>
-       *
        * @return The chartAlignment2YResMax.
        */
       public java.lang.String getChartAlignment2YResMax() {
@@ -23997,67 +21660,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string chartAlignment2YResMax = 125;</code>
-       *
        * @return The bytes for chartAlignment2YResMax.
        */
       public com.google.protobuf.ByteString
       getChartAlignment2YResMaxBytes() {
         java.lang.Object ref = chartAlignment2YResMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           chartAlignment2YResMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string chartAlignment2YResMax = 125;</code>
-       *
        * @param value The chartAlignment2YResMax to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment2YResMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         chartAlignment2YResMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment2YResMax = 125;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearChartAlignment2YResMax() {
 
-        chartAlignment2YResMax_ = getDefaultInstance().getChartAlignment2YResMax();
+          chartAlignment2YResMax_ = getDefaultInstance().getChartAlignment2YResMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string chartAlignment2YResMax = 125;</code>
-       *
        * @param value The bytes for chartAlignment2YResMax to set.
        * @return This builder for chaining.
        */
       public Builder setChartAlignment2YResMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         chartAlignment2YResMax_ = value;
         onChanged();
@@ -24065,14 +21720,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object epoxyInspectionInterval_ = "";
-
       /**
        * <pre>
        * EpoxyInspection Auto Item 指标
        * </pre>
        *
        * <code>string epoxyInspectionInterval = 126;</code>
-       *
        * @return The epoxyInspectionInterval.
        */
       public java.lang.String getEpoxyInspectionInterval() {
@@ -24087,83 +21740,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * EpoxyInspection Auto Item 指标
        * </pre>
        *
        * <code>string epoxyInspectionInterval = 126;</code>
-       *
        * @return The bytes for epoxyInspectionInterval.
        */
       public com.google.protobuf.ByteString
       getEpoxyInspectionIntervalBytes() {
         java.lang.Object ref = epoxyInspectionInterval_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           epoxyInspectionInterval_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * EpoxyInspection Auto Item 指标
        * </pre>
        *
        * <code>string epoxyInspectionInterval = 126;</code>
-       *
        * @param value The epoxyInspectionInterval to set.
        * @return This builder for chaining.
        */
       public Builder setEpoxyInspectionInterval(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         epoxyInspectionInterval_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * EpoxyInspection Auto Item 指标
        * </pre>
        *
        * <code>string epoxyInspectionInterval = 126;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearEpoxyInspectionInterval() {
 
-        epoxyInspectionInterval_ = getDefaultInstance().getEpoxyInspectionInterval();
+          epoxyInspectionInterval_ = getDefaultInstance().getEpoxyInspectionInterval();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * EpoxyInspection Auto Item 指标
        * </pre>
        *
        * <code>string epoxyInspectionInterval = 126;</code>
-       *
        * @param value The bytes for epoxyInspectionInterval to set.
        * @return This builder for chaining.
        */
       public Builder setEpoxyInspectionIntervalBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         epoxyInspectionInterval_ = value;
         onChanged();
@@ -24171,14 +21816,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHallHallAfMin_ = "";
-
       /**
        * <pre>
        * vcmHall 指标 2025-03-27
        * </pre>
        *
        * <code>string vcmHallHallAfMin = 127;</code>
-       *
        * @return The vcmHallHallAfMin.
        */
       public java.lang.String getVcmHallHallAfMin() {
@@ -24193,83 +21836,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * vcmHall 指标 2025-03-27
        * </pre>
        *
        * <code>string vcmHallHallAfMin = 127;</code>
-       *
        * @return The bytes for vcmHallHallAfMin.
        */
       public com.google.protobuf.ByteString
       getVcmHallHallAfMinBytes() {
         java.lang.Object ref = vcmHallHallAfMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHallHallAfMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * vcmHall 指标 2025-03-27
        * </pre>
        *
        * <code>string vcmHallHallAfMin = 127;</code>
-       *
        * @param value The vcmHallHallAfMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHallHallAfMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHallHallAfMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * vcmHall 指标 2025-03-27
        * </pre>
        *
        * <code>string vcmHallHallAfMin = 127;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHallHallAfMin() {
 
-        vcmHallHallAfMin_ = getDefaultInstance().getVcmHallHallAfMin();
+          vcmHallHallAfMin_ = getDefaultInstance().getVcmHallHallAfMin();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * vcmHall 指标 2025-03-27
        * </pre>
        *
        * <code>string vcmHallHallAfMin = 127;</code>
-       *
        * @param value The bytes for vcmHallHallAfMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHallHallAfMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHallHallAfMin_ = value;
         onChanged();
@@ -24277,10 +21912,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHallHallAfMax_ = "";
-
       /**
        * <code>string vcmHallHallAfMax = 128;</code>
-       *
        * @return The vcmHallHallAfMax.
        */
       public java.lang.String getVcmHallHallAfMax() {
@@ -24295,67 +21928,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHallHallAfMax = 128;</code>
-       *
        * @return The bytes for vcmHallHallAfMax.
        */
       public com.google.protobuf.ByteString
       getVcmHallHallAfMaxBytes() {
         java.lang.Object ref = vcmHallHallAfMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHallHallAfMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHallHallAfMax = 128;</code>
-       *
        * @param value The vcmHallHallAfMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHallHallAfMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHallHallAfMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHallHallAfMax = 128;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHallHallAfMax() {
 
-        vcmHallHallAfMax_ = getDefaultInstance().getVcmHallHallAfMax();
+          vcmHallHallAfMax_ = getDefaultInstance().getVcmHallHallAfMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHallHallAfMax = 128;</code>
-       *
        * @param value The bytes for vcmHallHallAfMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHallHallAfMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHallHallAfMax_ = value;
         onChanged();
@@ -24363,10 +21988,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHallHallXMin_ = "";
-
       /**
        * <code>string vcmHallHallXMin = 129;</code>
-       *
        * @return The vcmHallHallXMin.
        */
       public java.lang.String getVcmHallHallXMin() {
@@ -24381,67 +22004,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHallHallXMin = 129;</code>
-       *
        * @return The bytes for vcmHallHallXMin.
        */
       public com.google.protobuf.ByteString
       getVcmHallHallXMinBytes() {
         java.lang.Object ref = vcmHallHallXMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHallHallXMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHallHallXMin = 129;</code>
-       *
        * @param value The vcmHallHallXMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHallHallXMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHallHallXMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHallHallXMin = 129;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHallHallXMin() {
 
-        vcmHallHallXMin_ = getDefaultInstance().getVcmHallHallXMin();
+          vcmHallHallXMin_ = getDefaultInstance().getVcmHallHallXMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHallHallXMin = 129;</code>
-       *
        * @param value The bytes for vcmHallHallXMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHallHallXMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHallHallXMin_ = value;
         onChanged();
@@ -24449,10 +22064,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHallHallXMax_ = "";
-
       /**
        * <code>string vcmHallHallXMax = 130;</code>
-       *
        * @return The vcmHallHallXMax.
        */
       public java.lang.String getVcmHallHallXMax() {
@@ -24467,67 +22080,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHallHallXMax = 130;</code>
-       *
        * @return The bytes for vcmHallHallXMax.
        */
       public com.google.protobuf.ByteString
       getVcmHallHallXMaxBytes() {
         java.lang.Object ref = vcmHallHallXMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHallHallXMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHallHallXMax = 130;</code>
-       *
        * @param value The vcmHallHallXMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHallHallXMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHallHallXMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHallHallXMax = 130;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHallHallXMax() {
 
-        vcmHallHallXMax_ = getDefaultInstance().getVcmHallHallXMax();
+          vcmHallHallXMax_ = getDefaultInstance().getVcmHallHallXMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHallHallXMax = 130;</code>
-       *
        * @param value The bytes for vcmHallHallXMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHallHallXMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHallHallXMax_ = value;
         onChanged();
@@ -24535,10 +22140,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHallHallYMin_ = "";
-
       /**
        * <code>string vcmHallHallYMin = 131;</code>
-       *
        * @return The vcmHallHallYMin.
        */
       public java.lang.String getVcmHallHallYMin() {
@@ -24553,67 +22156,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHallHallYMin = 131;</code>
-       *
        * @return The bytes for vcmHallHallYMin.
        */
       public com.google.protobuf.ByteString
       getVcmHallHallYMinBytes() {
         java.lang.Object ref = vcmHallHallYMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHallHallYMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHallHallYMin = 131;</code>
-       *
        * @param value The vcmHallHallYMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHallHallYMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHallHallYMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHallHallYMin = 131;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHallHallYMin() {
 
-        vcmHallHallYMin_ = getDefaultInstance().getVcmHallHallYMin();
+          vcmHallHallYMin_ = getDefaultInstance().getVcmHallHallYMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHallHallYMin = 131;</code>
-       *
        * @param value The bytes for vcmHallHallYMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHallHallYMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHallHallYMin_ = value;
         onChanged();
@@ -24621,10 +22216,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHallHallYMax_ = "";
-
       /**
        * <code>string vcmHallHallYMax = 132;</code>
-       *
        * @return The vcmHallHallYMax.
        */
       public java.lang.String getVcmHallHallYMax() {
@@ -24639,67 +22232,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHallHallYMax = 132;</code>
-       *
        * @return The bytes for vcmHallHallYMax.
        */
       public com.google.protobuf.ByteString
       getVcmHallHallYMaxBytes() {
         java.lang.Object ref = vcmHallHallYMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHallHallYMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHallHallYMax = 132;</code>
-       *
        * @param value The vcmHallHallYMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHallHallYMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHallHallYMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHallHallYMax = 132;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHallHallYMax() {
 
-        vcmHallHallYMax_ = getDefaultInstance().getVcmHallHallYMax();
+          vcmHallHallYMax_ = getDefaultInstance().getVcmHallHallYMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHallHallYMax = 132;</code>
-       *
        * @param value The bytes for vcmHallHallYMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHallHallYMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHallHallYMax_ = value;
         onChanged();
@@ -24707,10 +22292,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHall1HallAfMin_ = "";
-
       /**
        * <code>string vcmHall1HallAfMin = 133;</code>
-       *
        * @return The vcmHall1HallAfMin.
        */
       public java.lang.String getVcmHall1HallAfMin() {
@@ -24725,67 +22308,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHall1HallAfMin = 133;</code>
-       *
        * @return The bytes for vcmHall1HallAfMin.
        */
       public com.google.protobuf.ByteString
       getVcmHall1HallAfMinBytes() {
         java.lang.Object ref = vcmHall1HallAfMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHall1HallAfMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHall1HallAfMin = 133;</code>
-       *
        * @param value The vcmHall1HallAfMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall1HallAfMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHall1HallAfMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall1HallAfMin = 133;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHall1HallAfMin() {
 
-        vcmHall1HallAfMin_ = getDefaultInstance().getVcmHall1HallAfMin();
+          vcmHall1HallAfMin_ = getDefaultInstance().getVcmHall1HallAfMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall1HallAfMin = 133;</code>
-       *
        * @param value The bytes for vcmHall1HallAfMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall1HallAfMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHall1HallAfMin_ = value;
         onChanged();
@@ -24793,10 +22368,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHall1HallAfMax_ = "";
-
       /**
        * <code>string vcmHall1HallAfMax = 134;</code>
-       *
        * @return The vcmHall1HallAfMax.
        */
       public java.lang.String getVcmHall1HallAfMax() {
@@ -24811,67 +22384,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHall1HallAfMax = 134;</code>
-       *
        * @return The bytes for vcmHall1HallAfMax.
        */
       public com.google.protobuf.ByteString
       getVcmHall1HallAfMaxBytes() {
         java.lang.Object ref = vcmHall1HallAfMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHall1HallAfMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHall1HallAfMax = 134;</code>
-       *
        * @param value The vcmHall1HallAfMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall1HallAfMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHall1HallAfMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall1HallAfMax = 134;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHall1HallAfMax() {
 
-        vcmHall1HallAfMax_ = getDefaultInstance().getVcmHall1HallAfMax();
+          vcmHall1HallAfMax_ = getDefaultInstance().getVcmHall1HallAfMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall1HallAfMax = 134;</code>
-       *
        * @param value The bytes for vcmHall1HallAfMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall1HallAfMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHall1HallAfMax_ = value;
         onChanged();
@@ -24879,10 +22444,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHall1HallXMin_ = "";
-
       /**
        * <code>string vcmHall1HallXMin = 135;</code>
-       *
        * @return The vcmHall1HallXMin.
        */
       public java.lang.String getVcmHall1HallXMin() {
@@ -24897,67 +22460,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHall1HallXMin = 135;</code>
-       *
        * @return The bytes for vcmHall1HallXMin.
        */
       public com.google.protobuf.ByteString
       getVcmHall1HallXMinBytes() {
         java.lang.Object ref = vcmHall1HallXMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHall1HallXMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHall1HallXMin = 135;</code>
-       *
        * @param value The vcmHall1HallXMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall1HallXMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHall1HallXMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall1HallXMin = 135;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHall1HallXMin() {
 
-        vcmHall1HallXMin_ = getDefaultInstance().getVcmHall1HallXMin();
+          vcmHall1HallXMin_ = getDefaultInstance().getVcmHall1HallXMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall1HallXMin = 135;</code>
-       *
        * @param value The bytes for vcmHall1HallXMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall1HallXMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHall1HallXMin_ = value;
         onChanged();
@@ -24965,10 +22520,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHall1HallXMax_ = "";
-
       /**
        * <code>string vcmHall1HallXMax = 136;</code>
-       *
        * @return The vcmHall1HallXMax.
        */
       public java.lang.String getVcmHall1HallXMax() {
@@ -24983,67 +22536,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHall1HallXMax = 136;</code>
-       *
        * @return The bytes for vcmHall1HallXMax.
        */
       public com.google.protobuf.ByteString
       getVcmHall1HallXMaxBytes() {
         java.lang.Object ref = vcmHall1HallXMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHall1HallXMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHall1HallXMax = 136;</code>
-       *
        * @param value The vcmHall1HallXMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall1HallXMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHall1HallXMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall1HallXMax = 136;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHall1HallXMax() {
 
-        vcmHall1HallXMax_ = getDefaultInstance().getVcmHall1HallXMax();
+          vcmHall1HallXMax_ = getDefaultInstance().getVcmHall1HallXMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall1HallXMax = 136;</code>
-       *
        * @param value The bytes for vcmHall1HallXMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall1HallXMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHall1HallXMax_ = value;
         onChanged();
@@ -25051,10 +22596,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHall1HallYMin_ = "";
-
       /**
        * <code>string vcmHall1HallYMin = 137;</code>
-       *
        * @return The vcmHall1HallYMin.
        */
       public java.lang.String getVcmHall1HallYMin() {
@@ -25069,67 +22612,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHall1HallYMin = 137;</code>
-       *
        * @return The bytes for vcmHall1HallYMin.
        */
       public com.google.protobuf.ByteString
       getVcmHall1HallYMinBytes() {
         java.lang.Object ref = vcmHall1HallYMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHall1HallYMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHall1HallYMin = 137;</code>
-       *
        * @param value The vcmHall1HallYMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall1HallYMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHall1HallYMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall1HallYMin = 137;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHall1HallYMin() {
 
-        vcmHall1HallYMin_ = getDefaultInstance().getVcmHall1HallYMin();
+          vcmHall1HallYMin_ = getDefaultInstance().getVcmHall1HallYMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall1HallYMin = 137;</code>
-       *
        * @param value The bytes for vcmHall1HallYMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall1HallYMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHall1HallYMin_ = value;
         onChanged();
@@ -25137,10 +22672,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHall1HallYMax_ = "";
-
       /**
        * <code>string vcmHall1HallYMax = 138;</code>
-       *
        * @return The vcmHall1HallYMax.
        */
       public java.lang.String getVcmHall1HallYMax() {
@@ -25155,67 +22688,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHall1HallYMax = 138;</code>
-       *
        * @return The bytes for vcmHall1HallYMax.
        */
       public com.google.protobuf.ByteString
       getVcmHall1HallYMaxBytes() {
         java.lang.Object ref = vcmHall1HallYMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHall1HallYMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHall1HallYMax = 138;</code>
-       *
        * @param value The vcmHall1HallYMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall1HallYMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHall1HallYMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall1HallYMax = 138;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHall1HallYMax() {
 
-        vcmHall1HallYMax_ = getDefaultInstance().getVcmHall1HallYMax();
+          vcmHall1HallYMax_ = getDefaultInstance().getVcmHall1HallYMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall1HallYMax = 138;</code>
-       *
        * @param value The bytes for vcmHall1HallYMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall1HallYMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHall1HallYMax_ = value;
         onChanged();
@@ -25223,10 +22748,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHall2HallAfMin_ = "";
-
       /**
        * <code>string vcmHall2HallAfMin = 139;</code>
-       *
        * @return The vcmHall2HallAfMin.
        */
       public java.lang.String getVcmHall2HallAfMin() {
@@ -25241,67 +22764,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHall2HallAfMin = 139;</code>
-       *
        * @return The bytes for vcmHall2HallAfMin.
        */
       public com.google.protobuf.ByteString
       getVcmHall2HallAfMinBytes() {
         java.lang.Object ref = vcmHall2HallAfMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHall2HallAfMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHall2HallAfMin = 139;</code>
-       *
        * @param value The vcmHall2HallAfMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall2HallAfMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHall2HallAfMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall2HallAfMin = 139;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHall2HallAfMin() {
 
-        vcmHall2HallAfMin_ = getDefaultInstance().getVcmHall2HallAfMin();
+          vcmHall2HallAfMin_ = getDefaultInstance().getVcmHall2HallAfMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall2HallAfMin = 139;</code>
-       *
        * @param value The bytes for vcmHall2HallAfMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall2HallAfMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHall2HallAfMin_ = value;
         onChanged();
@@ -25309,10 +22824,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHall2HallAfMax_ = "";
-
       /**
        * <code>string vcmHall2HallAfMax = 140;</code>
-       *
        * @return The vcmHall2HallAfMax.
        */
       public java.lang.String getVcmHall2HallAfMax() {
@@ -25327,67 +22840,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHall2HallAfMax = 140;</code>
-       *
        * @return The bytes for vcmHall2HallAfMax.
        */
       public com.google.protobuf.ByteString
       getVcmHall2HallAfMaxBytes() {
         java.lang.Object ref = vcmHall2HallAfMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHall2HallAfMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHall2HallAfMax = 140;</code>
-       *
        * @param value The vcmHall2HallAfMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall2HallAfMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHall2HallAfMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall2HallAfMax = 140;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHall2HallAfMax() {
 
-        vcmHall2HallAfMax_ = getDefaultInstance().getVcmHall2HallAfMax();
+          vcmHall2HallAfMax_ = getDefaultInstance().getVcmHall2HallAfMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall2HallAfMax = 140;</code>
-       *
        * @param value The bytes for vcmHall2HallAfMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall2HallAfMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHall2HallAfMax_ = value;
         onChanged();
@@ -25395,10 +22900,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHall2HallXMin_ = "";
-
       /**
        * <code>string vcmHall2HallXMin = 141;</code>
-       *
        * @return The vcmHall2HallXMin.
        */
       public java.lang.String getVcmHall2HallXMin() {
@@ -25413,67 +22916,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHall2HallXMin = 141;</code>
-       *
        * @return The bytes for vcmHall2HallXMin.
        */
       public com.google.protobuf.ByteString
       getVcmHall2HallXMinBytes() {
         java.lang.Object ref = vcmHall2HallXMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHall2HallXMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHall2HallXMin = 141;</code>
-       *
        * @param value The vcmHall2HallXMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall2HallXMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHall2HallXMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall2HallXMin = 141;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHall2HallXMin() {
 
-        vcmHall2HallXMin_ = getDefaultInstance().getVcmHall2HallXMin();
+          vcmHall2HallXMin_ = getDefaultInstance().getVcmHall2HallXMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall2HallXMin = 141;</code>
-       *
        * @param value The bytes for vcmHall2HallXMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall2HallXMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHall2HallXMin_ = value;
         onChanged();
@@ -25481,10 +22976,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHall2HallXMax_ = "";
-
       /**
        * <code>string vcmHall2HallXMax = 142;</code>
-       *
        * @return The vcmHall2HallXMax.
        */
       public java.lang.String getVcmHall2HallXMax() {
@@ -25499,67 +22992,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHall2HallXMax = 142;</code>
-       *
        * @return The bytes for vcmHall2HallXMax.
        */
       public com.google.protobuf.ByteString
       getVcmHall2HallXMaxBytes() {
         java.lang.Object ref = vcmHall2HallXMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHall2HallXMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHall2HallXMax = 142;</code>
-       *
        * @param value The vcmHall2HallXMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall2HallXMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHall2HallXMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall2HallXMax = 142;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHall2HallXMax() {
 
-        vcmHall2HallXMax_ = getDefaultInstance().getVcmHall2HallXMax();
+          vcmHall2HallXMax_ = getDefaultInstance().getVcmHall2HallXMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall2HallXMax = 142;</code>
-       *
        * @param value The bytes for vcmHall2HallXMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall2HallXMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHall2HallXMax_ = value;
         onChanged();
@@ -25567,10 +23052,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHall2HallYMin_ = "";
-
       /**
        * <code>string vcmHall2HallYMin = 143;</code>
-       *
        * @return The vcmHall2HallYMin.
        */
       public java.lang.String getVcmHall2HallYMin() {
@@ -25585,67 +23068,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHall2HallYMin = 143;</code>
-       *
        * @return The bytes for vcmHall2HallYMin.
        */
       public com.google.protobuf.ByteString
       getVcmHall2HallYMinBytes() {
         java.lang.Object ref = vcmHall2HallYMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHall2HallYMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHall2HallYMin = 143;</code>
-       *
        * @param value The vcmHall2HallYMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall2HallYMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHall2HallYMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall2HallYMin = 143;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHall2HallYMin() {
 
-        vcmHall2HallYMin_ = getDefaultInstance().getVcmHall2HallYMin();
+          vcmHall2HallYMin_ = getDefaultInstance().getVcmHall2HallYMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall2HallYMin = 143;</code>
-       *
        * @param value The bytes for vcmHall2HallYMin to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall2HallYMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHall2HallYMin_ = value;
         onChanged();
@@ -25653,10 +23128,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object vcmHall2HallYMax_ = "";
-
       /**
        * <code>string vcmHall2HallYMax = 144;</code>
-       *
        * @return The vcmHall2HallYMax.
        */
       public java.lang.String getVcmHall2HallYMax() {
@@ -25671,67 +23144,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string vcmHall2HallYMax = 144;</code>
-       *
        * @return The bytes for vcmHall2HallYMax.
        */
       public com.google.protobuf.ByteString
       getVcmHall2HallYMaxBytes() {
         java.lang.Object ref = vcmHall2HallYMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           vcmHall2HallYMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string vcmHall2HallYMax = 144;</code>
-       *
        * @param value The vcmHall2HallYMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall2HallYMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         vcmHall2HallYMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall2HallYMax = 144;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearVcmHall2HallYMax() {
 
-        vcmHall2HallYMax_ = getDefaultInstance().getVcmHall2HallYMax();
+          vcmHall2HallYMax_ = getDefaultInstance().getVcmHall2HallYMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string vcmHall2HallYMax = 144;</code>
-       *
        * @param value The bytes for vcmHall2HallYMax to set.
        * @return This builder for chaining.
        */
       public Builder setVcmHall2HallYMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         vcmHall2HallYMax_ = value;
         onChanged();
@@ -25739,7 +23204,6 @@ public final class EqLstProto {
       }
 
       private java.lang.Object utXyzMoveVal_ = "";
-
       /**
        * <pre>
        * RecordPosition 指标
@@ -25747,7 +23211,6 @@ public final class EqLstProto {
        * </pre>
        *
        * <code>string utXyzMoveVal = 145;</code>
-       *
        * @return The utXyzMoveVal.
        */
       public java.lang.String getUtXyzMoveVal() {
@@ -25762,7 +23225,6 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * RecordPosition 指标
@@ -25770,23 +23232,21 @@ public final class EqLstProto {
        * </pre>
        *
        * <code>string utXyzMoveVal = 145;</code>
-       *
        * @return The bytes for utXyzMoveVal.
        */
       public com.google.protobuf.ByteString
       getUtXyzMoveValBytes() {
         java.lang.Object ref = utXyzMoveVal_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           utXyzMoveVal_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * RecordPosition 指标
@@ -25794,21 +23254,19 @@ public final class EqLstProto {
        * </pre>
        *
        * <code>string utXyzMoveVal = 145;</code>
-       *
        * @param value The utXyzMoveVal to set.
        * @return This builder for chaining.
        */
       public Builder setUtXyzMoveVal(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         utXyzMoveVal_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * RecordPosition 指标
@@ -25816,16 +23274,14 @@ public final class EqLstProto {
        * </pre>
        *
        * <code>string utXyzMoveVal = 145;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearUtXyzMoveVal() {
 
-        utXyzMoveVal_ = getDefaultInstance().getUtXyzMoveVal();
+          utXyzMoveVal_ = getDefaultInstance().getUtXyzMoveVal();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * RecordPosition 指标
@@ -25833,16 +23289,15 @@ public final class EqLstProto {
        * </pre>
        *
        * <code>string utXyzMoveVal = 145;</code>
-       *
        * @param value The bytes for utXyzMoveVal to set.
        * @return This builder for chaining.
        */
       public Builder setUtXyzMoveValBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         utXyzMoveVal_ = value;
         onChanged();
@@ -25850,14 +23305,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object recordPositionName_ = "";
-
       /**
        * <pre>
        * 由于新增utXyzMove List命令，因此新增recordPositionName作为参数管控值，原recordPositionXyzMove 被替换掉 2025-01-15
        * </pre>
        *
        * <code>string recordPositionName = 146;</code>
-       *
        * @return The recordPositionName.
        */
       public java.lang.String getRecordPositionName() {
@@ -25872,83 +23325,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * 由于新增utXyzMove List命令，因此新增recordPositionName作为参数管控值，原recordPositionXyzMove 被替换掉 2025-01-15
        * </pre>
        *
        * <code>string recordPositionName = 146;</code>
-       *
        * @return The bytes for recordPositionName.
        */
       public com.google.protobuf.ByteString
       getRecordPositionNameBytes() {
         java.lang.Object ref = recordPositionName_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           recordPositionName_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * 由于新增utXyzMove List命令，因此新增recordPositionName作为参数管控值，原recordPositionXyzMove 被替换掉 2025-01-15
        * </pre>
        *
        * <code>string recordPositionName = 146;</code>
-       *
        * @param value The recordPositionName to set.
        * @return This builder for chaining.
        */
       public Builder setRecordPositionName(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         recordPositionName_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 由于新增utXyzMove List命令，因此新增recordPositionName作为参数管控值，原recordPositionXyzMove 被替换掉 2025-01-15
        * </pre>
        *
        * <code>string recordPositionName = 146;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearRecordPositionName() {
 
-        recordPositionName_ = getDefaultInstance().getRecordPositionName();
+          recordPositionName_ = getDefaultInstance().getRecordPositionName();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * 由于新增utXyzMove List命令，因此新增recordPositionName作为参数管控值，原recordPositionXyzMove 被替换掉 2025-01-15
        * </pre>
        *
        * <code>string recordPositionName = 146;</code>
-       *
        * @param value The bytes for recordPositionName to set.
        * @return This builder for chaining.
        */
       public Builder setRecordPositionNameBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         recordPositionName_ = value;
         onChanged();
@@ -25956,14 +23401,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object saveOcXOffsetMin_ = "";
-
       /**
        * <pre>
        * OcCheck 指标 Save Oc
        * </pre>
        *
        * <code>string saveOcXOffsetMin = 147;</code>
-       *
        * @return The saveOcXOffsetMin.
        */
       public java.lang.String getSaveOcXOffsetMin() {
@@ -25978,83 +23421,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * OcCheck 指标 Save Oc
        * </pre>
        *
        * <code>string saveOcXOffsetMin = 147;</code>
-       *
        * @return The bytes for saveOcXOffsetMin.
        */
       public com.google.protobuf.ByteString
       getSaveOcXOffsetMinBytes() {
         java.lang.Object ref = saveOcXOffsetMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           saveOcXOffsetMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * OcCheck 指标 Save Oc
        * </pre>
        *
        * <code>string saveOcXOffsetMin = 147;</code>
-       *
        * @param value The saveOcXOffsetMin to set.
        * @return This builder for chaining.
        */
       public Builder setSaveOcXOffsetMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         saveOcXOffsetMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * OcCheck 指标 Save Oc
        * </pre>
        *
        * <code>string saveOcXOffsetMin = 147;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearSaveOcXOffsetMin() {
 
-        saveOcXOffsetMin_ = getDefaultInstance().getSaveOcXOffsetMin();
+          saveOcXOffsetMin_ = getDefaultInstance().getSaveOcXOffsetMin();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * OcCheck 指标 Save Oc
        * </pre>
        *
        * <code>string saveOcXOffsetMin = 147;</code>
-       *
        * @param value The bytes for saveOcXOffsetMin to set.
        * @return This builder for chaining.
        */
       public Builder setSaveOcXOffsetMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         saveOcXOffsetMin_ = value;
         onChanged();
@@ -26062,10 +23497,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object saveOcXOffsetMax_ = "";
-
       /**
        * <code>string saveOcXOffsetMax = 148;</code>
-       *
        * @return The saveOcXOffsetMax.
        */
       public java.lang.String getSaveOcXOffsetMax() {
@@ -26080,67 +23513,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string saveOcXOffsetMax = 148;</code>
-       *
        * @return The bytes for saveOcXOffsetMax.
        */
       public com.google.protobuf.ByteString
       getSaveOcXOffsetMaxBytes() {
         java.lang.Object ref = saveOcXOffsetMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           saveOcXOffsetMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string saveOcXOffsetMax = 148;</code>
-       *
        * @param value The saveOcXOffsetMax to set.
        * @return This builder for chaining.
        */
       public Builder setSaveOcXOffsetMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         saveOcXOffsetMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string saveOcXOffsetMax = 148;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearSaveOcXOffsetMax() {
 
-        saveOcXOffsetMax_ = getDefaultInstance().getSaveOcXOffsetMax();
+          saveOcXOffsetMax_ = getDefaultInstance().getSaveOcXOffsetMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string saveOcXOffsetMax = 148;</code>
-       *
        * @param value The bytes for saveOcXOffsetMax to set.
        * @return This builder for chaining.
        */
       public Builder setSaveOcXOffsetMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         saveOcXOffsetMax_ = value;
         onChanged();
@@ -26148,10 +23573,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object saveOcYOffsetMin_ = "";
-
       /**
        * <code>string saveOcYOffsetMin = 149;</code>
-       *
        * @return The saveOcYOffsetMin.
        */
       public java.lang.String getSaveOcYOffsetMin() {
@@ -26166,67 +23589,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string saveOcYOffsetMin = 149;</code>
-       *
        * @return The bytes for saveOcYOffsetMin.
        */
       public com.google.protobuf.ByteString
       getSaveOcYOffsetMinBytes() {
         java.lang.Object ref = saveOcYOffsetMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           saveOcYOffsetMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string saveOcYOffsetMin = 149;</code>
-       *
        * @param value The saveOcYOffsetMin to set.
        * @return This builder for chaining.
        */
       public Builder setSaveOcYOffsetMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         saveOcYOffsetMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string saveOcYOffsetMin = 149;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearSaveOcYOffsetMin() {
 
-        saveOcYOffsetMin_ = getDefaultInstance().getSaveOcYOffsetMin();
+          saveOcYOffsetMin_ = getDefaultInstance().getSaveOcYOffsetMin();
         onChanged();
         return this;
       }
-
       /**
        * <code>string saveOcYOffsetMin = 149;</code>
-       *
        * @param value The bytes for saveOcYOffsetMin to set.
        * @return This builder for chaining.
        */
       public Builder setSaveOcYOffsetMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         saveOcYOffsetMin_ = value;
         onChanged();
@@ -26234,10 +23649,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object saveOcYOffsetMax_ = "";
-
       /**
        * <code>string saveOcYOffsetMax = 150;</code>
-       *
        * @return The saveOcYOffsetMax.
        */
       public java.lang.String getSaveOcYOffsetMax() {
@@ -26252,67 +23665,59 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string saveOcYOffsetMax = 150;</code>
-       *
        * @return The bytes for saveOcYOffsetMax.
        */
       public com.google.protobuf.ByteString
       getSaveOcYOffsetMaxBytes() {
         java.lang.Object ref = saveOcYOffsetMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           saveOcYOffsetMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string saveOcYOffsetMax = 150;</code>
-       *
        * @param value The saveOcYOffsetMax to set.
        * @return This builder for chaining.
        */
       public Builder setSaveOcYOffsetMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         saveOcYOffsetMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string saveOcYOffsetMax = 150;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearSaveOcYOffsetMax() {
 
-        saveOcYOffsetMax_ = getDefaultInstance().getSaveOcYOffsetMax();
+          saveOcYOffsetMax_ = getDefaultInstance().getSaveOcYOffsetMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string saveOcYOffsetMax = 150;</code>
-       *
        * @param value The bytes for saveOcYOffsetMax to set.
        * @return This builder for chaining.
        */
       public Builder setSaveOcYOffsetMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         saveOcYOffsetMax_ = value;
         onChanged();
@@ -26320,14 +23725,12 @@ public final class EqLstProto {
       }
 
       private java.lang.Object saveMtfCcMin_ = "";
-
       /**
        * <pre>
        * SaveMtf 指标
        * </pre>
        *
        * <code>string saveMtfCcMin = 151;</code>
-       *
        * @return The saveMtfCcMin.
        */
       public java.lang.String getSaveMtfCcMin() {
@@ -26342,83 +23745,75 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <pre>
        * SaveMtf 指标
        * </pre>
        *
        * <code>string saveMtfCcMin = 151;</code>
-       *
        * @return The bytes for saveMtfCcMin.
        */
       public com.google.protobuf.ByteString
       getSaveMtfCcMinBytes() {
         java.lang.Object ref = saveMtfCcMin_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           saveMtfCcMin_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <pre>
        * SaveMtf 指标
        * </pre>
        *
        * <code>string saveMtfCcMin = 151;</code>
-       *
        * @param value The saveMtfCcMin to set.
        * @return This builder for chaining.
        */
       public Builder setSaveMtfCcMin(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         saveMtfCcMin_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * SaveMtf 指标
        * </pre>
        *
        * <code>string saveMtfCcMin = 151;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearSaveMtfCcMin() {
 
-        saveMtfCcMin_ = getDefaultInstance().getSaveMtfCcMin();
+          saveMtfCcMin_ = getDefaultInstance().getSaveMtfCcMin();
         onChanged();
         return this;
       }
-
       /**
        * <pre>
        * SaveMtf 指标
        * </pre>
        *
        * <code>string saveMtfCcMin = 151;</code>
-       *
        * @param value The bytes for saveMtfCcMin to set.
        * @return This builder for chaining.
        */
       public Builder setSaveMtfCcMinBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         saveMtfCcMin_ = value;
         onChanged();
@@ -26426,10 +23821,8 @@ public final class EqLstProto {
       }
 
       private java.lang.Object saveMtfCcMax_ = "";
-
       /**
        * <code>string saveMtfCcMax = 152;</code>
-       *
        * @return The saveMtfCcMax.
        */
       public java.lang.String getSaveMtfCcMax() {
@@ -26444,73 +23837,64 @@ public final class EqLstProto {
           return (java.lang.String) ref;
         }
       }
-
       /**
        * <code>string saveMtfCcMax = 152;</code>
-       *
        * @return The bytes for saveMtfCcMax.
        */
       public com.google.protobuf.ByteString
       getSaveMtfCcMaxBytes() {
         java.lang.Object ref = saveMtfCcMax_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (java.lang.String) ref);
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
           saveMtfCcMax_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-
       /**
        * <code>string saveMtfCcMax = 152;</code>
-       *
        * @param value The saveMtfCcMax to set.
        * @return This builder for chaining.
        */
       public Builder setSaveMtfCcMax(
               java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
 
         saveMtfCcMax_ = value;
         onChanged();
         return this;
       }
-
       /**
        * <code>string saveMtfCcMax = 152;</code>
-       *
        * @return This builder for chaining.
        */
       public Builder clearSaveMtfCcMax() {
 
-        saveMtfCcMax_ = getDefaultInstance().getSaveMtfCcMax();
+          saveMtfCcMax_ = getDefaultInstance().getSaveMtfCcMax();
         onChanged();
         return this;
       }
-
       /**
        * <code>string saveMtfCcMax = 152;</code>
-       *
        * @param value The bytes for saveMtfCcMax to set.
        * @return This builder for chaining.
        */
       public Builder setSaveMtfCcMaxBytes(
               com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
+            throw new NullPointerException();
         }
-        checkByteStringIsUtf8(value);
+          checkByteStringIsUtf8(value);
 
         saveMtfCcMax_ = value;
         onChanged();
         return this;
       }
-
       @java.lang.Override
       public final Builder setUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -26529,7 +23913,6 @@ public final class EqLstProto {
 
     // @@protoc_insertion_point(class_scope:EqLstPOJO)
     private static final com.im.aa.inspection.proto.EqLstProto.EqLstPOJO DEFAULT_INSTANCE;
-
     static {
       DEFAULT_INSTANCE = new com.im.aa.inspection.proto.EqLstProto.EqLstPOJO();
     }
@@ -26567,18 +23950,17 @@ public final class EqLstProto {
 
   private static final com.google.protobuf.Descriptors.Descriptor
           internal_static_EqLstPOJO_descriptor;
-  private static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_EqLstPOJO_fieldAccessorTable;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_EqLstPOJO_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
   getDescriptor() {
     return descriptor;
   }
 
-  private static com.google.protobuf.Descriptors.FileDescriptor
-          descriptor;
-
+    private static com.google.protobuf.Descriptors.FileDescriptor
+            descriptor;
   static {
     java.lang.String[] descriptorData = {
             "\n\014eq_lst.proto\"\244\033\n\tEqLstPOJO\022\016\n\006module\030\001" +

@@ -93,7 +93,7 @@ public class ProductSerializer {
         scheduler.scheduleAtFixedRate(ProductSerializer::cleanupCache,
                 30, 30, TimeUnit.MINUTES);
 
-        logger.debug("Product serializer maintenance tasks started");
+        logger.debug("Product serde maintenance tasks started");
     }
 
     /**
@@ -714,10 +714,10 @@ public class ProductSerializer {
                     entry.getValue().getStartTime().toInstant(java.time.ZoneOffset.UTC).toEpochMilli() < cutoffTime
             );
 
-            logger.debug("Cleaned up product serializer cache, remaining entries - product: {}, trace: {}",
+            logger.debug("Cleaned up product serde cache, remaining entries - product: {}, trace: {}",
                     productInfoCache.size(), productTraceCache.size());
         } catch (Exception e) {
-            logger.error("Failed to cleanup product serializer cache", e);
+            logger.error("Failed to cleanup product serde cache", e);
         }
     }
 

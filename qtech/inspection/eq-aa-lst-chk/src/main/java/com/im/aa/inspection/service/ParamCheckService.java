@@ -68,15 +68,15 @@ public class ParamCheckService {
      */
     public EqpReverseRecord inspectDeviceParam(String module) {
         try {
-            logger.debug("开始检查设备参数: {}", module);
+            logger.debug(">>>>> 开始检查设备参数: {}", module);
             // 1. 从Redis缓存中获取检查结果
             // 2. 执行参数检查
             // 3. 保存结果到Redis缓存
             // 4. 保存结果到数据库
-            logger.info("设备参数检查完成: {} -> {}", module, module);
+            logger.info(">>>>> 设备参数检查完成: {} -> {}", module, module);
             return null;
         } catch (Exception e) {
-            logger.error("检查设备参数时出错: {}", module, e);
+            logger.error(">>>>> 检查设备参数时出错: {}", module, e);
             throw new RuntimeException("参数检查失败", e);
         }
     }
@@ -101,6 +101,8 @@ public class ParamCheckService {
 
         // 模板信息检查
         if (modelInfoObj == null) {
+            // TODO: 查询数据库
+
             return createInspectionResult(eqpReverseRecord, 1, "Missing Template Information.");
         }
         if (modelInfoObj.getStatus() == 0) {
@@ -271,7 +273,7 @@ public class ParamCheckService {
         } catch (Exception e) {
             eqpReverseRecord.setPassed(false);
             eqpReverseRecord.setDescription("参数检查过程中发生错误: " + e.getMessage());
-            logger.error("参数检查过程中发生错误", e);
+            logger.error(">>>>> 参数检查过程中发生错误", e);
         }
 
         return eqpReverseRecord;

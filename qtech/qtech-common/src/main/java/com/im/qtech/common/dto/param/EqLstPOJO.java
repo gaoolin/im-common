@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 /**
@@ -26,6 +27,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
+@MappedSuperclass
 public class EqLstPOJO implements Serializable {
     private static final long serialVersionUID = 529L;
 

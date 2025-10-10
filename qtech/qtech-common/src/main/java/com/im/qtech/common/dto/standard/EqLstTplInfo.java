@@ -2,6 +2,7 @@ package com.im.qtech.common.dto.standard;
 
 import lombok.Data;
 
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,6 +13,7 @@ import java.util.Objects;
  */
 
 @Data
+@MappedSuperclass
 public class EqLstTplInfo implements Serializable {
     private static final long serialVersionUID = 529L;
 

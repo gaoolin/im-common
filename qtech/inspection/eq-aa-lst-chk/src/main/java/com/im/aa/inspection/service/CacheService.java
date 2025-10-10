@@ -1,9 +1,10 @@
 package com.im.aa.inspection.service;
 
+import com.im.aa.inspection.config.EqpLstRedisCacheConfig;
 import com.im.aa.inspection.entity.param.EqLstParsed;
 import com.im.aa.inspection.entity.standard.EqLstTplDO;
 import com.im.aa.inspection.entity.standard.EqLstTplInfoPO;
-import com.im.aa.inspection.util.EqpLstRedisCacheConfig;
+import lombok.Getter;
 import org.im.cache.core.Cache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +25,12 @@ import java.util.Objects;
 public class CacheService {
     private static final Logger logger = LoggerFactory.getLogger(CacheService.class);
 
+    /**
+     * -- GETTER --
+     * 获取Redis缓存配置实例
+     */
     // Redis缓存配置
+    @Getter
     private final EqpLstRedisCacheConfig redisCacheConfig;
 
     private final Cache<String, EqLstTplDO> eqLstTplCache;
@@ -40,7 +46,7 @@ public class CacheService {
         this.redisCacheConfig = Objects.requireNonNull(redisCacheConfig, "Redis缓存配置不能为空");
         this.eqLstTplCache = this.redisCacheConfig.getEqLstTplDOCache();
         this.eqLstTplInfoCache = this.redisCacheConfig.getEqLstTplInfoPOCache();
-        logger.info("CacheService初始化完成，使用Redis缓存配置");
+        logger.info(">>>>> CacheService初始化完成，使用Redis缓存配置");
     }
 
     /**
@@ -78,19 +84,10 @@ public class CacheService {
         try {
             if (redisCacheConfig != null && redisCacheConfig.getCacheManager() != null) {
                 redisCacheConfig.getCacheManager().close();
-                logger.info("Redis缓存服务已关闭");
+                logger.info(">>>>> Redis缓存服务已关闭");
             }
         } catch (Exception e) {
-            logger.error("关闭Redis缓存服务时出错", e);
+            logger.error(">>>>> 关闭Redis缓存服务时出错", e);
         }
-    }
-
-    /**
-     * 获取Redis缓存配置实例
-     *
-     * @return Redis缓存配置
-     */
-    public EqpLstRedisCacheConfig getRedisCacheConfig() {
-        return redisCacheConfig;
     }
 }

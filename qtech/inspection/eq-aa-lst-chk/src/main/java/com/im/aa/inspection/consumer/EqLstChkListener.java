@@ -46,8 +46,8 @@ public class EqLstChkListener {
     private Producer<String, Object> createKafkaProducer() {
         Properties props = new Properties();
         props.put("bootstrap.servers", kafkaBootstrapServers);
-        props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        props.put("key.serde", "org.apache.kafka.common.serialization.StringSerializer");
+        props.put("value.serde", "org.apache.kafka.common.serialization.StringSerializer");
         return new KafkaProducer<>(props);
     }
 

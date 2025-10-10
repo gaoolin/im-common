@@ -114,8 +114,8 @@ public class KafkaMessageConsumer implements Lifecycle {
         // 初始化生产者
         Properties producerProps = new Properties();
         producerProps.put("bootstrap.servers", bootstrapServers);
-        producerProps.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        producerProps.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        producerProps.put("key.serde", "org.apache.kafka.common.serialization.StringSerializer");
+        producerProps.put("value.serde", "org.apache.kafka.common.serialization.StringSerializer");
 
         this.producer = new KafkaProducer<>(producerProps);
     }

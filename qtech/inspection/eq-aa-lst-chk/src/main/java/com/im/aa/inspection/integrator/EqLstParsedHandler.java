@@ -38,19 +38,16 @@ import static com.im.qtech.common.constant.QtechImBizConstant.*;
  * @since 2024/05/27
  */
 public class EqLstParsedHandler extends MessageHandler<EqLstParsed> implements AutoRegisteredHandler<EqLstParsed> {
-    private static final Logger logger = LoggerFactory.getLogger(EqLstParsedHandler.class);
-
-    // 使用ThreadLocal确保每个线程有独立的HashMap实例
-    private static final ThreadLocal<HashMap<Integer, String>> listItemMapper = ThreadLocal.withInitial(HashMap::new);
-
-    // 使用ThreadLocal确保每个线程有独立的EqLstParsed实例
-    private static final ThreadLocal<EqLstParsed> threadLocalEqLstMessage = ThreadLocal.withInitial(EqLstParsed::new);
-
-    private static final ObjectMapper objectMapper = JsonMapperProvider.getSharedInstance();
     /**
      * 饿汉式单例实例
      */
     public static final EqLstParsedHandler INSTANCE = new EqLstParsedHandler();
+    private static final Logger logger = LoggerFactory.getLogger(EqLstParsedHandler.class);
+    // 使用ThreadLocal确保每个线程有独立的HashMap实例
+    private static final ThreadLocal<HashMap<Integer, String>> listItemMapper = ThreadLocal.withInitial(HashMap::new);
+    // 使用ThreadLocal确保每个线程有独立的EqLstParsed实例
+    private static final ThreadLocal<EqLstParsed> threadLocalEqLstMessage = ThreadLocal.withInitial(EqLstParsed::new);
+    private static final ObjectMapper objectMapper = JsonMapperProvider.getSharedInstance();
     // 使用单例模式获取HandlerDispatcher（线程安全）
     private final CommandHandlerDispatcher commandHandlerDispatcher = CommandHandlerDispatcher.getInstance();
     // 使用单例模式获取CommandHandlerMapper（线程安全）

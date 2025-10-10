@@ -1,39 +1,48 @@
 package com.im.aa.inspection.entity.standard;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.im.aa.inspection.entity.param.EqLstSet;
+import com.im.qtech.common.dto.param.EqLstPOJO;
 import lombok.Data;
-import lombok.ToString;
+import org.hibernate.annotations.NaturalId;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
  * @since 2024/05/21 08:45:18
  */
-
 @Data
-@ToString(callSuper = true)
-@TableName(value = "IMBIZ.IM_AA_LIST_PARAMS_STD_MODEL")
-@JsonIgnoreProperties(ignoreUnknown = true) // 忽略未知属性
-public class EqLstTplDO extends EqLstSet {
+@Entity
+@Table(name = "biz.eqp_aa_lst_tpl", schema = "imbiz")
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class EqLstTplDO extends EqLstPOJO {
     private static final long serialVersionUID = 2L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Override
-    public void reset() {
-        this.id = null;
-        super.reset();
-    }
+    @NaturalId                     // ✅ 标识业务主键
+    @Column(name = "module", insertable = false, updatable = false)
+    private String module;
 
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
-    }
+    private boolean deleted;
+    private Integer version;
+    private String createBy;
+    private LocalDateTime createTime;
+    private String updateBy;
+    private LocalDateTime updateTime;
+    private String remark;
 
+    @OneToOne(mappedBy = "tplDO", fetch = FetchType.LAZY, optional = true)
+    private EqLstTplInfoPO tplInfo;
+
+    // ✅ 如果 Lombok 生成的 setter 与父类冲突，手动覆盖
     @Override
-    public int hashCode() {
-        return super.hashCode();
+    public EqLstTplDO setModule(String module) {
+        super.setModule(module);
+        return this;
     }
 }

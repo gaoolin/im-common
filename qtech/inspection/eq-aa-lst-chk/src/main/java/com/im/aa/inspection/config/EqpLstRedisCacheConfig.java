@@ -1,4 +1,4 @@
-package com.im.aa.inspection.util;
+package com.im.aa.inspection.config;
 
 import com.im.aa.inspection.entity.standard.EqLstTplDO;
 import com.im.aa.inspection.entity.standard.EqLstTplInfoPO;
@@ -45,6 +45,8 @@ public class EqpLstRedisCacheConfig {
     private volatile Cache<String, EqLstTplDO> eqLstTplDOCache;
     private volatile Cache<String, byte[]> eqLstByteCache;
 
+    private volatile Cache<String, String> eqLstByteStringCache;
+
     public EqpLstRedisCacheConfig() {
         // 使用自研的配置模块读取application.properties中的配置
         loadConfigFromFramework();
@@ -60,16 +62,16 @@ public class EqpLstRedisCacheConfig {
         this.defaultMaxSize = Integer.parseInt(configManager.getProperty("cache.default.max-size", "1000"));
         this.defaultExpireMs = Long.parseLong(configManager.getProperty("cache.default.expire", "1800000"));
 
-        logger.info("Loaded cache configuration from framework config module");
+        logger.info(">>>>> Loaded cache configuration from framework config module");
     }
 
     public void init() {
         try {
             cacheManager = new DefaultCacheManager();
-            logger.info("CacheManager initialized successfully");
+            logger.info(">>>>> CacheManager initialized successfully");
         } catch (Exception e) {
-            logger.error("Failed to initialize CacheManager", e);
-            throw new RuntimeException("Failed to initialize CacheManager", e);
+            logger.error(">>>>> Failed to initialize CacheManager", e);
+            throw new RuntimeException(">>>>> Failed to initialize CacheManager", e);
         }
     }
 
@@ -122,7 +124,7 @@ public class EqpLstRedisCacheConfig {
             uris.append(String.format("redis://%s:%s@%s?clientName=%s", "default", encodedPassword, node, clientName));
         }
 
-        logger.debug("Built Redis cluster URIs: {}", uris.toString());
+        logger.debug(">>>>> Built Redis cluster URIs: {}", uris.toString());
         return uris.toString();
     }
 
@@ -132,31 +134,31 @@ public class EqpLstRedisCacheConfig {
             synchronized (this) {
                 if (defaultCache == null) {
                     try {
-                        logger.info("Creating defaultCache");
+                        logger.info(">>>>> Creating defaultCache");
 
                         if (cacheManager == null) {
-                            logger.error("CacheManager is not initialized");
+                            logger.error(">>>>> CacheManager is not initialized");
                             throw new IllegalStateException("CacheManager is not initialized");
                         }
 
-                        logger.info("Using defaultMaxSize: {}, defaultExpireMs: {}", defaultMaxSize, defaultExpireMs);
+                        logger.info(">>>>> Using defaultMaxSize: {}, defaultExpireMs: {}", defaultMaxSize, defaultExpireMs);
                         CacheConfig config = baseConfig("defaultCache", defaultMaxSize, defaultExpireMs);
                         if (config == null) {
-                            logger.error("Failed to create base config for defaultCache");
+                            logger.error(">>>>> Failed to create base config for defaultCache");
                             throw new IllegalStateException("Failed to create base config for defaultCache");
                         }
 
                         String redisUri = buildRedisUri();
                         if (redisUri == null) {
-                            logger.error("Failed to build Redis URI");
+                            logger.error(">>>>> Failed to build Redis URI");
                             throw new IllegalStateException("Failed to build Redis URI");
                         }
 
                         config.setRedisUri(redisUri);
                         defaultCache = cacheManager.getOrCreateCache("defaultCache", config);
-                        logger.info("defaultCache created successfully");
+                        logger.info(">>>>> defaultCache created successfully");
                     } catch (UnsupportedEncodingException e) {
-                        logger.error("Failed to create defaultCache", e);
+                        logger.error(">>>>> Failed to create defaultCache", e);
                         throw new RuntimeException("Failed to create defaultCache", e);
                     }
                 }
@@ -171,30 +173,30 @@ public class EqpLstRedisCacheConfig {
             synchronized (this) {
                 if (eqLstTplInfoCache == null) {
                     try {
-                        logger.info("Creating eqLstTplInfoCache");
+                        logger.info(">>>>> Creating eqLstTplInfoCache");
 
                         if (cacheManager == null) {
-                            logger.error("CacheManager is not initialized");
+                            logger.error(">>>>> CacheManager is not initialized");
                             throw new IllegalStateException("CacheManager is not initialized");
                         }
 
                         CacheConfig config = baseConfig(REDIS_KEY_PREFIX_EQP_LST_TPL_INFO, 500, TimeUnit.MINUTES.toMillis(10));
                         if (config == null) {
-                            logger.error("Failed to create base config for eqLstTplInfoCache");
+                            logger.error(">>>>> Failed to create base config for eqLstTplInfoCache");
                             throw new IllegalStateException("Failed to create base config for eqLstTplInfoCache");
                         }
 
                         String redisUri = buildRedisUri();
                         if (redisUri == null) {
-                            logger.error("Failed to build Redis URI");
+                            logger.error(">>>>> Failed to build Redis URI");
                             throw new IllegalStateException("Failed to build Redis URI");
                         }
 
                         config.setRedisUri(redisUri);
                         eqLstTplInfoCache = cacheManager.getOrCreateCache("eqLstTplInfoCache", config);
-                        logger.info("eqLstTplInfoCache created successfully");
+                        logger.info(">>>>> eqLstTplInfoCache created successfully");
                     } catch (UnsupportedEncodingException e) {
-                        logger.error("Failed to create eqLstTplInfoCache", e);
+                        logger.error(">>>>> Failed to create eqLstTplInfoCache", e);
                         throw new RuntimeException("Failed to create eqLstTplInfoCache", e);
                     }
                 }
@@ -208,30 +210,30 @@ public class EqpLstRedisCacheConfig {
             synchronized (this) {
                 if (eqLstTplCache == null) {
                     try {
-                        logger.info("Creating eqLstTplCache");
+                        logger.info(">>>>> Creating eqLstTplCache");
 
                         if (cacheManager == null) {
-                            logger.error("CacheManager is not initialized");
+                            logger.error(">>>>> CacheManager is not initialized");
                             throw new IllegalStateException("CacheManager is not initialized");
                         }
 
                         CacheConfig config = baseConfig(REDIS_KEY_PREFIX_EQP_LST_TPL, 500, TimeUnit.MINUTES.toMillis(10));
                         if (config == null) {
-                            logger.error("Failed to create base config for eqLstTplCache");
+                            logger.error(">>>>> Failed to create base config for eqLstTplCache");
                             throw new IllegalStateException("Failed to create base config for eqLstTplCache");
                         }
 
                         String redisUri = buildRedisUri();
                         if (redisUri == null) {
-                            logger.error("Failed to build Redis URI");
+                            logger.error(">>>>> Failed to build Redis URI");
                             throw new IllegalStateException("Failed to build Redis URI");
                         }
 
                         config.setRedisUri(redisUri);
                         eqLstTplCache = cacheManager.getOrCreateCache("eqLstTplCache", config);
-                        logger.info("eqLstTplCache created successfully");
+                        logger.info(">>>>> eqLstTplCache created successfully");
                     } catch (UnsupportedEncodingException e) {
-                        logger.error("Failed to create eqLstTplCache", e);
+                        logger.error(">>>>> Failed to create eqLstTplCache", e);
                         throw new RuntimeException("Failed to create eqLstTplCache", e);
                     }
                 }
@@ -246,30 +248,30 @@ public class EqpLstRedisCacheConfig {
             synchronized (this) {
                 if (eqLstTplInfoPOCache == null) {
                     try {
-                        logger.info("Creating eqLstTplInfoPOCache");
+                        logger.info(">>>>> Creating eqLstTplInfoPOCache");
 
                         if (cacheManager == null) {
-                            logger.error("CacheManager is not initialized");
+                            logger.error(">>>>> CacheManager is not initialized");
                             throw new IllegalStateException("CacheManager is not initialized");
                         }
 
                         CacheConfig config = baseConfig(REDIS_KEY_PREFIX_EQP_LST_TPL_INFO, 500, TimeUnit.MINUTES.toMillis(10));
                         if (config == null) {
-                            logger.error("Failed to create base config for eqLstTplInfoPOCache");
+                            logger.error(">>>>> Failed to create base config for eqLstTplInfoPOCache");
                             throw new IllegalStateException("Failed to create base config for eqLstTplInfoPOCache");
                         }
 
                         String redisUri = buildRedisUri();
                         if (redisUri == null) {
-                            logger.error("Failed to build Redis URI");
+                            logger.error(">>>>> Failed to build Redis URI");
                             throw new IllegalStateException("Failed to build Redis URI");
                         }
 
                         config.setRedisUri(redisUri);
                         eqLstTplInfoPOCache = cacheManager.getOrCreateCache("eqLstTplInfoPOCache", config);
-                        logger.info("eqLstTplInfoPOCache created successfully");
+                        logger.info(">>>>> eqLstTplInfoPOCache created successfully");
                     } catch (UnsupportedEncodingException e) {
-                        logger.error("Failed to create eqLstTplInfoPOCache", e);
+                        logger.error(">>>>> Failed to create eqLstTplInfoPOCache", e);
                         throw new RuntimeException("Failed to create eqLstTplInfoPOCache", e);
                     }
                 }
@@ -283,31 +285,31 @@ public class EqpLstRedisCacheConfig {
             synchronized (this) {
                 if (eqLstTplDOCache == null) {
                     try {
-                        logger.info("Creating eqLstTplDOCache");
+                        logger.info(">>>>> Creating eqLstTplDOCache");
 
                         if (cacheManager == null) {
-                            logger.error("CacheManager is not initialized");
+                            logger.error(">>>>> CacheManager is not initialized");
                             throw new IllegalStateException("CacheManager is not initialized");
                         }
 
                         CacheConfig config = baseConfig(REDIS_KEY_PREFIX_EQP_LST_TPL, 500, TimeUnit.MINUTES.toMillis(10));
                         if (config == null) {
-                            logger.error("Failed to create base config for eqLstTplDOCache");
+                            logger.error(">>>>> Failed to create base config for eqLstTplDOCache");
                             throw new IllegalStateException("Failed to create base config for eqLstTplDOCache");
                         }
 
                         String redisUri = buildRedisUri();
                         if (redisUri == null) {
-                            logger.error("Failed to build Redis URI");
+                            logger.error(">>>>> Failed to build Redis URI");
                             throw new IllegalStateException("Failed to build Redis URI");
                         }
 
                         config.setRedisUri(redisUri);
                         eqLstTplInfoPOCache = cacheManager.getOrCreateCache("eqLstTplDOCache", config);
-                        logger.info("eqLstTplDOCache created successfully");
+                        logger.info(">>>>> eqLstTplDOCache created successfully");
                     } catch (UnsupportedEncodingException e) {
-                        logger.error("Failed to create eqLstTplDOCache", e);
-                        throw new RuntimeException("Failed to create eqLstTplDOCache", e);
+                        logger.error(">>>>> Failed to create eqLstTplDOCache", e);
+                        throw new RuntimeException(">>>>> Failed to create eqLstTplDOCache", e);
                     }
                 }
             }
@@ -319,11 +321,11 @@ public class EqpLstRedisCacheConfig {
         if (eqLstByteCache == null) {
             synchronized (this) {
                 if (eqLstByteCache == null) {
-                    CacheConfig config = baseConfig("eqLstByteCache", 500, TimeUnit.MINUTES.toMillis(10));
+                    CacheConfig config = baseConfig(REDIS_KEY_PREFIX_EQP_LST_TPL, 500, TimeUnit.MINUTES.toMillis(10));
                     try {
                         config.setRedisUri(buildRedisUri());
                     } catch (UnsupportedEncodingException e) {
-                        logger.error("Failed to create eqLstByteCache", e);
+                        logger.error(">>>>> Failed to create eqLstByteCache", e);
                         throw new RuntimeException(e);
                     }
                     eqLstByteCache = cacheManager.getOrCreateCache("eqLstByteCache", config);
@@ -331,6 +333,43 @@ public class EqpLstRedisCacheConfig {
             }
         }
         return eqLstByteCache;
+    }
+
+    public Cache<String, String> getEqLstByteStringCache() {
+        if (eqLstByteStringCache == null) {
+            synchronized (this) {
+                if (eqLstByteStringCache == null) {
+                    try {
+                        logger.info(">>>>> Creating eqLstByteStringCache");
+
+                        if (cacheManager == null) {
+                            logger.error(">>>>> CacheManager is not initialized");
+                            throw new IllegalStateException("CacheManager is not initialized");
+                        }
+
+                        CacheConfig config = baseConfig(REDIS_KEY_PREFIX_EQP_LST_TPL, 500, TimeUnit.MINUTES.toMillis(10));
+                        if (config == null) {
+                            logger.error(">>>>> Failed to create base config for eqLstByteStringCache");
+                            throw new IllegalStateException("Failed to create base config for eqLstByteStringCache");
+                        }
+
+                        String redisUri = buildRedisUri();
+                        if (redisUri == null) {
+                            logger.error(">>>>> Failed to build Redis URI");
+                            throw new IllegalStateException("Failed to build Redis URI");
+                        }
+
+                        config.setRedisUri(redisUri);
+                        eqLstByteStringCache = cacheManager.getOrCreateCache("eqLstByteStringCache", config);
+                        logger.info(">>>>> eqLstByteStringCache created successfully");
+                    } catch (UnsupportedEncodingException e) {
+                        logger.error(">>>>> Failed to create eqLstByteStringCache", e);
+                        throw new RuntimeException("Failed to create eqLstByteStringCache", e);
+                    }
+                }
+            }
+        }
+        return eqLstByteStringCache;
     }
 
     // Getter methods for cache instances
