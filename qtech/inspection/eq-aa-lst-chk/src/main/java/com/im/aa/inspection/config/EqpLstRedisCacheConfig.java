@@ -1,7 +1,7 @@
 package com.im.aa.inspection.config;
 
 import com.im.aa.inspection.entity.standard.EqLstTplDO;
-import com.im.aa.inspection.entity.standard.EqLstTplInfoPO;
+import com.im.aa.inspection.entity.standard.EqLstTplInfoDO;
 import org.im.cache.config.CacheConfig;
 import org.im.cache.core.Cache;
 import org.im.cache.core.CacheManager;
@@ -38,17 +38,17 @@ public class EqpLstRedisCacheConfig {
     private CacheManager cacheManager;
 
     // 缓存实例
-    private Cache<String, Object> defaultCache;
+    private volatile Cache<String, Object> defaultCache;
     private volatile Cache<String, String> eqLstTplInfoCache;
     private volatile Cache<String, String> eqLstTplCache;
-    private volatile Cache<String, EqLstTplInfoPO> eqLstTplInfoPOCache;
+    private volatile Cache<String, EqLstTplInfoDO> eqLstTplInfoDOCache;
     private volatile Cache<String, EqLstTplDO> eqLstTplDOCache;
     private volatile Cache<String, byte[]> eqLstByteCache;
 
     private volatile Cache<String, String> eqLstByteStringCache;
 
     public EqpLstRedisCacheConfig() {
-        // 使用自研的配置模块读取application.properties中的配置
+        // 使用配置模块读取application.properties中的配置
         loadConfigFromFramework();
         init();
     }
@@ -243,12 +243,12 @@ public class EqpLstRedisCacheConfig {
     }
 
     // 对象缓存
-    public Cache<String, EqLstTplInfoPO> getEqLstTplInfoPOCache() {
-        if (eqLstTplInfoPOCache == null) {
+    public Cache<String, EqLstTplInfoDO> getEqLstTplInfoDOCache() {
+        if (eqLstTplInfoDOCache == null) {
             synchronized (this) {
-                if (eqLstTplInfoPOCache == null) {
+                if (eqLstTplInfoDOCache == null) {
                     try {
-                        logger.info(">>>>> Creating eqLstTplInfoPOCache");
+                        logger.info(">>>>> Creating eqLstTplInfoDOCache");
 
                         if (cacheManager == null) {
                             logger.error(">>>>> CacheManager is not initialized");
@@ -257,8 +257,8 @@ public class EqpLstRedisCacheConfig {
 
                         CacheConfig config = baseConfig(REDIS_KEY_PREFIX_EQP_LST_TPL_INFO, 500, TimeUnit.MINUTES.toMillis(10));
                         if (config == null) {
-                            logger.error(">>>>> Failed to create base config for eqLstTplInfoPOCache");
-                            throw new IllegalStateException("Failed to create base config for eqLstTplInfoPOCache");
+                            logger.error(">>>>> Failed to create base config for eqLstTplInfoDOCache");
+                            throw new IllegalStateException("Failed to create base config for eqLstTplInfoDOCache");
                         }
 
                         String redisUri = buildRedisUri();
@@ -268,16 +268,16 @@ public class EqpLstRedisCacheConfig {
                         }
 
                         config.setRedisUri(redisUri);
-                        eqLstTplInfoPOCache = cacheManager.getOrCreateCache("eqLstTplInfoPOCache", config);
-                        logger.info(">>>>> eqLstTplInfoPOCache created successfully");
+                        eqLstTplInfoDOCache = cacheManager.getOrCreateCache("eqLstTplInfoDOCache", config);
+                        logger.info(">>>>> eqLstTplInfoDOCache created successfully");
                     } catch (UnsupportedEncodingException e) {
-                        logger.error(">>>>> Failed to create eqLstTplInfoPOCache", e);
-                        throw new RuntimeException("Failed to create eqLstTplInfoPOCache", e);
+                        logger.error(">>>>> Failed to create eqLstTplInfoDOCache", e);
+                        throw new RuntimeException("Failed to create eqLstTplInfoDOCache", e);
                     }
                 }
             }
         }
-        return eqLstTplInfoPOCache;
+        return eqLstTplInfoDOCache;
     }
 
     public Cache<String, EqLstTplDO> getEqLstTplDOCache() {
@@ -305,7 +305,7 @@ public class EqpLstRedisCacheConfig {
                         }
 
                         config.setRedisUri(redisUri);
-                        eqLstTplInfoPOCache = cacheManager.getOrCreateCache("eqLstTplDOCache", config);
+                        eqLstTplDOCache = cacheManager.getOrCreateCache("eqLstTplDOCache", config);
                         logger.info(">>>>> eqLstTplDOCache created successfully");
                     } catch (UnsupportedEncodingException e) {
                         logger.error(">>>>> Failed to create eqLstTplDOCache", e);

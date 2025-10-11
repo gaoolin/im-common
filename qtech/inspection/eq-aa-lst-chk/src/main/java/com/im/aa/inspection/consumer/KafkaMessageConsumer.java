@@ -102,6 +102,8 @@ public class KafkaMessageConsumer implements Lifecycle {
         Properties consumerProps = new Properties();
         consumerProps.put("bootstrap.servers", bootstrapServers);
         consumerProps.put("group.id", groupId);
+        consumerProps.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        consumerProps.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         consumerProps.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         consumerProps.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         consumerProps.put("enable.auto.commit", "true");
@@ -114,8 +116,10 @@ public class KafkaMessageConsumer implements Lifecycle {
         // 初始化生产者
         Properties producerProps = new Properties();
         producerProps.put("bootstrap.servers", bootstrapServers);
-        producerProps.put("key.serde", "org.apache.kafka.common.serialization.StringSerializer");
-        producerProps.put("value.serde", "org.apache.kafka.common.serialization.StringSerializer");
+        producerProps.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        producerProps.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        producerProps.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+        producerProps.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
         this.producer = new KafkaProducer<>(producerProps);
     }

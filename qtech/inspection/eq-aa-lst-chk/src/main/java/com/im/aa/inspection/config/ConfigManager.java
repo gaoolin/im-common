@@ -4,14 +4,13 @@ import org.im.config.ConfigurationManager;
 import org.im.config.impl.DefaultConfigurationManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-/**
- * @author gaozhilin
- * @email gaoolin@gmail.com
- * @since 2025/09/25
- */
 
 /**
  * 配置管理器
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @since 2025/09/25
  */
 public class ConfigManager {
     private static final Logger logger = LoggerFactory.getLogger(ConfigManager.class);
@@ -19,6 +18,7 @@ public class ConfigManager {
     public static ConfigurationManager initialize() {
         // 直接使用默认配置管理器，它会自动加载 classpath 下的 application.properties
         DefaultConfigurationManager configManager = new DefaultConfigurationManager();
+        logger.debug("初始化配置管理器成功");
 
         // 如果需要添加额外的配置源，可以在这里添加
         // 但不要重复添加已经存在的配置源

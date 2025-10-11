@@ -18,11 +18,15 @@ public class EqLstTplInfo implements Serializable {
     private static final long serialVersionUID = 529L;
 
     private String module;
-    private Integer listParams;
-    private Integer itemParams;
+    private Long listParams;
+    private Long itemParams;
     private Integer status;
 
-    // 重写equals和hashCode方法，用于判断对象的对应属性是否相等
+    /**
+     * 重写equals和hashCode方法，用于判断对象的对应属性是否相等
+     * 重写 equals/hashCode，使用业务字段，而非数据库主键
+     * 注意：如果你想用在 Set / Map 做去重，业务字段足够，避免使用懒加载对象 template
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

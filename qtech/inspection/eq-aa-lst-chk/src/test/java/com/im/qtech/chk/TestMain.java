@@ -1,7 +1,7 @@
 package com.im.qtech.chk;
 
 import com.im.aa.inspection.entity.standard.EqLstTplDO;
-import com.im.aa.inspection.entity.standard.EqLstTplInfoPO;
+import com.im.aa.inspection.entity.standard.EqLstTplInfoDO;
 import com.im.aa.inspection.service.DatabaseService;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -20,13 +20,13 @@ public class TestMain {
         try {
             transaction = session.beginTransaction();
 
-            // ✅ 3. 测试插入 EqLstTplInfoPO
-            EqLstTplInfoPO infoPO = new EqLstTplInfoPO();
+            // ✅ 3. 测试插入 EqLstTplInfoDO
+            EqLstTplInfoDO infoPO = new EqLstTplInfoDO();
             infoPO.setModule("MODULE_TEST");
             infoPO.setProvider("PROVIDER_TEST");
 
             session.saveOrUpdate(infoPO);
-            System.out.println("✅ 插入 EqLstTplInfoPO 成功，ID = " + infoPO.getId());
+            System.out.println("✅ 插入 EqLstTplInfoDO 成功，ID = " + infoPO.getId());
 
             // ✅ 4. 测试插入 EqLstTplDO
             EqLstTplDO tplDO = new EqLstTplDO();
@@ -47,7 +47,7 @@ public class TestMain {
 
         // ✅ 6. 测试查询
         try {
-            EqLstTplInfoPO loaded = databaseService.getTplInfo("MODULE_TEST");
+            EqLstTplInfoDO loaded = databaseService.getTplInfo("MODULE_TEST");
             if (loaded != null) {
                 System.out.println("✅ findByModule 查询成功 -> " + loaded.getModule());
             } else {

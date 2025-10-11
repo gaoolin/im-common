@@ -3,7 +3,7 @@ package com.im.aa.inspection.service;
 import com.im.aa.inspection.config.EqpLstRedisCacheConfig;
 import com.im.aa.inspection.entity.param.EqLstParsed;
 import com.im.aa.inspection.entity.standard.EqLstTplDO;
-import com.im.aa.inspection.entity.standard.EqLstTplInfoPO;
+import com.im.aa.inspection.entity.standard.EqLstTplInfoDO;
 import lombok.Getter;
 import org.im.cache.core.Cache;
 import org.slf4j.Logger;
@@ -34,7 +34,7 @@ public class CacheService {
     private final EqpLstRedisCacheConfig redisCacheConfig;
 
     private final Cache<String, EqLstTplDO> eqLstTplCache;
-    private final Cache<String, EqLstTplInfoPO> eqLstTplInfoCache;
+    private final Cache<String, EqLstTplInfoDO> eqLstTplInfoCache;
 
     /**
      * 构造函数
@@ -45,7 +45,7 @@ public class CacheService {
     public CacheService(EqpLstRedisCacheConfig redisCacheConfig) {
         this.redisCacheConfig = Objects.requireNonNull(redisCacheConfig, "Redis缓存配置不能为空");
         this.eqLstTplCache = this.redisCacheConfig.getEqLstTplDOCache();
-        this.eqLstTplInfoCache = this.redisCacheConfig.getEqLstTplInfoPOCache();
+        this.eqLstTplInfoCache = this.redisCacheConfig.getEqLstTplInfoDOCache();
         logger.info(">>>>> CacheService初始化完成，使用Redis缓存配置");
     }
 
@@ -63,7 +63,7 @@ public class CacheService {
      * @param result 设备参数
      * @return 缓存键
      */
-    private String generateEqLstTplInfoCacheKey(EqLstTplInfoPO result) {
+    private String generateEqLstTplInfoCacheKey(EqLstTplInfoDO result) {
         return "parsed:" + result.getModule();
     }
 

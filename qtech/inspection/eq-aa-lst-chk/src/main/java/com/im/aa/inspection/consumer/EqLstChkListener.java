@@ -123,7 +123,7 @@ public class EqLstChkListener {
             EqpReverseRecord checkResult = initializeCheckResult(actualObj);
 
             // 获取模板信息
-            EqLstTplInfoPO modelInfoObj = getTplInfo(actualObj.getModule());
+            EqLstTplInfoDO modelInfoObj = getTplInfo(actualObj.getModule());
             EqLstTplDO modelObj = getTpl(actualObj.getModule());
 
             // 判断模板信息
@@ -157,7 +157,7 @@ public class EqLstChkListener {
     }
 
     // FIXME : 当redis没有模版信息时，更严谨的逻辑是到数据库中查询 模版信息或模版详情，并更新到Redis中
-    private EqLstTplInfoPO getTplInfo(String module) {
+    private EqLstTplInfoDO getTplInfo(String module) {
         return cache.getParamsTplInfo(module);
     }
 

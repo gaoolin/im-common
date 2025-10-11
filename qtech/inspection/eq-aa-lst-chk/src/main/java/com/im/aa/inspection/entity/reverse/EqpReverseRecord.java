@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(name = "biz.eqp_reverse_control_latest") // 需要指定实际表名
+@Table(name = "eqp_reverse_control_latest", schema = "biz") // 需要指定实际表名
 public class EqpReverseRecord implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -38,6 +38,9 @@ public class EqpReverseRecord implements Serializable {
 
     private Integer code;
     private Boolean passed;
+
+    @Enumerated(EnumType.STRING)
+    private LabelEum label;
     private String reason;
     private String description;
 

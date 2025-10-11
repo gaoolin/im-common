@@ -1,7 +1,7 @@
 package com.im.aa.inspection.repository;
 
 import com.im.aa.inspection.entity.standard.EqLstTplDO;
-import com.im.aa.inspection.entity.standard.EqLstTplInfoPO;
+import com.im.aa.inspection.entity.standard.EqLstTplInfoDO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -60,8 +60,8 @@ public class TemplateDataRepository {
         }
     }
 
-    // EqLstTplInfoPO CRUD 操作
-    public void saveEqLstTplInfoPO(EqLstTplInfoPO tplInfoPO) {
+    // EqLstTplInfoDO CRUD 操作
+    public void saveEqLstTplInfoPO(EqLstTplInfoDO tplInfoPO) {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
         try {
@@ -73,14 +73,14 @@ public class TemplateDataRepository {
         }
     }
 
-    public EqLstTplInfoPO findEqLstTplInfoPOById(Long id) {
+    public EqLstTplInfoDO findEqLstTplInfoPOById(Long id) {
         Session session = sessionFactory.getCurrentSession();
-        return session.get(EqLstTplInfoPO.class, id);
+        return session.get(EqLstTplInfoDO.class, id);
     }
 
-    public List<EqLstTplInfoPO> findAllEqLstTplInfoPO() {
+    public List<EqLstTplInfoDO> findAllEqLstTplInfoPO() {
         Session session = sessionFactory.getCurrentSession();
-        Query<EqLstTplInfoPO> query = session.createQuery("FROM EqLstTplInfoPO", EqLstTplInfoPO.class);
+        Query<EqLstTplInfoDO> query = session.createQuery("FROM EqLstTplInfoDO", EqLstTplInfoDO.class);
         return query.list();
     }
 
@@ -88,7 +88,7 @@ public class TemplateDataRepository {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
         try {
-            EqLstTplInfoPO tplInfoPO = session.get(EqLstTplInfoPO.class, id);
+            EqLstTplInfoDO tplInfoPO = session.get(EqLstTplInfoDO.class, id);
             if (tplInfoPO != null) {
                 session.delete(tplInfoPO);
             }
@@ -99,10 +99,22 @@ public class TemplateDataRepository {
         }
     }
 
-
+    // EqLstTplDO 根据 tplInfo.module 查询
     public EqLstTplDO findByModule(String module) {
         Session session = sessionFactory.getCurrentSession();
-        Query<EqLstTplDO> query = session.createQuery("FROM EqLstTplDO WHERE module = :module", EqLstTplDO.class);
-        return null;
+        Transaction tx = session.beginTransaction();
+        try {
+            Query<EqLstTplDO> query = session.createQuery(
+                    "SELECT t FROM EqLstTplDO t JOIN t.tplInfo i WHERE i.module = :module",
+                    EqLstTplDO.class
+            );
+            query.setParameter("module", module);
+            EqLstTplDO result = query.uniqueResult();
+            tx.commit();
+            return result;
+        } catch (Exception e) {
+            tx.rollback();
+            throw new RuntimeException("查询失败", e);
+        }
     }
 }

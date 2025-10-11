@@ -8,14 +8,17 @@
         <!-- 数据库连接配置 -->
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.url">jdbc:postgresql://10.170.6.142:5432/imbiz</property>
-        <property name="hibernate.connection.username">qtech</property>
-        <property name="hibernate.connection.password">Ee786549!</property>
+        <property name="hibernate.connection.username">biz</property>
+        <property name="hibernate.connection.password">FfZRT!FkF@K4pq9ZPpdC</property>
 
         <!-- Hibernate 配置 -->
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="hibernate.hbm2ddl.auto">validate</property>
         <property name="hibernate.show_sql">false</property>
         <property name="hibernate.format_sql">true</property>
+        <!-- 必须启用驼峰转下划线 用单行写法 -->
+        <property name="hibernate.implicit_naming_strategy">org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl</property>
+        <property name="hibernate.physical_naming_strategy">com.im.aa.inspection.config.CustomPhysicalNamingStrategy</property>
 
         <!-- 连接池配置 -->
         <property name="hibernate.c3p0.min_size">5</property>
@@ -25,7 +28,7 @@
         <property name="hibernate.c3p0.idle_test_period">3000</property>
 
         <!-- 实体类映射 -->
-        <mapping class="com.im.aa.inspection.entity.standard.EqLstTplInfoPO"/>
+        <mapping class="com.im.aa.inspection.entity.standard.EqLstTplInfoDO"/>
         <mapping class="com.im.aa.inspection.entity.standard.EqLstTplDO"/>
         <mapping class="com.im.aa.inspection.entity.reverse.EqpReverseRecord"/>
     </session-factory>
