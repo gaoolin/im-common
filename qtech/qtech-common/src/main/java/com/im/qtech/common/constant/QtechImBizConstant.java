@@ -27,7 +27,7 @@ public class QtechImBizConstant {
     // REDIS_CONSTANT
     public static final String REDIS_KEY_PREFIX_EQP_LST_TPL = "dto:inspection:lst:tpl:";
     public static final String REDIS_KEY_PREFIX_EQP_LST_TPL_INFO = "dto:inspection:lst:tpl:info:";
-    public static final String REDIS_KEY_PREFIX_EQP_REVERSE_IGNORE_SIM = "qtech:chk:ignored:";
+    public static final String REDIS_KEY_PREFIX_EQP_REVERSE_IGNORE_SIM = "qtech:im:chk:ignored:";
     public static final int DEVICE_ONLINE_STATUS_REDIS_EXPIRE_SECONDS = 60;
     public static final Long MSG_WB_OLP_REDIS_EXPIRE_SECONDS = 900L; // 15分钟
 

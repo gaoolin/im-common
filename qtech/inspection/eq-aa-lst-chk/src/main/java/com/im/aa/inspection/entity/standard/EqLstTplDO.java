@@ -1,6 +1,7 @@
 package com.im.aa.inspection.entity.standard;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.im.qtech.common.dto.param.EqLstPOJO;
 import lombok.Data;
 import lombok.ToString;
@@ -28,6 +29,7 @@ public class EqLstTplDO extends EqLstPOJO {
     // 一对一关系映射 - 添加 insertable=false, updatable=false
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "module", referencedColumnName = "module", insertable = false, updatable = false)
+    @JsonManagedReference  // 管理方
     private EqLstTplInfoDO tplInfo;
 
     private boolean deleted = false;
@@ -37,8 +39,6 @@ public class EqLstTplDO extends EqLstPOJO {
     private String updateBy;
     private LocalDateTime updateTime;
     private String remark;
-
-
 }
 
 

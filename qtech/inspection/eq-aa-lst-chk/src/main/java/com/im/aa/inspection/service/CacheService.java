@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Objects;
 
 /**
- * 缓存服务类
+ * 缓存服务类(单例模式)
  * <p>
  * 提供设备参数检查结果的缓存功能，充分利用im-framework缓存管理模块的功能
  * 包括缓存穿透保护、击穿保护、雪崩保护等高级特性
@@ -26,6 +26,23 @@ public class CacheService {
     private static final Logger logger = LoggerFactory.getLogger(CacheService.class);
 
     /**
+     * 静态内部类实现单例模式
+     * 利用JVM类加载机制保证线程安全和延迟加载
+     */
+    private static class SingletonHolder {
+        private static final CacheService INSTANCE = new CacheService();
+    }
+
+    /**
+     * 获取CacheService单例实例
+     *
+     * @return CacheService单例实例
+     */
+    public static CacheService getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
+    /**
      * -- GETTER --
      * 获取Redis缓存配置实例
      */
@@ -37,12 +54,12 @@ public class CacheService {
     private final Cache<String, EqLstTplInfoDO> eqLstTplInfoCache;
 
     /**
-     * 构造函数
+     * 私有构造函数，防止外部直接实例化
      * 初始化缓存配置和缓存实例
      *
      * @param redisCacheConfig Redis缓存配置
      */
-    public CacheService(EqpLstRedisCacheConfig redisCacheConfig) {
+    private CacheService(EqpLstRedisCacheConfig redisCacheConfig) {
         this.redisCacheConfig = Objects.requireNonNull(redisCacheConfig, "Redis缓存配置不能为空");
         this.eqLstTplCache = this.redisCacheConfig.getEqLstTplDOCache();
         this.eqLstTplInfoCache = this.redisCacheConfig.getEqLstTplInfoDOCache();
@@ -50,10 +67,10 @@ public class CacheService {
     }
 
     /**
-     * 无参构造函数
+     * 私有无参构造函数
      * 初始化默认的Redis缓存配置
      */
-    public CacheService() {
+    private CacheService() {
         this(new EqpLstRedisCacheConfig());
     }
 

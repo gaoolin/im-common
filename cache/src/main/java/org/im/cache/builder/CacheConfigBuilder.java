@@ -20,8 +20,8 @@ public class CacheConfigBuilder {
         return new CacheConfigBuilder();
     }
 
-    public CacheConfigBuilder withName(String name) {
-        config.setName(name);
+    public CacheConfigBuilder withPrefix(String prefix) {
+        config.setPrefix(prefix);
         return this;
     }
 

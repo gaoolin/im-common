@@ -14,7 +14,7 @@ import java.util.Objects;
 
 @Data
 @MappedSuperclass
-public class EqLstTplInfo implements Serializable {
+public class EqLstTplInfoPOJO implements Serializable {
     private static final long serialVersionUID = 529L;
 
     private String module;
@@ -31,7 +31,7 @@ public class EqLstTplInfo implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EqLstTplInfo that = (EqLstTplInfo) o;
+        EqLstTplInfoPOJO that = (EqLstTplInfoPOJO) o;
         return Objects.equals(module, that.module) &&
                 Objects.equals(listParams, that.listParams) &&
                 Objects.equals(itemParams, that.itemParams) &&

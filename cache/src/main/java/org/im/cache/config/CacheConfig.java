@@ -27,7 +27,7 @@ public class CacheConfig implements Serializable {
     private static final long serialVersionUID = 1L;
 
     // 缓存名称
-    private String name;
+    private String prefix;
 
     // 最大缓存大小
     private int maximumSize = 1000;
@@ -75,8 +75,8 @@ public class CacheConfig implements Serializable {
     public CacheConfig() {
     }
 
-    public CacheConfig(String name) {
-        this.name = name;
+    public CacheConfig(String prefix) {
+        this.prefix = prefix;
     }
 
     public long getCleanupInterval() {
@@ -88,12 +88,12 @@ public class CacheConfig implements Serializable {
     }
 
     // Getters and Setters
-    public String getName() {
-        return name;
+    public String getPrefix() {
+        return prefix;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 
     public int getMaximumSize() {
@@ -255,7 +255,7 @@ public class CacheConfig implements Serializable {
     @Override
     public String toString() {
         return "CacheConfig{" +
-                "name='" + name + '\'' +
+                "prefix='" + prefix + '\'' +
                 ", maximumSize=" + maximumSize +
                 ", expireAfterWrite=" + expireAfterWrite +
                 ", expireAfterAccess=" + expireAfterAccess +

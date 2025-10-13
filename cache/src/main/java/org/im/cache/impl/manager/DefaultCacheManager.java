@@ -87,6 +87,31 @@ public class DefaultCacheManager implements CacheManager {
     }
 
     @Override
+    public <K, V> Cache<K, V> createCache(String name, CacheConfig config, Class<K> keyType, Class<V> valueType) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Cache name cannot be null or empty");
+        }
+        if (config == null) {
+            throw new IllegalArgumentException("Cache config cannot be null");
+        }
+        if (caches.containsKey(name)) {
+            throw new IllegalStateException("Cache with name '" + name + "' already exists");
+        }
+
+        try {
+            Cache<K, V> cache = new CacheFactory(this).create(config, keyType, valueType);
+            registerCache(name, cache); // 直接注册
+            logger.info("Cache '{}' created with config: {}", name, config);
+            return cache;
+        } catch (IllegalArgumentException e) {
+            throw e;
+        } catch (Exception e) {
+            logger.error("Failed to create cache '{}'", name, e);
+            throw new RuntimeException("Failed to create cache: " + name, e);
+        }
+    }
+
+    @Override
     public void registerCache(String name, Cache<?, ?> cache) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Cache name cannot be null or empty");
@@ -119,6 +144,20 @@ public class DefaultCacheManager implements CacheManager {
                 cache = getCache(name);
                 if (cache == null) {
                     cache = createCache(name, config);
+                }
+            }
+        }
+        return cache;
+    }
+
+    @Override
+    public <K, V> Cache<K, V> getOrCreateCache(String name, CacheConfig config, Class<K> keyType, Class<V> valueType) {
+        Cache<K, V> cache = getCache(name);
+        if (cache == null) {
+            synchronized (this) {
+                cache = getCache(name);
+                if (cache == null) {
+                    cache = createCache(name, config, keyType, valueType);
                 }
             }
         }

@@ -54,7 +54,7 @@ public final class ItemLensFieldOfViewTestParser {
                 if (matcher.find()) {
                     subCommand = matcher.group(1); // Return the first capturing group (the number)
                 } else {
-                    logger.error(">>>>> ItemLensFieldOfViewTestParser: String does not match the expected pattern: {}", parts[3]);
+                    logger.warn(">>>>> ItemLensFieldOfViewTestParser: String does not match the expected pattern: {}", parts[3]);
                     return null;
                 }
                 String val = parts[6];

@@ -13,11 +13,28 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 数据库服务（纯 Java + Hibernate SE）
+ * 数据库服务（纯 Java + Hibernate SE）(单例模式)
  */
 public class DatabaseService {
 
     private static final Logger logger = LoggerFactory.getLogger(DatabaseService.class);
+
+    /**
+     * 静态内部类实现单例模式
+     * 利用JVM类加载机制保证线程安全和延迟加载
+     */
+    private static class SingletonHolder {
+        private static final DatabaseService INSTANCE = new DatabaseService();
+    }
+
+    /**
+     * 获取DatabaseService单例实例
+     *
+     * @return DatabaseService单例实例
+     */
+    public static DatabaseService getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
     @Getter
     private SessionFactory sessionFactory;
@@ -26,9 +43,9 @@ public class DatabaseService {
     private ReverseDataRepository reverseDataRepository;
 
     /**
-     * 构造函数：初始化数据库服务
+     * 私有构造函数：防止外部直接实例化
      */
-    public DatabaseService() {
+    private DatabaseService() {
         init();
     }
 
@@ -46,10 +63,9 @@ public class DatabaseService {
             templateDataRepository = new TemplateDataRepository(sessionFactory);
             reverseDataRepository = new ReverseDataRepository(sessionFactory);
 
-            logger.info("数据库服务初始化成功");
+            logger.info(">>>>> 数据库服务初始化成功");
         } catch (Exception e) {
-            logger.error("数据库服务初始化失败", e);
-            throw new RuntimeException("数据库服务初始化失败", e);
+            logger.error(">>>>> 数据库服务初始化失败", e);
         }
     }
 
@@ -61,7 +77,7 @@ public class DatabaseService {
         try {
             return templateInfoRepository.findByModule(module);
         } catch (Exception e) {
-            logger.error("获取参数标准值失败: {}", module, e);
+            logger.error(">>>>> 获取参数标准值失败: {}", module, e);
             return null;
         }
     }
@@ -70,7 +86,7 @@ public class DatabaseService {
         try {
             return templateDataRepository.findByModule(module);
         } catch (Exception e) {
-            logger.error("获取检查结果模板失败: {}", module, e);
+            logger.error(">>>>> 获取检查结果模板失败: {}", module, e);
             return new EqLstTplDO();
         }
     }
@@ -79,8 +95,7 @@ public class DatabaseService {
         try {
             reverseDataRepository.saveEqpReverseRecord(result);
         } catch (Exception e) {
-            logger.error("保存检查结果失败: {}", result, e);
-            throw new RuntimeException("保存检查结果失败", e);
+            logger.error(">>>>> 保存检查结果失败: {}", result, e);
         }
     }
 
@@ -88,7 +103,7 @@ public class DatabaseService {
         try {
             return templateInfoRepository.findById(id);
         } catch (Exception e) {
-            logger.error("获取模板信息失败，ID: {}", id, e);
+            logger.error(">>>>> 获取模板信息失败，ID: {}", id, e);
             return null;
         }
     }
@@ -96,7 +111,7 @@ public class DatabaseService {
     public void close() {
         if (sessionFactory != null && !sessionFactory.isClosed()) {
             sessionFactory.close();
-            logger.info("数据库连接已关闭");
+            logger.info(">>>>> 数据库连接已关闭");
         }
     }
 }

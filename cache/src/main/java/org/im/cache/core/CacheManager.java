@@ -25,6 +25,19 @@ public interface CacheManager {
     <K, V> Cache<K, V> createCache(String name, CacheConfig config);
 
     /**
+     * Create a cache with the specified name, configuration and type information
+     *
+     * @param name      Cache name
+     * @param config    Cache configuration
+     * @param keyType   Key type class
+     * @param valueType Value type class
+     * @param <K>       Key type
+     * @param <V>       Value type
+     * @return Created cache instance
+     */
+    <K, V> Cache<K, V> createCache(String name, CacheConfig config, Class<K> keyType, Class<V> valueType);
+
+    /**
      * Get a cache by name
      *
      * @param name Cache name
@@ -44,6 +57,19 @@ public interface CacheManager {
      * @return Cache instance
      */
     <K, V> Cache<K, V> getOrCreateCache(String name, CacheConfig config);
+
+    /**
+     * Get or create a cache with the specified name, configuration and type information
+     *
+     * @param name      Cache name
+     * @param config    Cache configuration
+     * @param keyType   Key type class
+     * @param valueType Value type class
+     * @param <K>       Key type
+     * @param <V>       Value type
+     * @return Cache instance
+     */
+    <K, V> Cache<K, V> getOrCreateCache(String name, CacheConfig config, Class<K> keyType, Class<V> valueType);
 
     /**
      * Remove a cache by name

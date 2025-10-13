@@ -16,8 +16,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.concurrent.TimeUnit;
 
-import static com.im.qtech.common.constant.QtechImBizConstant.REDIS_KEY_PREFIX_EQP_LST_TPL;
-import static com.im.qtech.common.constant.QtechImBizConstant.REDIS_KEY_PREFIX_EQP_LST_TPL_INFO;
+import static com.im.qtech.common.constant.QtechImBizConstant.*;
 
 /**
  * @author gaozhilin
@@ -38,7 +37,7 @@ public class EqpLstRedisCacheConfig {
     private CacheManager cacheManager;
 
     // 缓存实例
-    private volatile Cache<String, Object> defaultCache;
+    private volatile Cache<String, String> defaultCache;
     private volatile Cache<String, String> eqLstTplInfoCache;
     private volatile Cache<String, String> eqLstTplCache;
     private volatile Cache<String, EqLstTplInfoDO> eqLstTplInfoDOCache;
@@ -89,7 +88,7 @@ public class EqpLstRedisCacheConfig {
         }
 
         CacheConfig config = new CacheConfig();
-        config.setName(name);
+        config.setPrefix(name);
         config.setMaximumSize(maxSize);
         config.setExpireAfterWrite(expireMs);
         config.setBackendType(BackendType.REDIS);
@@ -129,7 +128,13 @@ public class EqpLstRedisCacheConfig {
     }
 
     // ========= 默认分布式缓存 =========
-    public Cache<String, Object> getDefaultCache() {
+
+    /**
+     * @param
+     * @return org.im.cache.core.Cache<java.lang.String, java.lang.Object>
+     * @description 用于获取忽略反控的机台的盒子号（SIMID）
+     */
+    public Cache<String, String> getDefaultCache() {
         if (defaultCache == null) {
             synchronized (this) {
                 if (defaultCache == null) {
@@ -142,7 +147,7 @@ public class EqpLstRedisCacheConfig {
                         }
 
                         logger.info(">>>>> Using defaultMaxSize: {}, defaultExpireMs: {}", defaultMaxSize, defaultExpireMs);
-                        CacheConfig config = baseConfig("defaultCache", defaultMaxSize, defaultExpireMs);
+                        CacheConfig config = baseConfig(REDIS_KEY_PREFIX_EQP_REVERSE_IGNORE_SIM, defaultMaxSize, defaultExpireMs);
                         if (config == null) {
                             logger.error(">>>>> Failed to create base config for defaultCache");
                             throw new IllegalStateException("Failed to create base config for defaultCache");
@@ -268,7 +273,7 @@ public class EqpLstRedisCacheConfig {
                         }
 
                         config.setRedisUri(redisUri);
-                        eqLstTplInfoDOCache = cacheManager.getOrCreateCache("eqLstTplInfoDOCache", config);
+                        eqLstTplInfoDOCache = cacheManager.getOrCreateCache("eqLstTplInfoDOCache", config, String.class, EqLstTplInfoDO.class);
                         logger.info(">>>>> eqLstTplInfoDOCache created successfully");
                     } catch (UnsupportedEncodingException e) {
                         logger.error(">>>>> Failed to create eqLstTplInfoDOCache", e);
@@ -305,7 +310,7 @@ public class EqpLstRedisCacheConfig {
                         }
 
                         config.setRedisUri(redisUri);
-                        eqLstTplDOCache = cacheManager.getOrCreateCache("eqLstTplDOCache", config);
+                        eqLstTplDOCache = cacheManager.getOrCreateCache("eqLstTplDOCache", config, String.class, EqLstTplDO.class);
                         logger.info(">>>>> eqLstTplDOCache created successfully");
                     } catch (UnsupportedEncodingException e) {
                         logger.error(">>>>> Failed to create eqLstTplDOCache", e);
@@ -328,7 +333,7 @@ public class EqpLstRedisCacheConfig {
                         logger.error(">>>>> Failed to create eqLstByteCache", e);
                         throw new RuntimeException(e);
                     }
-                    eqLstByteCache = cacheManager.getOrCreateCache("eqLstByteCache", config);
+                    eqLstByteCache = cacheManager.getOrCreateCache("eqLstByteCache", config, String.class, byte[].class);
                 }
             }
         }
@@ -373,7 +378,7 @@ public class EqpLstRedisCacheConfig {
     }
 
     // Getter methods for cache instances
-    public Cache<String, Object> defaultCache() {
+    public Cache<String, String> defaultCache() {
         return getDefaultCache();
     }
 

@@ -1,7 +1,8 @@
 package com.im.aa.inspection.entity.standard;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.im.qtech.common.dto.standard.EqLstTplInfo;
+import com.im.qtech.common.dto.standard.EqLstTplInfoPOJO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -24,7 +25,7 @@ import java.time.LocalDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
 @ToString(exclude = {"tpl"})
-public class EqLstTplInfoDO extends EqLstTplInfo {
+public class EqLstTplInfoDO extends EqLstTplInfoPOJO {
 
     private static final long serialVersionUID = 2L;
 
@@ -39,6 +40,7 @@ public class EqLstTplInfoDO extends EqLstTplInfo {
      */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "module", referencedColumnName = "module", insertable = false, updatable = false)
+    @JsonBackReference  // 被管理方
     private EqLstTplDO tpl;
 
     private String provider;

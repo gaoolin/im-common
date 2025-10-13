@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.im.aa.inspection.comparator.MtfChkCmdItemsConverterV2;
 import com.im.aa.inspection.constant.CommandHandlerMapper;
-import com.im.aa.inspection.constant.EqLstInspectionConstants;
 import com.im.aa.inspection.entity.param.EqLstParsed;
 import com.im.aa.inspection.entity.struct.EqLstCommand;
 import com.im.aa.inspection.handler.AutoRegisteredHandler;
@@ -22,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.im.qtech.common.constant.EqLstInspectionConstants.CONTROL_LIST_SET;
 import static com.im.qtech.common.constant.QtechImBizConstant.*;
 
 /**
@@ -151,7 +151,7 @@ public class EqLstParsedHandler extends MessageHandler<EqLstParsed> implements A
                             if ("LIST".equals(startWithStr)) {
                                 String listNmb = parts[1];
                                 String command = parts[2];
-                                if (EqLstInspectionConstants.CONTROL_LIST_SET.contains(command)) {
+                                if (CONTROL_LIST_SET.contains(command)) {
                                     mapper.put(Integer.parseInt(listNmb), command);
                                 }
                                 return parseRowStartWithList(parts);  // 解析 LIST 行

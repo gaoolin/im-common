@@ -24,21 +24,21 @@ import static org.im.common.math.MathEvaluator.isNumeric;
  * @since 2025/08/21 14:18:58
  */
 
-public class EqLstComparatorV3 extends AbstractParameterComparator<Object> {
+public class EqLstInspectionModelV3 extends AbstractParameterComparator<Object> {
 
     // 单例实例
-    private static volatile EqLstComparatorV3 instance;
+    private static volatile EqLstInspectionModelV3 instance;
 
     // 私有构造函数
-    private EqLstComparatorV3() {
+    private EqLstInspectionModelV3() {
     }
 
     // 获取单例实例
-    public static EqLstComparatorV3 getInstance() {
+    public static EqLstInspectionModelV3 getInstance() {
         if (instance == null) {
-            synchronized (EqLstComparatorV3.class) {
+            synchronized (EqLstInspectionModelV3.class) {
                 if (instance == null) {
-                    instance = new EqLstComparatorV3();
+                    instance = new EqLstInspectionModelV3();
                 }
             }
         }

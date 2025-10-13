@@ -7,7 +7,7 @@ public class EqLstChkListener {
     private static final ObjectMapper objectMapper = JsonMapperProvider.createCustomizedInstance(m -> m.setSerializationInclusion(JsonInclude.Include.NON_NULL).disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS));
 
     // 静态常量实例，避免重复创建
-    private static final EqLstComparatorV3 COMPARATOR = EqLstComparatorV3.getInstance();
+    private static final EqLstInspectionModelV3 COMPARATOR = EqLstInspectionModelV3.getInstance();
 
     private static final CacheUtil cache = CacheUtil.getInstance();
     private final Producer<String, Object> kafkaProducer;

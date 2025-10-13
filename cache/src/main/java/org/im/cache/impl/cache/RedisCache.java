@@ -1,6 +1,7 @@
 package org.im.cache.impl.cache;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.lettuce.core.KeyValue;
 import io.lettuce.core.RedisClient;
@@ -10,7 +11,6 @@ import io.lettuce.core.api.sync.RedisCommands;
 import io.lettuce.core.cluster.RedisClusterClient;
 import io.lettuce.core.cluster.api.StatefulRedisClusterConnection;
 import io.lettuce.core.cluster.api.sync.RedisClusterCommands;
-import io.lettuce.core.codec.RedisCodec;
 import io.lettuce.core.codec.StringCodec;
 import org.im.cache.config.CacheConfig;
 import org.im.cache.core.Cache;
@@ -47,11 +47,19 @@ public class RedisCache<K, V> implements Cache<K, V> {
     private final CacheStats stats = new CacheStats();
     private final String prefix;
     private final boolean isCluster;
+    private final Class<V> valueType;
 
     @SuppressWarnings("unchecked")
     public RedisCache(CacheConfig config) {
+        this(config, (Class<V>) Object.class);
+    }
+
+    @SuppressWarnings("unchecked")
+    public RedisCache(CacheConfig config, Class<V> valueType) {
+        validateConfig(config);
         this.config = config;
-        this.prefix = config.getName() != null ? config.getName() : "";
+        this.valueType = valueType != null ? valueType : (Class<V>) Object.class;
+        this.prefix = config.getPrefix() != null ? config.getPrefix() : "";
         String redisUri = config.getRedisUri();
         if (redisUri == null || redisUri.isEmpty()) {
             redisUri = "redis://localhost:6379";
@@ -77,6 +85,25 @@ public class RedisCache<K, V> implements Cache<K, V> {
         logger.info("RedisCache initialized with config: {} and mode: {}", config, isCluster ? "CLUSTER" : "STANDALONE");
     }
 
+    /**
+     * 验证配置参数
+     *
+     * @param config 缓存配置
+     */
+    private void validateConfig(CacheConfig config) {
+        if (config == null) {
+            throw new IllegalArgumentException("CacheConfig cannot be null");
+        }
+
+        if (config.getPrefix() == null || config.getPrefix().isEmpty()) {
+            throw new IllegalArgumentException("Cache prefix cannot be null or empty");
+        }
+
+        if (config.getRedisUri() == null || config.getRedisUri().isEmpty()) {
+            throw new IllegalArgumentException("Redis URI cannot be null or empty");
+        }
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public V get(K key) {
@@ -90,33 +117,33 @@ public class RedisCache<K, V> implements Cache<K, V> {
             connection = createConnection();
 
             if (isCluster) {
-                StatefulRedisClusterConnection<K, V> clusterConnection = (StatefulRedisClusterConnection<K, V>) connection;
-                RedisClusterCommands<K, V> commands = clusterConnection.sync();
-                V value = commands.get(wrapKey(key));
+                StatefulRedisClusterConnection<String, String> clusterConnection = (StatefulRedisClusterConnection<String, String>) connection;
+                RedisClusterCommands<String, String> commands = clusterConnection.sync();
+                String value = commands.get(wrapKey(key));
                 logger.debug("RedisCache get value: {} for key: {}", value, wrapKey(key));
 
                 if (value != null) {
                     stats.recordHit();
+                    // 反序列化为对象
+                    return deserialize(value);
                 } else {
                     stats.recordMiss();
+                    return null;
                 }
-
-                stats.recordLoadSuccess(System.nanoTime() - startTime);
-                return value;
             } else {
-                StatefulRedisConnection<K, V> standaloneConnection = (StatefulRedisConnection<K, V>) connection;
-                RedisCommands<K, V> commands = standaloneConnection.sync();
-                V value = commands.get(wrapKey(key));
+                StatefulRedisConnection<String, String> standaloneConnection = (StatefulRedisConnection<String, String>) connection;
+                RedisCommands<String, String> commands = standaloneConnection.sync();
+                String value = commands.get(wrapKey(key));
                 logger.debug("RedisCache get value: {} for key: {}", value, wrapKey(key));
 
                 if (value != null) {
                     stats.recordHit();
+                    // 反序列化为对象
+                    return deserialize(value);
                 } else {
                     stats.recordMiss();
+                    return null;
                 }
-
-                stats.recordLoadSuccess(System.nanoTime() - startTime);
-                return value;
             }
         } catch (Exception e) {
             stats.recordMiss();
@@ -142,20 +169,20 @@ public class RedisCache<K, V> implements Cache<K, V> {
             String serializedValue = serialize(value);
 
             if (isCluster) {
-                StatefulRedisClusterConnection<K, V> clusterConnection = (StatefulRedisClusterConnection<K, V>) connection;
-                RedisClusterCommands<K, V> commands = clusterConnection.sync();
+                StatefulRedisClusterConnection<String, String> clusterConnection = (StatefulRedisClusterConnection<String, String>) connection;
+                RedisClusterCommands<String, String> commands = clusterConnection.sync();
                 if (config.getExpireAfterWrite() > 0) {
-                    commands.setex(wrapKey(key), config.getExpireAfterWrite() / 1000, (V) serializedValue);
+                    commands.setex(wrapKey(key), config.getExpireAfterWrite() / 1000, serializedValue);
                 } else {
-                    commands.set(wrapKey(key), (V) serializedValue);
+                    commands.set(wrapKey(key), serializedValue);
                 }
             } else {
-                StatefulRedisConnection<K, V> standaloneConnection = (StatefulRedisConnection<K, V>) connection;
-                RedisCommands<K, V> commands = standaloneConnection.sync();
+                StatefulRedisConnection<String, String> standaloneConnection = (StatefulRedisConnection<String, String>) connection;
+                RedisCommands<String, String> commands = standaloneConnection.sync();
                 if (config.getExpireAfterWrite() > 0) {
-                    commands.setex(wrapKey(key), config.getExpireAfterWrite() / 1000, (V) serializedValue);
+                    commands.setex(wrapKey(key), config.getExpireAfterWrite() / 1000, serializedValue);
                 } else {
-                    commands.set(wrapKey(key), (V) serializedValue);
+                    commands.set(wrapKey(key), serializedValue);
                 }
             }
             stats.recordPut();
@@ -183,20 +210,20 @@ public class RedisCache<K, V> implements Cache<K, V> {
             long ttlSeconds = unit.toSeconds(ttl);
 
             if (isCluster) {
-                StatefulRedisClusterConnection<K, V> clusterConnection = (StatefulRedisClusterConnection<K, V>) connection;
-                RedisClusterCommands<K, V> commands = clusterConnection.sync();
+                StatefulRedisClusterConnection<String, String> clusterConnection = (StatefulRedisClusterConnection<String, String>) connection;
+                RedisClusterCommands<String, String> commands = clusterConnection.sync();
                 if (ttlSeconds > 0) {
-                    commands.setex(wrapKey(key), ttlSeconds, (V) serializedValue);
+                    commands.setex(wrapKey(key), ttlSeconds, serializedValue);
                 } else {
-                    commands.set(wrapKey(key), (V) serializedValue);
+                    commands.set(wrapKey(key), serializedValue);
                 }
             } else {
-                StatefulRedisConnection<K, V> standaloneConnection = (StatefulRedisConnection<K, V>) connection;
-                RedisCommands<K, V> commands = standaloneConnection.sync();
+                StatefulRedisConnection<String, String> standaloneConnection = (StatefulRedisConnection<String, String>) connection;
+                RedisCommands<String, String> commands = standaloneConnection.sync();
                 if (ttlSeconds > 0) {
-                    commands.setex(wrapKey(key), ttlSeconds, (V) serializedValue);
+                    commands.setex(wrapKey(key), ttlSeconds, serializedValue);
                 } else {
-                    commands.set(wrapKey(key), (V) serializedValue);
+                    commands.set(wrapKey(key), serializedValue);
                 }
             }
             stats.recordPut();
@@ -224,20 +251,20 @@ public class RedisCache<K, V> implements Cache<K, V> {
             long ttlSeconds = (expireTimestamp - System.currentTimeMillis()) / 1000;
 
             if (isCluster) {
-                StatefulRedisClusterConnection<K, V> clusterConnection = (StatefulRedisClusterConnection<K, V>) connection;
-                RedisClusterCommands<K, V> commands = clusterConnection.sync();
+                StatefulRedisClusterConnection<String, String> clusterConnection = (StatefulRedisClusterConnection<String, String>) connection;
+                RedisClusterCommands<String, String> commands = clusterConnection.sync();
                 if (ttlSeconds > 0) {
-                    commands.setex(wrapKey(key), ttlSeconds, (V) serializedValue);
+                    commands.setex(wrapKey(key), ttlSeconds, serializedValue);
                 } else {
-                    commands.set(wrapKey(key), (V) serializedValue);
+                    commands.set(wrapKey(key), serializedValue);
                 }
             } else {
-                StatefulRedisConnection<K, V> standaloneConnection = (StatefulRedisConnection<K, V>) connection;
-                RedisCommands<K, V> commands = standaloneConnection.sync();
+                StatefulRedisConnection<String, String> standaloneConnection = (StatefulRedisConnection<String, String>) connection;
+                RedisCommands<String, String> commands = standaloneConnection.sync();
                 if (ttlSeconds > 0) {
-                    commands.setex(wrapKey(key), ttlSeconds, (V) serializedValue);
+                    commands.setex(wrapKey(key), ttlSeconds, serializedValue);
                 } else {
-                    commands.set(wrapKey(key), (V) serializedValue);
+                    commands.set(wrapKey(key), serializedValue);
                 }
             }
             stats.recordPut();
@@ -261,7 +288,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
         Object connection = null;
         try {
             connection = createConnection();
-            List<K> wrappedKeys = new ArrayList<>();
+            List<String> wrappedKeys = new ArrayList<>();
             for (K key : keys) {
                 if (key != null) {
                     wrappedKeys.add(wrapKey(key));
@@ -274,18 +301,19 @@ public class RedisCache<K, V> implements Cache<K, V> {
 
             Map<K, V> result = new HashMap<>();
             if (isCluster) {
-                StatefulRedisClusterConnection<K, V> clusterConnection = (StatefulRedisClusterConnection<K, V>) connection;
-                RedisClusterCommands<K, V> commands = clusterConnection.sync();
-                List<KeyValue<K, V>> values = commands.mget(wrappedKeys.toArray((K[]) new Object[wrappedKeys.size()]));
+                StatefulRedisClusterConnection<String, String> clusterConnection = (StatefulRedisClusterConnection<String, String>) connection;
+                RedisClusterCommands<String, String> commands = clusterConnection.sync();
+                List<KeyValue<String, String>> values = commands.mget(wrappedKeys.toArray(new String[0]));
                 Iterator<? extends K> keyIterator = keys.iterator();
 
                 int hitCount = 0;
                 int missCount = 0;
 
-                for (KeyValue<K, V> keyValue : values) {
+                for (KeyValue<String, String> keyValue : values) {
                     K originalKey = keyIterator.next();
                     if (keyValue.hasValue()) {
-                        result.put(originalKey, keyValue.getValue());
+                        V deserializedValue = deserialize(keyValue.getValue());
+                        result.put(originalKey, deserializedValue);
                         hitCount++;
                     } else {
                         missCount++;
@@ -300,18 +328,19 @@ public class RedisCache<K, V> implements Cache<K, V> {
                     stats.recordMiss();
                 }
             } else {
-                StatefulRedisConnection<K, V> standaloneConnection = (StatefulRedisConnection<K, V>) connection;
-                RedisCommands<K, V> commands = standaloneConnection.sync();
-                List<KeyValue<K, V>> values = commands.mget(wrappedKeys.toArray((K[]) new Object[wrappedKeys.size()]));
+                StatefulRedisConnection<String, String> standaloneConnection = (StatefulRedisConnection<String, String>) connection;
+                RedisCommands<String, String> commands = standaloneConnection.sync();
+                List<KeyValue<String, String>> values = commands.mget(wrappedKeys.toArray(new String[0]));
                 Iterator<? extends K> keyIterator = keys.iterator();
 
                 int hitCount = 0;
                 int missCount = 0;
 
-                for (KeyValue<K, V> keyValue : values) {
+                for (KeyValue<String, String> keyValue : values) {
                     K originalKey = keyIterator.next();
                     if (keyValue.hasValue()) {
-                        result.put(originalKey, keyValue.getValue());
+                        V deserializedValue = deserialize(keyValue.getValue());
+                        result.put(originalKey, deserializedValue);
                         hitCount++;
                     } else {
                         missCount++;
@@ -353,24 +382,24 @@ public class RedisCache<K, V> implements Cache<K, V> {
         Object connection = null;
         try {
             connection = createConnection();
-            Map<K, V> serializedMap = new HashMap<>();
+            Map<String, String> serializedMap = new HashMap<>();
             for (Map.Entry<? extends K, ? extends V> entry : map.entrySet()) {
                 K key = entry.getKey();
                 V value = entry.getValue();
                 if (key != null) {
                     String serializedValue = serialize(value);
-                    serializedMap.put(wrapKey(key), (V) serializedValue);
+                    serializedMap.put(wrapKey(key), serializedValue);
                 }
             }
 
             if (!serializedMap.isEmpty()) {
                 if (isCluster) {
-                    StatefulRedisClusterConnection<K, V> clusterConnection = (StatefulRedisClusterConnection<K, V>) connection;
-                    RedisClusterCommands<K, V> commands = clusterConnection.sync();
+                    StatefulRedisClusterConnection<String, String> clusterConnection = (StatefulRedisClusterConnection<String, String>) connection;
+                    RedisClusterCommands<String, String> commands = clusterConnection.sync();
                     commands.mset(serializedMap);
                 } else {
-                    StatefulRedisConnection<K, V> standaloneConnection = (StatefulRedisConnection<K, V>) connection;
-                    RedisCommands<K, V> commands = standaloneConnection.sync();
+                    StatefulRedisConnection<String, String> standaloneConnection = (StatefulRedisConnection<String, String>) connection;
+                    RedisCommands<String, String> commands = standaloneConnection.sync();
                     commands.mset(serializedMap);
                 }
 
@@ -402,12 +431,12 @@ public class RedisCache<K, V> implements Cache<K, V> {
             connection = createConnection();
             Long result;
             if (isCluster) {
-                StatefulRedisClusterConnection<K, V> clusterConnection = (StatefulRedisClusterConnection<K, V>) connection;
-                RedisClusterCommands<K, V> commands = clusterConnection.sync();
+                StatefulRedisClusterConnection<String, String> clusterConnection = (StatefulRedisClusterConnection<String, String>) connection;
+                RedisClusterCommands<String, String> commands = clusterConnection.sync();
                 result = commands.del(wrapKey(key));
             } else {
-                StatefulRedisConnection<K, V> standaloneConnection = (StatefulRedisConnection<K, V>) connection;
-                RedisCommands<K, V> commands = standaloneConnection.sync();
+                StatefulRedisConnection<String, String> standaloneConnection = (StatefulRedisConnection<String, String>) connection;
+                RedisCommands<String, String> commands = standaloneConnection.sync();
                 result = commands.del(wrapKey(key));
             }
             stats.recordLoadSuccess(System.nanoTime() - startTime);
@@ -432,7 +461,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
         Object connection = null;
         try {
             connection = createConnection();
-            List<K> wrappedKeys = new ArrayList<>();
+            List<String> wrappedKeys = new ArrayList<>();
             for (K key : keys) {
                 if (key != null) {
                     wrappedKeys.add(wrapKey(key));
@@ -445,13 +474,13 @@ public class RedisCache<K, V> implements Cache<K, V> {
 
             Long result;
             if (isCluster) {
-                StatefulRedisClusterConnection<K, V> clusterConnection = (StatefulRedisClusterConnection<K, V>) connection;
-                RedisClusterCommands<K, V> commands = clusterConnection.sync();
-                result = commands.del(wrappedKeys.toArray((K[]) new Object[wrappedKeys.size()]));
+                StatefulRedisClusterConnection<String, String> clusterConnection = (StatefulRedisClusterConnection<String, String>) connection;
+                RedisClusterCommands<String, String> commands = clusterConnection.sync();
+                result = commands.del(wrappedKeys.toArray(new String[wrappedKeys.size()]));
             } else {
-                StatefulRedisConnection<K, V> standaloneConnection = (StatefulRedisConnection<K, V>) connection;
-                RedisCommands<K, V> commands = standaloneConnection.sync();
-                result = commands.del(wrappedKeys.toArray((K[]) new Object[wrappedKeys.size()]));
+                StatefulRedisConnection<String, String> standaloneConnection = (StatefulRedisConnection<String, String>) connection;
+                RedisCommands<String, String> commands = standaloneConnection.sync();
+                result = commands.del(wrappedKeys.toArray(new String[wrappedKeys.size()]));
             }
             stats.recordLoadSuccess(System.nanoTime() - startTime);
             return result != null ? result.intValue() : 0;
@@ -477,19 +506,19 @@ public class RedisCache<K, V> implements Cache<K, V> {
             connection = createConnection();
             Long result;
             if (isCluster) {
-                StatefulRedisClusterConnection<K, V> clusterConnection = (StatefulRedisClusterConnection<K, V>) connection;
-                RedisClusterCommands<K, V> commands = clusterConnection.sync();
+                StatefulRedisClusterConnection<String, String> clusterConnection = (StatefulRedisClusterConnection<String, String>) connection;
+                RedisClusterCommands<String, String> commands = clusterConnection.sync();
                 result = commands.exists(wrapKey(key));
             } else {
-                StatefulRedisConnection<K, V> standaloneConnection = (StatefulRedisConnection<K, V>) connection;
-                RedisCommands<K, V> commands = standaloneConnection.sync();
+                StatefulRedisConnection<String, String> standaloneConnection = (StatefulRedisConnection<String, String>) connection;
+                RedisCommands<String, String> commands = standaloneConnection.sync();
                 result = commands.exists(wrapKey(key));
             }
             stats.recordLoadSuccess(System.nanoTime() - startTime);
             return result != null && result > 0;
         } catch (Exception e) {
             stats.recordLoadException(System.nanoTime() - startTime);
-            logger.error("Failed to check key existence inspection Redis for key: {}", key, e);
+            logger.error("Failed to check key existence in Redis for key: {}", key, e);
             return false;
         } finally {
             closeConnection(connection);
@@ -505,12 +534,12 @@ public class RedisCache<K, V> implements Cache<K, V> {
             connection = createConnection();
             long size;
             if (isCluster) {
-                StatefulRedisClusterConnection<K, V> clusterConnection = (StatefulRedisClusterConnection<K, V>) connection;
-                RedisClusterCommands<K, V> commands = clusterConnection.sync();
+                StatefulRedisClusterConnection<String, String> clusterConnection = (StatefulRedisClusterConnection<String, String>) connection;
+                RedisClusterCommands<String, String> commands = clusterConnection.sync();
                 size = commands.dbsize();
             } else {
-                StatefulRedisConnection<K, V> standaloneConnection = (StatefulRedisConnection<K, V>) connection;
-                RedisCommands<K, V> commands = standaloneConnection.sync();
+                StatefulRedisConnection<String, String> standaloneConnection = (StatefulRedisConnection<String, String>) connection;
+                RedisCommands<String, String> commands = standaloneConnection.sync();
                 size = commands.dbsize();
             }
             stats.recordLoadSuccess(System.nanoTime() - startTime);
@@ -532,12 +561,12 @@ public class RedisCache<K, V> implements Cache<K, V> {
         try {
             connection = createConnection();
             if (isCluster) {
-                StatefulRedisClusterConnection<K, V> clusterConnection = (StatefulRedisClusterConnection<K, V>) connection;
-                RedisClusterCommands<K, V> commands = clusterConnection.sync();
+                StatefulRedisClusterConnection<String, String> clusterConnection = (StatefulRedisClusterConnection<String, String>) connection;
+                RedisClusterCommands<String, String> commands = clusterConnection.sync();
                 commands.flushdb();
             } else {
-                StatefulRedisConnection<K, V> standaloneConnection = (StatefulRedisConnection<K, V>) connection;
-                RedisCommands<K, V> commands = standaloneConnection.sync();
+                StatefulRedisConnection<String, String> standaloneConnection = (StatefulRedisConnection<String, String>) connection;
+                RedisCommands<String, String> commands = standaloneConnection.sync();
                 commands.flushdb();
             }
             stats.recordLoadSuccess(System.nanoTime() - startTime);
@@ -662,8 +691,9 @@ public class RedisCache<K, V> implements Cache<K, V> {
     }
 
     // 新增：Hash 操作 - put to hash
+    // 修改方法签名，使用泛型类型 K
     @SuppressWarnings("unchecked")
-    public void putToHash(String hashKey, String field, String value) {
+    public void putToHash(K hashKey, String field, String value) {
         if (hashKey == null || field == null) {
             return;
         }
@@ -673,13 +703,13 @@ public class RedisCache<K, V> implements Cache<K, V> {
         try {
             connection = createConnection();
             if (isCluster) {
-                StatefulRedisClusterConnection<K, V> clusterConnection = (StatefulRedisClusterConnection<K, V>) connection;
-                RedisClusterCommands<K, V> commands = clusterConnection.sync();
-                commands.hset((K) wrapKey((K) hashKey), (K) (Object) field, (V) (Object) value);
+                StatefulRedisClusterConnection<String, String> clusterConnection = (StatefulRedisClusterConnection<String, String>) connection;
+                RedisClusterCommands<String, String> commands = clusterConnection.sync();
+                commands.hset(wrapKey(hashKey), field, value);
             } else {
-                StatefulRedisConnection<K, V> standaloneConnection = (StatefulRedisConnection<K, V>) connection;
-                RedisCommands<K, V> commands = standaloneConnection.sync();
-                commands.hset((K) wrapKey((K) hashKey), (K) (Object) field, (V) (Object) value);
+                StatefulRedisConnection<String, String> standaloneConnection = (StatefulRedisConnection<String, String>) connection;
+                RedisCommands<String, String> commands = standaloneConnection.sync();
+                commands.hset(wrapKey(hashKey), field, value);
             }
             stats.recordLoadSuccess(System.nanoTime() - startTime);
         } catch (Exception e) {
@@ -692,7 +722,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
 
     // 新增：Hash 操作 - get from hash
     @SuppressWarnings("unchecked")
-    public String getFromHash(String hashKey, String field) {
+    public String getFromHash(K hashKey, String field) {
         if (hashKey == null || field == null) {
             return null;
         }
@@ -701,15 +731,15 @@ public class RedisCache<K, V> implements Cache<K, V> {
         Object connection = null;
         try {
             connection = createConnection();
-            V value;
+            String value;
             if (isCluster) {
-                StatefulRedisClusterConnection<K, V> clusterConnection = (StatefulRedisClusterConnection<K, V>) connection;
-                RedisClusterCommands<K, V> commands = clusterConnection.sync();
-                value = commands.hget((K) wrapKey((K) hashKey), (K) (Object) field);
+                StatefulRedisClusterConnection<String, String> clusterConnection = (StatefulRedisClusterConnection<String, String>) connection;
+                RedisClusterCommands<String, String> commands = clusterConnection.sync();
+                value = commands.hget(wrapKey(hashKey), field);
             } else {
-                StatefulRedisConnection<K, V> standaloneConnection = (StatefulRedisConnection<K, V>) connection;
-                RedisCommands<K, V> commands = standaloneConnection.sync();
-                value = commands.hget((K) wrapKey((K) hashKey), (K) (Object) field);
+                StatefulRedisConnection<String, String> standaloneConnection = (StatefulRedisConnection<String, String>) connection;
+                RedisCommands<String, String> commands = standaloneConnection.sync();
+                value = commands.hget(wrapKey(hashKey), field);
             }
 
             if (value != null) {
@@ -719,7 +749,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
             }
 
             stats.recordLoadSuccess(System.nanoTime() - startTime);
-            return value != null ? (String) value : null;
+            return value;
         } catch (Exception e) {
             stats.recordMiss();
             stats.recordLoadException(System.nanoTime() - startTime);
@@ -732,7 +762,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
 
     // 新增：Hash 操作 - get all from hash
     @SuppressWarnings("unchecked")
-    public Map<String, String> getAllFromHash(String hashKey) {
+    public Map<String, String> getAllFromHash(K hashKey) {
         if (hashKey == null) {
             return Collections.emptyMap();
         }
@@ -741,22 +771,18 @@ public class RedisCache<K, V> implements Cache<K, V> {
         Object connection = null;
         try {
             connection = createConnection();
-            Map<K, V> result;
+            Map<String, String> result;
             if (isCluster) {
-                StatefulRedisClusterConnection<K, V> clusterConnection = (StatefulRedisClusterConnection<K, V>) connection;
-                RedisClusterCommands<K, V> commands = clusterConnection.sync();
-                result = commands.hgetall((K) wrapKey((K) hashKey));
+                StatefulRedisClusterConnection<String, String> clusterConnection = (StatefulRedisClusterConnection<String, String>) connection;
+                RedisClusterCommands<String, String> commands = clusterConnection.sync();
+                result = commands.hgetall(wrapKey(hashKey));
             } else {
-                StatefulRedisConnection<K, V> standaloneConnection = (StatefulRedisConnection<K, V>) connection;
-                RedisCommands<K, V> commands = standaloneConnection.sync();
-                result = commands.hgetall((K) wrapKey((K) hashKey));
-            }
-            Map<String, String> stringResult = new HashMap<>();
-            for (Map.Entry<K, V> entry : result.entrySet()) {
-                stringResult.put((String) entry.getKey(), (String) entry.getValue());
+                StatefulRedisConnection<String, String> standaloneConnection = (StatefulRedisConnection<String, String>) connection;
+                RedisCommands<String, String> commands = standaloneConnection.sync();
+                result = commands.hgetall(wrapKey(hashKey));
             }
             stats.recordLoadSuccess(System.nanoTime() - startTime);
-            return stringResult;
+            return result;
         } catch (Exception e) {
             stats.recordLoadException(System.nanoTime() - startTime);
             logger.error("Failed to get all fields from Redis hash '{}'", hashKey, e);
@@ -789,18 +815,18 @@ public class RedisCache<K, V> implements Cache<K, V> {
         logger.debug("Redis cache cleanup triggered");
     }
 
-    private K wrapKey(K key) {
+    private String wrapKey(K key) {
         if (key instanceof String) {
-            return (K) (prefix + key);
+            return prefix + key;
         }
 
         // For non-string keys, serialize them to JSON and add prefix
         try {
             String keyStr = objectMapper.writeValueAsString(key);
-            return (K) (prefix + keyStr);
+            return prefix + keyStr;
         } catch (JsonProcessingException e) {
             logger.warn("Failed to serialize key: {}", key, e);
-            return key;
+            return prefix + key.toString();
         }
     }
 
@@ -817,13 +843,42 @@ public class RedisCache<K, V> implements Cache<K, V> {
     }
 
     @SuppressWarnings("unchecked")
+    private V deserialize(String value) {
+        if (value == null) {
+            return null;
+        }
+
+        // 如果值类型是String，直接返回
+        if (valueType == String.class || valueType == Object.class) {
+            return (V) value;
+        }
+
+        try {
+            // 如果是泛型类型，使用TypeReference处理
+            if (valueType == Map.class) {
+                return (V) objectMapper.readValue(value, new TypeReference<Map<String, Object>>() {
+                });
+            } else if (valueType == List.class) {
+                return (V) objectMapper.readValue(value, new TypeReference<List<Object>>() {
+                });
+            }
+
+            return objectMapper.readValue(value, valueType);
+        } catch (Exception e) {
+            logger.error("Failed to deserialize value: {} to type: {}", value, valueType, e);
+            // 如果反序列化失败，返回原始字符串值
+            return (V) value;
+        }
+    }
+
+    @SuppressWarnings("unchecked")
     private Object createConnection() {
         if (isCluster) {
             RedisClusterClient clusterClient = (RedisClusterClient) client;
-            return clusterClient.connect((RedisCodec<K, V>) StringCodec.UTF8);
+            return clusterClient.connect(StringCodec.UTF8);
         } else {
             RedisClient redisClient = (RedisClient) client;
-            return redisClient.connect((RedisCodec<K, V>) StringCodec.UTF8);
+            return redisClient.connect(StringCodec.UTF8);
         }
     }
 

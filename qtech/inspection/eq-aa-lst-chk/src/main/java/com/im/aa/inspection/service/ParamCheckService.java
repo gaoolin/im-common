@@ -1,8 +1,9 @@
 package com.im.aa.inspection.service;
 
-import com.im.aa.inspection.comparator.EqLstComparatorV3;
+import com.im.aa.inspection.comparator.EqLstInspectionModelV3;
 import com.im.aa.inspection.entity.param.EqLstParsed;
 import com.im.aa.inspection.entity.reverse.EqpReverseRecord;
+import com.im.aa.inspection.entity.reverse.LabelEum;
 import com.im.aa.inspection.entity.standard.EqLstTplDO;
 import com.im.aa.inspection.entity.standard.EqLstTplInfoDO;
 import com.im.aa.inspection.serde.EqLstProtobufMapper;
@@ -17,9 +18,10 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Base64;
 import java.util.Map;
+import java.util.StringJoiner;
 
-import static com.im.aa.inspection.constant.EqLstInspectionConstants.PROPERTIES_TO_COMPARE;
-import static com.im.aa.inspection.constant.EqLstInspectionConstants.PROPERTIES_TO_COMPUTE;
+import static com.im.qtech.common.constant.EqLstInspectionConstants.PROPERTIES_TO_COMPARE;
+import static com.im.qtech.common.constant.EqLstInspectionConstants.PROPERTIES_TO_COMPUTE;
 
 /**
  * 参数检查服务
@@ -32,8 +34,8 @@ import static com.im.aa.inspection.constant.EqLstInspectionConstants.PROPERTIES_
 public class ParamCheckService {
     private static final Logger logger = LoggerFactory.getLogger(ParamCheckService.class);
     // 使用专业的参数比较器
-    private static final EqLstComparatorV3 COMPARATOR = EqLstComparatorV3.getInstance();
-
+    private static final EqLstInspectionModelV3 COMPARATOR = EqLstInspectionModelV3.getInstance();
+    private static final String SOURCE_AA_LIST = "aa-list";
     private final CacheService cacheService;
     private final DatabaseService databaseService;
 
@@ -65,39 +67,31 @@ public class ParamCheckService {
     }
 
     /**
-     * 检查设备参数
-     *
-     * @param module 设备参数
-     * @return 检查结果
-     */
-    public EqpReverseRecord inspectDeviceParam(String module) {
-        try {
-            logger.debug(">>>>> 开始检查设备参数: {}", module);
-            // 1. 从Redis缓存中获取检查结果
-            // 2. 执行参数检查
-            // 3. 保存结果到Redis缓存
-            // 4. 保存结果到数据库
-            logger.info(">>>>> 设备参数检查完成: {} -> {}", module, module);
-            return null;
-        } catch (Exception e) {
-            logger.error(">>>>> 检查设备参数时出错: {}", module, e);
-            throw new RuntimeException("参数检查失败", e);
-        }
-    }
-
-    /**
      * 执行参数检查
      *
      * @param actualObj 实际参数对象
      * @return 检查结果
      */
     public EqpReverseRecord performParameterCheck(EqLstParsed actualObj) {
+        if (actualObj == null) {
+            throw new IllegalArgumentException("实际参数对象不能为空");
+        }
+
         // 初始化检查结果
         EqpReverseRecord eqpReverseRecord = new EqpReverseRecord();
-        eqpReverseRecord.setSource("aa-list");
+        eqpReverseRecord.setSource(SOURCE_AA_LIST);
         eqpReverseRecord.setSimId(actualObj.getSimId());
         eqpReverseRecord.setModule(actualObj.getModule());
         eqpReverseRecord.setChkDt(Chronos.now());
+
+        // TODO: 获取实际参数对象 增加点检结果中的标签信息。
+        Cache<String, String> reverseIgnoredCache = cacheService.getRedisCacheConfig().defaultCache();
+        String ignored = reverseIgnoredCache.get(actualObj.getSimId());
+        if (ignored != null) {
+            eqpReverseRecord.setLabel(LabelEum.IGNORE);
+        } else {
+            eqpReverseRecord.setLabel(LabelEum.NORMAL);
+        }
 
         // 获取模板信息（从Redis缓存，通过CacheService）
         EqLstTplInfoDO modelInfoObj = getTplInfoFromCache(actualObj.getModule());
@@ -111,7 +105,7 @@ public class ParamCheckService {
             return createInspectionResult(eqpReverseRecord, 6, "Template Offline.");
         }
 
-        EqLstPOJO modelObj = getTplFromCache(actualObj.getModule());
+        EqLstPOJO modelObj = modelInfoObj.getTpl();
 
         if (modelObj == null) {
             return createInspectionResult(eqpReverseRecord, 7, "Missing Template Detail.");
@@ -122,11 +116,7 @@ public class ParamCheckService {
 
         // 设置检查结果状态
         int statusCode = calculateStatusCode(inspectionResult);
-        eqpReverseRecord.setCode(statusCode);
-        eqpReverseRecord.setDescription(buildDescription(inspectionResult));
-
-        // 转换为CheckResult格式
-        return eqpReverseRecord;
+        return createInspectionResult(eqpReverseRecord, statusCode, buildDescription(inspectionResult));
     }
 
     /**
@@ -135,15 +125,24 @@ public class ParamCheckService {
     private EqLstTplInfoDO getTplInfoFromCache(String module) {
         if (module == null || module.isEmpty()) {
             logger.error(">>>>> 机型名称不能为空");
+            return null;
         }
 
         Cache<String, EqLstTplInfoDO> eqLstTplInfoDOCache = cacheService.getRedisCacheConfig().getEqLstTplInfoDOCache();
         EqLstTplInfoDO eqLstTplInfoDO = eqLstTplInfoDOCache.get(module);
         if (eqLstTplInfoDO == null) {
-            logger.error(">>>>> 机型名称不存在");
-            EqLstTplInfoDO tplInfo = databaseService.getTplInfo(module);
-            cacheService.getRedisCacheConfig().getEqLstTplInfoDOCache().put(module, tplInfo);
-            return tplInfo;
+            logger.warn(">>>>> 缓存中无此机型模版信息 -> {}", module);
+            try {
+                EqLstTplInfoDO tplInfo = databaseService.getTplInfo(module);
+                if (tplInfo != null) {
+                    cacheService.getRedisCacheConfig().getEqLstTplInfoDOCache().put(module, tplInfo);
+                } else {
+                    logger.warn(">>>>> 数据库中无此机型模版信息 -> {}", module);
+                }
+                return tplInfo;
+            } catch (Exception e) {
+                logger.error(">>>>> 获取模板信息时出错 -> {}", module, e);
+            }
         }
         return eqLstTplInfoDO;
     }
@@ -154,12 +153,16 @@ public class ParamCheckService {
     private EqLstPOJO getTplFromCache(String module) {
         if (module == null || module.isEmpty()) {
             logger.error(">>>>> 机型名称不能为空");
+            return null;
         }
 
         String retrievedBase64Data = cacheService.getRedisCacheConfig().getEqLstByteStringCache().get(module);
         if (retrievedBase64Data == null) {
             logger.error(">>>>> 机型名称不存在");
             EqLstTplDO tpl = databaseService.getTpl(module);
+            if (tpl == null) {
+                return null;
+            }
             byte[] serialize = EqLstProtobufMapper.serialize(tpl);
             String base64 = Base64.getEncoder().encodeToString(serialize);
             cacheService.getRedisCacheConfig().getEqLstByteStringCache().put(module, base64);
@@ -173,19 +176,19 @@ public class ParamCheckService {
      * 构建描述信息
      */
     private String buildDescription(ParameterInspection result) {
-        StringBuilder description = new StringBuilder();
+        StringJoiner joiner = new StringJoiner(";");
 
-        result.getEmptyInStandard().keySet().stream().sorted().forEach(prop -> description.append(prop).append("-").append(";"));
+        result.getEmptyInStandard().keySet().stream().sorted().forEach(prop -> joiner.add(prop + "-"));
 
-        result.getEmptyInActual().keySet().stream().sorted().forEach(prop -> description.append(prop).append("+").append(";"));
+        result.getEmptyInActual().keySet().stream().sorted().forEach(prop -> joiner.add(prop + "+"));
 
         result.getDifferences().entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(entry -> {
             String prop = entry.getKey();
             Map.Entry<Object, Object> map = entry.getValue();
-            description.append(prop).append(":").append(map.getValue()).append("!=").append(map.getKey()).append(";");
+            joiner.add(prop + ":" + map.getValue() + "!=" + map.getKey());
         });
 
-        return description.length() > 0 ? description.toString() : "Ok.";
+        return joiner.length() > 0 ? joiner.toString() : "Ok.";
     }
 
     /**
@@ -195,20 +198,7 @@ public class ParamCheckService {
         eqpReverseRecord.setCode(code);
         eqpReverseRecord.setPassed(code == 0);
         eqpReverseRecord.setDescription(description);
-        return convertToInspectionResult(eqpReverseRecord);
-    }
-
-    /**
-     * 转换为CheckResult格式
-     */
-    private EqpReverseRecord convertToInspectionResult(EqpReverseRecord eqpReverseRecord) {
-        EqpReverseRecord inspectionResult = new EqpReverseRecord();
-        inspectionResult.setSimId(eqpReverseRecord.getSimId());
-        inspectionResult.setSource(eqpReverseRecord.getSource());
-        inspectionResult.setDescription(eqpReverseRecord.getDescription());
-        inspectionResult.setPassed(eqpReverseRecord.getCode() == 0);
-        inspectionResult.setChkDt(Chronos.now());
-        return inspectionResult;
+        return eqpReverseRecord;
     }
 
     /**
@@ -284,8 +274,6 @@ public class ParamCheckService {
                         } else {
                             eqpReverseRecord.setPassed(false);
                             eqpReverseRecord.setDescription("参数超出允许范围");
-                            eqpReverseRecord.setDescription("0");
-                            eqpReverseRecord.setDescription("1000");
                         }
                     }
                 } catch (NumberFormatException e) {

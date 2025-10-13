@@ -78,7 +78,7 @@ public class CacheFactory {
                     cache = new SimpleMemoryCache<>(config);
                     break;
             }
-            logger.info("Created cache with backend: {} for config.name: {}", config.getBackendType(), config.getName());
+            logger.info("Created cache with backend: {} for config.prefix: {}", config.getBackendType(), config.getPrefix());
         } catch (Exception e) {
             logger.error("Failed to create cache with backend: {}", config.getBackendType(), e);
             throw new RuntimeException("Failed to create cache for backend: " + config.getBackendType(), e);
@@ -89,10 +89,64 @@ public class CacheFactory {
                 config.isEnableBreakdownProtection() ||
                 config.isEnableAvalancheProtection()) {
             cache = new ProtectedCache<>(cache, config);
-            logger.debug("Applied ProtectedCache wrapper to cache: {}", config.getName());
+            logger.debug("Applied ProtectedCache wrapper to cache: {}", config.getPrefix());
         }
 
         return cache; // 不负责注册，交给 CacheManager
+    }
+
+    /**
+     * Create a cache instance based on the provided configuration with type information
+     *
+     * @param config    Cache configuration
+     * @param keyType   Key type class
+     * @param valueType Value type class
+     * @param <K>       Key type
+     * @param <V>       Value type
+     * @return Configured cache instance
+     * @throws IllegalArgumentException if config is invalid
+     * @throws RuntimeException         if cache creation fails
+     */
+    public <K, V> Cache<K, V> create(CacheConfig config, Class<K> keyType, Class<V> valueType) {
+        if (config == null) {
+            logger.warn("CacheConfig is null, using default MEMORY config");
+            config = CacheConfigBuilder.create().withBackendType(MEMORY).build();
+        }
+
+        Cache<K, V> cache;
+        try {
+            switch (config.getBackendType()) {
+                case MEMORY:
+                    cache = new SimpleMemoryCache<>(config);
+                    break;
+                case CAFFEINE:
+                    cache = new CaffeineCache<>(config);
+                    break;
+                case REDIS:
+                    cache = new RedisCache<>(config, valueType);
+                    break;
+                case HYBRID:
+                    throw new UnsupportedOperationException("Hybrid cache not implemented");
+                default:
+                    logger.warn("Unknown BackendType {}, defaulting to MEMORY", config.getBackendType());
+                    cache = new SimpleMemoryCache<>(config);
+                    break;
+            }
+            logger.info("Created cache with backend: {} for config.prefix: {}", config.getBackendType(), config.getPrefix());
+        } catch (Exception e) {
+            logger.error("Failed to create cache with backend: {}", config.getBackendType(), e);
+            throw new RuntimeException("Failed to create cache for backend: " + config.getBackendType(), e);
+        }
+
+        // Apply protection mechanisms
+        if (config.isEnableNullValueProtection() ||
+                config.isEnableBreakdownProtection() ||
+                config.isEnableAvalancheProtection()) {
+            cache = new ProtectedCache<>(cache, config);
+            logger.debug("Applied ProtectedCache wrapper to cache: {}", config.getPrefix());
+        }
+
+        return cache;
     }
 
     /**

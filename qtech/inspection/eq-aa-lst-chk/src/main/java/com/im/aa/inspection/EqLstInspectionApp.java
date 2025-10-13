@@ -75,16 +75,15 @@ public class EqLstInspectionApp {
             autoRegisterHandlers();
 
             // 初始化缓存服务（从Redis获取数据）
-            cacheService = new CacheService(); // 使用新的cacheService
+            cacheService = CacheService.getInstance(); // 使用新的cacheService
 
             // 初始化服务组件
-            DatabaseService databaseService = new DatabaseService();
+            DatabaseService databaseService = DatabaseService.getInstance();
             paramCheckService = new ParamCheckService(databaseService, cacheService);
 
             logger.info(">>>>> 应用组件初始化完成");
         } catch (Exception e) {
             logger.error(">>>>> 组件初始化失败", e);
-            throw new RuntimeException("初始化失败", e);
         }
     }
 
@@ -123,7 +122,11 @@ public class EqLstInspectionApp {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
+                logger.info(">>>>> 服务运行被中断");
                 break;
+            } catch (Exception e) {
+                logger.error(">>>>> 服务运行中发生异常", e);
+                // 可以选择继续运行或关闭服务
             }
         }
     }

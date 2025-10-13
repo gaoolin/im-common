@@ -53,11 +53,11 @@ public class CacheBuilder {
     /**
      * 设置缓存名称
      *
-     * @param name 缓存名称
+     * @param prefix 缓存名称
      * @return 当前构建器实例，用于链式调用
      */
-    public CacheBuilder name(String name) {
-        config.setName(name);
+    public CacheBuilder name(String prefix) {
+        config.setPrefix(prefix);
         return this;
     }
 
@@ -132,7 +132,7 @@ public class CacheBuilder {
             case CAFFEINE:
                 return new CaffeineCache<>(config);
             case REDIS:
-                // 可以返回默认的分布式实现或抛出异常提示用户自定义实现
+                // 修改为支持泛型类型信息的构造函数
                 return new RedisCache<>(config);
             case HYBRID:
                 throw new UnsupportedOperationException("Hybrid cache not implemented");
@@ -140,4 +140,21 @@ public class CacheBuilder {
                 return new CaffeineCache<>(config);
         }
     }
+
+    // 添加一个重载方法，支持传递类型信息
+    public <K, V> Cache<K, V> build(Class<V> valueType) {
+        switch (config.getBackendType()) {
+            case MEMORY:
+                return new SimpleMemoryCache<>(config);
+            case CAFFEINE:
+                return new CaffeineCache<>(config);
+            case REDIS:
+                return new RedisCache<>(config, valueType);
+            case HYBRID:
+                throw new UnsupportedOperationException("Hybrid cache not implemented");
+            default:
+                return new CaffeineCache<>(config);
+        }
+    }
+
 }

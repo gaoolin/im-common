@@ -44,7 +44,7 @@ public final class ItemAaParser {
 
     public static EqLstCommand apply(String[] parts, String parentCommand) {
         if (parts == null || parts.length < 4) {
-            logError(parentCommand, "Invalid input array");
+            logWarn(parentCommand, "Invalid input array");
             return null;
         }
 
@@ -86,7 +86,7 @@ public final class ItemAaParser {
 
     private static EqLstCommand parseRoi(String[] parts, String parentCommand, int num) {
         if (parts.length < 6) {
-            logError(parentCommand, "ROI: Invalid number of parts inspection the command: " + parts.length);
+            logWarn(parentCommand, "ROI: Invalid number of parts inspection the command: " + parts.length);
             return null;
         }
 
@@ -108,11 +108,11 @@ public final class ItemAaParser {
                 cmd.setSequenceNumber(num);
                 return cmd;
             } else {
-                logError(parentCommand, "Invalid subsystem: " + subCommand);
+                logWarn(parentCommand, "Invalid subsystem: " + subCommand);
                 return null;
             }
         } else {
-            // logError(parentCommand, "AaHandler string does not match the expected pattern");
+            // logWarn(parentCommand, "AaHandler string does not match the expected pattern");
             return null;
         }
     }
