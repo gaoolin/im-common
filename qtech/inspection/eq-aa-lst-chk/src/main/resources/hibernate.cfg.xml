@@ -30,6 +30,6 @@
         <!-- 实体类映射 -->
         <mapping class="com.im.aa.inspection.entity.standard.EqLstTplInfoDO"/>
         <mapping class="com.im.aa.inspection.entity.standard.EqLstTplDO"/>
-        <mapping class="com.im.aa.inspection.entity.reverse.EqpReverseRecord"/>
+        <mapping class="com.im.aa.inspection.entity.reverse.EqpReverseDO"/>
     </session-factory>
 </hibernate-configuration>

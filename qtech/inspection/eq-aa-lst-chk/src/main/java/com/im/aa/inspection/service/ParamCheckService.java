@@ -2,12 +2,12 @@ package com.im.aa.inspection.service;
 
 import com.im.aa.inspection.comparator.EqLstInspectionModelV3;
 import com.im.aa.inspection.entity.param.EqLstParsed;
-import com.im.aa.inspection.entity.reverse.EqpReverseRecord;
-import com.im.aa.inspection.entity.reverse.LabelEum;
+import com.im.aa.inspection.entity.reverse.EqpReverseDO;
 import com.im.aa.inspection.entity.standard.EqLstTplDO;
 import com.im.aa.inspection.entity.standard.EqLstTplInfoDO;
 import com.im.aa.inspection.serde.EqLstProtobufMapper;
 import com.im.qtech.common.dto.param.EqLstPOJO;
+import com.im.qtech.common.dto.reverse.LabelEum;
 import org.im.cache.core.Cache;
 import org.im.common.dt.Chronos;
 import org.im.semiconductor.common.parameter.core.DefaultParameterInspection;
@@ -72,25 +72,25 @@ public class ParamCheckService {
      * @param actualObj 实际参数对象
      * @return 检查结果
      */
-    public EqpReverseRecord performParameterCheck(EqLstParsed actualObj) {
+    public EqpReverseDO performParameterCheck(EqLstParsed actualObj) {
         if (actualObj == null) {
             throw new IllegalArgumentException("实际参数对象不能为空");
         }
 
         // 初始化检查结果
-        EqpReverseRecord eqpReverseRecord = new EqpReverseRecord();
-        eqpReverseRecord.setSource(SOURCE_AA_LIST);
-        eqpReverseRecord.setSimId(actualObj.getSimId());
-        eqpReverseRecord.setModule(actualObj.getModule());
-        eqpReverseRecord.setChkDt(Chronos.now());
+        EqpReverseDO eqpReverseDO = new EqpReverseDO();
+        eqpReverseDO.setSource(SOURCE_AA_LIST);
+        eqpReverseDO.setSimId(actualObj.getSimId());
+        eqpReverseDO.setModule(actualObj.getModule());
+        eqpReverseDO.setChkDt(Chronos.now());
 
         // TODO: 获取实际参数对象 增加点检结果中的标签信息。
         Cache<String, String> reverseIgnoredCache = cacheService.getRedisCacheConfig().defaultCache();
         String ignored = reverseIgnoredCache.get(actualObj.getSimId());
         if (ignored != null) {
-            eqpReverseRecord.setLabel(LabelEum.IGNORE);
+            eqpReverseDO.setLabel(LabelEum.IGNORE);
         } else {
-            eqpReverseRecord.setLabel(LabelEum.NORMAL);
+            eqpReverseDO.setLabel(LabelEum.NORMAL);
         }
 
         // 获取模板信息（从Redis缓存，通过CacheService）
@@ -98,17 +98,17 @@ public class ParamCheckService {
 
         // 模板信息检查
         if (modelInfoObj == null) {
-            return createInspectionResult(eqpReverseRecord, 1, "Missing Template Information.");
+            return createInspectionResult(eqpReverseDO, 1, "Missing Template Information.");
         }
 
         if (modelInfoObj.getStatus() == 0) {
-            return createInspectionResult(eqpReverseRecord, 6, "Template Offline.");
+            return createInspectionResult(eqpReverseDO, 6, "Template Offline.");
         }
 
         EqLstPOJO modelObj = modelInfoObj.getTpl();
 
         if (modelObj == null) {
-            return createInspectionResult(eqpReverseRecord, 7, "Missing Template Detail.");
+            return createInspectionResult(eqpReverseDO, 7, "Missing Template Detail.");
         }
 
         // 使用专业比较器进行参数对比
@@ -116,7 +116,7 @@ public class ParamCheckService {
 
         // 设置检查结果状态
         int statusCode = calculateStatusCode(inspectionResult);
-        return createInspectionResult(eqpReverseRecord, statusCode, buildDescription(inspectionResult));
+        return createInspectionResult(eqpReverseDO, statusCode, buildDescription(inspectionResult));
     }
 
     /**
@@ -194,11 +194,11 @@ public class ParamCheckService {
     /**
      * 创建检查结果
      */
-    private EqpReverseRecord createInspectionResult(EqpReverseRecord eqpReverseRecord, int code, String description) {
-        eqpReverseRecord.setCode(code);
-        eqpReverseRecord.setPassed(code == 0);
-        eqpReverseRecord.setDescription(description);
-        return eqpReverseRecord;
+    private EqpReverseDO createInspectionResult(EqpReverseDO eqpReverseDO, int code, String description) {
+        eqpReverseDO.setCode(code);
+        eqpReverseDO.setPassed(code == 0);
+        eqpReverseDO.setDescription(description);
+        return eqpReverseDO;
     }
 
     /**
@@ -208,19 +208,19 @@ public class ParamCheckService {
      * @param standard 标准范围
      * @return 检查结果
      */
-    private EqpReverseRecord performCheck(EqLstParsed param, ParameterRange standard) {
-        EqpReverseRecord eqpReverseRecord = new EqpReverseRecord();
-        eqpReverseRecord.setSimId(param.getSimId());
-        eqpReverseRecord.setModule(param.getModule());
-        eqpReverseRecord.setChkDt(param.getReceivedTime());
+    private EqpReverseDO performCheck(EqLstParsed param, ParameterRange standard) {
+        EqpReverseDO eqpReverseDO = new EqpReverseDO();
+        eqpReverseDO.setSimId(param.getSimId());
+        eqpReverseDO.setModule(param.getModule());
+        eqpReverseDO.setChkDt(param.getReceivedTime());
 
         try {
             // 获取参数值
             Object paramValue = param.getAa1();
             if (paramValue == null) {
-                eqpReverseRecord.setPassed(false);
-                eqpReverseRecord.setDescription("参数值为空");
-                return eqpReverseRecord;
+                eqpReverseDO.setPassed(false);
+                eqpReverseDO.setDescription("参数值为空");
+                return eqpReverseDO;
             }
 
             // 如果参数值是数字类型，则进行数值检查
@@ -231,20 +231,20 @@ public class ParamCheckService {
                 if (standard != null) {
                     // 使用ParameterRange进行检查
                     if (standard.contains(value)) {
-                        eqpReverseRecord.setPassed(true);
-                        eqpReverseRecord.setDescription("参数在允许范围内");
+                        eqpReverseDO.setPassed(true);
+                        eqpReverseDO.setDescription("参数在允许范围内");
                     } else {
-                        eqpReverseRecord.setPassed(false);
-                        eqpReverseRecord.setDescription("参数超出允许范围");
+                        eqpReverseDO.setPassed(false);
+                        eqpReverseDO.setDescription("参数超出允许范围");
                     }
                 } else {
                     // 简单示例检查
                     if (value >= 0 && value <= 1000) {
-                        eqpReverseRecord.setPassed(true);
-                        eqpReverseRecord.setDescription("参数在允许范围内");
+                        eqpReverseDO.setPassed(true);
+                        eqpReverseDO.setDescription("参数在允许范围内");
                     } else {
-                        eqpReverseRecord.setPassed(false);
-                        eqpReverseRecord.setDescription("参数超出允许范围");
+                        eqpReverseDO.setPassed(false);
+                        eqpReverseDO.setDescription("参数超出允许范围");
                     }
                 }
             }
@@ -260,40 +260,40 @@ public class ParamCheckService {
                     if (standard != null) {
                         // 使用ParameterRange进行检查
                         if (standard.contains(numericValue)) {
-                            eqpReverseRecord.setPassed(true);
-                            eqpReverseRecord.setDescription("参数在允许范围内");
+                            eqpReverseDO.setPassed(true);
+                            eqpReverseDO.setDescription("参数在允许范围内");
                         } else {
-                            eqpReverseRecord.setPassed(false);
-                            eqpReverseRecord.setDescription("参数超出允许范围");
+                            eqpReverseDO.setPassed(false);
+                            eqpReverseDO.setDescription("参数超出允许范围");
                         }
                     } else {
                         // 简单示例检查
                         if (numericValue >= 0 && numericValue <= 1000) {
-                            eqpReverseRecord.setPassed(true);
-                            eqpReverseRecord.setDescription("参数在允许范围内");
+                            eqpReverseDO.setPassed(true);
+                            eqpReverseDO.setDescription("参数在允许范围内");
                         } else {
-                            eqpReverseRecord.setPassed(false);
-                            eqpReverseRecord.setDescription("参数超出允许范围");
+                            eqpReverseDO.setPassed(false);
+                            eqpReverseDO.setDescription("参数超出允许范围");
                         }
                     }
                 } catch (NumberFormatException e) {
                     // 非数值字符串，可以进行其他类型的检查
-                    eqpReverseRecord.setPassed(true);
-                    eqpReverseRecord.setDescription("非数值参数，检查通过");
+                    eqpReverseDO.setPassed(true);
+                    eqpReverseDO.setDescription("非数值参数，检查通过");
                 }
             }
             // 其他类型参数
             else {
                 // 对于其他类型，可以基于业务需求进行检查
-                eqpReverseRecord.setPassed(true);
-                eqpReverseRecord.setDescription("参数类型无需数值检查");
+                eqpReverseDO.setPassed(true);
+                eqpReverseDO.setDescription("参数类型无需数值检查");
             }
         } catch (Exception e) {
-            eqpReverseRecord.setPassed(false);
-            eqpReverseRecord.setDescription("参数检查过程中发生错误: " + e.getMessage());
+            eqpReverseDO.setPassed(false);
+            eqpReverseDO.setDescription("参数检查过程中发生错误: " + e.getMessage());
             logger.error(">>>>> 参数检查过程中发生错误", e);
         }
 
-        return eqpReverseRecord;
+        return eqpReverseDO;
     }
 }

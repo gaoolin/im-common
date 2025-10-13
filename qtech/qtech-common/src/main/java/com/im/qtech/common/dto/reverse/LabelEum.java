@@ -1,4 +1,4 @@
-package com.im.aa.inspection.entity.reverse;
+package com.im.qtech.common.dto.reverse;
 
 /**
  * 检查记录标签枚举类

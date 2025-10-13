@@ -1,7 +1,7 @@
 package com.im.aa.inspection.service;
 
 import com.im.aa.inspection.config.AppConfig;
-import com.im.aa.inspection.entity.reverse.EqpReverseRecord;
+import com.im.aa.inspection.entity.reverse.EqpReverseDO;
 import com.im.aa.inspection.entity.standard.EqLstTplDO;
 import com.im.aa.inspection.entity.standard.EqLstTplInfoDO;
 import com.im.aa.inspection.repository.EqLstTplInfoRepository;
@@ -91,7 +91,7 @@ public class DatabaseService {
         }
     }
 
-    public void saveInspectionResult(EqpReverseRecord result) {
+    public void saveInspectionResult(EqpReverseDO result) {
         try {
             reverseDataRepository.saveEqpReverseRecord(result);
         } catch (Exception e) {

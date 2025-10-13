@@ -1,6 +1,6 @@
 package com.im.aa.inspection.config;
 
-import com.im.aa.inspection.entity.reverse.EqpReverseRecord;
+import com.im.aa.inspection.entity.reverse.EqpReverseDO;
 import com.im.aa.inspection.entity.standard.EqLstTplDO;
 import com.im.aa.inspection.entity.standard.EqLstTplInfoDO;
 import org.hibernate.SessionFactory;
@@ -83,7 +83,7 @@ public class AppConfig {
             // 6 注册实体类
             configuration.addAnnotatedClass(EqLstTplInfoDO.class);
             configuration.addAnnotatedClass(EqLstTplDO.class);
-            configuration.addAnnotatedClass(EqpReverseRecord.class);
+            configuration.addAnnotatedClass(EqpReverseDO.class);
 
             // 7 构建 SessionFactory
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()

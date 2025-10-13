@@ -1,6 +1,5 @@
 package com.im.aa.inspection.entity.standard;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.im.qtech.common.dto.standard.EqLstTplInfoPOJO;
 import lombok.Data;
@@ -40,7 +39,7 @@ public class EqLstTplInfoDO extends EqLstTplInfoPOJO {
      */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "module", referencedColumnName = "module", insertable = false, updatable = false)
-    @JsonBackReference  // 被管理方
+    @JsonIgnoreProperties("tpl")  // 忽略反向引用字段避免循环
     private EqLstTplDO tpl;
 
     private String provider;

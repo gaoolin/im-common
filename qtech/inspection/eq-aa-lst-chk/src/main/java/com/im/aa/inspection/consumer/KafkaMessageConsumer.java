@@ -3,7 +3,7 @@ package com.im.aa.inspection.consumer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.im.aa.inspection.entity.param.EqLstParsed;
-import com.im.aa.inspection.entity.reverse.EqpReverseRecord;
+import com.im.aa.inspection.entity.reverse.EqpReverseDO;
 import com.im.aa.inspection.service.ParamCheckService;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -289,17 +289,17 @@ public class KafkaMessageConsumer implements Lifecycle {
 
                 // 4. 处理参数检查
                 logger.debug(">>>>> Step4: Performing parameter check...");
-                EqpReverseRecord eqpReverseRecord = paramCheckService.performParameterCheck(eqLstParsed);
+                EqpReverseDO eqpReverseDO = paramCheckService.performParameterCheck(eqLstParsed);
 
                 // 5. 发送到 RabbitMQ
                 logger.debug(">>>>> Step5: Sending to RabbitMQ...");
-                sendToRabbitMQ(eqpReverseRecord);
+                sendToRabbitMQ(eqpReverseDO);
 
                 // 6. 发送到Kafka
                 logger.debug(">>>>> Step6: Sending to Kafka...");
                 String outputTopicReverse = configManager.getProperty("kafka.output.topic.eq_lst_reverse", "qtech_im_aa_list_checked_test_topic");
-                // 修复：将 EqpReverseRecord 对象转换为 JSON 字符串
-                String resultJson = objectMapper.writeValueAsString(eqpReverseRecord);
+                // 修复：将 EqpReverseDO 对象转换为 JSON 字符串
+                String resultJson = objectMapper.writeValueAsString(eqpReverseDO);
                 producer.send(new ProducerRecord<>(outputTopicReverse, messageKey, resultJson));
 
                 logger.info(">>>>> [SUCCESS] key={} processed and dispatched", messageKey);
@@ -328,7 +328,7 @@ public class KafkaMessageConsumer implements Lifecycle {
      *
      * @param result 检查结果
      */
-    private void sendToRabbitMQ(EqpReverseRecord result) {
+    private void sendToRabbitMQ(EqpReverseDO result) {
         try {
             if (rabbitChannel == null || !rabbitChannel.isOpen()) {
                 logger.warn(">>>>> RabbitMQ channel is not available, skipping message send");

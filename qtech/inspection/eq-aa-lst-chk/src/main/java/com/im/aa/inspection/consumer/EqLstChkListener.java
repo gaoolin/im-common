@@ -120,7 +120,7 @@ public class EqLstChkListener {
             String messageKey = record.key();
             EqLstParsed actualObj = objectMapper.readValue(record.value(), new TypeReference<EqLstParsed>() {
             });
-            EqpReverseRecord checkResult = initializeCheckResult(actualObj);
+            EqpReverseDO checkResult = initializeCheckResult(actualObj);
 
             // 获取模板信息
             EqLstTplInfoDO modelInfoObj = getTplInfo(actualObj.getModule());
@@ -147,8 +147,8 @@ public class EqLstChkListener {
         }
     }
 
-    private EqpReverseRecord initializeCheckResult(EqLstParsed actualObj) {
-        EqpReverseRecord checkResult = new EqpReverseRecord();
+    private EqpReverseDO initializeCheckResult(EqLstParsed actualObj) {
+        EqpReverseDO checkResult = new EqpReverseDO();
         checkResult.setSource("dto-list");
         checkResult.setSimId(actualObj.getSimId());
         checkResult.setModule(actualObj.getModule());
@@ -165,7 +165,7 @@ public class EqLstChkListener {
         return cache.getParamsTpl(module);
     }
 
-    private void compareAndProcessResults(EqLstTplDO modelObj, EqLstParsed actualObj, EqpReverseRecord checkResult, String messageKey) throws JsonProcessingException {
+    private void compareAndProcessResults(EqLstTplDO modelObj, EqLstParsed actualObj, EqpReverseDO checkResult, String messageKey) throws JsonProcessingException {
         ParameterInspection result = COMPARATOR.compare(modelObj, actualObj, PROPERTIES_TO_COMPARE, PROPERTIES_TO_COMPUTE);
 
         int statusCode = getStatusCode(result);
@@ -192,13 +192,13 @@ public class EqLstChkListener {
         return description.length() > 0 ? description.toString() : "Ok.";
     }
 
-    private void handleResult(EqpReverseRecord checkResult, int code, String description, String messageKey) throws JsonProcessingException {
+    private void handleResult(EqpReverseDO checkResult, int code, String description, String messageKey) throws JsonProcessingException {
         checkResult.setCode(code);
         checkResult.setDescription(description);
         sendResult(checkResult, messageKey);
     }
 
-    private void sendResult(EqpReverseRecord checkResult, String messageKey) throws JsonProcessingException {
+    private void sendResult(EqpReverseDO checkResult, String messageKey) throws JsonProcessingException {
         String jsonString = objectMapper.writeValueAsString(checkResult);
         kafkaProducer.send(new ProducerRecord<>("dto-list-params-checked-test-topic", jsonString));
         logger.info(">>>>> key: {} check message completed, result sent!", messageKey);

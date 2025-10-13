@@ -1,6 +1,6 @@
 package com.im.aa.inspection.repository;
 
-import com.im.aa.inspection.entity.reverse.EqpReverseRecord;
+import com.im.aa.inspection.entity.reverse.EqpReverseDO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -20,8 +20,8 @@ public class ReverseDataRepository {
         this.sessionFactory = sessionFactory;
     }
 
-    // EqpReverseRecord CRUD 操作
-    public void saveEqpReverseRecord(EqpReverseRecord record) {
+    // EqpReverseDO CRUD 操作
+    public void saveEqpReverseRecord(EqpReverseDO record) {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
         try {
@@ -33,21 +33,21 @@ public class ReverseDataRepository {
         }
     }
 
-    public EqpReverseRecord findEqpReverseRecordById(Long id) {
+    public EqpReverseDO findEqpReverseRecordById(Long id) {
         Session session = sessionFactory.getCurrentSession();
-        return session.get(EqpReverseRecord.class, id);
+        return session.get(EqpReverseDO.class, id);
     }
 
-    public List<EqpReverseRecord> findAllEqpReverseRecords() {
+    public List<EqpReverseDO> findAllEqpReverseRecords() {
         Session session = sessionFactory.getCurrentSession();
-        Query<EqpReverseRecord> query = session.createQuery("FROM EqpReverseRecord", EqpReverseRecord.class);
+        Query<EqpReverseDO> query = session.createQuery("FROM EqpReverseDO", EqpReverseDO.class);
         return query.list();
     }
 
-    public List<EqpReverseRecord> findEqpReverseRecordsBySimId(String simId) {
+    public List<EqpReverseDO> findEqpReverseRecordsBySimId(String simId) {
         Session session = sessionFactory.getCurrentSession();
-        Query<EqpReverseRecord> query = session.createQuery(
-                "FROM EqpReverseRecord WHERE simId = :simId", EqpReverseRecord.class);
+        Query<EqpReverseDO> query = session.createQuery(
+                "FROM EqpReverseDO WHERE simId = :simId", EqpReverseDO.class);
         query.setParameter("simId", simId);
         return query.list();
     }
@@ -56,7 +56,7 @@ public class ReverseDataRepository {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
         try {
-            EqpReverseRecord record = session.get(EqpReverseRecord.class, id);
+            EqpReverseDO record = session.get(EqpReverseDO.class, id);
             if (record != null) {
                 session.delete(record);
             }
