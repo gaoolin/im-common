@@ -1,5 +1,6 @@
 package com.im.aa.inspection.entity.standard;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.im.qtech.common.dto.param.EqLstPOJO;
 import lombok.Data;
@@ -29,6 +30,7 @@ public class EqLstTplDO extends EqLstPOJO {
     // 一对一关系映射 - 添加 insertable=false, updatable=false
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "module", referencedColumnName = "module", insertable = false, updatable = false)
+    @JsonIgnore  // 完全忽略此字段的序列化
     private EqLstTplInfoDO tplInfo;
 
     private boolean deleted = false;

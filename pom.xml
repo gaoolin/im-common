@@ -241,10 +241,19 @@
         <url>https://github.com/gaoolin/im-common</url>
     </scm>
     <distributionManagement>
+        <!--        <repository>-->
+        <!--            <id>github</id>-->
+        <!--            <name>GitHub Packages</name>-->
+        <!--            <url>https://maven.pkg.github.com/gaoolin/im-common</url>-->
+        <!--        </repository>-->
+
         <repository>
-            <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/gaoolin/im-common</url>
+            <id>rdc-releases</id>
+            <url>https://packages.aliyun.com/maven/repository/2291757-release-IXikA3/</url>
         </repository>
+        <snapshotRepository>
+            <id>rdc-snapshots</id>
+            <url>https://packages.aliyun.com/maven/repository/2291757-snapshot-d3GqL2/</url>
+        </snapshotRepository>
     </distributionManagement>
 </project>

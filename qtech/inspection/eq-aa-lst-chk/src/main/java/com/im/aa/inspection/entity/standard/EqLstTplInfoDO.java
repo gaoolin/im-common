@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
  * @email gaoolin@gmail.com
  * @since 2024/07/22 14:20:43
  */
-
 @Data
 @Entity
 @Table(name = "eqp_aa_lst_tpl_info", schema = "biz")
@@ -39,7 +38,7 @@ public class EqLstTplInfoDO extends EqLstTplInfoPOJO {
      */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "module", referencedColumnName = "module", insertable = false, updatable = false)
-    @JsonIgnoreProperties("tpl")  // 忽略反向引用字段避免循环
+    @JsonIgnoreProperties({"tplInfo", "hibernateLazyInitializer", "handler"}) // 忽略反向引用避免循环
     private EqLstTplDO tpl;
 
     private String provider;

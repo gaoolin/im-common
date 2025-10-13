@@ -5,7 +5,6 @@
         <groupId>com.im.inspection</groupId>
         <artifactId>inspection</artifactId>
         <version>1.0.0</version>
-        <relativePath/> <!-- 添加这行，让 Maven 从仓库查找父POM -->
     </parent>
 
     <groupId>com.im.aa.inspection</groupId>

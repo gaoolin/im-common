@@ -41,7 +41,7 @@ public class DatabaseServiceTest {
         closeable = MockitoAnnotations.openMocks(this);
 
         // 创建 DatabaseService 实例
-        databaseService = new DatabaseService();
+        databaseService = DatabaseService.getInstance();
 
         // 使用反射设置私有字段
         try {

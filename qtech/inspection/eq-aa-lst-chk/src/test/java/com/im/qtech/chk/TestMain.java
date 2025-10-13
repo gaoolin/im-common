@@ -10,7 +10,7 @@ public class TestMain {
 
     public static void main(String[] args) {
         // ✅ 1. 初始化 DatabaseService
-        DatabaseService databaseService = new DatabaseService();
+        DatabaseService databaseService = DatabaseService.getInstance();
         System.out.println("✅ DatabaseService 初始化成功");
 
         // ✅ 2. 获取 Session

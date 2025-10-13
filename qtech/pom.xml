@@ -23,5 +23,14 @@
 
     <dependencyManagement></dependencyManagement>
 
-    <distributionManagement></distributionManagement>
+    <distributionManagement>
+        <repository>
+            <id>rdc-releases</id>
+            <url>https://packages.aliyun.com/maven/repository/2291757-release-IXikA3/</url>
+        </repository>
+        <snapshotRepository>
+            <id>rdc-snapshots</id>
+            <url>https://packages.aliyun.com/maven/repository/2291757-snapshot-d3GqL2/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

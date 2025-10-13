@@ -24,7 +24,7 @@ public class DatabaseQueryTest {
     private DatabaseService databaseService;
 
     public DatabaseQueryTest() {
-        this.databaseService = DatabaseService.getInstance()
+        this.databaseService = DatabaseService.getInstance();
     }
 
     /**
