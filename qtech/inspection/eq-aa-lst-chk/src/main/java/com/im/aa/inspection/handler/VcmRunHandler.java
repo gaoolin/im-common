@@ -10,7 +10,7 @@ import org.im.semiconductor.common.handler.cmd.CommandHandler;
  * VcmRun:相同的list名称
  * 1. Vcm_Hall
  * 2. Vcm_Hall2
- * # 3. Vcm_Check(除外，它的参数值是 Cc值)
+ * 3. Vcm_Check(除外，它的参数值是 Cc值)
  * 4. Vcm_Check_650
  * 5. Vcm_MoveAF
  * 6. MoveAF_Z_Check

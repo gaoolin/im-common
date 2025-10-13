@@ -60,8 +60,7 @@ public class CustomPhysicalNamingStrategy implements PhysicalNamingStrategy {
 
         StringBuilder result = new StringBuilder();
         char[] chars = input.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            char c = chars[i];
+        for (char c : chars) {
             if (Character.isUpperCase(c)) {
                 result.append('_').append(Character.toLowerCase(c));
             } else {
