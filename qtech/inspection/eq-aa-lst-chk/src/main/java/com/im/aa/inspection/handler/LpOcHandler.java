@@ -11,7 +11,7 @@ import org.im.semiconductor.common.handler.cmd.CommandHandler;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/09/20 11:52:53
+ * @date 2024/09/20 11:52:53
  */
 public final class LpOcHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例

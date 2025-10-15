@@ -5,7 +5,7 @@ package org.im.config;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/19 14:22:32
+ * @date 2025/08/19 14:22:32
  */
 public class ConfigurationEvent {
 

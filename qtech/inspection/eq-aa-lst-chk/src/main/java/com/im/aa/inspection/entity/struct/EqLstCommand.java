@@ -7,7 +7,7 @@ import org.im.semiconductor.common.parameter.structure.Hierarchical.Hierarchical
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/22
+ * @date 2025/08/22
  */
 public class EqLstCommand extends HierarchicalCommandStructure {
     private BoundsLoader boundsLoader;

@@ -21,7 +21,7 @@ import java.util.Arrays;
  * @author gaozhilin
  * @version 1.0
  * @email gaoolin@gmail.com
- * @since 2025/08/20
+ * @date 2025/08/20
  */
 public class SecsGemKit {
 

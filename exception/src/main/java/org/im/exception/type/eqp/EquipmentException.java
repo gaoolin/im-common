@@ -5,7 +5,7 @@ import org.im.exception.type.BaseException;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/09/17
+ * @date 2025/09/17
  */
 
 public class EquipmentException extends BaseException {

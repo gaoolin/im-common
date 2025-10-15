@@ -11,7 +11,7 @@ import org.im.semiconductor.common.handler.cmd.CommandHandler;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/09/26 14:38:02
+ * @date 2024/09/26 14:38:02
  */
 public final class SaveMtfHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例

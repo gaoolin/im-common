@@ -7,7 +7,7 @@ package org.im.exception.type;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/19 13:36:15
+ * @date 2025/08/19 13:36:15
  */
 public class BaseException extends RuntimeException {
     private static final long serialVersionUID = 1L;

@@ -11,7 +11,7 @@ import org.im.semiconductor.common.handler.cmd.CommandHandler;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/01/15 15:02:52
+ * @date 2025/01/15 15:02:52
  */
 public final class UtXyzMoveHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例

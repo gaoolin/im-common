@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/09/15
+ * @date 2025/09/15
  */
 public final class ListParser {
     private static final Logger logger = LoggerFactory.getLogger(ListParser.class);

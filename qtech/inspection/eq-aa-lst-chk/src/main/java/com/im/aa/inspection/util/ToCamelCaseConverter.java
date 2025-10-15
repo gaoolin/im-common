@@ -7,7 +7,7 @@ import com.im.aa.inspection.constant.EqLstCamelCaseConverter;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/05/15 09:43:23
+ * @date 2024/05/15 09:43:23
  */
 public class ToCamelCaseConverter {
     public static String doConvert(String input) {

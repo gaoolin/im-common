@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/09/25
+ * @date 2025/09/25
  */
 public class AppConfig {
 

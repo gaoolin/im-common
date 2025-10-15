@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/03/27 08:49:32
+ * @date 2025/03/27 08:49:32
  */
 public final class ItemVcmHallParser {
     private static final Logger logger = LoggerFactory.getLogger(ItemVcmHallParser.class);

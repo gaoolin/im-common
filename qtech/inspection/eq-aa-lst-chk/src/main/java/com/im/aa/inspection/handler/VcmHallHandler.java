@@ -12,7 +12,7 @@ import org.im.semiconductor.common.handler.cmd.CommandHandler;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/03/27 08:41:11
+ * @date 2025/03/27 08:41:11
  */
 public final class VcmHallHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例

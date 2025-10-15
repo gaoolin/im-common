@@ -14,7 +14,7 @@ import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/10/11
+ * @date 2025/10/11
  */
 public class CustomPhysicalNamingStrategy implements PhysicalNamingStrategy {
 

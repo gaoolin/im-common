@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/10/10
+ * @date 2025/10/10
  */
 public class TemplateDataRepository {
     private SessionFactory sessionFactory;

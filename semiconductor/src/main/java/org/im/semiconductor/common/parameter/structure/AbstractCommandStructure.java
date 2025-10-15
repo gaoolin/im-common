@@ -18,7 +18,7 @@ import java.io.Serializable;
  *
  * @author gaozhilin
  * @version 1.0
- * @since 2025/08/22
+ * @date 2025/08/22
  */
 public abstract class AbstractCommandStructure implements CommandStructure, Serializable {
     private static final long serialVersionUID = 1L;

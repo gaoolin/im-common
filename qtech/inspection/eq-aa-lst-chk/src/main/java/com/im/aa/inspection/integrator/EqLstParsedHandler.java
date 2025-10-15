@@ -35,7 +35,7 @@ import static com.im.qtech.common.constant.QtechImBizConstant.*;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/05/27
+ * @date 2024/05/27
  */
 public class EqLstParsedHandler extends MessageHandler<EqLstParsed> implements AutoRegisteredHandler<EqLstParsed> {
     /**

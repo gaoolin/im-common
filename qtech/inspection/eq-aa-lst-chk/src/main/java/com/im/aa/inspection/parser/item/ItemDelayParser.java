@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/10/08 10:55:55
+ * @date 2024/10/08 10:55:55
  */
 public final class ItemDelayParser {
     private static final Logger logger = LoggerFactory.getLogger(ItemDelayParser.class);

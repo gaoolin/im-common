@@ -15,7 +15,7 @@ import java.util.*;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/05/20 10:59:31
+ * @date 2024/05/20 10:59:31
  */
 /*
 Objects.equals()方法用于比较两个对象是否相等，包括null值。这意味着Objects.equals(value1, value2)会正确处理null值的情况。如果value1和value2都为null，

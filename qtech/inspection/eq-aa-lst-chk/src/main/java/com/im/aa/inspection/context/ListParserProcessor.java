@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/05/07 14:49:46
+ * @date 2024/05/07 14:49:46
  */
 public class ListParserProcessor {
 

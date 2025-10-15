@@ -5,7 +5,7 @@ package org.im.semiconductor.common.parameter.mgr;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/22 11:27:15
+ * @date 2025/08/22 11:27:15
  */
 public enum ParameterStatus {
     /**

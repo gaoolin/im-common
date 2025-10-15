@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/10/08 09:37:58
+ * @date 2024/10/08 09:37:58
  */
 public final class ItemCcParser {
     private static final Logger logger = LoggerFactory.getLogger(ItemCcParser.class);

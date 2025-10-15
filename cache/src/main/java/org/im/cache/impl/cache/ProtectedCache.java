@@ -27,7 +27,7 @@ import java.util.function.Function;
  * @param <V> 值类型
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/27
+ * @date 2025/08/27
  */
 public class ProtectedCache<K, V> implements Cache<K, V> {
     private static final Logger logger = LoggerFactory.getLogger(ProtectedCache.class);

@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/19 14:26:39
+ * @date 2025/08/19 14:26:39
  */
 public class PropertiesFileConfigSource implements ConfigSource {
 

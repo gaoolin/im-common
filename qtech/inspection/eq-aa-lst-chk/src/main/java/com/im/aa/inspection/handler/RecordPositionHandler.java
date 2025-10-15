@@ -19,7 +19,7 @@ import java.util.Arrays;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/05/28 11:23:36
+ * @date 2024/05/28 11:23:36
  */
 public final class RecordPositionHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例

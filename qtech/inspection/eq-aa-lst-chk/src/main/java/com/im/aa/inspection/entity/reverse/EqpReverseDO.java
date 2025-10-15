@@ -13,7 +13,7 @@ import javax.persistence.*;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/06/21 08:30:15
+ * @date 2024/06/21 08:30:15
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

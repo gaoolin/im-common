@@ -7,7 +7,7 @@ package org.im.exception.constants;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/19 13:42:03
+ * @date 2025/08/19 13:42:03
  */
 public interface ErrorCode {
 

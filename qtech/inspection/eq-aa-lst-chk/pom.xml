@@ -22,13 +22,18 @@
     </properties>
 
     <dependencies>
+        <!-- 日志依赖 -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <optional>true</optional> <!--标记可选依赖-->
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <optional>true</optional> <!--标记可选依赖-->
         </dependency>
 
         <dependency>

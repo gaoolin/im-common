@@ -21,7 +21,7 @@ import static org.im.common.math.MathEvaluator.isNumeric;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/21 14:18:58
+ * @date 2025/08/21 14:18:58
  */
 
 public class EqLstInspectionModelV3 extends AbstractParameterComparator<Object> {

@@ -19,7 +19,7 @@ import org.im.semiconductor.common.registry.AbstractRegistry;
  * @author gaozhilin
  * @version 1.0
  * @email gaoolin@gmail.com
- * @since 2025/08/25
+ * @date 2025/08/25
  */
 public class MessageHandlerRegistry extends AbstractRegistry<String, MessageHandler<?>> {
     // 饿汉式单例实例

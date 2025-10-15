@@ -11,7 +11,7 @@ import org.im.semiconductor.common.handler.cmd.CommandHandler;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/05/28 11:21:44
+ * @date 2024/05/28 11:21:44
  */
 public final class EpoxyInspectionAutoHandler extends CommandHandler<EqLstCommand> implements AutoRegisteredHandler<EqLstCommand> {
     // 饿汉式单例

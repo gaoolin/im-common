@@ -7,7 +7,7 @@ package org.im.config;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/19 14:21:54
+ * @date 2025/08/19 14:21:54
  */
 public interface ConfigurationListener {
 

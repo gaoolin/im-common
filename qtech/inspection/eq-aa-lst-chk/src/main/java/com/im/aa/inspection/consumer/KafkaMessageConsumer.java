@@ -36,7 +36,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/09/25
+ * @date 2025/09/25
  */
 public class KafkaMessageConsumer implements Lifecycle {
     private static final Logger logger = LoggerFactory.getLogger(KafkaMessageConsumer.class);

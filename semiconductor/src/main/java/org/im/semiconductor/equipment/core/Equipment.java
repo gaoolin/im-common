@@ -5,7 +5,7 @@ package org.im.semiconductor.equipment.core;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/25
+ * @date 2025/08/25
  */
 
 public interface Equipment {

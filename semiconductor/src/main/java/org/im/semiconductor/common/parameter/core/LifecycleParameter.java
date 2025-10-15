@@ -7,7 +7,7 @@ import org.im.common.lifecycle.Lifecycle;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/09/26
+ * @date 2025/09/26
  */
 
 public interface LifecycleParameter extends Parameter, Lifecycle {

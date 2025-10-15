@@ -10,7 +10,7 @@ import java.io.Serializable;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/09/26
+ * @date 2025/09/26
  */
 
 public interface Parameter extends Serializable, Cloneable {

@@ -1,0 +1,34 @@
+{
+  "type": "record",
+  "name": "WbOlpRawDataCompositeKey",
+  "namespace": "com.im.qtech.service.msg.serializer",
+  "fields": [
+    {
+      "name": "dt",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "simId",
+      "type": "string"
+    },
+    {
+      "name": "module",
+      "type": "string"
+    },
+    {
+      "name": "lineNo",
+      "type": "int"
+    },
+    {
+      "name": "checkPort",
+      "type": "int"
+    },
+    {
+      "name": "piecesIndex",
+      "type": "int"
+    }
+  ]
+}

@@ -20,7 +20,7 @@ import org.im.semiconductor.common.handler.AbstractHandler;
  * @author gaozhilin
  * @version 1.0
  * @email gaoolin@gmail.com
- * @since 2024/05/28
+ * @date 2024/05/28
  */
 public abstract class CommandHandler<T> extends AbstractHandler<T> {
 

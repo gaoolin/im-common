@@ -10,7 +10,7 @@ import java.util.Set;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/19 14:19:56
+ * @date 2025/08/19 14:19:56
  */
 public interface ConfigSource {
 

@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "EqpReverseCompositeKey",
+  "namespace": "com.im.qtech.service.msg.serializer",
+  "fields": [
+    {
+      "name": "simId",
+      "type": "string"
+    },
+    {
+      "name": "module",
+      "type": "string"
+    },
+    {
+      "name": "chkDt",
+      "type": "string"
+    }
+  ]
+}

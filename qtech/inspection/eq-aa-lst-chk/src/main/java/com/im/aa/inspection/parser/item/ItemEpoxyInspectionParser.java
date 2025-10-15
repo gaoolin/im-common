@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/10/08 10:52:49
+ * @date 2024/10/08 10:52:49
  */
 public final class ItemEpoxyInspectionParser {
     private static final Logger logger = LoggerFactory.getLogger(ItemEpoxyInspectionParser.class);

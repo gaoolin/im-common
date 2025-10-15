@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/09/29
+ * @date 2025/09/29
  */
 
 public abstract class AbstractParameterInspection implements ParameterInspection {

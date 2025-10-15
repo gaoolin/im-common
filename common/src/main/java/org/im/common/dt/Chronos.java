@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author gaozhilin
  * @version 1.1
  * @email gaoolin@gmail.com
- * @since 2025/08/20
+ * @date 2025/08/20
  */
 public class Chronos {
 
@@ -105,7 +105,16 @@ public class Chronos {
      * @return LocalDateTime实例
      */
     public static LocalDateTime now() {
-        return LocalDateTime.now();
+        return now(getDefaultZoneId());
+    }
+
+    /**
+     * 获取当前日期时间
+     *
+     * @return LocalDateTime实例
+     */
+    public static LocalDateTime now(ZoneId zoneId) {
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(currentTimestamp()), zoneId);
     }
 
     /**

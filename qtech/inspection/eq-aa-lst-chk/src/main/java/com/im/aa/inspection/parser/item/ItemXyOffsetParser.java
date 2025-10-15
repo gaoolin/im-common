@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/10/08 11:00:04
+ * @date 2024/10/08 11:00:04
  */
 public final class ItemXyOffsetParser {
     private static final Logger logger = LoggerFactory.getLogger(ItemXyOffsetParser.class);

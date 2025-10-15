@@ -6,7 +6,7 @@ package org.im.common.lifecycle;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/09/29
+ * @date 2025/09/29
  */
 
 public interface Lifecycle {

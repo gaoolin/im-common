@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/09/24 17:06:10
+ * @date 2024/09/24 17:06:10
  */
 public class MtfChkCmdItemsConverterV1 {
     private static final String AGG_MTF_CHECK_ITEMS_RESULT_SUFFIX = "F";

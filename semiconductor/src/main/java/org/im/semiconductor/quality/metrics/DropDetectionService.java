@@ -6,7 +6,7 @@ import org.im.semiconductor.quality.core.QualityAlert;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/09/26
+ * @date 2025/09/26
  */
 
 public class DropDetectionService {

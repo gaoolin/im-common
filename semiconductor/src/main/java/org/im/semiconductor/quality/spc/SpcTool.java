@@ -27,7 +27,7 @@ import java.util.stream.Stream;
  * @author gaozhilin
  * @version 1.0
  * @email gaoolin@gmail.com
- * @since 2025/08/21
+ * @date 2025/08/21
  */
 public class SpcTool {
 

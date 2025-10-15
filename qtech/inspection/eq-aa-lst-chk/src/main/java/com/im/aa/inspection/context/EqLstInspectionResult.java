@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/09/28
+ * @date 2025/09/28
  */
 public class EqLstInspectionResult extends DefaultParameterInspection implements EqpCtx {
     private String company;     // 公司

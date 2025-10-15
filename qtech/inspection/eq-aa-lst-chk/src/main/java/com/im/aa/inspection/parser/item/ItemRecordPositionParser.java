@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/01/15 13:19:27
+ * @date 2025/01/15 13:19:27
  */
 public final class ItemRecordPositionParser {
     private static final Logger logger = LoggerFactory.getLogger(ItemRecordPositionParser.class);

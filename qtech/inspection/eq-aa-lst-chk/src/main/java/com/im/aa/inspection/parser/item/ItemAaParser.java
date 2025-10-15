@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/10/08 10:40:42
+ * @date 2024/10/08 10:40:42
  */
 public final class ItemAaParser {
     private static final Logger logger = LoggerFactory.getLogger(ItemAaParser.class);

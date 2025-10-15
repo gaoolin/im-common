@@ -21,7 +21,7 @@ import java.util.List;
  *
  * @author gaozhilin
  * @version 1.0
- * @since 2025/08/22
+ * @date 2025/08/22
  */
 public interface CommandStructure extends Serializable {
 

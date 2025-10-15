@@ -24,7 +24,7 @@ import java.util.Objects;
  *
  * @author gaozhilin
  * @version 1.0
- * @since 2025/08/22
+ * @date 2025/08/22
  */
 public class HierarchicalCommandStructure extends AbstractCommandStructure implements Serializable {
     private static final long serialVersionUID = 1L;

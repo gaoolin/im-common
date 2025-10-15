@@ -29,7 +29,7 @@ import static com.im.qtech.common.constant.EqLstInspectionConstants.PROPERTIES_T
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/09/25
+ * @date 2025/09/25
  */
 public class ParamCheckService {
     private static final Logger logger = LoggerFactory.getLogger(ParamCheckService.class);

@@ -20,7 +20,7 @@ import static org.im.common.math.MathEvaluator.isNumeric;
  *
  * @author gaozhilin
  * @version 1.0
- * @since 2024/05/20 11:41:47
+ * @date 2024/05/20 11:41:47
  */
 public final class BoundsLoader extends ParameterRange {
     private static final long serialVersionUID = 1L;

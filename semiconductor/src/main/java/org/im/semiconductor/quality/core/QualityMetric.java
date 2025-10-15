@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/09/26
+ * @date 2025/09/26
  */
 
 public interface QualityMetric {

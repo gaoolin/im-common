@@ -20,7 +20,7 @@ import static com.im.qtech.common.constant.QtechImBizConstant.EQP_LST_AGG_MTF_CH
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/12/18 09:00:38
+ * @date 2024/12/18 09:00:38
  */
 public class MtfChkCmdItemsConverterV2 {
     private static final Logger logger = LoggerFactory.getLogger(MtfChkCmdItemsConverterV2.class);

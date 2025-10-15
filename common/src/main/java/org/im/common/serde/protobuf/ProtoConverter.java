@@ -9,7 +9,7 @@ package org.im.common.serde.protobuf;
  * @param <T> 实体对象类型
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/10/09
+ * @date 2025/10/09
  */
 public interface ProtoConverter<T> {
 

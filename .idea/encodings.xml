@@ -15,12 +15,18 @@
     <file url="file://$PROJECT_DIR$/integration/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/orm/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/orm/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/inspection/eq-aa-lst-chk/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/inspection/eq-aa-lst-chk/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/inspection/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/inspection/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/qtech-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/qtech-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/service/persist/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/service/persist/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/service/persist/src/main/resources/application.yml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/semiconductor/src/main/java" charset="UTF-8" />

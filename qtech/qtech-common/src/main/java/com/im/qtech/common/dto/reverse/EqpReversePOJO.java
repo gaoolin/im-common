@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/10/13
+ * @date 2025/10/13
  */
 @Data
 public class EqpReversePOJO implements Serializable {

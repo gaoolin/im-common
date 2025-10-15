@@ -9,7 +9,7 @@ import java.util.Set;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/22 09:39:59
+ * @date 2025/08/22 09:39:59
  */
 
 public class QtechImBizConstant {
@@ -27,8 +27,11 @@ public class QtechImBizConstant {
     // REDIS_CONSTANT
     public static final String REDIS_KEY_PREFIX_EQP_LST_TPL = "dto:inspection:lst:tpl:";
     public static final String REDIS_KEY_PREFIX_EQP_LST_TPL_INFO = "dto:inspection:lst:tpl:info:";
+    public static final String REDIS_KEY_PREFIX_EQP_REVERSE_INFO = "qtech:im:chk:reverse:";
     public static final String REDIS_KEY_PREFIX_EQP_REVERSE_IGNORE_SIM = "qtech:im:chk:ignored:";
+    public static final String DEVICE_ONLINE_STATUS_REDIS_KEY_PREFIX = "qtech:im:device:online:";
     public static final int DEVICE_ONLINE_STATUS_REDIS_EXPIRE_SECONDS = 60;
+    public static final String MSG_WB_OLP_KEY_PREFIX = "qtech:im:chk:wb:olp:";
     public static final Long MSG_WB_OLP_REDIS_EXPIRE_SECONDS = 900L; // 15分钟
 
     // AA_LIST_CONSTANT

@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/09/25
+ * @date 2025/09/25
  */
 public class EqLstInspectionApp {
     private static final Logger logger = LoggerFactory.getLogger(EqLstInspectionApp.class);

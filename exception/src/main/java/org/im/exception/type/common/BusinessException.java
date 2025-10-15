@@ -9,7 +9,7 @@ import org.im.exception.type.BaseException;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/19 13:37:20
+ * @date 2025/08/19 13:37:20
  */
 public class BusinessException extends BaseException {
     private static final long serialVersionUID = 1L;

@@ -10,7 +10,7 @@ import java.util.Collection;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/19
+ * @date 2025/08/19
  */
 public interface CacheManager {
     /**

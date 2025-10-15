@@ -12,7 +12,7 @@ import java.util.Arrays;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/19
+ * @date 2025/08/19
  */
 
 public class SimpleKeyGenerator implements CacheKeyGenerator {

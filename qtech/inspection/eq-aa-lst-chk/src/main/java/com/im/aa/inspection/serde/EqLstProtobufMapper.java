@@ -8,7 +8,7 @@ import org.im.exception.type.serde.ProtobufSerializationException;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/10/09
+ * @date 2025/10/09
  */
 public class EqLstProtobufMapper {
 

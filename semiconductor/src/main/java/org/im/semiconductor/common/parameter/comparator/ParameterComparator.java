@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/21 14:09:35
+ * @date 2025/08/21 14:09:35
  */
 public interface ParameterComparator<T> {
 

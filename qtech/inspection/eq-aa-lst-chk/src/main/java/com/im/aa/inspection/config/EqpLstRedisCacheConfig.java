@@ -21,7 +21,7 @@ import static com.im.qtech.common.constant.QtechImBizConstant.*;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/09/30
+ * @date 2025/09/30
  */
 
 public class EqpLstRedisCacheConfig {

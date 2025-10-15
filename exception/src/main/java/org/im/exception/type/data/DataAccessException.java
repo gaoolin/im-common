@@ -9,7 +9,7 @@ import org.im.exception.type.BaseException;
  *
  * @author :  gaozhilin
  * @email :  gaoolin@gmail.com
- * @since :  2024/11/19 08:51:04
+ * @date :  2024/11/19 08:51:04
  */
 
 public class DataAccessException extends BaseException {

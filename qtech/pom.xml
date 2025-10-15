@@ -19,6 +19,7 @@
     <modules>
         <module>inspection</module>
         <module>qtech-common</module>
+        <module>service</module>
     </modules>
 
     <dependencyManagement></dependencyManagement>

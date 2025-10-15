@@ -22,7 +22,7 @@ import java.util.function.Function;
  * @param <V> Value type
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/29
+ * @date 2025/08/29
  */
 public class SimpleMemoryCache<K, V> implements Cache<K, V> {
 

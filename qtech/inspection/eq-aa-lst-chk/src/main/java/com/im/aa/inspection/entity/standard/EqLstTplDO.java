@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/05/21 08:45:18
+ * @date 2024/05/21 08:45:18
  */
 @Data
 @Entity

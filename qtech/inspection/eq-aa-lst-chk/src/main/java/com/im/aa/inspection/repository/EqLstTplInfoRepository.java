@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/07/22
+ * @date 2024/07/22
  */
 public class EqLstTplInfoRepository {
     private final SessionFactory sessionFactory;

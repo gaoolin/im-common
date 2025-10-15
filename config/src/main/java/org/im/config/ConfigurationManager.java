@@ -10,7 +10,7 @@ import java.util.Map;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/19 14:20:48
+ * @date 2025/08/19 14:20:48
  */
 public interface ConfigurationManager {
     /**

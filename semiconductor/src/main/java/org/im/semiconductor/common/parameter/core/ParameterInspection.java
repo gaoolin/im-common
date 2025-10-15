@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/21 14:10:20
+ * @date 2025/08/21 14:10:20
  */
 public interface ParameterInspection {
     void addDifference(String property, Object modelVal, Object actualVal);

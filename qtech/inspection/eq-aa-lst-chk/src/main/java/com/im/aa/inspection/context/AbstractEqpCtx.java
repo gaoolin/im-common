@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author gaozhilin
  * @version 1.0
- * @since 2025/09/25
+ * @date 2025/09/25
  */
 public abstract class AbstractEqpCtx implements EqpCtx {
     private String company;     // 公司

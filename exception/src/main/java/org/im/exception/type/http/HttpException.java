@@ -5,7 +5,7 @@ import org.im.exception.type.BaseException;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/08/20 14:39:59
+ * @date 2025/08/20 14:39:59
  */
 public class HttpException extends BaseException {
     private static final long serialVersionUID = 1L;

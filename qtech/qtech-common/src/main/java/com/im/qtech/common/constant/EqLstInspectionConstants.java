@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/05/20 10:19:44
+ * @date 2024/05/20 10:19:44
  */
 
 public class EqLstInspectionConstants {

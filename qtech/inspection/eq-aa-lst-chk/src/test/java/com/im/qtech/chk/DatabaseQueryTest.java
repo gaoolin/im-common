@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/10/10
+ * @date 2025/10/10
  */
 public class DatabaseQueryTest {
     private static final Logger logger = LoggerFactory.getLogger(DatabaseQueryTest.class);

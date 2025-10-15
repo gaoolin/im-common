@@ -22,7 +22,7 @@ import java.io.Serializable;
  * @author gaozhilin
  * @version 1.0
  * @email gaoolin@gmail.com
- * @since 2024/05/28
+ * @date 2024/05/28
  */
 public interface Handler<T> extends Serializable {
 

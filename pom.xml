@@ -25,8 +25,6 @@
     </modules>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- 版本定义 -->
@@ -99,18 +97,6 @@
                 <groupId>com.google.protobuf</groupId>
                 <artifactId>protobuf-java</artifactId>
                 <version>${protobuf.version}</version>
-            </dependency>
-
-            <!-- 日志依赖 -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
             </dependency>
 
             <!-- lombok -->
@@ -186,6 +172,35 @@
             <properties>
                 <maven.compiler.source>17</maven.compiler.source>
                 <maven.compiler.target>17</maven.compiler.target>
+            </properties>
+        </profile>
+        <!-- Java 21 版本 -->
+        <profile>
+            <id>im-java-21</id>
+            <activation>
+                <jdk>21</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.source>21</maven.compiler.source>
+                <maven.compiler.target>21</maven.compiler.target>
+            </properties>
+        </profile>
+
+        <!-- 添加条件化 profile -->
+        <profile>
+            <id>spring-boot-app</id>
+            <activation>
+                <file>
+                    <!-- 当检测到 src/main/resources/application.properties 文件存在时，会自动激活这个 profile 并设置相应的 Spring Boot 版本属性 -->
+                    <exists>
+                        src/main/resources/application.yaml
+                        src/main/resources/application.yml
+                        src/main/resources/application.properties
+                    </exists>
+                </file>
+            </activation>
+            <properties>
+                <spring-boot.version>3.5.6</spring-boot.version>
             </properties>
         </profile>
     </profiles>

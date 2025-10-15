@@ -9,7 +9,7 @@ import java.util.List;
  * @param <T> 查询结果类型
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2025/09/22
+ * @date 2025/09/22
  */
 
 public interface Query<T> {

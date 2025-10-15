@@ -9,7 +9,7 @@ import java.util.*;
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
- * @since 2024/05/08 14:21:32
+ * @date 2024/05/08 14:21:32
  */
 public class LineParserProcessor {
     private final EqLstParsed qtechEqLstParsed = new EqLstParsed();

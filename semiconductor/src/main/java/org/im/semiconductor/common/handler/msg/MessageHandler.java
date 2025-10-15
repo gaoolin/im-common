@@ -21,7 +21,7 @@ import org.im.semiconductor.common.handler.AbstractHandler;
  * @author gaozhilin
  * @version 1.0
  * @email gaoolin@gmail.com
- * @since 2024/05/12
+ * @date 2024/05/12
  */
 public abstract class MessageHandler<T> extends AbstractHandler<T> {
 
