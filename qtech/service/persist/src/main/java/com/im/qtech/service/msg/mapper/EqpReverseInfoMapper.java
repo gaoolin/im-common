@@ -18,9 +18,9 @@ public interface EqpReverseInfoMapper extends BaseMapper<EqpReverseInfo> {
 
     int upsertDoris(EqpReverseInfo EqpReverseInfo);
 
-    int addAaListDoris(EqpReverseInfo EqpReverseInfo);
+    int addEqpLstDoris(EqpReverseInfo EqpReverseInfo);
 
-    int addWbOlpChkDoris(EqpReverseInfo EqpReverseInfo);
+    int addWbOlpDoris(EqpReverseInfo EqpReverseInfo);
 
     int upsertOracle(EqpReverseInfo EqpReverseInfo);
 

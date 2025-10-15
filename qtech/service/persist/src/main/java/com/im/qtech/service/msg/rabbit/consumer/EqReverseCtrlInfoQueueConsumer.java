@@ -101,25 +101,32 @@ public class EqReverseCtrlInfoQueueConsumer implements DisposableBean {
             hasError.set(true);
         }
 
-        CompletableFuture<Integer> future = service.upsertOracleAsync(message).exceptionally(ex -> {
-            logger.error(">>>>> Oracle upsert 异常: ", ex);
+        // CompletableFuture<Integer> future = service.upsertOracleAsync(message).exceptionally(ex -> {
+        //     logger.error(">>>>> Oracle upsert 异常: ", ex);
+        //     hasError.set(true);
+        //     return -1;
+        // });
+
+        // CompletableFuture<Integer> dorisAsync = service.upsertDorisAsync(message).exceptionally(ex -> {
+        //     logger.error(">>>>> Doris upsert 异常: ", ex);
+        //     hasError.set(true);
+        //     return -1;
+        // });
+
+        // CompletableFuture<Integer> addAaListDorisAsync = service.addAaListDorisAsync(message).exceptionally(ex -> {
+        //     logger.error(">>>>> AaList Doris insert 异常: ", ex);
+        //     hasError.set(true);
+        //     return -1;
+        // });
+
+        CompletableFuture<Integer> exceptionally = service.upsertPostgresAsync(message).exceptionally(ex -> {
+            logger.error(">>>>> Postgres upsert 异常: ", ex);
             hasError.set(true);
             return -1;
         });
 
-        CompletableFuture<Integer> dorisAsync = service.upsertDorisAsync(message).exceptionally(ex -> {
-            logger.error(">>>>> Doris upsert 异常: ", ex);
-            hasError.set(true);
-            return -1;
-        });
-
-        CompletableFuture<Integer> addAaListDorisAsync = service.addAaListDorisAsync(message).exceptionally(ex -> {
-            logger.error(">>>>> AaList Doris insert 异常: ", ex);
-            hasError.set(true);
-            return -1;
-        });
-
-        CompletableFuture<Void> allFuture = CompletableFuture.allOf(future, dorisAsync, addAaListDorisAsync);
+        // CompletableFuture<Void> allFuture = CompletableFuture.allOf(future, dorisAsync, addAaListDorisAsync);
+        CompletableFuture<Void> allFuture = CompletableFuture.allOf(exceptionally);
         try {
             allFuture.join(); // 等待所有异步任务完成
         } catch (CompletionException e) {

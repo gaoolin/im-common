@@ -30,4 +30,3 @@ public class EqpReversePOJO implements Serializable {
     private String reason;
     private String description;
 }
-

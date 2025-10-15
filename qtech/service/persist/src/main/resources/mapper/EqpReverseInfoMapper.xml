@@ -8,19 +8,27 @@
         <result property="module" column="module"/>
         <result property="chkDt" column="chk_dt"/>
         <result property="code" column="code"/>
+        <result property="passed" column="passed"/>
+        <result property="label" column="label"/>
+        <result property="reason" column="reason"/>
         <result property="description" column="description"/>
         <result property="version" column="version"/>
     </resultMap>
 
     <sql id="select_eq_reverse_ctrl_info">
-        SELECT SIM_ID, "SOURCE", PROD_TYPE, CHK_DT, CODE, DESCRIPTION, VERSION
+        SELECT SIM_ID, "SOURCE", "MODULE", CHK_DT, CODE, DESCRIPTION, VERSION
         FROM IMBIZ.IM_EQ_REVERSE_CONTROL_RECORDS
     </sql>
 
     <!-- 定义列名列表，用于在批量插入中复用 -->
     <sql id="columnList">
         SIM_ID
-        , "SOURCE", PROD_TYPE, CHK_DT, CODE, DESCRIPTION, VERSION
+        , "SOURCE", "MODULE", CHK_DT, CODE, DESCRIPTION, VERSION
+    </sql>
+
+    <sql id="fullColumnList">
+        id
+        , sim_id, "source", "module", chk_dt, code, passed, label, reason, description, version
     </sql>
 
     <insert id="upsertDoris">
@@ -28,17 +36,23 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="simId != null">SIM_ID,</if>
             <if test="source != null">SOURCE,</if>
-            <if test="prodType != null">PROD_TYPE,</if>
+            <if test="module != null">PROD_TYPE,</if>
             <if test="chkDt != null">CHK_DT,</if>
             <if test="code != null">CODE,</if>
+            <if test="passed != null">PASSED,</if>
+            <if test="label != null">LABEL,</if>
+            <if test="reason != null">REASON,</if>
             <if test="description != null">DESCRIPTION,</if>
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
             <if test="simId != null">#{simId},</if>
             <if test="source != null">#{source},</if>
-            <if test="prodType != null">#{prodType},</if>
+            <if test="module != null">#{prodType},</if>
             <if test="chkDt != null">#{chkDt},</if>
             <if test="code != null">#{code},</if>
+            <if test="passed != null">#{passed},</if>
+            <if test="label != null">#{label},</if>
+            <if test="reason != null">#{reason},</if>
             <if test="description != null">#{description},</if>
         </trim>
     </insert>
@@ -47,9 +61,12 @@
         MERGE INTO IMBIZ.IM_EQ_REVERSE_CONTROL_RECORDS tgt
             USING (SELECT #{simId, jdbcType=VARCHAR}       AS SIM_ID,
                           #{source, jdbcType=VARCHAR}      AS SOURCE,
-                          #{prodType, jdbcType=VARCHAR}    AS PROD_TYPE,
+                          #{module, jdbcType=VARCHAR} AS "MODULE",
                           #{chkDt, jdbcType=TIMESTAMP}     AS CHK_DT,
                           #{code, jdbcType=INTEGER}        AS CODE,
+                          #{passed, jdbcType=BOOLEAN} AS PASSED,
+                          #{label, jdbcType=VARCHAR}  AS LABEL,
+                          #{reason, jdbcType=VARCHAR} AS REASON,
                           #{description, jdbcType=VARCHAR} AS DESCRIPTION
                    FROM DUAL) src
             ON (
@@ -58,78 +75,109 @@
                 )
             WHEN MATCHED THEN
                 UPDATE SET
-                    tgt.PROD_TYPE = src.PROD_TYPE,
+                    tgt."MODULE" = src."MODULE",
                     tgt.CHK_DT = src.CHK_DT,
                     tgt.CODE = src.CODE,
+                    tgt.PASSED = src.PASSED,
+                    tgt.LABEL = src.LABEL,
+                    tgt.REASON = src.REASON,
                     tgt.DESCRIPTION = src.DESCRIPTION,
                     tgt.VERSION = tgt.VERSION + 1
             WHEN NOT MATCHED THEN
                 INSERT (
                         SIM_ID,
                         SOURCE,
-                        PROD_TYPE,
+                        "MODULE",
                         CHK_DT,
                         CODE,
+                        PASSED,
+                        LABEL,
+                        REASON,
                         DESCRIPTION
                     ) VALUES (src.SIM_ID,
                               src.SOURCE,
-                              src.PROD_TYPE,
+                              src."MODULE",
                               src.CHK_DT,
                               src.CODE,
+                              src.PASSED,
+                              src.LABEL,
+                              src.REASON,
                               src.DESCRIPTION)
     </insert>
 
-    <insert id="addAaListDoris" parameterType="EqpReverseInfo">
+    <insert id="addEqpLstDoris" parameterType="EqpReverseInfo">
         INSERT INTO qtech_eq_dwd.im_aa_list_chk_result_detail
         <trim prefix="(" suffix=")" prefixOverrides=",">
             <if test="simId != null">SIM_ID,</if>
-            <if test="prodType != null">PROD_TYPE,</if>
+            <if test="module != null">"MODULE",</if>
             <if test="chkDt != null">CHK_DT,</if>
             <if test="code != null">CODE,</if>
+            <if test="passed !=null">PASSED,</if>
+            <if test="label != null">LABEL,</if>
+            <if test="reason != null">REASON,</if>
             <if test="description != null">DESCRIPTION</if>
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
             <if test="simId != null">#{simId},</if>
-            <if test="prodType != null">#{prodType},</if>
+            <if test="module != null">#{module},</if>
             <if test="chkDt != null">#{chkDt},</if>
             <if test="code != null">#{code},</if>
+            <if test="passed != null">#{passed},</if>
+            <if test="label != null">#{label},</if>
+            <if test="reason != null">#{reason},</if>
             <if test="description != null">#{description}</if>
         </trim>
     </insert>
 
-    <insert id="addWbOlpChkDoris">
+    <insert id="addWbOlpDoris">
         INSERT INTO qtech_eq_dwd.im_wb_olp_chk_result_detail
         <trim prefix="(" suffix=")" prefixOverrides=",">
             <if test="simId != null">SIM_ID,</if>
-            <if test="prodType != null">MC_ID,</if>
+            <if test="module != null">"MODULE",</if>
             <if test="chkDt != null">DT,</if>
             <if test="code != null">CODE,</if>
+            <if test="passed != null">PASSED,</if>
+            <if test="label != null">LABEL,</if>
+            <if test="reason != null">REASON,</if>
             <if test="description != null">DESCRIPTION</if>
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
             <if test="simId != null">#{simId},</if>
-            <if test="prodType != null">#{prodType},</if>
+            <if test="module != null">#{module},</if>
             <if test="chkDt != null">#{chkDt},</if>
             <if test="code != null">#{code},</if>
+            <if test="passed != null">#{passed},</if>
+            <if test="label != null">#{label},</if>
+            <if test="reason != null">#{reason},</if>
             <if test="description != null">#{description}</if>
         </trim>
     </insert>
 
     <insert id="upsertPostgres" parameterType="EqpReverseInfo">
-        INSERT INTO qtech_wb.public.eq_control_info
+        INSERT INTO biz.eqp_reverse_control_latest
         <trim prefix="(" suffix=")">
             <if test="simId != null">sim_id,</if>
-            <if test="chkDt != null">dt,</if>
+            <if test="source != null">source,</if>
+            <if test="module != null">module,</if>
+            <if test="chkDt != null">chk_dt,</if>
             <if test="code != null">code,</if>
+            <if test="passed != null">passed,</if>
+            <if test="label != null">label,</if>
+            <if test="reason != null">reason,</if>
             <if test="description != null">description</if>
         </trim>
         <trim prefix="VALUES(" suffix=")">
             <if test="simId != null">#{simId},</if>
+            <if test="source != null">#{source},</if>
+            <if test="module != null">#{module},</if>
             <if test="chkDt != null">TO_TIMESTAMP(#{chkDt}, 'YYYY-MM-DD HH24:MI:SS'),</if>
             <if test="code != null">#{code},</if>
+            <if test="passed != null">#{passed},</if>
+            <if test="label != null">#{label},</if>
+            <if test="reason != null">#{reason},</if>
             <if test="description != null">#{description}</if>
         </trim>
-        ON CONFLICT ON CONSTRAINT eq_control_info_unique_key
+        ON CONFLICT ON CONSTRAINT uk_eqp_reverse_control_latest_sim_source_module
         DO UPDATE SET
         <trim prefix="" prefixOverrides=", " suffix="">
             <if test="chkDt != null">
@@ -137,6 +185,15 @@
             </if>
             <if test="code != null">
                 code = EXCLUDED.code,
+            </if>
+            <if test="passed != null">
+                passed = EXCLUDED.passed,
+            </if>
+            <if test="label != null">
+                label = EXCLUDED.label,
+            </if>
+            <if test="reason != null">
+                reason = EXCLUDED.reason,
             </if>
             <if test="description != null">
                 description = EXCLUDED.description

@@ -15,6 +15,8 @@ import java.util.concurrent.CompletableFuture;
 public interface IEqpReverseInfoService {
     CompletableFuture<Integer> upsertOracleAsync(EqpReverseInfo EqpReverseInfo);
 
+    CompletableFuture<Integer> upsertPostgresAsync(EqpReverseInfo EqpReverseInfo);
+
     CompletableFuture<Integer> upsertDorisAsync(EqpReverseInfo EqpReverseInfo);
 
     CompletableFuture<Integer> addAaListDorisAsync(EqpReverseInfo EqpReverseInfo);

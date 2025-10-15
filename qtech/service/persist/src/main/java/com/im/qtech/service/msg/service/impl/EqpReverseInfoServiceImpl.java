@@ -1,5 +1,7 @@
 package com.im.qtech.service.msg.service.impl;
 
+import com.im.qtech.service.config.dynamic.DS;
+import com.im.qtech.service.config.dynamic.DSName;
 import com.im.qtech.service.msg.entity.EqpReverseInfo;
 import com.im.qtech.service.msg.mapper.EqpReverseInfoMapper;
 import com.im.qtech.service.msg.service.IEqpReverseInfoService;
@@ -21,6 +23,7 @@ import java.util.concurrent.CompletableFuture;
  * @date 2024/08/13 17:28:21
  */
 
+@DS(DSName.FIRST)
 @Service
 public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
     private static final Logger logger = LoggerFactory.getLogger(EqpReverseInfoServiceImpl.class);
@@ -51,6 +54,15 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
         return CompletableFuture.completedFuture(0);
     }
 
+    @Override
+    public CompletableFuture<Integer> upsertPostgresAsync(EqpReverseInfo EqpReverseInfo) {
+        if (EqpReverseInfo != null) {
+            eqpReverseInfoMapper.upsertPostgres(EqpReverseInfo);
+            return CompletableFuture.completedFuture(1);
+        }
+        return CompletableFuture.completedFuture(0);
+    }
+
     @Async
     @Override
     public CompletableFuture<Integer> upsertDorisAsync(EqpReverseInfo EqpReverseInfo) {
@@ -70,7 +82,7 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
     public CompletableFuture<Integer> addAaListDorisAsync(EqpReverseInfo EqpReverseInfo) {
         CompletableFuture<Integer> future = new CompletableFuture<>();
         try {
-            int result = eqpReverseInfoMapper.addAaListDoris(EqpReverseInfo);
+            int result = eqpReverseInfoMapper.addEqpLstDoris(EqpReverseInfo);
             future.complete(1);
         } catch (Exception e) {
             logger.error(">>>>> EqpReverseInfoServiceImpl.addAaListBatchDoris error: {}", e.getMessage());
@@ -84,7 +96,7 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
     public CompletableFuture<Integer> addWbOlpChkDorisAsync(EqpReverseInfo EqpReverseInfo) {
         CompletableFuture<Integer> future = new CompletableFuture<>();
         try {
-            int result = eqpReverseInfoMapper.addWbOlpChkDoris(EqpReverseInfo);
+            int result = eqpReverseInfoMapper.addWbOlpDoris(EqpReverseInfo);
             future.complete(1);
         } catch (Exception e) {
             logger.error(">>>>> EqpReverseInfoServiceImpl.addWbOlpChkBatchDoris error: {}", e.getMessage());
