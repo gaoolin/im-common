@@ -104,7 +104,7 @@ spring:
 # MyBatis Plus
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
-  type-aliases-package: com.im.qtech.service.msg.entity
+  type-aliases-package: com.im.qtech.service.msg.entity, com.im.qtech.common.dto.*
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
@@ -119,6 +119,7 @@ mybatis-plus:
 # keepAliveSeconds可以低一点，加快释放空闲线程，节省内存。
 thread-pool:
   virtual:
+    permits: 100  # 限制并发数
     enabled: true
   important:
     corePoolSize: 2
