@@ -106,18 +106,6 @@
             <version>1.2.27</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.avro</groupId>
-            <artifactId>avro</artifactId>
-            <version>1.11.3</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.confluent</groupId>
-            <artifactId>kafka-avro-serializer</artifactId>
-            <version>7.5.5</version> <!-- 确保使用与你的 Confluent 版本匹配的版本号 -->
-        </dependency>
-
         <!-- 测试依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -149,7 +137,7 @@
         <dependency>
             <groupId>com.im.qtech.common</groupId>
             <artifactId>qtech-common</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.im.common</groupId>
@@ -171,26 +159,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-            </plugin>
-
-            <!--根据 .avsc 文件生成对应的 Java 类-->
-            <plugin>
-                <groupId>org.apache.avro</groupId>
-                <artifactId>avro-maven-plugin</artifactId>
-                <version>1.11.3</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>schema</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <!-- 指定 Avro schema 文件的输入目录 -->
-                    <sourceDirectory>${project.basedir}/src/main/resources/avro</sourceDirectory>
-                    <!-- 指定生成的 Java 类的输出目录 -->
-                    <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -1,6 +1,6 @@
 package com.im.qtech.service.msg.service.impl;
 
-import com.im.qtech.service.msg.entity.WbOlpRawData;
+import com.im.qtech.common.dto.param.WbOlpRawData;
 import com.im.qtech.service.msg.mapper.WbOlpRawDataMapper;
 import com.im.qtech.service.msg.service.IWbOlpRawDataService;
 import org.slf4j.Logger;

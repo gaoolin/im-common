@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.im.qtech.service.msg.entity.WbOlpRawData;
+import com.im.qtech.common.dto.param.WbOlpRawData;
 import com.im.qtech.service.msg.service.IWbOlpRawDataService;
 import com.rabbitmq.client.Channel;
 import org.im.common.json.JsonMapperProvider;

@@ -16,10 +16,18 @@
     <file url="file://$PROJECT_DIR$/orm/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/orm/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/datadev/spark/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/datadev/spark/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/datadev/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/datadev/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/datadev/wb-olp-inspection/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/datadev/wb-olp-inspection/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/inspection/eq-aa-lst-chk/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/inspection/eq-aa-lst-chk/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/inspection/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/inspection/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/inspection/wb-olp-inspection/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/inspection/wb-olp-inspection/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/qtech-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/qtech-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/service/persist/src/main/java" charset="UTF-8" />

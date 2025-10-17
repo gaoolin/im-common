@@ -1,6 +1,8 @@
 package com.im.qtech.service.config.thread;
 
 import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.Executor;
@@ -27,7 +29,8 @@ public class TaskDispatcher {
     @Resource(name = "lowPriorityTaskExecutor")
     private Executor lowExecutor;
 
-    @Resource(name = "virtualThreadTaskExecutor")
+    @Autowired(required = false)
+    @Qualifier("virtualThreadTaskExecutor")
     private Executor virtualExecutor;
 
     public void dispatch(Runnable task, TaskPriority priority) {
@@ -35,22 +38,18 @@ public class TaskDispatcher {
     }
 
     public Executor getExecutor(TaskPriority priority) {
-        switch (priority) {
-            case IMPORTANT:
-                return importantExecutor;
-            case LOW:
-                return lowExecutor;
-            case VIRTUAL:
-                // 检查虚拟线程执行器是否可用，不可用时回退到普通执行器
-                try {
-                    return virtualExecutor;
-                } catch (Exception e) {
-                    return normalExecutor;
+        // 检查虚拟线程执行器是否可用，不可用时回退到普通执行器
+        return switch (priority) {
+            case IMPORTANT -> importantExecutor;
+            case LOW -> lowExecutor;
+            case VIRTUAL -> {
+                if (virtualExecutor != null) {
+                    yield virtualExecutor;
                 }
-            case NORMAL:
-            default:
-                return normalExecutor;
-        }
+                yield normalExecutor;
+            }
+            default -> normalExecutor;
+        };
     }
 
     public enum TaskPriority {

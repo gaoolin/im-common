@@ -69,10 +69,15 @@ public class ThreadPoolProperties {
     @Getter
     public static class VirtualThreadConfig {
         private boolean enabled = false;
+        private int permits = 100;
         private String threadNamePrefix = "virtual";
 
         public void setEnabled(boolean enabled) {
             this.enabled = enabled;
+        }
+
+        public void setPermits(int permits) {
+            this.permits = permits;
         }
 
         public void setThreadNamePrefix(String threadNamePrefix) {

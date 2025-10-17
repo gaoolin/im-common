@@ -1,7 +1,6 @@
 package com.im.qtech.service.msg.kafka.olp;
 
 import com.im.qtech.service.config.thread.TaskDispatcher;
-import com.im.qtech.service.msg.avro.EqpReverseInfoRecord;
 import com.im.qtech.service.msg.disruptor.wb.WbOlpChkEvent;
 import com.im.qtech.service.msg.entity.EqpReverseInfo;
 import com.im.qtech.service.msg.util.MsgRedisDeduplicationUtils;
@@ -78,7 +77,7 @@ public class WbOlpConsumer {
                         .filter(i -> newKeys.contains(redisKeys.get(i)))
                         .mapToObj(i -> CompletableFuture.runAsync(
                                 () -> processRecordWithFallback(records.get(i)),
-                                taskDispatcher.getExecutor(TaskDispatcher.TaskPriority.VIRTUAL) // 使用虚拟线程
+                                taskDispatcher.getExecutor(TaskDispatcher.TaskPriority.IMPORTANT) // 核心业务使用 IMPORTANT
                         ))
                         .toArray(CompletableFuture[]::new)
         );

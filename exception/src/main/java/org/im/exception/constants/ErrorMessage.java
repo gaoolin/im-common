@@ -24,6 +24,8 @@ public interface ErrorMessage {
     String BIZ_DATA_EXISTS = "数据已存在";
     String BIZ_PERMISSION_DENIED = "权限不足";
     String BIZ_OPERATION_NOT_ALLOWED = "操作不被允许";
+    String BIZ_OPERATION_FAILED = "操作失败";
+    String BIZ_UNKNOWN_ERROR = "系统未知错误";
 
     // 认证授权错误消息
     String AUTH_LOGIN_FAILED = "登录失败";
@@ -37,6 +39,7 @@ public interface ErrorMessage {
     String DB_UPDATE_ERROR = "数据库更新异常";
     String DB_DELETE_ERROR = "数据库删除异常";
     String DB_INSERT_ERROR = "数据库插入异常";
+    String DB_NO_DATA_FOUND = "数据库无数据返回";
 
     // 网络错误消息
     String NET_CONNECTION_FAILED = "网络连接失败";

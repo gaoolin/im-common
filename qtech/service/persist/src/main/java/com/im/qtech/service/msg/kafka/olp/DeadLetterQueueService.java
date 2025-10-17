@@ -2,9 +2,9 @@ package com.im.qtech.service.msg.kafka.olp;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.im.qtech.service.msg.entity.EqpOnlineStatus;
+import com.im.qtech.common.dto.net.EqpNetworkStatus;
+import com.im.qtech.common.dto.param.WbOlpRawData;
 import com.im.qtech.service.msg.entity.EqpReverseInfo;
-import com.im.qtech.service.msg.entity.WbOlpRawData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -45,9 +45,9 @@ public class DeadLetterQueueService {
         }
     }
 
-    public void sendEqOnlineStatusToDLQ(EqpOnlineStatus data) {
+    public void sendEqNetworkStatusToDLQ(EqpNetworkStatus data) {
         try {
-            kafkaTemplate.send(EQ_ONLINE_STATUS_KAFKA_TOPIC + "-dlq", objectMapper.writeValueAsString(data));
+            kafkaTemplate.send(EQ_NETWORK_STATUS_KAFKA_TOPIC + "-dlq", objectMapper.writeValueAsString(data));
         } catch (JsonProcessingException e) {
             log.error(">>>>> Failed to serialize message for DLQ", e);
         }

@@ -1,0 +1,23 @@
+{
+  "type": "record",
+  "name": "EqpReversePOJOCompositeKey",
+  "namespace": "com.im.qtech.common.avro.serializer",
+  "fields": [
+    {
+      "name": "simId",
+      "type": "string"
+    },
+    {
+      "name": "source",
+      "type": "string"
+    },
+    {
+      "name": "module",
+      "type": "string"
+    },
+    {
+      "name": "chkDt",
+      "type": "string"
+    }
+  ]
+}

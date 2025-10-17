@@ -1,9 +1,9 @@
 package com.im.qtech.service.msg.kafka.olp;
 
+import com.im.qtech.common.avro.record.WbOlpRawDataRecord;
+import com.im.qtech.common.dto.param.WbOlpRawData;
 import com.im.qtech.service.config.thread.TaskDispatcher;
-import com.im.qtech.service.msg.avro.WbOlpRawDataRecord;
 import com.im.qtech.service.msg.disruptor.wb.WbOlpRawDataEvent;
-import com.im.qtech.service.msg.entity.WbOlpRawData;
 import com.im.qtech.service.msg.util.MsgRedisDeduplicationUtils;
 import com.lmax.disruptor.dsl.Disruptor;
 import lombok.extern.slf4j.Slf4j;

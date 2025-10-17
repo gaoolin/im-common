@@ -16,6 +16,7 @@
     <url>http://maven.apache.org</url>
     <modules>
         <module>eq-aa-lst-chk</module>
+        <module>wb-olp-inspection</module>
     </modules>
 
     <properties>

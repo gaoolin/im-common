@@ -1,6 +1,6 @@
 package com.im.qtech.service.msg.service;
 
-import com.im.qtech.service.msg.entity.WbOlpRawData;
+import com.im.qtech.common.dto.param.WbOlpRawData;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;

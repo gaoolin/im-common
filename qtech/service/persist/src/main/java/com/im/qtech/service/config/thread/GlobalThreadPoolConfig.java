@@ -9,11 +9,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
-import org.springframework.core.task.support.TaskExecutorAdapter;
+import org.springframework.lang.NonNull;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
@@ -52,9 +51,28 @@ public class GlobalThreadPoolConfig {
     @Bean(name = "virtualThreadTaskExecutor")
     @ConditionalOnProperty(name = "thread-pool.virtual.enabled", havingValue = "true", matchIfMissing = true)
     public TaskExecutor virtualThreadTaskExecutor() {
-        ExecutorService virtualThreadExecutor = Executors.newVirtualThreadPerTaskExecutor();
-        return new TaskExecutorAdapter(virtualThreadExecutor);
+        // 创建带并发控制的虚拟线程执行器
+        return new TaskExecutor() {
+            private final Semaphore semaphore = new Semaphore(properties.getVirtual().getPermits());
+
+            @Override
+            public void execute(@NonNull Runnable task) {
+                if (semaphore.tryAcquire()) {
+                    Thread.ofVirtual().start(() -> {
+                        try {
+                            task.run();
+                        } finally {
+                            semaphore.release();
+                        }
+                    });
+                } else {
+                    // 回退到普通执行器
+                    normalTaskExecutor().execute(task);
+                }
+            }
+        };
     }
+
 
     private TaskExecutor buildExecutor(ThreadPoolProperties.PoolConfig config, String type) {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();

@@ -1,9 +1,8 @@
 package com.im.qtech.service.config.kafka;
 
-import com.im.qtech.service.msg.avro.EqpReverseInfoRecord;
-import com.im.qtech.service.msg.avro.WbOlpRawDataRecord;
-import com.im.qtech.service.msg.serde.EqpReverseInfoRecordValueDeserializer;
-import com.im.qtech.service.msg.serde.WbOlpRawDataRecordDeserializer;
+import com.im.qtech.common.avro.record.WbOlpRawDataRecord;
+import com.im.qtech.common.serde.EqpReverseInfoRecordValueDeserializer;
+import com.im.qtech.common.serde.WbOlpRawDataRecordDeserializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.LongDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;

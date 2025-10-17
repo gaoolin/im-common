@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="im-framework" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="im-framework">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$/exception" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/home/dockerfile/eq-lst-inspection" local="$PROJECT_DIR$/qtech/inspection/eq-aa-lst-chk" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
