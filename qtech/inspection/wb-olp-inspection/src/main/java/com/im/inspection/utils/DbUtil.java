@@ -18,8 +18,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Calendar;
 
-import static com.im.inspection.utils.Constants.NEED_FILTER_MC_ID_STD_MOD_SQL;
-import static com.im.inspection.utils.Constants.STD_MOD_SQL;
+import static com.im.inspection.utils.Constants.NEED_FILTER_MODULE_TPL_SQL;
+import static com.im.inspection.utils.Constants.TPL_SQL;
 import static org.apache.spark.sql.functions.col;
 
 /**
@@ -87,7 +87,7 @@ public class DbUtil {
         return ss.read().format("jdbc")
                 .option("driver", driver)
                 .option("url", url)
-                .option("dbtable", "(" + STD_MOD_SQL + ") tmp")
+                .option("dbtable", "(" + TPL_SQL + ") tmp")
                 .option("user", user)
                 .option("password", pwd)
                 .load();
@@ -97,14 +97,14 @@ public class DbUtil {
         return ss.read().format("jdbc")
                 .option("driver", driver)
                 .option("url", url)
-                .option("dbtable", "(" + NEED_FILTER_MC_ID_STD_MOD_SQL + ") tmp")
+                .option("dbtable", "(" + NEED_FILTER_MODULE_TPL_SQL + ") tmp")
                 .option("user", user)
                 .option("password", pwd)
                 .load();
     }
 
     public static Dataset<Row> normalizeDfToRawDf(Dataset<Row> df) {
-        return df.select(col("sim_id"), col("mc_id"), col("dt"), col("line_no"), col("lead_x"), col("lead_y"), col("pad_x"), col("pad_y"), col("check_port"),
+        return df.select(col("sim_id"), col("module"), col("dt"), col("wire_id"), col("lead_x"), col("lead_y"), col("pad_x"), col("pad_y"), col("check_port"),
                 col("pieces_index"));
     }
 }

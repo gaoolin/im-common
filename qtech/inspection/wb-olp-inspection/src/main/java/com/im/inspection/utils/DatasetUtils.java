@@ -18,20 +18,20 @@ public class DatasetUtils {
 
     // 定义公共列名常量，便于维护
     private static final String[] FULL_COLS = {
-            "sim_id", "mc_id", "dt", "first_draw_time",
-            "line_no", "lead_x", "lead_y", "pad_x", "pad_y",
-            "check_port", "pieces_index", "sub_mc_id", "cnt", "wire_len"
+            "sim_id", "module", "dt", "first_draw_time",
+            "wire_id", "lead_x", "lead_y", "pad_x", "pad_y",
+            "check_port", "pieces_index", "norm_module", "cnt", "wire_len"
     };
 
     private static final String[] CHECK_COLS = {
-            "sim_id", "mc_id", "dt", "code", "description"
+            "sim_id", "module", "dt", "code", "description"
     };
 
     public static Dataset<Row> unionDfToFullDf(Dataset<Row> firstDf, Dataset<Row> secondDf) {
         Dataset<Row> alignFirstDf = firstDf.select(toColumns(FULL_COLS));
         Dataset<Row> alignSecondDf = secondDf.select(toColumns(FULL_COLS));
         return alignFirstDf.union(alignSecondDf)
-                .sort(col("sim_id"), col("mc_id"), col("first_draw_time"), col("pieces_index"), col("line_no"));
+                .sort(col("sim_id"), col("module"), col("first_draw_time"), col("pieces_index"), col("wire_id"));
     }
 
     public static Dataset<Row> unionDfToCheckDf(List<Dataset<Row>> seqDF) {

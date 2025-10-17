@@ -60,7 +60,7 @@ public class DataFetch {
             // 追加 debug 模式的 filter
             if (isDebugEnabled) {
                 String simIdFilter = manager.getString("debug.filter.sim_id", null);
-                String mcIdFilter = manager.getString("debug.filter.mc_id", null);
+                String mcIdFilter = manager.getString("debug.filter.module", null);
                 String dtRange = manager.getString("debug.filter.dt_range", null);
 
                 StringBuilder filterClauses = getFilterClauses(simIdFilter, mcIdFilter, dtRange);
@@ -121,7 +121,7 @@ public class DataFetch {
                 throw new NoDataFoundException(ErrorCode.DB_NO_DATA_FOUND, ErrorMessage.DB_NO_DATA_FOUND);
             }
 
-            return finalDF.filter("line_no > 0");
+            return finalDF.filter("wire_id > 0");
 
         } catch (Exception e) {
             logger.error(">>>>> Error occurred in DataFetch.doFetch", e);

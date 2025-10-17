@@ -1,5 +1,6 @@
-package org.im.common.batch;
+package org.im.common.batch.processor;
 
+import org.im.common.batch.config.BatchConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,15 +14,17 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
- * 通用批量数据处理工具类
+ * 通用批量处理工具类
  * <p>
  * 特性：
- * - 通用化：支持任意类型数据的批量处理
- * - 规范化：统一的处理接口和错误处理机制
+ * - 通用性：支持任意类型数据的批量处理
+ * - 规范性：统一的处理接口和错误处理机制
+ * - 专业性：基于Java并发API实现
  * - 灵活性：支持自定义批处理大小、并发处理等
  * - 可靠性：完善的异常处理和资源管理
+ * - 安全性：线程安全设计
+ * - 复用性：高度可复用的批处理框架
  * - 容错性：失败重试和部分失败处理机制
- * - 专业性：基于Java并发API实现
  * </p>
  *
  * @author gaozhilin
@@ -31,49 +34,91 @@ import java.util.function.Function;
  */
 public class BatchProcessor {
 
-    // 默认批处理大小
-    public static final int DEFAULT_BATCH_SIZE = 1000;
-    // 默认并发线程数
-    public static final int DEFAULT_CONCURRENT_THREADS = 4;
     private static final Logger logger = LoggerFactory.getLogger(BatchProcessor.class);
+
+    /**
+     * 分批处理数据（使用默认配置）
+     *
+     * @param data      待处理数据列表
+     * @param processor 批处理器
+     * @param <T>       数据类型
+     * @return 处理结果列表
+     */
+    public static <T> List<BatchResult<T>> processInBatches(List<T> data, Consumer<List<T>> processor) {
+        return processInBatches(data, processor, null);
+    }
 
     /**
      * 分批处理数据
      *
      * @param data      待处理数据列表
-     * @param batchSize 批处理大小
      * @param processor 批处理器
+     * @param config    批处理配置
      * @param <T>       数据类型
      * @return 处理结果列表
      */
-    public static <T> List<BatchResult<T>> processInBatches(List<T> data, int batchSize,
-                                                            Consumer<List<T>> processor) {
+    public static <T> List<BatchResult<T>> processInBatches(List<T> data,
+                                                            Consumer<List<T>> processor,
+                                                            BatchConfig config) {
         if (data == null || data.isEmpty()) {
             return new ArrayList<>();
         }
 
-        if (batchSize <= 0) {
-            batchSize = DEFAULT_BATCH_SIZE;
+        if (config == null) {
+            config = new BatchConfig();
         }
 
         List<BatchResult<T>> results = new ArrayList<>();
+        int batchSize = config.getBatchSize() > 0 ? config.getBatchSize() : BatchConfig.DEFAULT_BATCH_SIZE;
         int totalBatches = (int) Math.ceil((double) data.size() / batchSize);
+
+        logger.info("Starting batch processing: {} items in {} batches", data.size(), totalBatches);
 
         for (int i = 0; i < totalBatches; i++) {
             int start = i * batchSize;
             int end = Math.min(start + batchSize, data.size());
             List<T> batch = data.subList(start, end);
 
-            try {
-                long startTime = System.currentTimeMillis();
-                processor.accept(batch);
-                long endTime = System.currentTimeMillis();
+            Exception lastException = null;
+            boolean success = false;
+            long processingTime = 0;
 
-                results.add(new BatchResult<>(i, batch.size(), true, null, endTime - startTime));
-                logger.debug("Processed batch {} with {} items inspection {} ms", i, batch.size(), endTime - startTime);
-            } catch (Exception e) {
-                logger.error("Failed to process batch {}", i, e);
-                results.add(new BatchResult<>(i, batch.size(), false, e, 0));
+            // 重试机制
+            for (int retry = 0; retry <= config.getRetryCount(); retry++) {
+                try {
+                    long startTime = System.currentTimeMillis();
+                    processor.accept(batch);
+                    long endTime = System.currentTimeMillis();
+
+                    processingTime = endTime - startTime;
+                    success = true;
+                    lastException = null;
+
+                    logger.debug("Processed batch {} with {} items in {} ms", i, batch.size(), processingTime);
+                    break; // 成功处理，跳出重试循环
+
+                } catch (Exception e) {
+                    lastException = e;
+                    logger.warn("Failed to process batch {} (attempt {}/{})", i, retry + 1, config.getRetryCount() + 1, e);
+
+                    if (retry < config.getRetryCount()) {
+                        try {
+                            Thread.sleep(config.getRetryDelayMs() * (retry + 1)); // 指数退避
+                        } catch (InterruptedException ie) {
+                            Thread.currentThread().interrupt();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            BatchResult<T> result = new BatchResult<>(i, batch.size(), success, lastException, processingTime);
+            results.add(result);
+
+            // 如果配置为出错停止，且当前批次失败，则停止处理
+            if (!success && !config.isContinueOnError()) {
+                logger.error("Batch processing stopped due to failure in batch {}", i);
+                break;
             }
         }
 
@@ -81,7 +126,7 @@ public class BatchProcessor {
     }
 
     /**
-     * 并行处理数据
+     * 并行处理数据（使用默认线程数）
      *
      * @param data      待处理数据列表
      * @param processor 数据处理器
@@ -90,11 +135,11 @@ public class BatchProcessor {
      * @return 处理结果列表
      */
     public static <T, R> List<R> processParallel(List<T> data, Function<T, R> processor) {
-        return processParallel(data, processor, DEFAULT_CONCURRENT_THREADS);
+        return processParallel(data, processor, BatchConfig.DEFAULT_CONCURRENT_THREADS);
     }
 
     /**
-     * 并行处理数据（指定线程数）
+     * 并行处理数据
      *
      * @param data        待处理数据列表
      * @param processor   数据处理器
@@ -109,7 +154,7 @@ public class BatchProcessor {
         }
 
         if (threadCount <= 0) {
-            threadCount = DEFAULT_CONCURRENT_THREADS;
+            threadCount = BatchConfig.DEFAULT_CONCURRENT_THREADS;
         }
 
         ExecutorService executor = Executors.newFixedThreadPool(threadCount);
@@ -118,7 +163,14 @@ public class BatchProcessor {
         try {
             // 提交任务
             for (T item : data) {
-                Future<R> future = executor.submit(() -> processor.apply(item));
+                Future<R> future = executor.submit(() -> {
+                    try {
+                        return processor.apply(item);
+                    } catch (Exception e) {
+                        logger.warn("Failed to process item", e);
+                        return null; // 或者抛出异常
+                    }
+                });
                 futures.add(future);
             }
 
@@ -136,15 +188,24 @@ public class BatchProcessor {
 
             return results;
         } finally {
-            executor.shutdown();
-            try {
-                if (!executor.awaitTermination(60, TimeUnit.SECONDS)) {
-                    executor.shutdownNow();
-                }
-            } catch (InterruptedException e) {
+            shutdownExecutor(executor);
+        }
+    }
+
+    /**
+     * 安全关闭线程池
+     *
+     * @param executor 线程池
+     */
+    private static void shutdownExecutor(ExecutorService executor) {
+        executor.shutdown();
+        try {
+            if (!executor.awaitTermination(60, TimeUnit.SECONDS)) {
                 executor.shutdownNow();
-                Thread.currentThread().interrupt();
             }
+        } catch (InterruptedException e) {
+            executor.shutdownNow();
+            Thread.currentThread().interrupt();
         }
     }
 
@@ -194,6 +255,7 @@ public class BatchProcessor {
                     ", batchSize=" + batchSize +
                     ", success=" + success +
                     ", processingTime=" + processingTime + "ms" +
+                    (error != null ? ", error=" + error.getMessage() : "") +
                     '}';
         }
     }

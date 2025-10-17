@@ -3,7 +3,7 @@ package com.im.inspection.utils;
 import com.alibaba.fastjson2.JSONObject;
 import com.im.qtech.common.avro.record.EqpReversePOJORecord;
 import com.im.qtech.common.avro.record.WbOlpRawDataRecord;
-import com.im.qtech.common.serde.EqpReverseInfoRecordValueSerializer;
+import com.im.qtech.common.serde.EqpReversePOJOValueSerializer;
 import com.im.qtech.common.serde.WbOlpRawDataRecordSerializer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import static com.im.inspection.utils.Constants.*;
 import static com.im.qtech.common.constant.QtechImBizConstant.*;
 
 /**
@@ -41,12 +42,12 @@ public class KafkaCli {
             while (partition.hasNext()) {
                 Row row = partition.next();
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.put("simId", row.getAs("sim_id"));
-                jsonObject.put("source", "wb-olp");
-                jsonObject.put("module", row.getAs("module"));
-                jsonObject.put("chkDt", row.getAs("chk_dt"));
-                jsonObject.put("code", row.getAs("code"));
-                jsonObject.put("description", row.getAs("description"));
+                jsonObject.put("simId", row.getAs(SIM_ID));
+                jsonObject.put("source", SOURCE);
+                jsonObject.put("module", row.getAs(MODULE));
+                jsonObject.put("chkDt", row.getAs(CHK_DT));
+                jsonObject.put("code", row.getAs(CODE));
+                jsonObject.put("description", row.getAs(DESCRIPTION));
                 batch.add(jsonObject);
 
                 if (batch.size() >= 100) {
@@ -72,8 +73,8 @@ public class KafkaCli {
             Boolean passed = jsonObject.getBoolean("passed") != null ?
                     jsonObject.getBoolean("passed") :
                     (code == 0);
-            String label = jsonObject.getString("label");
-            String reason = jsonObject.getString("reason");
+            // String label = jsonObject.getString("label");
+            // String reason = jsonObject.getString("reason");
             String description = jsonObject.getString("description");
 
             // 如果需要转换为 Instant，可以直接解析格式化后的字符串
@@ -88,12 +89,12 @@ public class KafkaCli {
 
             EqpReversePOJORecord value = null;
             if (chkDtInstant != null) {
-                value = new EqpReversePOJORecord(simId, source, module, chkDtInstant, code, passed, label, reason, description);
+                value = new EqpReversePOJORecord(simId, source, module, chkDtInstant, code, passed, null, null, description);
             }
 
             Long key = Chronos.currentTimestamp();
 
-            ProducerRecord<Long, EqpReversePOJORecord> record = new ProducerRecord<>(KAFKA_WB_OLP_CHK_RES_TOPIC, key, value);
+            ProducerRecord<Long, EqpReversePOJORecord> record = new ProducerRecord<>(KAFKA_WB_OLP_CHK_RES_TOPIC_TEST, key, value);
             producer.send(record);
         }
     }
@@ -103,7 +104,7 @@ public class KafkaCli {
         HashMap<String, Object> props = new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_BOOTSTRAP_SERVERS);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class);
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, EqpReverseInfoRecordValueSerializer.class);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, EqpReversePOJOValueSerializer.class);
 
         return new KafkaProducer<>(props);
     }
@@ -134,8 +135,8 @@ public class KafkaCli {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("dt", row.getAs("dt"));
                 jsonObject.put("simId", row.getAs("sim_id"));
-                jsonObject.put("mcId", row.getAs("mc_id"));
-                jsonObject.put("lineNo", row.getAs("line_no"));
+                jsonObject.put("module", row.getAs("module"));
+                jsonObject.put("lineNo", row.getAs("wire_id"));
                 jsonObject.put("leadX", row.getAs("lead_x"));
                 jsonObject.put("leadY", row.getAs("lead_y"));
                 jsonObject.put("padX", row.getAs("pad_x"));
@@ -164,7 +165,7 @@ public class KafkaCli {
 
             // logger.info("Sending message to Kafka: key = {}, value = {}", key, value);
 
-            ProducerRecord<Long, WbOlpRawDataRecord> record = new ProducerRecord<>(KAFKA_WB_OLP_RAW_DATA_TOPIC, key, value);
+            ProducerRecord<Long, WbOlpRawDataRecord> record = new ProducerRecord<>(KAFKA_WB_OLP_RAW_DATA_TOPIC_TEST, key, value);
             wbOlpRawDataProducer.send(record);
         }
     }

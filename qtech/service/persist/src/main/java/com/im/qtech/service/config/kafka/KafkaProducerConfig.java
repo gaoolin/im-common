@@ -1,7 +1,7 @@
 package com.im.qtech.service.config.kafka;
 
 import com.im.qtech.common.avro.record.WbOlpRawDataRecord;
-import com.im.qtech.common.serde.EqpReverseInfoRecordValueSerializer;
+import com.im.qtech.common.serde.EqpReversePOJOValueSerializer;
 import com.im.qtech.common.serde.WbOlpRawDataRecordSerializer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.LongSerializer;
@@ -72,7 +72,7 @@ public class KafkaProducerConfig {
         Map<String, Object> props = new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class);
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, EqpReverseInfoRecordValueSerializer.class);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, EqpReversePOJOValueSerializer.class);
         props.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
         props.put(ProducerConfig.LINGER_MS_CONFIG, 5);
         props.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy");

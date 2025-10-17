@@ -10,6 +10,7 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.functions;
 import org.apache.spark.storage.StorageLevel;
+import org.im.common.batch.engine.SparkBatchEngine;
 import org.im.config.ConfigurationManager;
 import org.im.exception.constants.ErrorCode;
 import org.im.exception.constants.ErrorMessage;
@@ -29,25 +30,23 @@ import static org.apache.spark.sql.functions.lit;
 import static org.im.common.dt.Chronos.*;
 
 /**
+ * WbOlp检查批处理引擎
  * 业务逻辑类
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
  * @date 2022/06/12 10:16:07
  */
-public class WbOlpCheckBatchEngine extends BatchEngine {
+public class WbOlpCheckBatchEngine extends SparkBatchEngine<Void> {
     private static final Logger logger = LoggerFactory.getLogger(WbOlpCheckBatchEngine.class);
     private static final ConfigurationManager configManager = DppConfigManager.getInstance();
 
-    private final SparkSession spark;
     private final boolean isDebugEnabled;
-    // 移除了 PropertiesManager props 字段
-
     // 每个实例一个唯一 taskId
     private final String taskId = "job-" + UUID.randomUUID();
 
-    public WbOlpCheckBatchEngine(SparkSession spark, boolean isDebugEnabled) { // 移除了 PropertiesManager 参数
-        this.spark = spark;
+    public WbOlpCheckBatchEngine(String jobName, SparkSession spark, boolean isDebugEnabled) {
+        super(jobName, spark);
         this.isDebugEnabled = isDebugEnabled;
         initTaskTimerRecorder();
     }
@@ -65,7 +64,7 @@ public class WbOlpCheckBatchEngine extends BatchEngine {
     }
 
     @Override
-    protected void svcProcessData() throws Exception {
+    protected void processSparkJob(Void input) throws Exception {
         long rawDataCount = 0L;
         Dataset<Row> rawDataDf = null;
         Dataset<Row> processedDf = null;
@@ -75,23 +74,23 @@ public class WbOlpCheckBatchEngine extends BatchEngine {
             logElapsedTime("***************************配置文件已加载***************************");
 
             // 使用配置管理器
-            String driver = configManager.getString("jdbc.oracle.driver");
-            String url = configManager.getString("jdbc.oracle.url");
-            String user = configManager.getString("jdbc.oracle.user");
-            String pwd = configManager.getString("jdbc.oracle.pwd");
+            String driver = configManager.getString("jdbc.postgres.driver");
+            String url = configManager.getString("jdbc.postgres.url");
+            String user = configManager.getString("jdbc.postgres.user");
+            String pwd = configManager.getString("jdbc.postgres.pwd");
 
-            Dataset<Row> stdModels = getTpl(spark, driver, url, user, pwd);
+            Dataset<Row> stdModels = getTpl(getSparkSession(), driver, url, user, pwd);
             if (stdModels == null || stdModels.isEmpty()) {
                 throw new NoDataFoundException(ErrorCode.DB_NO_DATA_FOUND, ErrorMessage.DB_NO_DATA_FOUND);
             }
 
-            Dataset<Row> stdModWireCnt = stdModels.groupBy("std_mc_id").agg(count("std_mc_id").as("std_mod_line_cnt"));
+            Dataset<Row> stdModWireCnt = stdModels.groupBy("tpl_module").agg(count("tpl_module").as("tpl_wire_cnt"));
 
             String startDt = addMinutes(now(), TIME_OFFSET_MINUTES).format(getFormatter("yyyy-MM-dd HH:mm:ss"));
             logElapsedTime(String.format(">>>>> spark job start dt %s", startDt));
 
             // 使用 debug 模式控制数据获取
-            rawDataDf = DataFetch.doFetch(spark, startDt, isDebugEnabled, null) // 移除了 props 参数
+            rawDataDf = java.util.Objects.requireNonNull(DataFetch.doFetch(getSparkSession(), startDt, isDebugEnabled, configManager))
                     .persist(StorageLevel.MEMORY_AND_DISK());
             rawDataCount = rawDataDf.count();
 
@@ -110,15 +109,15 @@ public class WbOlpCheckBatchEngine extends BatchEngine {
             }
             showDataset(ttlCheckResDf, isDebugEnabled, "ttlCheckResDf");
 
-            getNeedFilterModule(spark, driver, url, user, pwd).createOrReplaceTempView("needFilterMcId");
+            getNeedFilterModule(getSparkSession(), driver, url, user, pwd).createOrReplaceTempView("needFilterMcId");
 
-            Dataset<Row> needModifyDf = spark.sql(NEED_FILTER_MC_ID);
-            Dataset<Row> stableDf = spark.sql(EXCLUDE_NEED_FILTER_MC_ID);
+            Dataset<Row> needModifyDf = getSparkSession().sql(NEED_FILTER_MODULE);
+            Dataset<Row> stableDf = getSparkSession().sql(EXCLUDE_NEED_FILTER_MODULE);
 
             needModifyDf = needModifyDf.withColumn("code", lit(0)).withColumn("description", lit("olp invalidation"));
 
             Dataset<Row> finalCheckResDf = stableDf.union(needModifyDf)
-                    .withColumnRenamed("mc_id", "module")
+                    .withColumnRenamed("module", "module")
                     .withColumnRenamed("dt", "chk_dt")
                     .withColumn("chk_dt", functions.date_format(functions.col("chk_dt"), "yyyy-MM-dd HH:mm:ss"));
 
@@ -148,11 +147,11 @@ public class WbOlpCheckBatchEngine extends BatchEngine {
             showDataset(rawDataDf, isDebugEnabled, "rawDataDf");
 
         } finally {
-            if (spark.catalog().tableExists("ttlCheckResDf")) {
-                spark.catalog().dropTempView("ttlCheckResDf");
+            if (getSparkSession().catalog().tableExists("ttlCheckResDf")) {
+                getSparkSession().catalog().dropTempView("ttlCheckResDf");
             }
-            if (spark.catalog().tableExists("needFilterMcId")) {
-                spark.catalog().dropTempView("needFilterMcId");
+            if (getSparkSession().catalog().tableExists("needFilterMcId")) {
+                getSparkSession().catalog().dropTempView("needFilterMcId");
             }
 
             if (rawDataDf != null) {
@@ -168,5 +167,10 @@ public class WbOlpCheckBatchEngine extends BatchEngine {
 
     private void logElapsedTime(String stepName) {
         TaskTimerRecorder.logStep(taskId, stepName);
+    }
+
+    @Override
+    public org.im.common.batch.config.BatchConfig getConfig() {
+        return new org.im.common.batch.config.BatchConfig();
     }
 }

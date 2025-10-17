@@ -1,7 +1,7 @@
 package com.im.qtech.service.config.kafka;
 
 import com.im.qtech.common.avro.record.WbOlpRawDataRecord;
-import com.im.qtech.common.serde.EqpReverseInfoRecordValueDeserializer;
+import com.im.qtech.common.serde.EqpReversePOJOValueDeserializer;
 import com.im.qtech.common.serde.WbOlpRawDataRecordDeserializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.LongDeserializer;
@@ -37,7 +37,7 @@ public class KafkaConsumerConfig {
     public ConsumerFactory<Long, EqpReverseInfoRecord> consumerRecordFactory() {
         Map<String, Object> props = new HashMap<>(kafkaProperties.buildConsumerProperties());
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, EqpReverseInfoRecordValueDeserializer.class);
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, EqpReversePOJOValueDeserializer.class);
         props.put(ConsumerConfig.FETCH_MIN_BYTES_CONFIG, 1024);
         props.put(ConsumerConfig.FETCH_MAX_WAIT_MS_CONFIG, 500);
         props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 500);

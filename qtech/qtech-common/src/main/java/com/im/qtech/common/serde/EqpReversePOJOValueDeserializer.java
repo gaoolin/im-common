@@ -19,8 +19,8 @@ import java.util.Map;
  * @date 2024/08/24 21:16:04
  */
 
-public class EqpReverseInfoRecordValueDeserializer implements Deserializer<EqpReversePOJORecord> {
-    private static final Logger logger = LoggerFactory.getLogger(EqpReverseInfoRecordValueDeserializer.class);
+public class EqpReversePOJOValueDeserializer implements Deserializer<EqpReversePOJORecord> {
+    private static final Logger logger = LoggerFactory.getLogger(EqpReversePOJOValueDeserializer.class);
 
     @Override
     public void configure(Map<String, ?> configs, boolean isKey) {

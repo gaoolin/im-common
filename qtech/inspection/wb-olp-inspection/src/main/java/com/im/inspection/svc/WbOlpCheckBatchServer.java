@@ -11,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * WbOlp检查批处理服务
+ *
  * @author zhilin.gao
  * @email gaoolin@gmail.com
  * @date 2021/12/21 17:36
@@ -37,7 +39,7 @@ public class WbOlpCheckBatchServer {
         sparkConf.setMaster("local[*]");
         sparkConf.setAppName("wb olp check")
                 .set("spark.default.parallelism", "4")
-                .set("spark.sql.caseSensitive", "false") // 字段大小写不敏感
+                .set("spark.sql.caseSensitive", "false")
                 .set("spark.sql.analyzer.failAmbiguousSelfJoin", "false");
         spark = SparkSession.builder().config(sparkConf).getOrCreate();
     }
@@ -48,10 +50,18 @@ public class WbOlpCheckBatchServer {
         logger.info("=========================wb olp check开始运行===========================");
         initSpark();
 
-        // 构造引擎并传入 debug 参数
-        WbOlpCheckBatchEngine wbOlpCheckBatchEngine = new WbOlpCheckBatchEngine(spark, isDebugEnabled);
-        wbOlpCheckBatchEngine.start();
+        // 使用新的批处理框架
+        WbOlpCheckBatchEngine batchEngine = new WbOlpCheckBatchEngine(
+                "WbOlpCheckJob",
+                spark,
+                isDebugEnabled
+        );
+
+        // 执行批处理作业
+        batchEngine.execute(null);
 
         logger.info("=========================wb olp check运行结束===========================");
+        logger.info("Job Status: {}", batchEngine.getStatus());
+        logger.info("Job Metrics: {}", batchEngine.getMetrics());
     }
 }

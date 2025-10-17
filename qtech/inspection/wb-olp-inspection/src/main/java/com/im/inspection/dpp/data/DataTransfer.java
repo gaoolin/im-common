@@ -26,34 +26,34 @@ public class DataTransfer {
 
     public static Dataset<Row> doTransfer(Dataset<Row> rawDF, Dataset<Row> stdMdWireCnt) {
         try {
-            String joinKeyRaw = props.getString("data.analysis.join.key.raw", "sub_mc_id");
-            String joinKeyStd = props.getString("data.analysis.join.key.std", "std_mc_id");
+            String joinKeyRaw = props.getString("data.analysis.join.key.raw", NORM_MODULE);
+            String joinKeyStd = props.getString("data.analysis.join.key.tpl", TPL_MODULE);
             String filterSimId = props.getString("data.analysis.filter.sim_id", null);
 
-            WindowSpec winByPIdx = Window.partitionBy(col(SIM_ID), col(PROD_TYPE), col(PIECES_INDEX));
+            WindowSpec winByPIdx = Window.partitionBy(col(SIM_ID), col(MODULE), col(PIECES_INDEX));
             WindowSpec winMcByPIdx = Window.partitionBy(col(SIM_ID), col(PIECES_INDEX));
 
-            Column subMcIdCol = split(col(PROD_TYPE), "#").getItem(0);
+            Column subMcIdCol = split(col(MODULE), "#").getItem(0);
             Column dx = col(PAD_X).minus(col(LEAD_X));
             Column dy = col(PAD_Y).minus(col(LEAD_Y));
             Column wireLenCol = sqrt(functions.pow(dx, 2).plus(functions.pow(dy, 2)));
 
             Dataset<Row> df = rawDF
                     .withColumn(FIRST_DRAW_TIME, min(col(DT)).over(winByPIdx))
-                    .withColumn(SUB_PROD_TYPE, subMcIdCol)
-                    .withColumn(MCS_BY_PIECES_INDEX, approx_count_distinct(SUB_PROD_TYPE).over(winMcByPIdx))
+                    .withColumn(NORM_MODULE, subMcIdCol)
+                    .withColumn(MODULES_BY_PIECES_INDEX, approx_count_distinct(NORM_MODULE).over(winMcByPIdx))
                     .withColumn(WIRE_LEN, wireLenCol);
 
             // 过滤逻辑
             Dataset<Row> filteredDf = df
-                    .filter(col(MCS_BY_PIECES_INDEX).equalTo(1))
-                    .filter(col(LINE_NO).leq(col(CHECK_PORT)))
+                    .filter(col(MODULES_BY_PIECES_INDEX).equalTo(1))
+                    .filter(col(WIRE_ID).leq(col(CHECK_PORT)))
                     // 针对本次数据采集盒问题调整的逻辑 2025-05-16
                     .filter(col(PAD_X).isNotNull().or(col(PAD_X).notEqual(lit("null")))
                             .and(col(PAD_Y).isNotNull().or(col(PAD_Y).notEqual(lit("null"))))
                             .and(col(LEAD_X).isNotNull().or(col(LEAD_X).notEqual(lit("null"))))
                             .and(col(LEAD_Y).isNotNull().or(col(LEAD_Y).notEqual(lit("null")))))
-                    .withColumn(CNT, count(LINE_NO).over(winByPIdx));
+                    .withColumn(CNT, count(WIRE_ID).over(winByPIdx));
 
             showDataset(filteredDf, props.getBoolean("debug.mode.enabled", false), "filteredDf");
 
@@ -65,10 +65,10 @@ public class DataTransfer {
 
             Dataset<Row> result = mergeStdMdDF.select(
                             col(SIM_ID),
-                            col(PROD_TYPE),
+                            col(MODULE),
                             col(DT),
                             col(FIRST_DRAW_TIME),
-                            col(LINE_NO),
+                            col(WIRE_ID),
                             col(LEAD_X),
                             col(LEAD_Y),
                             col(PAD_X),
@@ -76,16 +76,16 @@ public class DataTransfer {
                             col(CHECK_PORT),
                             col(WIRE_LEN),
                             col(PIECES_INDEX),
-                            col(SUB_PROD_TYPE),
+                            col(NORM_MODULE),
                             col(CNT),
-                            col(MCS_BY_PIECES_INDEX),
-                            col(STD_MOD_LINE_CNT)
+                            col(MODULES_BY_PIECES_INDEX),
+                            col(TPL_WIRE_CNT)
                     )
                     .sort(
                             col(SIM_ID),
-                            col(PROD_TYPE),
+                            col(MODULE),
                             col(FIRST_DRAW_TIME),
-                            col(LINE_NO)
+                            col(WIRE_ID)
                     );
 
             if (filterSimId != null && !filterSimId.isEmpty()) {

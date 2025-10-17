@@ -23,15 +23,15 @@ import java.util.Map;
  * @date 2024/08/24 21:11:12
  */
 
-public class EqpReverseInfoRecordValueSerializer implements Serializer<EqpReversePOJORecord> {
-    private static final Logger logger = LoggerFactory.getLogger(EqpReverseInfoRecordValueSerializer.class);
-    private static final String SCHEMA_FILE_PATH = "avro/EqpReverseInfoRecord.avsc";
+public class EqpReversePOJOValueSerializer implements Serializer<EqpReversePOJORecord> {
+    private static final Logger logger = LoggerFactory.getLogger(EqpReversePOJOValueSerializer.class);
+    private static final String SCHEMA_FILE_PATH = "avro/EqpReversePOJO.avsc";
     private static final Schema SCHEMA = loadSchema();
     private final DatumWriter<EqpReversePOJORecord> datumWriter = new SpecificDatumWriter<>(SCHEMA);
 
     private static Schema loadSchema() {
         try {
-            return new Schema.Parser().parse(EqpReverseInfoRecordValueSerializer.class.getClassLoader().getResourceAsStream(EqpReverseInfoRecordValueSerializer.SCHEMA_FILE_PATH));
+            return new Schema.Parser().parse(EqpReversePOJOValueSerializer.class.getClassLoader().getResourceAsStream(EqpReversePOJOValueSerializer.SCHEMA_FILE_PATH));
         } catch (IOException e) {
             throw new RuntimeException("Error loading Avro schema.", e);
         }
