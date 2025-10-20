@@ -1,4 +1,4 @@
-package com.im.inspection.utils;
+package com.im.inspection.util;
 
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
@@ -48,7 +48,7 @@ public class SparkJarLoaderTool {
             // 调用方法
             return (Dataset<Row>) method.invoke(instance, dataset1, dataset2);
         } catch (Exception e) {
-            logger.error("加载 JAR 文件中的加密类失败", e);
+            logger.error(">>>>> 加载 JAR 文件中的加密类失败", e);
         }
         return null;
     }

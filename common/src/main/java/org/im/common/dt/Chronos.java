@@ -91,6 +91,30 @@ public class Chronos {
     }
 
     /**
+     * 获取默认时区偏移量
+     *
+     * @return ZoneOffset实例
+     */
+    public static ZoneOffset getDefaultZoneOffset() {
+        return getDefaultZoneId().getRules().getOffset(Instant.now());
+    }
+
+    /**
+     * 获取指定时区偏移量
+     *
+     * @param zoneId 时区ID
+     * @return ZoneOffset实例
+     */
+    public static ZoneOffset getZoneOffset(String zoneId) {
+        try {
+            return ZoneOffset.of(getZoneId(zoneId).getRules().getOffset(Instant.now()).toString());
+        } catch (Exception e) {
+            logger.warn("Invalid zone ID: {}, using default zone", zoneId);
+            return getDefaultZoneOffset();
+        }
+    }
+
+    /**
      * 获取当前时间戳（毫秒）
      *
      * @return 当前时间戳

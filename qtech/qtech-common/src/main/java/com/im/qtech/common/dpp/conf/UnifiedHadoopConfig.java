@@ -20,7 +20,7 @@ public class UnifiedHadoopConfig {
         Configuration conf = new Configuration();
 
         // 设置Hadoop用户
-        String hadoopUser = configManager.getString("hadoop.user.name", "zcgx");
+        String hadoopUser = configManager.getString("hadoop.user.name", "qtech");
         System.setProperty("HADOOP_USER_NAME", hadoopUser);
 
         // 应用Hadoop配置

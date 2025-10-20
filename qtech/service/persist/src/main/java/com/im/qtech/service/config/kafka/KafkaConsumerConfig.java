@@ -1,5 +1,6 @@
 package com.im.qtech.service.config.kafka;
 
+import com.im.qtech.common.avro.record.EqpReversePOJORecord;
 import com.im.qtech.common.avro.record.WbOlpRawDataRecord;
 import com.im.qtech.common.serde.EqpReversePOJOValueDeserializer;
 import com.im.qtech.common.serde.WbOlpRawDataRecordDeserializer;
@@ -34,7 +35,7 @@ public class KafkaConsumerConfig {
     private KafkaProperties kafkaProperties;
 
     @Bean
-    public ConsumerFactory<Long, EqpReverseInfoRecord> consumerRecordFactory() {
+    public ConsumerFactory<Long, EqpReversePOJORecord> consumerRecordFactory() {
         Map<String, Object> props = new HashMap<>(kafkaProperties.buildConsumerProperties());
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, EqpReversePOJOValueDeserializer.class);
@@ -52,8 +53,8 @@ public class KafkaConsumerConfig {
 
     // 定义 kafkaListenerContainerRecordFactory Bean，以支持批量消费
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<Long, EqpReverseInfoRecord> EqReverseCtrlInfoContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<Long, EqpReverseInfoRecord> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<Long, EqpReversePOJORecord> EqReverseCtrlInfoContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<Long, EqpReversePOJORecord> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerRecordFactory());
         factory.setBatchListener(true);
         factory.setConcurrency(3); // 增加并发度

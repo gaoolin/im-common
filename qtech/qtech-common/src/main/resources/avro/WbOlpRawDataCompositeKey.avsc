@@ -19,7 +19,7 @@
       "type": "string"
     },
     {
-      "name": "lineNo",
+      "name": "wireId",
       "type": "int"
     },
     {

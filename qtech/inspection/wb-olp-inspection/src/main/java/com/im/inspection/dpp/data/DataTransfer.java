@@ -11,8 +11,8 @@ import org.im.config.ConfigurationManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.im.inspection.utils.Constants.*;
-import static com.im.inspection.utils.DebugModeDataShow.showDataset;
+import static com.im.inspection.util.Constant.*;
+import static com.im.inspection.util.DebugModeDataShow.showDataset;
 import static org.apache.spark.sql.functions.*;
 
 /**
@@ -55,7 +55,7 @@ public class DataTransfer {
                             .and(col(LEAD_Y).isNotNull().or(col(LEAD_Y).notEqual(lit("null")))))
                     .withColumn(CNT, count(WIRE_ID).over(winByPIdx));
 
-            showDataset(filteredDf, props.getBoolean("debug.mode.enabled", false), "filteredDf");
+            showDataset(filteredDf, "filteredDf");
 
             Dataset<Row> mergeStdMdDF = filteredDf.join(
                     stdMdWireCnt,

@@ -42,6 +42,18 @@
         <lettuce.version>6.1.10.RELEASE</lettuce.version>
         <lombok.version>1.18.36</lombok.version>
         <protobuf.version>3.21.12</protobuf.version>
+
+        <!-- 自研组件版本管理 -->
+        <cache.version>1.0.0</cache.version>
+        <common.version>1.0.1</common.version>
+        <config.version>1.0.3</config.version>
+        <core.version>1.0.5</core.version>
+        <exception.version>1.0.3</exception.version>
+        <integration.version>1.0.5</integration.version>
+        <orm.version>1.0.5</orm.version>
+        <qtech-common.version>1.0.1</qtech-common.version>
+        <semiconductor.version>1.0.5</semiconductor.version>
+        <server.version>1.0.5</server.version>
     </properties>
 
     <!-- 依赖管理，子模块按需引入 -->

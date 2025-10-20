@@ -10,7 +10,6 @@ import org.im.config.impl.DefaultConfigurationManager;
  * @email gaoolin@gmail.com
  * @date 2025/10/16
  */
-
 public class DppConfigManager {
     private static final Object lock = new Object();
     private static volatile ConfigurationManager instance;

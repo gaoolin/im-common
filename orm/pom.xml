@@ -59,7 +59,7 @@
         <dependency>
             <groupId>org.im.exception</groupId>
             <artifactId>exception</artifactId>
-            <version>1.0.0</version>
+            <version>${exception.version}</version>
             <scope>compile</scope>
         </dependency>
 

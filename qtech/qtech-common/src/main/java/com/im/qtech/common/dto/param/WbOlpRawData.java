@@ -25,7 +25,7 @@ public class WbOlpRawData implements Serializable {
     private LocalDateTime dt;
     private String simId;
     private String module;
-    private Integer lineNo;
+    private Integer wireId;
     private String leadX;
     private String leadY;
     private String padX;

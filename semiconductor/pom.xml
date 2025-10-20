@@ -46,7 +46,7 @@
         <dependency>
             <groupId>org.im.exception</groupId>
             <artifactId>exception</artifactId>
-            <version>1.0.1</version>
+            <version>${exception.version}</version>
         </dependency>
 
         <dependency>

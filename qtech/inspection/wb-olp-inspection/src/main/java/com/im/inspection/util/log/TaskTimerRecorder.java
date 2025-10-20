@@ -1,4 +1,4 @@
-package com.im.inspection.utils.log;
+package com.im.inspection.util.log;
 
 import com.im.inspection.config.DppConfigManager;
 import org.apache.commons.lang3.time.StopWatch;
@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import static com.im.inspection.utils.HadoopConfigBuilder.buildHaNoKerberosConfig;
+import static com.im.inspection.util.HadoopConfigBuilder.buildHaNoKerberosConfig;
 
 
 /**

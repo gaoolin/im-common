@@ -10,7 +10,6 @@ server:
   servlet:
     context-path: /
 
-#
 spring:
   profiles:
     active: dev
@@ -51,24 +50,6 @@ spring:
       testWhileIdle: true
       testOnBorrow: false
       testOnReturn: false
-
-      webStatFilter:
-        enabled: true
-      statViewServlet:
-        enabled: true
-        allow:
-        url-pattern: /druid/*
-        login-username: qtech
-        login-password: 123456
-      filter:
-        stat:
-          enabled: true
-          log-slow-sql: true
-          slow-sql-millis: 1000
-          merge-sql: true
-        wall:
-          config:
-            multi-statement-allow: true
 
   data:
     redis:

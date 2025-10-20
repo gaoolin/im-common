@@ -1,6 +1,8 @@
-package com.im.inspection.utils;
+package com.im.inspection.util;
 
 import com.google.gson.Gson;
+import org.im.exception.constants.ErrorCode;
+import org.im.exception.type.common.BusinessException;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -60,7 +62,7 @@ public class CustomClassLoader extends ClassLoader {
 
     private void validateToken() throws Exception {
         if (new Date().after(this.tokenData.getExpirationDate())) {
-            throw new Exception("Token has expired.");
+            throw new BusinessException(ErrorCode.AUTH_LOGIN_FAILED, "Token has expired.");
         }
     }
 

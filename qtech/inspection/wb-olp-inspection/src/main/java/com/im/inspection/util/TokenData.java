@@ -1,4 +1,4 @@
-package com.im.inspection.utils;
+package com.im.inspection.util;
 
 import java.util.Date;
 

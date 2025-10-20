@@ -1,4 +1,4 @@
-package com.im.inspection.utils.log;
+package com.im.inspection.util.log;
 
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;

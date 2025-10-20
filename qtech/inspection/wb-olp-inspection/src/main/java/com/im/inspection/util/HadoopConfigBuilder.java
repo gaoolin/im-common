@@ -1,7 +1,9 @@
-package com.im.inspection.utils;
+package com.im.inspection.util;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.security.UserGroupInformation;
+import org.im.exception.constants.ErrorCode;
+import org.im.exception.type.common.BusinessException;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -47,7 +49,7 @@ public class HadoopConfigBuilder {
         try {
             UserGroupInformation.loginUserFromKeytab(principal, keytabPath);
         } catch (IOException e) {
-            throw new RuntimeException("Kerberos login failed.", e);
+            throw new BusinessException(ErrorCode.AUTH_LOGIN_FAILED, "Kerberos login failed.", e);
         }
 
         return conf;
@@ -94,7 +96,7 @@ public class HadoopConfigBuilder {
                 UserGroupInformation.setConfiguration(conf);
                 UserGroupInformation.loginUserFromKeytab(principal, keytab);
             } catch (IOException e) {
-                throw new RuntimeException("Kerberos login failed from properties file.", e);
+                throw new BusinessException(ErrorCode.AUTH_LOGIN_FAILED, "Kerberos login failed from properties file.", e);
             }
         }
 

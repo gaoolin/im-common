@@ -45,30 +45,30 @@
         <dependency>
             <groupId>org.im.config</groupId>
             <artifactId>config</artifactId>
-            <version>1.0.2</version>
+            <version>${config.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.im.semiconductor</groupId>
             <artifactId>semiconductor</artifactId>
-            <version>1.0.5</version>
+            <version>${semiconductor.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.im.exception</groupId>
             <artifactId>exception</artifactId>
-            <version>1.0.2</version>
+            <version>${exception.version}</version>
         </dependency>
         <dependency>
             <groupId>org.im.cache</groupId>
             <artifactId>cache</artifactId>
-            <version>1.0.0</version>
+            <version>${cache.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.im.qtech.common</groupId>
             <artifactId>qtech-common</artifactId>
-            <version>1.0.0</version>
+            <version>${qtech-common.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

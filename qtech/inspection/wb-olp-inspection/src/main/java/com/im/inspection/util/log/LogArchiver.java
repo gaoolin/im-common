@@ -1,4 +1,4 @@
-package com.im.inspection.utils.log;
+package com.im.inspection.util.log;
 
 import org.apache.hadoop.fs.*;
 import org.slf4j.Logger;

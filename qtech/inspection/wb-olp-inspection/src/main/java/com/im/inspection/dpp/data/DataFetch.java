@@ -14,8 +14,8 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.im.inspection.utils.Constants.DRUID_TRANSFORM_SQL;
-import static com.im.inspection.utils.DebugModeDataShow.showText;
+import static com.im.inspection.util.Constant.DRUID_TRANSFORM_SQL;
+import static com.im.inspection.util.DebugModeDataShow.showText;
 
 /**
  * @author zhilin.gao
@@ -25,7 +25,8 @@ import static com.im.inspection.utils.DebugModeDataShow.showText;
 public class DataFetch {
     private static final Logger logger = LoggerFactory.getLogger(DataFetch.class);
 
-    public static Dataset<Row> doFetch(SparkSession ss, String startTime, boolean isDebugEnabled, ConfigurationManager manager) {
+    public static Dataset<Row> doFetch(SparkSession ss, String startTime, ConfigurationManager manager) {
+        Boolean isDebugEnabled = manager.getBoolean("debug.mode.enabled");
         try {
             // 动态构建 WHERE 条件部分（核心改动在此）
             String whereCondition;

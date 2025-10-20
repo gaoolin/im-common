@@ -35,76 +35,76 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>javax.persistence-api</artifactId>
             <version>2.2</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.avro</groupId>
             <artifactId>avro</artifactId>
+            <version>1.11.3</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>
             <artifactId>kafka-avro-serializer</artifactId>
+            <version>7.5.5</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
+            <version>3.9.1</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+            <version>3.18.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
+            <version>3.3.6</version>
             <scope>provided</scope>
         </dependency>
         <!--内含spark-core-->
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-sql_${scala.binary.version}</artifactId>
+            <version>3.3.4</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.im.semiconductor</groupId>
             <artifactId>semiconductor</artifactId>
-            <version>1.0.5</version>
+            <version>${semiconductor.version}</version>
         </dependency>
         <dependency>
             <groupId>org.im.exception</groupId>
             <artifactId>exception</artifactId>
-            <version>1.0.3</version>
+            <version>${exception.version}</version>
         </dependency>
         <dependency>
             <groupId>org.im.config</groupId>
             <artifactId>config</artifactId>
-            <version>1.0.3</version>
-            <scope>compile</scope>
+            <version>${config.version}</version>
         </dependency>
     </dependencies>
 

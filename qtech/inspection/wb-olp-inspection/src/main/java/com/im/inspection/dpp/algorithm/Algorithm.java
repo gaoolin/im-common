@@ -10,10 +10,10 @@ import org.im.config.ConfigurationManager;
 
 import java.util.Arrays;
 
-import static com.im.inspection.utils.Constants.*;
-import static com.im.inspection.utils.DatasetUtils.unionDfToCheckDf;
-import static com.im.inspection.utils.DatasetUtils.unionDfToFullDf;
-import static com.im.inspection.utils.DebugModeDataShow.showDataset;
+import static com.im.inspection.util.Constant.*;
+import static com.im.inspection.util.DatasetUtils.unionDfToCheckDf;
+import static com.im.inspection.util.DatasetUtils.unionDfToFullDf;
+import static com.im.inspection.util.DebugModeDataShow.showDataset;
 import static org.apache.spark.sql.functions.*;
 
 /**
@@ -42,17 +42,17 @@ public class Algorithm {
         Column simId = col(SIM_ID);
         Column prodType = col(MODULE);
         Column piecesIndex = col(PIECES_INDEX);
-        Column lineNo = col(WIRE_ID);
+        Column wireId = col(WIRE_ID);
 
         WindowSpec winOrdByPIdx = Window.partitionBy(df.col(SIM_ID), df.col(MODULE), df.col(PIECES_INDEX)).orderBy(df.col(WIRE_ID));
-        WindowSpec winOrdByLnAsc = Window.partitionBy(simId, prodType, piecesIndex).orderBy(lineNo.asc());
-        WindowSpec winOrdByLnDesc = Window.partitionBy(simId, prodType, piecesIndex).orderBy(lineNo.desc());
+        WindowSpec winOrdByLnAsc = Window.partitionBy(simId, prodType, piecesIndex).orderBy(wireId.asc());
+        WindowSpec winOrdByLnDesc = Window.partitionBy(simId, prodType, piecesIndex).orderBy(wireId.desc());
 
         Dataset<Row> minMaxDF = df.withColumn(WIRE_ID_ASC, rank().over(winOrdByLnAsc))
                 .withColumn(WIRE_ID_DESC, rank().over(winOrdByLnDesc))
                 .filter(col(WIRE_ID_ASC).isin(1, 2).or(col(WIRE_ID_DESC).isin(1, 2)))
-                .withColumn(WIRE_LABEL, when(lineNo.equalTo(1).or(lineNo.equalTo(2)), lit("doubleMin")).otherwise(lit("doubleMax")))
-                .select(simId, prodType, piecesIndex, lineNo, col(WIRE_LABEL), col(WIRE_LEN));
+                .withColumn(WIRE_LABEL, when(wireId.equalTo(1).or(wireId.equalTo(2)), lit("doubleMin")).otherwise(lit("doubleMax")))
+                .select(simId, prodType, piecesIndex, wireId, col(WIRE_LABEL), col(WIRE_LEN));
 
         Dataset<Row> minMaxAggDF = minMaxDF.groupBy(simId, prodType, piecesIndex, col(WIRE_LABEL))
                 .agg(sum(WIRE_LEN).alias(WIRE_LEN_TTL))
@@ -88,9 +88,9 @@ public class Algorithm {
         Column simId = col(SIM_ID);
         Column prodType = col(MODULE);
         Column firstDrawTime = col(FIRST_DRAW_TIME);
-        Column lineNo = col(WIRE_ID);
+        Column wireId = col(WIRE_ID);
 
-        WindowSpec w_len = Window.partitionBy(simId, prodType, firstDrawTime, col(PIECES_INDEX)).orderBy(lineNo.asc());
+        WindowSpec w_len = Window.partitionBy(simId, prodType, firstDrawTime, col(PIECES_INDEX)).orderBy(wireId.asc());
 
         Column leadX = col(LEAD_X);
         Column leadY = col(LEAD_Y);
@@ -108,7 +108,7 @@ public class Algorithm {
                 .withColumn(PAD_Y_LAG, padYLag)
                 .withColumn(LEAD_LEN, sqrt(pow(leadX.minus(leadXLag), 2).plus(pow(leadY.minus(leadYLag), 2))))
                 .withColumn(PAD_LEN, sqrt(pow(padX.minus(padXLag), 2).plus(pow(padY.minus(padYLag), 2))))
-                .select(simId, prodType, col(DT), firstDrawTime, lineNo, leadX, leadY, padX, padY,
+                .select(simId, prodType, col(DT), firstDrawTime, wireId, leadX, leadY, padX, padY,
                         col(LEAD_LEN), col(PAD_LEN), col(CHECK_PORT), col(PIECES_INDEX), col(NORM_MODULE), col(WIRE_LEN));
     }
 
@@ -197,35 +197,35 @@ public class Algorithm {
 
         // 无模板数据
         Dataset<Row> noTemplateDf = Algorithm.noTemplate(processedDf.where(stdModLineCnt.isNull()));
-        showDataset(noTemplateDf, flag, "noTemplateDf");
+        showDataset(noTemplateDf, "noTemplateDf");
 
         // 缺线数据
         Dataset<Row> lackLineData = processedDf.filter(
                 checkPort.lt(stdModLineCnt)
                         .or(checkPort.equalTo(stdModLineCnt.plus(1)))
         );
-        showDataset(lackLineData, flag, "lackLineData");
+        showDataset(lackLineData, "lackLineData");
 
         // 全线数据（加上 cnt 校验）
         Dataset<Row> fullLnDa = processedDf.filter(
                 checkPort.equalTo(stdModLineCnt)
                         .and(checkPort.equalTo(cnt))
         );
-        showDataset(fullLnDa, flag, "fullLnDa");
+        showDataset(fullLnDa, "fullLnDa");
 
         // 连线数据（加上 cnt 校验）
         Dataset<Row> linkLnDa = processedDf.filter(
                 checkPort.equalTo(stdModLineCnt.plus(2))
                         .and(checkPort.equalTo(cnt))
         );
-        showDataset(linkLnDa, flag, "linkLnDa");
+        showDataset(linkLnDa, "linkLnDa");
 
         // 多线数据
         Dataset<Row> overLnDa = processedDf.filter(
                 checkPort.equalTo(stdModLineCnt.plus(1))
                         .or(checkPort.gt(stdModLineCnt.plus(2)))
         );
-        showDataset(overLnDa, flag, "overLnDa");
+        showDataset(overLnDa, "overLnDa");
 
         // 转换为描述性文档
         Dataset<Row> lackLn2doc = Algorithm.lackLn2doc(lackLineData);
@@ -237,8 +237,8 @@ public class Algorithm {
         Dataset<Row> fullLnSta = Algorithm.fullLnMkSta(fullLnDiff, stdModels);
         Dataset<Row> fullLn2doc = Algorithm.fullLn2doc(fullLnSta);
 
-        showDataset(fullLnDiff, flag, "fullLnDiff");
-        showDataset(fullLnSta, flag, "fullLnSta");
+        showDataset(fullLnDiff, "fullLnDiff");
+        showDataset(fullLnSta, "fullLnSta");
 
         return unionDfToCheckDf(Arrays.asList(noTemplateDf, lackLn2doc, fullLn2doc, overLn2doc));
     }

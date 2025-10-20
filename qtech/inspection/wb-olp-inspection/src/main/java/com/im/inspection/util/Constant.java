@@ -1,4 +1,4 @@
-package com.im.inspection.utils;
+package com.im.inspection.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,13 +9,13 @@ import org.slf4j.LoggerFactory;
  * @date 2024/08/04 14:52:53
  */
 
-public class Constants {
+public class Constant {
     // 常量
     public static final int TIME_OFFSET_MINUTES = -15;
     public static final String JAR_FILE_PATH = "E:\\dossier\\etl\\transfer\\target\\transfer-2.1.1-pg-encrypted.jar";
     public static final String PUBLIC_KEY_PATH = "E:\\dossier\\others\\key-tool\\src\\main\\resources\\file\\publicKey.pem";
     public static final String TOKEN_FILE_PATH = "E:\\dossier\\others\\key-tool\\src\\main\\resources\\file\\token.dat";
-    public static final String CLASS_NAME = "org.apache.tools.svc";
+    public static final String CLASS_NAME = "org.apache.tools.src";
     public static final String METHOD_NAME = "doCheck";
     // Sql
     public static final String NEED_FILTER_MODULE_TPL_SQL = "SELECT sid, module, wire_cnt, status, create_by, create_time, update_by, update_time, provider, site, workshop, remark FROM biz.eqp_wb_olp_tpl_info  WHERE status = 0";
@@ -73,9 +73,9 @@ public class Constants {
     public static final String WIRE_ID_MOCK = "wire_id_mock";
     public static final String MODULES_BY_PIECES_INDEX = "modules_by_pieces_index";
 
-    private static final Logger logger = LoggerFactory.getLogger(Constants.class);
+    private static final Logger logger = LoggerFactory.getLogger(Constant.class);
 
-    private Constants() {
-        logger.error("Constants类不允许实例化！");
+    private Constant() {
+        logger.error(">>>>> Constants类不允许实例化！");
     }
 }

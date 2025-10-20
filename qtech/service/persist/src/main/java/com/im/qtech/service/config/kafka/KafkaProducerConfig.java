@@ -1,5 +1,6 @@
 package com.im.qtech.service.config.kafka;
 
+import com.im.qtech.common.avro.record.EqpReversePOJORecord;
 import com.im.qtech.common.avro.record.WbOlpRawDataRecord;
 import com.im.qtech.common.serde.EqpReversePOJOValueSerializer;
 import com.im.qtech.common.serde.WbOlpRawDataRecordSerializer;
@@ -68,7 +69,7 @@ public class KafkaProducerConfig {
 
     @Bean
     @Qualifier("wbOlpChkKafkaTemplate")
-    public KafkaTemplate<Long, EqpReverseInfoRecord> kafkaTemplate() {
+    public KafkaTemplate<Long, EqpReversePOJORecord> kafkaTemplate() {
         Map<String, Object> props = new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class);
@@ -80,7 +81,7 @@ public class KafkaProducerConfig {
         props.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, 30000);
         props.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 60000);
 
-        ProducerFactory<Long, EqpReverseInfoRecord> producerFactory = new DefaultKafkaProducerFactory<>(props);
+        ProducerFactory<Long, EqpReversePOJORecord> producerFactory = new DefaultKafkaProducerFactory<>(props);
         return new KafkaTemplate<>(producerFactory);
     }
 }

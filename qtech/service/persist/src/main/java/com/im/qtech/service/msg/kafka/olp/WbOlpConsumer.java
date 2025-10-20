@@ -1,5 +1,6 @@
 package com.im.qtech.service.msg.kafka.olp;
 
+import com.im.qtech.common.avro.record.EqpReversePOJORecord;
 import com.im.qtech.service.config.thread.TaskDispatcher;
 import com.im.qtech.service.msg.disruptor.wb.WbOlpChkEvent;
 import com.im.qtech.service.msg.entity.EqpReverseInfo;
@@ -55,12 +56,12 @@ public class WbOlpConsumer {
     private TaskDispatcher taskDispatcher;
 
     @Autowired
-    private KafkaTemplate<Long, EqpReverseInfoRecord> kafkaTemplate;
+    private KafkaTemplate<Long, EqpReversePOJORecord> kafkaTemplate;
 
     @KafkaListener(topics = WB_OLP_CHECK_KAFKA_TOPIC,
             containerFactory = "EqReverseCtrlInfoContainerFactory",
             groupId = "im-framework-group")
-    public void consume(List<ConsumerRecord<Long, EqpReverseInfoRecord>> records, Acknowledgment acknowledgment) {
+    public void consume(List<ConsumerRecord<Long, EqpReversePOJORecord>> records, Acknowledgment acknowledgment) {
         if (records == null || records.isEmpty()) {
             acknowledgment.acknowledge();
             return;
@@ -95,7 +96,7 @@ public class WbOlpConsumer {
         }, TaskDispatcher.TaskPriority.NORMAL);
     }
 
-    private void processRecordWithFallback(ConsumerRecord<Long, EqpReverseInfoRecord> record) {
+    private void processRecordWithFallback(ConsumerRecord<Long, EqpReversePOJORecord> record) {
         try {
             processRecord(record);
         } catch (Exception e) {
@@ -105,14 +106,14 @@ public class WbOlpConsumer {
         }
     }
 
-    private void processRecord(ConsumerRecord<Long, EqpReverseInfoRecord> record) {
-        EqpReverseInfoRecord value = record.value();
+    private void processRecord(ConsumerRecord<Long, EqpReversePOJORecord> record) {
+        EqpReversePOJORecord value = record.value();
         EqpReverseInfo data = convertToWbOlpChk(value);
         disruptor.publishEvent((event, sequence) -> event.setData(data));
         log.info(">>>>> New data processed and added to Disruptor: {}", data);
     }
 
-    private void handleFailedRecord(ConsumerRecord<Long, EqpReverseInfoRecord> record, Exception e) {
+    private void handleFailedRecord(ConsumerRecord<Long, EqpReversePOJORecord> record, Exception e) {
         kafkaTemplate.send(WB_OLP_CHECK_KAFKA_TOPIC + "-dlq", record.key(), record.value());
         log.warn(">>>>> Failed to process record. Sending to DLQ. Topic={}, Partition={}, Offset={}, Exception={}",
                 record.topic(), record.partition(), record.offset(), e.getMessage());
@@ -121,7 +122,7 @@ public class WbOlpConsumer {
     /**
      * 构建 Redis 去重 key（SHA-256 签名）
      */
-    private String generateRedisKey(EqpReverseInfoRecord record) {
+    private String generateRedisKey(EqpReversePOJORecord record) {
         if (record != null && record.getChkDt() != null) {
             String formattedDt = DateTimeFormatter.ofPattern("yyyyMMddHHmmss", Locale.ENGLISH)
                     .format(record.getChkDt().atZone(ZoneId.systemDefault()));
@@ -137,7 +138,7 @@ public class WbOlpConsumer {
         return MSG_WB_OLP_KEY_PREFIX + UUID.randomUUID(); // fallback key
     }
 
-    private EqpReverseInfo convertToWbOlpChk(EqpReverseInfoRecord value) {
+    private EqpReverseInfo convertToWbOlpChk(EqpReversePOJORecord value) {
         EqpReverseInfo data = new EqpReverseInfo();
         data.setSimId(safeToString(value.getSimId()));
         data.setSource("wb-olp");

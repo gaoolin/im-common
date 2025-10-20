@@ -6,7 +6,7 @@
         <result property="dt" column="dt"/>
         <result property="simId" column="sim_id"/>
         <result property="module" column="module"/>
-        <result property="lineNo" column="line_no"/>
+        <result property="wireId" column="wire_id"/>
         <result property="leadX" column="lead_x"/>
         <result property="leadY" column="lead_y"/>
         <result property="padX" column="pad_x"/>
@@ -30,7 +30,7 @@
             #{item.dt},
             #{item.simId},
             #{item.mcId},
-            #{item.lineNo},
+            #{item.wireId},
             #{item.leadX},
             #{item.leadY},
             #{item.padX},
