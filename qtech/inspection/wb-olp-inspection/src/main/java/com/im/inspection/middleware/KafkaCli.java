@@ -1,4 +1,4 @@
-package com.im.inspection.util;
+package com.im.inspection.middleware;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;

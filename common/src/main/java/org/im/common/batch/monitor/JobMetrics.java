@@ -115,13 +115,40 @@ public class JobMetrics {
         this.failedRecords = failedRecords;
     }
 
+    /**
+     * 获取格式化后的执行时长
+     *
+     * @return 格式化后的时间字符串
+     */
+    public String getDuration() {
+        return formatDuration(durationMs);
+    }
+
+    /**
+     * 格式化持续时间，转换为更易读的格式
+     *
+     * @param durationMs 持续时间（毫秒）
+     * @return 格式化后的时间字符串
+     */
+    private String formatDuration(long durationMs) {
+        if (durationMs < 1000) {
+            return durationMs + "ms";
+        } else if (durationMs < 60000) {
+            return String.format("%.2fs", durationMs / 1000.0);
+        } else {
+            long minutes = durationMs / 60000;
+            long seconds = (durationMs % 60000) / 1000;
+            return String.format("%dm %ds", minutes, seconds);
+        }
+    }
+
     @Override
     public String toString() {
         return "JobMetrics{" +
                 "jobId='" + jobId + '\'' +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
-                ", durationMs=" + durationMs +
+                ", duration=" + formatDuration(durationMs) +
                 ", success=" + success +
                 ", processedRecords=" + processedRecords +
                 ", failedRecords=" + failedRecords +

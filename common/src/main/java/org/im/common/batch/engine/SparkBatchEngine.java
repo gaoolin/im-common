@@ -125,6 +125,7 @@ public abstract class SparkBatchEngine<T> extends BatchEngine<T, Void> implement
     public void stop() {
         // 停止逻辑
         running = false;
+        sparkSession.close();
         logger.info("Spark batch engine stopped: {}", appName);
     }
 

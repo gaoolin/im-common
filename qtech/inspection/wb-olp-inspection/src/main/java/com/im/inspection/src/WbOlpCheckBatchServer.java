@@ -2,6 +2,7 @@ package com.im.inspection.src;
 
 import com.im.inspection.config.DppConfigManager;
 import com.im.inspection.dpp.batch.WbOlpCheckBatchEngine;
+import com.im.inspection.util.log.TaskTimerRecorder;
 import com.im.qtech.common.dpp.SparkInitConf;
 import org.apache.spark.SparkConf;
 import org.apache.spark.sql.SparkSession;
@@ -38,22 +39,30 @@ public class WbOlpCheckBatchServer {
     /**
      * 初始化Spark环境
      */
-    private void initSpark() {
-        SparkConf sparkConf = SparkInitConf.initSparkConfigs();
+    private SparkSession initSpark() {
+        // 使用统一的Spark配置管理器
+        SparkConf sparkConf = SparkInitConf.initSparkConfigs("wb olp check");
 
-        // 根据是否为调试模式设置运行模式
-        boolean isDebugEnabled = configManager.getBoolean("debug.mode.enabled", false);
-        if (isDebugEnabled) {
+        // 根据local模式设置运行模式
+        String localMode = configManager.getString("spark.mode", "cluster");
+
+        if ("local".equals(localMode)) {
             sparkConf.setMaster("local[*]");
+            // 设置临时目录避免权限问题
+            sparkConf.set("spark.local.dir", "D:\\spark-tmp");
+        } else {
+            // 在dolphinscheduler上运行时使用yarn模式
+            sparkConf.setMaster("yarn");
         }
 
-        sparkConf.setAppName("wb olp check")
-                .set("spark.default.parallelism", "4")
+        // 设置其他Spark配置
+        sparkConf.set("spark.default.parallelism", "4")
                 .set("spark.sql.caseSensitive", "false")
                 .set("spark.sql.analyzer.failAmbiguousSelfJoin", "false");
 
         spark = SparkSession.builder().config(sparkConf).getOrCreate();
         logger.info(">>>>> Spark session initialized with app name: {}", sparkConf.get("spark.app.name"));
+        return spark;
     }
 
     /**
@@ -62,8 +71,8 @@ public class WbOlpCheckBatchServer {
     public void start(String[] args) throws Exception {
         logger.info("=========================wb olp check开始运行===========================");
 
-        initSpark();
-        batchEngine = createBatchEngine();
+        spark = initSpark();
+        batchEngine = createBatchEngine(spark);
 
         // 启动批处理引擎
         batchEngine.start();
@@ -76,7 +85,7 @@ public class WbOlpCheckBatchServer {
     /**
      * 创建批处理引擎实例
      */
-    private WbOlpCheckBatchEngine createBatchEngine() {
+    private WbOlpCheckBatchEngine createBatchEngine(SparkSession sparkSession) {
         boolean isDebugEnabled = configManager.getBoolean("debug.mode.enabled", false);
 
         BatchConfig batchConfig = BatchConfig.builder()
@@ -86,7 +95,7 @@ public class WbOlpCheckBatchServer {
 
         return new WbOlpCheckBatchEngine(
                 "WbOlpCheckJob",
-                spark,
+                sparkSession,
                 batchConfig
         );
     }
@@ -106,6 +115,14 @@ public class WbOlpCheckBatchServer {
         if (spark != null) {
             spark.close();
             logger.info(">>>>> Spark session closed");
+        }
+
+        // 确保关闭所有后台线程池和其他资源
+        try {
+            // TaskTimerRecorder中有调度器，需要关闭它
+            TaskTimerRecorder.shutdown();
+        } catch (Exception e) {
+            logger.warn(">>>>> Error shutting down background tasks", e);
         }
 
         logger.info(">>>>> WbOlpCheckBatchServer shutdown complete");

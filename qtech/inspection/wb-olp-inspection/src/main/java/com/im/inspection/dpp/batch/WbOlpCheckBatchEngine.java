@@ -3,7 +3,7 @@ package com.im.inspection.dpp.batch;
 import com.im.inspection.config.DppConfigManager;
 import com.im.inspection.dpp.data.DataFetch;
 import com.im.inspection.dpp.data.DataTransfer;
-import com.im.inspection.util.KafkaCli;
+import com.im.inspection.middleware.KafkaCli;
 import com.im.inspection.util.log.TaskTimerRecorder;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
@@ -248,11 +248,13 @@ public class WbOlpCheckBatchEngine extends SparkBatchEngine<Void> {
      * 清理资源
      */
     private void cleanupResources(Dataset<Row> rawDataDf, Dataset<Row> processedDf) {
-        if (getSparkSession().catalog().tableExists("ttlCheckResDf")) {
-            getSparkSession().catalog().dropTempView("ttlCheckResDf");
-        }
-        if (getSparkSession().catalog().tableExists("needFilterMcId")) {
-            getSparkSession().catalog().dropTempView("needFilterMcId");
+        if (getSparkSession() != null) {
+            if (getSparkSession().catalog().tableExists("ttlCheckResDf")) {
+                getSparkSession().catalog().dropTempView("ttlCheckResDf");
+            }
+            if (getSparkSession().catalog().tableExists("needFilterMcId")) {
+                getSparkSession().catalog().dropTempView("needFilterMcId");
+            }
         }
 
         if (rawDataDf != null) {
@@ -288,5 +290,19 @@ public class WbOlpCheckBatchEngine extends SparkBatchEngine<Void> {
             getMetrics().fail(e);
             throw new BusinessException(ErrorCode.EXT_SERVICE_ERROR, "Failed to start batch engine", e);
         }
+    }
+
+    @Override
+    public void stop() {
+        // 清理引擎内部资源
+        super.stop();
+        logger.info("WbOlpCheckBatchEngine stopped");
+    }
+
+    @Override
+    public void restart() {
+        // 重新启动引擎
+        super.restart();
+        logger.info("WbOlpCheckBatchEngine restarted");
     }
 }

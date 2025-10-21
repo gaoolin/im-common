@@ -170,13 +170,13 @@
                             <include>org.im.common:common</include>
                             <include>org.im.config:config</include>
                             <include>org.im.exception:exception</include>
-                            <include>org.im.qtech.common:qtech-common</include>
+                            <include>com.im.qtech.common:qtech-common</include>
                         </includes>
                     </artifactSet>
                 </configuration>
             </plugin>
         </plugins>
 
-        <finalName>spark-im-wb-olp-chk-v${project.version}</finalName>
+        <finalName>${project.artifactId}-v${project.version}</finalName>
     </build>
 </project>

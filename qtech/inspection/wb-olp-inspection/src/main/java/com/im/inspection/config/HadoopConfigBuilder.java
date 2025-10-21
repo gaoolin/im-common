@@ -1,5 +1,6 @@
-package com.im.inspection.util;
+package com.im.inspection.config;
 
+import com.im.qtech.common.dpp.conf.UnifiedHadoopConfig;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.security.UserGroupInformation;
 import org.im.exception.constants.ErrorCode;
@@ -31,16 +32,8 @@ public class HadoopConfigBuilder {
     public static Configuration buildHaKerberosEnabledConfig(String principal, String keytabPath) {
         Configuration conf = new Configuration();
 
-        // HDFS HA 配置
-        conf.set("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
-        conf.set("fs.hdfs.impl.disable.cache", "true");
-        conf.set("fs.defaultFS", "hdfs://cluster");
-        conf.set("dfs.nameservices", "cluster");
-        conf.set("dfs.ha.namenodes.cluster", "nn1,nn2");
-        conf.set("dfs.namenode.rpc-address.cluster.nn1", "im01:8020");
-        conf.set("dfs.namenode.rpc-address.cluster.nn2", "im02:8020");
-        conf.set("dfs.client.failover.proxy.provider.cluster",
-                "org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider");
+        // 使用统一配置管理器获取Hadoop配置
+        applyHadoopConfigurations(conf);
 
         // 启用 Kerberos 安全认证
         conf.set("hadoop.security.authentication", "kerberos");
@@ -61,17 +54,24 @@ public class HadoopConfigBuilder {
     public static Configuration buildHaNoKerberosConfig() {
         Configuration conf = new Configuration();
 
-        conf.set("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
-        conf.set("fs.hdfs.impl.disable.cache", "true");
-        conf.set("fs.defaultFS", "hdfs://cluster");
-        conf.set("dfs.nameservices", "cluster");
-        conf.set("dfs.ha.namenodes.cluster", "nn1,nn2");
-        conf.set("dfs.namenode.rpc-address.cluster.nn1", "im01:8020");
-        conf.set("dfs.namenode.rpc-address.cluster.nn2", "im02:8020");
-        conf.set("dfs.client.failover.proxy.provider.cluster",
-                "org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider");
+        // 应用统一Hadoop配置
+        applyHadoopConfigurations(conf);
+
+        // 设置Hadoop用户
+        String hadoopUser = System.getProperty("HADOOP_USER_NAME", "qtech");
+        System.setProperty("HADOOP_USER_NAME", hadoopUser);
+        conf.set("hadoop.user.name", hadoopUser);
 
         return conf;
+    }
+
+    /**
+     * 应用统一的Hadoop配置
+     */
+    private static void applyHadoopConfigurations(Configuration conf) {
+        // 使用qtech-common中的统一配置管理
+        Configuration unifiedConf = UnifiedHadoopConfig.createHadoopConfiguration();
+        conf.addResource(unifiedConf);
     }
 
     /**

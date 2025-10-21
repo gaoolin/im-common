@@ -1,10 +1,12 @@
 package com.im.inspection.util.log;
 
 import com.im.inspection.config.DppConfigManager;
+import com.im.inspection.config.HadoopConfigBuilder;
 import org.apache.commons.lang3.time.StopWatch;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.im.common.dt.Chronos;
 import org.slf4j.Logger;
 
 import java.io.BufferedWriter;
@@ -22,8 +24,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import static com.im.inspection.util.HadoopConfigBuilder.buildHaNoKerberosConfig;
-
+import static org.im.common.dt.Chronos.getFormatter;
+import static org.im.common.dt.Chronos.now;
 
 /**
  * 支持日志输出 + HDFS 写入 + Kafka 上报 + 日志压缩归档 + 定时清理
@@ -36,8 +38,6 @@ public class TaskTimerRecorder {
     private static final Logger logger = org.slf4j.LoggerFactory.getLogger(TaskTimerRecorder.class);
     // 多实例支持
     private static final Map<String, TaskTimer> WATCH_REGISTRY = new ConcurrentHashMap<>();
-    // 时间格式
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private static final boolean DEBUG_MODE = DppConfigManager.getInstance().getBoolean("debug.mode.enabled", false);
     // HDFS 配置
     private static boolean enableHdfsWrite = false;
@@ -66,7 +66,6 @@ public class TaskTimerRecorder {
         startBackgroundTasks();
     }
 
-
     public static void initHdfs(Configuration conf) {
         try {
             initHdfs(conf, "/tmp/task-timer-recorder");
@@ -76,7 +75,13 @@ public class TaskTimerRecorder {
     }
 
     public static void initHdfs() {
-        initHdfs(buildHaNoKerberosConfig());
+        try {
+            // 使用统一的Hadoop配置管理器
+            Configuration conf = HadoopConfigBuilder.buildHaNoKerberosConfig();
+            initHdfs(conf, "/tmp/task-timer-recorder");
+        } catch (Exception e) {
+            logger.error(">>>>> Error initializing HDFS.", e);
+        }
     }
 
     /**
@@ -93,7 +98,7 @@ public class TaskTimerRecorder {
      * 注册一个新的任务计时器
      */
     public static void register(String taskId) {
-        String timestamp = now();
+        String timestamp = now().format(getFormatter(Chronos.ISO_DATETIME_FORMAT));
         WATCH_REGISTRY.put(taskId, new TaskTimer(taskId, timestamp));
         logInfo("【%s】开始计时", taskId);  // 使用类级别的 logger
         writeToFile(taskId, String.format("[%s] 【%s】 开始计时", timestamp, taskId));
@@ -103,7 +108,7 @@ public class TaskTimerRecorder {
      * 记录一个阶段耗时
      */
     public static void logStep(String taskId, String stepName) {
-        String timestamp = now();
+        String timestamp = now().format(getFormatter(Chronos.ISO_DATETIME_FORMAT));
         TaskTimer timer = WATCH_REGISTRY.get(taskId);
         if (timer != null && timer.isRunning()) {
             timer.logStep(stepName, timestamp);
@@ -127,7 +132,7 @@ public class TaskTimerRecorder {
      * 记录总耗时并清理资源
      */
     public static void logTotalTime(String taskId) {
-        String timestamp = now();
+        String timestamp = now().format(getFormatter(Chronos.ISO_DATETIME_FORMAT));
         TaskTimer timer = WATCH_REGISTRY.remove(taskId);
         if (timer != null) {
             timer.finish(timestamp);
@@ -223,9 +228,6 @@ public class TaskTimerRecorder {
         return (double) (duration * from.getDuration().toMillis()) / to.getDuration().toMillis();
     }
 
-    private static String now() {
-        return LocalDateTime.now().format(formatter);
-    }
 
     /**
      * Kafka 上报接口（可自定义实现）

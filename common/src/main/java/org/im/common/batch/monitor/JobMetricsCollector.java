@@ -6,6 +6,5 @@ package org.im.common.batch.monitor;
  * @date 2025/10/17
  */
 
-
 public class JobMetricsCollector {
 }
