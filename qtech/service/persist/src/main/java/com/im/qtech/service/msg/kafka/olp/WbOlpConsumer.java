@@ -78,7 +78,7 @@ public class WbOlpConsumer {
                         .filter(i -> newKeys.contains(redisKeys.get(i)))
                         .mapToObj(i -> CompletableFuture.runAsync(
                                 () -> processRecordWithFallback(records.get(i)),
-                                taskDispatcher.getExecutor(TaskDispatcher.TaskPriority.IMPORTANT) // 核心业务使用 IMPORTANT
+                                taskDispatcher.getExecutor(TaskDispatcher.TaskPriority.VIRTUAL) // 核心业务使用 IMPORTANT
                         ))
                         .toArray(CompletableFuture[]::new)
         );

@@ -13,9 +13,9 @@ public class Constant {
     // 常量
     public static final int TIME_OFFSET_MINUTES = -15;
     public static final String JAR_FILE_PATH = "E:\\dossier\\etl\\transfer\\target\\transfer-2.1.1-pg-encrypted.jar";
-    public static final String PUBLIC_KEY_PATH = "E:\\dossier\\others\\key-tool\\src\\main\\resources\\file\\publicKey.pem";
-    public static final String TOKEN_FILE_PATH = "E:\\dossier\\others\\key-tool\\src\\main\\resources\\file\\token.dat";
-    public static final String CLASS_NAME = "org.apache.tools.src";
+    public static final String PUBLIC_KEY_PATH = "E:\\dossier\\others\\key-tool\\svc\\main\\resources\\file\\publicKey.pem";
+    public static final String TOKEN_FILE_PATH = "E:\\dossier\\others\\key-tool\\svc\\main\\resources\\file\\token.dat";
+    public static final String CLASS_NAME = "org.apache.tools.svc";
     public static final String METHOD_NAME = "doCheck";
     // Sql
     public static final String NEED_FILTER_MODULE_TPL_SQL = "SELECT sid, module, wire_cnt, status, create_by, create_time, update_by, update_time, provider, site, workshop, remark FROM biz.eqp_wb_olp_tpl_info  WHERE status = 0";

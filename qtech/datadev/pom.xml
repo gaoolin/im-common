@@ -14,7 +14,7 @@
     <name>datadev</name>
     <url>http://maven.apache.org</url>
     <modules>
-
+        <module>wb-wire-usage-etl</module>
     </modules>
 
     <properties>

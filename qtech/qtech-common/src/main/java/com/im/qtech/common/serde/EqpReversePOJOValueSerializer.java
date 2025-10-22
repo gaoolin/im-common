@@ -26,8 +26,11 @@ import java.util.Map;
 public class EqpReversePOJOValueSerializer implements Serializer<EqpReversePOJORecord> {
     private static final Logger logger = LoggerFactory.getLogger(EqpReversePOJOValueSerializer.class);
     private static final String SCHEMA_FILE_PATH = "avro/EqpReversePOJO.avsc";
-    private static final Schema SCHEMA = loadSchema();
-    private final DatumWriter<EqpReversePOJORecord> datumWriter = new SpecificDatumWriter<>(SCHEMA);
+    // private static final Schema SCHEMA = loadSchema();
+    // 直接使用类的Schema，与反序列化器保持一致
+    private final DatumWriter<EqpReversePOJORecord> datumWriter = new SpecificDatumWriter<>(EqpReversePOJORecord.class);
+
+    // private final DatumWriter<EqpReversePOJORecord> datumWriter = new SpecificDatumWriter<>(SCHEMA);
 
     private static Schema loadSchema() {
         try {
@@ -53,12 +56,20 @@ public class EqpReversePOJOValueSerializer implements Serializer<EqpReversePOJOR
             encoder.flush();
             return outputStream.toByteArray();
         } catch (IOException e) {
-            throw new SerializationException("Error serializing WbOlpRawDataCompositeKey to Avro.", e);
+            logger.error("Error serializing EqpReversePOJORecord to Avro. Topic: {}, Data: {}", topic, data, e);
+            throw new SerializationException("Error serializing EqpReversePOJORecord to Avro.", e);
         }
     }
 
     @Override
     public void close() {
         // Clean up resources if necessary
+    }
+
+    // 在Serializer和Deserializer中添加
+    private void validateSchemaCompatibility() {
+        Schema writerSchema = EqpReversePOJORecord.getClassSchema();
+        // 添加兼容性检查逻辑
+        logger.debug("Using schema: {}", writerSchema.toString(true));
     }
 }

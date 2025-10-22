@@ -116,6 +116,7 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${durid.version}</version>
+                <optional>true</optional>
             </dependency>
             <!--网络传输相关-->
             <dependency>

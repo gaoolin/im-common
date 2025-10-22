@@ -1,4 +1,4 @@
-package com.im.inspection.src;
+package com.im.inspection.svc;
 
 import com.im.inspection.config.DppConfigManager;
 import com.im.inspection.dpp.batch.WbOlpCheckBatchEngine;
@@ -10,6 +10,8 @@ import org.im.common.batch.config.BatchConfig;
 import org.im.config.ConfigurationManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Objects;
 
 /**
  * WbOlp检查批处理服务
@@ -61,6 +63,7 @@ public class WbOlpCheckBatchServer {
                 .set("spark.sql.analyzer.failAmbiguousSelfJoin", "false");
 
         spark = SparkSession.builder().config(sparkConf).getOrCreate();
+        spark.sparkContext().setLogLevel(Objects.equals(localMode, "local") ? "DEBUG" : "INFO");
         logger.info(">>>>> Spark session initialized with app name: {}", sparkConf.get("spark.app.name"));
         return spark;
     }

@@ -101,24 +101,6 @@ public class EqpReverseInfoQueueConsumer implements DisposableBean {
             hasError.set(true);
         }
 
-        // CompletableFuture<Integer> future = service.upsertOracleAsync(message).exceptionally(ex -> {
-        //     logger.error(">>>>> Oracle upsert 异常: ", ex);
-        //     hasError.set(true);
-        //     return -1;
-        // });
-
-        // CompletableFuture<Integer> dorisAsync = service.upsertDorisAsync(message).exceptionally(ex -> {
-        //     logger.error(">>>>> Doris upsert 异常: ", ex);
-        //     hasError.set(true);
-        //     return -1;
-        // });
-
-        // CompletableFuture<Integer> addAaListDorisAsync = service.addAaListDorisAsync(message).exceptionally(ex -> {
-        //     logger.error(">>>>> AaList Doris insert 异常: ", ex);
-        //     hasError.set(true);
-        //     return -1;
-        // });
-
         CompletableFuture<Integer> exceptionally = service.upsertPostgresAsync(message).exceptionally(ex -> {
             logger.error(">>>>> Postgres upsert 异常: ", ex);
             hasError.set(true);

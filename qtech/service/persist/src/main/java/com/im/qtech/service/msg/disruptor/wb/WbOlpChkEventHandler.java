@@ -34,7 +34,7 @@ public class WbOlpChkEventHandler implements EventHandler<WbOlpChkEvent>, Lifecy
     private ScheduledExecutorService scheduler;
 
     @Autowired
-    private IEqpReverseInfoService eqReverseCtrlInfoService;
+    private IEqpReverseInfoService service;
 
     @Autowired
     private DeadLetterQueueService dlqService;
@@ -90,8 +90,8 @@ public class WbOlpChkEventHandler implements EventHandler<WbOlpChkEvent>, Lifecy
         }
 
         try {
-            eqReverseCtrlInfoService.addWbOlpChkDorisBatch(toPersist);
-            eqReverseCtrlInfoService.upsertOracleBatch(toPersist);
+            // service.addWbOlpChkDorisBatch(toPersist);
+            service.upsertPostgresBatch(toPersist);
             log.info(">>>>> 成功落库 [{}] 条 WbOlpChk 数据", toPersist.size());
         } catch (Exception e) {
             log.error(">>>>> 批量落库失败，写入 DLQ，数量：{}", toPersist.size(), e);

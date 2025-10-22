@@ -17,8 +17,8 @@ public class QtechImBizConstant {
 
     // KAFKA_CONSTANT
     public static final String KAFKA_TOPIC = "qtech_im_wb_olp_chk_topic";
-    public static final String WB_OLP_CHECK_KAFKA_TOPIC = "qtech_im_wb_olp_chk_topic";
-    public static final String WB_OLP_RAW_DATA_KAFKA_TOPIC = "qtech_im_wb_olp_raw_data_topic";
+    public static final String WB_OLP_CHECK_KAFKA_TOPIC = "qtech_im_wb_olp_chk_topic_test";
+    public static final String WB_OLP_RAW_DATA_KAFKA_TOPIC = "qtech_im_wb_olp_raw_data_topic_test";
     public static final String EQ_NETWORK_STATUS_KAFKA_TOPIC = "filtered_device_data";
     public static final String KAFKA_WB_OLP_CHK_RES_TOPIC = "qtech_im_wb_olp_chk_topic";
     public static final String KAFKA_WB_OLP_RAW_DATA_TOPIC = "qtech_im_wb_olp_raw_data_topic";

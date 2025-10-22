@@ -25,5 +25,7 @@ public interface IEqpReverseInfoService {
 
     int upsertOracleBatch(List<EqpReverseInfo> list);
 
+    int upsertPostgresBatch(List<EqpReverseInfo> list);
+
     int addWbOlpChkDorisBatch(List<EqpReverseInfo> list);
 }

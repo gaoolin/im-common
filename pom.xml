@@ -22,6 +22,7 @@
         <module>server</module>
         <module>qtech</module>
         <module>common</module>
+        <module>etl</module>
     </modules>
 
     <properties>
@@ -190,7 +191,7 @@
             <id>spring-boot-app</id>
             <activation>
                 <file>
-                    <!-- 当检测到 src/main/resources/application.properties 文件存在时，会自动激活这个 profile 并设置相应的 Spring Boot 版本属性 -->
+                    <!-- 当检测到 svc/main/resources/application.properties 文件存在时，会自动激活这个 profile 并设置相应的 Spring Boot 版本属性 -->
                     <exists>
                         src/main/resources/application.yaml
                         src/main/resources/application.yml

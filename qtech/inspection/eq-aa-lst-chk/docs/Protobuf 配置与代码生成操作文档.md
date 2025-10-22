@@ -6,7 +6,7 @@
 
 ```bash
 # 创建 proto 文件目录
-mkdir -p src/main/proto
+mkdir -p svc/main/proto
 ```
 
 ### 1.2 添加 Maven 插件依赖
@@ -112,7 +112,7 @@ import com.im.aa.inspection.proto.EqLstProto;
 如果提示目录不存在，手动创建：
 
 ```bash
-mkdir -p src/main/proto
+mkdir -p svc/main/proto
 ```
 
 ### 5.2 文件未更新

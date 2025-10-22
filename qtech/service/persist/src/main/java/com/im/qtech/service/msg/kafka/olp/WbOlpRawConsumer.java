@@ -135,7 +135,7 @@ public class WbOlpRawConsumer {
                     safeToString(record.getSimId()),
                     formattedDt,
                     safeToString(record.getModule()),
-                    String.valueOf(record.getLineNo()),
+                    String.valueOf(record.getWireId()),
                     String.valueOf(record.getCheckPort()),
                     String.valueOf(record.getPiecesIndex())
             );
@@ -150,7 +150,7 @@ public class WbOlpRawConsumer {
         data.setDt(Chronos.now());
         data.setSimId(String.valueOf(r.getSimId()));
         data.setModule(String.valueOf(r.getModule()));
-        data.setLineNo(r.getLineNo());
+        data.setWireId(r.getWireId());
         data.setLeadX(String.valueOf(r.getLeadX()));
         data.setLeadY(String.valueOf(r.getLeadY()));
         data.setPadX(String.valueOf(r.getPadX()));
