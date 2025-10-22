@@ -2,11 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.im.qtech.service.msg.mapper.WbOlpRawDataMapper">
 
-    <resultMap id="BaseResultMap" type="WbOlpRawData">
+    <resultMap id="BaseResultMap" type="com.im.qtech.data.dto.param.WbOlpRawData">
         <result property="dt" column="dt"/>
         <result property="simId" column="sim_id"/>
         <result property="module" column="module"/>
         <result property="wireId" column="wire_id"/>
+        <result property="leadX" column="lead_x"/>
+        <result property="leadY" column="lead_y"/>
+        <result property="padX" column="pad_x"/>
+        <result property="padY" column="pad_y"/>
+        <result property="checkPort" column="check_port"/>
+        <result property="piecesIndex" column="pieces_index"/>
+        <result property="loadTime" column="load_time"/>
+    </resultMap>
+
+    <resultMap id="BaseResultMapperForDoris" type="com.im.qtech.data.dto.param.WbOlpRawData">
+        <result property="dt" column="dt"/>
+        <result property="simId" column="sim_id"/>
+        <result property="module" column="mc_id"/>
+        <result property="wireId" column="line_no"/>
         <result property="leadX" column="lead_x"/>
         <result property="leadY" column="lead_y"/>
         <result property="padX" column="pad_x"/>
@@ -29,7 +43,7 @@
             (
             #{item.dt},
             #{item.simId},
-            #{item.mcId},
+            #{item.module},
             #{item.wireId},
             #{item.leadX},
             #{item.leadY},
@@ -37,8 +51,10 @@
             #{item.padY},
             #{item.checkPort},
             #{item.piecesIndex},
-            <if test="item.loadTime != null">#{item.loadTime}</if>
-            <if test="item.loadTime == null">CURRENT_TIMESTAMP()</if>
+            <choose>
+                <when test="item.loadTime != null">#{item.loadTime}</when>
+                <otherwise>CURRENT_TIMESTAMP()</otherwise>
+            </choose>
             )
         </foreach>
     </insert>

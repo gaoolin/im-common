@@ -1,7 +1,7 @@
 package com.im.qtech.service.msg.disruptor.eq;
 
-import com.im.qtech.common.dto.net.EqpNetworkStatus;
-import com.im.qtech.service.config.thread.TaskDispatcher;
+import com.im.qtech.data.dto.net.EqpNetworkStatus;
+import com.im.qtech.service.config.thread.task.TaskDispatcher;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

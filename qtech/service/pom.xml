@@ -5,6 +5,7 @@
         <groupId>com.im.qtech</groupId>
         <artifactId>qtech</artifactId>
         <version>1.0.0</version>
+        <relativePath/>
     </parent>
 
     <groupId>com.im.qtech.service</groupId>

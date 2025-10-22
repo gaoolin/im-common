@@ -1,8 +1,8 @@
 package com.im.qtech.service.msg.kafka.olp;
 
-import com.im.qtech.common.avro.record.WbOlpRawDataRecord;
-import com.im.qtech.common.dto.param.WbOlpRawData;
-import com.im.qtech.service.config.thread.TaskDispatcher;
+import com.im.qtech.data.avro.record.WbOlpRawDataRecord;
+import com.im.qtech.data.dto.param.WbOlpRawData;
+import com.im.qtech.service.config.thread.task.TaskDispatcher;
 import com.im.qtech.service.msg.disruptor.wb.WbOlpRawDataEvent;
 import com.im.qtech.service.msg.util.MsgRedisDeduplicationUtils;
 import com.lmax.disruptor.dsl.Disruptor;
@@ -24,7 +24,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import static com.im.qtech.common.constant.QtechImBizConstant.*;
+import static com.im.qtech.data.constant.QtechImBizConstant.*;
 import static com.im.qtech.service.msg.util.MessageKeyUtils.safeToString;
 import static com.im.qtech.service.msg.util.MessageKeyUtils.sha256;
 
@@ -135,7 +135,7 @@ public class WbOlpRawConsumer {
                     safeToString(record.getSimId()),
                     formattedDt,
                     safeToString(record.getModule()),
-                    String.valueOf(record.getLineNo()),
+                    String.valueOf(record.getWireId()),
                     String.valueOf(record.getCheckPort()),
                     String.valueOf(record.getPiecesIndex())
             );
@@ -150,7 +150,7 @@ public class WbOlpRawConsumer {
         data.setDt(Chronos.now());
         data.setSimId(String.valueOf(r.getSimId()));
         data.setModule(String.valueOf(r.getModule()));
-        data.setLineNo(r.getLineNo());
+        data.setWireId(r.getWireId());
         data.setLeadX(String.valueOf(r.getLeadX()));
         data.setLeadY(String.valueOf(r.getLeadY()));
         data.setPadX(String.valueOf(r.getPadX()));

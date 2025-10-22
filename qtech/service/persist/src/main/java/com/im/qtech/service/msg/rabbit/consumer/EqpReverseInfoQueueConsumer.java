@@ -23,7 +23,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static com.im.qtech.common.constant.QtechImBizConstant.REDIS_KEY_PREFIX_EQP_REVERSE_INFO;
+import static com.im.qtech.data.constant.QtechImBizConstant.REDIS_KEY_PREFIX_EQP_REVERSE_INFO;
+
 
 /**
  * 设备反控信息消费消费者
@@ -100,24 +101,6 @@ public class EqpReverseInfoQueueConsumer implements DisposableBean {
             logger.error(">>>>> Redis 删除失败: {}", redisKey, e);
             hasError.set(true);
         }
-
-        // CompletableFuture<Integer> future = service.upsertOracleAsync(message).exceptionally(ex -> {
-        //     logger.error(">>>>> Oracle upsert 异常: ", ex);
-        //     hasError.set(true);
-        //     return -1;
-        // });
-
-        // CompletableFuture<Integer> dorisAsync = service.upsertDorisAsync(message).exceptionally(ex -> {
-        //     logger.error(">>>>> Doris upsert 异常: ", ex);
-        //     hasError.set(true);
-        //     return -1;
-        // });
-
-        // CompletableFuture<Integer> addAaListDorisAsync = service.addAaListDorisAsync(message).exceptionally(ex -> {
-        //     logger.error(">>>>> AaList Doris insert 异常: ", ex);
-        //     hasError.set(true);
-        //     return -1;
-        // });
 
         CompletableFuture<Integer> exceptionally = service.upsertPostgresAsync(message).exceptionally(ex -> {
             logger.error(">>>>> Postgres upsert 异常: ", ex);

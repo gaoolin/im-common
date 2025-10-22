@@ -23,19 +23,19 @@ import java.util.concurrent.CompletableFuture;
  * @date 2024/08/13 17:28:21
  */
 
-@DS(DSName.FIRST)
 @Service
 public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
     private static final Logger logger = LoggerFactory.getLogger(EqpReverseInfoServiceImpl.class);
-    private final EqpReverseInfoMapper eqpReverseInfoMapper;
+    private final EqpReverseInfoMapper mapper;
 
     @Autowired
     public EqpReverseInfoServiceImpl(EqpReverseInfoMapper eqpReverseInfoMapper) {
-        this.eqpReverseInfoMapper = eqpReverseInfoMapper;
+        this.mapper = eqpReverseInfoMapper;
     }
 
     @Async
     @Override
+    @DS(DSName.THIRD)
     public CompletableFuture<Integer> upsertOracleAsync(EqpReverseInfo EqpReverseInfo) {
 
         if (EqpReverseInfo != null) {
@@ -44,7 +44,7 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
             }
 
             try {
-                eqpReverseInfoMapper.upsertOracle(EqpReverseInfo);
+                mapper.upsertOracle(EqpReverseInfo);
                 return CompletableFuture.completedFuture(1);
             } catch (Exception e) {
                 logger.error(">>>>> EqpReverseInfoServiceImpl.upsertOracleAsync error: {}", e.getMessage());
@@ -54,21 +54,23 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
         return CompletableFuture.completedFuture(0);
     }
 
+    @DS(DSName.FIRST)
     @Override
     public CompletableFuture<Integer> upsertPostgresAsync(EqpReverseInfo EqpReverseInfo) {
         if (EqpReverseInfo != null) {
-            eqpReverseInfoMapper.upsertPostgres(EqpReverseInfo);
+            mapper.upsertPostgres(EqpReverseInfo);
             return CompletableFuture.completedFuture(1);
         }
         return CompletableFuture.completedFuture(0);
     }
 
+    @DS(DSName.SECOND)
     @Async
     @Override
     public CompletableFuture<Integer> upsertDorisAsync(EqpReverseInfo EqpReverseInfo) {
         CompletableFuture<Integer> future = new CompletableFuture<>();
         try {
-            eqpReverseInfoMapper.upsertDoris(EqpReverseInfo);
+            mapper.upsertDoris(EqpReverseInfo);
             future.complete(1);
         } catch (Exception e) {
             logger.error(">>>>> EqpReverseInfoServiceImpl.upsertDoris error: {}", e.getMessage());
@@ -77,12 +79,13 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
         return future;
     }
 
+    @DS(DSName.SECOND)
     @Async
     @Override
     public CompletableFuture<Integer> addAaListDorisAsync(EqpReverseInfo EqpReverseInfo) {
         CompletableFuture<Integer> future = new CompletableFuture<>();
         try {
-            int result = eqpReverseInfoMapper.addEqpLstDoris(EqpReverseInfo);
+            int result = mapper.addEqpLstDoris(EqpReverseInfo);
             future.complete(1);
         } catch (Exception e) {
             logger.error(">>>>> EqpReverseInfoServiceImpl.addAaListBatchDoris error: {}", e.getMessage());
@@ -91,12 +94,13 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
         return future;
     }
 
+    @DS(DSName.SECOND)
     @Async
     @Override
     public CompletableFuture<Integer> addWbOlpChkDorisAsync(EqpReverseInfo EqpReverseInfo) {
         CompletableFuture<Integer> future = new CompletableFuture<>();
         try {
-            int result = eqpReverseInfoMapper.addWbOlpDoris(EqpReverseInfo);
+            int result = mapper.addWbOlpDoris(EqpReverseInfo);
             future.complete(1);
         } catch (Exception e) {
             logger.error(">>>>> EqpReverseInfoServiceImpl.addWbOlpChkBatchDoris error: {}", e.getMessage());
@@ -109,6 +113,7 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
      * @param list
      * @return
      */
+    @DS(DSName.THIRD)
     @Override
     public int upsertOracleBatch(List<EqpReverseInfo> list) {
         if (CollectionUtils.isEmpty(list)) {
@@ -116,10 +121,23 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
         }
 
         try {
-            return eqpReverseInfoMapper.upsertOracleBatch(list);
+            return mapper.upsertOracleBatch(list);
         } catch (Exception e) {
             logger.error(">>>>> EqpReverseInfoServiceImpl.upsertOracleBatch error: {}", e.getMessage(), e);
             throw new DataAccessException("DB_UPSERT_ERROR", "批量 upsertOracle 错误");
+        }
+    }
+
+    @DS(DSName.FIRST)
+    @Override
+    public int upsertPostgresBatch(List<EqpReverseInfo> list) {
+        if (CollectionUtils.isEmpty(list)) {
+            return 0;
+        }
+        try {
+            return mapper.upsertPostgresBatch(list);
+        } catch (Exception e) {
+            throw new DataAccessException("DB_UPSERT_ERROR", "批量 upsertPostgresBatch 错误");
         }
     }
 
@@ -127,6 +145,7 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
      * @param list
      * @return
      */
+    @DS(DSName.SECOND)
     @Override
     public int addWbOlpChkDorisBatch(List<EqpReverseInfo> list) {
         if (CollectionUtils.isEmpty(list)) {
@@ -134,7 +153,7 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
         }
 
         try {
-            return eqpReverseInfoMapper.addWbOlpChkDorisBatch(list);
+            return mapper.addWbOlpChkDorisBatch(list);
         } catch (Exception e) {
             logger.error(">>>>> EqpReverseInfoServiceImpl.addWbOlpChkDorisBatch error: {}", e.getMessage(), e);
             throw new DataAccessException("DB_INSERT_ERROR", "批量 addWbOlpChkDoris 错误");

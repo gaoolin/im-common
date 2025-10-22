@@ -34,12 +34,6 @@
             <version>${logback.version}</version>
             <optional>true</optional> <!--标记可选依赖-->
         </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>

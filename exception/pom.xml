@@ -9,7 +9,7 @@
 
     <groupId>org.im.exception</groupId>
     <artifactId>exception</artifactId>
-    <version>1.0.3</version>
+    <version>${exception.version</version>
     <packaging>jar</packaging>
 
     <name>exception</name>

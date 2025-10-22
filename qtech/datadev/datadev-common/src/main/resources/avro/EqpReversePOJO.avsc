@@ -1,0 +1,65 @@
+{
+  "type": "record",
+  "name": "EqpReversePOJORecord",
+  "namespace": "com.im.qtech.data.avro.record",
+  "fields": [
+    {
+      "name": "simId",
+      "type": "string"
+    },
+    {
+      "name": "source",
+      "type": "string"
+    },
+    {
+      "name": "module",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": "defaultString"
+    },
+    {
+      "name": "chkDt",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "code",
+      "type": "int"
+    },
+    {
+      "name": "passed",
+      "type": [
+        "boolean"
+      ],
+      "default": true
+    },
+    {
+      "name": "label",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": "defaultString"
+    },
+    {
+      "name": "reason",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": "defaultString"
+    },
+    {
+      "name": "description",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": "defaultString"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 package com.im.qtech.service.msg.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.im.qtech.common.dto.param.WbOlpRawData;
+import com.im.qtech.data.dto.param.WbOlpRawData;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

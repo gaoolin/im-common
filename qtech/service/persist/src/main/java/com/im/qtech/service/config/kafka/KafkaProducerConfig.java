@@ -1,9 +1,9 @@
 package com.im.qtech.service.config.kafka;
 
-import com.im.qtech.common.avro.record.EqpReversePOJORecord;
-import com.im.qtech.common.avro.record.WbOlpRawDataRecord;
-import com.im.qtech.common.serde.EqpReversePOJOValueSerializer;
-import com.im.qtech.common.serde.WbOlpRawDataRecordSerializer;
+import com.im.qtech.data.avro.record.EqpReversePOJORecord;
+import com.im.qtech.data.avro.record.WbOlpRawDataRecord;
+import com.im.qtech.data.serde.EqpReversePOJOValueSerializer;
+import com.im.qtech.data.serde.WbOlpRawDataRecordSerializer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.LongSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;

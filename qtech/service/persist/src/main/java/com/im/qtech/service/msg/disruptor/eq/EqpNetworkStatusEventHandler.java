@@ -3,7 +3,7 @@ package com.im.qtech.service.msg.disruptor.eq;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.im.qtech.common.dto.net.EqpNetworkStatus;
+import com.im.qtech.data.dto.net.EqpNetworkStatus;
 import com.im.qtech.service.msg.kafka.olp.DeadLetterQueueService;
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.LifecycleAware;
@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-import static com.im.qtech.common.constant.QtechImBizConstant.DEVICE_ONLINE_STATUS_REDIS_KEY_PREFIX;
+import static com.im.qtech.data.constant.QtechImBizConstant.DEVICE_ONLINE_STATUS_REDIS_KEY_PREFIX;
 
 /**
  * @author gaozhilin
@@ -69,7 +69,7 @@ public class EqpNetworkStatusEventHandler implements EventHandler<EqpNetworkStat
 
     private void updateDeviceStatus(EqpNetworkStatus eqpNetworkStatus, String deviceType, String remoteControlEq) {
         if (SPECIAL_DEVICE_TYPES_AA.contains(deviceType) && remoteControlEq == null) {
-            log.debug(">>>>> Device type " + deviceType + " does not support remote control.");
+            log.debug(">>>>> Device policy " + deviceType + " does not support remote control.");
             eqpNetworkStatus.setDeviceStatus("2");
         } else if (remoteControlEq == null) {
             eqpNetworkStatus.setDeviceStatus("999");

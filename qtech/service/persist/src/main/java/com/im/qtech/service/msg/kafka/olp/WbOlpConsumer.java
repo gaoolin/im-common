@@ -1,7 +1,7 @@
 package com.im.qtech.service.msg.kafka.olp;
 
-import com.im.qtech.common.avro.record.EqpReversePOJORecord;
-import com.im.qtech.service.config.thread.TaskDispatcher;
+import com.im.qtech.data.avro.record.EqpReversePOJORecord;
+import com.im.qtech.service.config.thread.task.TaskDispatcher;
 import com.im.qtech.service.msg.disruptor.wb.WbOlpChkEvent;
 import com.im.qtech.service.msg.entity.EqpReverseInfo;
 import com.im.qtech.service.msg.util.MsgRedisDeduplicationUtils;
@@ -28,7 +28,7 @@ import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static com.im.qtech.common.constant.QtechImBizConstant.*;
+import static com.im.qtech.data.constant.QtechImBizConstant.*;
 import static com.im.qtech.service.msg.util.MessageKeyUtils.buildRedisKey;
 import static com.im.qtech.service.msg.util.MessageKeyUtils.safeToString;
 
@@ -78,7 +78,7 @@ public class WbOlpConsumer {
                         .filter(i -> newKeys.contains(redisKeys.get(i)))
                         .mapToObj(i -> CompletableFuture.runAsync(
                                 () -> processRecordWithFallback(records.get(i)),
-                                taskDispatcher.getExecutor(TaskDispatcher.TaskPriority.IMPORTANT) // 核心业务使用 IMPORTANT
+                                taskDispatcher.getExecutor(TaskDispatcher.TaskPriority.VIRTUAL) // 核心业务使用 IMPORTANT
                         ))
                         .toArray(CompletableFuture[]::new)
         );

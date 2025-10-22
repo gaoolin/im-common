@@ -21,22 +21,21 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
+    first:
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://10.170.6.142:5432/imbiz
+      username: biz
+      password: FfZRT!FkF@K4pq9ZPpdC
+    second:
+      url: jdbc:mysql://10.170.6.40:32333/qtech_eq_dwd?useServerPrepStmts=false&rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password:
+    third:
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+      url: jdbc:oracle:thin:@//10.170.6.144:1521/qtechIm
+      username: imBiz
+      password: M5F5JkfnQ
     druid:
-      first:
-        driver-class-name: org.postgresql.Driver
-        url: jdbc:postgresql://10.170.6.142:5432/imbiz
-        username: biz
-        password: FfZRT!FkF@K4pq9ZPpdC
-      second:
-        url: jdbc:mysql://10.170.6.40:32333/qtech_eq_dwd?useServerPrepStmts=false&rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
-        username: root
-        password:
-      third:
-        driver-class-name: oracle.jdbc.driver.OracleDriver
-        url: jdbc:oracle:thin:@//10.170.6.144:1521/qtechIm
-        username: imBiz
-        password: M5F5JkfnQ
-
       initialSize: 5
       minIdle: 10
       maxActive: 20
@@ -85,7 +84,7 @@ spring:
 # MyBatis Plus
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
-  type-aliases-package: com.im.qtech.service.msg.entity, com.im.qtech.common.dto.*
+  type-aliases-package: com.im.qtech.service.msg.entity, com.im.qtech.data.dto.param.*
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
@@ -100,7 +99,7 @@ mybatis-plus:
 # keepAliveSeconds可以低一点，加快释放空闲线程，节省内存。
 thread-pool:
   virtual:
-    permits: 100  # 限制并发数
+    permits: 5  # 限制并发数
     enabled: true
   important:
     corePoolSize: 2
@@ -111,12 +110,12 @@ thread-pool:
   normal:
     corePoolSize: 1
     maxPoolSize: 2
-    queueCapacity: 1000
+    queueCapacity: 200
     keepAliveSeconds: 30
     threadNamePrefix: normal-task-
   low:
     corePoolSize: 0
     maxPoolSize: 1
-    queueCapacity: 100
+    queueCapacity: 200
     keepAliveSeconds: 30
     threadNamePrefix: low-task-

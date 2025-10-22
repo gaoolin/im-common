@@ -9,7 +9,7 @@
 
     <groupId>org.im.semiconductor</groupId>
     <artifactId>semiconductor</artifactId>
-    <version>1.0.5</version>
+    <version>${semiconductor.version</version>
     <packaging>jar</packaging>
 
     <name>semiconductor</name>
@@ -41,7 +41,7 @@
         <dependency>
             <groupId>org.im.common</groupId>
             <artifactId>common</artifactId>
-            <version>1.0.0</version>
+            <version>${common.version}</version>
         </dependency>
         <dependency>
             <groupId>org.im.exception</groupId>
@@ -81,7 +81,7 @@
         <dependency>
             <groupId>org.im.common</groupId>
             <artifactId>common</artifactId>
-            <version>1.0.1</version>
+            <version>${common.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

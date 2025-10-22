@@ -8,7 +8,6 @@ import com.lmax.disruptor.EventFactory;
  * @date 2025/04/24 15:37:01
  */
 
-
 public class WbOlpChkEventFactory implements EventFactory<WbOlpChkEvent> {
 
     @Override

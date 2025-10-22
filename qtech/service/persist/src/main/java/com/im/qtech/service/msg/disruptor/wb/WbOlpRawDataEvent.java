@@ -1,6 +1,6 @@
 package com.im.qtech.service.msg.disruptor.wb;
 
-import com.im.qtech.common.dto.param.WbOlpRawData;
+import com.im.qtech.data.dto.param.WbOlpRawData;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

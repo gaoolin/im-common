@@ -29,4 +29,6 @@ public interface EqpReverseInfoMapper extends BaseMapper<EqpReverseInfo> {
     int upsertOracleBatch(@Param("list") List<EqpReverseInfo> list);
 
     int addWbOlpChkDorisBatch(@Param("list") List<EqpReverseInfo> list);
+
+    int upsertPostgresBatch(@Param("list") List<EqpReverseInfo> list);
 }

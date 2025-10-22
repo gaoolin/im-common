@@ -9,7 +9,7 @@
 
     <groupId>org.im.config</groupId>
     <artifactId>config</artifactId>
-    <version>${config.version}</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
 
     <name>config</name>
@@ -36,12 +36,6 @@
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
             <optional>true</optional> <!--标记可选依赖-->
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 

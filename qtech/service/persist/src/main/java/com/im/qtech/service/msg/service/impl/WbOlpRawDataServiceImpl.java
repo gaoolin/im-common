@@ -1,6 +1,8 @@
 package com.im.qtech.service.msg.service.impl;
 
-import com.im.qtech.common.dto.param.WbOlpRawData;
+import com.im.qtech.data.dto.param.WbOlpRawData;
+import com.im.qtech.service.config.dynamic.DS;
+import com.im.qtech.service.config.dynamic.DSName;
 import com.im.qtech.service.msg.mapper.WbOlpRawDataMapper;
 import com.im.qtech.service.msg.service.IWbOlpRawDataService;
 import org.slf4j.Logger;
@@ -27,6 +29,7 @@ public class WbOlpRawDataServiceImpl implements IWbOlpRawDataService {
         this.wbOlpRawDataMapper = wbOlpRawDataMapper;
     }
 
+    @DS(DSName.SECOND)
     @Override
     public int addWbOlpRawDataBatch(List<WbOlpRawData> wbOlpRawDataList) {
         if (wbOlpRawDataList == null || wbOlpRawDataList.isEmpty()) {
@@ -35,6 +38,7 @@ public class WbOlpRawDataServiceImpl implements IWbOlpRawDataService {
         return wbOlpRawDataMapper.addWbOlpRawDataBatch(wbOlpRawDataList);
     }
 
+    @DS(DSName.SECOND)
     @Async
     @Override
     public CompletableFuture<Integer> addWbOlpRawDataBatchAsync(List<WbOlpRawData> wbOlpRawDataList) {

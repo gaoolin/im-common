@@ -12,7 +12,6 @@ import org.apache.spark.sql.functions;
 import org.apache.spark.storage.StorageLevel;
 import org.im.common.batch.config.BatchConfig;
 import org.im.common.batch.core.BatchJobStatus;
-import org.im.common.batch.engine.SparkBatchEngine;
 import org.im.common.batch.exception.JobExecutionException;
 import org.im.config.ConfigurationManager;
 import org.im.exception.constants.ErrorCode;

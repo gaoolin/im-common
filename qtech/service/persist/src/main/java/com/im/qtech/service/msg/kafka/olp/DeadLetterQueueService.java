@@ -2,15 +2,16 @@ package com.im.qtech.service.msg.kafka.olp;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.im.qtech.common.dto.net.EqpNetworkStatus;
-import com.im.qtech.common.dto.param.WbOlpRawData;
+
+import com.im.qtech.data.dto.net.EqpNetworkStatus;
+import com.im.qtech.data.dto.param.WbOlpRawData;
 import com.im.qtech.service.msg.entity.EqpReverseInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import static com.im.qtech.common.constant.QtechImBizConstant.*;
+import static com.im.qtech.data.constant.QtechImBizConstant.*;
 
 /**
  * 死信队列服务

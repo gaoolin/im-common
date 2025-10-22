@@ -1,6 +1,6 @@
 package com.im.inspection.config;
 
-import com.im.qtech.common.dpp.conf.UnifiedHadoopConfig;
+import com.im.qtech.data.dpp.conf.UnifiedHadoopConfig;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.security.UserGroupInformation;
 import org.im.exception.constants.ErrorCode;

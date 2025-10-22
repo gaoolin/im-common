@@ -9,11 +9,10 @@
 
     <groupId>com.im.aa.inspection</groupId>
     <artifactId>eq-aa-lst-chk</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
     <description>AA-LIST点检</description>
-
     <name>eq-aa-lst-chk</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -39,7 +38,7 @@
         <dependency>
             <groupId>org.im.common</groupId>
             <artifactId>common</artifactId>
-            <version>1.0.0</version>
+            <version>${common.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -66,9 +65,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.im.qtech.common</groupId>
-            <artifactId>qtech-common</artifactId>
-            <version>${qtech-common.version}</version>
+            <groupId>com.im.qtech.data</groupId>
+            <artifactId>datadev-common</artifactId>
+            <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

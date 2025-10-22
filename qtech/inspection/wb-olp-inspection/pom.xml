@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>wb-olp-inspection</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>wb-olp-inspection</name>
@@ -16,6 +16,13 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <play.json.version>2.9.4</play.json.version>
+        <scala.version>2.12.18</scala.version>
+        <scala.binary.version>2.12</scala.binary.version>
+        <hadoop.version>3.3.6</hadoop.version>
+        <spark.version>3.3.4</spark.version>
+        <jackson.version>2.14.3</jackson.version>
     </properties>
 
     <dependencies>
@@ -113,9 +120,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.im.qtech.common</groupId>
-            <artifactId>qtech-common</artifactId>
-            <version>${qtech-common.version}</version>
+            <groupId>com.im.qtech.data</groupId>
+            <artifactId>datadev-common</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.im.config</groupId>
@@ -150,6 +157,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.3</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -170,7 +178,7 @@
                             <include>org.im.common:common</include>
                             <include>org.im.config:config</include>
                             <include>org.im.exception:exception</include>
-                            <include>com.im.qtech.common:qtech-common</include>
+                            <include>com.im.qtech.data:datadev-common</include>
                         </includes>
                     </artifactSet>
                 </configuration>

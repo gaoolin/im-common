@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/datadev/datadev-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/datadev/datadev-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/datadev/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/datadev/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/datadev/wb-wire-usage-etl/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/datadev/wb-wire-usage-etl/src/main/scala" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inspection/eq-aa-lst-chk/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inspection/eq-aa-lst-chk/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inspection/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inspection/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inspection/wb-olp-inspection/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inspection/wb-olp-inspection/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/persist/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/persist/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

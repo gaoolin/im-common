@@ -99,7 +99,7 @@ public class AaListParamsTestComparator {
                                 logger.info(">>>>> both modelVal and actualVal are empty propertyName: {}", propertyName);
                             }
                         } else {
-                            logger.error(">>>>> Unsupported data type for mtfCheck: {}", modelTypeName);
+                            logger.error(">>>>> Unsupported data policy for mtfCheck: {}", modelTypeName);
                         }
                         // FIXME: 这里需要优化，胶检频率 5-30 都Ok。模版值和实际值，需要重新设计。
                     } else if ("epoxyInspectionAuto".equals(propertyName)) {  // 需要特殊处理 胶检频率
@@ -123,7 +123,7 @@ public class AaListParamsTestComparator {
                                     }
                                 }
                             } else {
-                                logger.error(">>>>> Unsupported data type for epoxyInspectionAuto: {}", modelTypeName);
+                                logger.error(">>>>> Unsupported data policy for epoxyInspectionAuto: {}", modelTypeName);
                             }
                         } else {
                             if (StringUtils.isBlank(actualVal.toString())) {

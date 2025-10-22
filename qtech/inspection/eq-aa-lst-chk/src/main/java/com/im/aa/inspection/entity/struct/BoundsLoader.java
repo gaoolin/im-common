@@ -123,7 +123,7 @@ public final class BoundsLoader extends ParameterRange {
         Comparable<?> right = convertToComparable(value);
 
         if (left == null || right == null) {
-            throw new IllegalArgumentException("Unsupported value type for comparison");
+            throw new IllegalArgumentException("Unsupported value policy for comparison");
         }
 
         @SuppressWarnings("unchecked") int comparison = ((Comparable<Object>) left).compareTo(right);
@@ -166,7 +166,7 @@ public final class BoundsLoader extends ParameterRange {
             }
             return str;
         }
-        throw new IllegalArgumentException("Unsupported value type for comparison: " + value.getClass().getName());
+        throw new IllegalArgumentException("Unsupported value policy for comparison: " + value.getClass().getName());
     }
 
     /**

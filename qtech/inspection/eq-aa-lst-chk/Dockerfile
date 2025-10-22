@@ -8,13 +8,13 @@ COPY ./pom.xml /usr/src/app/pom.xml
 COPY ./settings.xml /usr/src/app/settings.xml
 
 # 下载依赖
-RUN mvn dependency:go-offline -s /usr/src/app/settings.xml || (echo "Dependency download failed" && exit 1)
+RUN mvn dependency:go-offline -s /usr/svc/app/settings.xml || (echo "Dependency download failed" && exit 1)
 
 # 复制源代码
 COPY ./src /usr/src/app/src
 
 # 编译打包
-RUN mvn -f /usr/src/app/pom.xml clean package -DskipTests -s /usr/src/app/settings.xml || (echo "Build failed" && exit 1) && \
+RUN mvn -f /usr/svc/app/pom.xml clean package -DskipTests -s /usr/svc/app/settings.xml || (echo "Build failed" && exit 1) && \
     rm -rf /root/.m2/repository
 
 # 运行阶段

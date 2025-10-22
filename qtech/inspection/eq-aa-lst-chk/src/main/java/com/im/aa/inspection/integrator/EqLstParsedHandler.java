@@ -213,7 +213,7 @@ public class EqLstParsedHandler extends MessageHandler<EqLstParsed> implements A
                 throw new RuntimeException("JSON解析失败", e); // 抛出异常以便上层处理
             }
         }
-        throw new UnsupportedOperationException("Unsupported message handling for type: " + clazz.getSimpleName());
+        throw new UnsupportedOperationException("Unsupported message handling for policy: " + clazz.getSimpleName());
     }
 
     @Override

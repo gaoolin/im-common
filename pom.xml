@@ -22,6 +22,7 @@
         <module>server</module>
         <module>qtech</module>
         <module>common</module>
+        <module>etl</module>
     </modules>
 
     <properties>
@@ -51,9 +52,10 @@
         <exception.version>1.0.3</exception.version>
         <integration.version>1.0.5</integration.version>
         <orm.version>1.0.5</orm.version>
-        <qtech-common.version>1.0.1</qtech-common.version>
+        <datadev-common.version>1.0.0</datadev-common.version>
         <semiconductor.version>1.0.5</semiconductor.version>
         <server.version>1.0.5</server.version>
+        <etl.version>1.0.0</etl.version>
     </properties>
 
     <!-- 依赖管理，子模块按需引入 -->
@@ -190,7 +192,7 @@
             <id>spring-boot-app</id>
             <activation>
                 <file>
-                    <!-- 当检测到 src/main/resources/application.properties 文件存在时，会自动激活这个 profile 并设置相应的 Spring Boot 版本属性 -->
+                    <!-- 当检测到 svc/main/resources/application.properties 文件存在时，会自动激活这个 profile 并设置相应的 Spring Boot 版本属性 -->
                     <exists>
                         src/main/resources/application.yaml
                         src/main/resources/application.yml
@@ -211,24 +213,16 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.1</version>
-                    <configuration>
-                        <source>${maven.compiler.source}</source>
-                        <target>${maven.compiler.target}</target>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <version>3.2.1</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.2</version>
-                </plugin>
             </plugins>
         </pluginManagement>
 
+        <!-- 顶层项目也需要构建，引入了上面管理的2个插件 -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
