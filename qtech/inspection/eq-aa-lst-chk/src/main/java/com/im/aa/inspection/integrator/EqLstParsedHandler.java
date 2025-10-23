@@ -21,8 +21,8 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.im.qtech.common.constant.EqLstInspectionConstants.CONTROL_LIST_SET;
-import static com.im.qtech.common.constant.QtechImBizConstant.*;
+import static com.im.qtech.data.constant.EqLstInspectionConstants.CONTROL_LIST_SET;
+import static com.im.qtech.data.constant.QtechImBizConstant.*;
 
 /**
  * List、Item 级联解析

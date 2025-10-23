@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.im.aa.inspection.entity.struct.BoundsLoader;
 import com.im.aa.inspection.entity.struct.EqLstCommand;
 import com.im.aa.inspection.util.ToCamelCaseConverter;
-import com.im.qtech.common.dto.param.EqLstPOJO;
+import com.im.qtech.data.dto.param.EqLstPOJO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
