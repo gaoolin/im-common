@@ -2069,7 +2069,7 @@ public final class EqLstProto {
         getSaveMtfCcMaxBytes();
   }
   /**
-   * Protobuf policy {@code EqLstPOJO}
+   * Protobuf type {@code EqLstPOJO}
    */
   public  static final class EqLstPOJO extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -10572,7 +10572,7 @@ public final class EqLstProto {
       return builder;
     }
     /**
-     * Protobuf policy {@code EqLstPOJO}
+     * Protobuf type {@code EqLstPOJO}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements

@@ -9,8 +9,8 @@ import org.im.semiconductor.common.parameter.core.ParameterInspection;
 
 import java.util.*;
 
-import static com.im.qtech.common.constant.QtechImBizConstant.EQP_LST_EPOXY_INSPECTION_AUTO_MAX;
-import static com.im.qtech.common.constant.QtechImBizConstant.EQP_LST_EPOXY_INSPECTION_AUTO_MIN;
+import static com.im.qtech.data.constant.QtechImBizConstant.EQP_LST_EPOXY_INSPECTION_AUTO_MAX;
+import static com.im.qtech.data.constant.QtechImBizConstant.EQP_LST_EPOXY_INSPECTION_AUTO_MIN;
 import static org.im.common.math.MathEvaluator.isNumeric;
 
 /**

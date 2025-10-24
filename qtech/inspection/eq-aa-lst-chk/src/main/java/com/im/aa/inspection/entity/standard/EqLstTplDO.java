@@ -2,7 +2,7 @@ package com.im.aa.inspection.entity.standard;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.im.qtech.common.dto.param.EqLstPOJO;
+import com.im.qtech.data.dto.param.EqLstPOJO;
 import lombok.Data;
 import lombok.ToString;
 

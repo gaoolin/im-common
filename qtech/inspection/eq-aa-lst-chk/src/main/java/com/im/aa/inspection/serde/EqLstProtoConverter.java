@@ -2,6 +2,7 @@ package com.im.aa.inspection.serde;
 
 import com.google.protobuf.Message;
 import com.im.aa.inspection.proto.EqLstProto;
+import com.im.qtech.data.dto.param.EqLstPOJO;
 import org.im.common.serde.protobuf.ProtoConverter;
 
 /**
@@ -9,9 +10,9 @@ import org.im.common.serde.protobuf.ProtoConverter;
  * @email gaoolin@gmail.com
  * @date 2025/10/09
  */
-public class EqLstProtoConverter implements ProtoConverter<com.im.qtech.common.dto.param.EqLstPOJO> {
+public class EqLstProtoConverter implements ProtoConverter<EqLstPOJO> {
     @Override
-    public com.google.protobuf.Message toProto(com.im.qtech.common.dto.param.EqLstPOJO obj) {
+    public com.google.protobuf.Message toProto(EqLstPOJO obj) {
         if (obj == null) return null;
 
         EqLstProto.EqLstPOJO.Builder builder = EqLstProto.EqLstPOJO.newBuilder();
@@ -238,15 +239,15 @@ public class EqLstProtoConverter implements ProtoConverter<com.im.qtech.common.d
      * @return 实体对象
      */
     @Override
-    public com.im.qtech.common.dto.param.EqLstPOJO fromProto(Message msg) {
+    public EqLstPOJO fromProto(Message msg) {
         if (msg == null) return null;
 
         EqLstProto.EqLstPOJO proto = null;
-        com.im.qtech.common.dto.param.EqLstPOJO obj = null;
+        EqLstPOJO obj = null;
 
         if (msg instanceof EqLstProto.EqLstPOJO) {
             proto = (EqLstProto.EqLstPOJO) msg;
-            obj = new com.im.qtech.common.dto.param.EqLstPOJO();
+            obj = new EqLstPOJO();
         } else {
             return null;
         }
