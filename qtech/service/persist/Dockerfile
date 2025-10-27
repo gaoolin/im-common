@@ -29,11 +29,15 @@ RUN apk add --no-cache tzdata && \
     apk del tzdata
 
 # 环境变量
-ENV LOG_PATH=/home/logs
-ENV JAVA_OPTS="-Dfile.encoding=UTF-8 -Djava.security.egd=file:/dev/./urandom -Dlogging.file.path=${LOG_PATH}"
+ENV PARAMS="--server.port=8080"
+ENV LOG_PATH=/home/qtech/logs
+ENV SPRING_PROFILES_ACTIVE=prod
+ENV JAVA_OPTS="-Dloader.path=/home/libs/ -Dfile.encoding=utf8 -Djava.security.egd=file:/dev/./urandom -Dlogging.file.path=${LOG_PATH}"
 
 # 创建日志目录
 RUN mkdir -p ${LOG_PATH} && chmod -R 777 ${LOG_PATH}
+
+EXPOSE 8080
 
 # 复制构建阶段的输出
 COPY --from=builder /usr/src/app/target/*.jar /home/app.jar
@@ -41,5 +45,12 @@ COPY --from=builder /usr/src/app/target/libs /home/libs/
 
 WORKDIR /home
 
+# 健康检查
+HEALTHCHECK --interval=30s --timeout=30s --retries=5 \
+  CMD curl -f http://localhost:8080/actuator/health/status || exit 1
+
+# 启动命令
+#ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /home/app.jar ${PARAMS} --spring.profiles.active=${SPRING_PROFILES_ACTIVE}"]
+
 # 启动命令 - 使用实际的主类名
-ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -cp '/home/app.jar:/home/libs/*' com.im.qtech.service.msg.persist.PersistApplication"]
+ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -cp '/home/app.jar:/home/libs/*' com.im.qtech.service.App"]

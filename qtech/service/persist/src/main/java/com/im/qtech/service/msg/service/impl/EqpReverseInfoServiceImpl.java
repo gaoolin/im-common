@@ -124,7 +124,7 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
             return mapper.upsertOracleBatch(list);
         } catch (Exception e) {
             logger.error(">>>>> EqpReverseInfoServiceImpl.upsertOracleBatch error: {}", e.getMessage(), e);
-            throw new DataAccessException("DB_UPSERT_ERROR", "批量 upsertOracle 错误");
+            throw new DataAccessException("DB_UPSERT_ERROR", "批量 upsertOracle 错误", e);
         }
     }
 
@@ -137,7 +137,7 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
         try {
             return mapper.upsertPostgresBatch(list);
         } catch (Exception e) {
-            throw new DataAccessException("DB_UPSERT_ERROR", "批量 upsertPostgresBatch 错误");
+            throw new DataAccessException("DB_UPSERT_ERROR", "批量 upsertPostgresBatch 错误", e);
         }
     }
 
