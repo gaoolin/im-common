@@ -1,11 +1,11 @@
 package com.im.qtech.service.msg.disruptor.eq;
 
 import com.im.qtech.data.dto.net.EqpNetworkStatus;
-import com.im.qtech.service.config.thread.task.TaskDispatcher;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.im.common.thread.task.TaskPriority;
 
 /**
  * @author gaozhilin
@@ -19,7 +19,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class EqpNetworkStatusEvent {
     private EqpNetworkStatus data;
     private String raw;
-    private TaskDispatcher.TaskPriority priority;
+    private TaskPriority priority;
 
     @Override
     public String toString() {

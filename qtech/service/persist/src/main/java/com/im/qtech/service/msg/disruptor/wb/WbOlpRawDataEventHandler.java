@@ -1,7 +1,7 @@
 package com.im.qtech.service.msg.disruptor.wb;
 
 import com.im.qtech.data.dto.param.WbOlpRawData;
-import com.im.qtech.service.msg.kafka.olp.DeadLetterQueueService;
+import com.im.qtech.service.msg.persist.olp.DeadLetterQueueService;
 import com.im.qtech.service.msg.service.IWbOlpRawDataService;
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.LifecycleAware;

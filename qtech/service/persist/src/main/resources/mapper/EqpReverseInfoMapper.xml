@@ -191,46 +191,46 @@
 
     <insert id="upsertOracleBatch">
         BEGIN
-        <foreach collection="list" item="item" separator=";">
-            MERGE INTO IMBIZ.IM_EQ_REVERSE_CONTROL_RECORDS tgt
-            USING (
-            SELECT
-            #{item.simId, jdbcType=VARCHAR} AS SIM_ID,
-            #{item.source, jdbcType=VARCHAR} AS SOURCE,
-            #{item.prodType, jdbcType=VARCHAR} AS PROD_TYPE,
-            #{item.chkDt, jdbcType=TIMESTAMP} AS CHK_DT,
-            #{item.code, jdbcType=INTEGER} AS CODE,
-            #{item.description, jdbcType=VARCHAR} AS DESCRIPTION
-            FROM DUAL
-            ) src
-            ON (
-            tgt.SIM_ID = src.SIM_ID AND
-            tgt.SOURCE = src.SOURCE
-            )
-            WHEN MATCHED THEN
-            UPDATE SET
-            tgt.PROD_TYPE = src.PROD_TYPE,
-            tgt.CHK_DT = src.CHK_DT,
-            tgt.CODE = src.CODE,
-            tgt.DESCRIPTION = src.DESCRIPTION,
-            tgt.VERSION = tgt.VERSION + 1
-            WHEN NOT MATCHED THEN
-            INSERT (
-            SIM_ID,
-            SOURCE,
-            PROD_TYPE,
-            CHK_DT,
-            CODE,
-            DESCRIPTION
-            ) VALUES (
-            src.SIM_ID,
-            src.SOURCE,
-            src.PROD_TYPE,
-            src.CHK_DT,
-            src.CODE,
-            src.DESCRIPTION
-            )
-        </foreach>
+            <foreach collection="list" item="item" separator=";">
+                MERGE INTO IMBIZ.IM_EQ_REVERSE_CONTROL_RECORDS tgt
+                USING (
+                    SELECT
+                        #{item.simId, jdbcType=VARCHAR} AS SIM_ID,
+                        #{item.source, jdbcType=VARCHAR} AS SOURCE,
+                        #{item.prodType, jdbcType=VARCHAR} AS PROD_TYPE,
+                        #{item.chkDt, jdbcType=TIMESTAMP} AS CHK_DT,
+                        #{item.code, jdbcType=INTEGER} AS CODE,
+                        #{item.description, jdbcType=VARCHAR} AS DESCRIPTION
+                    FROM DUAL
+                ) src
+                ON (
+                    tgt.SIM_ID = src.SIM_ID AND
+                    tgt.SOURCE = src.SOURCE
+                )
+                WHEN MATCHED THEN
+                    UPDATE SET
+                        tgt.PROD_TYPE = src.PROD_TYPE,
+                        tgt.CHK_DT = src.CHK_DT,
+                        tgt.CODE = src.CODE,
+                        tgt.DESCRIPTION = src.DESCRIPTION,
+                        tgt.VERSION = tgt.VERSION + 1
+                WHEN NOT MATCHED THEN
+                    INSERT (
+                        SIM_ID,
+                        SOURCE,
+                        PROD_TYPE,
+                        CHK_DT,
+                        CODE,
+                        DESCRIPTION
+                    ) VALUES (
+                        src.SIM_ID,
+                        src.SOURCE,
+                        src.PROD_TYPE,
+                        src.CHK_DT,
+                        src.CODE,
+                        src.DESCRIPTION
+                    )
+            </foreach>
         ;
         END;
     </insert>
@@ -276,7 +276,7 @@
         label = EXCLUDED.label,
         reason = EXCLUDED.reason,
         description = EXCLUDED.description,
-        version = COALESCE(EXCLUDED.version, biz.eqp_reverse_control_latest.version) + 1
+        version = biz.eqp_reverse_control_latest.version + 1
     </insert>
 
 </mapper>

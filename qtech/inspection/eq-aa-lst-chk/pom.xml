@@ -5,6 +5,7 @@
         <groupId>com.im.inspection</groupId>
         <artifactId>inspection</artifactId>
         <version>1.0.0</version>
+        <relativePath/>
     </parent>
 
     <groupId>com.im.aa.inspection</groupId>

@@ -1,5 +1,6 @@
 package com.im.qtech.service.msg.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -10,7 +11,6 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Column;
 import java.time.LocalDateTime;
 
 /**
@@ -32,36 +32,28 @@ public class EqpLstParsed extends EqLstPOJO {
     @JsonProperty("prodType")
     private String module;
 
-    @JsonProperty("mtf_check_f")
-    @Column(columnDefinition = "jsonb")
+    @TableField(typeHandler = PGJsonbTypeHandler.class)
     private String mtfCheckF;
 
-    @JsonProperty("mtf_check1_f")
-    @Column(columnDefinition = "jsonb")
+    @TableField(typeHandler = PGJsonbTypeHandler.class)
     private String mtfCheck1F;
 
-    @JsonProperty("mtf_check2_f")
-    @Column(columnDefinition = "jsonb")
+    @TableField(typeHandler = PGJsonbTypeHandler.class)
     private String mtfCheck2F;
 
-    @JsonProperty("mtf_check3_f")
-    @Column(columnDefinition = "jsonb")
+    @TableField(typeHandler = PGJsonbTypeHandler.class)
     private String mtfCheck3F;
 
-    @JsonProperty("mtf_off_axis_check1_f")
-    @Column(columnDefinition = "jsonb")
+    @TableField(typeHandler = PGJsonbTypeHandler.class)
     private String mtfOffAxisCheck1F;
 
-    @JsonProperty("mtf_off_axis_check2_f")
-    @Column(columnDefinition = "jsonb")
+    @TableField(typeHandler = PGJsonbTypeHandler.class)
     private String mtfOffAxisCheck2F;
 
-    @JsonProperty("mtf_off_axis_check3_f")
-    @Column(columnDefinition = "jsonb")
+    @TableField(typeHandler = PGJsonbTypeHandler.class)
     private String mtfOffAxisCheck3F;
 
-    @JsonProperty("mtf_off_axis_check4_f")
-    @Column(columnDefinition = "jsonb")
+    @TableField(typeHandler = PGJsonbTypeHandler.class)
     private String mtfOffAxisCheck4F;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

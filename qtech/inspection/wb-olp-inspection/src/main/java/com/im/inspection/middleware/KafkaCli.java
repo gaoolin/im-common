@@ -2,10 +2,10 @@ package com.im.inspection.middleware;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.im.qtech.common.avro.record.EqpReversePOJORecord;
-import com.im.qtech.common.avro.record.WbOlpRawDataRecord;
-import com.im.qtech.common.serde.EqpReversePOJOValueSerializer;
-import com.im.qtech.common.serde.WbOlpRawDataRecordSerializer;
+import com.im.qtech.data.avro.record.EqpReversePOJORecord;
+import com.im.qtech.data.avro.record.WbOlpRawDataRecord;
+import com.im.qtech.data.serde.EqpReversePOJOValueSerializer;
+import com.im.qtech.data.serde.WbOlpRawDataRecordSerializer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static com.im.inspection.util.Constant.*;
-import static com.im.qtech.common.constant.QtechImBizConstant.*;
+import static com.im.qtech.data.constant.QtechImBizConstant.*;
 
 /**
  * @author gaozhilin

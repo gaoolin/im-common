@@ -43,12 +43,11 @@
     <!--        <appender-ref ref="CONSOLE"/>-->
     <!--    </logger>-->
 
-    <logger name="org.im.cache.impl.cache.RedisCache" level="DEBUG" additivity="false">
-        <appender-ref ref="REDIS_FILE"/>
+    <logger name="org.im.cache.impl.cache.RedisCache" level="INFO" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>
 
-    <logger name="com.im.aa.inspection.parser.item.ItemEpoxyInspectionParser" level="DEBUG" additivity="false">
+    <logger name="com.im.aa.inspection.parser.item.ItemEpoxyInspectionParser" level="INFO" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>
 
@@ -60,6 +59,4 @@
 
     <!-- 常用框架日志级别调整 -->
     <logger name="org.apache.kafka" level="WARN"/>
-    <logger name="org.springframework" level="WARN"/>
-    <logger name="com.baomidou.mybatisplus" level="WARN"/>
 </configuration>

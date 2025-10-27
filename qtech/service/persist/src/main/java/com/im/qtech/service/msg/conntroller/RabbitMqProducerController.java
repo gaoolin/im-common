@@ -1,6 +1,6 @@
 package com.im.qtech.service.msg.conntroller;
 
-import com.im.qtech.service.msg.rabbit.producer.RabbitMqProducer;
+import com.im.qtech.service.msg.persist.rabbit.producer.RabbitMqProducer;
 import com.im.qtech.service.msg.util.ApiResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

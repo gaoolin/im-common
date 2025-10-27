@@ -16,7 +16,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.concurrent.TimeUnit;
 
-import static com.im.qtech.common.constant.QtechImBizConstant.*;
+import static com.im.qtech.data.constant.QtechImBizConstant.*;
 
 /**
  * @author gaozhilin

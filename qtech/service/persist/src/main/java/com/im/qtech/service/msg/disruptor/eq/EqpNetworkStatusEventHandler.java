@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.im.qtech.data.dto.net.EqpNetworkStatus;
-import com.im.qtech.service.msg.kafka.olp.DeadLetterQueueService;
+import com.im.qtech.service.msg.persist.olp.DeadLetterQueueService;
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.LifecycleAware;
 import lombok.extern.slf4j.Slf4j;

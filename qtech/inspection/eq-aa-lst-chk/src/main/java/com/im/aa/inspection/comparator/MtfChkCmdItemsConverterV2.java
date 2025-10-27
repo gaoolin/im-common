@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.im.qtech.common.constant.QtechImBizConstant.EQP_LST_AGG_MTF_CHECK_ITEMS;
-import static com.im.qtech.common.constant.QtechImBizConstant.EQP_LST_AGG_MTF_CHECK_ITEMS_FILTER;
+import static com.im.qtech.data.constant.QtechImBizConstant.EQP_LST_AGG_MTF_CHECK_ITEMS;
+import static com.im.qtech.data.constant.QtechImBizConstant.EQP_LST_AGG_MTF_CHECK_ITEMS_FILTER;
 
 /**
  * 用于将 MTF_CHECK 命令的 ITEMS 转换为 Json格式字符串

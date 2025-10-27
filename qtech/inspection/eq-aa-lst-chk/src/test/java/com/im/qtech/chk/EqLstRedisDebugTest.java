@@ -2,7 +2,7 @@ package com.im.qtech.chk;
 
 import com.im.aa.inspection.config.EqpLstRedisCacheConfig;
 import com.im.aa.inspection.serde.EqLstProtobufMapper;
-import com.im.qtech.common.dto.param.EqLstPOJO;
+import com.im.qtech.data.dto.param.EqLstPOJO;
 import org.im.cache.core.Cache;
 import org.junit.Test;
 

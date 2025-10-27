@@ -2,7 +2,7 @@ package com.im.aa.inspection.entity.reverse;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.im.qtech.common.dto.reverse.EqpReversePOJO;
+import com.im.qtech.data.dto.reverse.EqpReversePOJO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

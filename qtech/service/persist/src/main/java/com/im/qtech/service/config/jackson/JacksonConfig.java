@@ -20,6 +20,7 @@ import java.util.TimeZone;
  * @date 2025/04/25 10:52:51
  */
 
+/*
 @Configuration
 public class JacksonConfig {
 
@@ -40,4 +41,4 @@ public class JacksonConfig {
 
         return mapper;
     }
-}
+}*/

@@ -6,8 +6,8 @@ import com.im.aa.inspection.entity.reverse.EqpReverseDO;
 import com.im.aa.inspection.entity.standard.EqLstTplDO;
 import com.im.aa.inspection.entity.standard.EqLstTplInfoDO;
 import com.im.aa.inspection.serde.EqLstProtobufMapper;
-import com.im.qtech.common.dto.param.EqLstPOJO;
-import com.im.qtech.common.dto.reverse.LabelEum;
+import com.im.qtech.data.dto.param.EqLstPOJO;
+import com.im.qtech.data.dto.reverse.LabelEum;
 import org.im.cache.core.Cache;
 import org.im.common.dt.Chronos;
 import org.im.semiconductor.common.parameter.core.DefaultParameterInspection;
@@ -20,8 +20,8 @@ import java.util.Base64;
 import java.util.Map;
 import java.util.StringJoiner;
 
-import static com.im.qtech.common.constant.EqLstInspectionConstants.PROPERTIES_TO_COMPARE;
-import static com.im.qtech.common.constant.EqLstInspectionConstants.PROPERTIES_TO_COMPUTE;
+import static com.im.qtech.data.constant.EqLstInspectionConstants.PROPERTIES_TO_COMPARE;
+import static com.im.qtech.data.constant.EqLstInspectionConstants.PROPERTIES_TO_COMPUTE;
 
 /**
  * 参数检查服务

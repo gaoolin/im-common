@@ -99,6 +99,12 @@
             <version>${exception.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.im.config</groupId>
+            <artifactId>config</artifactId>
+            <version>${config.version}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>

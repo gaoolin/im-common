@@ -1,7 +1,7 @@
 package com.im.qtech.service.msg.disruptor.wb;
 
 import com.im.qtech.service.msg.entity.EqpReverseInfo;
-import com.im.qtech.service.msg.kafka.olp.DeadLetterQueueService;
+import com.im.qtech.service.msg.persist.olp.DeadLetterQueueService;
 import com.im.qtech.service.msg.service.IEqpReverseInfoService;
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.LifecycleAware;

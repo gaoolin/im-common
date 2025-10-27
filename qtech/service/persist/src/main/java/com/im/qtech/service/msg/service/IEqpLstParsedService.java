@@ -3,6 +3,7 @@ package com.im.qtech.service.msg.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.im.qtech.service.msg.entity.EqpLstParsed;
 
+
 /**
  * @author gaozhilin
  * @email gaoolin@gmail.com
