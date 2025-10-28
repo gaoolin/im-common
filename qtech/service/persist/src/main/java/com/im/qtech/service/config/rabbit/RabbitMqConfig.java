@@ -6,7 +6,6 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
 /**
  * 配置类
  *
@@ -34,7 +33,7 @@ public class RabbitMqConfig {
     }
 
     @Bean
-    public Binding reverseCtrlInfoBinding() {
+    public Binding eqReverseInfoBinding() {
         return new Binding("eqReverseInfoQueue", Binding.DestinationType.QUEUE, "qtechImExchange", "eqReverseInfoQueue", null);
     }
 

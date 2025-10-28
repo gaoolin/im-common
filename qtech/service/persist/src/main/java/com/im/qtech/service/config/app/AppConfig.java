@@ -6,6 +6,5 @@ package com.im.qtech.service.config.app;
  * @date 2025/10/14
  */
 
-
 public class AppConfig {
 }

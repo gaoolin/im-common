@@ -56,9 +56,7 @@ public class KafkaMessageConsumer implements Lifecycle {
     private Connection rabbitConnection;
     private Channel rabbitChannel;
 
-    public KafkaMessageConsumer(
-            ConfigurationManager configManager,
-            ParamCheckService paramCheckService) {
+    public KafkaMessageConsumer(ConfigurationManager configManager, ParamCheckService paramCheckService) {
         this.configManager = configManager;
         this.paramCheckService = paramCheckService;
         this.threadPoolSize = configManager.getIntProperty("im.thread.pool.size", 3);
@@ -80,8 +78,7 @@ public class KafkaMessageConsumer implements Lifecycle {
                     return t;
                 });
                 executorService.submit(this::pollAndProcessRecords);
-                objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-                        .setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+                objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false).setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
                 logger.info(">>>>> Started KafkaMessageConsumer successfully");
             } catch (Exception e) {
                 logger.error(">>>>> Failed to start KafkaMessageConsumer", e);
@@ -269,8 +266,7 @@ public class KafkaMessageConsumer implements Lifecycle {
                 logger.debug(">>>>> Step1: Parsing message...");
                 EqLstParsed eqLstParsed = messageHandlerDispatcher.processMessage(EqLstParsed.class, messageStr);
                 if (eqLstParsed == null) {
-                    logger.warn(">>>>> Step1: Parsing returned null, raw message: {}",
-                            messageStr.substring(0, Math.min(messageStr.length(), 75)));
+                    logger.warn(">>>>> Step1: Parsing returned null, raw message: {}", messageStr.substring(0, Math.min(messageStr.length(), 75)));
                     return;
                 }
                 eqLstParsed.setReceivedTime(Chronos.now());
@@ -281,8 +277,7 @@ public class KafkaMessageConsumer implements Lifecycle {
 
                 // 3. 发到 Kafka (转发到处理后的主题)
                 logger.debug(">>>>> Step3: Sending to Kafka...");
-                String messageKey = (eqLstParsed.getModule() != null ? eqLstParsed.getModule() : "unknown")
-                        + "-" + (eqLstParsed.getSimId() != null ? eqLstParsed.getSimId() : "unknown");
+                String messageKey = (eqLstParsed.getModule() != null ? eqLstParsed.getModule() : "unknown") + "-" + (eqLstParsed.getSimId() != null ? eqLstParsed.getSimId() : "unknown");
 
                 String outputTopicParsed = configManager.getProperty("kafka.output.topic.eq_lst_parsed", "qtech_im_aa_list_parsed_test_topic");
                 producer.send(new ProducerRecord<>(outputTopicParsed, messageKey, processedMessageStr));
@@ -306,8 +301,7 @@ public class KafkaMessageConsumer implements Lifecycle {
                 logger.info(">>>>> [SUCCESS] key={} processed and dispatched", messageKey);
 
             } catch (Exception e) {
-                logger.error(">>>>> [ERROR] Exception processing message: {}",
-                        messageStr.substring(0, Math.min(messageStr.length(), 75)), e);
+                logger.error(">>>>> [ERROR] Exception processing message: {}", messageStr.substring(0, Math.min(messageStr.length(), 75)), e);
             }
         });
 
@@ -315,12 +309,10 @@ public class KafkaMessageConsumer implements Lifecycle {
             // 超时保护：5秒内必须处理完
             future.get(5, TimeUnit.SECONDS);
         } catch (TimeoutException te) {
-            logger.error(">>>>> [TIMEOUT] Processing record took too long, offset={}, partition={}",
-                    record.offset(), record.partition());
+            logger.error(">>>>> [TIMEOUT] Processing record took too long, offset={}, partition={}", record.offset(), record.partition());
             future.cancel(true); // 中断卡死的处理
         } catch (Exception e) {
-            logger.error(">>>>> [ERROR] Unexpected exception while processing record, offset={}, partition={}",
-                    record.offset(), record.partition(), e);
+            logger.error(">>>>> [ERROR] Unexpected exception while processing record, offset={}, partition={}", record.offset(), record.partition(), e);
         }
     }
 
@@ -337,9 +329,8 @@ public class KafkaMessageConsumer implements Lifecycle {
             }
 
             String exchangeName = configManager.getProperty("rabbitmq.exchange.name", "qtechImExchange");
-            String routingKey = configManager.getProperty("rabbitmq.routing.key", "eqReverseInfoQueue");
+            String routingKey = configManager.getProperty("rabbitmq.routing.key.reverse", "eqReverseInfoQueue");
             String jsonString = objectMapper.writeValueAsString(result);
-
             rabbitChannel.basicPublish(exchangeName, routingKey, null, jsonString.getBytes());
             logger.debug(">>>>> Message sent to RabbitMQ: exchange={}, routingKey={}", exchangeName, routingKey);
         } catch (Exception e) {
@@ -355,9 +346,10 @@ public class KafkaMessageConsumer implements Lifecycle {
             }
 
             String exchangeName = configManager.getProperty("rabbitmq.exchange.name", "qtechImExchange");
-            String routingKey = "eqLstParsedQueue";
+            String routingKey = configManager.getProperty("rabbitmq.routing.key.lst", "eqLstParsedQueue");
             String jsonString = objectMapper.writeValueAsString(eqLstParsed);
             rabbitChannel.basicPublish(exchangeName, routingKey, null, jsonString.getBytes());
+            logger.debug(">>>>> Message sent to RabbitMQ: exchange={}, routingKey={}", exchangeName, routingKey);
         } catch (Exception e) {
             logger.error(">>>>> Failed to send message to RabbitMQ", e);
         }

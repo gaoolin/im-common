@@ -47,12 +47,12 @@
         <appender-ref ref="CONSOLE"/>
     </logger>
 
-    <logger name="com.im.aa.inspection.parser" level="INFO" additivity="false">
+    <logger name="com.im.aa.inspection.parser" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>
 
     <!-- 根日志级别配置 -->
-    <root level="WARN">
+    <root level="INFO">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>
