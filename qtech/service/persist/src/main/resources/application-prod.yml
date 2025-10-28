@@ -56,3 +56,12 @@ spring:
     username: guest
     password: guest
     virtual-host: /
+logging:
+  logback:
+    rollingpolicy:
+      clean-history-on-start: true
+      max-file-size: 100MB
+  file:
+    path: /home/qtech/logs
+  pattern:
+    console: %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n

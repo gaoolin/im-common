@@ -50,10 +50,10 @@ public class EqpReverseInfoQueueConsumer implements DisposableBean {
         // connection is not initialized, so nothing to close here
     }
 
-    @RabbitListener(queues = "eqReverseCtrlInfoQueue", ackMode = "MANUAL")
+    @RabbitListener(queues = "eqReverseInfoQueue", ackMode = "MANUAL")
     public void receive(String msg, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) throws IOException {
         if (msg == null || msg.isEmpty()) {
-            logger.error(">>>>> 消息为空, eqReverseCtrlInfoQueue队列, msg: {}", msg);
+            logger.error(">>>>> 消息为空, eqReverseInfoQueue队列, msg: {}", msg);
             channel.basicAck(deliveryTag, false);
             return;
         }

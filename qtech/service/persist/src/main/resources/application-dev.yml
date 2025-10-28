@@ -51,8 +51,6 @@ spring:
           config:
             multi-statement-allow: true
 
-
-
   rabbitmq:
     host: 10.170.6.40
     port: 31131

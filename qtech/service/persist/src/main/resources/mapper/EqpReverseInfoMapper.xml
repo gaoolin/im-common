@@ -155,7 +155,7 @@
 
     <insert id="upsertPostgres" parameterType="EqpReverseInfo">
         INSERT INTO biz.eqp_reverse_control_latest
-        <trim prefix="(" suffix=")">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="simId != null">sim_id,</if>
             <if test="source != null">source,</if>
             <if test="module != null">module,</if>
@@ -166,7 +166,7 @@
             <if test="reason != null">reason,</if>
             <if test="description != null">description</if>
         </trim>
-        <trim prefix="VALUES(" suffix=")">
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
             <if test="simId != null">#{simId},</if>
             <if test="source != null">#{source},</if>
             <if test="module != null">#{module},</if>
@@ -179,14 +179,16 @@
         </trim>
         ON CONFLICT ON CONSTRAINT uk_eqp_reverse_control_latest_sim_source
         DO UPDATE SET
-        <if test="module != null">module = EXCLUDED.module,</if>
-        <if test="chkDt != null">chk_dt = EXCLUDED.chk_dt,</if>
-        <if test="code != null">code = EXCLUDED.code,</if>
-        <if test="passed != null">passed = EXCLUDED.passed,</if>
-        <if test="label != null">label = EXCLUDED.label,</if>
-        <if test="reason != null">reason = EXCLUDED.reason,</if>
-        <if test="description != null">description = EXCLUDED.description,</if>
-        version = COALESCE(EXCLUDED.version, biz.eqp_reverse_control_latest.version) + 1
+        <trim suffixOverrides=",">
+            <if test="module != null">module = EXCLUDED.module,</if>
+            <if test="chkDt != null">chk_dt = EXCLUDED.chk_dt,</if>
+            <if test="code != null">code = EXCLUDED.code,</if>
+            <if test="passed != null">passed = EXCLUDED.passed,</if>
+            <if test="label != null">label = EXCLUDED.label,</if>
+            <if test="reason != null">reason = EXCLUDED.reason,</if>
+            <if test="description != null">description = EXCLUDED.description,</if>
+        </trim>
+        ,version = COALESCE(EXCLUDED.version, biz.eqp_reverse_control_latest.version) + 1
     </insert>
 
     <insert id="upsertOracleBatch">

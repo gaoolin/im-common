@@ -88,7 +88,7 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
             int result = mapper.addEqpLstDoris(EqpReverseInfo);
             future.complete(1);
         } catch (Exception e) {
-            logger.error(">>>>> EqpReverseInfoServiceImpl.addAaListBatchDoris error: {}", e.getMessage());
+            logger.error(">>>>> EqpReverseInfoServiceImpl.eqLstParsedQueue error: {}", e.getMessage());
             future.completeExceptionally(e);
         }
         return future;

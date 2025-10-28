@@ -26,11 +26,11 @@ import java.util.Map;
 public class EqpReversePOJOValueSerializer implements Serializer<EqpReversePOJORecord> {
     private static final Logger logger = LoggerFactory.getLogger(EqpReversePOJOValueSerializer.class);
     private static final String SCHEMA_FILE_PATH = "avro/EqpReversePOJO.avsc";
-    // private static final Schema SCHEMA = loadSchema();
+    private static final Schema SCHEMA = loadSchema();
     // 直接使用类的Schema，与反序列化器保持一致
-    private final DatumWriter<EqpReversePOJORecord> datumWriter = new SpecificDatumWriter<>(EqpReversePOJORecord.class);
+    // private final DatumWriter<EqpReversePOJORecord> datumWriter = new SpecificDatumWriter<>(EqpReversePOJORecord.class);
 
-    // private final DatumWriter<EqpReversePOJORecord> datumWriter = new SpecificDatumWriter<>(SCHEMA);
+    private final DatumWriter<EqpReversePOJORecord> datumWriter = new SpecificDatumWriter<>(SCHEMA);
 
     private static Schema loadSchema() {
         try {

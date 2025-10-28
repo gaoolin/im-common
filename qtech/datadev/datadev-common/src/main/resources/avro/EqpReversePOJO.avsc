@@ -32,9 +32,7 @@
     },
     {
       "name": "passed",
-      "type": [
-        "boolean"
-      ],
+      "type": "boolean",
       "default": true
     },
     {

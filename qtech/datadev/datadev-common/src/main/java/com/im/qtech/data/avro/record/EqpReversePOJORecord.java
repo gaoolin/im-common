@@ -5,19 +5,17 @@
  */
 package com.im.qtech.data.avro.record;
 
-import org.apache.avro.generic.GenericArray;
-import org.apache.avro.specific.SpecificData;
-import org.apache.avro.util.Utf8;
-import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.SchemaStore;
+import org.apache.avro.specific.SpecificData;
 
 @org.apache.avro.specific.AvroGenerated
 public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 1685464011999284282L;
+  private static final long serialVersionUID = 1974286723761989806L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"policy\":\"record\",\"name\":\"EqpReversePOJORecord\",\"namespace\":\"com.im.qtech.data.avro.record\",\"fields\":[{\"name\":\"simId\",\"policy\":\"string\"},{\"name\":\"source\",\"policy\":\"string\"},{\"name\":\"module\",\"policy\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"chkDt\",\"policy\":{\"policy\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"code\",\"policy\":\"int\"},{\"name\":\"passed\",\"policy\":[\"boolean\"],\"default\":true},{\"name\":\"label\",\"policy\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"reason\",\"policy\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"description\",\"policy\":[\"string\",\"null\"],\"default\":\"defaultString\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"EqpReversePOJORecord\",\"namespace\":\"com.im.qtech.data.avro.record\",\"fields\":[{\"name\":\"simId\",\"type\":\"string\"},{\"name\":\"source\",\"type\":\"string\"},{\"name\":\"module\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"chkDt\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"code\",\"type\":\"int\"},{\"name\":\"passed\",\"type\":\"boolean\",\"default\":true},{\"name\":\"label\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"reason\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"description\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -81,7 +79,7 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
   private java.lang.CharSequence module;
   private java.time.Instant chkDt;
   private int code;
-  private java.lang.Object passed;
+  private boolean passed;
   private java.lang.CharSequence label;
   private java.lang.CharSequence reason;
   private java.lang.CharSequence description;
@@ -105,7 +103,7 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
    * @param reason The new value for reason
    * @param description The new value for description
    */
-  public EqpReversePOJORecord(java.lang.CharSequence simId, java.lang.CharSequence source, java.lang.CharSequence module, java.time.Instant chkDt, java.lang.Integer code, java.lang.Object passed, java.lang.CharSequence label, java.lang.CharSequence reason, java.lang.CharSequence description) {
+  public EqpReversePOJORecord(java.lang.CharSequence simId, java.lang.CharSequence source, java.lang.CharSequence module, java.time.Instant chkDt, java.lang.Integer code, java.lang.Boolean passed, java.lang.CharSequence label, java.lang.CharSequence reason, java.lang.CharSequence description) {
     this.simId = simId;
     this.source = source;
     this.module = module;
@@ -169,7 +167,7 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
     case 2: module = (java.lang.CharSequence)value$; break;
     case 3: chkDt = (java.time.Instant)value$; break;
     case 4: code = (java.lang.Integer)value$; break;
-    case 5: passed = value$; break;
+    case 5: passed = (java.lang.Boolean)value$; break;
     case 6: label = (java.lang.CharSequence)value$; break;
     case 7: reason = (java.lang.CharSequence)value$; break;
     case 8: description = (java.lang.CharSequence)value$; break;
@@ -266,7 +264,7 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
    * Gets the value of the 'passed' field.
    * @return The value of the 'passed' field.
    */
-  public java.lang.Object getPassed() {
+  public boolean getPassed() {
     return passed;
   }
 
@@ -275,7 +273,7 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
    * Sets the value of the 'passed' field.
    * @param value the value to set.
    */
-  public void setPassed(java.lang.Object value) {
+  public void setPassed(boolean value) {
     this.passed = value;
   }
 
@@ -376,7 +374,7 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
     private java.lang.CharSequence module;
     private java.time.Instant chkDt;
     private int code;
-    private java.lang.Object passed;
+    private boolean passed;
     private java.lang.CharSequence label;
     private java.lang.CharSequence reason;
     private java.lang.CharSequence description;
@@ -676,7 +674,7 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
       * Gets the value of the 'passed' field.
       * @return The value.
       */
-    public java.lang.Object getPassed() {
+    public boolean getPassed() {
       return passed;
     }
 
@@ -686,7 +684,7 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
       * @param value The value of 'passed'.
       * @return This builder.
       */
-    public com.im.qtech.data.avro.record.EqpReversePOJORecord.Builder setPassed(java.lang.Object value) {
+    public com.im.qtech.data.avro.record.EqpReversePOJORecord.Builder setPassed(boolean value) {
       validate(fields()[5], value);
       this.passed = value;
       fieldSetFlags()[5] = true;
@@ -707,7 +705,6 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
       * @return This builder.
       */
     public com.im.qtech.data.avro.record.EqpReversePOJORecord.Builder clearPassed() {
-      passed = null;
       fieldSetFlags()[5] = false;
       return this;
     }
@@ -842,7 +839,7 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
         record.module = fieldSetFlags()[2] ? this.module : (java.lang.CharSequence) defaultValue(fields()[2]);
         record.chkDt = fieldSetFlags()[3] ? this.chkDt : (java.time.Instant) defaultValue(fields()[3]);
         record.code = fieldSetFlags()[4] ? this.code : (java.lang.Integer) defaultValue(fields()[4]);
-        record.passed = fieldSetFlags()[5] ? this.passed :  defaultValue(fields()[5]);
+        record.passed = fieldSetFlags()[5] ? this.passed : (java.lang.Boolean) defaultValue(fields()[5]);
         record.label = fieldSetFlags()[6] ? this.label : (java.lang.CharSequence) defaultValue(fields()[6]);
         record.reason = fieldSetFlags()[7] ? this.reason : (java.lang.CharSequence) defaultValue(fields()[7]);
         record.description = fieldSetFlags()[8] ? this.description : (java.lang.CharSequence) defaultValue(fields()[8]);

@@ -1,6 +1,6 @@
 package com.im.inspection.util;
 
-import com.im.qtech.common.dpp.conf.UnifiedHadoopConfig;
+import com.im.qtech.data.dpp.conf.UnifiedHadoopConfig;
 import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;

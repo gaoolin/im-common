@@ -36,12 +36,6 @@ public class EqpReversePOJOValueDeserializer implements Deserializer<EqpReverseP
             return null;
         }
 
-        // 验证数据头部是否符合 Avro 格式
-        if (data.length < 10) { // Avro 最小有效载荷检查
-            logger.warn("Received invalid data size from topic: {}, size: {}", topic, data.length);
-            throw new SerializationException("Invalid data size for Avro message. Size: " + data.length);
-        }
-
         try (ByteArrayInputStream inputStream = new ByteArrayInputStream(data)) {
             Decoder decoder = DecoderFactory.get().binaryDecoder(inputStream, null);
             SpecificDatumReader<EqpReversePOJORecord> datumReader = new SpecificDatumReader<>(EqpReversePOJORecord.class);

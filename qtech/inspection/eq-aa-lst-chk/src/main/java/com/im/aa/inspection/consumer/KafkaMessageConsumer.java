@@ -286,6 +286,7 @@ public class KafkaMessageConsumer implements Lifecycle {
 
                 String outputTopicParsed = configManager.getProperty("kafka.output.topic.eq_lst_parsed", "qtech_im_aa_list_parsed_test_topic");
                 producer.send(new ProducerRecord<>(outputTopicParsed, messageKey, processedMessageStr));
+                sendToRabbitMQParsed(eqLstParsed);
 
                 // 4. 处理参数检查
                 logger.debug(">>>>> Step4: Performing parameter check...");
@@ -293,7 +294,7 @@ public class KafkaMessageConsumer implements Lifecycle {
 
                 // 5. 发送到 RabbitMQ
                 logger.debug(">>>>> Step5: Sending to RabbitMQ...");
-                sendToRabbitMQ(eqpReverseDO);
+                sendToRabbitMQReverse(eqpReverseDO);
 
                 // 6. 发送到Kafka
                 logger.debug(">>>>> Step6: Sending to Kafka...");
@@ -328,7 +329,7 @@ public class KafkaMessageConsumer implements Lifecycle {
      *
      * @param result 检查结果
      */
-    private void sendToRabbitMQ(EqpReverseDO result) {
+    private void sendToRabbitMQReverse(EqpReverseDO result) {
         try {
             if (rabbitChannel == null || !rabbitChannel.isOpen()) {
                 logger.warn(">>>>> RabbitMQ channel is not available, skipping message send");
@@ -336,11 +337,27 @@ public class KafkaMessageConsumer implements Lifecycle {
             }
 
             String exchangeName = configManager.getProperty("rabbitmq.exchange.name", "qtechImExchange");
-            String routingKey = configManager.getProperty("rabbitmq.routing.key", "eq.reverse.rabbit.topic");
+            String routingKey = configManager.getProperty("rabbitmq.routing.key", "eqReverseInfoQueue");
             String jsonString = objectMapper.writeValueAsString(result);
 
             rabbitChannel.basicPublish(exchangeName, routingKey, null, jsonString.getBytes());
             logger.debug(">>>>> Message sent to RabbitMQ: exchange={}, routingKey={}", exchangeName, routingKey);
+        } catch (Exception e) {
+            logger.error(">>>>> Failed to send message to RabbitMQ", e);
+        }
+    }
+
+    private void sendToRabbitMQParsed(EqLstParsed eqLstParsed) {
+        try {
+            if (rabbitChannel == null || !rabbitChannel.isOpen()) {
+                logger.warn(">>>>> RabbitMQ channel is not available, skipping message send");
+                return;
+            }
+
+            String exchangeName = configManager.getProperty("rabbitmq.exchange.name", "qtechImExchange");
+            String routingKey = "eqParsedInfoQueue";
+            String jsonString = objectMapper.writeValueAsString(eqLstParsed);
+            rabbitChannel.basicPublish(exchangeName, routingKey, null, jsonString.getBytes());
         } catch (Exception e) {
             logger.error(">>>>> Failed to send message to RabbitMQ", e);
         }

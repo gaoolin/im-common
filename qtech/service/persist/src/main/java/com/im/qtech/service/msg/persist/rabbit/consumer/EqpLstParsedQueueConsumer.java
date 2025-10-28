@@ -36,15 +36,15 @@ public class EqpLstParsedQueueConsumer {
         this.service = service;
     }
 
-    @RabbitListener(queues = "aaListParamsParsedQueue", ackMode = "MANUAL")
+    @RabbitListener(queues = "eqLstParsedQueue", ackMode = "MANUAL")
     public void receive(String msg, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) throws Exception {
-        logger.info(">>>>> receive aaListParamsParsedQueue message: {}", msg);
+        logger.info(">>>>> receive eqLstParsedQueue message: {}", msg);
         try {
             EqpLstParsed singleMessage = validateAndParseMessage(msg, channel, deliveryTag);
             service.save(singleMessage);
             channel.basicAck(deliveryTag, false);
         } catch (Exception e) {
-            logger.error(">>>>> receive aaListParamsParsedQueue message error: {}", e.getMessage(), e);
+            logger.error(">>>>> receive eqLstParsedQueue message error: {}", e.getMessage(), e);
             channel.basicNack(deliveryTag, false, false);
         }
     }

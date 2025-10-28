@@ -29,7 +29,7 @@ public class RabbitMqProducerController {
     public ApiResponse<String> sendMsg(@RequestBody String msg) {
         // 3个参数：交换机，路由键（队列名），消息。
         try {
-            rabbitMqProducer.send("eqReverseCtrlInfoExchange", "eqReverseCtrlInfoQueue", msg);
+            rabbitMqProducer.send("eqReverseInfoExchange", "eqReverseInfoQueue", msg);
             return ApiResponse.success();
         } catch (Exception e) {
             logger.error("send msg error: {}", e.getMessage());

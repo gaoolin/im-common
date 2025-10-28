@@ -1,6 +1,6 @@
 package com.im.inspection.serializer;
 
-import com.im.qtech.common.avro.record.WbOlpRawDataRecord;
+import com.im.qtech.data.avro.record.WbOlpRawDataRecord;
 import org.apache.avro.io.DatumWriter;
 import org.apache.avro.io.Encoder;
 import org.apache.avro.io.EncoderFactory;

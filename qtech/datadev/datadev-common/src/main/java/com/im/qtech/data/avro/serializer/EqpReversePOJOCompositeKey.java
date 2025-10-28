@@ -5,19 +5,18 @@
  */
 package com.im.qtech.data.avro.serializer;
 
-import org.apache.avro.generic.GenericArray;
+import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.BinaryMessageEncoder;
+import org.apache.avro.message.SchemaStore;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class EqpReversePOJOCompositeKey extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = 334711506431988265L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"policy\":\"record\",\"name\":\"EqpReversePOJOCompositeKey\",\"namespace\":\"com.im.qtech.data.avro.serializer\",\"fields\":[{\"name\":\"simId\",\"policy\":\"string\"},{\"name\":\"source\",\"policy\":\"string\"},{\"name\":\"module\",\"policy\":\"string\"},{\"name\":\"chkDt\",\"policy\":\"string\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"EqpReversePOJOCompositeKey\",\"namespace\":\"com.im.qtech.data.avro.serializer\",\"fields\":[{\"name\":\"simId\",\"type\":\"string\"},{\"name\":\"source\",\"type\":\"string\"},{\"name\":\"module\",\"type\":\"string\"},{\"name\":\"chkDt\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();

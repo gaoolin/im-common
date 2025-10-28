@@ -10,7 +10,7 @@
 
     <groupId>com.im.aa.inspection</groupId>
     <artifactId>eq-aa-lst-chk</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
     <description>AA-LIST点检</description>
     <name>eq-aa-lst-chk</name>
@@ -18,6 +18,14 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
+
+        <slf4j.version>1.7.36</slf4j.version>
+        <logback.version>1.2.11</logback.version>
+        <common.version>1.0.0</common.version>
+        <config.version>1.0.3</config.version>
+        <semiconductor.version>1.0.5</semiconductor.version>
+        <exception.version>1.0.3</exception.version>
+        <cache.version>1.0.0</cache.version>
         <!--<java.version>17</java.version>-->
     </properties>
 
@@ -26,49 +34,47 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-            <optional>true</optional> <!--标记可选依赖-->
+            <version>1.7.36</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-            <optional>true</optional> <!--标记可选依赖-->
+            <version>1.2.11</version>
         </dependency>
 
         <dependency>
             <groupId>org.im.common</groupId>
             <artifactId>common</artifactId>
-            <version>${common.version}</version>
+            <version>1.0.1</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.im.config</groupId>
             <artifactId>config</artifactId>
-            <version>${config.version}</version>
+            <version>1.0.3</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.im.semiconductor</groupId>
             <artifactId>semiconductor</artifactId>
-            <version>${semiconductor.version}</version>
+            <version>1.0.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.im.exception</groupId>
             <artifactId>exception</artifactId>
-            <version>${exception.version}</version>
+            <version>1.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.im.cache</groupId>
             <artifactId>cache</artifactId>
-            <version>${cache.version}</version>
+            <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.im.qtech.data</groupId>
             <artifactId>datadev-common</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -90,6 +96,12 @@
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
+            <version>3.21.12</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.17.2</version>
         </dependency>
 
         <dependency>
@@ -104,32 +116,35 @@
             <version>5.26.0</version>
         </dependency>
 
-        <!-- commons -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-compress</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+            <version>2.14.3</version>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.36</version>
             <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
+            <version>4.6.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.calcite.avatica</groupId>
+            <artifactId>avatica</artifactId>
+            <version>1.19.0</version>
         </dependency>
 
     </dependencies>
@@ -139,6 +154,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.12.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -149,6 +165,7 @@
             <plugin>
                 <groupId>com.github.os72</groupId>
                 <artifactId>protoc-jar-maven-plugin</artifactId>
+                <version>3.11.4</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
@@ -176,6 +193,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.3.0</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
@@ -195,6 +213,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.6.1</version>
                 <executions>
                     <execution>
                         <id>copy-dependencies</id>

@@ -1,6 +1,6 @@
 package com.im.inspection.serializer;
 
-import com.im.qtech.common.avro.record.EqpReversePOJORecord;
+import com.im.qtech.data.avro.record.EqpReversePOJORecord;
 import org.apache.avro.io.DatumWriter;
 import org.apache.avro.io.Encoder;
 import org.apache.avro.io.EncoderFactory;

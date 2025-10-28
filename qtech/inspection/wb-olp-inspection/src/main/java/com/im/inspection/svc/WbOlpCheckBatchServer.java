@@ -3,7 +3,7 @@ package com.im.inspection.svc;
 import com.im.inspection.config.DppConfigManager;
 import com.im.inspection.dpp.batch.WbOlpCheckBatchEngine;
 import com.im.inspection.util.log.TaskTimerRecorder;
-import com.im.qtech.common.dpp.SparkInitConf;
+import com.im.qtech.data.dpp.SparkInitConf;
 import org.apache.spark.SparkConf;
 import org.apache.spark.sql.SparkSession;
 import org.im.common.batch.config.BatchConfig;

@@ -5,19 +5,17 @@
  */
 package com.im.qtech.data.avro.record;
 
-import org.apache.avro.generic.GenericArray;
-import org.apache.avro.specific.SpecificData;
-import org.apache.avro.util.Utf8;
-import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.SchemaStore;
+import org.apache.avro.specific.SpecificData;
 
 @org.apache.avro.specific.AvroGenerated
 public class WbOlpRawDataRecord extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = -8282564184627152293L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"policy\":\"record\",\"name\":\"WbOlpRawDataRecord\",\"namespace\":\"com.im.qtech.data.avro.record\",\"fields\":[{\"name\":\"dt\",\"policy\":{\"policy\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"simId\",\"policy\":\"string\"},{\"name\":\"module\",\"policy\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"wireId\",\"policy\":\"int\"},{\"name\":\"leadX\",\"policy\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"leadY\",\"policy\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"padX\",\"policy\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"padY\",\"policy\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"checkPort\",\"policy\":\"int\"},{\"name\":\"piecesIndex\",\"policy\":\"int\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"WbOlpRawDataRecord\",\"namespace\":\"com.im.qtech.data.avro.record\",\"fields\":[{\"name\":\"dt\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"simId\",\"type\":\"string\"},{\"name\":\"module\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"wireId\",\"type\":\"int\"},{\"name\":\"leadX\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"leadY\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"padX\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"padY\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"checkPort\",\"type\":\"int\"},{\"name\":\"piecesIndex\",\"type\":\"int\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();

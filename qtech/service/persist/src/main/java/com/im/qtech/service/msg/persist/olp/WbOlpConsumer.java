@@ -57,7 +57,7 @@ public class WbOlpConsumer {
     @Autowired
     private KafkaTemplate<Long, EqpReversePOJORecord> kafkaTemplate;
 
-    @KafkaListener(topics = WB_OLP_CHECK_KAFKA_TOPIC,
+    @KafkaListener(topics = KAFKA_WB_OLP_CHK_RES_TOPIC_TEST,
             containerFactory = "EqReverseCtrlInfoContainerFactory",
             groupId = "im-framework-group")
     public void consume(List<ConsumerRecord<Long, EqpReversePOJORecord>> records, Acknowledgment acknowledgment) {
@@ -115,7 +115,7 @@ public class WbOlpConsumer {
     }
 
     private void handleFailedRecord(ConsumerRecord<Long, EqpReversePOJORecord> record, Exception e) {
-        kafkaTemplate.send(WB_OLP_CHECK_KAFKA_TOPIC + "-dlq", record.key(), record.value());
+        kafkaTemplate.send(KAFKA_WB_OLP_CHK_RES_TOPIC_TEST + "-dlq", record.key(), record.value());
         log.warn(">>>>> Failed to process record. Sending to DLQ. Topic={}, Partition={}, Offset={}, Exception={}",
                 record.topic(), record.partition(), record.offset(), e.getMessage());
     }
