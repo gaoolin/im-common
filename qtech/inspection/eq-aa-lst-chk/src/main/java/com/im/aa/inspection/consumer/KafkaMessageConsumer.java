@@ -355,7 +355,7 @@ public class KafkaMessageConsumer implements Lifecycle {
             }
 
             String exchangeName = configManager.getProperty("rabbitmq.exchange.name", "qtechImExchange");
-            String routingKey = "eqParsedInfoQueue";
+            String routingKey = "eqLstParsedQueue";
             String jsonString = objectMapper.writeValueAsString(eqLstParsed);
             rabbitChannel.basicPublish(exchangeName, routingKey, null, jsonString.getBytes());
         } catch (Exception e) {

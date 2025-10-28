@@ -29,7 +29,6 @@ public class EqpLstParsed extends EqLstPOJO {
 
     private String simId;
 
-    @JsonProperty("prodType")
     private String module;
 
     @TableField(typeHandler = PGJsonbTypeHandler.class)

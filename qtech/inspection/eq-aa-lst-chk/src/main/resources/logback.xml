@@ -47,12 +47,12 @@
         <appender-ref ref="CONSOLE"/>
     </logger>
 
-    <logger name="com.im.aa.inspection.parser.item.ItemEpoxyInspectionParser" level="INFO" additivity="false">
+    <logger name="com.im.aa.inspection.parser" level="INFO" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>
 
     <!-- 根日志级别配置 -->
-    <root level="INFO">
+    <root level="WARN">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>
