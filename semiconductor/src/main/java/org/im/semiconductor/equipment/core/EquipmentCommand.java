@@ -1,6 +1,6 @@
 package org.im.semiconductor.equipment.core;
 
-import org.im.exception.type.eqp.EquipmentException;
+import org.im.common.exception.type.eqp.EquipmentException;
 
 /**
  * 设备命令接口

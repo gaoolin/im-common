@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
 public interface IEqpReverseInfoService {
     CompletableFuture<Integer> upsertOracleAsync(EqpReverseInfo EqpReverseInfo);
 
-    CompletableFuture<Integer> upsertPostgresAsync(EqpReverseInfo EqpReverseInfo);
+    CompletableFuture<Integer> upsertPGAsync(EqpReverseInfo EqpReverseInfo);
 
     CompletableFuture<Integer> upsertDorisAsync(EqpReverseInfo EqpReverseInfo);
 
@@ -25,7 +25,7 @@ public interface IEqpReverseInfoService {
 
     int upsertOracleBatch(List<EqpReverseInfo> list);
 
-    int upsertPostgresBatch(List<EqpReverseInfo> list);
+    int upsertPGBatch(List<EqpReverseInfo> list);
 
     int addWbOlpChkDorisBatch(List<EqpReverseInfo> list);
 }

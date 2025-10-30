@@ -1,6 +1,6 @@
 package org.im.orm.mapping;
 
-import org.im.exception.type.orm.ORMException;
+import org.im.common.exception.type.orm.ORMException;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

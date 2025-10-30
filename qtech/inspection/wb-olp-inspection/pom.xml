@@ -130,14 +130,15 @@
             <version>${config.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.im.exception</groupId>
-            <artifactId>exception</artifactId>
-            <version>${exception.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.im.common</groupId>
             <artifactId>common</artifactId>
             <version>${common.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.im.qtech.data</groupId>
+            <artifactId>datadev-common</artifactId>
+            <version>1.0.6</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

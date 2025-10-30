@@ -3,6 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/datadev-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/datadev-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eqp-ctx-data-etl/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eqp-ctx-data-etl/src/main/scala" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wb-wire-usage-etl/src/main/resources" charset="UTF-8" />

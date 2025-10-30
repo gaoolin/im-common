@@ -1,6 +1,6 @@
 package org.im.semiconductor.quality.core;
 
-import org.im.exception.type.eqp.SemiconductorException;
+import org.im.common.exception.type.eqp.SemiconductorException;
 
 /**
  * @author gaozhilin

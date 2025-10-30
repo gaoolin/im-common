@@ -2,8 +2,8 @@ package com.im.qtech.data.dpp;
 
 import com.im.qtech.data.dpp.conf.UnifiedSparkConfig;
 import org.apache.spark.SparkConf;
-import org.im.exception.constants.ErrorCode;
-import org.im.exception.type.common.BusinessException;
+import org.im.common.exception.constants.ErrorCode;
+import org.im.common.exception.type.common.BusinessException;
 
 /**
  * 用于初始化SparkSession的配置

@@ -12,6 +12,7 @@
     <modules>
         <module>wb-wire-usage-etl</module>
         <module>datadev-common</module>
+        <module>eqp-ctx-data-etl</module>
     </modules>
 
     <properties>

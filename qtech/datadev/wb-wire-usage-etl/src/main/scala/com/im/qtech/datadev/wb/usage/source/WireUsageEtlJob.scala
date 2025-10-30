@@ -165,6 +165,7 @@ class WireUsageEtlJob extends AbstractEtlJob {
             // 使用Doris数据目标写入数据
             val dorisSink = new DorisDataSink()
             val dorisConfig = Map(
+              "batchSize" -> 10000, // 可调整
               "driver" -> MYSQL_JDBC_DRIVER,
               "url" -> TARGET_DORIS_URL,
               "table" -> RES_DORIS_TABLE_NAME,

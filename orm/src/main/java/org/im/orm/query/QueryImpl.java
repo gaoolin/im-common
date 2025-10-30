@@ -1,6 +1,6 @@
 package org.im.orm.query;
 
-import org.im.exception.type.orm.ORMException;
+import org.im.common.exception.type.orm.ORMException;
 import org.im.orm.core.Session;
 import org.im.orm.mapping.AnnotationProcessor;
 import org.im.orm.mapping.AssociationMetadata;

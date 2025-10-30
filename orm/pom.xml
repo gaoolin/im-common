@@ -57,9 +57,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.im.exception</groupId>
-            <artifactId>exception</artifactId>
-            <version>${exception.version}</version>
+            <groupId>org.im.common</groupId>
+            <artifactId>common</artifactId>
+            <version>${common.version}</version>
             <scope>compile</scope>
         </dependency>
 

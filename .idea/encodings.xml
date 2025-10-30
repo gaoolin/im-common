@@ -20,6 +20,9 @@
     <file url="file://$PROJECT_DIR$/qtech/api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/datadev/datadev-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/datadev/datadev-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/datadev/eqp-ctx-data-etl/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/datadev/eqp-ctx-data-etl/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/datadev/eqp-ctx-data-etl/src/main/scala" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/datadev/spark/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/datadev/spark/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/datadev/src/main/java" charset="UTF-8" />

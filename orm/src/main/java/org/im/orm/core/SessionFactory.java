@@ -1,7 +1,6 @@
 package org.im.orm.core;
 
-
-import org.im.exception.type.orm.ORMException;
+import org.im.common.exception.type.orm.ORMException;
 import org.im.orm.datasource.DataSourceManager;
 
 /**

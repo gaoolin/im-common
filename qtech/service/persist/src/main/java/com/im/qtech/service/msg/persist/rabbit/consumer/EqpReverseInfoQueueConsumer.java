@@ -101,7 +101,7 @@ public class EqpReverseInfoQueueConsumer implements DisposableBean {
             hasError.set(true);
         }
 
-        CompletableFuture<Integer> exceptionally = service.upsertPostgresAsync(message).exceptionally(ex -> {
+        CompletableFuture<Integer> exceptionally = service.upsertPGAsync(message).exceptionally(ex -> {
             logger.error(">>>>> Postgres upsert 异常: ", ex);
             hasError.set(true);
             return -1;

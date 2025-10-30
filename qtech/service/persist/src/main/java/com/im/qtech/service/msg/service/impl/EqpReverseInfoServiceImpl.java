@@ -54,9 +54,10 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
         return CompletableFuture.completedFuture(0);
     }
 
+    @Async
     @DS(DSName.FIRST)
     @Override
-    public CompletableFuture<Integer> upsertPostgresAsync(EqpReverseInfo EqpReverseInfo) {
+    public CompletableFuture<Integer> upsertPGAsync(EqpReverseInfo EqpReverseInfo) {
         if (EqpReverseInfo != null) {
             mapper.upsertPostgres(EqpReverseInfo);
             return CompletableFuture.completedFuture(1);
@@ -130,7 +131,7 @@ public class EqpReverseInfoServiceImpl implements IEqpReverseInfoService {
 
     @DS(DSName.FIRST)
     @Override
-    public int upsertPostgresBatch(List<EqpReverseInfo> list) {
+    public int upsertPGBatch(List<EqpReverseInfo> list) {
         if (CollectionUtils.isEmpty(list)) {
             return 0;
         }

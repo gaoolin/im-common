@@ -1,7 +1,7 @@
 package org.im.common.serde.protobuf;
 
 import com.google.protobuf.Parser;
-import org.im.exception.type.serde.ProtobufSerializationException;
+import org.im.common.exception.type.serde.ProtobufSerializationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

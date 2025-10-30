@@ -43,11 +43,6 @@
             <artifactId>common</artifactId>
             <version>${common.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.im.exception</groupId>
-            <artifactId>exception</artifactId>
-            <version>${exception.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
