@@ -1,0 +1,26 @@
+# 开发环境配置
+server:
+  port: 8080
+
+# AWS S3配置（开发环境）
+aws:
+  s3:
+    accessKey: ZUNV3E08FVAQPSWC1Q41
+    secretKey: dacVadaDCVTZ3RmGnv2PSFVKSyOgM9lSAaSUGxuw
+    region: us-east-1
+    endpoint: http://10.170.6.40:31033
+    bucket: default
+
+# 存储服务配置
+storage:
+  default: ceph-s3
+  providers:
+    - type: ceph-s3
+      enabled: true
+    - type: hdfs
+      enabled: false
+
+# 日志配置
+logging:
+  level:
+    com.im.storage: DEBUG

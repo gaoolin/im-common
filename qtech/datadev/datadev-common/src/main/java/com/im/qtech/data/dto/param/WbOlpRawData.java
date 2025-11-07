@@ -24,7 +24,7 @@ public class WbOlpRawData implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime dt;
     private String simId;
-    private String module;
+    private String moduleId;
     private Integer wireId;
     private String leadX;
     private String leadY;

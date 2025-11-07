@@ -32,7 +32,7 @@ public class EqLstPOJO implements Serializable {
     private static final long serialVersionUID = 529L;
 
     // 基础设备参数
-    private String module;
+    private String moduleId;
     private String aa1;
     private String aa2;
     private String aa3;

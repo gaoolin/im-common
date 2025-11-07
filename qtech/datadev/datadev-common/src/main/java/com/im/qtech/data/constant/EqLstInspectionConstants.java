@@ -14,7 +14,7 @@ public class EqLstInspectionConstants {
      * 即所有的List项
      */
     public static final List<String> PROPERTIES_TO_COMPARE = Arrays.asList(
-            "module",
+            "moduleId",
             "aa1",
             "aa2",
             "aa3",

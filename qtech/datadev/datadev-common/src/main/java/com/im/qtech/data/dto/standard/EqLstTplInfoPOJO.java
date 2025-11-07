@@ -17,7 +17,7 @@ import java.util.Objects;
 public class EqLstTplInfoPOJO implements Serializable {
     private static final long serialVersionUID = 529L;
 
-    private String module;
+    private String moduleId;
     private Long listParams;
     private Long itemParams;
     private Integer status;
@@ -32,7 +32,7 @@ public class EqLstTplInfoPOJO implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EqLstTplInfoPOJO that = (EqLstTplInfoPOJO) o;
-        return Objects.equals(module, that.module) &&
+        return Objects.equals(moduleId, that.moduleId) &&
                 Objects.equals(listParams, that.listParams) &&
                 Objects.equals(itemParams, that.itemParams) &&
                 Objects.equals(status, that.status);
@@ -40,6 +40,6 @@ public class EqLstTplInfoPOJO implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(module, listParams, itemParams, status);
+        return Objects.hash(moduleId, listParams, itemParams, status);
     }
 }

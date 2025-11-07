@@ -15,7 +15,7 @@
       "type": "string"
     },
     {
-      "name": "module",
+      "name": "moduleId",
       "type": [
         "string",
         "null"

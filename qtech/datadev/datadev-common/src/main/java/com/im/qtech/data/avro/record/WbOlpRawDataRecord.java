@@ -12,10 +12,10 @@ import org.apache.avro.specific.SpecificData;
 
 @org.apache.avro.specific.AvroGenerated
 public class WbOlpRawDataRecord extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -8282564184627152293L;
+  private static final long serialVersionUID = -8907790609849633467L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"WbOlpRawDataRecord\",\"namespace\":\"com.im.qtech.data.avro.record\",\"fields\":[{\"name\":\"dt\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"simId\",\"type\":\"string\"},{\"name\":\"module\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"wireId\",\"type\":\"int\"},{\"name\":\"leadX\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"leadY\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"padX\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"padY\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"checkPort\",\"type\":\"int\"},{\"name\":\"piecesIndex\",\"type\":\"int\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"WbOlpRawDataRecord\",\"namespace\":\"com.im.qtech.data.avro.record\",\"fields\":[{\"name\":\"dt\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"simId\",\"type\":\"string\"},{\"name\":\"moduleId\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"wireId\",\"type\":\"int\"},{\"name\":\"leadX\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"leadY\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"padX\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"padY\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"checkPort\",\"type\":\"int\"},{\"name\":\"piecesIndex\",\"type\":\"int\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -76,7 +76,7 @@ public class WbOlpRawDataRecord extends org.apache.avro.specific.SpecificRecordB
 
   private java.time.Instant dt;
   private java.lang.CharSequence simId;
-  private java.lang.CharSequence module;
+  private java.lang.CharSequence moduleId;
   private int wireId;
   private java.lang.CharSequence leadX;
   private java.lang.CharSequence leadY;
@@ -96,7 +96,7 @@ public class WbOlpRawDataRecord extends org.apache.avro.specific.SpecificRecordB
    * All-args constructor.
    * @param dt The new value for dt
    * @param simId The new value for simId
-   * @param module The new value for module
+   * @param moduleId The new value for moduleId
    * @param wireId The new value for wireId
    * @param leadX The new value for leadX
    * @param leadY The new value for leadY
@@ -105,10 +105,10 @@ public class WbOlpRawDataRecord extends org.apache.avro.specific.SpecificRecordB
    * @param checkPort The new value for checkPort
    * @param piecesIndex The new value for piecesIndex
    */
-  public WbOlpRawDataRecord(java.time.Instant dt, java.lang.CharSequence simId, java.lang.CharSequence module, java.lang.Integer wireId, java.lang.CharSequence leadX, java.lang.CharSequence leadY, java.lang.CharSequence padX, java.lang.CharSequence padY, java.lang.Integer checkPort, java.lang.Integer piecesIndex) {
+  public WbOlpRawDataRecord(java.time.Instant dt, java.lang.CharSequence simId, java.lang.CharSequence moduleId, java.lang.Integer wireId, java.lang.CharSequence leadX, java.lang.CharSequence leadY, java.lang.CharSequence padX, java.lang.CharSequence padY, java.lang.Integer checkPort, java.lang.Integer piecesIndex) {
     this.dt = dt.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
     this.simId = simId;
-    this.module = module;
+    this.moduleId = moduleId;
     this.wireId = wireId;
     this.leadX = leadX;
     this.leadY = leadY;
@@ -130,7 +130,7 @@ public class WbOlpRawDataRecord extends org.apache.avro.specific.SpecificRecordB
     switch (field$) {
     case 0: return dt;
     case 1: return simId;
-    case 2: return module;
+    case 2: return moduleId;
     case 3: return wireId;
     case 4: return leadX;
     case 5: return leadY;
@@ -169,7 +169,7 @@ public class WbOlpRawDataRecord extends org.apache.avro.specific.SpecificRecordB
     switch (field$) {
     case 0: dt = (java.time.Instant)value$; break;
     case 1: simId = (java.lang.CharSequence)value$; break;
-    case 2: module = (java.lang.CharSequence)value$; break;
+    case 2: moduleId = (java.lang.CharSequence)value$; break;
     case 3: wireId = (java.lang.Integer)value$; break;
     case 4: leadX = (java.lang.CharSequence)value$; break;
     case 5: leadY = (java.lang.CharSequence)value$; break;
@@ -216,20 +216,20 @@ public class WbOlpRawDataRecord extends org.apache.avro.specific.SpecificRecordB
   }
 
   /**
-   * Gets the value of the 'module' field.
-   * @return The value of the 'module' field.
+   * Gets the value of the 'moduleId' field.
+   * @return The value of the 'moduleId' field.
    */
-  public java.lang.CharSequence getModule() {
-    return module;
+  public java.lang.CharSequence getModuleId() {
+    return moduleId;
   }
 
 
   /**
-   * Sets the value of the 'module' field.
+   * Sets the value of the 'moduleId' field.
    * @param value the value to set.
    */
-  public void setModule(java.lang.CharSequence value) {
-    this.module = value;
+  public void setModuleId(java.lang.CharSequence value) {
+    this.moduleId = value;
   }
 
   /**
@@ -394,7 +394,7 @@ public class WbOlpRawDataRecord extends org.apache.avro.specific.SpecificRecordB
 
     private java.time.Instant dt;
     private java.lang.CharSequence simId;
-    private java.lang.CharSequence module;
+    private java.lang.CharSequence moduleId;
     private int wireId;
     private java.lang.CharSequence leadX;
     private java.lang.CharSequence leadY;
@@ -422,8 +422,8 @@ public class WbOlpRawDataRecord extends org.apache.avro.specific.SpecificRecordB
         this.simId = data().deepCopy(fields()[1].schema(), other.simId);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
-      if (isValidValue(fields()[2], other.module)) {
-        this.module = data().deepCopy(fields()[2].schema(), other.module);
+      if (isValidValue(fields()[2], other.moduleId)) {
+        this.moduleId = data().deepCopy(fields()[2].schema(), other.moduleId);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
       if (isValidValue(fields()[3], other.wireId)) {
@@ -470,8 +470,8 @@ public class WbOlpRawDataRecord extends org.apache.avro.specific.SpecificRecordB
         this.simId = data().deepCopy(fields()[1].schema(), other.simId);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.module)) {
-        this.module = data().deepCopy(fields()[2].schema(), other.module);
+      if (isValidValue(fields()[2], other.moduleId)) {
+        this.moduleId = data().deepCopy(fields()[2].schema(), other.moduleId);
         fieldSetFlags()[2] = true;
       }
       if (isValidValue(fields()[3], other.wireId)) {
@@ -584,41 +584,41 @@ public class WbOlpRawDataRecord extends org.apache.avro.specific.SpecificRecordB
     }
 
     /**
-      * Gets the value of the 'module' field.
+      * Gets the value of the 'moduleId' field.
       * @return The value.
       */
-    public java.lang.CharSequence getModule() {
-      return module;
+    public java.lang.CharSequence getModuleId() {
+      return moduleId;
     }
 
 
     /**
-      * Sets the value of the 'module' field.
-      * @param value The value of 'module'.
+      * Sets the value of the 'moduleId' field.
+      * @param value The value of 'moduleId'.
       * @return This builder.
       */
-    public com.im.qtech.data.avro.record.WbOlpRawDataRecord.Builder setModule(java.lang.CharSequence value) {
+    public com.im.qtech.data.avro.record.WbOlpRawDataRecord.Builder setModuleId(java.lang.CharSequence value) {
       validate(fields()[2], value);
-      this.module = value;
+      this.moduleId = value;
       fieldSetFlags()[2] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'module' field has been set.
-      * @return True if the 'module' field has been set, false otherwise.
+      * Checks whether the 'moduleId' field has been set.
+      * @return True if the 'moduleId' field has been set, false otherwise.
       */
-    public boolean hasModule() {
+    public boolean hasModuleId() {
       return fieldSetFlags()[2];
     }
 
 
     /**
-      * Clears the value of the 'module' field.
+      * Clears the value of the 'moduleId' field.
       * @return This builder.
       */
-    public com.im.qtech.data.avro.record.WbOlpRawDataRecord.Builder clearModule() {
-      module = null;
+    public com.im.qtech.data.avro.record.WbOlpRawDataRecord.Builder clearModuleId() {
+      moduleId = null;
       fieldSetFlags()[2] = false;
       return this;
     }
@@ -907,7 +907,7 @@ public class WbOlpRawDataRecord extends org.apache.avro.specific.SpecificRecordB
         WbOlpRawDataRecord record = new WbOlpRawDataRecord();
         record.dt = fieldSetFlags()[0] ? this.dt : (java.time.Instant) defaultValue(fields()[0]);
         record.simId = fieldSetFlags()[1] ? this.simId : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.module = fieldSetFlags()[2] ? this.module : (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.moduleId = fieldSetFlags()[2] ? this.moduleId : (java.lang.CharSequence) defaultValue(fields()[2]);
         record.wireId = fieldSetFlags()[3] ? this.wireId : (java.lang.Integer) defaultValue(fields()[3]);
         record.leadX = fieldSetFlags()[4] ? this.leadX : (java.lang.CharSequence) defaultValue(fields()[4]);
         record.leadY = fieldSetFlags()[5] ? this.leadY : (java.lang.CharSequence) defaultValue(fields()[5]);

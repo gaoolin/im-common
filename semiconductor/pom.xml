@@ -9,7 +9,7 @@
 
     <groupId>org.im.semiconductor</groupId>
     <artifactId>semiconductor</artifactId>
-    <version>${semiconductor.version</version>
+    <version>1.0.5</version>
     <packaging>jar</packaging>
 
     <name>semiconductor</name>

@@ -1,0 +1,26 @@
+# 生产环境配置
+server:
+  port: 8080
+
+# AWS S3配置（生产环境）
+aws:
+  s3:
+    accessKey: ${AWS_ACCESS_KEY:ZUNV3E08FVAQPSWC1Q41}
+    secretKey: ${AWS_SECRET_KEY:dacVadaDCVTZ3RmGnv2PSFVKSyOgM9lSAaSUGxuw}
+    region: us-east-1
+    endpoint: ${AWS_ENDPOINT:http://10.170.6.40:31033}
+    bucket: ${AWS_BUCKET:default}
+
+# 存储服务配置
+storage:
+  default: ${STORAGE_DEFAULT:ceph-s3}
+  providers:
+    - type: ceph-s3
+      enabled: true
+    - type: hdfs
+      enabled: ${HDFS_ENABLED:false}
+
+# 日志配置
+logging:
+  level:
+    com.im.storage: INFO

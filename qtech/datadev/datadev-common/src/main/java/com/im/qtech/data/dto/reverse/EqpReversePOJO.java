@@ -20,7 +20,7 @@ public class EqpReversePOJO implements Serializable {
     private static final long serialVersionUID = 1L;
     private String simId;
     private String source;
-    private String module;
+    private String moduleId;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime chkDt;
     private Integer code;

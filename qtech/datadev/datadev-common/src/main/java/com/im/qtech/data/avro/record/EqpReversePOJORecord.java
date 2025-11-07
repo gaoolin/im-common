@@ -12,10 +12,10 @@ import org.apache.avro.specific.SpecificData;
 
 @org.apache.avro.specific.AvroGenerated
 public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 1974286723761989806L;
+  private static final long serialVersionUID = -285569509621809637L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"EqpReversePOJORecord\",\"namespace\":\"com.im.qtech.data.avro.record\",\"fields\":[{\"name\":\"simId\",\"type\":\"string\"},{\"name\":\"source\",\"type\":\"string\"},{\"name\":\"module\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"chkDt\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"code\",\"type\":\"int\"},{\"name\":\"passed\",\"type\":\"boolean\",\"default\":true},{\"name\":\"label\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"reason\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"description\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"EqpReversePOJORecord\",\"namespace\":\"com.im.qtech.data.avro.record\",\"fields\":[{\"name\":\"simId\",\"type\":\"string\"},{\"name\":\"source\",\"type\":\"string\"},{\"name\":\"moduleId\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"chkDt\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"code\",\"type\":\"int\"},{\"name\":\"passed\",\"type\":\"boolean\",\"default\":true},{\"name\":\"label\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"reason\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"},{\"name\":\"description\",\"type\":[\"string\",\"null\"],\"default\":\"defaultString\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -76,7 +76,7 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
 
   private java.lang.CharSequence simId;
   private java.lang.CharSequence source;
-  private java.lang.CharSequence module;
+  private java.lang.CharSequence moduleId;
   private java.time.Instant chkDt;
   private int code;
   private boolean passed;
@@ -95,7 +95,7 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
    * All-args constructor.
    * @param simId The new value for simId
    * @param source The new value for source
-   * @param module The new value for module
+   * @param moduleId The new value for moduleId
    * @param chkDt The new value for chkDt
    * @param code The new value for code
    * @param passed The new value for passed
@@ -103,10 +103,10 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
    * @param reason The new value for reason
    * @param description The new value for description
    */
-  public EqpReversePOJORecord(java.lang.CharSequence simId, java.lang.CharSequence source, java.lang.CharSequence module, java.time.Instant chkDt, java.lang.Integer code, java.lang.Boolean passed, java.lang.CharSequence label, java.lang.CharSequence reason, java.lang.CharSequence description) {
+  public EqpReversePOJORecord(java.lang.CharSequence simId, java.lang.CharSequence source, java.lang.CharSequence moduleId, java.time.Instant chkDt, java.lang.Integer code, java.lang.Boolean passed, java.lang.CharSequence label, java.lang.CharSequence reason, java.lang.CharSequence description) {
     this.simId = simId;
     this.source = source;
-    this.module = module;
+    this.moduleId = moduleId;
     this.chkDt = chkDt.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
     this.code = code;
     this.passed = passed;
@@ -127,7 +127,7 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
     switch (field$) {
     case 0: return simId;
     case 1: return source;
-    case 2: return module;
+    case 2: return moduleId;
     case 3: return chkDt;
     case 4: return code;
     case 5: return passed;
@@ -164,7 +164,7 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
     switch (field$) {
     case 0: simId = (java.lang.CharSequence)value$; break;
     case 1: source = (java.lang.CharSequence)value$; break;
-    case 2: module = (java.lang.CharSequence)value$; break;
+    case 2: moduleId = (java.lang.CharSequence)value$; break;
     case 3: chkDt = (java.time.Instant)value$; break;
     case 4: code = (java.lang.Integer)value$; break;
     case 5: passed = (java.lang.Boolean)value$; break;
@@ -210,20 +210,20 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
   }
 
   /**
-   * Gets the value of the 'module' field.
-   * @return The value of the 'module' field.
+   * Gets the value of the 'moduleId' field.
+   * @return The value of the 'moduleId' field.
    */
-  public java.lang.CharSequence getModule() {
-    return module;
+  public java.lang.CharSequence getModuleId() {
+    return moduleId;
   }
 
 
   /**
-   * Sets the value of the 'module' field.
+   * Sets the value of the 'moduleId' field.
    * @param value the value to set.
    */
-  public void setModule(java.lang.CharSequence value) {
-    this.module = value;
+  public void setModuleId(java.lang.CharSequence value) {
+    this.moduleId = value;
   }
 
   /**
@@ -371,7 +371,7 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
 
     private java.lang.CharSequence simId;
     private java.lang.CharSequence source;
-    private java.lang.CharSequence module;
+    private java.lang.CharSequence moduleId;
     private java.time.Instant chkDt;
     private int code;
     private boolean passed;
@@ -398,8 +398,8 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
         this.source = data().deepCopy(fields()[1].schema(), other.source);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
-      if (isValidValue(fields()[2], other.module)) {
-        this.module = data().deepCopy(fields()[2].schema(), other.module);
+      if (isValidValue(fields()[2], other.moduleId)) {
+        this.moduleId = data().deepCopy(fields()[2].schema(), other.moduleId);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
       if (isValidValue(fields()[3], other.chkDt)) {
@@ -442,8 +442,8 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
         this.source = data().deepCopy(fields()[1].schema(), other.source);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.module)) {
-        this.module = data().deepCopy(fields()[2].schema(), other.module);
+      if (isValidValue(fields()[2], other.moduleId)) {
+        this.moduleId = data().deepCopy(fields()[2].schema(), other.moduleId);
         fieldSetFlags()[2] = true;
       }
       if (isValidValue(fields()[3], other.chkDt)) {
@@ -553,41 +553,41 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
     }
 
     /**
-      * Gets the value of the 'module' field.
+      * Gets the value of the 'moduleId' field.
       * @return The value.
       */
-    public java.lang.CharSequence getModule() {
-      return module;
+    public java.lang.CharSequence getModuleId() {
+      return moduleId;
     }
 
 
     /**
-      * Sets the value of the 'module' field.
-      * @param value The value of 'module'.
+      * Sets the value of the 'moduleId' field.
+      * @param value The value of 'moduleId'.
       * @return This builder.
       */
-    public com.im.qtech.data.avro.record.EqpReversePOJORecord.Builder setModule(java.lang.CharSequence value) {
+    public com.im.qtech.data.avro.record.EqpReversePOJORecord.Builder setModuleId(java.lang.CharSequence value) {
       validate(fields()[2], value);
-      this.module = value;
+      this.moduleId = value;
       fieldSetFlags()[2] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'module' field has been set.
-      * @return True if the 'module' field has been set, false otherwise.
+      * Checks whether the 'moduleId' field has been set.
+      * @return True if the 'moduleId' field has been set, false otherwise.
       */
-    public boolean hasModule() {
+    public boolean hasModuleId() {
       return fieldSetFlags()[2];
     }
 
 
     /**
-      * Clears the value of the 'module' field.
+      * Clears the value of the 'moduleId' field.
       * @return This builder.
       */
-    public com.im.qtech.data.avro.record.EqpReversePOJORecord.Builder clearModule() {
-      module = null;
+    public com.im.qtech.data.avro.record.EqpReversePOJORecord.Builder clearModuleId() {
+      moduleId = null;
       fieldSetFlags()[2] = false;
       return this;
     }
@@ -836,7 +836,7 @@ public class EqpReversePOJORecord extends org.apache.avro.specific.SpecificRecor
         EqpReversePOJORecord record = new EqpReversePOJORecord();
         record.simId = fieldSetFlags()[0] ? this.simId : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.source = fieldSetFlags()[1] ? this.source : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.module = fieldSetFlags()[2] ? this.module : (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.moduleId = fieldSetFlags()[2] ? this.moduleId : (java.lang.CharSequence) defaultValue(fields()[2]);
         record.chkDt = fieldSetFlags()[3] ? this.chkDt : (java.time.Instant) defaultValue(fields()[3]);
         record.code = fieldSetFlags()[4] ? this.code : (java.lang.Integer) defaultValue(fields()[4]);
         record.passed = fieldSetFlags()[5] ? this.passed : (java.lang.Boolean) defaultValue(fields()[5]);
