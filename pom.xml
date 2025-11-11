@@ -23,7 +23,7 @@
         <module>qtech</module>
         <module>common</module>
         <module>etl</module>
-        <module>storage</module>
+        <module>storage-service</module>
     </modules>
 
     <properties>

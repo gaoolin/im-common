@@ -1,0 +1,42 @@
+server:
+  port: 8077
+  servlet:
+    context-path: /storage
+
+# 存储服务配置
+# 存储服务配置
+storage:
+  default: ceph-s3
+  providers:
+    - type: ceph-s3
+      enabled: true
+    - type: hdfs
+      enabled: false
+    - type: minio
+      enabled: false
+
+# AWS S3配置（用于Ceph连接）
+aws:
+  s3:
+    accessKeyId: ZUNV3E08FVAQPSWC1Q41
+    secretAccessKey: dacVadaDCVTZ3RmGnv2PSFVKSyOgM9lSAaSUGxuw
+    region: us-east-1
+    endpoint: http://10.170.6.40:31033
+    bucket: default
+
+
+# Spring配置
+spring:
+  application:
+    name: im-storage-service
+  servlet:
+    multipart:
+      max-file-size: 300MB
+      max-request-size: 300MB
+
+# 日志配置
+logging:
+  level:
+    com.im.storage: DEBUG
+    software.amazon.awssdk: DEBUG
+    root: DEBUG

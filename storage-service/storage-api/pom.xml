@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.im.storage</groupId>
+        <artifactId>storage-service</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>storage-api</artifactId>
+    <packaging>jar</packaging>
+
+    <name>storage-api</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3</artifactId>
+        </dependency>
+        <!-- Spring Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- im-storage-api -->
+        <dependency>
+            <groupId>com.im.storage</groupId>
+            <artifactId>storage-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <!-- If you want to use the provider implementation inside rest, add provider dependency -->
+        <!--
+        <dependency>
+          <groupId>com.xxx.im</groupId>
+          <artifactId>im-storage-provider-ceph</artifactId>
+          <version>${project.version}</version>
+        </dependency>
+        -->
+
+        <!-- Validation -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+    </dependencies>
+</project>

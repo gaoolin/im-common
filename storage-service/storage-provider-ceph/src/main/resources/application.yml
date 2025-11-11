@@ -1,0 +1,8 @@
+im:
+  storage:
+    endpoint: http://10.170.6.40:31033
+    region: us-east-1
+    accessKey: YOUR_ACCESS_KEY
+    secretKey: YOUR_SECRET_KEY
+    pathStyle: true
+    bucket: default

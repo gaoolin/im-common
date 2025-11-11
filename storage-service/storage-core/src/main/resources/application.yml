@@ -1,0 +1,8 @@
+im:
+  storage:
+    type: ceph   # ceph / minio / hdfs
+    endpoint: http://...
+    accessKey: xxx
+    secretKey: xxx
+    bucket: default
+    version: v2

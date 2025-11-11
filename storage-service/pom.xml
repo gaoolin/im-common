@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.im</groupId>
+        <artifactId>im-framework</artifactId>
+        <version>1.0.2</version>
+    </parent>
+
+    <groupId>com.im.storage</groupId>
+    <artifactId>storage-service</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>storage-service</name>
+    <url>http://maven.apache.org</url>
+    <modules>
+        <module>storage-core</module>
+        <module>storage-provider-ceph</module>
+        <module>storage-provider-hdfs</module>
+        <module>storage-spring-boot-starter</module>
+        <module>storage-sample</module>
+        <module>storage-api</module>
+        <module>storage-rest</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>software.amazon.awssdk</groupId>
+                <artifactId>bom</artifactId>
+                <version>2.20.26</version> <!-- 示例，高版本可用 -->
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
