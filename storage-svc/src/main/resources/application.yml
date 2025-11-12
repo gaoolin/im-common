@@ -39,4 +39,4 @@ logging:
   level:
     com.im.storage: DEBUG
     software.amazon.awssdk: DEBUG
-    root: DEBUG
+    root: INFO

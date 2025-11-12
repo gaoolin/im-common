@@ -238,25 +238,47 @@ public class OssServiceImpl implements OssService {
     /**
      * 生成预签名下载URL - 默认存储类型
      *
-     * @param bucketName
-     * @param objectKey
-     * @param expiration
+     * @param bucketName 存储桶名称
+     * @param objectKey  对象键
+     * @param expiration 过期时间
      */
     @Override
     public String generatePresignedDownloadUrl(String bucketName, String objectKey, Duration expiration) {
-        return null;
+        try {
+            StorageService storageService = getDefaultStorageService();
+            if (storageService instanceof PresignCapable) {
+                return ((PresignCapable) storageService).generatePresignedDownloadUrl(bucketName, objectKey, expiration);
+            } else {
+                throw new StorageException("Default storage type does not support presigned URLs");
+            }
+        } catch (Exception e) {
+            throw new StorageException("Failed to generate presigned download URL for: " + objectKey, e);
+        }
     }
 
     /**
      * 生成预签名下载URL - 指定存储类型
      *
-     * @param bucketName
-     * @param objectKey
-     * @param expiration
-     * @param storageType
+     * @param bucketName  存储桶名称
+     * @param objectKey   对象键
+     * @param expiration  过期时间
+     * @param storageType 存储类型
      */
     @Override
     public String generatePresignedDownloadUrl(String bucketName, String objectKey, Duration expiration, StorageType storageType) {
-        return null;
+        try {
+            if (!storageType.isPresignSupported()) {
+                throw new StorageException("Storage type " + storageType.getType() + " does not support presigned URLs");
+            }
+
+            StorageService storageService = getStorageService(storageType);
+            if (storageService instanceof PresignCapable) {
+                return ((PresignCapable) storageService).generatePresignedDownloadUrl(bucketName, objectKey, expiration);
+            } else {
+                throw new StorageException("Storage type " + storageType.getType() + " does not support presigned URLs");
+            }
+        } catch (Exception e) {
+            throw new StorageException("Failed to generate presigned download URL for: " + objectKey, e);
+        }
     }
 }

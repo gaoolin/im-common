@@ -262,5 +262,4 @@ public class StorageControllerV2 {
             return ResponseEntity.status(500).body(BaseResponse.error(500, "Failed to generate presigned URL: " + e.getMessage()));
         }
     }
-
 }

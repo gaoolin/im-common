@@ -118,5 +118,4 @@ public interface OssService {
      * 生成预签名下载URL - 指定存储类型
      */
     String generatePresignedDownloadUrl(String bucketName, String objectKey, Duration expiration, StorageType storageType);
-
 }
