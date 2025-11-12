@@ -28,6 +28,7 @@ import java.io.InputStream;
 import java.net.URI;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -133,7 +134,8 @@ public class CephS3StorageService implements StorageService, PresignCapable {
                     ObjectInfo objectInfo = new ObjectInfo();
                     objectInfo.setKey(s3Object.key());
                     objectInfo.setSize(s3Object.size());
-                    objectInfo.setLastModified(LocalDateTime.from(s3Object.lastModified()));
+                    // 修复时间转换问题
+                    objectInfo.setLastModified(LocalDateTime.ofInstant(s3Object.lastModified(), ZoneId.systemDefault()));
                     objectInfo.setEtag(s3Object.eTag());
                     objectInfos.add(objectInfo);
                 }
@@ -161,7 +163,8 @@ public class CephS3StorageService implements StorageService, PresignCapable {
             metadata.setSize(response.contentLength());
             metadata.setContentType(response.contentType());
             metadata.setEtag(response.eTag());
-            metadata.setLastModified(LocalDateTime.from(response.lastModified()));
+            // 修复时间转换问题
+            metadata.setLastModified(LocalDateTime.ofInstant(response.lastModified(), ZoneId.systemDefault()));
 
             return metadata;
         } catch (Exception e) {
@@ -262,7 +265,6 @@ public class CephS3StorageService implements StorageService, PresignCapable {
             throw new StorageException("Failed to generate presigned upload URL: " + e.getMessage(), e);
         }
     }
-
 
     /**
      * 生成预签名下载URL

@@ -3,14 +3,6 @@ server:
   port: 8080
 
 # AWS S3配置（开发环境）
-aws:
-  s3:
-    accessKey: ZUNV3E08FVAQPSWC1Q41
-    secretKey: dacVadaDCVTZ3RmGnv2PSFVKSyOgM9lSAaSUGxuw
-    region: us-east-1
-    endpoint: http://10.170.6.40:31033
-    bucket: default
-
 # 存储服务配置
 storage:
   default: ceph-s3
@@ -19,6 +11,17 @@ storage:
       enabled: true
     - type: hdfs
       enabled: false
+    - type: minio
+      enabled: false
+
+# AWS S3配置（用于Ceph连接）
+aws:
+  s3:
+    accessKeyId: ZUNV3E08FVAQPSWC1Q41
+    secretAccessKey: dacVadaDCVTZ3RmGnv2PSFVKSyOgM9lSAaSUGxuw
+    region: us-east-1
+    endpoint: http://10.170.6.40:31033
+    bucket: default
 
 # 日志配置
 logging:

@@ -24,7 +24,7 @@ import java.util.List;
  * @date 2025/11/07
  */
 @RestController
-@RequestMapping("/api/v2/storage")
+@RequestMapping("/api/v2")
 public class StorageControllerV2 {
 
     @Autowired

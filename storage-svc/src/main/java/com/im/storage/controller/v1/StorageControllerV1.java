@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2025/11/07
  */
 @RestController
-@RequestMapping("/api/v1/storage")
+@RequestMapping("/api/v1")
 public class StorageControllerV1 {
 
     @Autowired
