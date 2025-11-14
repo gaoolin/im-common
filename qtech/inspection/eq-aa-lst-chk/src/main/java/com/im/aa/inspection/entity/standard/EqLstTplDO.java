@@ -29,13 +29,14 @@ public class EqLstTplDO extends EqLstPOJO {
 
     // 一对一关系映射 - 添加 insertable=false, updatable=false
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "module", referencedColumnName = "module", insertable = false, updatable = false)
+    @JoinColumn(name = "moduleId", referencedColumnName = "moduleId", insertable = false, updatable = false)
     @JsonIgnore  // 完全忽略此字段的序列化
     private EqLstTplInfoDO tplInfo;
 
     private boolean deleted = false;
     private Integer version = 0;
     private String createBy;
+
     private LocalDateTime createTime;
     private String updateBy;
     private LocalDateTime updateTime;

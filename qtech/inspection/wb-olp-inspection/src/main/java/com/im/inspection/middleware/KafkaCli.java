@@ -53,7 +53,7 @@ public class KafkaCli {
                     // 添加空值检查
                     jsonObject.put("simId", row.getAs(SIM_ID) != null ? row.getAs(SIM_ID).toString() : null);
                     jsonObject.put("source", SOURCE);
-                    jsonObject.put("module", row.getAs(MODULE) != null ? row.getAs(MODULE).toString() : null);
+                    jsonObject.put("moduleId", row.getAs(MODULE_ID) != null ? row.getAs(MODULE_ID).toString() : null);
                     jsonObject.put("chkDt", row.getAs(CHK_DT) != null ? row.getAs(CHK_DT).toString() : null);
                     jsonObject.put("code", row.getAs(CODE) != null ? (int) row.getAs(CODE) : 0);
                     jsonObject.put("description", row.getAs(DESCRIPTION) != null ? row.getAs(DESCRIPTION).toString() : null);
@@ -89,7 +89,7 @@ public class KafkaCli {
             try {
                 String simId = jsonObject.get("simId").asText();
                 String source = jsonObject.get("source").asText() == null ? "wb-olp" : jsonObject.get("source").asText();
-                String module = jsonObject.get("module").asText();
+                String moduleId = jsonObject.get("moduleId").asText();
                 int code = jsonObject.get("code").asInt();
                 Boolean passed = jsonObject.has("passed") && !jsonObject.get("passed").isNull() ?
                         jsonObject.get("passed").asBoolean() :
@@ -110,7 +110,7 @@ public class KafkaCli {
 
                 EqpReversePOJORecord value = null;
                 if (chkDtInstant != null) {
-                    value = new EqpReversePOJORecord(simId, source, module, chkDtInstant, code, passed, null, null, description);
+                    value = new EqpReversePOJORecord(simId, source, moduleId, chkDtInstant, code, passed, null, null, description);
                 }
 
                 Long key = Chronos.currentTimestamp();
@@ -165,7 +165,7 @@ public class KafkaCli {
                     ObjectNode jsonObject = mapper.createObjectNode();
                     jsonObject.put("dt", row.getAs("dt") != null ? row.getAs("dt").toString() : null);
                     jsonObject.put("simId", row.getAs("sim_id") != null ? row.getAs("sim_id").toString() : null);
-                    jsonObject.put("module", row.getAs("module") != null ? row.getAs("module").toString() : null);
+                    jsonObject.put("moduleId", row.getAs("module_id") != null ? row.getAs("module_id").toString() : null);
                     jsonObject.put("wireId", row.getAs("wire_id") != null ? (int) row.getAs("wire_id") : 0);
                     jsonObject.put("leadX", row.getAs("lead_x") != null ? row.getAs("lead_x").toString() : null);
                     jsonObject.put("leadY", row.getAs("lead_y") != null ? row.getAs("lead_y").toString() : null);
@@ -215,18 +215,18 @@ public class KafkaCli {
                 // 检查必要字段是否为空
                 if (dt == null ||
                         jsonObject.get("simId") == null || jsonObject.get("simId").isNull() ||
-                        jsonObject.get("module") == null || jsonObject.get("module").isNull()) {
-                    logger.warn(">>>>> Skipping record due to missing required fields: dt={}, simId={}, module={}",
+                        jsonObject.get("moduleId") == null || jsonObject.get("moduleId").isNull()) {
+                    logger.warn(">>>>> Skipping record due to missing required fields: dt={}, simId={}, moduleId={}",
                             dt,
                             jsonObject.get("simId") != null ? jsonObject.get("simId").asText() : "null",
-                            jsonObject.get("module") != null ? jsonObject.get("module").asText() : "null");
+                            jsonObject.get("moduleId") != null ? jsonObject.get("moduleId").asText() : "null");
                     continue;
                 }
 
                 WbOlpRawDataRecord value = new WbOlpRawDataRecord(
                         dt,
                         jsonObject.get("simId").asText(),
-                        jsonObject.get("module").asText(),
+                        jsonObject.get("moduleId").asText(),
                         jsonObject.get("wireId").asInt(),
                         jsonObject.get("leadX").asText(),
                         jsonObject.get("leadY").asText(),

@@ -277,7 +277,7 @@ public class KafkaMessageConsumer implements Lifecycle {
 
                 // 3. 发到 Kafka (转发到处理后的主题)
                 logger.debug(">>>>> Step3: Sending to Kafka...");
-                String messageKey = (eqLstParsed.getModule() != null ? eqLstParsed.getModule() : "unknown") + "-" + (eqLstParsed.getSimId() != null ? eqLstParsed.getSimId() : "unknown");
+                String messageKey = (eqLstParsed.getModuleId() != null ? eqLstParsed.getModuleId() : "unknown") + "-" + (eqLstParsed.getSimId() != null ? eqLstParsed.getSimId() : "unknown");
 
                 String outputTopicParsed = configManager.getProperty("kafka.output.topic.eq_lst_parsed", "qtech_im_aa_list_parsed_test_topic");
                 producer.send(new ProducerRecord<>(outputTopicParsed, messageKey, processedMessageStr));

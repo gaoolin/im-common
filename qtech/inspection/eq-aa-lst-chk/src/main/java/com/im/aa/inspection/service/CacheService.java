@@ -24,24 +24,6 @@ import java.util.Objects;
  */
 public class CacheService {
     private static final Logger logger = LoggerFactory.getLogger(CacheService.class);
-
-    /**
-     * 静态内部类实现单例模式
-     * 利用JVM类加载机制保证线程安全和延迟加载
-     */
-    private static class SingletonHolder {
-        private static final CacheService INSTANCE = new CacheService();
-    }
-
-    /**
-     * 获取CacheService单例实例
-     *
-     * @return CacheService单例实例
-     */
-    public static CacheService getInstance() {
-        return SingletonHolder.INSTANCE;
-    }
-
     /**
      * -- GETTER --
      * 获取Redis缓存配置实例
@@ -49,7 +31,6 @@ public class CacheService {
     // Redis缓存配置
     @Getter
     private final EqpLstRedisCacheConfig redisCacheConfig;
-
     private final Cache<String, EqLstTplDO> eqLstTplCache;
     private final Cache<String, EqLstTplInfoDO> eqLstTplInfoCache;
 
@@ -65,7 +46,6 @@ public class CacheService {
         this.eqLstTplInfoCache = this.redisCacheConfig.getEqLstTplInfoDOCache();
         logger.info(">>>>> CacheService初始化完成，使用Redis缓存配置");
     }
-
     /**
      * 私有无参构造函数
      * 初始化默认的Redis缓存配置
@@ -75,13 +55,22 @@ public class CacheService {
     }
 
     /**
+     * 获取CacheService单例实例
+     *
+     * @return CacheService单例实例
+     */
+    public static CacheService getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
+    /**
      * 生成缓存键
      *
      * @param result 设备参数
      * @return 缓存键
      */
     private String generateEqLstTplInfoCacheKey(EqLstTplInfoDO result) {
-        return "parsed:" + result.getModule();
+        return "parsed:" + result.getModuleId();
     }
 
     /**
@@ -91,7 +80,7 @@ public class CacheService {
      * @return 缓存键
      */
     private String generateEqLstTplCacheKey(EqLstParsed result) {
-        return "inspection:" + result.getModule();
+        return "inspection:" + result.getModuleId();
     }
 
     /**
@@ -106,5 +95,13 @@ public class CacheService {
         } catch (Exception e) {
             logger.error(">>>>> 关闭Redis缓存服务时出错", e);
         }
+    }
+
+    /**
+     * 静态内部类实现单例模式
+     * 利用JVM类加载机制保证线程安全和延迟加载
+     */
+    private static class SingletonHolder {
+        private static final CacheService INSTANCE = new CacheService();
     }
 }

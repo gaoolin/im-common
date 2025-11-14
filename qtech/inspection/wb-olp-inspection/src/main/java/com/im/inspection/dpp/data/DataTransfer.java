@@ -26,22 +26,22 @@ public class DataTransfer {
 
     public static Dataset<Row> doTransfer(Dataset<Row> rawDF, Dataset<Row> stdMdWireCnt) {
         try {
-            String joinKeyRaw = props.getString("data.analysis.join.key.raw", NORM_MODULE);
-            String joinKeyStd = props.getString("data.analysis.join.key.tpl", TPL_MODULE);
+            String joinKeyRaw = props.getString("data.analysis.join.key.raw", NORM_MODULE_ID);
+            String joinKeyStd = props.getString("data.analysis.join.key.tpl", TPL_MODULE_ID);
             String filterSimId = props.getString("data.analysis.filter.sim_id", null);
 
-            WindowSpec winByPIdx = Window.partitionBy(col(SIM_ID), col(MODULE), col(PIECES_INDEX));
+            WindowSpec winByPIdx = Window.partitionBy(col(SIM_ID), col(MODULE_ID), col(PIECES_INDEX));
             WindowSpec winMcByPIdx = Window.partitionBy(col(SIM_ID), col(PIECES_INDEX));
 
-            Column subMcIdCol = split(col(MODULE), "#").getItem(0);
+            Column subMcIdCol = split(col(MODULE_ID), "#").getItem(0);
             Column dx = col(PAD_X).minus(col(LEAD_X));
             Column dy = col(PAD_Y).minus(col(LEAD_Y));
             Column wireLenCol = sqrt(functions.pow(dx, 2).plus(functions.pow(dy, 2)));
 
             Dataset<Row> df = rawDF
                     .withColumn(FIRST_DRAW_TIME, min(col(DT)).over(winByPIdx))
-                    .withColumn(NORM_MODULE, subMcIdCol)
-                    .withColumn(MODULES_BY_PIECES_INDEX, approx_count_distinct(NORM_MODULE).over(winMcByPIdx))
+                    .withColumn(NORM_MODULE_ID, subMcIdCol)
+                    .withColumn(MODULES_BY_PIECES_INDEX, approx_count_distinct(NORM_MODULE_ID).over(winMcByPIdx))
                     .withColumn(WIRE_LEN, wireLenCol);
 
             // 过滤逻辑
@@ -65,7 +65,7 @@ public class DataTransfer {
 
             Dataset<Row> result = mergeStdMdDF.select(
                             col(SIM_ID),
-                            col(MODULE),
+                            col(MODULE_ID),
                             col(DT),
                             col(FIRST_DRAW_TIME),
                             col(WIRE_ID),
@@ -76,14 +76,14 @@ public class DataTransfer {
                             col(CHECK_PORT),
                             col(WIRE_LEN),
                             col(PIECES_INDEX),
-                            col(NORM_MODULE),
+                            col(NORM_MODULE_ID),
                             col(CNT),
                             col(MODULES_BY_PIECES_INDEX),
                             col(TPL_WIRE_CNT)
                     )
                     .sort(
                             col(SIM_ID),
-                            col(MODULE),
+                            col(MODULE_ID),
                             col(FIRST_DRAW_TIME),
                             col(WIRE_ID)
                     );

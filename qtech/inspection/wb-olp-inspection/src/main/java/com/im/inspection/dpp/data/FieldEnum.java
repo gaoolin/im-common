@@ -14,7 +14,7 @@ package com.im.inspection.dpp.data;
 public enum FieldEnum {
     // 通用字段
     SIM_ID("sim_id"),
-    MODULE("module"),
+    MODULE_ID("module_id"),
     DT("dt"),
     FIRST_DRAW_TIME("first_draw_time"),
     WIRE_ID("wire_id"),
@@ -24,7 +24,7 @@ public enum FieldEnum {
     PAD_X("pad_x"),
     PAD_Y("pad_y"),
     CHECK_PORT("check_port"),
-    NORM_MODULE("norm_module"),
+    NORM_MODULE_ID("norm_module_id"),
     CNT("cnt"),
     WIRE_LEN("wire_len"),
     CODE("code"),

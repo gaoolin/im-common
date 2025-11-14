@@ -1,5 +1,6 @@
 package com.im.aa.inspection.entity.standard;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.im.qtech.data.dto.standard.EqLstTplInfoPOJO;
 import lombok.Data;
@@ -37,7 +38,7 @@ public class EqLstTplInfoDO extends EqLstTplInfoPOJO {
      * 需要显式告诉 Hibernate 关联字段是 module
      */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "module", referencedColumnName = "module", insertable = false, updatable = false)
+    @JoinColumn(name = "moduleId", referencedColumnName = "moduleId", insertable = false, updatable = false)
     @JsonIgnoreProperties({"tplInfo", "hibernateLazyInitializer", "handler"}) // 忽略反向引用避免循环
     private EqLstTplDO tpl;
 
@@ -49,12 +50,14 @@ public class EqLstTplInfoDO extends EqLstTplInfoPOJO {
     @Column(name = "create_by")
     private String createBy;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
     private LocalDateTime createTime;
 
     @Column(name = "update_by")
     private String updateBy;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "update_time")
     private LocalDateTime updateTime;
 

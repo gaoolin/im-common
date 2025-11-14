@@ -112,7 +112,7 @@ public class WbOlpCheckBatchEngine extends SparkBatchEngine<Void> {
             Dataset<Row> stdModels = getTpl(getSparkSession(), driver, url, user, pwd);
             validateStdModels(stdModels);
 
-            Dataset<Row> stdModWireCnt = stdModels.groupBy("tpl_module").agg(count("tpl_module").as("tpl_wire_cnt"));
+            Dataset<Row> stdModWireCnt = stdModels.groupBy("tpl_module_id").agg(count("tpl_module_id").as("tpl_wire_cnt"));
 
             String startDt = addMinutes(now(), TIME_OFFSET_MINUTES).format(getFormatter("yyyy-MM-dd HH:mm:ss"));
             logElapsedTime(String.format(">>>>> spark job start dt %s", startDt));
@@ -198,7 +198,7 @@ public class WbOlpCheckBatchEngine extends SparkBatchEngine<Void> {
         needModifyDf = needModifyDf.withColumn("code", lit(0)).withColumn("description", lit("olp invalidation"));
 
         return stableDf.union(needModifyDf)
-                .withColumnRenamed("module", "module")
+                // .withColumnRenamed("module", "module")
                 .withColumnRenamed("dt", "chk_dt")
                 .withColumn("chk_dt", functions.date_format(functions.col("chk_dt"), "yyyy-MM-dd HH:mm:ss"));
     }

@@ -9,7 +9,7 @@
 
     <groupId>org.im.cache</groupId>
     <artifactId>cache</artifactId>
-    <version>${cache.version</version>
+    <version>1.0.5</version>
     <packaging>jar</packaging>
 
     <name>cache</name>

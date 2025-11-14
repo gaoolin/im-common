@@ -29,8 +29,6 @@ public class EqpLstParsed extends EqLstPOJO {
 
     private String simId;
 
-    private String module;
-
     @TableField(typeHandler = PGJsonbTypeHandler.class)
     private String mtfCheckF;
 

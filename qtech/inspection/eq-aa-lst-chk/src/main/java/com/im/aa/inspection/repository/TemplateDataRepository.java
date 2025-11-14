@@ -100,15 +100,15 @@ public class TemplateDataRepository {
     }
 
     // EqLstTplDO 根据 tplInfo.module 查询
-    public EqLstTplDO findByModule(String module) {
+    public EqLstTplDO findByModule(String moduleId) {
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
         try {
             Query<EqLstTplDO> query = session.createQuery(
-                    "SELECT t FROM EqLstTplDO t JOIN t.tplInfo i WHERE i.module = :module",
+                    "SELECT t FROM EqLstTplDO t JOIN t.tplInfo i WHERE i.moduleId = :moduleId",
                     EqLstTplDO.class
             );
-            query.setParameter("module", module);
+            query.setParameter("moduleId", moduleId);
             EqLstTplDO result = query.uniqueResult();
             tx.commit();
             return result;

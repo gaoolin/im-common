@@ -25,7 +25,6 @@
         <config.version>1.0.3</config.version>
         <semiconductor.version>1.0.5</semiconductor.version>
         <exception.version>1.0.3</exception.version>
-        <cache.version>1.0.0</cache.version>
         <!--<java.version>17</java.version>-->
     </properties>
 
@@ -63,13 +62,13 @@
         <dependency>
             <groupId>org.im.cache</groupId>
             <artifactId>cache</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.im.qtech.data</groupId>
             <artifactId>datadev-common</artifactId>
-            <version>1.0.5</version>
+            <version>1.0.10</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

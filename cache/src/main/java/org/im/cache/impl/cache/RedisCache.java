@@ -3,6 +3,10 @@ package org.im.cache.impl.cache;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import io.lettuce.core.KeyValue;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisURI;
@@ -19,6 +23,8 @@ import org.im.common.json.JsonMapperProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
@@ -40,7 +46,18 @@ import java.util.function.Function;
  */
 public class RedisCache<K, V> implements Cache<K, V> {
     private static final Logger logger = LoggerFactory.getLogger(RedisCache.class);
-    private static final ObjectMapper objectMapper = JsonMapperProvider.getSharedInstance();
+    private static final ObjectMapper objectMapper = JsonMapperProvider.createCustomizedInstance(m -> {
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+
+        // 配置 LocalDateTime 反序列化器，支持空格分隔格式
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        javaTimeModule.addDeserializer(LocalDateTime.class,
+                new LocalDateTimeDeserializer(formatter));
+        javaTimeModule.addSerializer(LocalDateTime.class,
+                new LocalDateTimeSerializer(formatter));
+        m.registerModule(javaTimeModule);
+        m.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    });
 
     private final Object client; // RedisClient or RedisClusterClient
     private final CacheConfig config;

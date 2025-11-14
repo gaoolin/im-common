@@ -57,7 +57,7 @@ public class WbOlpConsumer {
     @Autowired
     private KafkaTemplate<Long, EqpReversePOJORecord> kafkaTemplate;
 
-    @KafkaListener(topics = KAFKA_WB_OLP_CHK_RES_TOPIC_TEST,
+    @KafkaListener(topics = KAFKA_WB_OLP_CHK_RES_TOPIC,
             containerFactory = "EqReverseCtrlInfoContainerFactory",
             groupId = "im-framework-group")
     public void consume(List<ConsumerRecord<Long, EqpReversePOJORecord>> records, Acknowledgment acknowledgment) {
@@ -115,7 +115,7 @@ public class WbOlpConsumer {
     }
 
     private void handleFailedRecord(ConsumerRecord<Long, EqpReversePOJORecord> record, Exception e) {
-        kafkaTemplate.send(KAFKA_WB_OLP_CHK_RES_TOPIC_TEST + "-dlq", record.key(), record.value());
+        kafkaTemplate.send(KAFKA_WB_OLP_CHK_RES_TOPIC + "-dlq", record.key(), record.value());
         log.warn(">>>>> Failed to process record. Sending to DLQ. Topic={}, Partition={}, Offset={}, Exception={}",
                 record.topic(), record.partition(), record.offset(), e.getMessage());
     }
@@ -130,7 +130,7 @@ public class WbOlpConsumer {
 
             return MSG_WB_OLP_KEY_PREFIX + buildRedisKey(
                     record.getSimId(),
-                    record.getModule(),
+                    record.getModuleId(),
                     formattedDt,
                     record.getCode(),
                     record.getDescription()
@@ -143,7 +143,7 @@ public class WbOlpConsumer {
         EqpReverseInfo data = new EqpReverseInfo();
         data.setSimId(safeToString(value.getSimId()));
         data.setSource("wb-olp");
-        data.setModule(safeToString(value.getModule()));
+        data.setModuleId(safeToString(value.getModuleId()));
         data.setChkDt(Chronos.now());
         data.setCode(value.getCode());
         data.setPassed(value.getCode() == 0);

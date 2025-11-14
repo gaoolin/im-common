@@ -61,7 +61,7 @@ public class DataFetch {
             // 追加 debug 模式的 filter
             if (isDebugEnabled) {
                 String simIdFilter = manager.getString("debug.filter.sim_id", null);
-                String mcIdFilter = manager.getString("debug.filter.module", null);
+                String mcIdFilter = manager.getString("debug.filter.module_id", null);
                 String dtRange = manager.getString("debug.filter.dt_range", null);
 
                 StringBuilder filterClauses = getFilterClauses(simIdFilter, mcIdFilter, dtRange);

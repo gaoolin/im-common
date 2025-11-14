@@ -46,16 +46,16 @@ public class EqLstTplInfoRepository {
         return session.createQuery("FROM EqLstTplInfoDO", EqLstTplInfoDO.class).list();
     }
 
-    // 根据 module 查询
-    public EqLstTplInfoDO findByModule(String module) {
+    // 根据 moduleId 查询
+    public EqLstTplInfoDO findByModule(String moduleId) {
         Session session = sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
         try {
             Query<EqLstTplInfoDO> query = session.createQuery(
-                    "FROM EqLstTplInfoDO e WHERE e.module = :module",
+                    "FROM EqLstTplInfoDO e WHERE e.moduleId = :moduleId",
                     EqLstTplInfoDO.class
             );
-            query.setParameter("module", module);
+            query.setParameter("moduleId", moduleId);
             EqLstTplInfoDO result = query.uniqueResult();
             tx.commit();
             return result;

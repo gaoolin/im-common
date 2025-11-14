@@ -206,7 +206,7 @@ public class EqLstParsedHandler extends MessageHandler<EqLstParsed> implements A
                 String simId = jsonObject.get(EQP_LST_RAW_SIMID_FILED).toString();
                 aaListParamsParsedObj.setSimId(simId);
                 String module = StringUtils.trim(jsonObject.get(EQP_LST_RAW_MODULE_FILED).toString().split("#")[0]);
-                aaListParamsParsedObj.setModule(module);
+                aaListParamsParsedObj.setModuleId(module);
                 return clazz.cast(aaListParamsParsedObj);
             } catch (JsonProcessingException e) {
                 logger.error(">>>>> JSON 解析异常", e);

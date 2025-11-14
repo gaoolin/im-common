@@ -54,7 +54,7 @@ public class WbOlpRawConsumer {
     @Autowired
     private KafkaTemplate<Long, WbOlpRawDataRecord> kafkaTemplate;
 
-    @KafkaListener(topics = KAFKA_WB_OLP_RAW_DATA_TOPIC_TEST,
+    @KafkaListener(topics = KAFKA_WB_OLP_RAW_DATA_TOPIC,
             containerFactory = "WbOlpRawDataContainerFactory",
             groupId = "im-framework-group")
     public void consume(List<ConsumerRecord<Long, WbOlpRawDataRecord>> records, Acknowledgment acknowledgment) {
@@ -109,7 +109,7 @@ public class WbOlpRawConsumer {
                 disruptor.publishEvent((event, sequence) -> event.setData(data));
             } catch (Exception ex) {
                 log.error(">>>>> Disruptor publish failed, pushing to DLQ, key={}", key, ex);
-                kafkaTemplate.send(KAFKA_WB_OLP_RAW_DATA_TOPIC_TEST + "-dlq", record.key(), record.value());
+                kafkaTemplate.send(KAFKA_WB_OLP_RAW_DATA_TOPIC + "-dlq", record.key(), record.value());
             }
 
             log.info(">>>>> Data processed and added to Disruptor: {}", data);
@@ -119,7 +119,7 @@ public class WbOlpRawConsumer {
     }
 
     private void handleFailedRecord(ConsumerRecord<Long, WbOlpRawDataRecord> record, Exception ex) {
-        kafkaTemplate.send(KAFKA_WB_OLP_RAW_DATA_TOPIC_TEST + "-dlq", record.key(), record.value());
+        kafkaTemplate.send(KAFKA_WB_OLP_RAW_DATA_TOPIC + "-dlq", record.key(), record.value());
         log.warn(">>>>> [DLQ] Record pushed to DLQ: simId={}, reason={}",
                 Optional.ofNullable(record.value()).map(WbOlpRawDataRecord::getSimId).orElse("null"),
                 ex.getMessage());
@@ -133,7 +133,7 @@ public class WbOlpRawConsumer {
             String rawKey = String.join("|",
                     safeToString(record.getSimId()),
                     formattedDt,
-                    safeToString(record.getModule()),
+                    safeToString(record.getModuleId()),
                     String.valueOf(record.getWireId()),
                     String.valueOf(record.getCheckPort()),
                     String.valueOf(record.getPiecesIndex())
@@ -148,7 +148,7 @@ public class WbOlpRawConsumer {
         WbOlpRawData data = new WbOlpRawData();
         data.setDt(Chronos.now());
         data.setSimId(String.valueOf(r.getSimId()));
-        data.setModule(String.valueOf(r.getModule()));
+        data.setModuleId(String.valueOf(r.getModuleId()));
         data.setWireId(r.getWireId());
         data.setLeadX(String.valueOf(r.getLeadX()));
         data.setLeadY(String.valueOf(r.getLeadY()));

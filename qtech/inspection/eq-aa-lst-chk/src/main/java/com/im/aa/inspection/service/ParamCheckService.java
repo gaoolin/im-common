@@ -81,7 +81,7 @@ public class ParamCheckService {
         EqpReverseDO eqpReverseDO = new EqpReverseDO();
         eqpReverseDO.setSource(SOURCE_AA_LIST);
         eqpReverseDO.setSimId(actualObj.getSimId());
-        eqpReverseDO.setModule(actualObj.getModule());
+        eqpReverseDO.setModuleId(actualObj.getModuleId());
         eqpReverseDO.setChkDt(Chronos.now());
 
         // TODO: 获取实际参数对象 增加点检结果中的标签信息。
@@ -94,7 +94,7 @@ public class ParamCheckService {
         }
 
         // 获取模板信息（从Redis缓存，通过CacheService）
-        EqLstTplInfoDO modelInfoObj = getTplInfoFromCache(actualObj.getModule());
+        EqLstTplInfoDO modelInfoObj = getTplInfoFromCache(actualObj.getModuleId());
 
         // 模板信息检查
         if (modelInfoObj == null) {
@@ -211,7 +211,7 @@ public class ParamCheckService {
     private EqpReverseDO performCheck(EqLstParsed param, ParameterRange standard) {
         EqpReverseDO eqpReverseDO = new EqpReverseDO();
         eqpReverseDO.setSimId(param.getSimId());
-        eqpReverseDO.setModule(param.getModule());
+        eqpReverseDO.setModuleId(param.getModuleId());
         eqpReverseDO.setChkDt(param.getReceivedTime());
 
         try {

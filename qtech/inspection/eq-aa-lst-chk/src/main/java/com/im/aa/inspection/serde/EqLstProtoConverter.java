@@ -18,7 +18,7 @@ public class EqLstProtoConverter implements ProtoConverter<EqLstPOJO> {
         EqLstProto.EqLstPOJO.Builder builder = EqLstProto.EqLstPOJO.newBuilder();
 
         // 基础设备参数
-        if (obj.getModule() != null) builder.setModule(obj.getModule());
+        if (obj.getModuleId() != null) builder.setModule(obj.getModuleId());
         if (obj.getAa1() != null) builder.setAa1(obj.getAa1());
         if (obj.getAa2() != null) builder.setAa2(obj.getAa2());
         if (obj.getAa3() != null) builder.setAa3(obj.getAa3());
@@ -253,7 +253,7 @@ public class EqLstProtoConverter implements ProtoConverter<EqLstPOJO> {
         }
 
         // 基础设备参数
-        if (!proto.getModule().isEmpty()) obj.setModule(proto.getModule());
+        if (!proto.getModule().isEmpty()) obj.setModuleId(proto.getModule());
         if (!proto.getAa1().isEmpty()) obj.setAa1(proto.getAa1());
         if (!proto.getAa2().isEmpty()) obj.setAa2(proto.getAa2());
         if (!proto.getAa3().isEmpty()) obj.setAa3(proto.getAa3());
