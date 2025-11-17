@@ -4,7 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.im.qtech.service.msg.entity.EqpLstParsed;
+import com.im.qtech.service.msg.entity.EqpLstParsedForDoris;
+import com.im.qtech.service.msg.entity.EqpLstParsedForOracle;
+import com.im.qtech.service.msg.entity.EqpLstParsedForPG;
+import com.im.qtech.service.msg.service.IEqpLstParsedForDoris;
 import com.im.qtech.service.msg.service.IEqpLstParsedService;
 import com.rabbitmq.client.Channel;
 import org.im.common.json.JsonMapperProvider;
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * AA List 参数解析队列消费者
@@ -31,34 +35,79 @@ public class EqpLstParsedQueueConsumer {
     private static final Logger logger = LoggerFactory.getLogger(EqpLstParsedQueueConsumer.class);
     private static final ObjectMapper objectMapper = JsonMapperProvider.getSharedInstance();
     private final IEqpLstParsedService service;
+    private final IEqpLstParsedForDoris serviceForDoris;
 
-    public EqpLstParsedQueueConsumer(IEqpLstParsedService service) {
+    public EqpLstParsedQueueConsumer(IEqpLstParsedService service, IEqpLstParsedForDoris serviceForDoris) {
         this.service = service;
+        this.serviceForDoris = serviceForDoris;
     }
 
     @RabbitListener(queues = "eqLstParsedQueue", ackMode = "MANUAL")
     public void receive(String msg, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) throws Exception {
         logger.info(">>>>> receive eqLstParsedQueue message: {}", msg);
         try {
-            EqpLstParsed singleMessage = validateAndParseMessage(msg, channel, deliveryTag);
+            EqpLstParsedForPG singleMessage = validateAndParseMessage(msg, channel, deliveryTag);
             service.save(singleMessage);
-            channel.basicAck(deliveryTag, false);
+
+            // 转换为通用实体类
+            EqpLstParsedForDoris dorisEntity = convertToDoris(singleMessage);
+
+            // 并行执行 Doris 写入
+            CompletableFuture<Boolean> dorisFuture = serviceForDoris.saveAsync(dorisEntity).exceptionally(ex -> {
+                logger.error(">>>>> Doris upsert 异常: ", ex);
+                return false;
+            });
+
+            // 等待所有异步任务完成
+            CompletableFuture<Void> allFuture = CompletableFuture.allOf(dorisFuture);
+
+            try {
+                allFuture.join(); // 等待异步任务完成
+
+                // 只在这里进行一次确认
+                if (channel.isOpen()) {
+                    channel.basicAck(deliveryTag, false);
+                } else {
+                    logger.warn("Channel is closed, cannot ack message with deliveryTag: {}", deliveryTag);
+                }
+            } catch (Exception ex) {
+                logger.error(">>>>> 异步任务执行失败: ", ex);
+                if (channel.isOpen()) {
+                    channel.basicNack(deliveryTag, false, true);
+                }
+            }
         } catch (Exception e) {
             logger.error(">>>>> receive eqLstParsedQueue message error: {}", e.getMessage(), e);
-            channel.basicNack(deliveryTag, false, false);
+            if (channel.isOpen()) {
+                channel.basicNack(deliveryTag, false, false);
+            }
         }
     }
 
-    private EqpLstParsed validateAndParseMessage(String msg, Channel channel, long deliveryTag) throws JsonProcessingException {
+    private EqpLstParsedForOracle convertToOracle(EqpLstParsedForPG source) {
+        return new EqpLstParsedForOracle(
+                source.getSimId(),
+                source.getReceivedTime()
+        );
+    }
+
+    private EqpLstParsedForDoris convertToDoris(EqpLstParsedForPG source) {
+        EqpLstParsedForDoris target = new EqpLstParsedForDoris();
+        // 使用 Spring BeanUtils 拷贝相同属性
+        org.springframework.beans.BeanUtils.copyProperties(source, target);
+        return target;
+    }
+
+    private EqpLstParsedForPG validateAndParseMessage(String msg, Channel channel, long deliveryTag) throws JsonProcessingException {
         try {
-            EqpLstParsed singleMessage = null;
+            EqpLstParsedForPG singleMessage = null;
             // 增加JSON解析异常处理，适应Fastjson2
             try {
                 // 如果不是数组，则解析为单个对象
-                singleMessage = objectMapper.readValue(msg, EqpLstParsed.class);
+                singleMessage = objectMapper.readValue(msg, EqpLstParsedForPG.class);
             } catch (JsonMappingException e) {
                 // 尝试直接解析为列表
-                objectMapper.readValue(msg, new TypeReference<List<EqpLstParsed>>() {
+                objectMapper.readValue(msg, new TypeReference<List<EqpLstParsedForPG>>() {
                 });
                 logger.error(">>>>> 解析结果为列表, msg: {}", msg);
             } catch (IOException e) {

@@ -1,8 +1,8 @@
 package com.im.inspection.util;
 
 import com.google.gson.Gson;
+import org.im.common.exception.type.common.BusinessException;
 import org.im.exception.constants.ErrorCode;
-import org.im.exception.type.common.BusinessException;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;

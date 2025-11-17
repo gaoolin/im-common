@@ -13,19 +13,33 @@ import java.util.concurrent.CompletableFuture;
  */
 
 public interface IEqpReverseInfoService {
-    CompletableFuture<Integer> upsertOracleAsync(EqpReverseInfo EqpReverseInfo);
 
-    CompletableFuture<Integer> upsertPGAsync(EqpReverseInfo EqpReverseInfo);
 
-    CompletableFuture<Integer> upsertDorisAsync(EqpReverseInfo EqpReverseInfo);
-
-    CompletableFuture<Integer> addAaListDorisAsync(EqpReverseInfo EqpReverseInfo);
-
-    CompletableFuture<Integer> addWbOlpChkDorisAsync(EqpReverseInfo EqpReverseInfo);
+    CompletableFuture<Boolean> addDorisAsync(EqpReverseInfo EqpReverseInfo);
 
     int upsertOracleBatch(List<EqpReverseInfo> list);
 
     int upsertPGBatch(List<EqpReverseInfo> list);
 
     int addWbOlpChkDorisBatch(List<EqpReverseInfo> list);
+
+    CompletableFuture<Boolean> upsertOracleAsync(EqpReverseInfo EqpReverseInfo);
+
+    CompletableFuture<Boolean> upsertPGAsync(EqpReverseInfo EqpReverseInfo);
+
+    CompletableFuture<Boolean> upsertDorisAsync(EqpReverseInfo EqpReverseInfo);
+
+    CompletableFuture<Boolean> upsertOracleBatchAsync(List<EqpReverseInfo> list);
+
+    CompletableFuture<Boolean> upsertPGBatchAsync(List<EqpReverseInfo> list);
+
+    CompletableFuture<Boolean> upsertDorisBatchAsync(List<EqpReverseInfo> list);
+
+    CompletableFuture<Boolean> addOracleBatchAsync(List<EqpReverseInfo> list);
+
+    CompletableFuture<Boolean> addPGBatchAsync(List<EqpReverseInfo> list);
+
+    CompletableFuture<Boolean> addDorisBatchAsync(List<EqpReverseInfo> list);
+
+
 }

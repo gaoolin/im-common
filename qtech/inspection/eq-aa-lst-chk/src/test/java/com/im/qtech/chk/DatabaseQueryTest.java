@@ -75,30 +75,6 @@ public class DatabaseQueryTest {
     }
 
     /**
-     * 测试根据module查询功能
-     */
-    public void testFindByModule() {
-        logger.info("开始测试根据module查询...");
-        try {
-            // 测试查询不存在的module
-            String testModule = "C08A38";
-            EqLstTplInfoDO info = databaseService.getTplInfo(testModule);
-            if (info == null) {
-                logger.info("✓ 根据module查询功能正常（返回null表示数据不存在）");
-            }
-            System.out.println("loaded -> " + info);
-
-            EqLstTplDO template = databaseService.getTpl(testModule);
-            if (template != null) {
-                logger.info("✓ 模板查询功能正常");
-            }
-            System.out.println("loaded -> " + template);
-        } catch (Exception e) {
-            logger.error("✗ 根据module查询测试失败", e);
-        }
-    }
-
-    /**
      * 测试完整的CRUD操作
      */
     public void testCRUDOperations() {
@@ -106,7 +82,7 @@ public class DatabaseQueryTest {
         try {
             // 创建测试数据
             EqLstTplInfoDO tplInfo = new EqLstTplInfoDO();
-            tplInfo.setModule("TEST_MODULE_" + System.currentTimeMillis());
+            tplInfo.setModuleId("TEST_MODULE_" + System.currentTimeMillis());
             tplInfo.setListParams(10L);
             tplInfo.setItemParams(20L);
             tplInfo.setStatus(1);
@@ -131,7 +107,6 @@ public class DatabaseQueryTest {
 
         testDatabaseConnection();
         testTemplateInfoQueries();
-        testFindByModule();
         testCRUDOperations();
 
         logger.info("=== 数据库查询测试结束 ===");

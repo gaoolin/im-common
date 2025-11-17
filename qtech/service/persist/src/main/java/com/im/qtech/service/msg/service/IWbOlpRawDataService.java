@@ -15,5 +15,5 @@ import java.util.concurrent.CompletableFuture;
 public interface IWbOlpRawDataService {
     public int addWbOlpRawDataBatch(List<WbOlpRawData> wbOlpRawDataList);
 
-    public CompletableFuture<Integer> addWbOlpRawDataBatchAsync(List<WbOlpRawData> wbOlpRawDataList);
+    public CompletableFuture<Boolean> addWbOlpRawDataBatchAsync(List<WbOlpRawData> list);
 }

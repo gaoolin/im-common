@@ -1,4 +1,4 @@
-package com.im.qtech.service.msg.persist.olp;
+package com.im.qtech.service.msg.persist.kafka;
 
 import com.im.qtech.data.avro.record.EqpReversePOJORecord;
 import com.im.qtech.service.msg.disruptor.wb.WbOlpChkEvent;
@@ -8,8 +8,6 @@ import com.lmax.disruptor.dsl.Disruptor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.im.common.dt.Chronos;
-import org.im.common.thread.core.ThreadPoolSingleton;
-import org.im.common.thread.task.TaskPriority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -23,9 +21,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -43,9 +38,9 @@ import static com.im.qtech.service.msg.util.MessageKeyUtils.safeToString;
 @Slf4j
 @EnableKafka
 @Service
-public class WbOlpConsumer {
-    private static final long TASK_TIMEOUT_SECONDS = 30;
-    private static final ThreadPoolSingleton singleton = ThreadPoolSingleton.getInstance();
+public class WbOlpChkConsumer {
+
+    private static final int MAX_PENDING_EVENTS = 512;
 
     @Autowired
     private MsgRedisDeduplicationUtils msgRedisDed;
@@ -66,35 +61,25 @@ public class WbOlpConsumer {
             return;
         }
 
-        List<String> redisKeys = records.stream()
-                .map(record -> MsgRedisDeduplicationUtils.buildDedupKey(MSG_WB_OLP_KEY_PREFIX, generateRedisKey(record.value())))
-                .collect(Collectors.toList());
+        try {
+            // 过滤出新数据并直接处理
+            List<String> redisKeys = records.stream()
+                    .map(record -> MsgRedisDeduplicationUtils.buildDedupKey(MSG_WB_OLP_KEY_PREFIX, generateRedisKey(record.value())))
+                    .collect(Collectors.toList());
 
-        List<String> newKeys = msgRedisDed.filterNewKeys(redisKeys, MSG_WB_OLP_REDIS_EXPIRE_SECONDS);
+            List<String> newKeys = msgRedisDed.filterNewKeys(redisKeys, MSG_WB_OLP_REDIS_EXPIRE_SECONDS);
 
-        // 修正1: 通过 HybridTaskDispatcher 获取执行器
-        CompletableFuture<Void> allTasks = CompletableFuture.allOf(
-                IntStream.range(0, records.size())
-                        .filter(i -> newKeys.contains(redisKeys.get(i)))
-                        .mapToObj(i -> CompletableFuture.runAsync(
-                                () -> processRecordWithFallback(records.get(i)),
-                                singleton.getTaskDispatcher().getExecutor(TaskPriority.IMPORTANT) // 核心业务使用 VIRTUAL
-                        ))
-                        .toArray(CompletableFuture[]::new)
-        );
+            // 直接同步处理新数据，避免异步嵌套
+            IntStream.range(0, records.size())
+                    .filter(i -> newKeys.contains(redisKeys.get(i)))
+                    .forEach(i -> processRecordWithFallback(records.get(i)));
 
-        // 修正2: 通过 HybridTaskDispatcher 调度任务
-        singleton.getTaskDispatcher().dispatch(() -> {
-            try {
-                allTasks.get(TASK_TIMEOUT_SECONDS, TimeUnit.SECONDS);
-                log.info(">>>>> All records processed successfully. Acknowledging Kafka.");
-                acknowledgment.acknowledge();
-            } catch (TimeoutException e) {
-                log.error(">>>>> Kafka record processing timeout after {}s. Kafka will NOT be acked.", TASK_TIMEOUT_SECONDS);
-            } catch (Exception e) {
-                log.error(">>>>> Kafka record processing failed. Kafka will NOT be acked.", e);
-            }
-        }, TaskPriority.NORMAL);
+            acknowledgment.acknowledge();
+            log.info(">>>>> Batch of {} new records processed successfully", newKeys.size());
+        } catch (Exception e) {
+            log.error(">>>>> Failed to process batch of {} records", records.size(), e);
+            acknowledgment.acknowledge(); // 防止Kafka重新投递
+        }
     }
 
     private void processRecordWithFallback(ConsumerRecord<Long, EqpReversePOJORecord> record) {
@@ -110,8 +95,30 @@ public class WbOlpConsumer {
     private void processRecord(ConsumerRecord<Long, EqpReversePOJORecord> record) {
         EqpReversePOJORecord value = record.value();
         EqpReverseInfo data = convertToWbOlpChk(value);
-        disruptor.publishEvent((event, sequence) -> event.setData(data));
-        log.info(">>>>> New data processed and added to Disruptor: {}", data);
+
+        // 添加背压控制
+        applyBackpressure();
+
+        // 使用 tryPublishEvent 避免阻塞
+        boolean success = disruptor.getRingBuffer().tryPublishEvent((event, sequence) -> event.setData(data));
+        if (!success) {
+            log.warn(">>>>> Disruptor buffer full, sending to DLQ");
+            handleFailedRecord(record, new RuntimeException("Disruptor buffer full"));
+        } else {
+            log.info(">>>>> New data processed and added to Disruptor: {}", data.getSimId());
+        }
+    }
+
+    private void applyBackpressure() {
+        // 当 Disruptor 缓冲区接近满载时，短暂等待释放资源
+        while (disruptor.getRingBuffer().remainingCapacity() < 10) {
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return;
+            }
+        }
     }
 
     private void handleFailedRecord(ConsumerRecord<Long, EqpReversePOJORecord> record, Exception e) {
@@ -147,6 +154,7 @@ public class WbOlpConsumer {
         data.setChkDt(Chronos.now());
         data.setCode(value.getCode());
         data.setPassed(value.getCode() == 0);
+        data.setReason("kafka");
         data.setDescription(safeToString(value.getDescription()));
         return data;
     }

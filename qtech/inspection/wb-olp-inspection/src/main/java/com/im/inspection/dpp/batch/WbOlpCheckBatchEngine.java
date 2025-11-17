@@ -13,11 +13,11 @@ import org.apache.spark.storage.StorageLevel;
 import org.im.common.batch.config.BatchConfig;
 import org.im.common.batch.core.BatchJobStatus;
 import org.im.common.batch.exception.JobExecutionException;
+import org.im.common.exception.constants.ErrorCode;
+import org.im.common.exception.type.common.BusinessException;
 import org.im.common.exception.type.data.NoDataFoundException;
 import org.im.config.ConfigurationManager;
-import org.im.exception.constants.ErrorCode;
 import org.im.exception.constants.ErrorMessage;
-import org.im.exception.type.common.BusinessException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -78,10 +78,15 @@ public class WbOlpCheckBatchEngine extends SparkBatchEngine<Void> {
      * 初始化配置参数
      */
     private void initConfig() {
-        driver = configManager.getString("jdbc.postgres.driver");
-        url = configManager.getString("jdbc.postgres.url");
-        user = configManager.getString("jdbc.postgres.user");
-        pwd = configManager.getString("jdbc.postgres.pwd");
+        // driver = configManager.getString("jdbc.postgres.driver");
+        // url = configManager.getString("jdbc.postgres.url");
+        // user = configManager.getString("jdbc.postgres.user");
+        // pwd = configManager.getString("jdbc.postgres.pwd");
+
+        driver = configManager.getString("jdbc.oracle.driver");
+        url = configManager.getString("jdbc.oracle.url");
+        user = configManager.getString("jdbc.oracle.user");
+        pwd = configManager.getString("jdbc.oracle.pwd");
     }
 
     /**

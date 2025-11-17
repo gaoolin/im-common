@@ -1,41 +1,54 @@
 package com.im.qtech.service.msg.disruptor.wb;
 
 import com.im.qtech.service.msg.entity.EqpReverseInfo;
-import com.im.qtech.service.msg.persist.olp.DeadLetterQueueService;
+import com.im.qtech.service.msg.persist.kafka.DeadLetterQueueService;
 import com.im.qtech.service.msg.service.IEqpReverseInfoService;
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.LifecycleAware;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
+import org.im.common.thread.core.ThreadPoolSingleton;
+import org.im.common.thread.core.SmartThreadPoolExecutor;
+import org.im.common.thread.task.TaskPriority;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
-/**
- * @author gaozhilin
- * @email gaoolin@gmail.com
- * @date 2025/04/24 15:31:03
- */
+import java.util.concurrent.*;
 
 @Slf4j
 @Service
 public class WbOlpChkEventHandler implements EventHandler<WbOlpChkEvent>, LifecycleAware {
 
-    private static final int BATCH_SIZE = 100;
-    private static final int FLUSH_INTERVAL_SECONDS = 5;
+    @Value("${wb.olp.chk.batch.size:100}")
+    private int BATCH_SIZE = 100;
+
+    @Value("${wb.olp.chk.flush.interval.seconds:5}")
+    private int FLUSH_INTERVAL_SECONDS = 5;
+
+    @Value("${wb.olp.chk.max.buffer.size:1000}")
+    private int MAX_BUFFER_SIZE = 1000;
+
     private final List<EqpReverseInfo> buffer = Collections.synchronizedList(new ArrayList<>());
+    private final Object bufferLock = new Object();
     private ScheduledExecutorService scheduler;
+    private final IEqpReverseInfoService service;
+    private final DeadLetterQueueService dlqService;
+    private final SmartThreadPoolExecutor databaseExecutor;
 
     @Autowired
-    private IEqpReverseInfoService service;
-
-    @Autowired
-    private DeadLetterQueueService dlqService;
+    public WbOlpChkEventHandler(
+            IEqpReverseInfoService service,
+            DeadLetterQueueService dlqService,
+            @Qualifier("importantTaskExecutor") SmartThreadPoolExecutor databaseExecutor) {
+        this.service = service;
+        this.dlqService = dlqService;
+        // 使用自定义的线程池框架
+        this.databaseExecutor = databaseExecutor;
+    }
 
     @PostConstruct
     public void init() {
@@ -62,15 +75,24 @@ public class WbOlpChkEventHandler implements EventHandler<WbOlpChkEvent>, Lifecy
     public void onEvent(WbOlpChkEvent event, long sequence, boolean endOfBatch) {
         EqpReverseInfo data = event.getData();
         try {
-            buffer.add(data);
-            if (buffer.size() >= BATCH_SIZE || endOfBatch) {
-                flush();
+            synchronized (bufferLock) {
+                // 背压控制
+                if (buffer.size() >= MAX_BUFFER_SIZE) {
+                    log.warn(">>>>> Buffer size exceeded limit, sending data to DLQ to prevent memory overflow");
+                    dlqService.sendWbOlpChkToDLQ(data);
+                    return;
+                }
+
+                buffer.add(data);
+                if (buffer.size() >= BATCH_SIZE || endOfBatch) {
+                    flush();
+                }
             }
         } catch (Exception e) {
             log.error(">>>>> Error processing WbOlpChk: {}", data, e);
             dlqService.sendWbOlpChkToDLQ(data);
         } finally {
-            event.clear(); // 防止内存滞留
+            event.clear();
         }
     }
 
@@ -80,9 +102,8 @@ public class WbOlpChkEventHandler implements EventHandler<WbOlpChkEvent>, Lifecy
     private void flush() {
         List<EqpReverseInfo> toPersist;
 
-        synchronized (buffer) {
+        synchronized (bufferLock) {
             if (buffer.isEmpty()) return;
-
             toPersist = new ArrayList<>(buffer);
             buffer.clear();
         }
@@ -91,13 +112,67 @@ public class WbOlpChkEventHandler implements EventHandler<WbOlpChkEvent>, Lifecy
             // 添加去重逻辑：根据业务主键去重，保留最新数据
             List<EqpReverseInfo> deduplicatedData = deduplicateData(toPersist);
 
-            // service.addWbOlpChkDorisBatch(deduplicatedData);
-            service.upsertPGBatch(deduplicatedData);
+            // 使用您的线程池框架执行数据库操作
+            CompletableFuture<Boolean> upsertedDoris = executeWithThreadPool(() ->
+                service.upsertDorisBatchAsync(deduplicatedData));
+            CompletableFuture<Boolean> addedDoris = executeWithThreadPool(() ->
+                service.addDorisBatchAsync(deduplicatedData));
+            CompletableFuture<Boolean> upsertedOracle = executeWithThreadPool(() ->
+                service.upsertOracleBatchAsync(deduplicatedData));
+
+            // 设置超时时间以避免永久阻塞
+            CompletableFuture<Void> allFutures = CompletableFuture.allOf(
+                    upsertedDoris.exceptionally(ex -> {
+                        logErrorAndSendToDLQ("Doris Upsert", ex, deduplicatedData);
+                        return false;
+                    }),
+                    addedDoris.exceptionally(ex -> {
+                        logErrorAndSendToDLQ("Doris Add", ex, deduplicatedData);
+                        return false;
+                    }),
+                    upsertedOracle.exceptionally(ex -> {
+                        logErrorAndSendToDLQ("Oracle Upsert", ex, deduplicatedData);
+                        return false;
+                    })
+            );
+
+            // 加入超时限制
+            allFutures.get(30, TimeUnit.SECONDS); // 可配置为更合适的值
+
             log.info(">>>>> 成功落库 [{}] 条 WbOlpChk 数据", deduplicatedData.size());
+        } catch (TimeoutException e) {
+            log.error(">>>>> 批量落库超时，写入 DLQ，数量：{}", toPersist.size(), e);
+            toPersist.forEach(dlqService::sendWbOlpChkToDLQ);
         } catch (Exception e) {
             log.error(">>>>> 批量落库失败，写入 DLQ，数量：{}", toPersist.size(), e);
             toPersist.forEach(dlqService::sendWbOlpChkToDLQ);
         }
+    }
+
+    private CompletableFuture<Boolean> executeWithThreadPool(
+            java.util.function.Supplier<CompletableFuture<Boolean>> supplier) {
+        CompletableFuture<Boolean> future = new CompletableFuture<>();
+        databaseExecutor.execute(() -> {
+            try {
+                CompletableFuture<Boolean> result = supplier.get();
+                result.whenComplete((boolResult, throwable) -> {
+                    if (throwable != null) {
+                        future.completeExceptionally(throwable);
+                    } else {
+                        future.complete(boolResult);
+                    }
+                });
+            } catch (Exception e) {
+                future.completeExceptionally(e);
+            }
+        });
+        return future;
+    }
+
+    // 提取公共的日志+DLQ方法
+    private void logErrorAndSendToDLQ(String operationName, Throwable ex, List<EqpReverseInfo> data) {
+        log.error(">>>>> {} 失败，部分数据写入 DLQ，数量：{}", operationName, data.size(), ex);
+        data.forEach(dlqService::sendWbOlpChkToDLQ);
     }
 
     /**
@@ -110,7 +185,7 @@ public class WbOlpChkEventHandler implements EventHandler<WbOlpChkEvent>, Lifecy
         Map<String, EqpReverseInfo> uniqueMap = new LinkedHashMap<>();
 
         data.forEach(item ->
-                uniqueMap.put(item.getSimId(), item)
+                uniqueMap.put(item.getSimId() + "|" + item.getSource(), item)
         );
 
         // Java 21的SequencedCollection支持
@@ -119,7 +194,8 @@ public class WbOlpChkEventHandler implements EventHandler<WbOlpChkEvent>, Lifecy
 
     @Override
     public void onStart() {
-        log.info(">>>>> Disruptor handler started");
+        log.info(">>>>> Disruptor handler started with batch size: {}, max buffer size: {}",
+                BATCH_SIZE, MAX_BUFFER_SIZE);
     }
 
     @Override

@@ -115,7 +115,7 @@ public class KafkaCli {
 
                 Long key = Chronos.currentTimestamp();
 
-                ProducerRecord<Long, EqpReversePOJORecord> record = new ProducerRecord<>(KAFKA_WB_OLP_CHK_RES_TOPIC_TEST, key, value);
+                ProducerRecord<Long, EqpReversePOJORecord> record = new ProducerRecord<>(KAFKA_WB_OLP_CHK_RES_TOPIC, key, value);
 
                 if (value != null) {
                     producer.send(record);
@@ -237,7 +237,7 @@ public class KafkaCli {
                 );
                 Long key = Instant.now().toEpochMilli();
 
-                ProducerRecord<Long, WbOlpRawDataRecord> record = new ProducerRecord<>(KAFKA_WB_OLP_RAW_DATA_TOPIC_TEST, key, value);
+                ProducerRecord<Long, WbOlpRawDataRecord> record = new ProducerRecord<>(KAFKA_WB_OLP_RAW_DATA_TOPIC, key, value);
                 wbOlpRawDataProducer.send(record);
             } catch (Exception e) {
                 logger.error(">>>>> Error sending record to Kafka: {}", jsonObject, e);

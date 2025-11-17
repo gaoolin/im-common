@@ -117,22 +117,35 @@ public class EqLstParsedHandler extends MessageHandler<EqLstParsed> implements A
     }
 
     public EqLstCommand parseRowStartWithItem(String[] parts, String handlerName, String command) {
-        if (handlerName != null) {
-            try {
-                // 获取处理器
-                CommandHandler<EqLstCommand> handler = commandHandlerDispatcher.getCommandHandler(handlerName + "Handler");
-                // 使用处理器处理命令
-                return handler != null ? handler.handle(parts, command) : null;
-            } catch (RuntimeException e) {
-                // 处理未找到处理器的情况
-                logger.warn(">>>>> 未找到Item处理器:{}\n{}", handlerName, e.getMessage());
-                return null;
-            }
-        } else {
+        if (handlerName == null) {
             logger.warn(">>>>> listItemMapper is empty");
             return null;
         }
+
+        CommandHandler<EqLstCommand> handler;
+        try {
+            // 获取处理器
+            handler = commandHandlerDispatcher.getCommandHandler(handlerName + "Handler");
+        } catch (RuntimeException e) {
+            // 处理未找到处理器的情况
+            logger.warn(">>>>> 未找到Item处理器:" + handlerName, e);
+            return null;
+        }
+
+        if (handler == null) {
+            logger.warn(">>>>> 未找到Item处理器:{}", handlerName);
+            return null;
+        }
+
+        try {
+            // 使用处理器处理命令
+            return handler.handle(parts, command);
+        } catch (Exception e) {
+            logger.warn(">>>>> 处理Item处理器异常:" + handlerName, e);
+            return null;
+        }
     }
+
 
     public EqLstParsed doFullParse(String msg) {
         try {

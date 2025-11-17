@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
-import org.springframework.beans.factory.DisposableBean;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
@@ -33,7 +32,7 @@ import static com.im.qtech.data.constant.QtechImBizConstant.REDIS_KEY_PREFIX_EQP
  * @date 2024/08/16 08:33:27
  */
 @Component
-public class EqpReverseInfoQueueConsumer implements DisposableBean {
+public class EqpReverseInfoQueueConsumer {
     private static final Logger logger = LoggerFactory.getLogger(EqpReverseInfoQueueConsumer.class);
     // 获取共享objectMapper
     private static final ObjectMapper objectMapper = JsonMapperProvider.getSharedInstance();
@@ -43,11 +42,6 @@ public class EqpReverseInfoQueueConsumer implements DisposableBean {
     public EqpReverseInfoQueueConsumer(IEqpReverseInfoService service, RedisTemplate<String, EqpReverseInfo> template) {
         this.service = service;
         this.template = template;
-    }
-
-    @Override
-    public void destroy() throws Exception {
-        // connection is not initialized, so nothing to close here
     }
 
     @RabbitListener(queues = "eqReverseInfoQueue", ackMode = "MANUAL")
@@ -101,14 +95,27 @@ public class EqpReverseInfoQueueConsumer implements DisposableBean {
             hasError.set(true);
         }
 
-        CompletableFuture<Integer> exceptionally = service.upsertPGAsync(message).exceptionally(ex -> {
+        // 执行 Oracle 和 Doris 的异步更新
+        CompletableFuture<Boolean> oracleFuture = service.upsertOracleAsync(message).exceptionally(ex -> {
             logger.error(">>>>> Postgres upsert 异常: ", ex);
             hasError.set(true);
-            return -1;
+            return false;
         });
 
-        // CompletableFuture<Void> allFuture = CompletableFuture.allOf(future, dorisAsync, addAaListDorisAsync);
-        CompletableFuture<Void> allFuture = CompletableFuture.allOf(exceptionally);
+        CompletableFuture<Boolean> dorisUpdateFuture = service.upsertDorisAsync(message).exceptionally(ex -> {
+            logger.error(">>>>> Postgres upsert 批量异常: ", ex);
+            hasError.set(true);
+            return false;
+        });
+
+        CompletableFuture<Boolean> dorisAddFuture = service.addDorisAsync(message).exceptionally(ex -> {
+            logger.error(">>>>> Doris upsert 异常: ", ex);
+            hasError.set(true);
+            return false;
+        });
+
+        // 合并两个异步任务
+        CompletableFuture<Void> allFuture = CompletableFuture.allOf(oracleFuture, dorisUpdateFuture, dorisAddFuture);
         try {
             allFuture.join(); // 等待所有异步任务完成
         } catch (CompletionException e) {

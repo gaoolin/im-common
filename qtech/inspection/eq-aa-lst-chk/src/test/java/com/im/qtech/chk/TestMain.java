@@ -22,7 +22,7 @@ public class TestMain {
 
             // ✅ 3. 测试插入 EqLstTplInfoDO
             EqLstTplInfoDO infoPO = new EqLstTplInfoDO();
-            infoPO.setModule("MODULE_TEST");
+            infoPO.setModuleId("MODULE_TEST");
             infoPO.setProvider("PROVIDER_TEST");
 
             session.saveOrUpdate(infoPO);
@@ -30,7 +30,7 @@ public class TestMain {
 
             // ✅ 4. 测试插入 EqLstTplDO
             EqLstTplDO tplDO = new EqLstTplDO();
-            tplDO.setModule("MODULE_TEST");
+            tplDO.setModuleId("MODULE_TEST");
             tplDO.setRemark("模板内容示例");
 
             session.saveOrUpdate(tplDO);
@@ -49,7 +49,7 @@ public class TestMain {
         try {
             EqLstTplInfoDO loaded = databaseService.getTplInfo("MODULE_TEST");
             if (loaded != null) {
-                System.out.println("✅ findByModule 查询成功 -> " + loaded.getModule());
+                System.out.println("✅ findByModule 查询成功 -> " + loaded.getModuleId());
             } else {
                 System.out.println("❌ findByModule 返回 null");
             }

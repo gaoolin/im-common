@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class RedissonBloomFilterConfig {
 
-    private static final String BLOOM_FILTER_NAME = "im:olp:dedup:filter";
+    private static final String BLOOM_FILTER_NAME = "im:kafka:dedup:filter";
     private static final long EXPECTED_INSERTIONS = 10_000_000L; // 预计插入数
     private static final double FALSE_PROBABILITY = 0.01; // 误判率
     // 布隆过滤器的过期时间（单位：秒）

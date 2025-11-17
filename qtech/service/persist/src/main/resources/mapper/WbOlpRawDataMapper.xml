@@ -5,7 +5,7 @@
     <resultMap id="BaseResultMap" type="com.im.qtech.data.dto.param.WbOlpRawData">
         <result property="dt" column="dt"/>
         <result property="simId" column="sim_id"/>
-        <result property="module" column="module"/>
+        <result property="moduleId" column="module_id"/>
         <result property="wireId" column="wire_id"/>
         <result property="leadX" column="lead_x"/>
         <result property="leadY" column="lead_y"/>
@@ -19,7 +19,7 @@
     <resultMap id="BaseResultMapperForDoris" type="com.im.qtech.data.dto.param.WbOlpRawData">
         <result property="dt" column="dt"/>
         <result property="simId" column="sim_id"/>
-        <result property="module" column="mc_id"/>
+        <result property="moduleId" column="mc_id"/>
         <result property="wireId" column="line_no"/>
         <result property="leadX" column="lead_x"/>
         <result property="leadY" column="lead_y"/>
@@ -43,7 +43,7 @@
             (
             #{item.dt},
             #{item.simId},
-            #{item.module},
+            #{item.moduleId},
             #{item.wireId},
             #{item.leadX},
             #{item.leadY},

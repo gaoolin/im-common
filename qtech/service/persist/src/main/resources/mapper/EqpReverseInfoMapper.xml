@@ -5,7 +5,7 @@
         <id property="id" column="id"/>
         <result property="simId" column="sim_id"/>
         <result property="source" column="source"/>
-        <result property="module" column="module"/>
+        <result property="moduleId" column="module_id"/>
         <result property="chkDt" column="chk_dt"/>
         <result property="code" column="code"/>
         <result property="passed" column="passed"/>
@@ -16,19 +16,14 @@
     </resultMap>
 
     <sql id="select_eq_reverse_ctrl_info">
-        SELECT SIM_ID, "SOURCE", "MODULE", CHK_DT, CODE, DESCRIPTION, VERSION
+        SELECT SIM_ID, "SOURCE", MODULE_ID, CHK_DT, CODE, DESCRIPTION, VERSION
         FROM IMBIZ.IM_EQ_REVERSE_CONTROL_RECORDS
     </sql>
 
     <!-- 定义列名列表，用于在批量插入中复用 -->
     <sql id="columnList">
         SIM_ID
-        , "SOURCE", "MODULE", CHK_DT, CODE, DESCRIPTION, VERSION
-    </sql>
-
-    <sql id="fullColumnList">
-        id
-        , sim_id, "source", "module", chk_dt, code, passed, label, reason, description, version
+        , "SOURCE", MODULE_ID, CHK_DT, CODE, DESCRIPTION, VERSION
     </sql>
 
     <insert id="upsertDoris">
@@ -36,7 +31,7 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="simId != null">SIM_ID,</if>
             <if test="source != null">SOURCE,</if>
-            <if test="module != null">PROD_TYPE,</if>
+            <if test="moduleId != null">MODULE_ID,</if>
             <if test="chkDt != null">CHK_DT,</if>
             <if test="code != null">CODE,</if>
             <if test="passed != null">PASSED,</if>
@@ -47,7 +42,7 @@
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
             <if test="simId != null">#{simId},</if>
             <if test="source != null">#{source},</if>
-            <if test="module != null">#{prodType},</if>
+            <if test="moduleId != null">#{moduleId},</if>
             <if test="chkDt != null">#{chkDt},</if>
             <if test="code != null">#{code},</if>
             <if test="passed != null">#{passed},</if>
@@ -61,7 +56,7 @@
         MERGE INTO IMBIZ.IM_EQ_REVERSE_CONTROL_RECORDS tgt
             USING (SELECT #{simId, jdbcType=VARCHAR}       AS SIM_ID,
                           #{source, jdbcType=VARCHAR}      AS SOURCE,
-                          #{module, jdbcType=VARCHAR} AS "MODULE",
+                          #{moduleId, jdbcType=VARCHAR} AS MODULE_ID,
                           #{chkDt, jdbcType=TIMESTAMP}     AS CHK_DT,
                           #{code, jdbcType=INTEGER}        AS CODE,
                           #{passed, jdbcType=BOOLEAN} AS PASSED,
@@ -75,7 +70,7 @@
                 )
             WHEN MATCHED THEN
                 UPDATE SET
-                    tgt."MODULE" = src."MODULE",
+                    tgt.MODULE_ID = src.MODULE_ID,
                     tgt.CHK_DT = src.CHK_DT,
                     tgt.CODE = src.CODE,
                     tgt.PASSED = src.PASSED,
@@ -87,7 +82,7 @@
                 INSERT (
                         SIM_ID,
                         SOURCE,
-                        "MODULE",
+                        MODULE_ID,
                         CHK_DT,
                         CODE,
                         PASSED,
@@ -96,7 +91,7 @@
                         DESCRIPTION
                     ) VALUES (src.SIM_ID,
                               src.SOURCE,
-                              src."MODULE",
+                              src.MODULE_ID,
                               src.CHK_DT,
                               src.CODE,
                               src.PASSED,
@@ -105,11 +100,11 @@
                               src.DESCRIPTION)
     </insert>
 
-    <insert id="addEqpLstDoris" parameterType="EqpReverseInfo">
+    <insert id="addDorisAsync" parameterType="EqpReverseInfo">
         INSERT INTO qtech_eq_dwd.im_aa_list_chk_result_detail
         <trim prefix="(" suffix=")" prefixOverrides=",">
             <if test="simId != null">SIM_ID,</if>
-            <if test="module != null">"MODULE",</if>
+            <if test="moduleId != null">MODULE_ID,</if>
             <if test="chkDt != null">CHK_DT,</if>
             <if test="code != null">CODE,</if>
             <if test="passed !=null">PASSED,</if>
@@ -119,7 +114,7 @@
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
             <if test="simId != null">#{simId},</if>
-            <if test="module != null">#{module},</if>
+            <if test="moduleId != null">#{moduleId},</if>
             <if test="chkDt != null">#{chkDt},</if>
             <if test="code != null">#{code},</if>
             <if test="passed != null">#{passed},</if>
@@ -133,7 +128,7 @@
         INSERT INTO qtech_eq_dwd.im_wb_olp_chk_result_detail
         <trim prefix="(" suffix=")" prefixOverrides=",">
             <if test="simId != null">SIM_ID,</if>
-            <if test="module != null">"MODULE",</if>
+            <if test="moduleId != null">MODULE_ID,</if>
             <if test="chkDt != null">DT,</if>
             <if test="code != null">CODE,</if>
             <if test="passed != null">PASSED,</if>
@@ -143,7 +138,7 @@
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
             <if test="simId != null">#{simId},</if>
-            <if test="module != null">#{module},</if>
+            <if test="moduleId != null">#{moduleId},</if>
             <if test="chkDt != null">#{chkDt},</if>
             <if test="code != null">#{code},</if>
             <if test="passed != null">#{passed},</if>
@@ -158,7 +153,7 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="simId != null">sim_id,</if>
             <if test="source != null">source,</if>
-            <if test="module != null">module,</if>
+            <if test="moduleId != null">module_id,</if>
             <if test="chkDt != null">chk_dt,</if>
             <if test="code != null">code,</if>
             <if test="passed != null">passed,</if>
@@ -169,7 +164,7 @@
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
             <if test="simId != null">#{simId},</if>
             <if test="source != null">#{source},</if>
-            <if test="module != null">#{module},</if>
+            <if test="moduleId != null">#{moduleId},</if>
             <if test="chkDt != null">#{chkDt,jdbcType=TIMESTAMP},</if>
             <if test="code != null">#{code},</if>
             <if test="passed != null">#{passed},</if>
@@ -180,7 +175,7 @@
         ON CONFLICT ON CONSTRAINT uk_eqp_reverse_control_latest_sim_source
         DO UPDATE SET
         <trim suffixOverrides=",">
-            <if test="module != null">module = EXCLUDED.module,</if>
+            <if test="moduleId != null">module_id = EXCLUDED.module_id,</if>
             <if test="chkDt != null">chk_dt = EXCLUDED.chk_dt,</if>
             <if test="code != null">code = EXCLUDED.code,</if>
             <if test="passed != null">passed = EXCLUDED.passed,</if>
@@ -199,9 +194,12 @@
                     SELECT
                         #{item.simId, jdbcType=VARCHAR} AS SIM_ID,
                         #{item.source, jdbcType=VARCHAR} AS SOURCE,
-                        #{item.prodType, jdbcType=VARCHAR} AS PROD_TYPE,
+                        #{item.moduleId, jdbcType=VARCHAR} AS MODULE_ID,
                         #{item.chkDt, jdbcType=TIMESTAMP} AS CHK_DT,
                         #{item.code, jdbcType=INTEGER} AS CODE,
+                        #{item.passed, jdbcType=INTEGER} AS PASSED,
+                        #{item.label, jdbcType=VARCHAR} AS LABEL,
+                        #{item.reason, jdbcType=VARCHAR} AS REASON,
                         #{item.description, jdbcType=VARCHAR} AS DESCRIPTION
                     FROM DUAL
                 ) src
@@ -211,25 +209,34 @@
                 )
                 WHEN MATCHED THEN
                     UPDATE SET
-                        tgt.PROD_TYPE = src.PROD_TYPE,
+                        tgt.MODULE_ID = src.MODULE_ID,
                         tgt.CHK_DT = src.CHK_DT,
                         tgt.CODE = src.CODE,
+                        tgt.PASSED = src.PASSED,
+                        tgt.LABEL = src.LABEL,
+                        tgt.REASON = src.REASON,
                         tgt.DESCRIPTION = src.DESCRIPTION,
                         tgt.VERSION = tgt.VERSION + 1
                 WHEN NOT MATCHED THEN
                     INSERT (
                         SIM_ID,
                         SOURCE,
-                        PROD_TYPE,
+                        MODULE_ID,
                         CHK_DT,
                         CODE,
+                        PASSED,
+                        LABEL,
+                        REASON,
                         DESCRIPTION
                     ) VALUES (
                         src.SIM_ID,
                         src.SOURCE,
-                        src.PROD_TYPE,
+                        src.MODULE_ID,
                         src.CHK_DT,
                         src.CODE,
+                        src.PASSED,
+                        src.LABEL,
+                        src.REASON,
                         src.DESCRIPTION
                     )
             </foreach>
@@ -239,14 +246,17 @@
 
     <insert id="addWbOlpChkDorisBatch">
         INSERT INTO qtech_eq_dwd.im_wb_olp_chk_result_detail
-        (SIM_ID, MC_ID, DT, CODE, DESCRIPTION)
+        (SIM_ID, MC_ID, DT, CODE,  PASSED, LABEL, REASON, DESCRIPTION)
         VALUES
         <foreach collection="list" item="item" separator=",">
             (
             #{item.simId},
-            #{item.prodType},
+            #{item.moduleId},
             #{item.chkDt},
             #{item.code},
+            #{item.passed},
+            #{item.label},
+            #{item.reason},
             #{item.description}
             )
         </foreach>
@@ -254,13 +264,13 @@
 
     <insert id="upsertPostgresBatch">
         INSERT INTO biz.eqp_reverse_control_latest
-        (sim_id, source, module, chk_dt, code, passed, label, reason, description)
+        (sim_id, source, module_id, chk_dt, code, passed, label, reason, description)
         VALUES
         <foreach collection="list" item="item" separator=",">
             (
             #{item.simId},
             #{item.source},
-            #{item.module},
+            #{item.moduleId},
             #{item.chkDt},
             #{item.code},
             #{item.passed},
@@ -271,7 +281,7 @@
         </foreach>
         ON CONFLICT ON CONSTRAINT uk_eqp_reverse_control_latest_sim_source
         DO UPDATE SET
-        module = EXCLUDED.module,
+        module_id = EXCLUDED.module_id,
         chk_dt = EXCLUDED.chk_dt,
         code = EXCLUDED.code,
         passed = EXCLUDED.passed,
@@ -279,6 +289,48 @@
         reason = EXCLUDED.reason,
         description = EXCLUDED.description,
         version = biz.eqp_reverse_control_latest.version + 1
+    </insert>
+
+    <insert id="upsertDorisBatch">
+        INSERT INTO qtech_eq_ads.im_eq_reverse_control_info
+        (SIM_ID, SOURCE, MODULE_ID, CHK_DT, CODE, PASSED, LABEL, REASON, DESCRIPTION)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.simId},
+            #{item.source},
+            #{item.moduleId},
+            #{item.chkDt},
+            #{item.code},
+            #{item.passed},
+            #{item.label},
+            #{item.reason},
+            #{item.description}
+            )
+        </foreach>
+    </insert>
+    <insert id="addOracleBatch">
+
+    </insert>
+    <insert id="addPostgresBatch">
+
+    </insert>
+    <insert id="addDorisBatch">
+        INSERT INTO qtech_eq_dwd.im_wb_olp_chk_result_detail
+        (SIM_ID, MC_ID, DT, CODE, PASSED, LABEL, REASON, DESCRIPTION)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.simId},
+            #{item.moduleId},
+            #{item.chkDt},
+            #{item.code},
+            #{item.passed},
+            #{item.label},
+            #{item.reason},
+            #{item.description}
+            )
+        </foreach>
     </insert>
 
 </mapper>

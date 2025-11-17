@@ -95,6 +95,7 @@ public class ParamCheckService {
 
         // 获取模板信息（从Redis缓存，通过CacheService）
         EqLstTplInfoDO modelInfoObj = getTplInfoFromCache(actualObj.getModuleId());
+        logger.error(">>>>> 获取模板信息 -> {}", modelInfoObj);
 
         // 模板信息检查
         if (modelInfoObj == null) {
@@ -106,6 +107,7 @@ public class ParamCheckService {
         }
 
         EqLstPOJO modelObj = modelInfoObj.getTpl();
+        logger.error(">>>>> 获取模板信息 -> {}", modelObj);
 
         if (modelObj == null) {
             return createInspectionResult(eqpReverseDO, 7, "Missing Template Detail.");
@@ -135,7 +137,11 @@ public class ParamCheckService {
             try {
                 EqLstTplInfoDO tplInfo = databaseService.getTplInfo(module);
                 if (tplInfo != null) {
-                    cacheService.getRedisCacheConfig().getEqLstTplInfoDOCache().put(module, tplInfo);
+                    try {
+                        cacheService.getRedisCacheConfig().getEqLstTplInfoDOCache().put(module, tplInfo);
+                    } catch (Exception e) {
+                        logger.error(">>>>> 缓存中无此机型模版信息 -> {}", module, e);
+                    }
                 } else {
                     logger.warn(">>>>> 数据库中无此机型模版信息 -> {}", module);
                 }
@@ -145,31 +151,6 @@ public class ParamCheckService {
             }
         }
         return eqLstTplInfoDO;
-    }
-
-    /**
-     * 从缓存获取模板
-     */
-    private EqLstPOJO getTplFromCache(String module) {
-        if (module == null || module.isEmpty()) {
-            logger.error(">>>>> 机型名称不能为空");
-            return null;
-        }
-
-        String retrievedBase64Data = cacheService.getRedisCacheConfig().getEqLstByteStringCache().get(module);
-        if (retrievedBase64Data == null) {
-            logger.error(">>>>> 机型名称不存在");
-            EqLstTplDO tpl = databaseService.getTpl(module);
-            if (tpl == null) {
-                return null;
-            }
-            byte[] serialize = EqLstProtobufMapper.serialize(tpl);
-            String base64 = Base64.getEncoder().encodeToString(serialize);
-            cacheService.getRedisCacheConfig().getEqLstByteStringCache().put(module, base64);
-            return tpl;
-        }
-        byte[] retrievedData = Base64.getDecoder().decode(retrievedBase64Data);
-        return EqLstProtobufMapper.deserialize(retrievedData);
     }
 
     /**

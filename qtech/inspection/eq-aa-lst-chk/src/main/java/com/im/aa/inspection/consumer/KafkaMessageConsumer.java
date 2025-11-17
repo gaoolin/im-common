@@ -124,10 +124,10 @@ public class KafkaMessageConsumer implements Lifecycle {
     private void initializeRabbitMQComponents() throws Exception {
         // 初始化 RabbitMQ 连接和信道
         ConnectionFactory factory = new ConnectionFactory();
-        String rabbitHost = configManager.getProperty("rabbitmq.host", "localhost");
-        int rabbitPort = configManager.getIntProperty("rabbitmq.port", 5672);
-        String rabbitUsername = configManager.getProperty("rabbitmq.username", "guest");
-        String rabbitPassword = configManager.getProperty("rabbitmq.password", "guest");
+        String rabbitHost = configManager.getProperty("rabbitmq.host", "10.170.6.40");
+        int rabbitPort = configManager.getIntProperty("rabbitmq.port", 31131);
+        String rabbitUsername = configManager.getProperty("rabbitmq.username", "qtech");
+        String rabbitPassword = configManager.getProperty("rabbitmq.password", "Ee786549");
         String rabbitVirtualHost = configManager.getProperty("rabbitmq.virtual-host", "/");
 
         factory.setHost(rabbitHost);

@@ -31,7 +31,7 @@ public class CacheService {
     // Redis缓存配置
     @Getter
     private final EqpLstRedisCacheConfig redisCacheConfig;
-    private final Cache<String, EqLstTplDO> eqLstTplCache;
+    // private final Cache<String, EqLstTplDO> eqLstTplCache;
     private final Cache<String, EqLstTplInfoDO> eqLstTplInfoCache;
 
     /**
@@ -42,7 +42,7 @@ public class CacheService {
      */
     private CacheService(EqpLstRedisCacheConfig redisCacheConfig) {
         this.redisCacheConfig = Objects.requireNonNull(redisCacheConfig, "Redis缓存配置不能为空");
-        this.eqLstTplCache = this.redisCacheConfig.getEqLstTplDOCache();
+        // this.eqLstTplCache = this.redisCacheConfig.getEqLstTplDOCache();
         this.eqLstTplInfoCache = this.redisCacheConfig.getEqLstTplInfoDOCache();
         logger.info(">>>>> CacheService初始化完成，使用Redis缓存配置");
     }

@@ -16,19 +16,27 @@ import java.util.List;
 @Mapper
 public interface EqpReverseInfoMapper extends BaseMapper<EqpReverseInfo> {
 
-    int upsertDoris(EqpReverseInfo EqpReverseInfo);
-
-    int addEqpLstDoris(EqpReverseInfo EqpReverseInfo);
+    int addDorisAsync(EqpReverseInfo EqpReverseInfo);
 
     int addWbOlpDoris(EqpReverseInfo EqpReverseInfo);
 
+    int addWbOlpChkDorisBatch(@Param("list") List<EqpReverseInfo> list);
+
     int upsertOracle(EqpReverseInfo EqpReverseInfo);
+
+    int upsertDoris(EqpReverseInfo EqpReverseInfo);
 
     int upsertPostgres(EqpReverseInfo EqpReverseInfo);
 
     int upsertOracleBatch(@Param("list") List<EqpReverseInfo> list);
 
-    int addWbOlpChkDorisBatch(@Param("list") List<EqpReverseInfo> list);
-
     int upsertPostgresBatch(@Param("list") List<EqpReverseInfo> list);
+
+    int upsertDorisBatch(@Param("list") List<EqpReverseInfo> list);
+
+    int addOracleBatch(@Param("list") List<EqpReverseInfo> list);
+
+    int addPostgresBatch(@Param("list") List<EqpReverseInfo> list);
+
+    int addDorisBatch(@Param("list") List<EqpReverseInfo> list);
 }

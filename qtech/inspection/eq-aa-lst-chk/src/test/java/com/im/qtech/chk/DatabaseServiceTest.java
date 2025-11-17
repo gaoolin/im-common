@@ -1,9 +1,7 @@
 package com.im.qtech.chk;
 
-import com.im.aa.inspection.entity.standard.EqLstTplDO;
 import com.im.aa.inspection.entity.standard.EqLstTplInfoDO;
 import com.im.aa.inspection.repository.EqLstTplInfoRepository;
-import com.im.aa.inspection.repository.TemplateDataRepository;
 import com.im.aa.inspection.service.DatabaseService;
 import org.junit.After;
 import org.junit.Before;
@@ -29,10 +27,6 @@ public class DatabaseServiceTest {
 
     @Mock
     private EqLstTplInfoRepository templateInfoRepository;
-
-    @Mock
-    private TemplateDataRepository templateDataRepository;
-
     private DatabaseService databaseService;
     private AutoCloseable closeable;
 
@@ -51,7 +45,6 @@ public class DatabaseServiceTest {
 
             Field templateDataRepoField = DatabaseService.class.getDeclaredField("templateDataRepository");
             templateDataRepoField.setAccessible(true);
-            templateDataRepoField.set(databaseService, templateDataRepository);
         } catch (Exception e) {
             throw new RuntimeException("Failed to set up mock repositories", e);
         }
@@ -69,57 +62,27 @@ public class DatabaseServiceTest {
         // Given
         String module = "C08A38";
         EqLstTplInfoDO expected = new EqLstTplInfoDO();
-        when(templateInfoRepository.findByModule(module)).thenReturn(expected);
+        when(templateInfoRepository.findByModuleId(module)).thenReturn(expected);
 
         // When
         EqLstTplInfoDO result = databaseService.getTplInfo(module);
 
         // Then
         assertEquals(expected, result);
-        verify(templateInfoRepository).findByModule(module);
+        verify(templateInfoRepository).findByModuleId(module);
     }
 
     @Test
     public void testGetTplInfoException() {
         // Given
         String module = "C08A38";
-        when(templateInfoRepository.findByModule(module)).thenThrow(new RuntimeException("DB Error"));
+        when(templateInfoRepository.findByModuleId(module)).thenThrow(new RuntimeException("DB Error"));
 
         // When
         EqLstTplInfoDO result = databaseService.getTplInfo(module);
 
         // Then
         assertNull(result);
-        verify(templateInfoRepository).findByModule(module);
-    }
-
-    @Test
-    public void testGetTplSuccess() {
-        // Given
-        String module = "C08A38";
-        EqLstTplDO expected = new EqLstTplDO();
-        when(templateDataRepository.findByModule(module)).thenReturn(expected);
-
-        // When
-        EqLstTplDO result = databaseService.getTpl(module);
-
-        // Then
-        assertEquals(expected, result);
-        verify(templateDataRepository).findByModule(module);
-    }
-
-    @Test
-    public void testGetTplException() {
-        // Given
-        String module = "C08A38";
-        when(templateDataRepository.findByModule(module)).thenThrow(new RuntimeException("DB Error"));
-
-        // When
-        EqLstTplDO result = databaseService.getTpl(module);
-
-        // Then
-        assertNotNull(result);
-        assertTrue(result instanceof EqLstTplDO);
-        verify(templateDataRepository).findByModule(module);
+        verify(templateInfoRepository).findByModuleId(module);
     }
 }

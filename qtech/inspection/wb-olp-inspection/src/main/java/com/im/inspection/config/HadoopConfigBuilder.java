@@ -3,8 +3,8 @@ package com.im.inspection.config;
 import com.im.qtech.data.dpp.conf.UnifiedHadoopConfig;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.security.UserGroupInformation;
-import org.im.exception.constants.ErrorCode;
-import org.im.exception.type.common.BusinessException;
+import org.im.common.exception.constants.ErrorCode;
+import org.im.common.exception.type.common.BusinessException;
 
 import java.io.File;
 import java.io.FileInputStream;

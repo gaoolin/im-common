@@ -2,11 +2,9 @@ package com.im.aa.inspection.service;
 
 import com.im.aa.inspection.config.AppConfig;
 import com.im.aa.inspection.entity.reverse.EqpReverseDO;
-import com.im.aa.inspection.entity.standard.EqLstTplDO;
 import com.im.aa.inspection.entity.standard.EqLstTplInfoDO;
 import com.im.aa.inspection.repository.EqLstTplInfoRepository;
 import com.im.aa.inspection.repository.ReverseDataRepository;
-import com.im.aa.inspection.repository.TemplateDataRepository;
 import lombok.Getter;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -39,7 +37,6 @@ public class DatabaseService {
     @Getter
     private SessionFactory sessionFactory;
     private EqLstTplInfoRepository templateInfoRepository;
-    private TemplateDataRepository templateDataRepository;
     private ReverseDataRepository reverseDataRepository;
 
     /**
@@ -60,7 +57,6 @@ public class DatabaseService {
 
             // 初始化 Repository
             templateInfoRepository = new EqLstTplInfoRepository(sessionFactory);
-            templateDataRepository = new TemplateDataRepository(sessionFactory);
             reverseDataRepository = new ReverseDataRepository(sessionFactory);
 
             logger.info(">>>>> 数据库服务初始化成功");
@@ -75,19 +71,10 @@ public class DatabaseService {
 
     public EqLstTplInfoDO getTplInfo(String module) {
         try {
-            return templateInfoRepository.findByModule(module);
+            return templateInfoRepository.findByModuleId(module);
         } catch (Exception e) {
             logger.error(">>>>> 获取参数标准值失败: {}", module, e);
             return null;
-        }
-    }
-
-    public EqLstTplDO getTpl(String module) {
-        try {
-            return templateDataRepository.findByModule(module);
-        } catch (Exception e) {
-            logger.error(">>>>> 获取检查结果模板失败: {}", module, e);
-            return new EqLstTplDO();
         }
     }
 

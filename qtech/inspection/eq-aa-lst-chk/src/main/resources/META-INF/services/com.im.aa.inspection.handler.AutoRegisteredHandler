@@ -1,7 +1,7 @@
+com.im.aa.inspection.handler.ListHandler
 com.im.aa.inspection.handler.AaHandler
 com.im.aa.inspection.handler.ChartAlignmentHandler
 com.im.aa.inspection.handler.EpoxyInspectionAutoHandler
-com.im.aa.inspection.handler.ListHandler
 com.im.aa.inspection.handler.LpOcHandler
 com.im.aa.inspection.handler.MtfCheckHandler
 com.im.aa.inspection.handler.MtfOffAxisCheckHandler

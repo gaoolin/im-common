@@ -122,3 +122,7 @@ thread-pool:
     queueCapacity: 200
     keepAliveSeconds: 30
     threadNamePrefix: low-task-
+
+logging:
+  level:
+    root: warn

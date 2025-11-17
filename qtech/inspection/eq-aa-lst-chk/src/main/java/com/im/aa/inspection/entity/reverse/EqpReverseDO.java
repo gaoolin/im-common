@@ -20,7 +20,6 @@ import javax.persistence.*;
 @ToString(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name = "eqp_reverse_control_latest", schema = "biz") // 需要指定实际表名
 public class EqpReverseDO extends EqpReversePOJO {
     private static final long serialVersionUID = 2L;
     @Id

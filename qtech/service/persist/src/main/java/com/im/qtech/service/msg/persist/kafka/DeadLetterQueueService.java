@@ -1,4 +1,4 @@
-package com.im.qtech.service.msg.persist.olp;
+package com.im.qtech.service.msg.persist.kafka;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

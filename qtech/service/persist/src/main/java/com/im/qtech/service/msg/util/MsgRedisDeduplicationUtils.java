@@ -1,6 +1,7 @@
 package com.im.qtech.service.msg.util;
 
 import lombok.extern.slf4j.Slf4j;
+import org.im.common.dt.Chronos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -26,7 +27,7 @@ public class MsgRedisDeduplicationUtils {
     /**
      * 构造带有 Redis Hash 标签的 key（避免 Redis Cluster 的 CROSSSLOT 报错）
      *
-     * @param prefix   Redis 业务前缀，例如 "qtech:im:chk:wb:olp"
+     * @param prefix   Redis 业务前缀，例如 "qtech:im:chk:wb:kafka"
      * @param hashPart 参与去重的 hash 值（如 SHA256 摘要）
      * @return Redis key
      */
@@ -47,7 +48,7 @@ public class MsgRedisDeduplicationUtils {
 
         for (String key : keys) {
             try {
-                Boolean success = ops.setIfAbsent(key, "1", Duration.ofSeconds(expireTime));
+                Boolean success = ops.setIfAbsent(key, Chronos.now().format(Chronos.getFormatter(Chronos.ISO_DATETIME_MS_FORMAT)), Duration.ofSeconds(expireTime));
                 if (Boolean.TRUE.equals(success)) {
                     result.add(key);
                 }

@@ -4,8 +4,8 @@ import com.im.qtech.service.msg.disruptor.wb.WbOlpChkEvent;
 import com.im.qtech.service.msg.disruptor.wb.WbOlpChkEventHandler;
 import com.im.qtech.service.msg.disruptor.wb.WbOlpRawDataEvent;
 import com.im.qtech.service.msg.disruptor.wb.WbOlpRawDataEventHandler;
-import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.FatalExceptionHandler;
+import com.lmax.disruptor.LiteBlockingWaitStrategy;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
@@ -13,10 +13,10 @@ import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
 /**
@@ -30,7 +30,7 @@ import java.util.concurrent.ThreadFactory;
 @Configuration
 public class DisruptorConfig {
 
-    private static final int RING_BUFFER_SIZE = 1024;
+    private static final int RING_BUFFER_SIZE = 256;
 
     private Disruptor<WbOlpRawDataEvent> wbOlpRawDataEventDisruptor;
 
@@ -49,13 +49,22 @@ public class DisruptorConfig {
     @Bean
     @Qualifier("wbOlpRawDataDisruptor")
     public Disruptor<WbOlpRawDataEvent> wbOlpRawDataDisruptor() {
-        ThreadFactory threadFactory = runnable -> {
-            Thread t = Executors.defaultThreadFactory().newThread(runnable);
-            t.setName("disruptor-wb-raw-thread");
-            return t;
+        ThreadFactory threadFactory = new ThreadFactory() {
+            private int counter = 0;
+
+            @Override
+            public Thread newThread(Runnable r) {
+                Thread t = new Thread(r, "disruptor-wb-raw-" + counter++);
+                t.setDaemon(true);
+                return t;
+            }
         };
 
-        wbOlpRawDataEventDisruptor = new Disruptor<>(WbOlpRawDataEvent::new, RING_BUFFER_SIZE, threadFactory, ProducerType.MULTI, new BlockingWaitStrategy());
+        wbOlpRawDataEventDisruptor = new Disruptor<>(WbOlpRawDataEvent::new,
+            RING_BUFFER_SIZE,
+            threadFactory,
+            ProducerType.MULTI,
+            new LiteBlockingWaitStrategy());
 
         wbOlpRawDataEventDisruptor.setDefaultExceptionHandler(new FatalExceptionHandler());
         wbOlpRawDataEventDisruptor.handleEventsWith(wbOlpRawDataEventHandler);
@@ -67,10 +76,15 @@ public class DisruptorConfig {
     @Bean
     @Qualifier("wbOlpChkDisruptor")
     public Disruptor<WbOlpChkEvent> wbOlpChkDisruptor() {
-        ThreadFactory threadFactory = runnable -> {
-            Thread t = Executors.defaultThreadFactory().newThread(runnable);
-            t.setName("disruptor-wb-chk-thread");
-            return t;
+        ThreadFactory threadFactory = new ThreadFactory() {
+            private int counter = 0;
+
+            @Override
+            public Thread newThread(Runnable r) {
+                Thread t = new Thread(r, "disruptor-wb-chk-" + counter++);
+                t.setDaemon(true);
+                return t;
+            }
         };
 
         wbOlpChkEventDisruptor = new Disruptor<>(
@@ -78,7 +92,7 @@ public class DisruptorConfig {
                 RING_BUFFER_SIZE,
                 threadFactory,
                 ProducerType.MULTI,
-                new BlockingWaitStrategy()
+                new LiteBlockingWaitStrategy()
         );
 
         wbOlpChkEventDisruptor.setDefaultExceptionHandler(new FatalExceptionHandler());
@@ -100,6 +114,20 @@ public class DisruptorConfig {
         return disruptor.getRingBuffer();
     }
 
+    @Bean
+    public ApplicationRunner disruptorMonitor(
+            @Qualifier("wbOlpRawDataDisruptor") Disruptor<WbOlpRawDataEvent> rawDataDisruptor,
+            @Qualifier("wbOlpChkDisruptor") Disruptor<WbOlpChkEvent> chkDisruptor) {
+        return args -> {
+            RingBuffer<WbOlpRawDataEvent> rawRingBuffer = rawDataDisruptor.getRingBuffer();
+            RingBuffer<WbOlpChkEvent> chkRingBuffer = chkDisruptor.getRingBuffer();
+
+            meterRegistry.gauge("disruptor.raw.ringbuffer.remaining", rawRingBuffer,
+                rb -> rb.getBufferSize() - rb.getCursor());
+            meterRegistry.gauge("disruptor.chk.ringbuffer.remaining", chkRingBuffer,
+                rb -> rb.getBufferSize() - rb.getCursor());
+        };
+    }
 
     /**
      * 优雅关闭 disruptor，防止内存泄漏或线程挂起
@@ -107,10 +135,12 @@ public class DisruptorConfig {
     @PreDestroy
     public void shutdown() {
         if (wbOlpRawDataEventDisruptor != null) {
+            wbOlpRawDataEventDisruptor.halt();
             wbOlpRawDataEventDisruptor.shutdown();
         }
 
         if (wbOlpChkEventDisruptor != null) {
+            wbOlpChkEventDisruptor.halt();
             wbOlpChkEventDisruptor.shutdown();
         }
     }
