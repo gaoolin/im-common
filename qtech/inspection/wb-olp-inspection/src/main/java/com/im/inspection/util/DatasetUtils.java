@@ -28,7 +28,7 @@ public class DatasetUtils {
 
     // 定义公共列名常量，便于维护
     private static final String[] FULL_COLS = {
-            "sim_id", "module_id", "dt", "first_draw_time",
+            "sim_id", "module_id", "dt", "first_bonding_time",
             "wire_id", "lead_x", "lead_y", "pad_x", "pad_y",
             "check_port", "pieces_index", "norm_module_id", "cnt", "wire_len"
     };
@@ -41,7 +41,7 @@ public class DatasetUtils {
         Dataset<Row> alignFirstDf = firstDf.select(toColumns(FULL_COLS));
         Dataset<Row> alignSecondDf = secondDf.select(toColumns(FULL_COLS));
         return alignFirstDf.union(alignSecondDf)
-                .sort(col("sim_id"), col("module_id"), col("first_draw_time"), col("pieces_index"), col("wire_id"));
+                .sort(col("sim_id"), col("module_id"), col("first_bonding_time"), col("pieces_index"), col("wire_id"));
     }
 
     public static Dataset<Row> unionDfToCheckDf(List<Dataset<Row>> seqDF) {

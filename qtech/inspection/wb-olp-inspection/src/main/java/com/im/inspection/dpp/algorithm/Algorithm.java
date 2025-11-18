@@ -28,10 +28,10 @@ public class Algorithm {
 
     public static Dataset<Row> noTemplate(Dataset<Row> df) {
         Column simId = col(SIM_ID);
-        Column prodType = col(MODULE_ID);
+        Column moduleId = col(MODULE_ID);
         Column dt = col(DT);
-        return df.select(simId, prodType, dt)
-                .groupBy(simId, prodType)
+        return df.select(simId, moduleId, dt)
+                .groupBy(simId, moduleId)
                 .agg(min(DT))
                 .withColumnRenamed("min(dt)", DT)
                 .withColumn(CODE, lit(3))
@@ -40,26 +40,26 @@ public class Algorithm {
 
     public static Dataset<Row> linkLnEstimate(Dataset<Row> df) {
         Column simId = col(SIM_ID);
-        Column prodType = col(MODULE_ID);
+        Column moduleId = col(MODULE_ID);
         Column piecesIndex = col(PIECES_INDEX);
         Column wireId = col(WIRE_ID);
 
         WindowSpec winOrdByPIdx = Window.partitionBy(df.col(SIM_ID), df.col(MODULE_ID), df.col(PIECES_INDEX)).orderBy(df.col(WIRE_ID));
-        WindowSpec winOrdByLnAsc = Window.partitionBy(simId, prodType, piecesIndex).orderBy(wireId.asc());
-        WindowSpec winOrdByLnDesc = Window.partitionBy(simId, prodType, piecesIndex).orderBy(wireId.desc());
+        WindowSpec winOrdByLnAsc = Window.partitionBy(simId, moduleId, piecesIndex).orderBy(wireId.asc());
+        WindowSpec winOrdByLnDesc = Window.partitionBy(simId, moduleId, piecesIndex).orderBy(wireId.desc());
 
         Dataset<Row> minMaxDF = df.withColumn(WIRE_ID_ASC, rank().over(winOrdByLnAsc))
                 .withColumn(WIRE_ID_DESC, rank().over(winOrdByLnDesc))
                 .filter(col(WIRE_ID_ASC).isin(1, 2).or(col(WIRE_ID_DESC).isin(1, 2)))
                 .withColumn(WIRE_LABEL, when(wireId.equalTo(1).or(wireId.equalTo(2)), lit("doubleMin")).otherwise(lit("doubleMax")))
-                .select(simId, prodType, piecesIndex, wireId, col(WIRE_LABEL), col(WIRE_LEN));
+                .select(simId, moduleId, piecesIndex, wireId, col(WIRE_LABEL), col(WIRE_LEN));
 
-        Dataset<Row> minMaxAggDF = minMaxDF.groupBy(simId, prodType, piecesIndex, col(WIRE_LABEL))
+        Dataset<Row> minMaxAggDF = minMaxDF.groupBy(simId, moduleId, piecesIndex, col(WIRE_LABEL))
                 .agg(sum(WIRE_LEN).alias(WIRE_LEN_TTL))
-                .withColumn(WIRE_LEN_TTL_RANK, rank().over(Window.partitionBy(simId, prodType, piecesIndex)
+                .withColumn(WIRE_LEN_TTL_RANK, rank().over(Window.partitionBy(simId, moduleId, piecesIndex)
                         .orderBy(col(WIRE_LEN_TTL).asc())))
                 .filter(col(WIRE_LEN_TTL_RANK).equalTo(1))
-                .select(simId, prodType, piecesIndex, col(WIRE_LABEL)).distinct();
+                .select(simId, moduleId, piecesIndex, col(WIRE_LABEL)).distinct();
 
         Dataset<Row> deleteLnMapDF = minMaxDF.join(minMaxAggDF,
                         minMaxDF.col(SIM_ID).equalTo(minMaxAggDF.col(SIM_ID))
@@ -77,20 +77,20 @@ public class Algorithm {
                                 .and(df.col(WIRE_ID).equalTo(deleteLnMapDF.col(WIRE_ID))), "left")
                 .filter(deleteLnMapDF.col(CONFIRM_LABEL).isNull())
                 .withColumn(WIRE_ID_MOCK, rank().over(winOrdByPIdx))
-                .select(df.col(SIM_ID), df.col(MODULE_ID), df.col(DT), col(FIRST_DRAW_TIME), col(WIRE_ID_MOCK),
+                .select(df.col(SIM_ID), df.col(MODULE_ID), df.col(DT), col(FIRST_BONDING_TIME), col(WIRE_ID_MOCK),
                         col(LEAD_X), col(LEAD_Y), col(PAD_X), col(PAD_Y), col(CHECK_PORT), df.col(PIECES_INDEX),
                         col(NORM_MODULE_ID), col(CNT), col(WIRE_LEN))
                 .withColumnRenamed(WIRE_ID_MOCK, WIRE_ID)
-                .sort(col(SIM_ID), col(MODULE_ID), col(FIRST_DRAW_TIME), col(WIRE_ID));
+                .sort(col(SIM_ID), col(MODULE_ID), col(FIRST_BONDING_TIME), col(WIRE_ID));
     }
 
     public static Dataset<Row> diff(Dataset<Row> df) {
         Column simId = col(SIM_ID);
-        Column prodType = col(MODULE_ID);
-        Column firstDrawTime = col(FIRST_DRAW_TIME);
+        Column moduleId = col(MODULE_ID);
+        Column firstDrawTime = col(FIRST_BONDING_TIME);
         Column wireId = col(WIRE_ID);
 
-        WindowSpec w_len = Window.partitionBy(simId, prodType, firstDrawTime, col(PIECES_INDEX)).orderBy(wireId.asc());
+        WindowSpec w_len = Window.partitionBy(simId, moduleId, firstDrawTime, col(PIECES_INDEX)).orderBy(wireId.asc());
 
         Column leadX = col(LEAD_X);
         Column leadY = col(LEAD_Y);
@@ -108,7 +108,7 @@ public class Algorithm {
                 .withColumn(PAD_Y_LAG, padYLag)
                 .withColumn(LEAD_LEN, sqrt(pow(leadX.minus(leadXLag), 2).plus(pow(leadY.minus(leadYLag), 2))))
                 .withColumn(PAD_LEN, sqrt(pow(padX.minus(padXLag), 2).plus(pow(padY.minus(padYLag), 2))))
-                .select(simId, prodType, col(DT), firstDrawTime, wireId, leadX, leadY, padX, padY,
+                .select(simId, moduleId, col(DT), firstDrawTime, wireId, leadX, leadY, padX, padY,
                         col(LEAD_LEN), col(PAD_LEN), col(CHECK_PORT), col(PIECES_INDEX), col(NORM_MODULE_ID), col(WIRE_LEN));
     }
 
@@ -124,7 +124,7 @@ public class Algorithm {
                         when(abs(col(LEAD_OFFSET)).gt(col(LEAD_THRESHOLD)).or(abs(col(PAD_OFFSET)).gt(col(PAD_THRESHOLD))), 1)
                                 .otherwise(lit(0)))
                 .select(
-                        col(SIM_ID), col(MODULE_ID), col(DT), col(FIRST_DRAW_TIME), col(WIRE_ID),
+                        col(SIM_ID), col(MODULE_ID), col(DT), col(FIRST_BONDING_TIME), col(WIRE_ID),
                         col(LEAD_X), col(LEAD_Y), col(PAD_X), col(PAD_Y),
                         col(LEAD_LEN), col(PAD_LEN), col(CHECK_PORT), col(PIECES_INDEX),
                         col(NORM_MODULE_ID), col(TPL_LEAD_DIFF), col(TPL_PAD_DIFF),
@@ -147,7 +147,7 @@ public class Algorithm {
         );
 
         // 3. 分组聚合：最大 CODE，collect_list struct 并按 wire_id 排序，过滤 null，再拼接
-        Dataset<Row> aggregated = withStruct.groupBy(col(SIM_ID), col(MODULE_ID), col(FIRST_DRAW_TIME))
+        Dataset<Row> aggregated = withStruct.groupBy(col(SIM_ID), col(MODULE_ID), col(FIRST_BONDING_TIME))
                 .agg(
                         max(CODE).as(CODE),
                         expr("concat_ws(';', transform(filter(sort_array(collect_list(desc_struct), true), x -> x.DESCRIPTION != 'qualified'), x -> x.DESCRIPTION))")
@@ -157,7 +157,7 @@ public class Algorithm {
         // 4. 如果全是 qualified 则拼成 "qualified"，并重命名列
         return aggregated
                 .withColumn(DESCRIPTION, when(col(DESCRIPTION).equalTo(""), "qualified").otherwise(col(DESCRIPTION)))
-                .withColumnRenamed(FIRST_DRAW_TIME, DT)
+                .withColumnRenamed(FIRST_BONDING_TIME, DT)
                 .select(col(SIM_ID), col(MODULE_ID), col(DT), col(CODE), col(DESCRIPTION));
     }
 
@@ -184,10 +184,10 @@ public class Algorithm {
     }
 
     public static Dataset<Row> lackAndOverGroup(Dataset<Row> df) {
-        return df.select(col(SIM_ID), col(MODULE_ID), col(FIRST_DRAW_TIME), col(WIRE_ID), col(CHECK_PORT), col(TPL_WIRE_CNT))
-                .groupBy(col(SIM_ID), col(MODULE_ID), col(FIRST_DRAW_TIME))
+        return df.select(col(SIM_ID), col(MODULE_ID), col(FIRST_BONDING_TIME), col(WIRE_ID), col(CHECK_PORT), col(TPL_WIRE_CNT))
+                .groupBy(col(SIM_ID), col(MODULE_ID), col(FIRST_BONDING_TIME))
                 .agg(max(col(CHECK_PORT)).as(CHECK_PORT), max(col(TPL_WIRE_CNT)).as(TPL_WIRE_CNT))
-                .withColumnRenamed(FIRST_DRAW_TIME, DT);
+                .withColumnRenamed(FIRST_BONDING_TIME, DT);
     }
 
     public static Dataset<Row> doIntegrate(Dataset<Row> processedDf, Dataset<Row> stdModels) {

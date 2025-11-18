@@ -16,7 +16,7 @@ public enum FieldEnum {
     SIM_ID("sim_id"),
     MODULE_ID("module_id"),
     DT("dt"),
-    FIRST_DRAW_TIME("first_draw_time"),
+    FIRST_BONDING_TIME("first_bonding_time"),
     WIRE_ID("wire_id"),
     PIECES_INDEX("pieces_index"),
     LEAD_X("lead_x"),

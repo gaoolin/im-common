@@ -50,7 +50,7 @@ public class WbOlpRawConsumer {
 
     @KafkaListener(topics = KAFKA_WB_OLP_RAW_DATA_TOPIC,
             containerFactory = "WbOlpRawDataContainerFactory",
-            groupId = "im-framework-group")
+            groupId = "msg-persist-wb-olp-raw-group")
     public void consume(List<ConsumerRecord<Long, WbOlpRawDataRecord>> records, Acknowledgment acknowledgment) {
         if (records == null || records.isEmpty()) {
             acknowledgment.acknowledge();

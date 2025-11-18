@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.im.inspection.mapper.chk.EqpReverseMesMapper">
+    <resultMap id="eqReverseInfoResult" type="com.im.qtech.data.dto.reverse.EqpReversePOJO">
+        <result property="simId" column="sim_id"/>
+        <result property="source" column="source"/>
+        <result property="moduleId" column="MODULE_ID"/>
+        <result property="chkDt" column="chk_dt"/>
+        <result property="code" column="code"/>
+        <result property="description" column="description"/>
+    </resultMap>
+
+    <!-- Base select fragment -->
+    <sql id="select_eq_reverse_ctrl_info">
+        SELECT SIM_ID, "SOURCE", MODULE_ID, CHK_DT, CODE, DESCRIPTION
+        FROM IMBIZ.IM_EQ_REVERSE_CONTROL_RECORDS
+    </sql>
+
+    <!-- Common where clause elements -->
+    <sql id="common_where_conditions">
+        <if test="simId != null and simId != ''">
+            AND SIM_ID = #{simId}
+        </if>
+        <if test="source != null and source != ''">
+            AND "SOURCE" = #{source}
+        </if>
+        <if test="moduleId != null and moduleId != ''">
+            AND MODULE_ID = #{moduleId}
+        </if>
+    </sql>
+
+    <select id="getList" resultMap="eqReverseInfoResult">
+        <include refid="select_eq_reverse_ctrl_info"/>
+        <where>
+            <include refid="common_where_conditions"/>
+        </where>
+    </select>
+
+    <select id="getOneBySimId" resultMap="eqReverseInfoResult">
+        <include refid="select_eq_reverse_ctrl_info"/>
+        <where>
+            <if test="simId != null and simId != ''">
+                AND SIM_ID = #{simId}
+            </if>
+        </where>
+    </select>
+</mapper>

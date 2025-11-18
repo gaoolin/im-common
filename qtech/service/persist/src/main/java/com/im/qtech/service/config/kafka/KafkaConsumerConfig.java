@@ -40,13 +40,13 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, EqpReversePOJOValueDeserializer.class);
         props.put(ConsumerConfig.FETCH_MIN_BYTES_CONFIG, 1024);
-        props.put(ConsumerConfig.FETCH_MAX_WAIT_MS_CONFIG, 500);
-        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 500);
+        props.put(ConsumerConfig.FETCH_MAX_WAIT_MS_CONFIG, 300);
+        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 50);
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
 
         // 确保设置了group.id
         if (!props.containsKey(ConsumerConfig.GROUP_ID_CONFIG)) {
-            props.put(ConsumerConfig.GROUP_ID_CONFIG, "im-framework-group");
+            props.put(ConsumerConfig.GROUP_ID_CONFIG, "msg-persist-1-group");
         }
         return new DefaultKafkaConsumerFactory<>(props);
     }
@@ -57,9 +57,9 @@ public class KafkaConsumerConfig {
         ConcurrentKafkaListenerContainerFactory<Long, EqpReversePOJORecord> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerRecordFactory());
         factory.setBatchListener(true);
-        factory.setConcurrency(3); // 增加并发度
+        factory.setConcurrency(1); // 降低并发度适应单核CPU
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
-        factory.getContainerProperties().setPollTimeout(3000); // 设置poll超时
+        factory.getContainerProperties().setPollTimeout(2000); // 减少poll超时
         return factory;
     }
 
@@ -69,13 +69,13 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, WbOlpRawDataRecordDeserializer.class);
         props.put(ConsumerConfig.FETCH_MIN_BYTES_CONFIG, 1024);
-        props.put(ConsumerConfig.FETCH_MAX_WAIT_MS_CONFIG, 500);
-        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 500);
+        props.put(ConsumerConfig.FETCH_MAX_WAIT_MS_CONFIG, 300);
+        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 50);
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
 
         // 确保设置了group.id
         if (!props.containsKey(ConsumerConfig.GROUP_ID_CONFIG)) {
-            props.put(ConsumerConfig.GROUP_ID_CONFIG, "im-framework-group");
+            props.put(ConsumerConfig.GROUP_ID_CONFIG, "msg-persist-2-group");
         }
         return new DefaultKafkaConsumerFactory<>(props);
     }
@@ -86,9 +86,9 @@ public class KafkaConsumerConfig {
         ConcurrentKafkaListenerContainerFactory<Long, WbOlpRawDataRecord> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         factory.setBatchListener(true);
-        factory.setConcurrency(3); // 增加并发度
+        factory.setConcurrency(1); // 降低并发度适应单核CPU
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
-        factory.getContainerProperties().setPollTimeout(3000); // 设置poll超时
+        factory.getContainerProperties().setPollTimeout(2000); // 减少poll超时
         return factory;
     }
 
@@ -98,13 +98,13 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.FETCH_MIN_BYTES_CONFIG, 1024);
-        props.put(ConsumerConfig.FETCH_MAX_WAIT_MS_CONFIG, 500);
-        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 500);
+        props.put(ConsumerConfig.FETCH_MAX_WAIT_MS_CONFIG, 300);
+        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 50);
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
 
         // 确保设置了group.id
         if (!props.containsKey(ConsumerConfig.GROUP_ID_CONFIG)) {
-            props.put(ConsumerConfig.GROUP_ID_CONFIG, "device-status-group");
+            props.put(ConsumerConfig.GROUP_ID_CONFIG, "msg-persist-3-group");
         }
         return new DefaultKafkaConsumerFactory<>(props);
     }
@@ -113,8 +113,8 @@ public class KafkaConsumerConfig {
     public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerStringFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerStringFactory());
-        factory.setConcurrency(2); // 增加并发度
-        factory.getContainerProperties().setPollTimeout(3000); // 设置poll超时
+        factory.setConcurrency(1); // 降低并发度适应单核CPU
+        factory.getContainerProperties().setPollTimeout(2000); // 减少poll超时
         return factory;
     }
 }

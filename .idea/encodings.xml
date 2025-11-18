@@ -36,6 +36,8 @@
     <file url="file://$PROJECT_DIR$/qtech/datadev/wb-wire-usage-etl/src/main/scala" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/inspection/eq-aa-lst-chk/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/inspection/eq-aa-lst-chk/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/inspection/inspection-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qtech/inspection/inspection-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/inspection/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/inspection/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qtech/inspection/wb-olp-inspection/src/main/java" charset="UTF-8" />

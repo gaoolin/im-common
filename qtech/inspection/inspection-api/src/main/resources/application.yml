@@ -1,0 +1,69 @@
+# 端口，项目上下文
+server:
+  tomcat:
+    accept-count: 100 # Reduce from 1300 to prevent excessive queue buildup
+    threads:
+      max: 200 # Reduce from 1000 to prevent resource exhaustion
+      min-spare: 20
+
+spring:
+  application:
+    name: qtech-im-service
+  profiles:
+    active: dev
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  jackson:
+    time-zone: GMT+8
+
+  #redis配置信息
+  redis:
+    ## Redis数据库索引（默认为0）
+    database: 0
+    ## Redis服务器连接密码（默认为空）
+    password: im@2024
+    ## 连接超时时间（毫秒）
+    timeout: 5000
+    ## 集群配置
+    cluster:
+      ### 集群中所有节点
+      nodes:
+        - 10.170.6.24:6379
+        - 10.170.6.25:6379
+        - 10.170.6.26:6379
+        - 10.170.6.141:6379
+        - 10.170.6.142:6379
+        - 10.170.1.68:6379
+      ### 最大重定向数，最好为集群节点数，比如第一台挂了，连第二台，第二台挂了连第三台，这个是重新连接的最大数量
+      max-redirects: 5
+    lettuce:
+      pool:
+        ## 连接池最大连接数（使用负值表示没有限制）
+        max-active: 100
+        ## 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: 2000ms # Change from -1 to prevent indefinite blocking
+        ## 连接池中的最大空闲连接
+        max-idle: 50
+        ## 连接池中的最小空闲连接
+        min-idle: 10
+      ## 集群配置
+      cluster:
+        refresh:
+          # 支持集群拓扑动态感应刷新,自适应拓扑刷新是否使用所有可用的更新，默认false关闭，类似nacos定时刷新服务列表
+          adaptive: true
+          # 定时刷新时间 毫秒
+          period: 1000
+
+# MyBatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml    # mapper映射文件位置
+  type-aliases-package: com.im.inspection.entity.*    # 实体类所在的位置
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #用于控制台打印sql语句
+
+logging:
+  # 若不配置，默认使用 ##logback-spring.xml，logback-udf.xml不能命名为 logback.xml，logback.xml的加载早于application.yml配置文件，在logback.xml中使用<springProperty>标签来获取配置文件中的变量值，读取不到而报出错误信息。
+  config: classpath:logback-spring.xml

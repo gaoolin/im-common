@@ -17,6 +17,7 @@
     <modules>
         <module>eq-aa-lst-chk</module>
         <module>wb-olp-inspection</module>
+        <module>inspection-api</module>
     </modules>
 
     <properties>

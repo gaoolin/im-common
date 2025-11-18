@@ -39,7 +39,7 @@ public class DataTransfer {
             Column wireLenCol = sqrt(functions.pow(dx, 2).plus(functions.pow(dy, 2)));
 
             Dataset<Row> df = rawDF
-                    .withColumn(FIRST_DRAW_TIME, min(col(DT)).over(winByPIdx))
+                    .withColumn(FIRST_BONDING_TIME, min(col(DT)).over(winByPIdx))
                     .withColumn(NORM_MODULE_ID, subMcIdCol)
                     .withColumn(MODULES_BY_PIECES_INDEX, approx_count_distinct(NORM_MODULE_ID).over(winMcByPIdx))
                     .withColumn(WIRE_LEN, wireLenCol);
@@ -67,7 +67,7 @@ public class DataTransfer {
                             col(SIM_ID),
                             col(MODULE_ID),
                             col(DT),
-                            col(FIRST_DRAW_TIME),
+                            col(FIRST_BONDING_TIME),
                             col(WIRE_ID),
                             col(LEAD_X),
                             col(LEAD_Y),
@@ -84,7 +84,7 @@ public class DataTransfer {
                     .sort(
                             col(SIM_ID),
                             col(MODULE_ID),
-                            col(FIRST_DRAW_TIME),
+                            col(FIRST_BONDING_TIME),
                             col(WIRE_ID)
                     );
 

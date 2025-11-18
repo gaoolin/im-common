@@ -26,12 +26,13 @@
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>s3</artifactId>
+            <version>2.20.26</version>
         </dependency>
-        <!-- Spring Web -->
+        <!-- SpringBoot Web容器 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.7.13<</version>
+            <version>2.7.13</version>
         </dependency>
 
         <!-- Lombok -->
@@ -47,15 +48,6 @@
             <artifactId>storage-api</artifactId>
             <version>1.0.0</version>
         </dependency>
-
-        <!-- If you want to use the provider implementation inside rest, add provider dependency -->
-        <!--
-        <dependency>
-          <groupId>com.xxx.im</groupId>
-          <artifactId>im-storage-provider-ceph</artifactId>
-          <version>${project.version}</version>
-        </dependency>
-        -->
 
         <!-- Validation -->
         <dependency>

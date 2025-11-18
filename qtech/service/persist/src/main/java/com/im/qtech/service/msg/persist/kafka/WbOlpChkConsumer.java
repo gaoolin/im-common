@@ -54,7 +54,7 @@ public class WbOlpChkConsumer {
 
     @KafkaListener(topics = KAFKA_WB_OLP_CHK_RES_TOPIC,
             containerFactory = "EqReverseCtrlInfoContainerFactory",
-            groupId = "im-framework-group")
+            groupId = "msg-persist-wb-olp-chk-group")
     public void consume(List<ConsumerRecord<Long, EqpReversePOJORecord>> records, Acknowledgment acknowledgment) {
         if (records == null || records.isEmpty()) {
             acknowledgment.acknowledge();

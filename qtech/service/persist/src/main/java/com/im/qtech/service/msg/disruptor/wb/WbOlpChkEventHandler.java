@@ -8,9 +8,7 @@ import com.lmax.disruptor.LifecycleAware;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
-import org.im.common.thread.core.ThreadPoolSingleton;
 import org.im.common.thread.core.SmartThreadPoolExecutor;
-import org.im.common.thread.task.TaskPriority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,21 +21,18 @@ import java.util.concurrent.*;
 @Service
 public class WbOlpChkEventHandler implements EventHandler<WbOlpChkEvent>, LifecycleAware {
 
-    @Value("${wb.olp.chk.batch.size:100}")
-    private int BATCH_SIZE = 100;
-
-    @Value("${wb.olp.chk.flush.interval.seconds:5}")
-    private int FLUSH_INTERVAL_SECONDS = 5;
-
-    @Value("${wb.olp.chk.max.buffer.size:1000}")
-    private int MAX_BUFFER_SIZE = 1000;
-
     private final List<EqpReverseInfo> buffer = Collections.synchronizedList(new ArrayList<>());
     private final Object bufferLock = new Object();
-    private ScheduledExecutorService scheduler;
     private final IEqpReverseInfoService service;
     private final DeadLetterQueueService dlqService;
     private final SmartThreadPoolExecutor databaseExecutor;
+    @Value("${wb.olp.chk.batch.size:100}")
+    private int BATCH_SIZE = 100;
+    @Value("${wb.olp.chk.flush.interval.seconds:5}")
+    private int FLUSH_INTERVAL_SECONDS = 5;
+    @Value("${wb.olp.chk.max.buffer.size:1000}")
+    private int MAX_BUFFER_SIZE = 1000;
+    private ScheduledExecutorService scheduler;
 
     @Autowired
     public WbOlpChkEventHandler(
@@ -112,13 +107,13 @@ public class WbOlpChkEventHandler implements EventHandler<WbOlpChkEvent>, Lifecy
             // 添加去重逻辑：根据业务主键去重，保留最新数据
             List<EqpReverseInfo> deduplicatedData = deduplicateData(toPersist);
 
-            // 使用您的线程池框架执行数据库操作
+            // 使用线程池框架执行数据库操作
             CompletableFuture<Boolean> upsertedDoris = executeWithThreadPool(() ->
-                service.upsertDorisBatchAsync(deduplicatedData));
+                    service.upsertDorisBatchAsync(deduplicatedData));
             CompletableFuture<Boolean> addedDoris = executeWithThreadPool(() ->
-                service.addDorisBatchAsync(deduplicatedData));
+                    service.addDorisBatchAsync(deduplicatedData));
             CompletableFuture<Boolean> upsertedOracle = executeWithThreadPool(() ->
-                service.upsertOracleBatchAsync(deduplicatedData));
+                    service.upsertOracleBatchAsync(deduplicatedData));
 
             // 设置超时时间以避免永久阻塞
             CompletableFuture<Void> allFutures = CompletableFuture.allOf(
