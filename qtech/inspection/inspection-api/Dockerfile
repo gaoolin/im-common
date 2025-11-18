@@ -14,7 +14,7 @@ RUN mvn dependency:go-offline -s /usr/src/app/settings.xml || (echo "Qtech-Im de
 COPY ./src /usr/src/app/src
 
 # 编译打包
-RUN mvn -f /usr/src/app/pom.xml clean package -DskipTests -s /usr/src/app/settings.xml dependency:resolve || (echo "Qtech-Service-Api build failed" && exit 1) && \
+RUN mvn -f /usr/src/app/pom.xml clean package -DskipTests -s /usr/src/app/settings.xml || (echo "Qtech-Inspection-Api build failed" && exit 1) && \
     rm -rf /root/.m2/repository
 
 # 运行阶段
@@ -29,13 +29,15 @@ RUN apk add --no-cache tzdata && \
     apk del tzdata
 
 # 环境变量
+ENV OS_NAME=Linux
+ENV OS_ARCH=x86_64
 ENV PARAMS="--server.port=8080"
 ENV LOG_PATH=/home/qtech/logs
 ENV SPRING_PROFILES_ACTIVE=prod
 ENV JAVA_OPTS="-Dloader.path=/home/libs/ -Dfile.encoding=utf8 -Djava.security.egd=file:/dev/./urandom -Dlogging.file.path=${LOG_PATH}"
 
 # 创建日志目录
-RUN mkdir -p ${LOG_PATH} && chmod -MesR 777 ${LOG_PATH}
+RUN mkdir -p ${LOG_PATH} && chmod -R 777 ${LOG_PATH}
 
 EXPOSE 8080
 

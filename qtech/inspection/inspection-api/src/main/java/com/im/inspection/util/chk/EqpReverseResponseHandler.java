@@ -30,7 +30,7 @@ public class EqpReverseResponseHandler {
      * @param pojo 设备反向控制信息对象
      * @return 如果数据有效返回true，否则返回false
      */
-    private static boolean isDataUpToDate(EqpReversePOJO pojo) {
+    public static boolean isDataUpToDate(EqpReversePOJO pojo) {
         if (pojo == null || pojo.getChkDt() == null) {
             return false;
         }
@@ -59,7 +59,7 @@ public class EqpReverseResponseHandler {
      *
      * @return 数据过期响应对象
      */
-    private static MesR<String> createOutdatedDataResponse() {
+    public static MesR<String> createOutdatedDataResponse() {
         return new MesR<String>()
                 .setCode(ResponseCode.SUCCESS.getCode()) // code 200
                 .setMsg(OUTDATED_DATA_MESSAGE)
@@ -72,7 +72,7 @@ public class EqpReverseResponseHandler {
      * @param pojo 设备反向控制信息对象
      * @return 处理后的响应对象
      */
-    private static MesR<String> handleEqpSource(EqpReversePOJO pojo) {
+    public static MesR<String> handleEqpSource(EqpReversePOJO pojo) {
         ControlMode mode = CtrlModeFlag.getControlMode(pojo.getSource());
 
         switch (mode) {
@@ -92,7 +92,7 @@ public class EqpReverseResponseHandler {
      * @param pojo 设备反向控制信息对象
      * @return 处理后的响应对象
      */
-    private static MesR<String> handleDefaultMode(EqpReversePOJO pojo) {
+    public static MesR<String> handleDefaultMode(EqpReversePOJO pojo) {
         LocalDateTime now = LocalDateTime.now();
         if (isWithinWorkingHours(now)) {
             return convertToResponse(pojo);
@@ -107,7 +107,7 @@ public class EqpReverseResponseHandler {
      * @param pojo 设备反向控制对象
      * @return 统一响应对象
      */
-    private static MesR<String> convertToResponse(EqpReversePOJO pojo) {
+    public static MesR<String> convertToResponse(EqpReversePOJO pojo) {
         if (pojo == null) {
             return createSuccessResponse(NO_DATA_MESSAGE);
         }
@@ -128,7 +128,7 @@ public class EqpReverseResponseHandler {
      * @param msg 响应消息
      * @return 成功响应对象
      */
-    private static MesR<String> createSuccessResponse(String msg) {
+    public static MesR<String> createSuccessResponse(String msg) {
         return new MesR<String>()
                 .setCode(ResponseCode.SUCCESS.getCode())
                 .setMsg(msg)
@@ -141,7 +141,7 @@ public class EqpReverseResponseHandler {
      * @param msg 响应消息
      * @return 找到数据响应对象
      */
-    private static MesR<String> createFoundResponse(String msg) {
+    public static MesR<String> createFoundResponse(String msg) {
         return new MesR<String>()
                 .setCode(ResponseCode.FOUND.getCode())
                 .setMsg(msg)
@@ -155,7 +155,7 @@ public class EqpReverseResponseHandler {
      * @param dateTime 当前日期时间
      * @return 是否在工作时间内
      */
-    private static boolean isWithinWorkingHours(LocalDateTime dateTime) {
+    public static boolean isWithinWorkingHours(LocalDateTime dateTime) {
         DayOfWeek dayOfWeek = dateTime.toLocalDate().getDayOfWeek();
         LocalTime timeNow = dateTime.toLocalTime();
 

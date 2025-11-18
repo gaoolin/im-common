@@ -128,43 +128,82 @@
     <build>
         <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
         <plugins>
-
-            <!--打包jar包-->
+            <!-- 确保target目录下只有一个jar后缀的文件，多个jar文件会导致在构建镜像的时候发生覆盖，而不是预期的jar包。 -->
             <plugin>
+                <!-- Spring Boot官方Maven插件，用于打包和运行Spring Boot应用 -->
                 <groupId>org.springframework.boot</groupId>
+                <!-- 插件名称 -->
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+                <!-- 定义插件执行方式 -->
+                <executions>
+                    <execution>
+                        <!-- 执行的目标 -->
+                        <goals>
+                            <!-- repackage目标：重新打包项目，将普通JAR包转换为可执行的"fat JAR" -->
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!--将依赖移到libs目录下-->
             <plugin>
+                <!-- Apache Maven官方插件，用于处理项目依赖 -->
                 <groupId>org.apache.maven.plugins</groupId>
+                <!-- 依赖处理插件 -->
                 <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.8</version>
+                <!-- 插件执行集合 -->
                 <executions>
                     <execution>
+                        <!-- 执行ID，标识为"copy" -->
                         <id>copy</id>
+                        <!-- 绑定到Maven生命周期的package阶段 -->
                         <phase>package</phase>
+                        <!-- 执行目标 -->
                         <goals>
+                            <!-- copy-dependencies目标：复制项目依赖项 -->
                             <goal>copy-dependencies</goal>
                         </goals>
+                        <!-- 执行配置参数 -->
                         <configuration>
+                            <!-- 指定只处理jar类型的依赖 -->
                             <type>jar</type>
+                            <!-- 明确包含jar类型文件 -->
                             <includeTypes>jar</includeTypes>
+                            <!-- 只包含runtime作用域的依赖（运行时必需的依赖） -->
                             <includeScope>runtime</includeScope>
+                            <!-- 输出目录，设置为target/libs目录 -->
                             <outputDirectory>${project.build.directory}/libs</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
 
+            <!--
+            禁用 maven-source-plugin
+            父 POM 已经配置了 maven-source-plugin，那么需要在子模块中通过 <plugin> 覆盖其行为。
+            xxx-xxx-1.0.0-sources.jar 是由 Maven 的 maven-source-plugin 自动生成的。它默认会在 package 阶段触发，除非显式禁用。
+            虽然你的 pom.xml 中没有显式配置该插件，但可能是父 POM 或其他模块中引入了它。
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                        <configuration>
+                            <skipSource>true</skipSource>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
-
 </project>

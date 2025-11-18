@@ -1,14 +1,12 @@
 package com.im.inspection.config.redis;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.im.inspection.entity.OcrLabelInfo;
 import com.im.qtech.data.dto.reverse.EqpReversePOJO;
+import org.im.common.json.JsonMapperProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
@@ -21,66 +19,66 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @email gaoolin@gmail.com
  * @date 2024/08/14 10:04:35
  */
-
 @Configuration
 public class RedisConfig {
-    // 只针对EqReverseInfo实体对象的序列化配置，默认序列化方式。
-    // 其他的实体类的序列化方式，需要单独配置。
 
+    /**
+     * 共享的 ObjectMapper Bean，保证全局一致性并节省资源
+     */
     @Bean
-    public LettuceConnectionFactory lettuceConnectionFactory() {
-        return new LettuceConnectionFactory();
+    public ObjectMapper redisObjectMapper() {
+        return JsonMapperProvider.getSharedInstance();
     }
 
+    /**
+     * 用于 EqpReversePOJO 类型的 RedisTemplate
+     */
     @Bean
-    public RedisTemplate<String, EqpReversePOJO> eqReverseInfoRedisTemplate(RedisConnectionFactory connectionFactory) {
-        RedisTemplate<String, EqpReversePOJO> template = new RedisTemplate<>();
-        template.setConnectionFactory(connectionFactory);
-
-        Jackson2JsonRedisSerializer<EqpReversePOJO> serializer = new Jackson2JsonRedisSerializer<>(EqpReversePOJO.class);
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-
-        serializer.setObjectMapper(objectMapper);
-
-        template.setKeySerializer(new StringRedisSerializer());
-        template.setValueSerializer(serializer);
-
-        template.afterPropertiesSet();
-
-        return template;
+    public RedisTemplate<String, EqpReversePOJO> eqReverseInfoRedisTemplate(
+            RedisConnectionFactory connectionFactory,
+            ObjectMapper redisObjectMapper) {
+        return createJsonRedisTemplate(connectionFactory, redisObjectMapper, EqpReversePOJO.class);
     }
 
-    // 示例：为其他类型的实体类配置不同的RedisTemplate
+    /**
+     * 用于 OcrLabelInfo 类型的 RedisTemplate
+     */
     @Bean
-    public RedisTemplate<String, OcrLabelInfo> otherEntityRedisTemplate(RedisConnectionFactory connectionFactory) {
-        RedisTemplate<String, OcrLabelInfo> template = new RedisTemplate<>();
-        template.setConnectionFactory(connectionFactory);
-
-        Jackson2JsonRedisSerializer<OcrLabelInfo> serializer = new Jackson2JsonRedisSerializer<>(OcrLabelInfo.class);
-        ObjectMapper objectMapper = new ObjectMapper();
-        // 可以根据需要调整ObjectMapper的配置
-        serializer.setObjectMapper(objectMapper);
-
-        template.setKeySerializer(new StringRedisSerializer());
-        template.setValueSerializer(serializer);
-
-        template.afterPropertiesSet();
-
-        return template;
+    public RedisTemplate<String, OcrLabelInfo> ocrLabelInfoRedisTemplate(
+            RedisConnectionFactory connectionFactory,
+            ObjectMapper redisObjectMapper) {
+        return createJsonRedisTemplate(connectionFactory, redisObjectMapper, OcrLabelInfo.class);
     }
 
-    // 存储simId的忽略状态
+    /**
+     * 用于 Boolean 类型的 RedisTemplate（如 simId 忽略状态）
+     */
     @Bean
-    public RedisTemplate<String, Boolean> redisTemplate(LettuceConnectionFactory connectionFactory) {
+    public RedisTemplate<String, Boolean> booleanValueRedisTemplate(RedisConnectionFactory connectionFactory) {
         RedisTemplate<String, Boolean> template = new RedisTemplate<>();
         template.setConnectionFactory(connectionFactory);
-        // 设置键的序列化器为 StringRedisSerializer
         template.setKeySerializer(new StringRedisSerializer());
-
-        // 设置值的序列化器为 GenericToStringSerializer<Boolean>
         template.setValueSerializer(new GenericToStringSerializer<>(Boolean.class));
+        return template;
+    }
+
+    /**
+     * 创建基于 JSON 序列化的 RedisTemplate 工具方法
+     */
+    private <T> RedisTemplate<String, T> createJsonRedisTemplate(
+            RedisConnectionFactory connectionFactory,
+            ObjectMapper objectMapper,
+            Class<T> valueType) {
+        RedisTemplate<String, T> template = new RedisTemplate<>();
+        template.setConnectionFactory(connectionFactory);
+
+        Jackson2JsonRedisSerializer<T> serializer = new Jackson2JsonRedisSerializer<>(valueType);
+        serializer.setObjectMapper(objectMapper);
+
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setValueSerializer(serializer);
+        template.afterPropertiesSet();
+
         return template;
     }
 }

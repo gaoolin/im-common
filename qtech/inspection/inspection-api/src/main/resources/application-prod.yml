@@ -58,7 +58,28 @@ spring:
           config:
             multi-statement-allow: true
 
+  redis:
+    cluster:
+      nodes:
+        - 10.170.6.24:6379
+        - 10.170.6.25:6379
+        - 10.170.6.26:6379
+        - 10.170.6.141:6379
+        - 10.170.6.142:6379
+        - 10.170.1.68:6379
+      max-redirects: 5
+    password: im@2024
+    timeout: 5000
+    lettuce:
+      pool:
+        max-active: 100
+        max-wait: 2000ms
+        max-idle: 50
+        min-idle: 10
+
 logging:
+  level:
+    root: info
   file:
     path: /home/qtech/logs
 

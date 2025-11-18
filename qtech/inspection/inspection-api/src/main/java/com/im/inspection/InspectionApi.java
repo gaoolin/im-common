@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 /**
  * Hello world!
  */
-// @Import(com.im.qtech.data.dto.reverse.EqpReversePOJO.class)
+
 @SpringBootApplication
 @Import(com.im.qtech.data.dto.reverse.EqpReversePOJO.class)
 @ComponentScan(basePackages = {"com.im.inspection", "com.im.qtech.data.dto.reverse"})

@@ -64,3 +64,7 @@ spring:
         wall:
           config:
             multi-statement-allow: true
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #用于控制台打印sql语句
