@@ -54,7 +54,7 @@
     </logger>
 
     <!-- 根日志级别配置 -->
-    <root level="WARN">
+    <root level="INFO">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>

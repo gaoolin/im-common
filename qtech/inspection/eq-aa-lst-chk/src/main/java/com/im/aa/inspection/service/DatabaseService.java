@@ -4,7 +4,6 @@ import com.im.aa.inspection.config.AppConfig;
 import com.im.aa.inspection.entity.reverse.EqpReverseDO;
 import com.im.aa.inspection.entity.standard.EqLstTplInfoDO;
 import com.im.aa.inspection.repository.EqLstTplInfoRepository;
-import com.im.aa.inspection.repository.ReverseDataRepository;
 import lombok.Getter;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -37,7 +36,6 @@ public class DatabaseService {
     @Getter
     private SessionFactory sessionFactory;
     private EqLstTplInfoRepository templateInfoRepository;
-    private ReverseDataRepository reverseDataRepository;
 
     /**
      * 私有构造函数：防止外部直接实例化
@@ -57,7 +55,6 @@ public class DatabaseService {
 
             // 初始化 Repository
             templateInfoRepository = new EqLstTplInfoRepository(sessionFactory);
-            reverseDataRepository = new ReverseDataRepository(sessionFactory);
 
             logger.info(">>>>> 数据库服务初始化成功");
         } catch (Exception e) {
@@ -75,14 +72,6 @@ public class DatabaseService {
         } catch (Exception e) {
             logger.error(">>>>> 获取参数标准值失败: {}", module, e);
             return null;
-        }
-    }
-
-    public void saveInspectionResult(EqpReverseDO result) {
-        try {
-            reverseDataRepository.saveEqpReverseRecord(result);
-        } catch (Exception e) {
-            logger.error(">>>>> 保存检查结果失败: {}", result, e);
         }
     }
 

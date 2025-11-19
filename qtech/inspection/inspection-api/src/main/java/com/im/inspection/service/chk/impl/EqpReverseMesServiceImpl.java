@@ -36,17 +36,6 @@ public class EqpReverseMesServiceImpl implements IEqpReverseMesService {
         this.redisTemplate = redisTemplate;
     }
 
-    @Override
-    public List<EqpReversePOJO> getList(EqpReversePOJO pojo) {
-        try {
-            List<EqpReversePOJO> result = mapper.getList(pojo);
-            return result != null ? result : Collections.emptyList();
-        } catch (Exception e) {
-            logger.error(">>>>> 查询数据库发生错误，selectEqReverseInfo error: ", e);
-            return Collections.emptyList();
-        }
-    }
-
     @DataSourceSwitch(name = DataSourceNames.FIRST)
     @Override
     public EqpReversePOJO getOneBySimId(String simId) {
@@ -69,7 +58,6 @@ public class EqpReverseMesServiceImpl implements IEqpReverseMesService {
                 logger.warn("Failed to save to Redis for key: {}", redisKey, e);
             }
         }
-
         return pojo;
     }
 }

@@ -1,5 +1,5 @@
 # 构建阶段
-FROM registry.cn-shanghai.aliyuncs.com/qtech/maven:3.6-jdk-8 AS builder
+FROM 10.170.6.40:30002/maven/maven:3.6-jdk-8 AS builder
 
 WORKDIR /usr/src/app
 
@@ -19,7 +19,7 @@ RUN mvn -f /usr/src/app/pom.xml clean package -DskipTests -s /usr/src/app/settin
     rm -rf /root/.m2/repository
 
 # 运行阶段
-FROM registry.cn-shanghai.aliyuncs.com/kolenz/openjdk:8-jre-alpine-font
+FROM 10.170.6.40:30002/java8/openjdk:8-jre-alpine-font
 ARG MAINTAINER_EMAIL
 LABEL maintainer=${MAINTAINER_EMAIL}
 

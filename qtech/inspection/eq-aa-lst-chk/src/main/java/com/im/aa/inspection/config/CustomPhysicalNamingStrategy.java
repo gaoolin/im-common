@@ -16,6 +16,7 @@ import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
  * @email gaoolin@gmail.com
  * @date 2025/10/11
  */
+
 public class CustomPhysicalNamingStrategy implements PhysicalNamingStrategy {
 
     @Override
@@ -28,45 +29,60 @@ public class CustomPhysicalNamingStrategy implements PhysicalNamingStrategy {
         return name;
     }
 
+    /**
+     * 表名保持原样（不进行驼峰转下划线）
+     */
     @Override
     public Identifier toPhysicalTableName(Identifier name, JdbcEnvironment context) {
-        return apply(name);
+        return name; // ⬅ 关键：表名不转换
     }
 
     @Override
     public Identifier toPhysicalSequenceName(Identifier name, JdbcEnvironment context) {
-        return apply(name);
-    }
-
-    @Override
-    public Identifier toPhysicalColumnName(Identifier name, JdbcEnvironment context) {
-        return apply(name);
-    }
-
-    private Identifier apply(Identifier name) {
-        if (name == null) return null;
-        String newName = convert(name.getText());
-        return Identifier.toIdentifier(newName);
+        return name;
     }
 
     /**
-     * 自定义驼峰转下划线逻辑，数字不拆分
-     * 示例：
-     * aa1 -> aa1
-     * aa1CcToCornerLimit -> aa1_cc_to_corner_limit
+     * 仅转换列名
      */
-    private String convert(String input) {
+    @Override
+    public Identifier toPhysicalColumnName(Identifier name, JdbcEnvironment context) {
+        if (name == null) return null;
+        return Identifier.toIdentifier(convertColumn(name.getText()));
+    }
+
+    /**
+     * 列名转换规则：
+     * - 包含下划线：不转换
+     * - 全大写：不转换，只转小写
+     * - 驼峰：转下划线
+     */
+    private String convertColumn(String input) {
         if (input == null) return null;
 
+        // 1. 已经有下划线，不转换
+        if (input.contains("_")) {
+            return input.toLowerCase();
+        }
+
+        // 2. 全大写
+        if (input.matches("^[A-Z0-9]+$")) {
+            return input.toLowerCase();
+        }
+
+        // 3. 驼峰 → 下划线
         StringBuilder result = new StringBuilder();
-        char[] chars = input.toCharArray();
-        for (char c : chars) {
+        char[] arr = input.toCharArray();
+
+        for (int i = 0; i < arr.length; i++) {
+            char c = arr[i];
             if (Character.isUpperCase(c)) {
                 result.append('_').append(Character.toLowerCase(c));
             } else {
                 result.append(c);
             }
         }
+
         return result.toString();
     }
 }

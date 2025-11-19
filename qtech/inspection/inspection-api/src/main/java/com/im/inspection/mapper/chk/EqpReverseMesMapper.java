@@ -13,7 +13,6 @@ import java.util.List;
 
 @Mapper
 public interface EqpReverseMesMapper {
-    public List<EqpReversePOJO> getList(EqpReversePOJO pojo);
 
     public EqpReversePOJO getOneBySimId(String simId);
 }

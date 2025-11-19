@@ -12,7 +12,6 @@ import java.util.List;
 
 
 public interface IEqpReverseMesService {
-    public List<EqpReversePOJO> getList(EqpReversePOJO pojo);
 
     public EqpReversePOJO getOneBySimId(String simId);
 }

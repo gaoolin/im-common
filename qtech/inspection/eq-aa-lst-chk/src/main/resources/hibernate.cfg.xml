@@ -6,13 +6,20 @@
 <hibernate-configuration>
     <session-factory>
         <!-- 数据库连接配置 -->
-        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <!--<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.url">jdbc:postgresql://10.170.6.142:5432/imbiz</property>
         <property name="hibernate.connection.username">biz</property>
-        <property name="hibernate.connection.password">FfZRT!FkF@K4pq9ZPpdC</property>
+        <property name="hibernate.connection.password">FfZRT!FkF@K4pq9ZPpdC</property>-->
+
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@//10.170.6.144:1521/qtechIm</property>
+        <property name="hibernate.connection.username">imBiz</property>
+        <property name="hibernate.connection.password">M5F5JkfnQ</property>
+        <property name="hibernate.connection.oracle.jdbc.J2EE13Compliant">true</property>
 
         <!-- Hibernate 配置 -->
-        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <!--<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>-->
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</property>
         <property name="hibernate.hbm2ddl.auto">validate</property>
         <property name="hibernate.show_sql">false</property>
         <property name="hibernate.format_sql">true</property>

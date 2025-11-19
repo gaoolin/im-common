@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @Entity
-@Table(name = "eqp_aa_lst_tpl_info", schema = "biz")
+@Table(name = "EQP_AA_LST_TPL_INFO", schema = "IMBIZ")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
 @ToString(exclude = {"tpl"})

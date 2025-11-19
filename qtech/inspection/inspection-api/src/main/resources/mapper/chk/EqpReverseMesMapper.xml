@@ -43,5 +43,7 @@
                 AND SIM_ID = #{simId}
             </if>
         </where>
+        ORDER BY CHK_DT DESC
+        FETCH FIRST 1 ROW ONLY
     </select>
 </mapper>
