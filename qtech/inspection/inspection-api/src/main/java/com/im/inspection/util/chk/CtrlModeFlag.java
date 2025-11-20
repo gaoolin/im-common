@@ -19,7 +19,7 @@ public class CtrlModeFlag {
     // 静态初始化块，为已知模块设置初始值
     static {
         // 设置 aa-list 模块初始为常开模式
-        moduleControlModes.put(ControlModule.AA_LIST.getValue(), ControlMode.ALWAYS_RETURN);
+        moduleControlModes.put(ControlModule.AA_LIST.getValue(), ControlMode.ALWAYS_NULL);
         // 设置 wb-olp 模块初始为常开模式
         moduleControlModes.put(ControlModule.WB_OLP.getValue(), ControlMode.ALWAYS_RETURN);
     }

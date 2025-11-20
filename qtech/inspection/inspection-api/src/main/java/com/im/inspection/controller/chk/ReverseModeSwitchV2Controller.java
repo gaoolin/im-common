@@ -35,7 +35,7 @@ public class ReverseModeSwitchV2Controller {
             ControlMode newMode = ControlMode.valueOf(mode.toUpperCase());
             CtrlModeFlag.setControlMode(module, newMode);
             log.info("Module [{}] control mode updated to [{}]", module, newMode);
-            return ApiR.success(String.format("Module [%s] control mode updated to [%s]", module, newMode), null);
+            return ApiR.success(String.format("Module [%s] control mode updated to [%s]", module, newMode), newMode.name());
         } catch (IllegalArgumentException e) {
             return ApiR.badRequest("Invalid control mode");
         }
@@ -49,7 +49,7 @@ public class ReverseModeSwitchV2Controller {
     @Operation(summary = "获取当前控制模式")
     @GetMapping("/{module}/current")
     public ApiR<String> getControlMode(@PathVariable("module") String module) {
-        return ApiR.success(String.format("Module [%s] current control mode is [%s]", module, CtrlModeFlag.getControlMode(module)), null);
+        return ApiR.success(String.format("Module [%s] current control mode is [%s]", module, CtrlModeFlag.getControlMode(module)), CtrlModeFlag.getControlMode(module).name());
     }
 
     /**
