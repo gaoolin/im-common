@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import static com.im.qtech.data.constant.QtechImBizConstant.OCR_HTTP_URL_DEV;
+import static com.im.qtech.data.constant.QtechImBizConstant.OCR_HTTP_URL_PROD;
 
 /**
  * OCR标签识别控制器
@@ -128,9 +129,9 @@ public class OcrLabelController {
     private ApiR<String> callOcrService(Map<String, String> requestParams) {
         try {
             String requestBody = objectMapper.writeValueAsString(requestParams);
-            String ocrResponse = HttpUtils.post(OCR_HTTP_URL_DEV, requestBody);
+            String ocrResponse = HttpUtils.post(OCR_HTTP_URL_PROD, requestBody);
 
-            logger.info("OCR请求URL: {}, 请求参数: {}, 响应: {}", OCR_HTTP_URL_DEV, requestBody, ocrResponse);
+            logger.info("OCR请求URL: {}, 请求参数: {}, 响应: {}", OCR_HTTP_URL_PROD, requestBody, ocrResponse);
 
             JsonNode jsonResponse = objectMapper.readTree(ocrResponse);
             int ocrCode = jsonResponse.get("code").asInt();
