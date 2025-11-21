@@ -1,6 +1,6 @@
 # 开发环境配置
 server:
-  port: 8080
+  port: 8077
 
 # AWS S3配置（开发环境）
 # 存储服务配置
@@ -25,5 +25,7 @@ aws:
 
 # 日志配置
 logging:
+  file:
+    path: D:\logs
   level:
     com.im.storage: DEBUG

@@ -1,5 +1,4 @@
 server:
-  port: 8077
   servlet:
     context-path: /storage
 
@@ -10,6 +9,7 @@ storage:
   providers:
     - type: ceph-s3
       enabled: true
+      config-class: com.im.storage.config.S3ConfigProperties
     - type: hdfs
       enabled: false
     - type: minio
@@ -24,7 +24,6 @@ aws:
     endpoint: http://10.170.6.40:31033
     bucket: default
 
-
 # Spring配置
 spring:
   application:
@@ -33,6 +32,8 @@ spring:
     multipart:
       max-file-size: 300MB
       max-request-size: 300MB
+  profiles:
+    active: dev
 
 # 日志配置
 logging:

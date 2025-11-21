@@ -1,6 +1,7 @@
-package com.im.storage.service.storage;
+package com.im.storage.service.storage.factory;
 
 import com.im.storage.service.StorageService;
+import com.im.storage.service.storage.StorageType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

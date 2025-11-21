@@ -3,9 +3,7 @@ package com.im.aa.inspection.service;
 import com.im.aa.inspection.comparator.EqLstInspectionModelV3;
 import com.im.aa.inspection.entity.param.EqLstParsed;
 import com.im.aa.inspection.entity.reverse.EqpReverseDO;
-import com.im.aa.inspection.entity.standard.EqLstTplDO;
 import com.im.aa.inspection.entity.standard.EqLstTplInfoDO;
-import com.im.aa.inspection.serde.EqLstProtobufMapper;
 import com.im.qtech.data.dto.param.EqLstPOJO;
 import com.im.qtech.data.dto.reverse.LabelEum;
 import org.im.cache.core.Cache;
@@ -16,7 +14,6 @@ import org.im.semiconductor.common.parameter.mgr.ParameterRange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Base64;
 import java.util.Map;
 import java.util.StringJoiner;
 
@@ -48,8 +45,8 @@ public class ParamCheckService {
      * 计算状态码
      */
     private static int calculateStatusCode(ParameterInspection result) {
-        boolean hasMissingParams = !result.getEmptyInStandard().isEmpty();
-        boolean hasExtraParams = !result.getEmptyInActual().isEmpty();
+        boolean hasMissingParams = !result.getEmptyInActual().isEmpty();
+        boolean hasExtraParams = !result.getEmptyInStandard().isEmpty();
         boolean hasIncorrectValues = !result.getDifferences().isEmpty();
 
         // 确定状态码
@@ -95,7 +92,7 @@ public class ParamCheckService {
 
         // 获取模板信息（从Redis缓存，通过CacheService）
         EqLstTplInfoDO modelInfoObj = getTplInfoFromCache(actualObj.getModuleId());
-        logger.error(">>>>> 获取模板信息 -> {}", modelInfoObj);
+        logger.info(">>>>> 获取模板概要 -> {}", modelInfoObj);
 
         // 模板信息检查
         if (modelInfoObj == null) {
@@ -107,7 +104,7 @@ public class ParamCheckService {
         }
 
         EqLstPOJO modelObj = modelInfoObj.getTpl();
-        logger.error(">>>>> 获取模板信息 -> {}", modelObj);
+        logger.info(">>>>> 获取模板详情 -> {}", modelObj);
 
         if (modelObj == null) {
             return createInspectionResult(eqpReverseDO, 7, "Missing Template Detail.");
@@ -159,9 +156,9 @@ public class ParamCheckService {
     private String buildDescription(ParameterInspection result) {
         StringJoiner joiner = new StringJoiner(";");
 
-        result.getEmptyInStandard().keySet().stream().sorted().forEach(prop -> joiner.add(prop + "-"));
+        result.getEmptyInStandard().keySet().stream().sorted().forEach(prop -> joiner.add(prop + "+"));
 
-        result.getEmptyInActual().keySet().stream().sorted().forEach(prop -> joiner.add(prop + "+"));
+        result.getEmptyInActual().keySet().stream().sorted().forEach(prop -> joiner.add(prop + "-"));
 
         result.getDifferences().entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(entry -> {
             String prop = entry.getKey();

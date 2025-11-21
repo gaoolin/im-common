@@ -49,20 +49,19 @@ public class EqLstTplInfoRepository {
     // 根据 moduleId 查询
     public EqLstTplInfoDO findByModuleId(String moduleId) {
         Session session = sessionFactory.getCurrentSession();
-        Transaction tx = session.beginTransaction();
+        Transaction tx = null;
         try {
-            Query<EqLstTplInfoDO> query = session.createQuery(
-                    "SELECT new com.im.aa.inspection.entity.standard.EqLstTplInfoDO(e.id, e.moduleId, e.listParams, e.itemParams, e.tpl, e.status, e.createTime, e.updateTime) FROM EqLstTplInfoDO e WHERE e.moduleId = :moduleId",
-                    EqLstTplInfoDO.class
-            );
+            tx = session.beginTransaction();
+            Query<EqLstTplInfoDO> query = session.createQuery("SELECT new com.im.aa.inspection.entity.standard.EqLstTplInfoDO(e.id, e.moduleId, e.listParams, e.itemParams, e.tpl, e.status, e.createTime, e.updateTime) FROM EqLstTplInfoDO e WHERE e.moduleId = :moduleId", EqLstTplInfoDO.class);
             query.setParameter("moduleId", moduleId);
             EqLstTplInfoDO result = query.uniqueResult();
             tx.commit();
             return result;
         } catch (Exception e) {
-            tx.rollback();
-            throw new RuntimeException("查询失败", e);
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException("查询模板信息失败", e);
         }
     }
-
 }

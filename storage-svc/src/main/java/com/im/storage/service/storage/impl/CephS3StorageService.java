@@ -1,4 +1,4 @@
-package com.im.storage.service.storage;
+package com.im.storage.service.storage.impl;
 
 import com.im.storage.config.S3ConfigProperties;
 import com.im.storage.exception.StorageException;
@@ -49,6 +49,30 @@ public class CephS3StorageService implements StorageService, PresignCapable {
     @Autowired
     private S3ConfigProperties s3ConfigProperties;
 
+    /**
+     * 判断对象是否存在
+     *
+     * @param bucketName
+     * @param objectKey
+     * @return boolean
+     */
+    @Override
+    public boolean objectExists(String bucketName, String objectKey) {
+        try {
+            HeadObjectRequest request = HeadObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(objectKey)
+                    .build();
+
+            s3Client.headObject(request);
+            return true;
+        } catch (NoSuchKeyException e) {
+            return false;
+        } catch (Exception e) {
+            throw new StorageException("Failed to check object existence: " + objectKey, e);
+        }
+    }
+
     @Override
     public ObjectMetadata putObject(String bucketName, String objectKey, InputStream content, String contentType) {
         try {
@@ -96,7 +120,17 @@ public class CephS3StorageService implements StorageService, PresignCapable {
 
             // 将响应流转换为ByteArrayInputStream以便重复使用
             byte[] content = readAllBytes(response);
-            return new ByteArrayInputStream(content);
+            // 确保响应流能被正确处理和关闭
+            return new ByteArrayInputStream(content) {
+                @Override
+                public void close() throws IOException {
+                    try {
+                        super.close();
+                    } finally {
+                        response.close();
+                    }
+                }
+            };
         } catch (Exception e) {
             throw new StorageException("Failed to get object: " + objectKey, e);
         }

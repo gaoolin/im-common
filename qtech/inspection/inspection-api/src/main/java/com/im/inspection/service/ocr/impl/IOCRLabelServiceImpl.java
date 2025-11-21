@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Objects;
 
-import static com.im.qtech.data.constant.QtechImBizConstant.CEPH_HTTP_URL;
+import static com.im.qtech.data.constant.QtechImBizConstant.STORAGE_HTTP_URL_TEST;
 
 /**
  * OCR服务层
@@ -34,9 +34,9 @@ public class IOCRLabelServiceImpl implements IOCRLabelService {
     }
 
     @Override
-    public String S3Obj(String bucketName, String fileName, String contents) {
+    public String S3Obj(String bucketName, String objectKey, String contents) {
         // 拼接请求 URL，包括请求参数
-        String url = String.format(CEPH_HTTP_URL, bucketName, fileName);
+        String url = String.format(STORAGE_HTTP_URL_TEST, bucketName, objectKey);
         logger.info(">>>>> Request URL: {}", url);
         // 创建 HTTP headers
         HttpHeaders headers = new HttpHeaders();

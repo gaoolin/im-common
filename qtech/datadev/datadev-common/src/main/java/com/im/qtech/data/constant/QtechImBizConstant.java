@@ -59,6 +59,12 @@ public class QtechImBizConstant {
     public static final String OCR_HTTP_URL_DEV = "http://10.170.6.40:30113/ocr/label";
     public static final String OCR_HTTP_URL_PROD = "http://im-ocr-label-app-svc.qtech-im-api:5000/ocr/label";
 
+    // STORAGE_CONSTANT
+    public static final String STORAGE_HTTP_URL_TEST = "http://localhost:8077/storage/api/v1/objects/base64?bucketName=%s&objectKey=%s";
+    public static final String STORAGE_HTTP_URL_DEV = "http://10.170.6.40:31556/storage/api/v1/objects/base64?bucketName=%s&objectKey=%s";
+    public static final String STORAGE_HTTP_URL_PROD = "http://im-storage-svc.qtech-im-api:8080/storage/api/v1/objects/base64?bucketName=%s&objectKey=%s";
+
+
 
     private QtechImBizConstant() {
         throw new UnsupportedOperationException("u can't instantiate me...");

@@ -191,32 +191,23 @@
 
     <!--开发环境:打印控制台-->
     <springProfile name="dev">
-        <root level="${LOG_LEVEL:-INFO}">
+        <property name="LOG_PATH" value="D:\logs"/>
+        <root level="INFO">
             <appender-ref ref="CONSOLE"/>
-            <!--<appender-ref ref="DEBUG_FILE"/>-->
             <appender-ref ref="INFO_FILE"/>
             <appender-ref ref="WARN_FILE"/>
             <appender-ref ref="ERROR_FILE"/>
         </root>
-        <logger name="com.im.inspection.mapper" level="DEBUG"/>
-        <!-- 设置 MyBatis 的日志级别 -->
-        <logger name="org.apache.ibatis" level="DEBUG"/>
-        <!-- 开发环境配置 -->
-        <!-- 从 application.yml 中读取日志路径 -->
-        <property name="LOG_PATH" value="${logging.file.path:-E:/logs/mq}"/>
     </springProfile>
 
     <!--生产环境:输出到文件-->
     <springProfile name="prod">
-        <root level="${LOG_LEVEL:-INFO}">
+        <property name="LOG_PATH" value="/home/qtech/logs"/>
+        <root level="INFO">
             <appender-ref ref="CONSOLE"/>
-            <!--<appender-ref ref="DEBUG_FILE"/>-->
             <appender-ref ref="INFO_FILE"/>
             <appender-ref ref="WARN_FILE"/>
             <appender-ref ref="ERROR_FILE"/>
         </root>
-        <!-- 生产环境配置 -->
-        <!-- 从 application.yml 中读取日志路径 -->
-        <property name="LOG_PATH" value="${logging.file.path:-/home/qtech/logs}"/>
     </springProfile>
 </configuration>

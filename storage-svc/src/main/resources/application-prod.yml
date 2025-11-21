@@ -25,5 +25,7 @@ aws:
 
 # 日志配置
 logging:
+  file:
+    path: /home/qtech/logs
   level:
     com.im.storage: INFO

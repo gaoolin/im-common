@@ -1,3 +1,5 @@
+server:
+  port: 8080
 # 数据源配置
 spring:
   datasource:
@@ -80,8 +82,6 @@ spring:
 logging:
   level:
     root: info
-  file:
-    path: /home/qtech/logs
 
 management:
   endpoints:

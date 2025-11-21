@@ -6,8 +6,8 @@ import com.im.storage.model.dto.ObjectMetadata;
 import com.im.storage.service.OssService;
 import com.im.storage.service.PresignCapable;
 import com.im.storage.service.StorageService;
-import com.im.storage.service.storage.StorageServiceFactory;
 import com.im.storage.service.storage.StorageType;
+import com.im.storage.service.storage.factory.StorageServiceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -41,6 +41,45 @@ public class OssServiceImpl implements OssService {
     // 获取指定存储服务
     private StorageService getStorageService(StorageType storageType) {
         return storageServiceFactory.getStorageService(storageType);
+    }
+
+    /**
+     * 初始化OSS服务
+     */
+    @Override
+    public void init() {
+
+    }
+
+    /**
+     * 对象是否存在 - 指定存储类型
+     *
+     * @param bucketName
+     * @param objectKey
+     */
+    @Override
+    public boolean objectExists(String bucketName, String objectKey) {
+        try {
+            return getDefaultStorageService().objectExists(bucketName, objectKey);
+        } catch (Exception e) {
+            throw new StorageException("Failed to check object existence: " + objectKey, e);
+        }
+    }
+
+    /**
+     * 对象是否存在 - 指定存储类型
+     *
+     * @param bucketName
+     * @param objectKey
+     * @param storageType
+     */
+    @Override
+    public boolean objectExists(String bucketName, String objectKey, StorageType storageType) {
+        try {
+            return getStorageService(storageType).objectExists(bucketName, objectKey);
+        } catch (Exception e) {
+            throw new StorageException("Failed to check object existence: " + objectKey, e);
+        }
     }
 
     @Override

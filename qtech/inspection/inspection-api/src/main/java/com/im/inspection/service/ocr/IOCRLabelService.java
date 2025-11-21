@@ -6,5 +6,5 @@ package com.im.inspection.service.ocr;
  * @date 2024/08/11 08:11:15
  */
 public interface IOCRLabelService {
-    String S3Obj(String bucketName, String fileName, String contents);
+    String S3Obj(String bucketName, String objectKey, String contents);
 }
