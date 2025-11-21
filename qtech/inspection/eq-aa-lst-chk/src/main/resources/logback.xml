@@ -11,10 +11,10 @@
 
     <!-- 文件输出配置 -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/home/logs/application.log</file>
+        <file>/home/qtech/logs/application.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- 使用推荐的 SizeAndTimeBasedRollingPolicy -->
-            <fileNamePattern>/home/logs/application.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>/home/qtech/logs/application.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxHistory>30</maxHistory>
             <maxFileSize>100MB</maxFileSize>
             <totalSizeCap>10GB</totalSizeCap>
@@ -27,9 +27,9 @@
 
     <!-- Kafka消费者专用日志文件 -->
     <appender name="KAFKA_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/home/logs/kafka-consumer.log</file>
+        <file>/home/qtech/logs/kafka-consumer.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>/home/logs/kafka-consumer.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>/home/qtech/logs/kafka-consumer.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxHistory>15</maxHistory>
             <maxFileSize>50MB</maxFileSize>
             <totalSizeCap>5GB</totalSizeCap>
