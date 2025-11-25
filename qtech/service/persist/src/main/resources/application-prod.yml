@@ -1,3 +1,5 @@
+server:
+  port: 8080
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -59,7 +61,7 @@ spring:
 
 logging:
   logback:
-    rollingpolicy:
+    rolling-policy:
       clean-history-on-start: true
       max-file-size: 100MB
   file:

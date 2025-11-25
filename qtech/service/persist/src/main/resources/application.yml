@@ -1,6 +1,4 @@
-#
 server:
-  port: 8080
   tomcat:
     uri-encoding: UTF-8
     accept-count: 1000
@@ -91,7 +89,7 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     call-setters-on-nulls: true
     use-generated-keys: false
     use-column-label: false

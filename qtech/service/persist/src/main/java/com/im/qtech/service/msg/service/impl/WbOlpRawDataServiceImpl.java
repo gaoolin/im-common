@@ -53,22 +53,25 @@ public class WbOlpRawDataServiceImpl implements IWbOlpRawDataService {
         if (list == null || list.isEmpty()) {
             return CompletableFuture.completedFuture(false);
         }
+
         DSName currentDS = DSContextHolder.get();
-        CompletableFuture<Boolean> future = new CompletableFuture<>();
 
-        databaseExecutor.execute(() -> {
-            try {
-                DSContextHolder.set(currentDS);
-                int result = wbOlpRawDataMapper.addWbOlpRawDataBatch(list);
-                future.complete(result > 0);
-            } catch (Exception e) {
-                logger.error(">>>>> 异步批量插入WbOlpRawData数据失败, 数据量: {}", list.size(), e);
-                future.completeExceptionally(new RuntimeException("数据库操作失败: " + e.getMessage(), e));
-            } finally {
-                DSContextHolder.clear();
-            }
-        });
-
-        return future.orTimeout(DATABASE_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        // 使用 CompletableFuture.supplyAsync 更简洁的方式
+        return CompletableFuture.supplyAsync(() -> {
+                    try {
+                        DSContextHolder.set(currentDS);
+                        int result = wbOlpRawDataMapper.addWbOlpRawDataBatch(list);
+                        return result > 0;
+                    } catch (Exception e) {
+                        logger.error(">>>>> 异步批量插入WbOlpRawData数据失败, 数据量: {}", list.size(), e);
+                        throw new RuntimeException("数据库操作失败: " + e.getMessage(), e);
+                    }
+                }, databaseExecutor)
+                .whenComplete((result, throwable) -> {
+                    // 清理上下文
+                    DSContextHolder.clear();
+                })
+                .orTimeout(DATABASE_TIMEOUT_SECONDS, TimeUnit.SECONDS);
     }
+
 }

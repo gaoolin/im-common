@@ -16,6 +16,7 @@
     <url>http://maven.apache.org</url>
     <modules>
         <module>persist</module>
+        <module>msg-queue-persist</module>
     </modules>
 
     <properties>

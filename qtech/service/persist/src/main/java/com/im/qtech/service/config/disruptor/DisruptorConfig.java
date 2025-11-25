@@ -30,7 +30,7 @@ import java.util.concurrent.ThreadFactory;
 @Configuration
 public class DisruptorConfig {
 
-    private static final int RING_BUFFER_SIZE = 256;
+    private static final int RING_BUFFER_SIZE = 1024;
 
     private Disruptor<WbOlpRawDataEvent> wbOlpRawDataEventDisruptor;
 

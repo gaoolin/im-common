@@ -6,8 +6,8 @@ import com.im.qtech.service.msg.service.IWbOlpRawDataService;
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.LifecycleAware;
 import lombok.extern.slf4j.Slf4j;
-import org.im.common.thread.core.ThreadPoolSingleton;
 import org.im.common.thread.core.SmartThreadPoolExecutor;
+import org.im.common.thread.core.ThreadPoolSingleton;
 import org.im.common.thread.task.TaskPriority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Disruptor 事件处理器
@@ -28,16 +27,15 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Service
 public class WbOlpRawDataEventHandler implements EventHandler<WbOlpRawDataEvent>, LifecycleAware {
-    @Value("${wb.olp.raw.data.batch.size:100}")
-    private int BATCH_SIZE = 100;
-
-    @Value("${wb.olp.raw.data.max.buffer.size:1000}")
-    private int MAX_BUFFER_SIZE = 1000;
-
     private final List<WbOlpRawData> buffer = new ArrayList<>();
     private final IWbOlpRawDataService repository;
     private final DeadLetterQueueService dlqService;
     private final SmartThreadPoolExecutor databaseExecutor;
+    private final Object bufferLock = new Object();
+    @Value("${wb.olp.raw.data.batch.size:500}")
+    private int BATCH_SIZE = 500;
+    @Value("${wb.olp.raw.data.max.buffer.size:5000}")
+    private int MAX_BUFFER_SIZE = 5000;
 
     @Autowired
     public WbOlpRawDataEventHandler(
@@ -50,8 +48,6 @@ public class WbOlpRawDataEventHandler implements EventHandler<WbOlpRawDataEvent>
                 .getTaskDispatcher()
                 .getExecutor(TaskPriority.IMPORTANT);
     }
-
-    private final Object bufferLock = new Object();
 
     @Override
     public void onEvent(WbOlpRawDataEvent event, long sequence, boolean endOfBatch) {
@@ -91,14 +87,16 @@ public class WbOlpRawDataEventHandler implements EventHandler<WbOlpRawDataEvent>
         try {
             // 使用自定义线程池执行数据库操作，避免阻塞 Disruptor 处理线程
             CompletableFuture<Boolean> async = repository.addWbOlpRawDataBatchAsync(toFlush);
-            async.whenComplete((result, throwable) -> {
+            async.handle((result, throwable) -> {
                 if (throwable != null) {
                     log.error(">>>>> Error saving batch to database, batch size: {}", toFlush.size(), throwable);
                     toFlush.forEach(dlqService::sendWbOlpRawDataToDLQ);
                 } else {
                     log.debug(">>>>> Successfully processed batch of {} records", toFlush.size());
                 }
-            }).orTimeout(30, TimeUnit.SECONDS); // 添加超时控制
+                return null;
+            });
+            // 移除 orTimeout，或者正确处理其异常
         } catch (Exception e) {
             log.error(">>>>> Error initiating batch save to database, batch size: {}", toFlush.size(), e);
             toFlush.forEach(dlqService::sendWbOlpRawDataToDLQ);

@@ -86,9 +86,9 @@ public class KafkaConsumerConfig {
         ConcurrentKafkaListenerContainerFactory<Long, WbOlpRawDataRecord> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         factory.setBatchListener(true);
-        factory.setConcurrency(1); // 降低并发度适应单核CPU
+        factory.setConcurrency(1); // 保持低并发度
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
-        factory.getContainerProperties().setPollTimeout(2000); // 减少poll超时
+        factory.getContainerProperties().setPollTimeout(1000); // 进一步减少poll超时
         return factory;
     }
 

@@ -36,8 +36,6 @@ import static com.im.qtech.service.msg.util.MessageKeyUtils.sha256;
 @Service
 public class WbOlpRawConsumer {
 
-    private static final int MAX_PENDING_EVENTS = 512;
-
     @Autowired
     private MsgRedisDeduplicationUtils msgRedisDed;
 
@@ -58,13 +56,15 @@ public class WbOlpRawConsumer {
         }
 
         try {
-            // 直接同步处理所有记录，避免嵌套异步造成的线程池资源耗尽
-            records.forEach(this::processRecordWithFallback);
+            // 简单的串行处理，避免过度并发
+            for (ConsumerRecord<Long, WbOlpRawDataRecord> record : records) {
+                processRecordWithFallback(record);
+            }
             acknowledgment.acknowledge();
             log.info(">>>>> Batch of {} records processed successfully", records.size());
         } catch (Exception e) {
             log.error(">>>>> Failed to process batch of {} records", records.size(), e);
-            acknowledgment.acknowledge(); // 防止Kafka重新投递造成重复处理
+            acknowledgment.acknowledge();
         }
     }
 
@@ -78,32 +78,29 @@ public class WbOlpRawConsumer {
         }
     }
 
-    private void processRecord(ConsumerRecord<Long, WbOlpRawDataRecord> record) {
-        WbOlpRawDataRecord value = record.value();
-        String key = MsgRedisDeduplicationUtils.buildDedupKey(MSG_WB_OLP_KEY_PREFIX, generateRedisKey(value));
+private void processRecord(ConsumerRecord<Long, WbOlpRawDataRecord> record) {
+    WbOlpRawDataRecord value = record.value();
+    String key = MsgRedisDeduplicationUtils.buildDedupKey(MSG_WB_OLP_KEY_PREFIX, generateRedisKey(value));
 
-        List<String> keys = Collections.singletonList(key);
-        List<String> newKeys = msgRedisDed.filterNewKeys(keys, MSG_WB_OLP_REDIS_EXPIRE_SECONDS); // 1小时去重
+    List<String> keys = Collections.singletonList(key);
+    List<String> newKeys = msgRedisDed.filterNewKeys(keys, MSG_WB_OLP_REDIS_EXPIRE_SECONDS);
 
-        if (!newKeys.isEmpty()) {
-            log.debug(">>>>> New data detected, processing key: {}", key);
-            WbOlpRawData data = convertToWbOlpRawData(value);
+    if (!newKeys.isEmpty()) {
+        log.debug(">>>>> New data detected, processing key: {}", key);
+        WbOlpRawData data = convertToWbOlpRawData(value);
 
-            // 添加背压控制，避免 Disruptor 缓冲区溢出
-            applyBackpressure();
-
-            // 使用 tryPublishEvent 避免阻塞，提高响应性
-            boolean success = disruptor.getRingBuffer().tryPublishEvent((event, sequence) -> event.setData(data));
-            if (!success) {
-                log.warn(">>>>> Disruptor buffer full, pushing to DLQ, key={}", key);
-                kafkaTemplate.send(KAFKA_WB_OLP_RAW_DATA_TOPIC + "-dlq", record.key(), record.value());
-            } else {
-                log.debug(">>>>> Data published to Disruptor: {}", data.getSimId());
-            }
-        } else {
-            log.debug(">>>>> Duplicate data skipped, key: {}", key);
+        // 简化的背压控制 - 直接阻塞而非忙等待
+        if (disruptor.getRingBuffer().remainingCapacity() < 5) {
+            log.warn(">>>>> Disruptor buffer nearly full, consider reducing throughput");
         }
+
+        // 使用阻塞发布而不是尝试发布
+        disruptor.getRingBuffer().publishEvent((event, sequence) -> event.setData(data));
+        log.debug(">>>>> Data published to Disruptor: {}", data.getSimId());
+    } else {
+        log.debug(">>>>> Duplicate data skipped, key: {}", key);
     }
+}
 
     private void applyBackpressure() {
         // 当 Disruptor 缓冲区接近满载时，短暂等待释放资源
