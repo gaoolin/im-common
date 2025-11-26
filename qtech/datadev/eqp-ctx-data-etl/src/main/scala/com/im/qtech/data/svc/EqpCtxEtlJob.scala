@@ -25,7 +25,7 @@ class EqpCtxEtlJob extends AbstractEtlJob {
   private val logger = LoggerFactory.getLogger(classOf[EqpCtxEtlJob])
 
   // 同步任务配置
-  case class SyncTaskConfig(
+  private case class SyncTaskConfig(
                              sourceTable: String,
                              targetTable: String,
                              targetType: TargetType, // DORIS, ORACLE or POSTGRESQL

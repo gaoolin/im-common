@@ -14,6 +14,7 @@
         <module>datadev-common</module>
         <module>eqp-ctx-data-etl</module>
         <module>qt-bom-etl</module>
+        <module>qt-eqp-status-stream</module>
     </modules>
 
     <properties>

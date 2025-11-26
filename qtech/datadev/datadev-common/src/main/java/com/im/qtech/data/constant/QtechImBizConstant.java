@@ -19,6 +19,8 @@ public class QtechImBizConstant {
     public static final String KAFKA_TOPIC = "qtech_im_wb_olp_chk_topic";
     public static final String WB_OLP_CHECK_KAFKA_TOPIC = "qtech_im_wb_olp_chk_topic";
     public static final String WB_OLP_RAW_DATA_KAFKA_TOPIC = "qtech_im_wb_olp_raw_data_topic";
+    public static final String REDIS_OLP_CHECK_DUPLICATION_KEY_PREFIX = "qtech:im:olp_chk:";
+    public static final String REDIS_OLP_RAW_DUPLICATION_KEY_PREFIX = "qtech:im:olp_raw:";
     public static final String EQ_NETWORK_STATUS_KAFKA_TOPIC = "filtered_device_data";
     public static final String KAFKA_WB_OLP_CHK_RES_TOPIC = "qtech_im_wb_olp_chk_topic";
     public static final String KAFKA_WB_OLP_RAW_DATA_TOPIC = "qtech_im_wb_olp_raw_data_topic";
@@ -63,7 +65,6 @@ public class QtechImBizConstant {
     public static final String STORAGE_HTTP_URL_TEST = "http://localhost:8077/storage/api/v1/objects/base64?bucketName=%s&objectKey=%s";
     public static final String STORAGE_HTTP_URL_DEV = "http://10.170.6.40:31556/storage/api/v1/objects/base64?bucketName=%s&objectKey=%s";
     public static final String STORAGE_HTTP_URL_PROD = "http://im-storage-svc.qtech-im-api:8080/storage/api/v1/objects/base64?bucketName=%s&objectKey=%s";
-
 
 
     private QtechImBizConstant() {
