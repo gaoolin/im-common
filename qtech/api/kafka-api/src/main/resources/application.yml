@@ -1,0 +1,90 @@
+# 服务端配置
+server:
+  servlet:
+    context-path: /message
+  tomcat:
+    uri-encoding: UTF-8
+    accept-count: 100
+    threads:
+      max: 300
+      min-spare: 20
+
+# Kafka 配置
+spring:
+  profiles:
+    active: dev
+
+  kafka:
+    bootstrap-servers:
+      - 10.170.6.24:9092
+      - 10.170.6.25:9092
+      - 10.170.6.26:9092
+    producer:
+      client-id: im-kafka-api
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      enable-idempotence: true
+      acks: all
+      retries: 3
+      retry-backoff-ms: 5000
+      batch-size: 16384
+      linger-ms: 5
+      compression-type: gzip
+      buffer-memory: 33554432
+      max-request-size: 1048576
+      request-timeout-ms: 10000
+
+# Kafka 重试配置
+kafka:
+  retry:
+    max: 3
+    interval: 5000
+  topic:
+    eqp-list-message: qtech_im_aa_list_topic
+
+# OpenAPI 文档配置
+springdoc:
+  api-docs:
+    enabled: true
+  openapi:
+    info:
+      title: kafka-api
+      description: Kafka API Service
+      version: 1.0.0
+      contact: gaoolin@gmail.com
+
+# 日志配置
+logging:
+  level:
+    root: info
+    #    org.springframework.web: debug
+    org.apache.kafka: warn
+#    org.springframework: debug
+
+# 健康检查配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+  health:
+    diskspace:
+      enabled: true
+      threshold: 100MB
+
+# Liveness Probe
+livenessProbe:
+  httpGet:
+    path: /actuator/health
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+# Readiness Probe
+readinessProbe:
+  httpGet:
+    path: /actuator/health
+    port: 8080
+  initialDelaySeconds: 10
+  periodSeconds: 5
+

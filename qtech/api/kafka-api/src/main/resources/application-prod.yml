@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+logging:
+  logback:
+    rolling-policy:
+      clean-history-on-start: true
+      max-file-size: 100MB
+  file:
+    path: /home/logs
