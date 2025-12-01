@@ -1,38 +1,156 @@
+# ===================== #
+#  Maven相关忽略项       #
+# ===================== #
 target/
+*/target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
+# ====================== #
+#  Java相关忽略项         #
+# ====================== #
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+hs_err_pid*
+
+# ======================== #
+#  IDE相关忽略项            #
+# ======================== #
+# Eclipse
+.settings/
+.project
+.classpath
+*.launch
+.checkstyle
+.factorypath
+
+# IntelliJ IDEA
+.idea/
 *.iws
 *.iml
 *.ipr
+out/
 
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+# NetBeans
+nbproject/private/
 build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+*/build/
+nbbuild/
+dist/
+nbdist/
+.netbeans_automatic_build
 
-### VS Code ###
+# VS Code
 .vscode/
 
-### Mac OS ###
+# ========================== #
+#  编辑器备份和临时文件        #
+# ========================== #
+*~
+.*~
+*.swp
 .DS_Store
+Thumbs.db
+
+# =========================== #
+#  日志和临时文件              #
+# =========================== #
+*.log
+logs/
+*.tmp
+*.temp
+
+# ============================= #
+#  Spring Boot相关忽略项         #
+# ============================= #
+# Spring Boot Application Loader
+.springBeans
+
+# Spring Boot DevTools
+.spring_boot_devtools.restart
+.restarttrigger
+
+# H2数据库（开发环境）
+*.h2.db
+*.mv.db
+
+# =============================== #
+#  构建产物和依赖                  #
+# =============================== #
+# JAR/WAR files
+**/target/*.jar
+**/target/*.war
+/libs/
+
+# =================================== #
+#  测试相关                             #
+# =================================== #
+# JUnit
+junit*.properties
+
+# Test coverage
+*.exec
+*.ec
+jacoco/
+
+# ==================================== #
+#  系统和自定义忽略项                     #
+# ==================================== #
+# Maven Wrapper本地配置
+.mvn/wrapper/maven-wrapper.properties
+
+# Docker
+docker-compose.override.yml
+
+# SonarQube
+.sonar/
+
+# 覆盖率报告
+coverage/
+*.coverage.*
+
+# Checkstyle
+checkstyle-output/
+
+# PMD
+pmd.xml
+cpd.xml
+
+# FindBugs
+findbugsXml.xml
+findbugsHtml.xml
+
+# Gradle相关（如果您混合使用）
+.gradle/
+
+# ===================================== #
+#  根据您项目特点添加的忽略项               #
+# ===================================== #
+# Kafka Streams状态存储（如果是Kafka相关服务）
+/kafka-streams-state/
+/tmp/
+
+# Spark相关（根据您的项目包含Spark）
+.metastore_db/
+derby.log
+spark-warehouse/
+.metadata/
+
+# Avro相关
+*.avro
+.avro/
+
+# Protobuf相关
+*.proto.local
