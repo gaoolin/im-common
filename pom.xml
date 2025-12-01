@@ -18,7 +18,6 @@
         <module>integration</module>
         <module>core</module>
         <module>config</module>
-        <module>exception</module>
         <module>server</module>
         <module>qtech</module>
         <module>common</module>

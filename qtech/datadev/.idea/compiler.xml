@@ -7,9 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="eqp-ctx-data-etl" />
+        <module name="qt-bom-etl" />
         <module name="datadev-common" />
         <module name="wb-wire-usage-etl" />
-        <module name="eqp-ctx-data-etl" />
       </profile>
     </annotationProcessing>
   </component>
