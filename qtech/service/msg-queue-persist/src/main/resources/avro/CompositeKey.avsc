@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "CompositeKey",
+  "namespace": "com.qtech.msg.serializer",
+  "fields": [
+    {
+      "name": "simId",
+      "type": "string"
+    },
+    {
+      "name": "moduleId",
+      "type": "string"
+    },
+    {
+      "name": "chkDt",
+      "type": "string"
+    }
+  ]
+}

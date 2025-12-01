@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qtech.msg.mapper.WbOlpRawDataMapper">
+
+    <resultMap id="BaseResultMap" type="com.im.qtech.data.dto.param.WbOlpRawData">
+        <result property="dt" column="dt"/>
+        <result property="simId" column="sim_id"/>
+        <result property="moduleId" column="mc_id"/>
+        <result property="wireId" column="line_no"/>
+        <result property="leadX" column="lead_x"/>
+        <result property="leadY" column="lead_y"/>
+        <result property="padX" column="pad_x"/>
+        <result property="padY" column="pad_y"/>
+        <result property="checkPort" column="check_port"/>
+        <result property="piecesIndex" column="pieces_index"/>
+        <result property="loadTime" column="load_time"/>
+    </resultMap>
+
+    <!-- 适配 Doris 的批量插入 -->
+    <insert id="addWbOlpRawDataBatch">
+        INSERT INTO qtech_eq_dwd.im_wb_olp_coordinate_detail
+        (
+        dt, sim_id, mc_id, line_no,
+        lead_x, lead_y, pad_x, pad_y,
+        check_port, pieces_index, load_time
+        )
+        VALUES
+        <foreach collection="wbOlpRawDataList" item="item" separator=",">
+            (
+            #{item.dt},
+            #{item.simId},
+            #{item.moduleId},
+            #{item.wireId},
+            #{item.leadX},
+            #{item.leadY},
+            #{item.padX},
+            #{item.padY},
+            #{item.checkPort},
+            #{item.piecesIndex},
+            <if test="item.loadTime != null">#{item.loadTime}</if>
+            <if test="item.loadTime == null">CURRENT_TIMESTAMP()</if>
+            )
+        </foreach>
+    </insert>
+</mapper>

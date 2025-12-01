@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.im.qtech.service</groupId>
+        <artifactId>service</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>com.qtech.msg</groupId>
+    <artifactId>msg-queue-persist</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <description>消息队列持久化</description>
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-boot.version>2.7.13</spring-boot.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.29</version>
+        </dependency>
+        <dependency>
+            <groupId>com.qtech.oracle</groupId>
+            <artifactId>ojdbc</artifactId>
+            <version>8</version>
+        </dependency>
+
+        <!--ruoyi框架mybatis集成在 pagehelper-spring-boot-starter启动器中，所以不需要再添加-->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <!-- AA 参数众多，利于维护字段 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!-- 布隆过滤器 -->
+        <!--<dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>3.17.7</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-server-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>1.11.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-avro-serializer</artifactId>
+            <version>7.5.5</version> <!-- 确保使用与你的 Confluent 版本匹配的版本号 -->
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>3.4.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-actuator-autoconfigure</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>33.4.0-jre</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.4</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.qtech</groupId>
+            <artifactId>im-common</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.im.qtech.data</groupId>
+            <artifactId>datadev-common</artifactId>
+            <version>1.0.12</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+        <plugins>
+            <!-- 确保target目录下只有一个jar后缀的文件，多个jar文件会导致在构建镜像的时候发生覆盖，而不是预期的jar包。 -->
+            <plugin>
+                <!-- Spring Boot官方Maven插件，用于打包和运行Spring Boot应用 -->
+                <groupId>org.springframework.boot</groupId>
+                <!-- 插件名称 -->
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <!-- 定义插件执行方式 -->
+                <executions>
+                    <execution>
+                        <!-- 执行的目标 -->
+                        <goals>
+                            <!-- repackage目标：重新打包项目，将普通JAR包转换为可执行的"fat JAR" -->
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--将依赖移到libs目录下-->
+            <plugin>
+                <!-- Apache Maven官方插件，用于处理项目依赖 -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <!-- 依赖处理插件 -->
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.8</version>
+                <!-- 插件执行集合 -->
+                <executions>
+                    <execution>
+                        <!-- 执行ID，标识为"copy" -->
+                        <id>copy</id>
+                        <!-- 绑定到Maven生命周期的package阶段 -->
+                        <phase>package</phase>
+                        <!-- 执行目标 -->
+                        <goals>
+                            <!-- copy-dependencies目标：复制项目依赖项 -->
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <!-- 执行配置参数 -->
+                        <configuration>
+                            <!-- 指定只处理jar类型的依赖 -->
+                            <type>jar</type>
+                            <!-- 明确包含jar类型文件 -->
+                            <includeTypes>jar</includeTypes>
+                            <!-- 只包含runtime作用域的依赖（运行时必需的依赖） -->
+                            <includeScope>runtime</includeScope>
+                            <!-- 输出目录，设置为target/libs目录 -->
+                            <outputDirectory>${project.build.directory}/libs</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--
+            禁用 maven-source-plugin
+            父 POM 已经配置了 maven-source-plugin，那么需要在子模块中通过 <plugin> 覆盖其行为。
+            xxx-xxx-1.0.0-sources.jar 是由 Maven 的 maven-source-plugin 自动生成的。它默认会在 package 阶段触发，除非显式禁用。
+            虽然你的 pom.xml 中没有显式配置该插件，但可能是父 POM 或其他模块中引入了它。
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                        <configuration>
+                            <skipSource>true</skipSource>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,70 @@
+{
+  "type": "record",
+  "name": "WbOlpRawDataRecord",
+  "namespace": "com.qtech.chk.avro",
+  "fields": [
+    {
+      "name": "dt",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "simId",
+      "type": "string"
+    },
+    {
+      "name": "mcId",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": "defaultString"
+    },
+    {
+      "name": "lineNo",
+      "type": "int"
+    },
+    {
+      "name": "leadX",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": "defaultString"
+    },
+    {
+      "name": "leadY",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": "defaultString"
+    },
+    {
+      "name": "padX",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": "defaultString"
+    },
+    {
+      "name": "padY",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": "defaultString"
+    },
+    {
+      "name": "checkPort",
+      "type": "int"
+    },
+    {
+      "name": "piecesIndex",
+      "type": "int"
+    }
+  ]
+}

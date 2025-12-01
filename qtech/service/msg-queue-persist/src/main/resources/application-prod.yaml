@@ -1,0 +1,134 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      # 主库数据源
+      first:
+        driver-class-name: oracle.jdbc.driver.OracleDriver
+        url: jdbc:oracle:thin:@//10.170.6.144:1521/qtechIm
+        username: imBiz
+        password: M5F5JkfnQ
+      # 从库数据源
+      second:
+        url: jdbc:mysql://doris-follower-bak.doris-bak:9030/qtech_eq_dwd?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
+        username: root
+        password:
+
+      # 初始连接数
+      initialSize: 5
+      # 最小连接池数量
+      minIdle: 10
+      # 最大连接池数量
+      maxActive: 20
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      # 配置连接超时时间
+      connectTimeout: 30000
+      # 配置网络超时时间
+      socketTimeout: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      # 配置一个连接在池中最大生存的时间，单位是毫秒
+      maxEvictableIdleTimeMillis: 900000
+      # 配置检测连接是否有效
+      validationQuery: SELECT 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      webStatFilter:
+        enabled: true
+      statViewServlet:
+        enabled: true
+        # 设置白名单，不填则允许所有访问
+        allow:
+        url-pattern: /druid/*
+        # 控制台管理用户名和密码
+        login-username: qtech
+        login-password: 123456
+      filter:
+        stat:
+          enabled: true
+          # 慢SQL记录
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+
+  #redis配置信息
+  redis:
+    ## Redis数据库索引（默认为0）
+    database: 0
+    ## Redis服务器连接密码（默认为空）
+    password: im@2024
+    ## 连接超时时间（毫秒）
+    timeout: 5000
+    ## 集群配置
+    cluster:
+      ### 集群中所有节点
+      nodes:
+        - 10.170.6.24:6379
+        - 10.170.6.25:6379
+        - 10.170.6.26:6379
+        - 10.170.6.141:6379
+        - 10.170.6.142:6379
+        - 10.170.1.68:6379
+      ### 最大重定向数，最好为集群节点数，比如第一台挂了，连第二台，第二台挂了连第三台，这个是重新连接的最大数量
+      max-redirects: 3
+    lettuce:
+      read-from: REPLICA_PREFERRED # 配置从节点优先读
+      pool:
+        ## 连接池最大连接数（使用负值表示没有限制）
+        max-active: 20
+        ## 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+        ## 连接池中的最大空闲连接
+        max-idle: 10
+        ## 连接池中的最小空闲连接
+        min-idle: 5
+      ## 集群配置
+      cluster:
+        refresh:
+          # 支持集群拓扑动态感应刷新,自适应拓扑刷新是否使用所有可用的更新，默认false关闭，类似nacos定时刷新服务列表
+          adaptive: true
+          # 定时刷新时间 毫秒
+          period: 2000
+
+  kafka:
+    bootstrap-servers:
+      - 10.170.6.24:9092
+      - 10.170.6.25:9092
+      - 10.170.6.26:9092
+  #    consumer:
+  #      group-id: im-group
+  #      auto-offset-reset: earliest
+
+  rabbitmq:
+    host: rabbitmq-svc.rabbitmq
+    port: 5672
+    username: qtech
+    password: Ee786549
+
+DORIS_STREAM_LOAD_URL: http://doris-follower-bak.doris-bak:9030/api/qtech_eq_dwd/eq_control_info/_stream_load
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    metrics:
+      enabled: true
+
+
+logging:
+  level:
+    root: warn
+  file:
+    path: /home/qtech/logs

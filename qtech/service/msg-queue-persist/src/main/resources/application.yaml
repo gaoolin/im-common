@@ -1,0 +1,72 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    accept-count: 1000
+    threads:
+      max: 1000
+      min-spare: 20
+  servlet:
+    context-path: /
+
+spring:
+  profiles:
+    active: dev
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  kafka:
+    bootstrap-servers:
+      - 10.170.6.24:9092
+      - 10.170.6.25:9092
+      - 10.170.6.26:9092
+    consumer:
+      #      group-id: im-msg-queue-persist-group
+      auto-offset-reset: latest
+    streams:
+      application-id: msg-queue-persist
+
+# MyBatis配置
+mybatis-plus:
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+  # 加载全局的配置文件
+  configLocation: classpath:mybatis/mybatis-config.xml
+  type-aliases-package: com.qtech.msg.entity
+  global-config:
+    db-config:
+      id-type: auto
+
+kafka:
+  source:
+    bootstrap-servers: 10.170.6.170:9092,10.170.6.171:9092,10.170.6.172:9092
+    topic: pip_executor_to_druid
+  consumer:
+    group-id: device-sync-group
+  target:
+    bootstrap-servers: 10.170.6.24:9092,10.170.6.25:9092,10.170.6.26:9092
+    topic: filtered_device_data
+# corePoolSize不宜太大，2核CPU环境，最多允许4～5个活跃线程在抢CPU。
+# queueCapacity 不能太大，控制住消息积压量，否则实时性急剧下降。
+# RejectedExecutionHandler保持CallerRunsPolicy没问题（可以临时让生产者自己跑任务，保护系统稳定）。
+# keepAliveSeconds可以低一点，加快释放空闲线程，节省内存。
+thread-pool:
+  important:
+    corePoolSize: 2
+    maxPoolSize: 3
+    queueCapacity: 500
+    keepAliveSeconds: 30
+    threadNamePrefix: important-task-
+  normal:
+    corePoolSize: 5
+    maxPoolSize: 10
+    queueCapacity: 1000
+    keepAliveSeconds: 30
+    threadNamePrefix: normal-task-
+  low:
+    corePoolSize: 0
+    maxPoolSize: 1
+    queueCapacity: 100
+    keepAliveSeconds: 30
+    threadNamePrefix: low-task-

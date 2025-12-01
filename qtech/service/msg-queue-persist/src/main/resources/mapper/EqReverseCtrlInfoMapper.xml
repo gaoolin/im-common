@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qtech.msg.mapper.EqReverseCtrlInfoMapper">
+    <resultMap id="eqReverseCtrlInfoResult" type="com.im.qtech.data.dto.reverse.EqpReversePOJO">
+        <result property="simId" column="sim_id"/>
+        <result property="source" column="source"/>
+        <result property="moduleId" column="module_id"/>
+        <result property="chkDt" column="chk_dt"/>
+        <result property="code" column="code"/>
+        <result property="passed" column="passed"/>
+        <result property="label" column="label"/>
+        <result property="reason" column="reason"/>
+        <result property="description" column="description"/>
+    </resultMap>
+
+    <sql id="select_eq_reverse_ctrl_info">
+        SELECT SIM_ID, "SOURCE", MODULE_ID, CHK_DT, CODE, DESCRIPTION, VERSION
+        FROM IMBIZ.IM_EQ_REVERSE_CONTROL_RECORDS
+    </sql>
+
+    <!-- 定义列名列表，用于在批量插入中复用 -->
+    <sql id="columnList">
+        SIM_ID
+        , "SOURCE", MODULE_ID, CHK_DT, CODE, DESCRIPTION, VERSION
+    </sql>
+
+    <insert id="upsertDoris">
+        INSERT INTO qtech_eq_ads.im_eq_reverse_control_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="simId != null">SIM_ID,</if>
+            <if test="source != null">SOURCE,</if>
+            <if test="moduleId != null">MODULE_ID,</if>
+            <if test="chkDt != null">CHK_DT,</if>
+            <if test="code != null">CODE,</if>
+            <if test="passed != null">PASSED,</if>
+            <if test="label != null">LABEL,</if>
+            <if test="reason != null">REASON,</if>
+            <if test="description != null">DESCRIPTION,</if>
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="simId != null">#{simId},</if>
+            <if test="source != null">#{source},</if>
+            <if test="moduleId != null">#{moduleId},</if>
+            <if test="chkDt != null">#{chkDt},</if>
+            <if test="code != null">#{code},</if>
+            <if test="passed != null">#{passed},</if>
+            <if test="label != null">#{label},</if>
+            <if test="reason != null">#{reason},</if>
+            <if test="description != null">#{description},</if>
+        </trim>
+    </insert>
+
+    <insert id="upsertOracle" parameterType="com.im.qtech.data.dto.reverse.EqpReversePOJO">
+        MERGE INTO IMBIZ.IM_EQ_REVERSE_CONTROL_RECORDS tgt
+            USING (SELECT #{simId, jdbcType=VARCHAR}       AS SIM_ID,
+                          #{source, jdbcType=VARCHAR}      AS SOURCE,
+                          #{moduleId, jdbcType=VARCHAR}    AS MODULE_ID,
+                          #{chkDt, jdbcType=TIMESTAMP}     AS CHK_DT,
+                          #{code, jdbcType=INTEGER}        AS CODE,
+                          #{passed, jdbcType=INTEGER}      AS PASSED,
+                          #{label, jdbcType=VARCHAR}       AS LABEL,
+                          #{reason, jdbcType=VARCHAR}      AS REASON,
+                          #{description, jdbcType=VARCHAR} AS DESCRIPTION
+                   FROM DUAL) src
+            ON (
+                        tgt.SIM_ID = src.SIM_ID AND
+                        tgt.SOURCE = src.SOURCE
+                )
+            WHEN MATCHED THEN
+                UPDATE SET
+                    tgt.MODULE_ID = src.MODULE_ID,
+                    tgt.CHK_DT = src.CHK_DT,
+                    tgt.CODE = src.CODE,
+                    tgt.PASSED = src.PASSED,
+                    tgt.LABEL = src.LABEL,
+                    tgt.REASON = src.REASON,
+                    tgt.DESCRIPTION = src.DESCRIPTION,
+                    tgt.VERSION = tgt.VERSION + 1
+            WHEN NOT MATCHED THEN
+                INSERT (
+                        SIM_ID,
+                        SOURCE,
+                        MODULE_ID,
+                        CHK_DT,
+                        CODE,
+                        PASSED,
+                        LABEL,
+                        REASON,
+                        DESCRIPTION
+                    ) VALUES (src.SIM_ID,
+                              src.SOURCE,
+                              src.MODULE_ID,
+                              src.CHK_DT,
+                              src.CODE,
+                              src.PASSED,
+                              src.LABEL,
+                              src.REASON,
+                              src.DESCRIPTION)
+    </insert>
+
+    <insert id="addAaListDoris" parameterType="com.im.qtech.data.dto.reverse.EqpReversePOJO">
+        INSERT INTO qtech_eq_dwd.im_aa_list_chk_result_detail
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+            <if test="simId != null">SIM_ID,</if>
+            <if test="moduleId != null">MODULE_ID,</if>
+            <if test="chkDt != null">CHK_DT,</if>
+            <if test="code != null">CODE,</if>
+            <if test="passed != null">PASSED,</if>
+            <if test="label != null">LABEL,</if>
+            <if test="reason != null">REASON,</if>
+            <if test="description != null">DESCRIPTION</if>
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="simId != null">#{simId},</if>
+            <if test="moduleId != null">#{moduleId},</if>
+            <if test="chkDt != null">#{chkDt},</if>
+            <if test="code != null">#{code},</if>
+            <if test="passed != null">#{passed},</if>
+            <if test="label != null">#{label},</if>
+            <if test="reason != null">#{reason},</if>
+            <if test="description != null">#{description}</if>
+        </trim>
+    </insert>
+
+    <insert id="addWbOlpChkDoris">
+        INSERT INTO qtech_eq_dwd.im_wb_olp_chk_result_detail
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+            <if test="simId != null">SIM_ID,</if>
+            <if test="moduleId != null">MC_ID,</if>
+            <if test="chkDt != null">DT,</if>
+            <if test="code != null">CODE,</if>
+            <if test="passed != null">PASSED,</if>
+            <if test="label != null">LABEL,</if>
+            <if test="reason != null">REASON,</if>
+            <if test="description != null">DESCRIPTION</if>
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="simId != null">#{simId},</if>
+            <if test="moduleId != null">#{moduleId},</if>
+            <if test="chkDt != null">#{chkDt},</if>
+            <if test="code != null">#{code},</if>
+            <if test="passed != null">#{passed},</if>
+            <if test="label != null">#{label},</if>
+            <if test="reason != null">#{reason},</if>
+            <if test="description != null">#{description}</if>
+        </trim>
+    </insert>
+
+    <insert id="upsertPostgres" parameterType="com.im.qtech.data.dto.reverse.EqpReversePOJO">
+        INSERT INTO qtech_wb.public.eq_control_info
+        <trim prefix="(" suffix=")">
+            <if test="simId != null">sim_id,</if>
+            <if test="chkDt != null">dt,</if>
+            <if test="code != null">code,</if>
+            <if test="description != null">description</if>
+        </trim>
+        <trim prefix="VALUES(" suffix=")">
+            <if test="simId != null">#{simId},</if>
+            <if test="chkDt != null">TO_TIMESTAMP(#{chkDt}, 'YYYY-MM-DD HH24:MI:SS'),</if>
+            <if test="code != null">#{code},</if>
+            <if test="description != null">#{description}</if>
+        </trim>
+        ON CONFLICT ON CONSTRAINT eq_control_info_unique_key
+        DO UPDATE SET
+        <trim prefix="" prefixOverrides=", " suffix="">
+            <if test="chkDt != null">
+                dt = EXCLUDED.dt,
+            </if>
+            <if test="code != null">
+                code = EXCLUDED.code,
+            </if>
+            <if test="description != null">
+                description = EXCLUDED.description
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="upsertOracleBatch">
+        BEGIN
+        <foreach collection="list" item="item" separator=";">
+            MERGE INTO IMBIZ.IM_EQ_REVERSE_CONTROL_RECORDS tgt
+            USING (
+            SELECT
+            #{item.simId, jdbcType=VARCHAR} AS SIM_ID,
+            #{item.source, jdbcType=VARCHAR} AS SOURCE,
+            #{item.moduleId, jdbcType=VARCHAR} AS MODULE_ID,
+            #{item.chkDt, jdbcType=TIMESTAMP} AS CHK_DT,
+            #{item.code, jdbcType=INTEGER} AS CODE,
+            #{item.passed, jdbcType=INTEGER} AS PASSED,
+            #{item.label, jdbcType=VARCHAR} AS LABEL,
+            #{item.reason, jdbcType=VARCHAR} AS REASON,
+            #{item.description, jdbcType=VARCHAR} AS DESCRIPTION
+            FROM DUAL
+            ) src
+            ON (
+            tgt.SIM_ID = src.SIM_ID AND
+            tgt.SOURCE = src.SOURCE
+            )
+            WHEN MATCHED THEN
+            UPDATE SET
+            tgt.MODULE_ID = src.MODULE_ID,
+            tgt.CHK_DT = src.CHK_DT,
+            tgt.CODE = src.CODE,
+            tgt.PASSED = src.PASSED,
+            tgt.LABEL = src.LABEL,
+            tgt.REASON = src.REASON,
+            tgt.DESCRIPTION = src.DESCRIPTION,
+            tgt.VERSION = tgt.VERSION + 1
+            WHEN NOT MATCHED THEN
+            INSERT (
+            SIM_ID,
+            SOURCE,
+            MODULE_ID,
+            CHK_DT,
+            CODE,
+            PASSED,
+            LABEL,
+            REASON,
+            DESCRIPTION
+            ) VALUES (
+            src.SIM_ID,
+            src.SOURCE,
+            src.MODULE_ID,
+            src.CHK_DT,
+            src.CODE,
+            src.PASSED,
+            src.LABEL,
+            src.REASON,
+            src.DESCRIPTION
+            )
+        </foreach>
+        ;
+        END;
+    </insert>
+
+    <insert id="addWbOlpChkDorisBatch">
+        INSERT INTO qtech_eq_dwd.im_wb_olp_chk_result_detail
+        (SIM_ID, MC_ID, DT, CODE, PASSED, LABEL, REASON, DESCRIPTION)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.simId},
+            #{item.moduleId},
+            #{item.chkDt},
+            #{item.code},
+            #{item.passed},
+            #{item.label},
+            #{item.reason},
+            #{item.description}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

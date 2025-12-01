@@ -1,0 +1,38 @@
+{
+  "type": "record",
+  "name": "EqReverseCtrlInfoRecord",
+  "namespace": "com.qtech.chk.avro",
+  "fields": [
+    {
+      "name": "simId",
+      "type": "string"
+    },
+    {
+      "name": "moduleId",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": "defaultString"
+    },
+    {
+      "name": "chkDt",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "code",
+      "type": "int"
+    },
+    {
+      "name": "description",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": "defaultString"
+    }
+  ]
+}
