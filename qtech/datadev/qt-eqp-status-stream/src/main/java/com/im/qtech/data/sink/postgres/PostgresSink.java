@@ -1,8 +1,8 @@
 package com.im.qtech.data.sink.postgres;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.im.qtech.data.model.EqNetworkStatus;
+import com.zaxxer.hikari.HikariDataSource;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.metrics.Counter;
 import org.apache.flink.metrics.Meter;
@@ -42,7 +42,7 @@ public class PostgresSink extends RichSinkFunction<String> {
     private final ReentrantLock bufferLock = new ReentrantLock();
 
     // 保留这些作为类字段，因为其他方法需要访问它们
-    private transient DruidDataSource dataSource;
+    private transient HikariDataSource dataSource;
     private transient Connection connection;
     private transient PreparedStatement preparedStatement;
     private transient List<String> batchBuffer;
@@ -88,9 +88,9 @@ public class PostgresSink extends RichSinkFunction<String> {
                 throw new RuntimeException("PostgreSQL JDBC Driver not found: " + POSTGRES_DRIVER_CLASS, e);
             }
 
-            // 初始化 Druid 连接池 - 优化配置
-            dataSource = new DruidDataSource();
-            dataSource.setUrl(jdbcUrl);
+            // 初始化 Hikari 连接池 - 优化配置
+            dataSource = new HikariDataSource();
+            dataSource.setJdbcUrl(jdbcUrl);
             dataSource.setUsername(username);
             dataSource.setPassword(password);
             dataSource.setDriverClassName(POSTGRES_DRIVER_CLASS);
@@ -98,23 +98,16 @@ public class PostgresSink extends RichSinkFunction<String> {
             logger.info(">>>>> Connecting to PostgreSQL with URL: {}", jdbcUrl);
 
             // 优化连接池配置以提高吞吐量
-            dataSource.setInitialSize(POSTGRES_INITIAL_SIZE);
-            dataSource.setMinIdle(POSTGRES_MIN_IDLE);
-            dataSource.setMaxActive(POSTGRES_MAX_ACTIVE);
-            dataSource.setMaxWait(30000);
-            dataSource.setTimeBetweenEvictionRunsMillis(30000);
-            dataSource.setMinEvictableIdleTimeMillis(300000);
-            dataSource.setValidationQuery("SELECT 1");
-            dataSource.setTestWhileIdle(true);
-            dataSource.setTestOnBorrow(false);
-            dataSource.setTestOnReturn(false);
+            dataSource.setMaximumPoolSize(POSTGRES_MAX_ACTIVE);
+            dataSource.setMinimumIdle(POSTGRES_MIN_IDLE);
+            dataSource.setConnectionTimeout(30000);
+            dataSource.setIdleTimeout(300000);
+            dataSource.setMaxLifetime(1800000);
+            dataSource.setLeakDetectionThreshold(60000);
 
-            // 关键优化参数
-            dataSource.setPoolPreparedStatements(true);
-            dataSource.setMaxPoolPreparedStatementPerConnectionSize(20);
-            dataSource.setRemoveAbandoned(true);
-            dataSource.setRemoveAbandonedTimeout(1800);
-            dataSource.setLogAbandoned(true);
+            // 连接验证配置
+            dataSource.setConnectionTestQuery("SELECT 1");
+            dataSource.setValidationTimeout(5000);
 
             try {
                 connection = dataSource.getConnection();

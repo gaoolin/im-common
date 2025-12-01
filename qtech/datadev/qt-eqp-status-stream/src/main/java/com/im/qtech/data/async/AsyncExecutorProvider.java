@@ -8,17 +8,23 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import static com.im.qtech.data.util.Constants.DEFAULT_THREAD_POOL_SIZE;
+import static com.im.qtech.data.util.Constants.HIGH_CONCURRENCY_THREAD_POOL_SIZE;
+
 /**
- * author :  gaozhilin
- * email  :  gaoolin@gmail.com
- * date   :  2025/08/01 09:27:57
- * desc   :  双单例模式
+ * 双单例模式
+ * <p>
  * 全局统一异步线程池管理器
  * 线程数可配置，默认单线程，轻量执行异步任务
  * 线程池生命周期可控，防止线程泄漏
  * 每种类型的线程池在整个应用中只有一个实例
  * 通过方法名区分不同用途的线程池
  * 保持了单例模式的所有优点：资源节省、延迟加载、线程安全
+ * </p>
+ *
+ * @author gaozhilin
+ * @email gaoolin@gmail.com
+ * @date 2025/08/01 09:27:57
  */
 public class AsyncExecutorProvider {
 

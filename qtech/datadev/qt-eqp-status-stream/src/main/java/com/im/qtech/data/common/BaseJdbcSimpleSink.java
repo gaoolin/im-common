@@ -15,8 +15,10 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * 通用的简单 JDBC Sink（非二阶段提交）
+ * <p>
  * 去掉两阶段提交，只在 invoke() 里做批量写入 + 提交，适用于幂等更新。
  * 不受 checkpoint 生命周期影响，不会出现“Sink 没有运行导致 checkpoint 失败”的问题。
+ * </p>
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com

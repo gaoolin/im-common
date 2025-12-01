@@ -1,4 +1,4 @@
-package com.qtech.status.common.binder;
+package com.im.qtech.data.common.binder;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

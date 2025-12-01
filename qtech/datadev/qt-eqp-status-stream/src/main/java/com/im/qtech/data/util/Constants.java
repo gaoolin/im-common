@@ -37,9 +37,9 @@ public class Constants {
             "  VALUES (s.DEVICE_ID, s.RECEIVE_DATE, s.DEVICE_TYPE, s.LOT_NAME, s.STATUS, s.REMOTE_CONTROL, s.LAST_UPDATE)"
     );
 
-    public static final int ORACLE_BATCH_SIZE = 500;         // 减小批量大小
+    public static final int ORACLE_BATCH_SIZE = 200;         // 减小批量大小
     public static final int ORACLE_MAX_RETRIES = 5;          // 增加重试次数
-    public static final long ORACLE_BATCH_INTERVAL_MS = 3000; // 缩短批量间隔
+    public static final long ORACLE_BATCH_INTERVAL_MS = 2000; // 缩短批量间隔
     public static final int ORACLE_MAX_POOL_SIZE = 10;
     // 连接池配置
     public static final int ORACLE_INITIAL_SIZE = 5;
@@ -64,9 +64,9 @@ public class Constants {
             "    remote_control = EXCLUDED.remote_control,",
             "    last_update = EXCLUDED.last_update"
     );
-    public static final int POSTGRES_BATCH_SIZE = 500;
+    public static final int POSTGRES_BATCH_SIZE = 200;
     public static final int POSTGRES_MAX_RETRIES = 5;
-    public static final long POSTGRES_BATCH_INTERVAL_MS = 3000;
+    public static final long POSTGRES_BATCH_INTERVAL_MS = 2000;
     public static final int POSTGRES_MAX_POOL_SIZE = 10;
     public static final int POSTGRES_INITIAL_SIZE = 5;
     public static final int POSTGRES_MIN_IDLE = 2;

@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * @email gaoolin@gmail.com
  * @date 2025/08/05 09:54:35
  */
-public interface EqNetworkStatusParameterBinder extends com.qtech.status.common.binder.SqlParameterBinder<EqNetworkStatus> {
+public interface EqNetworkStatusParameterBinder extends SqlParameterBinder<EqNetworkStatus> {
 
     @Override
     default void bindParameters(PreparedStatement ps, EqNetworkStatus record) throws SQLException {

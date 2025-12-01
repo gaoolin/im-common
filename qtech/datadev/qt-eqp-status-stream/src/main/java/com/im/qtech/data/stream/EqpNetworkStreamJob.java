@@ -69,38 +69,59 @@ public class EqpNetworkStreamJob {
         logger.info(">>>>> Starting Flink Job: Device Online Status Flink Stream Job");
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(3);
-        env.enableCheckpointing(10000L);
-        env.getCheckpointConfig().setCheckpointTimeout(120000L);
-        env.getCheckpointConfig().setMinPauseBetweenCheckpoints(5000L);
+        env.enableCheckpointing(10_000); // 更频繁的检查点
+        env.getCheckpointConfig().setCheckpointTimeout(120_000); // 2分钟超时
+        env.getCheckpointConfig().setMinPauseBetweenCheckpoints(5_000); // 最小暂停时间
         env.getCheckpointConfig().setMaxConcurrentCheckpoints(1);
         env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.AT_LEAST_ONCE);
-        env.setRestartStrategy(RestartStrategies.exponentialDelayRestart(Time.of(1L, TimeUnit.SECONDS), Time.of(60L, TimeUnit.SECONDS), 2.0, Time.of(10L, TimeUnit.MINUTES), 0.1));
-        DataStream<String> sourceStream = env.fromSource(KafkaSourceProvider.createSource(), WatermarkStrategy.noWatermarks(), "Kafka-Source").filter((msg) -> {
-            return msg != null && !msg.isEmpty();
-        });
+        // 设置更灵活的重启策略
+        env.setRestartStrategy(RestartStrategies.exponentialDelayRestart(
+                Time.of(1, TimeUnit.SECONDS),    // initialBackoff
+                Time.of(60, TimeUnit.SECONDS),   // maxBackoff
+                2.0,                                  // backoffMultiplier
+                Time.of(10, TimeUnit.MINUTES),   // resetBackoffThreshold
+                0.1                                   // jitterFactor
+        ));
+        DataStream<String> sourceStream = env.fromSource(KafkaSourceProvider.createSource(), WatermarkStrategy.noWatermarks(), "Kafka-Source")
+                .filter((msg) -> msg != null && !msg.isEmpty());
         DeviceTypeSplitter.SplitStreams splitStreams = DeviceTypeSplitter.split(sourceStream);
         SingleOutputStreamOperator<EqNetworkStatus> normalDevices = AsyncDataStream.unorderedWait(splitStreams.getNormalStream(), new NormalDeviceAsyncFunction(), 30L, TimeUnit.SECONDS, 2000).setParallelism(6);
         SingleOutputStreamOperator<EqNetworkStatus> importantDevices = AsyncDataStream.unorderedWait(splitStreams.getImportantStream(), new ImportantDeviceAsyncFunction(), 30L, TimeUnit.SECONDS, 2000).setParallelism(6);
-        DataStream<EqNetworkStatus> mergedStream = normalDevices.union(new DataStream[]{importantDevices});
-        DataStream<String> kafkaStream = mergedStream.map((record) -> {
+        DataStream<EqNetworkStatus> mergedStream = normalDevices.union(importantDevices);
+        // 主路径：只写入 Kafka（关键路径）
+        DataStream<String> kafkaStream = mergedStream.map(record -> {
             try {
                 return objectMapper.writeValueAsString(record);
-            } catch (Exception var2) {
-                logger.error("Failed to serialize EqNetworkStatus to JSON", var2);
+            } catch (Exception e) {
+                logger.error("Failed to serialize EqNetworkStatus to JSON", e);
                 return "{}";
             }
         });
         kafkaStream.sinkTo(KafkaSinkProvider.createSink()).name("Kafka-Sink").setParallelism(3);
-        SingleOutputStreamOperator<EqNetworkStatus> mainWithSideOutput = mergedStream.process(new ProcessFunction<EqNetworkStatus, EqNetworkStatus>() {
-            @Override
-            public void processElement(EqNetworkStatus value, Context ctx, Collector<EqNetworkStatus> out) throws Exception {
-                out.collect(value);
-                ctx.output(DB_WRITE_TAG, value);
-            }
-        });
+        // 侧路径：写入数据库（次要路径）
+        SingleOutputStreamOperator<EqNetworkStatus> mainWithSideOutput =
+                mergedStream.process(new ProcessFunction<EqNetworkStatus, EqNetworkStatus>() {
+                    @Override
+                    public void processElement(EqNetworkStatus value, Context ctx, Collector<EqNetworkStatus> out) {
+                        // 主输出：继续流向下游
+                        out.collect(value);
+                        // 侧输出：用于数据库写入
+                        ctx.output(DB_WRITE_TAG, value);
+                    }
+                });
+        // 从侧输出获取数据流写入数据库
         DataStream<EqNetworkStatus> dbWriteStream = mainWithSideOutput.getSideOutput(DB_WRITE_TAG);
-        dbWriteStream.addSink(new SimpleOracleBatchSink()).name("Oracle-AbstractBatchSink").setParallelism(2);
-        dbWriteStream.addSink(new SimplePostgresBatchSink()).name("Postgres-AbstractBatchSink").setParallelism(2);
+
+        // 数据库写入使用较低优先级和独立的并行度设置
+        dbWriteStream
+                .addSink(new SimpleOracleBatchSink())
+                .name("Oracle-AbstractBatchSink")
+                .setParallelism(2); // 较低的并行度
+
+        dbWriteStream
+                .addSink(new SimplePostgresBatchSink())
+                .name("Postgres-AbstractBatchSink")
+                .setParallelism(2); // 较低的并行度
         logger.info(">>>>> Executing Flink job...");
         env.execute("im-device-network-stream");
     }
