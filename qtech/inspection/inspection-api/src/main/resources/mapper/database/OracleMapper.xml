@@ -43,5 +43,6 @@
         SELECT QUERY_TEXT
         FROM IMBIZ.IM_SQL_QUERIES
         WHERE QUERY_NAME = #{jobName}
+          and IS_ACTIVE = 'Y'
     </select>
 </mapper>
