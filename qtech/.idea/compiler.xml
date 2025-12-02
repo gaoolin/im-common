@@ -7,11 +7,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="qt-bom-etl" />
+        <module name="inspection-api" />
+        <module name="eq-aa-lst-chk" />
+        <module name="wb-olp-inspection" />
+        <module name="kafka-api" />
+        <module name="qt-eqp-status-stream" />
+        <module name="msg-queue-persist" />
+        <module name="eqp-ctx-data-etl" />
         <module name="persist" />
         <module name="datadev-common" />
         <module name="wb-wire-usage-etl" />
-        <module name="eq-aa-lst-chk" />
-        <module name="wb-olp-inspection" />
       </profile>
     </annotationProcessing>
   </component>
