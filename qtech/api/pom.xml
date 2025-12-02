@@ -13,15 +13,26 @@
     <packaging>pom</packaging>
 
     <name>api</name>
-    <url>http://maven.apache.org</url>
+    <url>http://intelligentmfg.qtech.com/</url>
     <modules>
         <module>kafka-api</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-boot3.version>3.5.6</spring-boot3.version>
+        <spring-boot.version>2.7.13</spring-boot.version>
     </properties>
 
-    <dependencies>
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot3.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
