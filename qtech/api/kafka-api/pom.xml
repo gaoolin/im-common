@@ -95,7 +95,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>3.5.6</version>
                 <configuration>
-                    <mainClass>com.im.qtech.api.App</mainClass>
+                    <mainClass>com.im.qtech.api.KafkaApi</mainClass>
                 </configuration>
             </plugin>
             <!--将依赖移到libs目录下-->

@@ -53,4 +53,4 @@ HEALTHCHECK --interval=30s --timeout=30s --retries=5 \
 #ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /home/app.jar ${PARAMS} --spring.profiles.active=${SPRING_PROFILES_ACTIVE}"]
 
 # 启动命令 - 使用实际的主类名
-ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -cp '/home/app.jar:/home/libs/*' com.im.qtech.service.App"]
+ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -cp '/home/app.jar:/home/libs/*' com.im.qtech.service.Persist"]
