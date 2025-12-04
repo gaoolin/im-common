@@ -61,10 +61,10 @@ public class DataFetch {
             // 追加 debug 模式的 filter
             if (isDebugEnabled) {
                 String simIdFilter = manager.getString("debug.filter.sim_id", null);
-                String mcIdFilter = manager.getString("debug.filter.module_id", null);
+                String moduleIdFilter = manager.getString("debug.filter.module_id", null);
                 String dtRange = manager.getString("debug.filter.dt_range", null);
 
-                StringBuilder filterClauses = getFilterClauses(simIdFilter, mcIdFilter, dtRange);
+                StringBuilder filterClauses = getFilterClauses(simIdFilter, moduleIdFilter, dtRange);
 
                 baseSql += filterClauses.toString();
             }
@@ -131,15 +131,15 @@ public class DataFetch {
     }
 
     @NotNull
-    private static StringBuilder getFilterClauses(String simIdFilter, String mcIdFilter, String dtRange) {
+    private static StringBuilder getFilterClauses(String simIdFilter, String moduleIdFilter, String dtRange) {
         StringBuilder filterClauses = new StringBuilder();
 
         if (simIdFilter != null && !simIdFilter.trim().isEmpty()) {
             filterClauses.append(String.format(" AND SIMID = '%s'", simIdFilter));
         }
 
-        if (mcIdFilter != null && !mcIdFilter.trim().isEmpty()) {
-            filterClauses.append(String.format(" AND MachineType = '%s'", mcIdFilter));
+        if (moduleIdFilter != null && !moduleIdFilter.trim().isEmpty()) {
+            filterClauses.append(String.format(" AND MachineType = '%s'", moduleIdFilter));
         }
 
         if (dtRange != null && !dtRange.trim().isEmpty()) {

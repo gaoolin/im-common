@@ -190,7 +190,7 @@ public class WbOlpCheckBatchEngine extends SparkBatchEngine<Void> {
         if (ttlCheckResDf != null) {
             ttlCheckResDf.createOrReplaceTempView("ttlCheckResDf");
         }
-        getNeedFilterModule(getSparkSession(), driver, url, user, pwd).createOrReplaceTempView("needFilterMcId");
+        getNeedFilterModule(getSparkSession(), driver, url, user, pwd).createOrReplaceTempView("needFilterModuleId");
     }
 
     /**
@@ -256,8 +256,8 @@ public class WbOlpCheckBatchEngine extends SparkBatchEngine<Void> {
             if (getSparkSession().catalog().tableExists("ttlCheckResDf")) {
                 getSparkSession().catalog().dropTempView("ttlCheckResDf");
             }
-            if (getSparkSession().catalog().tableExists("needFilterMcId")) {
-                getSparkSession().catalog().dropTempView("needFilterMcId");
+            if (getSparkSession().catalog().tableExists("needFilterModuleId")) {
+                getSparkSession().catalog().dropTempView("needFilterModuleId");
             }
         }
 

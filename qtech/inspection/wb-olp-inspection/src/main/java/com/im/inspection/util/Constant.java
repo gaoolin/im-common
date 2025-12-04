@@ -28,8 +28,8 @@ public class Constant {
 
     public static final String DRUID_RAW_DATA_SQL = "SELECT SIMID, ECount, receive_date, MachineType, __time, B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, Sendcount FROM t_dev_attrs WHERE __time > '%s' AND receive_date IS NOT NULL AND MachineType IS NOT NULL AND device_type = 'WB' AND B1 IS NOT NULL AND B1 NOT LIKE 'DIE%%' AND B1 NOT LIKE 'LEAD%%' AND B1 NOT LIKE '%%j%%' AND B1 NOT LIKE '.0%%' AND B1 NOT LIKE '%%ln%%'";
     public static final String DRUID_TRANSFORM_SQL = "SELECT SIMID as sim_id, MachineType_ as module_id, __time as dt, CASE WHEN split(result_b, ',')[0] IS NOT NULL AND split(result_b, ',')[0] != '' THEN CAST(split(result_b, ',')[0] AS INTEGER) ELSE 0 END AS wire_id, CASE WHEN result_b IS NOT NULL AND result_b != '' THEN CAST(split(result_b, ',')[3] AS STRING) ELSE '0' END AS lead_x, CASE WHEN result_b IS NOT NULL AND result_b != '' THEN CAST(split(result_b, ',')[4] AS STRING) ELSE '0' END AS lead_y, CASE WHEN result_b IS NOT NULL AND result_b != '' THEN CAST(split(result_b, ',')[1] AS STRING) ELSE '0' END AS pad_x, CASE WHEN result_b IS NOT NULL AND result_b != '' THEN CAST(split(result_b, ',')[2] AS STRING) ELSE '0' END AS pad_y, ECount AS check_port, Sendcount AS pieces_index FROM (SELECT SIMID, ECount, receive_date, TRIM(MachineType) AS MachineType_, __time, Sendcount, STACK(10, 'B1', B1, 'B2', B2, 'B3', B3, 'B4', B4, 'B5', B5, 'B6', B6, 'B7', B7, 'B8', B8, 'B9', B9, 'B10', B10) AS (B, result_b) FROM t_dev_attrs) t";
-    public static final String NEED_FILTER_MODULE = "select * from ttlCheckResDf where module_id in (select module_id from needFilterMcId)";
-    public static final String EXCLUDE_NEED_FILTER_MODULE = "select * from ttlCheckResDf where module_id not in (select module_id from needFilterMcId)";
+    public static final String NEED_FILTER_MODULE = "select * from ttlCheckResDf where module_id in (select module_id from needFilterModuleId)";
+    public static final String EXCLUDE_NEED_FILTER_MODULE = "select * from ttlCheckResDf where module_id not in (select module_id from needFilterModuleId)";
 
     // 字段常量
     public static final String SOURCE = "wb-olp";

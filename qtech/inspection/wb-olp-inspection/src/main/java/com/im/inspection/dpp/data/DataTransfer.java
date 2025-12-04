@@ -33,14 +33,14 @@ public class DataTransfer {
             WindowSpec winByPIdx = Window.partitionBy(col(SIM_ID), col(MODULE_ID), col(PIECES_INDEX));
             WindowSpec winMcByPIdx = Window.partitionBy(col(SIM_ID), col(PIECES_INDEX));
 
-            Column subMcIdCol = split(col(MODULE_ID), "#").getItem(0);
+            Column subModuleIdCol = split(col(MODULE_ID), "#").getItem(0);
             Column dx = col(PAD_X).minus(col(LEAD_X));
             Column dy = col(PAD_Y).minus(col(LEAD_Y));
             Column wireLenCol = sqrt(functions.pow(dx, 2).plus(functions.pow(dy, 2)));
 
             Dataset<Row> df = rawDF
                     .withColumn(FIRST_BONDING_TIME, min(col(DT)).over(winByPIdx))
-                    .withColumn(NORM_MODULE_ID, subMcIdCol)
+                    .withColumn(NORM_MODULE_ID, subModuleIdCol)
                     .withColumn(MODULES_BY_PIECES_INDEX, approx_count_distinct(NORM_MODULE_ID).over(winMcByPIdx))
                     .withColumn(WIRE_LEN, wireLenCol);
 
