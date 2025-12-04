@@ -64,7 +64,7 @@ public class WbOlpConsumer {
      * @param records        批量的消息记录
      * @param acknowledgment Kafka确认对象
      */
-    @KafkaListener(topics = WB_OLP_CHECK_KAFKA_TOPIC, containerFactory = "EqReverseCtrlInfoContainerFactory")
+    @KafkaListener(topics = WB_OLP_CHECK_KAFKA_TOPIC, containerFactory = "eqReverseInfoContainerFactory")
     public void consume(List<ConsumerRecord<Long, EqpReversePOJORecord>> records, Acknowledgment acknowledgment) {
         if (records == null || records.isEmpty()) {
             acknowledgment.acknowledge();

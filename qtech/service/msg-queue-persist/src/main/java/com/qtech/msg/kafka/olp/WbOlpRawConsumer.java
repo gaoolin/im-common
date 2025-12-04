@@ -62,7 +62,7 @@ public class WbOlpRawConsumer {
      * @param records        批量的消息记录
      * @param acknowledgment Kafka确认对象
      */
-    @KafkaListener(topics = WB_OLP_RAW_DATA_KAFKA_TOPIC, containerFactory = "WbOlpRawDataContainerFactory")
+    @KafkaListener(topics = WB_OLP_RAW_DATA_KAFKA_TOPIC, containerFactory = "wbOlpRawDataContainerFactory")
     public void consume(List<ConsumerRecord<Long, WbOlpRawDataRecord>> records, Acknowledgment acknowledgment) {
         if (records == null || records.isEmpty()) {
             acknowledgment.acknowledge();

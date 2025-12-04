@@ -54,7 +54,7 @@ public class KafkaConsumerConfig {
      * 专用于 WbOlpConsumer 消费者
      */
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<Long, EqpReversePOJORecord> EqReverseCtrlInfoContainerFactory(
+    public ConcurrentKafkaListenerContainerFactory<Long, EqpReversePOJORecord> eqReverseInfoContainerFactory(
             ConsumerFactory<Long, EqpReversePOJORecord> consumerRecordFactory) {
         ConcurrentKafkaListenerContainerFactory<Long, EqpReversePOJORecord> factory = new ConcurrentKafkaListenerContainerFactory<>();
         Map<String, Object> props = new HashMap<>(((DefaultKafkaConsumerFactory<Long, EqpReversePOJORecord>) consumerRecordFactory).getConfigurationProperties());
@@ -83,7 +83,7 @@ public class KafkaConsumerConfig {
      * 专用于 WbOlpRawConsumer 消费者
      */
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<Long, WbOlpRawDataRecord> WbOlpRawDataContainerFactory(
+    public ConcurrentKafkaListenerContainerFactory<Long, WbOlpRawDataRecord> wbOlpRawDataContainerFactory(
             ConsumerFactory<Long, WbOlpRawDataRecord> consumerFactory) {
         ConcurrentKafkaListenerContainerFactory<Long, WbOlpRawDataRecord> factory = new ConcurrentKafkaListenerContainerFactory<>();
         Map<String, Object> props = new HashMap<>(((DefaultKafkaConsumerFactory<Long, WbOlpRawDataRecord>) consumerFactory).getConfigurationProperties());

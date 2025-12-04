@@ -5,8 +5,8 @@
     <resultMap id="BaseResultMap" type="com.im.qtech.data.dto.param.WbOlpRawData">
         <result property="dt" column="dt"/>
         <result property="simId" column="sim_id"/>
-        <result property="moduleId" column="mc_id"/>
-        <result property="wireId" column="line_no"/>
+        <result property="moduleId" column="module_id"/>
+        <result property="wireId" column="wire_id"/>
         <result property="leadX" column="lead_x"/>
         <result property="leadY" column="lead_y"/>
         <result property="padX" column="pad_x"/>
@@ -20,7 +20,7 @@
     <insert id="addWbOlpRawDataBatch">
         INSERT INTO qtech_eq_dwd.im_wb_olp_coordinate_detail
         (
-        dt, sim_id, mc_id, line_no,
+        dt, sim_id, module_id, wire_id,
         lead_x, lead_y, pad_x, pad_y,
         check_port, pieces_index, load_time
         )
