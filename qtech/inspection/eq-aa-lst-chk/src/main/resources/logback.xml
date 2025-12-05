@@ -53,12 +53,12 @@
         <appender-ref ref="CONSOLE"/>
     </logger>
 
+    <!-- 常用框架日志级别调整 -->
+    <logger name="org.apache.kafka" level="WARN"/>
+
     <!-- 根日志级别配置 -->
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>
-
-    <!-- 常用框架日志级别调整 -->
-    <logger name="org.apache.kafka" level="WARN"/>
 </configuration>
