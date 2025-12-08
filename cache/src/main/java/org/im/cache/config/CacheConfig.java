@@ -145,6 +145,14 @@ public class CacheConfig implements Serializable {
      */
     private int redisSoTimeout = 2000;
 
+    /**
+     * Redis连接池配置
+     */
+    private int maxConnections = 20;
+    private int maxIdleConnections = 10;
+    private int minIdleConnections = 2;
+    private long connectionTimeout = 5000; // 毫秒
+
     // ==================== 构造函数 ====================
 
     /**
@@ -474,6 +482,38 @@ public class CacheConfig implements Serializable {
     public CacheConfig setRedisSoTimeout(int redisSoTimeout) {
         this.redisSoTimeout = redisSoTimeout;
         return this;
+    }
+
+    public int getMaxConnections() {
+        return maxConnections;
+    }
+
+    public void setMaxConnections(int maxConnections) {
+        this.maxConnections = maxConnections;
+    }
+
+    public int getMaxIdleConnections() {
+        return maxIdleConnections;
+    }
+
+    public void setMaxIdleConnections(int maxIdleConnections) {
+        this.maxIdleConnections = maxIdleConnections;
+    }
+
+    public int getMinIdleConnections() {
+        return minIdleConnections;
+    }
+
+    public void setMinIdleConnections(int minIdleConnections) {
+        this.minIdleConnections = minIdleConnections;
+    }
+
+    public long getConnectionTimeout() {
+        return connectionTimeout;
+    }
+
+    public void setConnectionTimeout(long connectionTimeout) {
+        this.connectionTimeout = connectionTimeout;
     }
 
     /**

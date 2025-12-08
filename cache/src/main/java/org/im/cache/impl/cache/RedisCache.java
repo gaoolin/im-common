@@ -16,6 +16,9 @@ import io.lettuce.core.cluster.RedisClusterClient;
 import io.lettuce.core.cluster.api.StatefulRedisClusterConnection;
 import io.lettuce.core.cluster.api.sync.RedisClusterCommands;
 import io.lettuce.core.codec.StringCodec;
+import io.lettuce.core.support.ConnectionPoolSupport;
+import org.apache.commons.pool2.impl.GenericObjectPool;
+import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.im.cache.config.CacheConfig;
 import org.im.common.json.JsonMapperProvider;
 import org.slf4j.Logger;
@@ -46,6 +49,9 @@ public class RedisCache<K, V> extends AbstractCache<K, V> {
     private static final ObjectMapper objectMapper = createObjectMapper();
 
     private final Object client; // RedisClient or RedisClusterClient
+    private final GenericObjectPool<StatefulRedisConnection<String, String>> connectionPool; // 添加连接池
+
+    private final GenericObjectPool<StatefulRedisClusterConnection<String, String>> clusterConnectionPool; // 集群连接池
     private final String cacheName;
     private final boolean isCluster;
     private final Class<V> valueType;
@@ -88,12 +94,28 @@ public class RedisCache<K, V> extends AbstractCache<K, V> {
                 redisURIs.add(RedisURI.create(uri.trim()));
             }
 
-            this.client = RedisClusterClient.create(redisURIs);
+            RedisClusterClient clusterClient = RedisClusterClient.create(redisURIs);
+            this.client = clusterClient;
+
+            // 创建集群连接池
+            GenericObjectPoolConfig<StatefulRedisClusterConnection<String, String>> poolConfig =
+                    createPoolConfig(config);
+            this.clusterConnectionPool = ConnectionPoolSupport.createGenericObjectPool(
+                    clusterClient::connect, poolConfig);
+            this.connectionPool = null;
         } else {
             // 单机模式
             this.isCluster = false;
             RedisURI uri = RedisURI.create(redisUri);
-            this.client = RedisClient.create(uri);
+            RedisClient redisClient = RedisClient.create(uri);
+            this.client = redisClient;
+
+            // 创建单机连接池
+            GenericObjectPoolConfig<StatefulRedisConnection<String, String>> poolConfig =
+                    createPoolConfig(config);
+            this.connectionPool = ConnectionPoolSupport.createGenericObjectPool(
+                    () -> redisClient.connect(StringCodec.UTF8), poolConfig);
+            this.clusterConnectionPool = null;
         }
 
         logger.info("RedisCache initialized with config: {} and mode: {}", config, isCluster ? "CLUSTER" : "STANDALONE");
@@ -105,8 +127,8 @@ public class RedisCache<K, V> extends AbstractCache<K, V> {
      * @return ObjectMapper实例
      */
     private static ObjectMapper createObjectMapper() {
-        return JsonMapperProvider.createCustomizedInstance(mapper1 -> {
-            mapper1.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
+        return JsonMapperProvider.createCustomizedInstance(mapper -> {
+            mapper.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
             JavaTimeModule javaTimeModule = new JavaTimeModule();
 
             // 使用标准ISO格式
@@ -116,10 +138,23 @@ public class RedisCache<K, V> extends AbstractCache<K, V> {
             javaTimeModule.addSerializer(LocalDateTime.class,
                     new LocalDateTimeSerializer(isoFormatter));
 
-            mapper1.registerModule(javaTimeModule);
-            mapper1.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            mapper.registerModule(javaTimeModule);
+            mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
         });
+    }
+
+    // 添加连接池配置创建方法
+    private <T> GenericObjectPoolConfig<T> createPoolConfig(CacheConfig config) {
+        GenericObjectPoolConfig<T> poolConfig = new GenericObjectPoolConfig<>();
+        poolConfig.setMaxTotal(config.getMaxConnections() > 0 ? config.getMaxConnections() : 20);
+        poolConfig.setMaxIdle(config.getMaxIdleConnections() > 0 ? config.getMaxIdleConnections() : 10);
+        poolConfig.setMinIdle(config.getMinIdleConnections() >= 0 ? config.getMinIdleConnections() : 2);
+        poolConfig.setMaxWaitMillis(config.getConnectionTimeout() > 0 ? config.getConnectionTimeout() : 5000);
+        poolConfig.setTestOnBorrow(true);
+        poolConfig.setTestOnReturn(true);
+        poolConfig.setTestWhileIdle(true);
+        return poolConfig;
     }
 
     /**
@@ -749,13 +784,22 @@ public class RedisCache<K, V> extends AbstractCache<K, V> {
     @Override
     public void close() {
         try {
+            // 先关闭连接池
+            if (connectionPool != null) {
+                connectionPool.close();
+            }
+            if (clusterConnectionPool != null) {
+                clusterConnectionPool.close();
+            }
+
+            // 再关闭客户端
             if (client instanceof RedisClient) {
                 ((RedisClient) client).shutdown();
             } else if (client instanceof RedisClusterClient) {
                 ((RedisClusterClient) client).shutdown();
             }
         } catch (Exception e) {
-            logger.warn("Error closing Redis client", e);
+            logger.warn("Error closing Redis client or connection pools", e);
         }
     }
 
@@ -850,12 +894,15 @@ public class RedisCache<K, V> extends AbstractCache<K, V> {
      */
     @SuppressWarnings("unchecked")
     private Object createConnection() {
-        if (isCluster) {
-            RedisClusterClient clusterClient = (RedisClusterClient) client;
-            return clusterClient.connect(StringCodec.UTF8);
-        } else {
-            RedisClient redisClient = (RedisClient) client;
-            return redisClient.connect(StringCodec.UTF8);
+        try {
+            if (isCluster) {
+                return clusterConnectionPool.borrowObject();
+            } else {
+                return connectionPool.borrowObject();
+            }
+        } catch (Exception e) {
+            logger.error("Failed to borrow connection from pool", e);
+            throw new RuntimeException("Failed to get connection from pool", e);
         }
     }
 
@@ -868,12 +915,22 @@ public class RedisCache<K, V> extends AbstractCache<K, V> {
         if (connection != null) {
             try {
                 if (connection instanceof StatefulRedisConnection) {
-                    ((StatefulRedisConnection<?, ?>) connection).close();
+                    connectionPool.returnObject((StatefulRedisConnection<String, String>) connection);
                 } else if (connection instanceof StatefulRedisClusterConnection) {
-                    ((StatefulRedisClusterConnection<?, ?>) connection).close();
+                    clusterConnectionPool.returnObject((StatefulRedisClusterConnection<String, String>) connection);
                 }
             } catch (Exception e) {
-                logger.warn("Error closing connection", e);
+                logger.warn("Error returning connection to pool", e);
+                // 如果归还失败，尝试关闭连接
+                try {
+                    if (connection instanceof StatefulRedisConnection) {
+                        ((StatefulRedisConnection<?, ?>) connection).close();
+                    } else if (connection instanceof StatefulRedisClusterConnection) {
+                        ((StatefulRedisClusterConnection<?, ?>) connection).close();
+                    }
+                } catch (Exception closeException) {
+                    logger.warn("Error closing connection", closeException);
+                }
             }
         }
     }

@@ -147,6 +147,26 @@ public class CacheConfigBuilder {
         return this;
     }
 
+    public CacheConfigBuilder maxConnections(int maxConnections) {
+        config.setMaxConnections(maxConnections);
+        return this;
+    }
+
+    public CacheConfigBuilder maxIdleConnections(int maxIdleConnections) {
+        config.setMaxIdleConnections(maxIdleConnections);
+        return this;
+    }
+
+    public CacheConfigBuilder minIdleConnections(int minIdleConnections) {
+        config.setMinIdleConnections(minIdleConnections);
+        return this;
+    }
+
+    public CacheConfigBuilder connectionTimeout(long connectionTimeout) {
+        config.setConnectionTimeout(connectionTimeout);
+        return this;
+    }
+
     /**
      * 设置定期清理间隔
      *
