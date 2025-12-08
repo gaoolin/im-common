@@ -17,6 +17,7 @@ import io.lettuce.core.cluster.api.StatefulRedisClusterConnection;
 import io.lettuce.core.cluster.api.sync.RedisClusterCommands;
 import io.lettuce.core.codec.StringCodec;
 import org.im.cache.config.CacheConfig;
+import org.im.common.json.JsonMapperProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -104,18 +105,21 @@ public class RedisCache<K, V> extends AbstractCache<K, V> {
      * @return ObjectMapper实例
      */
     private static ObjectMapper createObjectMapper() {
-        ObjectMapper mapper = new ObjectMapper();
-        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        return JsonMapperProvider.createCustomizedInstance(mapper1 -> {
+            mapper1.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
+            JavaTimeModule javaTimeModule = new JavaTimeModule();
 
-        // 配置 LocalDateTime 反序列化器，支持空格分隔格式
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        javaTimeModule.addDeserializer(LocalDateTime.class,
-                new LocalDateTimeDeserializer(formatter));
-        javaTimeModule.addSerializer(LocalDateTime.class,
-                new LocalDateTimeSerializer(formatter));
-        mapper.registerModule(javaTimeModule);
-        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        return mapper;
+            // 使用标准ISO格式
+            DateTimeFormatter isoFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+            javaTimeModule.addDeserializer(LocalDateTime.class,
+                    new LocalDateTimeDeserializer(isoFormatter));
+            javaTimeModule.addSerializer(LocalDateTime.class,
+                    new LocalDateTimeSerializer(isoFormatter));
+
+            mapper1.registerModule(javaTimeModule);
+            mapper1.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+        });
     }
 
     /**
