@@ -1,17 +1,17 @@
 package org.im.cache.factory;
 
-import org.im.cache.builder.CacheConfigBuilder;
 import org.im.cache.config.CacheConfig;
+import org.im.cache.config.CacheConfigBuilder;
 import org.im.cache.core.Cache;
 import org.im.cache.core.CacheManager;
 import org.im.cache.impl.cache.CaffeineCache;
-import org.im.cache.impl.cache.ProtectedCache;
 import org.im.cache.impl.cache.RedisCache;
 import org.im.cache.impl.cache.SimpleMemoryCache;
+import org.im.cache.support.ProtectedCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.im.cache.impl.support.BackendType.MEMORY;
+import static org.im.cache.config.BackendType.MEMORY;
 
 /**
  * Cache factory for creating cache instances based on configuration.
@@ -21,8 +21,8 @@ import static org.im.cache.impl.support.BackendType.MEMORY;
  * Cache registration is handled by the CacheManager.
  *
  * @author gaozhilin
+ * @date 2025/08/27
  * @email gaoolin@gmail.com
- * @date 2025/08/29
  */
 public class CacheFactory {
     private static final Logger logger = LoggerFactory.getLogger(CacheFactory.class);
@@ -56,7 +56,7 @@ public class CacheFactory {
     public <K, V> Cache<K, V> create(CacheConfig config) {
         if (config == null) {
             logger.warn("CacheConfig is null, using default MEMORY config");
-            config = CacheConfigBuilder.create().withBackendType(MEMORY).build();
+            config = CacheConfigBuilder.newBuilder().backendType(MEMORY).build();
         }
 
         Cache<K, V> cache;
@@ -78,7 +78,7 @@ public class CacheFactory {
                     cache = new SimpleMemoryCache<>(config);
                     break;
             }
-            logger.info("Created cache with backend: {} for config.prefix: {}", config.getBackendType(), config.getPrefix());
+            logger.info("Created cache with backend: {} for config.prefix: {}", config.getBackendType(), config.getCacheName());
         } catch (Exception e) {
             logger.error("Failed to create cache with backend: {}", config.getBackendType(), e);
             throw new RuntimeException("Failed to create cache for backend: " + config.getBackendType(), e);
@@ -89,7 +89,7 @@ public class CacheFactory {
                 config.isEnableBreakdownProtection() ||
                 config.isEnableAvalancheProtection()) {
             cache = new ProtectedCache<>(cache, config);
-            logger.debug("Applied ProtectedCache wrapper to cache: {}", config.getPrefix());
+            logger.debug("Applied ProtectedCache wrapper to cache: {}", config.getCacheName());
         }
 
         return cache; // 不负责注册，交给 CacheManager
@@ -110,7 +110,7 @@ public class CacheFactory {
     public <K, V> Cache<K, V> create(CacheConfig config, Class<K> keyType, Class<V> valueType) {
         if (config == null) {
             logger.warn("CacheConfig is null, using default MEMORY config");
-            config = CacheConfigBuilder.create().withBackendType(MEMORY).build();
+            config = CacheConfigBuilder.newBuilder().backendType(MEMORY).build();
         }
 
         Cache<K, V> cache;
@@ -132,7 +132,7 @@ public class CacheFactory {
                     cache = new SimpleMemoryCache<>(config);
                     break;
             }
-            logger.info("Created cache with backend: {} for config.prefix: {}", config.getBackendType(), config.getPrefix());
+            logger.info("Created cache with backend: {} for config.prefix: {}", config.getBackendType(), config.getCacheName());
         } catch (Exception e) {
             logger.error("Failed to create cache with backend: {}", config.getBackendType(), e);
             throw new RuntimeException("Failed to create cache for backend: " + config.getBackendType(), e);
@@ -143,7 +143,7 @@ public class CacheFactory {
                 config.isEnableBreakdownProtection() ||
                 config.isEnableAvalancheProtection()) {
             cache = new ProtectedCache<>(cache, config);
-            logger.debug("Applied ProtectedCache wrapper to cache: {}", config.getPrefix());
+            logger.debug("Applied ProtectedCache wrapper to cache: {}", config.getCacheName());
         }
 
         return cache;
@@ -157,7 +157,7 @@ public class CacheFactory {
      * @return Default cache instance
      */
     public <K, V> Cache<K, V> createDefault() {
-        CacheConfig config = CacheConfigBuilder.create().withBackendType(MEMORY).build();
+        CacheConfig config = CacheConfigBuilder.newBuilder().backendType(MEMORY).build();
         return create(config);
     }
 }

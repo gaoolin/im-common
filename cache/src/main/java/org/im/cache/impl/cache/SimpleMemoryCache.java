@@ -1,10 +1,10 @@
 package org.im.cache.impl.cache;
 
-import org.im.cache.builder.CacheConfigBuilder;
+import org.im.cache.config.CacheConfigBuilder;
 import org.im.cache.config.CacheConfig;
 import org.im.cache.core.Cache;
-import org.im.cache.impl.support.ExpiringValue;
-import org.im.cache.impl.support.NullValueMarker;
+import org.im.cache.support.ExpiringValue;
+import org.im.cache.support.NullValueMarker;
 import org.im.cache.stats.CacheStats;
 
 import java.util.HashMap;
@@ -31,7 +31,7 @@ public class SimpleMemoryCache<K, V> implements Cache<K, V> {
     private final CacheStats stats;
 
     public SimpleMemoryCache(CacheConfig config) {
-        this.config = config != null ? config : CacheConfigBuilder.create().build();
+        this.config = config != null ? config : CacheConfigBuilder.newBuilder().build();
         this.stats = config != null && config.isRecordStats() ? new CacheStats() : null;
     }
 

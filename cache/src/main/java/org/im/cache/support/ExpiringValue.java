@@ -1,4 +1,4 @@
-package org.im.cache.impl.support;
+package org.im.cache.support;
 
 /**
  * 支持绝对过期时间的缓存值包装器
@@ -10,9 +10,23 @@ package org.im.cache.impl.support;
  */
 
 public class ExpiringValue<V> {
+    /**
+     * 缓存值
+     */
     private final V value;
+
+
+    /**
+     * 绝对过期时间戳（毫秒）
+     */
     private final long expireTimestamp; // 绝对过期时间戳（毫秒）
 
+    /**
+     * 构造函数
+     *
+     * @param value           缓存值
+     * @param expireTimestamp 绝对过期时间戳（毫秒）
+     */
     public ExpiringValue(V value, long expireTimestamp) {
         this.value = value;
         this.expireTimestamp = expireTimestamp;

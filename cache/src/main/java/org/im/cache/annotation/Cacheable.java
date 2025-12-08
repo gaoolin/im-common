@@ -1,7 +1,7 @@
 package org.im.cache.annotation;
 
 import org.im.cache.core.CacheKeyGenerator;
-import org.im.cache.impl.support.SimpleKeyGenerator;
+import org.im.cache.support.SimpleKeyGenerator;
 
 import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;

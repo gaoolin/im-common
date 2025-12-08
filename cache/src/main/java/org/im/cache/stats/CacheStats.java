@@ -5,8 +5,11 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Cache statistics
+ * 缓存统计信息类
  * <p>
  * Records cache hit rate, request count, and other statistics
+ * 收集和统计缓存使用情况，包括命中率、加载时间等关键指标
+ * </p>
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
@@ -15,58 +18,65 @@ import java.util.concurrent.atomic.AtomicLong;
 public class CacheStats implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    // Request count
-    private final AtomicLong requestCount = new AtomicLong();
-    // Hit count
-    private final AtomicLong hitCount = new AtomicLong();
-    // Miss count
-    private final AtomicLong missCount = new AtomicLong();
-    // Load success count
-    private final AtomicLong loadSuccessCount = new AtomicLong();
-    // Load failure count
-    private final AtomicLong loadExceptionCount = new AtomicLong();
-    // Total load time (nanoseconds)
-    private final AtomicLong totalLoadTime = new AtomicLong();
-    // Eviction count
-    private final AtomicLong evictionCount = new AtomicLong();
-    // Put count
-    private final AtomicLong putCount = new AtomicLong();
+    /**
+     * 命中次数
+     */
+    private final AtomicLong hitCount = new AtomicLong(0);
 
+    /**
+     * 未命中次数
+     */
+    private final AtomicLong missCount = new AtomicLong(0);
+
+    /**
+     * 加载成功次数
+     */
+    private final AtomicLong loadSuccessCount = new AtomicLong(0);
+
+    /**
+     * 加载异常次数
+     */
+    private final AtomicLong loadExceptionCount = new AtomicLong(0);
+
+    /**
+     * 驱逐次数
+     */
+    private final AtomicLong evictionCount = new AtomicLong(0);
+
+    /**
+     * 存储次数
+     */
+    private final AtomicLong putCount = new AtomicLong(0);
+
+    /**
+     * 总加载时间（纳秒）
+     */
+    private final AtomicLong totalLoadTime = new AtomicLong(0);
+
+    /**
+     * 默认构造函数
+     */
     public CacheStats() {
     }
 
-    // Constructor for Caffeine stats
-    public CacheStats(com.github.benmanes.caffeine.cache.stats.CacheStats caffeineStats) {
-        this.requestCount.set(caffeineStats.requestCount());
-        this.hitCount.set(caffeineStats.hitCount());
-        this.missCount.set(caffeineStats.missCount());
-        this.loadSuccessCount.set(caffeineStats.loadSuccessCount());
-        this.loadExceptionCount.set(caffeineStats.loadFailureCount());
-        this.totalLoadTime.set(caffeineStats.totalLoadTime());
-        this.evictionCount.set(caffeineStats.evictionCount());
-        this.putCount.set(0); // Caffeine stats don’t track puts explicitly
-    }
-
     /**
-     * Records a cache hit
+     * 记录命中
      */
     public void recordHit() {
-        requestCount.incrementAndGet();
         hitCount.incrementAndGet();
     }
 
     /**
-     * Records a cache miss
+     * 记录未命中
      */
     public void recordMiss() {
-        requestCount.incrementAndGet();
         missCount.incrementAndGet();
     }
 
     /**
-     * Records a successful load
+     * 记录加载成功
      *
-     * @param loadTime Load time (nanoseconds)
+     * @param loadTime 加载时间（纳秒）
      */
     public void recordLoadSuccess(long loadTime) {
         loadSuccessCount.incrementAndGet();
@@ -74,9 +84,9 @@ public class CacheStats implements Serializable {
     }
 
     /**
-     * Records a failed load
+     * 记录加载异常
      *
-     * @param loadTime Load time (nanoseconds)
+     * @param loadTime 加载时间（纳秒）
      */
     public void recordLoadException(long loadTime) {
         loadExceptionCount.incrementAndGet();
@@ -84,131 +94,149 @@ public class CacheStats implements Serializable {
     }
 
     /**
-     * Records a cache eviction
+     * 记录驱逐
      */
     public void recordEviction() {
         evictionCount.incrementAndGet();
     }
 
     /**
-     * Records a cache put operation
+     * 记录存储
      */
     public void recordPut() {
         putCount.incrementAndGet();
     }
 
     /**
-     * Resets all statistics counters to zero
+     * 获取命中次数
+     *
+     * @return 命中次数
      */
-    public void reset() {
-        requestCount.set(0);
-        hitCount.set(0);
-        missCount.set(0);
-        loadSuccessCount.set(0);
-        loadExceptionCount.set(0);
-        totalLoadTime.set(0);
-        evictionCount.set(0);
-        putCount.set(0);
-    }
-
-    // Getters
-    public long getRequestCount() {
-        return requestCount.get();
-    }
-
     public long getHitCount() {
         return hitCount.get();
     }
 
+    /**
+     * 获取未命中次数
+     *
+     * @return 未命中次数
+     */
     public long getMissCount() {
         return missCount.get();
     }
 
+    /**
+     * 获取加载成功次数
+     *
+     * @return 加载成功次数
+     */
     public long getLoadSuccessCount() {
         return loadSuccessCount.get();
     }
 
+    /**
+     * 获取加载异常次数
+     *
+     * @return 加载异常次数
+     */
     public long getLoadExceptionCount() {
         return loadExceptionCount.get();
     }
 
-    public long getTotalLoadTime() {
-        return totalLoadTime.get();
-    }
-
+    /**
+     * 获取驱逐次数
+     *
+     * @return 驱逐次数
+     */
     public long getEvictionCount() {
         return evictionCount.get();
     }
 
+    /**
+     * 获取存储次数
+     *
+     * @return 存储次数
+     */
     public long getPutCount() {
         return putCount.get();
     }
 
     /**
-     * Gets the hit rate
+     * 获取总加载时间（纳秒）
      *
-     * @return Hit rate (0-1)
+     * @return 总加载时间（纳秒）
+     */
+    public long getTotalLoadTime() {
+        return totalLoadTime.get();
+    }
+
+    /**
+     * 获取命中率
+     *
+     * @return 命中率 (0.0 to 1.0)
      */
     public double getHitRate() {
-        long total = requestCount.get();
-        return total == 0 ? 0.0 : (double) hitCount.get() / total;
+        long hits = hitCount.get();
+        long misses = missCount.get();
+        long total = hits + misses;
+        return total == 0 ? 0.0 : (double) hits / total;
     }
 
     /**
-     * Gets the average load time (milliseconds)
+     * 获取平均加载时间（毫秒）
      *
-     * @return Average load time
+     * @return 平均加载时间（毫秒）
      */
     public double getAverageLoadTime() {
-        long totalLoadCount = loadSuccessCount.get() + loadExceptionCount.get();
-        return totalLoadCount == 0 ? 0.0 : (double) totalLoadTime.get() / totalLoadCount / 1_000_000.0;
+        long loads = loadSuccessCount.get() + loadExceptionCount.get();
+        return loads == 0 ? 0.0 : totalLoadTime.get() / (1000000.0 * loads);
     }
 
     /**
-     * Merges another CacheStats object
+     * 合并另一个统计对象的数据
      *
-     * @param other Other CacheStats object
-     * @return Merged CacheStats object
+     * @param other 另一个统计对象
      */
-    public CacheStats merge(CacheStats other) {
-        CacheStats merged = new CacheStats();
-        merged.requestCount.set(this.requestCount.get() + other.requestCount.get());
-        merged.hitCount.set(this.hitCount.get() + other.hitCount.get());
-        merged.missCount.set(this.missCount.get() + other.missCount.get());
-        merged.loadSuccessCount.set(this.loadSuccessCount.get() + other.loadSuccessCount.get());
-        merged.loadExceptionCount.set(this.loadExceptionCount.get() + other.loadExceptionCount.get());
-        merged.totalLoadTime.set(this.totalLoadTime.get() + other.totalLoadTime.get());
-        merged.evictionCount.set(this.evictionCount.get() + other.evictionCount.get());
-        merged.putCount.set(this.putCount.get() + other.putCount.get());
-        return merged;
+    public void merge(CacheStats other) {
+        hitCount.addAndGet(other.getHitCount());
+        missCount.addAndGet(other.getMissCount());
+        loadSuccessCount.addAndGet(other.getLoadSuccessCount());
+        loadExceptionCount.addAndGet(other.getLoadExceptionCount());
+        evictionCount.addAndGet(other.getEvictionCount());
+        putCount.addAndGet(other.getPutCount());
+        totalLoadTime.addAndGet(other.getTotalLoadTime());
     }
 
     /**
-     * Adds Caffeine CacheStats
+     * 重置统计数据
      */
-    public void add(com.github.benmanes.caffeine.cache.stats.CacheStats caffeineStats) {
-        this.requestCount.addAndGet(caffeineStats.requestCount());
-        this.hitCount.addAndGet(caffeineStats.hitCount());
-        this.missCount.addAndGet(caffeineStats.missCount());
-        this.loadSuccessCount.addAndGet(caffeineStats.loadSuccessCount());
-        this.loadExceptionCount.addAndGet(caffeineStats.loadFailureCount());
-        this.totalLoadTime.addAndGet(caffeineStats.totalLoadTime());
-        this.evictionCount.addAndGet(caffeineStats.evictionCount());
-        // putCount not updated from Caffeine stats
+    public void reset() {
+        hitCount.set(0);
+        missCount.set(0);
+        loadSuccessCount.set(0);
+        loadExceptionCount.set(0);
+        evictionCount.set(0);
+        putCount.set(0);
+        totalLoadTime.set(0);
     }
 
+    /**
+     * 返回对象的字符串表示
+     *
+     * @return 对象的字符串表示
+     */
     @Override
     public String toString() {
         return "CacheStats{" +
-                "requestCount=" + requestCount.get() +
-                ", hitCount=" + hitCount.get() +
+                "hitCount=" + hitCount.get() +
                 ", missCount=" + missCount.get() +
-                ", hitRate=" + String.format("%.2f", getHitRate() * 100) + "%" +
                 ", loadSuccessCount=" + loadSuccessCount.get() +
                 ", loadExceptionCount=" + loadExceptionCount.get() +
-                ", averageLoadTime=" + String.format("%.2f", getAverageLoadTime()) + "ms" +
                 ", evictionCount=" + evictionCount.get() +
                 ", putCount=" + putCount.get() +
+                ", totalLoadTime=" + totalLoadTime.get() +
+                ", hitRate=" + String.format("%.2f%%", getHitRate() * 100) +
+                ", averageLoadTime=" + String.format("%.2fms", getAverageLoadTime()) +
                 '}';
     }
 }

@@ -1,55 +1,50 @@
-package org.im.cache.builder;
-
-import org.im.cache.config.BackendType;
-import org.im.cache.config.CacheConfig;
-import org.im.cache.core.Cache;
-import org.im.cache.core.CacheManager;
-import org.im.cache.factory.CacheFactory;
-import org.im.cache.impl.manager.DefaultCacheManager;
+package org.im.cache.config;
 
 import java.util.concurrent.TimeUnit;
 
 /**
- * 缓存构建器
+ * 缓存配置构建器
  * <p>
- * 提供流畅的API用于构建和配置Cache实例
+ * 提供流畅的API用于构建和配置CacheConfig实例
  * 使用建造者模式，支持链式调用
  * </p>
  *
  * @author gaozhilin
+ * @author lingma
  * @email gaoolin@gmail.com
  * @date 2025/08/27
  */
-public class CacheBuilder {
+public class CacheConfigBuilder {
     /**
-     * 缓存配置实例
+     * 要构建的缓存配置实例
      */
-    private final CacheConfig config = new CacheConfig();
-    private CacheManager cacheManager;
+    private final CacheConfig config;
 
     /**
      * 私有构造函数
+     * <p>初始化一个新的CacheConfig实例用于构建</p>
      */
-    private CacheBuilder() {
+    private CacheConfigBuilder() {
+        this.config = new CacheConfig();
     }
 
     /**
-     * 创建一个新的缓存构建器实例
+     * 创建一个新的缓存配置构建器实例
      *
-     * @return 新的CacheBuilder实例
+     * @return 新的CacheConfigBuilder实例
      */
-    public static CacheBuilder newBuilder() {
-        return new CacheBuilder();
+    public static CacheConfigBuilder newBuilder() {
+        return new CacheConfigBuilder();
     }
 
     /**
-     * 设置缓存名称
+     * 设置缓存名称前缀
      *
-     * @param cacheName 缓存名称
+     * @param cacheName 缓存名称前缀
      * @return 当前构建器实例，用于链式调用
      * @see CacheConfig#setCacheName(String)
      */
-    public CacheBuilder cacheName(String cacheName) {
+    public CacheConfigBuilder cacheName(String cacheName) {
         config.setCacheName(cacheName);
         return this;
     }
@@ -61,7 +56,7 @@ public class CacheBuilder {
      * @return 当前构建器实例，用于链式调用
      * @see CacheConfig#setMaximumSize(int)
      */
-    public CacheBuilder maximumSize(int maximumSize) {
+    public CacheConfigBuilder maximumSize(int maximumSize) {
         config.setMaximumSize(maximumSize);
         return this;
     }
@@ -74,7 +69,7 @@ public class CacheBuilder {
      * @return 当前构建器实例，用于链式调用
      * @see CacheConfig#setExpireAfterWrite(long)
      */
-    public CacheBuilder expireAfterWrite(long duration, TimeUnit unit) {
+    public CacheConfigBuilder expireAfterWrite(long duration, TimeUnit unit) {
         config.setExpireAfterWrite(unit.toMillis(duration));
         return this;
     }
@@ -87,7 +82,7 @@ public class CacheBuilder {
      * @return 当前构建器实例，用于链式调用
      * @see CacheConfig#setExpireAfterAccess(long)
      */
-    public CacheBuilder expireAfterAccess(long duration, TimeUnit unit) {
+    public CacheConfigBuilder expireAfterAccess(long duration, TimeUnit unit) {
         config.setExpireAfterAccess(unit.toMillis(duration));
         return this;
     }
@@ -95,12 +90,12 @@ public class CacheBuilder {
     /**
      * 设置是否启用统计
      *
-     * @param record true表示启用统计，false表示禁用
+     * @param recordStats true表示启用统计，false表示禁用
      * @return 当前构建器实例，用于链式调用
      * @see CacheConfig#setRecordStats(boolean)
      */
-    public CacheBuilder recordStats(boolean record) {
-        config.setRecordStats(record);
+    public CacheConfigBuilder recordStats(boolean recordStats) {
+        config.setRecordStats(recordStats);
         return this;
     }
 
@@ -109,9 +104,9 @@ public class CacheBuilder {
      *
      * @param enable true表示启用缓存穿透保护，false表示禁用
      * @return 当前构建器实例，用于链式调用
-     * @see CacheConfig#setEnableNullValueProtection(boolean) (boolean)
+     * @see CacheConfig#setEnableNullValueProtection(boolean)
      */
-    public CacheBuilder nullValueProtection(boolean enable) {
+    public CacheConfigBuilder nullValueProtection(boolean enable) {
         config.setEnableNullValueProtection(enable);
         return this;
     }
@@ -121,9 +116,9 @@ public class CacheBuilder {
      *
      * @param enable true表示启用缓存击穿保护，false表示禁用
      * @return 当前构建器实例，用于链式调用
-     * @see CacheConfig#setEnableBreakdownProtection(boolean) (boolean)
+     * @see CacheConfig#setEnableBreakdownProtection(boolean)
      */
-    public CacheBuilder breakdownProtection(boolean enable) {
+    public CacheConfigBuilder breakdownProtection(boolean enable) {
         config.setEnableBreakdownProtection(enable);
         return this;
     }
@@ -133,9 +128,9 @@ public class CacheBuilder {
      *
      * @param enable true表示启用缓存雪崩保护，false表示禁用
      * @return 当前构建器实例，用于链式调用
-     * @see CacheConfig#setEnableAvalancheProtection(boolean) (boolean)
+     * @see CacheConfig#setEnableAvalancheProtection(boolean)
      */
-    public CacheBuilder avalancheProtection(boolean enable) {
+    public CacheConfigBuilder avalancheProtection(boolean enable) {
         config.setEnableAvalancheProtection(enable);
         return this;
     }
@@ -143,12 +138,12 @@ public class CacheBuilder {
     /**
      * 设置缓存后端类型
      *
-     * @param type 缓存后端类型
+     * @param backendType 缓存后端类型
      * @return 当前构建器实例，用于链式调用
      * @see CacheConfig#setBackendType(BackendType)
      */
-    public CacheBuilder backendType(BackendType type) {
-        config.setBackendType(type);
+    public CacheConfigBuilder backendType(BackendType backendType) {
+        config.setBackendType(backendType);
         return this;
     }
 
@@ -160,24 +155,17 @@ public class CacheBuilder {
      * @return 当前构建器实例，用于链式调用
      * @see CacheConfig#setCleanupInterval(long)
      */
-    public CacheBuilder cleanupInterval(long interval, TimeUnit unit) {
+    public CacheConfigBuilder cleanupInterval(long interval, TimeUnit unit) {
         config.setCleanupInterval(unit.toMillis(interval));
         return this;
     }
 
     /**
-     * 构建并返回配置好的Cache实例
+     * 构建并返回配置好的CacheConfig实例
      *
-     * @param <K> 键类型
-     * @param <V> 值类型
-     * @return 构建的Cache实例
-     * @see CacheFactory#create(CacheConfig)
+     * @return 配置完成的CacheConfig实例
      */
-    public <K, V> Cache<K, V> build() {
-        if (cacheManager == null) {
-            cacheManager = new DefaultCacheManager();
-        }
-        CacheFactory factory = new CacheFactory(cacheManager);
-        return factory.create(config);
+    public CacheConfig build() {
+        return config;
     }
 }

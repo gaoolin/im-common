@@ -182,7 +182,6 @@ public class EqLstInspectionModelV4 extends AbstractParameterComparator<Object> 
     }
 
     /* ================= 工具方法 ================= */
-
     private boolean isComputeProperty(String property, List<String> computeProps) {
         return computeProps != null && computeProps.contains(property);
     }

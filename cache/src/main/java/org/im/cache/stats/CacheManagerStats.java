@@ -1,13 +1,15 @@
 package org.im.cache.stats;
 
 import java.io.Serializable;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 缓存管理器统计信息
  * <p>
  * 记录所有缓存实例的统计信息
+ * 缓存管理器统计信息类
+ * 收集和统计缓存管理器级别的使用情况
+ * </p>
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
@@ -17,167 +19,134 @@ import java.util.concurrent.ConcurrentHashMap;
 public abstract class CacheManagerStats implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    // 各缓存实例的统计信息
-    private final Map<String, CacheStats> cacheStats = new ConcurrentHashMap<>();
+    /**
+     * 缓存创建次数
+     */
+    private final AtomicLong cacheCreateCount = new AtomicLong(0);
 
-    // 缓存管理器启动时间
+    /**
+     * 缓存移除次数
+     */
+    private final AtomicLong cacheRemoveCount = new AtomicLong(0);
+
+    /**
+     * 缓存获取次数
+     */
+    private final AtomicLong cacheGetCount = new AtomicLong(0);
+
+    /**
+     * 缓存操作总数
+     */
+    private final AtomicLong totalOperationCount = new AtomicLong(0);
+
+    /**
+     * 启动时间戳
+     */
     private final long startTime = System.currentTimeMillis();
 
+    /**
+     * 默认构造函数
+     */
     public CacheManagerStats() {
     }
 
     /**
-     * 添加缓存统计信息
-     *
-     * @param cacheName 缓存名称
-     * @param stats     缓存统计信息
+     * 记录缓存创建
      */
-    public void addCacheStats(String cacheName, CacheStats stats) {
-        cacheStats.put(cacheName, stats);
+    public void recordCacheCreate() {
+        cacheCreateCount.incrementAndGet();
+        totalOperationCount.incrementAndGet();
     }
 
     /**
-     * 获取缓存统计信息
-     *
-     * @param cacheName 缓存名称
-     * @return 缓存统计信息
+     * 记录缓存移除
      */
-    public CacheStats getCacheStats(String cacheName) {
-        return cacheStats.get(cacheName);
+    public void recordCacheRemove() {
+        cacheRemoveCount.incrementAndGet();
+        totalOperationCount.incrementAndGet();
     }
 
     /**
-     * 获取所有缓存统计信息
-     *
-     * @return 缓存统计信息映射
+     * 记录缓存获取
      */
-    public Map<String, CacheStats> getAllCacheStats() {
-        return new ConcurrentHashMap<>(cacheStats);
+    public void recordCacheGet() {
+        cacheGetCount.incrementAndGet();
+        totalOperationCount.incrementAndGet();
     }
 
     /**
-     * 获取缓存管理器运行时间（毫秒）
+     * 获取缓存创建次数
      *
-     * @return 运行时间
+     * @return 缓存创建次数
+     */
+    public long getCacheCreateCount() {
+        return cacheCreateCount.get();
+    }
+
+    /**
+     * 获取缓存移除次数
+     *
+     * @return 缓存移除次数
+     */
+    public long getCacheRemoveCount() {
+        return cacheRemoveCount.get();
+    }
+
+    /**
+     * 获取缓存获取次数
+     *
+     * @return 缓存获取次数
+     */
+    public long getCacheGetCount() {
+        return cacheGetCount.get();
+    }
+
+    /**
+     * 获取总操作次数
+     *
+     * @return 总操作次数
+     */
+    public long getTotalOperationCount() {
+        return totalOperationCount.get();
+    }
+
+    public abstract int getCacheCount();
+
+    /**
+     * 获取运行时间（毫秒）
+     *
+     * @return 运行时间（毫秒）
      */
     public long getUptime() {
         return System.currentTimeMillis() - startTime;
     }
 
     /**
-     * 获取缓存实例数量
+     * 获取运行时间（格式化字符串）
      *
-     * @return 缓存实例数量
+     * @return 运行时间（格式化字符串）
      */
-    public int getCacheCount() {
-        return cacheStats.size();
+    public String getFormattedUptime() {
+        long uptime = getUptime();
+        long hours = uptime / 3600000;
+        long minutes = (uptime % 3600000) / 60000;
+        long seconds = (uptime % 60000) / 1000;
+        return String.format("%dh %dm %ds", hours, minutes, seconds);
     }
 
     /**
-     * 获取所有缓存统计信息
+     * 返回对象的字符串表示
      *
-     * @return 缓存统计信息映射
+     * @return 对象的字符串表示
      */
-    public Map<String, CacheStats> getCacheStatsMap() {
-        return cacheStats;
-    }
-
-    /**
-     * 获取请求总数
-     *
-     * @return 请求总数
-     */
-    public long getRequestCount() {
-        return cacheStats.values().stream().mapToLong(CacheStats::getRequestCount).sum();
-    }
-
-    /**
-     * 获取命中次数
-     *
-     * @return 命中次数
-     */
-    public long getHitCount() {
-        return cacheStats.values().stream().mapToLong(CacheStats::getHitCount).sum();
-    }
-
-    /**
-     * 获取未命中次数
-     *
-     * @return 未命中次数
-     */
-    public long getMissCount() {
-        return cacheStats.values().stream().mapToLong(CacheStats::getMissCount).sum();
-    }
-
-    /**
-     * 获取加载成功次数
-     *
-     * @return 加载成功次数
-     */
-    public long getLoadSuccessCount() {
-        return cacheStats.values().stream().mapToLong(CacheStats::getLoadSuccessCount).sum();
-    }
-
-    /**
-     * 获取加载失败次数
-     *
-     * @return 加载失败次数
-     */
-    public long getLoadExceptionCount() {
-        return cacheStats.values().stream().mapToLong(CacheStats::getLoadExceptionCount).sum();
-    }
-
-    /**
-     * 获取总加载时间（纳秒）
-     *
-     * @return 总加载时间
-     */
-    public long getTotalLoadTime() {
-        return cacheStats.values().stream().mapToLong(CacheStats::getTotalLoadTime).sum();
-    }
-
-    /**
-     * 获取驱逐次数
-     *
-     * @return 驱逐次数
-     */
-    public long getEvictionCount() {
-        return cacheStats.values().stream().mapToLong(CacheStats::getEvictionCount).sum();
-    }
-
-    /**
-     * 获取命中率
-     *
-     * @return 命中率（0-1之间）
-     */
-    public double getHitRate() {
-        long requestCount = getRequestCount();
-        return requestCount == 0 ? 0.0 : (double) getHitCount() / requestCount;
-    }
-
-    /**
-     * 获取平均加载时间（毫秒）
-     *
-     * @return 平均加载时间
-     */
-    public double getAverageLoadTime() {
-        long totalLoadCount = getLoadSuccessCount() + getLoadExceptionCount();
-        return totalLoadCount == 0 ? 0.0 : (double) getTotalLoadTime() / totalLoadCount / 1000000.0;
-    }
-
     @Override
     public String toString() {
         return "CacheManagerStats{" +
-                "cacheCount=" + cacheStats.size() +
-                ", requestCount=" + getRequestCount() +
-                ", hitCount=" + getHitCount() +
-                ", missCount=" + getMissCount() +
-                ", hitRate=" + String.format("%.2f", getHitRate() * 100) + "%" +
-                ", loadSuccessCount=" + getLoadSuccessCount() +
-                ", loadExceptionCount=" + getLoadExceptionCount() +
-                ", averageLoadTime=" + String.format("%.2f", getAverageLoadTime()) + "ms" +
-                ", evictionCount=" + getEvictionCount() +
-
+                "cacheCreateCount=" + cacheCreateCount.get() +
+                ", cacheRemoveCount=" + cacheRemoveCount.get() +
+                ", cacheGetCount=" + cacheGetCount.get() +
+                ", totalOperationCount=" + totalOperationCount.get() +
+                ", uptime=" + getFormattedUptime() +
                 '}';
     }
 

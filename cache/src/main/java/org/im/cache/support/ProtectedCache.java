@@ -1,9 +1,7 @@
-package org.im.cache.impl.cache;
+package org.im.cache.support;
 
 import org.im.cache.config.CacheConfig;
 import org.im.cache.core.Cache;
-import org.im.cache.impl.support.ExpiringValue;
-import org.im.cache.impl.support.NullValueMarker;
 import org.im.cache.stats.CacheStats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +52,7 @@ public class ProtectedCache<K, V> implements Cache<K, V> {
             if (config.isEnableNullValueProtection()) {
                 Object value = delegate.get(key);
                 // 检查是否是空值标记
-                if (NullValueMarker.isNullValueMarker(value)) {
+                if (NullValueMarker.isNullValue(value)) {
                     return null; // 返回实际的null值
                 }
 
@@ -189,7 +187,7 @@ public class ProtectedCache<K, V> implements Cache<K, V> {
                     }
                 } else {
                     // 普通值或空值标记
-                    if (config.isEnableNullValueProtection() && NullValueMarker.isNullValueMarker(value)) {
+                    if (config.isEnableNullValueProtection() && NullValueMarker.isNullValue(value)) {
                         result.put(key, null);
                     } else {
                         @SuppressWarnings("unchecked") V typedValue = (V) value;
@@ -267,7 +265,7 @@ public class ProtectedCache<K, V> implements Cache<K, V> {
         }
 
         // 处理空值标记
-        if (config.isEnableNullValueProtection() && NullValueMarker.isNullValueMarker(value)) {
+        if (config.isEnableNullValueProtection() && NullValueMarker.isNullValue(value)) {
             return true;
         }
 
@@ -326,7 +324,7 @@ public class ProtectedCache<K, V> implements Cache<K, V> {
             V value = delegate.get(key);
 
             // 处理空值保护
-            if (config.isEnableNullValueProtection() && NullValueMarker.isNullValueMarker(value)) {
+            if (config.isEnableNullValueProtection() && NullValueMarker.isNullValue(value)) {
                 return null;
             }
 
@@ -375,7 +373,7 @@ public class ProtectedCache<K, V> implements Cache<K, V> {
             Object value = delegate.get(key);
 
             // 处理空值保护
-            if (config.isEnableNullValueProtection() && NullValueMarker.isNullValueMarker(value)) {
+            if (config.isEnableNullValueProtection() && NullValueMarker.isNullValue(value)) {
                 return null;
             }
 
@@ -425,7 +423,7 @@ public class ProtectedCache<K, V> implements Cache<K, V> {
             Object value = delegate.get(key);
 
             // 处理空值保护
-            if (config.isEnableNullValueProtection() && NullValueMarker.isNullValueMarker(value)) {
+            if (config.isEnableNullValueProtection() && NullValueMarker.isNullValue(value)) {
                 return null;
             }
 

@@ -1,4 +1,4 @@
-package org.im.cache.impl.support;
+package org.im.cache.support;
 
 import org.im.cache.core.CacheKeyGenerator;
 
@@ -19,6 +19,14 @@ public class SimpleKeyGenerator implements CacheKeyGenerator {
 
     private static final String KEY_PREFIX = "#p";
 
+    /**
+     * 生成缓存键
+     *
+     * @param target 目标对象
+     * @param method 目标方法
+     * @param params 方法参数
+     * @return 生成的缓存键
+     */
     @Override
     public Object generate(Object target, Method method, Object... params) {
         if (params.length == 0) {
@@ -30,6 +38,15 @@ public class SimpleKeyGenerator implements CacheKeyGenerator {
         return Arrays.hashCode(params);
     }
 
+    /**
+     * 根据键表达式生成缓存键
+     *
+     * @param keyExpression 键表达式（支持 #p0, #p1 等形式）
+     * @param target        目标对象
+     * @param method        目标方法
+     * @param params        方法参数
+     * @return 生成的缓存键
+     */
     public Object generateKey(String keyExpression, Object target, Method method, Object... params) {
         if (keyExpression == null || keyExpression.trim().isEmpty()) {
             return generate(target, method, params);
@@ -42,11 +59,10 @@ public class SimpleKeyGenerator implements CacheKeyGenerator {
                     return params[paramIndex];
                 }
             } catch (NumberFormatException e) {
-                // 无效索引，回退到默认
+                // 忽略解析错误，使用默认键生成方式
             }
         }
-        // 直接使用 keyExpression 作为键
-        return keyExpression;
+        return generate(target, method, params);
     }
 
     /**

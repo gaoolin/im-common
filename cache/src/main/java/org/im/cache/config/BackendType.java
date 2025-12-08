@@ -1,7 +1,10 @@
-package org.im.cache.impl.support;
+package org.im.cache.config;
 
 /**
  * 缓存后端类型枚举
+ * <p>
+ * 定义支持的缓存后端类型
+ * </p>
  *
  * @author gaozhilin
  * @email gaoolin@gmail.com
@@ -18,11 +21,11 @@ public enum BackendType {
      */
     CAFFEINE,
     /**
-     * 分布式缓存，基于 Redis
+     * Redis缓存
      */
     REDIS,
     /**
-     * 混合缓存，结合本地内存和 Redis
+     * 混合缓存
      */
     HYBRID
 }

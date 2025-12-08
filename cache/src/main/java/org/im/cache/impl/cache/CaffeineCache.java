@@ -3,8 +3,8 @@ package org.im.cache.impl.cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.im.cache.config.CacheConfig;
 import org.im.cache.core.Cache;
-import org.im.cache.impl.support.ExpiringValue;
 import org.im.cache.stats.CacheStats;
+import org.im.cache.support.ExpiringValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -255,9 +255,24 @@ public class CaffeineCache<K, V> implements Cache<K, V> {
     public CacheStats getStats() {
         if (config.isRecordStats()) {
             com.github.benmanes.caffeine.cache.stats.CacheStats caffeineStats = cache.stats();
-            CacheStats caffeineStatsWrapper = new CacheStats(caffeineStats);
-            // 如果需要合并本地统计和Caffeine统计
-            return stats.merge(caffeineStatsWrapper);
+            for (long i = 0; i < caffeineStats.hitCount(); i++) {
+                stats.recordHit();
+            }
+            for (long i = 0; i < caffeineStats.missCount(); i++) {
+                stats.recordMiss();
+            }
+            for (long i = 0; i < caffeineStats.loadSuccessCount(); i++) {
+                stats.recordLoadSuccess(caffeineStats.totalLoadTime());
+            }
+            for (long i = 0; i < caffeineStats.loadFailureCount(); i++) {
+                stats.recordLoadException(caffeineStats.totalLoadTime());
+            }
+            for (long i = 0; i < caffeineStats.evictionCount(); i++) {
+                stats.recordEviction();
+            }
+            for (long i = 0; i < caffeineStats.evictionWeight(); i++) {
+                stats.recordEviction();
+            }
         }
         return stats;
     }
