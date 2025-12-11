@@ -62,8 +62,7 @@
         <dependency>
             <groupId>org.im.cache</groupId>
             <artifactId>cache</artifactId>
-            <version>1.0.5</version>
-            <scope>compile</scope>
+            <version>2.0.2</version>
         </dependency>
         <dependency>
             <groupId>com.im.qtech.data</groupId>
@@ -145,7 +144,6 @@
             <artifactId>avatica</artifactId>
             <version>1.19.0</version>
         </dependency>
-
     </dependencies>
 
     <build>
