@@ -72,6 +72,7 @@ Thumbs.db
 logs/
 *.tmp
 *.temp
+**/LOG_PATH_IS_UNDEFINED
 
 # ============================= #
 #  Spring Boot相关忽略项         #
