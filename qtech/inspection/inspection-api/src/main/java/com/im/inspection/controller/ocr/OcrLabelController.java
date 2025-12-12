@@ -19,8 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.im.qtech.data.constant.QtechImBizConstant.OCR_HTTP_URL_DEV;
-import static com.im.qtech.data.constant.QtechImBizConstant.OCR_HTTP_URL_PROD;
+import static com.im.qtech.data.constant.QtechImBizConstant.*;
 
 /**
  * OCR标签识别控制器
